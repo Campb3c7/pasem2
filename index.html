@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f0e0c">
+  <meta name="description" content="Semester 2 PA school study hub for learning, testing, and clinical application.">
+  <title>PA Semester 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">PA</span>
+      <div><strong>Semester 2</strong><span>Study workspace</span></div>
+    </div>
+    <button class="reset-button" id="reset-progress" type="button">Reset progress</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">PA School · Semester 2</p>
+      <h1>Study what matters.<br><em>Remember it when it counts.</em></h1>
+      <p class="hero-copy">Turn each lecture into focused learning cards, fast recall questions, and clinical application cases.</p>
+      <div class="semester-progress" aria-label="Semester progress">
+        <div class="progress-copy"><span>Semester progress</span><strong id="progress-label">0%</strong></div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-labelledby="courses-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Your curriculum</p><h2 id="courses-title">Courses</h2></div>
+        <span id="course-count" class="count-pill"></span>
+      </div>
+      <div id="course-grid" class="course-grid"></div>
+    </section>
+
+    <section id="study-view" class="study-view" hidden>
+      <button class="back-button" id="back-button" type="button">← All courses</button>
+      <div id="study-content"></div>
+    </section>
+  </main>
+
+  <footer><span>PA Semester 2</span><span>Progress saves on this device.</span></footer>
+  <script src="data/semester.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
