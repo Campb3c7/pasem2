@@ -10,53 +10,22 @@ window.SEMESTER = {
   title: "PA Semester 2",
   courses: [
     {
-      id: "course-one",
-      title: "Course One",
-      short: "C1",
-      icon: "🩺",
+      id: "infectious-disease",
+      title: "Infectious Disease",
+      short: "ID",
+      icon: "🦠",
       color: "gold",
-      description: "Replace this with your first Semester 2 course.",
+      description: "Semester 2 infectious disease lectures and study material.",
       lectures: [
         {
-          id: "lecture-one",
-          title: "Lecture One",
-          description: "A clean starter lecture—swap in your own objectives and content.",
-          cards: [
-            {
-              title: "Add your first learning objective",
-              body: "Use one card per concept. Keep it concise, clinically relevant, and centered on what you need to recall.",
-              highYield: true
-            }
-          ],
-          test: [
-            {
-              prompt: "Where do you add your Semester 2 study content?",
-              choices: ["data/semester.js", "styles.css", "README.md", "index.html"],
-              correct: 0,
-              explanation: "All course, lecture, card, and question content lives in data/semester.js."
-            }
-          ],
+          id: "vaccines",
+          title: "Vaccines",
+          description: "Vaccine lecture materials, recall questions, and clinical application cases.",
+          cards: [],
+          test: [],
           apply: []
         }
       ]
-    },
-    {
-      id: "course-two",
-      title: "Course Two",
-      short: "C2",
-      icon: "🧠",
-      color: "sage",
-      description: "Replace this with your second Semester 2 course.",
-      lectures: []
-    },
-    {
-      id: "course-three",
-      title: "Course Three",
-      short: "C3",
-      icon: "🫀",
-      color: "rose",
-      description: "Add or remove course cards to match your schedule.",
-      lectures: []
     }
   ]
 };
