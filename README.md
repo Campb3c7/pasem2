@@ -7,12 +7,12 @@ A clean Semester 2 version of the PA study site. It keeps the original site's da
 Edit [`data/semester.js`](data/semester.js). The file begins with the complete content shape and starter examples.
 
 - Add a course to `courses`.
-- Add lectures inside that course.
-- Add learning cards under `cards`, recall questions under `test`, and clinical vignettes under `apply`.
+- Add lectures inside that course, then add objectives inside each lecture.
+- Every objective can contain multiple learning cards under `cards`, recall questions under `test`, and clinical vignettes under `apply`.
 - Question `correct` values are zero-based: `0` is the first answer.
 - Optionally add a zero-based `card` value to a question to link it to a Learn card in Recall. Otherwise, Recall links the closest card automatically.
 
-Recall can introduce each Learn card before its linked questions, or **Skip Learn previews** can be selected before starting. In quiz-only mode, a linked Learn card still appears after a missed answer and that question returns later.
+Learn, Test, Apply, and Recall each display the lecture's objectives as sections. Recall runs one complete objective at a time. It can introduce each Learn card before its linked questions, or **Skip Learn previews** can be selected before starting. In quiz-only mode, a linked Learn card still appears after a missed answer and that question returns later.
 
 Progress is stored in the browser on the device being used.
 

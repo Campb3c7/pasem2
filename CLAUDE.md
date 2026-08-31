@@ -13,6 +13,9 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 ## Content rules
 
 - Keep all curriculum in `data/semester.js`.
+- Structure curriculum as course → lecture → objectives → cards/test/apply.
+- The same objectives appear as sections inside Learn, Test, Apply, and Recall.
+- Recall runs one whole objective and owns no separate content.
 - Use one learning card per concept.
 - Test questions should be direct recall.
 - Apply questions should be clinical vignettes with plausible distractors.
