@@ -3,8 +3,10 @@
 
   Course -> lecture -> cards / test / apply
   - cards: { title, body, highYield }
-  - questions: { prompt, choices, correct, explanation }
+  - questions: { prompt, choices, correct, explanation, card }
   - correct is zero-based: 0 means the first choice.
+  - card is optional and zero-based. It links a question to its Learn card
+    for Recall mode; when omitted, Recall chooses the best keyword match.
 */
 window.SEMESTER = {
   title: "PA Semester 2",

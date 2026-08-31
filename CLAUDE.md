@@ -6,7 +6,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 
 - `index.html` — page shell; do not put course content here.
 - `styles.css` — shared visual design.
-- `app.js` — Learn/Test/Apply behavior and local progress.
+- `app.js` — Learn/Test/Apply/Recall behavior and local progress.
 - `data/semester.js` — the only file that contains semester curriculum.
 - `.github/workflows/pages.yml` — GitHub Pages deployment.
 
@@ -17,6 +17,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - Test questions should be direct recall.
 - Apply questions should be clinical vignettes with plausible distractors.
 - `correct` is a zero-based answer index.
+- `card` is an optional zero-based Learn-card index used by Recall. If omitted, the engine links by keyword similarity.
 - IDs use lowercase letters, numbers, and dashes and must remain stable after progress is saved.
 - Never add patient-identifying information.
 

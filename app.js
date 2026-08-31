@@ -11,6 +11,7 @@
   var currentCourse = null;
   var currentLecture = 0;
   var currentMode = "learn";
+  var recallState = null;
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (char) {
@@ -81,28 +82,32 @@
       return;
     }
     var lecture = lectures[currentLecture];
-    var modes = ["learn", "test", "apply"];
+    var modes = ["learn", "test", "apply", "recall"];
     studyContent.innerHTML =
       '<div class="study-heading"><p class="eyebrow">' + escapeHtml(currentCourse.title) + '</p><h2>' + escapeHtml(lecture.title) + '</h2><p>' + escapeHtml(lecture.description || "") + '</p></div>' +
       '<div class="lecture-tabs" role="tablist">' + lectures.map(function (item, index) {
         return '<button type="button" class="lecture-tab ' + (index === currentLecture ? "active" : "") + '" data-lecture="' + index + '">' + escapeHtml(item.title) + '</button>';
       }).join("") + '</div>' +
       '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
-        var count = mode === "learn" ? (lecture.cards || []).length : (lecture[mode] || []).length;
+        var count = mode === "learn" ? (lecture.cards || []).length : mode === "recall" ? recallPool(lecture).length : (lecture[mode] || []).length;
         return '<button type="button" class="mode-tab ' + (mode === currentMode ? "active" : "") + '" data-mode="' + mode + '">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '<span>' + count + '</span></button>';
       }).join("") + '</div><div id="mode-content"></div>';
 
     studyContent.querySelectorAll("[data-lecture]").forEach(function (button) {
-      button.addEventListener("click", function () { currentLecture = Number(button.dataset.lecture); currentMode = "learn"; renderStudy(); });
+      button.addEventListener("click", function () { currentLecture = Number(button.dataset.lecture); currentMode = "learn"; recallState = null; renderStudy(); });
     });
     studyContent.querySelectorAll("[data-mode]").forEach(function (button) {
-      button.addEventListener("click", function () { currentMode = button.dataset.mode; renderStudy(); });
+      button.addEventListener("click", function () { currentMode = button.dataset.mode; recallState = null; renderStudy(); });
     });
     renderMode(lecture);
   }
 
   function renderMode(lecture) {
     var host = document.getElementById("mode-content");
+    if (currentMode === "recall") {
+      renderRecallHome(lecture);
+      return;
+    }
     if (currentMode === "learn") {
       var cards = lecture.cards || [];
       host.innerHTML = cards.length ? cards.map(function (card, index) {
@@ -130,6 +135,214 @@
     });
   }
 
+  function recallKey(lecture) {
+    return "pasem2:recall:" + currentCourse.id + ":" + lecture.id;
+  }
+
+  function loadRecall(lecture) {
+    try {
+      return JSON.parse(localStorage.getItem(recallKey(lecture))) || { mastered: [], skipPreviews: false };
+    } catch (error) {
+      return { mastered: [], skipPreviews: false };
+    }
+  }
+
+  function saveRecall(lecture, mastered, skipPreviews) {
+    localStorage.setItem(recallKey(lecture), JSON.stringify({
+      mastered: Object.keys(mastered),
+      skipPreviews: !!skipPreviews,
+      updated: Date.now()
+    }));
+  }
+
+  function recallPool(lecture) {
+    var pool = [];
+    ["test", "apply"].forEach(function (kind) {
+      (lecture[kind] || []).forEach(function (question, index) {
+        pool.push({ id: kind + ":" + index, kind: kind, question: question, card: linkedCardIndex(lecture, question) });
+      });
+    });
+    return pool;
+  }
+
+  function linkedCardIndex(lecture, question) {
+    var cards = lecture.cards || [];
+    if (Number.isInteger(question.card) && question.card >= 0 && question.card < cards.length) return question.card;
+    if (!cards.length) return -1;
+    var source = wordSet((question.prompt || "") + " " + (question.explanation || ""));
+    var bestIndex = -1;
+    var bestScore = 0;
+    cards.forEach(function (card, index) {
+      var titleWords = wordSet(card.title || "");
+      var bodyWords = wordSet(card.body || "");
+      var score = overlapScore(source, titleWords) * 3 + overlapScore(source, bodyWords);
+      if (score > bestScore) { bestScore = score; bestIndex = index; }
+    });
+    return bestIndex;
+  }
+
+  function wordSet(text) {
+    var stop = { the:1, and:1, for:1, with:1, from:1, that:1, this:1, what:1, which:1, when:1, where:1, why:1, how:1, are:1, was:1, were:1, into:1, your:1, patient:1 };
+    return String(text).toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).reduce(function (set, word) {
+      if (word.length > 2 && !stop[word]) set[word] = true;
+      return set;
+    }, {});
+  }
+
+  function overlapScore(left, right) {
+    return Object.keys(left).reduce(function (score, word) { return score + (right[word] ? 1 : 0); }, 0);
+  }
+
+  function shuffled(items) {
+    var copy = items.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = copy[i]; copy[i] = copy[j]; copy[j] = temp;
+    }
+    return copy;
+  }
+
+  function renderRecallHome(lecture) {
+    var host = document.getElementById("mode-content");
+    var pool = recallPool(lecture);
+    if (!pool.length) {
+      host.innerHTML = emptyMode("No Recall questions yet.");
+      return;
+    }
+    var saved = loadRecall(lecture);
+    var poolIds = pool.reduce(function (ids, item) { ids[item.id] = true; return ids; }, {});
+    var mastered = (saved.mastered || []).filter(function (id) { return poolIds[id]; });
+    var done = mastered.length >= pool.length;
+    var percent = Math.round(mastered.length / pool.length * 100);
+    host.innerHTML = '<section class="recall-home">' +
+      '<div class="recall-icon">↻</div><p class="eyebrow">Spaced repetition</p><h3>' + (done ? "Everything mastered" : mastered.length ? "Continue your Recall deck" : "Start Recall") + '</h3>' +
+      '<p>Recall combines every Test and Apply question in this lecture. Correct answers retire; missed questions return after a short gap.</p>' +
+      '<div class="recall-stats"><span><strong>' + mastered.length + '</strong> mastered</span><span><strong>' + pool.length + '</strong> total</span><span><strong>' + percent + '%</strong> complete</span></div>' +
+      '<label class="recall-option"><input id="skip-previews" type="checkbox" ' + (saved.skipPreviews ? "checked" : "") + '><span><strong>Skip Learn previews</strong><small>Go straight through Test and Apply. A linked Learn card still appears whenever you miss a question.</small></span></label>' +
+      '<div class="recall-actions"><button class="recall-start" id="start-recall" type="button">' + (done ? "Review again" : mastered.length ? "Resume Recall" : "Start Recall") + ' →</button>' +
+      (mastered.length ? '<button class="recall-restart" id="restart-recall" type="button">Restart</button>' : "") + '</div></section>';
+    document.getElementById("start-recall").addEventListener("click", function () {
+      startRecall(lecture, document.getElementById("skip-previews").checked, done);
+    });
+    var restart = document.getElementById("restart-recall");
+    if (restart) restart.addEventListener("click", function () {
+      if (!window.confirm("Restart Recall for this lecture? Its Recall progress will be cleared.")) return;
+      startRecall(lecture, document.getElementById("skip-previews").checked, true);
+    });
+  }
+
+  function startRecall(lecture, skipPreviews, restart) {
+    var saved = loadRecall(lecture);
+    var mastered = {};
+    var pool = recallPool(lecture);
+    var poolIds = pool.reduce(function (ids, item) { ids[item.id] = true; return ids; }, {});
+    if (!restart) (saved.mastered || []).forEach(function (id) { if (poolIds[id]) mastered[id] = true; });
+    var remaining = pool.filter(function (item) { return !mastered[item.id]; });
+    if (!remaining.length) remaining = pool;
+    var steps = [];
+    if (skipPreviews) {
+      steps = shuffled(remaining).map(function (item) { return { type: "question", item: item }; });
+    } else {
+      var groups = {};
+      var unlinked = [];
+      remaining.forEach(function (item) {
+        if (item.card < 0) unlinked.push(item);
+        else (groups[item.card] || (groups[item.card] = [])).push(item);
+      });
+      shuffled(Object.keys(groups)).forEach(function (cardIndex) {
+        steps.push({ type: "card", card: Number(cardIndex) });
+        shuffled(groups[cardIndex]).forEach(function (item) { steps.push({ type: "question", item: item }); });
+      });
+      shuffled(unlinked).forEach(function (item) { steps.push({ type: "question", item: item }); });
+    }
+    recallState = { lecture: lecture, skipPreviews: skipPreviews, mastered: mastered, steps: steps, position: 0, total: pool.length };
+    saveRecall(lecture, mastered, skipPreviews);
+    renderRecallStep();
+  }
+
+  function recallHeader() {
+    var mastered = Object.keys(recallState.mastered).length;
+    var percent = recallState.total ? Math.round(mastered / recallState.total * 100) : 0;
+    return '<div class="recall-session-head"><button id="exit-recall" type="button">← Recall overview</button><span>' + mastered + ' / ' + recallState.total + ' mastered</span></div>' +
+      '<div class="recall-progress"><span style="width:' + percent + '%"></span></div>';
+  }
+
+  function renderRecallStep() {
+    var host = document.getElementById("mode-content");
+    if (!recallState || recallState.position >= recallState.steps.length) {
+      renderRecallComplete();
+      return;
+    }
+    var step = recallState.steps[recallState.position];
+    if (step.type === "card") {
+      var card = recallState.lecture.cards[step.card];
+      host.innerHTML = recallHeader() + '<article class="learn-card recall-preview"><div class="card-number">Learn preview' + (card.highYield ? '<span>High yield</span>' : "") + '</div><h3>' + escapeHtml(card.title) + '</h3><p>' + escapeHtml(card.body) + '</p></article><button class="recall-start" id="recall-next" type="button">Start questions →</button>';
+      bindRecallExit();
+      document.getElementById("recall-next").addEventListener("click", recallAdvance);
+      return;
+    }
+    renderRecallQuestion(step.item);
+  }
+
+  function renderRecallQuestion(item) {
+    var host = document.getElementById("mode-content");
+    var q = item.question;
+    host.innerHTML = recallHeader() + '<article class="question-card recall-question"><div class="card-number">' + escapeHtml(item.kind) + ' · Recall</div><h3>' + escapeHtml(q.prompt) + '</h3><div class="choices">' + (q.choices || []).map(function (choice, index) {
+      return '<button class="choice" type="button" data-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(choice) + '</button>';
+    }).join("") + '</div><div class="explanation" id="recall-explanation" hidden><strong>Explanation</strong><p>' + escapeHtml(q.explanation || "") + '</p></div><div id="recall-card"></div></article><button class="recall-start recall-next" id="recall-next" type="button" hidden>Continue →</button>';
+    bindRecallExit();
+    host.querySelectorAll("[data-choice]").forEach(function (button) {
+      button.addEventListener("click", function () { answerRecall(item, Number(button.dataset.choice)); });
+    });
+    document.getElementById("recall-next").addEventListener("click", recallAdvance);
+  }
+
+  function answerRecall(item, selected) {
+    var correct = Number(item.question.correct);
+    document.querySelectorAll("[data-choice]").forEach(function (button) {
+      button.disabled = true;
+      var choice = Number(button.dataset.choice);
+      if (choice === correct) button.classList.add("correct");
+      else if (choice === selected) button.classList.add("wrong");
+    });
+    document.getElementById("recall-explanation").hidden = false;
+    if (selected === correct) {
+      recallState.mastered[item.id] = true;
+    } else {
+      if (item.card >= 0) {
+        var card = recallState.lecture.cards[item.card];
+        document.getElementById("recall-card").innerHTML = '<article class="learn-card missed-card"><div class="card-number">Review this Learn card</div><h3>' + escapeHtml(card.title) + '</h3><p>' + escapeHtml(card.body) + '</p></article>';
+      }
+      var returnAt = Math.min(recallState.position + 4, recallState.steps.length);
+      recallState.steps.splice(returnAt, 0, { type: "question", item: item });
+    }
+    saveRecall(recallState.lecture, recallState.mastered, recallState.skipPreviews);
+    document.getElementById("recall-next").hidden = false;
+  }
+
+  function recallAdvance() {
+    recallState.position += 1;
+    renderRecallStep();
+  }
+
+  function bindRecallExit() {
+    document.getElementById("exit-recall").addEventListener("click", function () {
+      var lecture = recallState.lecture;
+      saveRecall(lecture, recallState.mastered, recallState.skipPreviews);
+      recallState = null;
+      renderRecallHome(lecture);
+    });
+  }
+
+  function renderRecallComplete() {
+    var host = document.getElementById("mode-content");
+    var lecture = recallState.lecture;
+    saveRecall(lecture, recallState.mastered, recallState.skipPreviews);
+    host.innerHTML = '<section class="recall-home"><div class="recall-icon">✓</div><p class="eyebrow">Recall complete</p><h3>Everything mastered</h3><p>You recalled every Test and Apply question in this lecture.</p><div class="recall-actions"><button class="recall-start" id="recall-again" type="button">Review again →</button><button class="recall-restart" id="recall-overview" type="button">Overview</button></div></section>';
+    document.getElementById("recall-again").addEventListener("click", function () { startRecall(lecture, recallState.skipPreviews, true); });
+    document.getElementById("recall-overview").addEventListener("click", function () { recallState = null; renderRecallHome(lecture); });
+  }
+
   function renderQuestion(question, index) {
     return '<article class="question-card" data-correct="' + Number(question.correct) + '"><div class="card-number">Question ' + (index + 1) + '</div><h3>' + escapeHtml(question.prompt) + '</h3><div class="choices">' + (question.choices || []).map(function (choice, choiceIndex) {
       return '<button class="choice" type="button"><span>' + String.fromCharCode(65 + choiceIndex) + '</span>' + escapeHtml(choice) + '</button>';
@@ -148,6 +361,10 @@
   document.getElementById("reset-progress").addEventListener("click", function () {
     if (!window.confirm("Reset all saved Semester 2 progress on this device?")) return;
     progress = {};
+    Object.keys(localStorage).forEach(function (storageKey) {
+      if (storageKey.indexOf("pasem2:recall:") === 0) localStorage.removeItem(storageKey);
+    });
+    recallState = null;
     saveProgress();
     renderCourses();
     if (!studyView.hidden) renderStudy();
