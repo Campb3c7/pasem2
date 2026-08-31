@@ -4,10 +4,10 @@ A clean Semester 2 version of the PA study site. It keeps the original site's da
 
 ## Add course material
 
-Edit [`data/semester.js`](data/semester.js). The file begins with the complete content shape and starter examples.
+Use [`data/semester.js`](data/semester.js) for the course/lecture catalog and a separate lecture file for its study material. Vaccines currently lives in [`data/vaccines.js`](data/vaccines.js).
 
 - Add a course to `courses`.
-- Add lectures inside that course, then add objectives inside each lecture.
+- Add lectures inside that course, then connect each lecture to its objective array.
 - Every objective can contain multiple learning cards under `cards`, recall questions under `test`, and clinical vignettes under `apply`.
 - Question `correct` values are zero-based: `0` is the first answer.
 - Optionally add a zero-based `card` value to a question to link it to a Learn card in Recall. Otherwise, Recall links the closest card automatically.

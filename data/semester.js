@@ -33,7 +33,7 @@ window.SEMESTER = {
           id: "vaccines",
           title: "Vaccines",
           description: "Vaccine lecture materials, recall questions, and clinical application cases.",
-          objectives: []
+          objectives: window.VACCINE_OBJECTIVES || []
         }
       ]
     }

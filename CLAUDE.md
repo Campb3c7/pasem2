@@ -7,12 +7,13 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `index.html` — page shell; do not put course content here.
 - `styles.css` — shared visual design.
 - `app.js` — Learn/Test/Apply/Recall behavior and local progress.
-- `data/semester.js` — the only file that contains semester curriculum.
+- `data/semester.js` — course and lecture catalog.
+- `data/vaccines.js` — all Vaccines objective content.
 - `.github/workflows/pages.yml` — GitHub Pages deployment.
 
 ## Content rules
 
-- Keep all curriculum in `data/semester.js`.
+- Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.
 - Structure curriculum as course → lecture → objectives → cards/test/apply.
 - The same objectives appear as sections inside Learn, Test, Apply, and Recall.
 - Recall runs one whole objective and owns no separate content.
