@@ -52,6 +52,12 @@ window.SEMESTER = {
           title: "Tick-borne Illnesses",
           description: "Rocky Mountain spotted fever and Lyme disease epidemiology, presentation, diagnosis, treatment, and prevention.",
           objectives: window.TICK_BORNE_OBJECTIVES || []
+        },
+        {
+          id: "introduction-infectious-disease",
+          title: "Introduction to Infectious Disease",
+          description: "Foundations of infection, immunity, clinical reasoning, diagnostics, treatment, microbiology, and prevention.",
+          objectives: window.INTRO_ID_OBJECTIVES || []
         }
       ]
     }
