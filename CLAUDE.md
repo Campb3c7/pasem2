@@ -15,9 +15,9 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.
 - Structure curriculum as course → lecture → objectives → cards/test/apply.
-- The same objectives appear as sections inside Learn, Test, Apply, and Recall.
-- Recall runs one whole objective and owns no separate content.
-- Use one learning card per concept.
+- Learn, Test, and Apply show objective launchers and then run one selected objective one card/question at a time.
+- Recall owns no separate content. It is one lecture-wide sequence across all objectives, grouped Learn → linked Test → linked Apply for each card.
+- Use one learning card per concept. Prefer rich `html` with comparison tables, high-yield boxes, and genuinely useful mnemonics when the lecture supports them.
 - Test questions should be direct recall.
 - Apply questions should be clinical vignettes with plausible distractors.
 - `correct` is a zero-based answer index.

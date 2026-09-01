@@ -507,3 +507,125 @@ window.VACCINE_OBJECTIVES = [
 ].sort(function (a, b) {
   return parseInt(a.id, 10) - parseInt(b.id, 10);
 });
+
+/* Rich Learn-card layouts. Every fact below comes from the supplied lecture deck. */
+(function enrichVaccineCards() {
+  var rich = {
+    "01-active-passive-immunity": {
+      0: `<p><strong>Active immunity</strong> is made by the patient's <span class="hl">own immune system</span> after infection or vaccination.</p><table class="learn-table"><tr><th>Source</th><th>Memory</th><th>Duration</th></tr><tr><td>Natural infection or vaccine</td><td>Yes</td><td>Many years; may be lifelong</td></tr></table><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>Active = your immune system acts.</strong></div>`,
+      1: `<p><strong>Passive immunity</strong> transfers ready-made protection from another person or animal.</p><table class="learn-table"><tr><th>Examples in the lecture</th><th>Memory</th><th>Duration</th></tr><tr><td>Maternal antibodies in breast milk; RSV immunoglobulin</td><td>No memory cells</td><td>Short-term</td></tr></table><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>Passive = protection is passed.</strong></div>`,
+      2: `<p>Passively administered immunoglobulin can <span class="hl">interfere with the response to a live-virus vaccine</span>.</p><div class="box-hy"><span class="lbl">High yield</span>Do not administer immunoglobulins with live-virus vaccines.</div>`
+    },
+    "02-antibodies-antigens-epitopes": {
+      0: `<table class="learn-table"><tr><th>Term</th><th>Meaning</th></tr><tr><td><strong>Antigen</strong></td><td>A foreign substance that triggers an immune response</td></tr><tr><td><strong>Epitope</strong></td><td>A distinct surface feature on an antigen that produces a specific response</td></tr></table><div class="box-mnemonic"><span class="lbl">Picture it</span>The <strong>antigen</strong> is the whole target; the <strong>epitope</strong> is the exact feature the immune system recognizes.</div>`,
+      1: `<p>An <strong>antibody</strong> is a protein made after antigen exposure. Its binding is specific—like a lock and key.</p><table class="learn-table"><tr><th>Antibody action</th><th>Result</th></tr><tr><td>Direct neutralization</td><td>Blocks the antigen directly</td></tr><tr><td>Immune tagging</td><td>Marks the antigen for other parts of the immune system</td></tr></table>`
+    },
+    "03-live-vaccines": {
+      0: `<p>Live-attenuated vaccines contain a <strong>weakened organism</strong> that can replicate enough to create a response resembling natural infection.</p><table class="learn-table"><tr><th>Feature</th><th>Live vaccine pattern</th></tr><tr><td>Response</td><td>Strong, natural-infection-like</td></tr><tr><td>Doses</td><td>Often 1–2</td></tr><tr><td>Handling</td><td>Fragile; affected by heat and light</td></tr><tr><td>Success depends on</td><td>Replication and host immune competence</td></tr></table>`,
+      1: `<p>Because the organism can replicate, live vaccines are generally contraindicated in <strong>pregnant</strong> and <strong>immunocompromised</strong> patients.</p><div class="box-hy"><span class="lbl">Core contrast</span>Live vaccines need a competent host response; inactivated vaccines cannot replicate.</div>`,
+      2: `<p>The lecture's live-vaccine list:</p><ul><li>MMR</li><li>Varicella</li><li>Yellow fever</li><li>Rotavirus (RotaTeq)</li><li>Intranasal influenza (FluMist)</li><li>Typhoid</li><li>Orthopox/mpox</li></ul><div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>My Very Young Roommate Finds Typhoid Odd</strong> → MMR, Varicella, Yellow fever, Rotavirus, FluMist, Typhoid, Orthopox.</div>`
+    },
+    "04-inactivated-vaccines": {
+      0: `<p>Inactivated vaccines are killed with <strong>heat or formalin</strong>. They cannot replicate and therefore cannot cause the target disease.</p><table class="learn-table"><tr><th>Feature</th><th>Inactivated vaccine pattern</th></tr><tr><td>Replication</td><td>None</td></tr><tr><td>Disease from vaccine</td><td>Cannot cause it</td></tr><tr><td>Immune response</td><td>Less effective than live vaccines</td></tr><tr><td>Dosing</td><td>Often multiple doses plus a primer</td></tr></table>`,
+      2: `<table class="learn-table"><tr><th>Inactivated class</th><th>Examples from lecture</th></tr><tr><td>Whole</td><td>Hepatitis A, IPV, rabies</td></tr><tr><td>Purified subunit</td><td>Inactivated influenza, acellular pertussis, inactivated typhoid</td></tr><tr><td>Engineered</td><td>Hib conjugate, meningococcal, pneumococcal</td></tr><tr><td>Recombinant</td><td>Hepatitis B, HPV</td></tr><tr><td><strong>Toxoid</strong></td><td><strong>Diphtheria and tetanus</strong></td></tr></table><div class="box-mnemonic"><span class="lbl">Must recall</span><strong>DT = the two toxoids:</strong> Diphtheria + Tetanus.</div>`
+    },
+    "05-adjuvants": {
+      0: `<p>An <strong>adjuvant</strong> is added to enhance the immune response to a vaccine antigen.</p><table class="learn-table"><tr><th>Usually needs an adjuvant</th><th>Usually does not</th></tr><tr><td>Most inactivated vaccines</td><td>Live vaccines</td></tr></table><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>Adjuvant = adds a boost.</strong></div>`,
+      1: `<p><span class="hl">Aluminum salts are the most common vaccine adjuvant.</span></p><table class="learn-table"><tr><th>Lecture comparison</th><th>Amount</th></tr><tr><td>Per vaccine dose</td><td>Less than 0.5 mg</td></tr><tr><td>Daily environmental ingestion</td><td>7–9 mg</td></tr></table><p>The lecture cites a 2025 Denmark study finding no association with the studied adverse outcomes.</p>`
+    },
+    "06-immunosuppression": {
+      0: `<table class="learn-table"><tr><th>Vaccine type</th><th>In an immunocompromised patient</th></tr><tr><td>Inactivated</td><td>Cannot infect, but the response may be inadequate</td></tr><tr><td>Live</td><td>Contraindicated because the organism can replicate</td></tr></table><div class="box-hy"><span class="lbl">Patient education</span>The concern with inactivated vaccines is reduced effectiveness—not infection from the vaccine.</div>`,
+      1: `<table class="learn-table"><tr><th>Timing point</th><th>Lecture rule</th></tr><tr><td>Before immunosuppressant</td><td>Complete vaccines at least <strong>2 weeks before</strong></td></tr><tr><td>Vaccinated during therapy</td><td>Revaccinate at least <strong>3 months after</strong> the drug is stopped</td></tr></table><div class="box-mnemonic"><span class="lbl">Timeline</span><strong>2 before, 3 after.</strong></div>`
+    },
+    "07-special-health-care-needs": {
+      0: `<table class="learn-table"><tr><th>Use in pregnancy</th><th>Avoid in pregnancy</th></tr><tr><td>Inactivated influenza, Tdap, RSV</td><td>Live vaccines</td></tr></table><p>Inactivated products cannot infect the fetus. Vaccination can also create maternal antibodies that transfer to the infant.</p>`,
+      2: `<p>The lecture states that ACOG and SMFM recommend COVID vaccination for patients who are considering pregnancy, pregnant, or breastfeeding.</p><ul><li>May be given at any point in pregnancy</li><li>No evidence of adverse maternal or fetal effects in the lecture</li><li>Antibodies can transfer through placenta and breast milk</li></ul>`
+    },
+    "08-horizontal-vertical-transmission": {
+      0: `<table class="learn-table"><tr><th>Horizontal</th><th>Vertical</th></tr><tr><td>Spread between people in the same generation</td><td>Spread from mother to offspring</td></tr></table><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>Horizontal goes across; vertical goes down.</strong></div>`,
+      1: `<p><strong>Vertical transmission</strong> can occur:</p><table class="learn-table"><tr><th>Timing</th><th>Lecture example</th></tr><tr><td>Intrapartum</td><td>During birth</td></tr><tr><td>Postpartum</td><td>Breast milk or blood from cracked nipples</td></tr></table>`
+    },
+    "09-herd-immunity-concepts": {
+      1: `<p>The <strong>herd-immunity threshold</strong> is the population immunization level needed to indirectly protect unimmunized people.</p><p><strong>R₀</strong> estimates how many unprotected people one infected person can infect.</p><div class="box-hy"><span class="lbl">Relationship</span><span class="hl">Higher R₀ → higher immunity threshold.</span></div>`,
+      3: `<table class="learn-table"><tr><th>Disease</th><th>R₀</th><th>Approximate threshold</th></tr><tr><td>Measles</td><td>12–18</td><td>95%</td></tr><tr><td>Polio</td><td>5–7</td><td>80–85%</td></tr></table><div class="box-mnemonic"><span class="lbl">Pattern</span>Measles spreads more easily, so it needs the higher community immunity level.</div>`
+    },
+    "10-herd-immunity-outcomes": {
+      0: `<p>Successful herd immunity disrupts circulation and gives <strong>indirect protection</strong> to susceptible people.</p><ul><li>Infants</li><li>Older adults</li><li>Immunocompromised patients</li></ul>`,
+      1: `<p>When coverage is low—or susceptibility is clustered—disease can reemerge and spread through multiple generations.</p><div class="box-hy"><span class="lbl">Lecture example</span>The 2013 measles outbreak produced <strong>58 cases</strong>; <strong>21%</strong> were infants too young for MMR, and no vaccinated patients became cases.</div>`
+    },
+    "11-eradication": {
+      0: `<p><strong>Eradication</strong> means permanent, worldwide reduction to <span class="hl">zero incidence</span> through deliberate efforts.</p><div class="box-hy"><span class="lbl">Key consequence</span>After true eradication, continued intervention measures are no longer needed.</div>`,
+      1: `<p><span class="hl">Smallpox is the only fully eradicated human disease</span> listed in the lecture.</p>`
+    },
+    "12-antipyretics": {
+      0: `<p>Do not routinely give acetaminophen or ibuprofen <strong>before</strong> vaccination. Premedication is associated with decreased antibody concentrations for some vaccines.</p><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>No pre-dose “just in case.”</strong></div>`,
+      1: `<p><span class="hl">Avoid aspirin in anyone younger than 18.</span></p><div class="box-hy"><span class="lbl">Why</span>Aspirin after a viral infection is associated with Reye syndrome, a rapidly progressive encephalopathy.</div>`
+    },
+    "13-adult-immunizations": {
+      0: `<table class="learn-table"><tr><th>Influenza recommendation</th><th>Lecture detail</th></tr><tr><td>Routine</td><td>Everyone age 6 months and older, annually; preferably early fall</td></tr><tr><td>FluMist</td><td>Live intranasal; nonpregnant ages 2–49</td></tr><tr><td>Flublok</td><td>Age 18+; egg-free</td></tr><tr><td>High-dose</td><td>Age 65+</td></tr></table>`,
+      1: `<p><strong>Shingrix</strong> is a recombinant zoster vaccine.</p><table class="learn-table"><tr><th>Group</th><th>Schedule</th></tr><tr><td>Age 50+</td><td>2 doses, 2–6 months apart</td></tr><tr><td>Age 19+ with weakened immunity</td><td>2 doses</td></tr></table><p>Give even after shingles, Zostavax, prior varicella, or uncertain history.</p>`,
+      3: `<table class="learn-table"><tr><th>Group</th><th>Pneumococcal approach</th></tr><tr><td>Age 50+</td><td>PCV15, PCV20, or PCV21 pathway</td></tr><tr><td>Age 19–49</td><td>Risk-based vaccination</td></tr><tr><td>When PCV15 is used</td><td>Follow with PPSV23</td></tr></table>`
+    },
+    "14-tetanus-wound-management": {
+      1: `<p>No tetanus vaccine is needed only when <strong>both</strong> conditions are met:</p><ul><li>The primary series is complete</li><li>The last dose was less than 5 years ago</li></ul>`,
+      2: `<table class="learn-table"><tr><th>Wound/patient status</th><th>Vaccinate when…</th></tr><tr><td>Any wound</td><td>History is unknown, unvaccinated, or primary series incomplete</td></tr><tr><td>Clean, minor wound + complete series</td><td>Last dose was 10 or more years ago</td></tr><tr><td>Dirty/major wound + complete series</td><td>Last dose was 5 or more years ago</td></tr></table><div class="box-mnemonic"><span class="lbl">Numbers to know</span><strong>Clean = 10; dirty = 5.</strong></div>`
+    },
+    "15-boosters": {
+      0: `<p>Inactivated vaccines often require boosters because antibody titers <strong>wane over time</strong>.</p><div class="box-mnemonic"><span class="lbl">Pattern</span><strong>No replication → weaker initial response → more doses may be needed.</strong></div>`,
+      1: `<table class="learn-table"><tr><th>Example</th><th>Why another dose?</th></tr><tr><td>Pertussis</td><td>Immunity wanes</td></tr><tr><td>Tetanus/diphtheria</td><td>Immunity wanes</td></tr><tr><td>Measles</td><td>Second dose captures initial nonresponders</td></tr></table>`
+    },
+    "16-live-vaccine-interval": {
+      0: `<p>Two live vaccines may be given <span class="hl">simultaneously</span>.</p>`,
+      1: `<p>If MMR and varicella are not given on the same day, separate them by at least <strong>4 weeks (28 days)</strong>.</p><div class="box-mnemonic"><span class="lbl">Rule</span><strong>Live together—or 28 days apart.</strong></div>`,
+      2: `<p>Longer-than-recommended intervals are acceptable. An interval that is too short is not.</p>`
+    },
+    "18-intranasal-oral-vaccines": {
+      0: `<p><strong>FluMist</strong> is the live attenuated intranasal influenza vaccine for nonpregnant patients ages 2–49.</p>`,
+      1: `<table class="learn-table"><tr><th>Needle-free route</th><th>Vaccines in lecture</th></tr><tr><td>Intranasal</td><td>FluMist</td></tr><tr><td>Oral</td><td>Rotavirus, typhoid</td></tr></table><div class="box-mnemonic"><span class="lbl">Memory hook</span><strong>ROTa and Typhoid go ORal.</strong></div>`
+    },
+    "19-intramuscular-technique": {
+      0: `<ol><li>Spread the skin taut to isolate muscle; bunching is acceptable mainly in pediatric and geriatric patients.</li><li>Insert fully at <strong>90°</strong> with one quick, firm motion.</li><li>Inject, withdraw, and apply light gauze pressure.</li></ol><div class="box-mnemonic"><span class="lbl">IM angle</span><strong>Muscle = straight in = 90°.</strong></div>`,
+      1: `<table class="learn-table"><tr><th>Patient</th><th>Preferred IM site</th></tr><tr><td>Younger than 7 months or nonambulatory</td><td>Vastus lateralis / anterolateral thigh</td></tr><tr><td>Older child or adult; small volume</td><td>Deltoid</td></tr><tr><td>Larger-volume or irritating/viscous/oily medicine</td><td>Ventrogluteal</td></tr></table>`
+    },
+    "20-subcutaneous-technique": {
+      0: `<p>The lecture identifies <strong>MMR, varicella, and yellow fever</strong> as subcutaneous vaccines.</p><div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>MVY goes SC:</strong> MMR, Varicella, Yellow fever.</div>`,
+      1: `<table class="learn-table"><tr><th>Age</th><th>SC site</th></tr><tr><td>Younger than 12 months</td><td>Thigh</td></tr><tr><td>Older than 12 months</td><td>Proximal lateral triceps</td></tr></table>`,
+      2: `<p>Pinch the fatty tissue and insert the needle at <strong>45°</strong>.</p><div class="box-mnemonic"><span class="lbl">SC angle</span><strong>Subcutaneous = slanted = 45°.</strong></div>`
+    },
+    "21-avoid-gluteal": {
+      0: `<p>Avoid the dorsogluteal site because it lies near <strong>major nerves and blood vessels</strong>.</p>`,
+      1: `<p>Adipose depth in the gluteal region is inconsistent, so the needle may not reliably reach muscle.</p><div class="box-hy"><span class="lbl">Why it matters</span>An intended IM vaccine may be deposited into fat instead of muscle.</div>`
+    },
+    "22-vaccine-reactions": {
+      3: `<table class="learn-table"><tr><th>Feature</th><th>Anaphylaxis</th><th>Vasovagal episode</th></tr><tr><td>Mechanism</td><td>IgE-mediated allergy</td><td>Fainting response</td></tr><tr><td>Timing</td><td>Usually within 1 hour</td><td>Around the procedure</td></tr><tr><td>Position response</td><td>Does not resolve simply by lying down</td><td>Improves when supine</td></tr></table><div class="box-mnemonic"><span class="lbl">Distinction</span><strong>Vasovagal gets better horizontal; anaphylaxis does not.</strong></div>`
+    },
+    "23-myths-hesitancy": {
+      0: `<p>The autism claim began with the Wakefield report: a sample of 12, later found fraudulent, retracted, and followed by loss of the author's license.</p><div class="box-hy"><span class="lbl">Evidence in lecture</span>Large studies found equal autism risk in vaccinated and unvaccinated groups.</div>`,
+      3: `<p>Respond professionally with shared decision-making rather than confrontation.</p><ul><li>Ask what the patient is worried about</li><li>Correct the specific myth with evidence</li><li>Explain expected effects and rare risks clearly</li><li>Use CDC, VIS, Immunize.org, and ACIP resources listed in the lecture</li></ul>`
+    },
+    "24-covid-vaccine-types": {
+      0: `<table class="learn-table"><tr><th>2026–2027 product</th><th>Manufacturer/type</th><th>Age listed</th></tr><tr><td>Spikevax</td><td>Moderna mRNA</td><td>6 months+</td></tr><tr><td>mNexspike</td><td>Moderna mRNA</td><td>12+</td></tr><tr><td>Comirnaty</td><td>Pfizer mRNA</td><td>5+</td></tr><tr><td>Nuvaxovid</td><td>Novavax recombinant protein</td><td>12+</td></tr></table>`,
+      1: `<div class="box-mnemonic"><span class="lbl">Product map</span><strong>Three mRNA, one protein:</strong> Spikevax + mNexspike + Comirnaty are mRNA; Nuvaxovid is recombinant protein.</div>`
+    },
+    "25-mrna-covid": {
+      0: `<ol><li>mRNA delivers instructions for the spike protein.</li><li>The cell displays the protein.</li><li>Antibodies and immune cells learn to recognize it.</li><li>The mRNA instructions are discarded.</li></ol><div class="box-hy"><span class="lbl">Core mechanism</span>The vaccine does not integrate into DNA and cannot cause COVID infection.</div>`,
+      3: `<table class="learn-table"><tr><th>Myocarditis detail</th><th>Lecture point</th></tr><tr><td>Highest-risk group</td><td>Males ages 12–24</td></tr><tr><td>Typical timing</td><td>Within 7 days after dose 2</td></tr><tr><td>Frequency cited</td><td>27 per million</td></tr><tr><td>Course</td><td>Most recover</td></tr></table><p>The lecture emphasizes that infection carries a higher myocarditis risk.</p>`,
+      4: `<table class="learn-table"><tr><th>Situation</th><th>Action from lecture</th></tr><tr><td>Severe allergy to a prior dose/component</td><td>Contraindication</td></tr><tr><td>Moderate/severe acute illness</td><td>Delay vaccination</td></tr><tr><td>Myocarditis after a dose</td><td>Avoid additional doses</td></tr></table>`
+    },
+    "26-covid-education": {
+      2: `<p>Give balanced, specific counseling:</p><table class="learn-table"><tr><th>Discuss</th><th>How to frame it</th></tr><tr><td>Expected effects</td><td>Common and temporary</td></tr><tr><td>Rare adverse effects</td><td>Name them without exaggerating frequency</td></tr><tr><td>Benefits</td><td>Large randomized trials showed high efficacy and safety</td></tr></table>`
+    },
+    "27-rsv-adult-vaccines": {
+      0: `<table class="learn-table"><tr><th>Adult RSV vaccine</th><th>Company</th><th>Type</th></tr><tr><td>Arexvy</td><td>GSK</td><td>Recombinant subunit</td></tr><tr><td>mResvia</td><td>Moderna</td><td>mRNA</td></tr><tr><td>Abrysvo</td><td>Pfizer</td><td>Protein subunit</td></tr></table><div class="box-mnemonic"><span class="lbl">Name-to-type</span><strong>mResvia has the “m” for mRNA.</strong></div>`,
+      1: `<table class="learn-table"><tr><th>Adult group</th><th>Recommendation</th></tr><tr><td>Age 75+</td><td>One dose for all</td></tr><tr><td>Age 50–74</td><td>One dose when at increased risk for severe RSV</td></tr></table>`,
+      3: `<p>Adult RSV vaccination is a <strong>single, one-time dose</strong>. It may be given any time, with late summer or early fall preferred.</p>`
+    }
+  };
+  window.VACCINE_OBJECTIVES.forEach(function (objective) {
+    var layouts = rich[objective.id];
+    if (!layouts) return;
+    Object.keys(layouts).forEach(function (index) {
+      if (objective.cards[Number(index)]) objective.cards[Number(index)].html = layouts[index];
+    });
+  });
+}());

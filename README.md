@@ -12,7 +12,9 @@ Use [`data/semester.js`](data/semester.js) for the course/lecture catalog and a 
 - Question `correct` values are zero-based: `0` is the first answer.
 - Optionally add a zero-based `card` value to a question to link it to a Learn card in Recall. Otherwise, Recall links the closest card automatically.
 
-Learn, Test, Apply, and Recall each display the lecture's objectives as sections. Recall runs one complete objective at a time. It can introduce each Learn card before its linked questions, or **Skip Learn previews** can be selected before starting. In quiz-only mode, a linked Learn card still appears after a missed answer and that question returns later.
+Learn, Test, and Apply use the lecture objectives as launchers, then run one selected objective as a focused, one-card-at-a-time session. Learn cards marked **Not yet** return at the end. A missed Test or Apply question immediately shows its linked Learn card.
+
+Recall is one continuous lecture-wide session. It walks all objectives in order and groups each concept as **Learn → Test → Apply** before moving to the next Learn card. **Skip Learn previews** can be selected before starting; linked Learn cards still appear after misses, and missed questions return later.
 
 Progress is stored in the browser on the device being used.
 

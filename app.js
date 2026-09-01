@@ -6,36 +6,37 @@
   var workspace = document.querySelector(".workspace");
   var studyView = document.getElementById("study-view");
   var studyContent = document.getElementById("study-content");
-  var key = "pasem2:progress";
-  var progress = loadProgress();
+  var progressKey = "pasem2:progress";
+  var progress = readStore(progressKey, {});
   var currentCourse = null;
   var currentLecture = 0;
   var currentMode = "learn";
+  var learnState = null;
+  var quizState = null;
   var recallState = null;
+  var RECALL_GAP = 3;
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (char) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char];
     });
   }
-
-  function loadProgress() {
-    try { return JSON.parse(localStorage.getItem(key)) || {}; } catch (error) { return {}; }
+  function readStore(key, fallback) {
+    try { var value = localStorage.getItem(key); return value == null ? fallback : JSON.parse(value); }
+    catch (error) { return fallback; }
   }
-
-  function saveProgress() {
-    localStorage.setItem(key, JSON.stringify(progress));
-    renderProgress();
-  }
-
-  function lectureKey(course, lecture) { return course.id + ":" + lecture.id; }
-
+  function writeStore(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) {} }
+  function lectureKey(course, item) { return course.id + ":" + item.id; }
+  function lecture() { return (currentCourse.lectures || [])[currentLecture]; }
+  function objectives() { return (lecture() && lecture().objectives) || []; }
+  function objectiveById(id) { return objectives().find(function (objective) { return objective.id === id; }); }
+  function host() { return document.getElementById("mode-content"); }
+  function scrollTop() { window.scrollTo({ top: studyView.offsetTop, behavior: "smooth" }); }
   function allLectures() {
     return semester.courses.reduce(function (items, course) {
-      return items.concat((course.lectures || []).map(function (lecture) { return { course: course, lecture: lecture }; }));
+      return items.concat((course.lectures || []).map(function (item) { return { course: course, lecture: item }; }));
     }, []);
   }
-
   function renderProgress() {
     var lectures = allLectures();
     var completed = lectures.filter(function (item) { return progress[lectureKey(item.course, item.lecture)]; }).length;
@@ -43,370 +44,266 @@
     document.getElementById("progress-label").textContent = percent + "%";
     document.getElementById("progress-bar").style.width = percent + "%";
   }
-
   function renderCourses() {
     document.getElementById("course-count").textContent = semester.courses.length + (semester.courses.length === 1 ? " course" : " courses");
     grid.innerHTML = "";
     semester.courses.forEach(function (course) {
       var total = (course.lectures || []).length;
-      var complete = (course.lectures || []).filter(function (lecture) { return progress[lectureKey(course, lecture)]; }).length;
+      var complete = (course.lectures || []).filter(function (item) { return progress[lectureKey(course, item)]; }).length;
       var card = document.createElement("button");
       card.type = "button";
       card.className = "course-card " + (course.color || "gold");
-      card.innerHTML =
-        '<span class="course-icon">' + escapeHtml(course.icon || "📘") + '</span>' +
-        '<span class="course-kicker">' + escapeHtml(course.short || "PA") + '</span>' +
-        '<strong>' + escapeHtml(course.title) + '</strong>' +
-        '<span class="course-description">' + escapeHtml(course.description || "") + '</span>' +
-        '<span class="course-meta"><span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + " complete</span></span>";
+      card.innerHTML = '<span class="course-icon">' + escapeHtml(course.icon || "📘") + '</span><span class="course-kicker">' + escapeHtml(course.short || "PA") + '</span><strong>' + escapeHtml(course.title) + '</strong><span class="course-description">' + escapeHtml(course.description || "") + '</span><span class="course-meta"><span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + ' complete</span></span>';
       card.addEventListener("click", function () { openCourse(course); });
       grid.appendChild(card);
     });
   }
-
   function openCourse(course) {
-    currentCourse = course;
-    currentLecture = 0;
-    currentMode = "learn";
-    workspace.hidden = true;
-    document.querySelector(".hero").hidden = true;
-    studyView.hidden = false;
-    renderStudy();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    currentCourse = course; currentLecture = 0; currentMode = "learn";
+    workspace.hidden = true; document.querySelector(".hero").hidden = true; studyView.hidden = false;
+    renderStudy(); window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
+  function modeCount(mode, lect) {
+    if (mode === "recall") return (lect.objectives || []).reduce(function (sum, objective) { return sum + (objective.test || []).length + (objective.apply || []).length; }, 0);
+    return (lect.objectives || []).length;
+  }
   function renderStudy() {
     var lectures = currentCourse.lectures || [];
-    if (!lectures.length) {
-      studyContent.innerHTML = '<div class="empty-state"><span>' + escapeHtml(currentCourse.icon || "📘") + '</span><p class="eyebrow">' + escapeHtml(currentCourse.short || "Course") + '</p><h2>' + escapeHtml(currentCourse.title) + '</h2><p>No lectures yet. Add the first one in <code>data/semester.js</code>.</p></div>';
-      return;
-    }
-    var lecture = lectures[currentLecture];
+    if (!lectures.length) { studyContent.innerHTML = '<div class="empty-state"><span>📚</span><h2>No lectures yet</h2></div>'; return; }
+    var lect = lectures[currentLecture];
     var modes = ["learn", "test", "apply", "recall"];
-    studyContent.innerHTML =
-      '<div class="study-heading"><p class="eyebrow">' + escapeHtml(currentCourse.title) + '</p><h2>' + escapeHtml(lecture.title) + '</h2><p>' + escapeHtml(lecture.description || "") + '</p></div>' +
-      '<div class="lecture-tabs" role="tablist">' + lectures.map(function (item, index) {
-        return '<button type="button" class="lecture-tab ' + (index === currentLecture ? "active" : "") + '" data-lecture="' + index + '">' + escapeHtml(item.title) + '</button>';
-      }).join("") + '</div>' +
-      '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
-        var count = (lecture.objectives || []).length;
-        return '<button type="button" class="mode-tab ' + (mode === currentMode ? "active" : "") + '" data-mode="' + mode + '">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '<span>' + count + '</span></button>';
-      }).join("") + '</div><div id="mode-content"></div>';
-
+    studyContent.innerHTML = '<div class="study-heading"><p class="eyebrow">' + escapeHtml(currentCourse.title) + '</p><h2>' + escapeHtml(lect.title) + '</h2><p>' + escapeHtml(lect.description || "") + '</p></div><div class="lecture-tabs" role="tablist">' + lectures.map(function (item, index) {
+      return '<button type="button" class="lecture-tab ' + (index === currentLecture ? "active" : "") + '" data-lecture="' + index + '">' + escapeHtml(item.title) + '</button>';
+    }).join("") + '</div><div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
+      return '<button type="button" class="mode-tab ' + (mode === currentMode ? "active" : "") + '" data-mode="' + mode + '">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '<span>' + modeCount(mode, lect) + '</span></button>';
+    }).join("") + '</div><div id="mode-content"></div>';
     studyContent.querySelectorAll("[data-lecture]").forEach(function (button) {
-      button.addEventListener("click", function () { currentLecture = Number(button.dataset.lecture); currentMode = "learn"; recallState = null; renderStudy(); });
+      button.addEventListener("click", function () { currentLecture = Number(button.dataset.lecture); currentMode = "learn"; clearSessions(); renderStudy(); });
     });
     studyContent.querySelectorAll("[data-mode]").forEach(function (button) {
-      button.addEventListener("click", function () { currentMode = button.dataset.mode; recallState = null; renderStudy(); });
+      button.addEventListener("click", function () { currentMode = button.dataset.mode; clearSessions(); renderStudy(); });
     });
-    renderMode(lecture);
+    renderModeHome();
   }
-
-  function renderMode(lecture) {
-    var host = document.getElementById("mode-content");
-    if (currentMode === "recall") {
-      renderRecallObjectives(lecture);
-      return;
-    }
-    var objectives = lecture.objectives || [];
-    if (!objectives.length) {
-      host.innerHTML = emptyMode("No objectives yet.");
-      return;
-    }
-    host.innerHTML = objectives.map(function (objective, objectiveIndex) {
+  function clearSessions() { learnState = null; quizState = null; recallState = null; }
+  function renderModeHome() {
+    if (currentMode === "recall") { renderRecallHome(); return; }
+    var copy = {
+      learn: ["Understand before you memorize", "Learn", 'Pick one objective. Work through one concept card at a time; anything marked “Not yet” returns at the end.', "cards"],
+      test: ["Active recall", "Test", "Pick one objective. Answer one direct recall question at a time.", "questions"],
+      apply: ["Clinical reasoning", "Apply", "Pick one objective. Work through one clinical application at a time.", "cases"]
+    }[currentMode];
+    var html = '<div class="mode-intro"><p class="eyebrow">' + copy[0] + '</p><h3>' + copy[1] + '</h3><p>' + copy[2] + '</p></div><div class="objective-picker">';
+    objectives().forEach(function (objective, index) {
       var items = currentMode === "learn" ? (objective.cards || []) : (objective[currentMode] || []);
-      var content = "";
-      if (currentMode === "learn") {
-        content = items.length ? items.map(function (card, index) {
-          return '<article class="learn-card"><div class="card-number">Concept ' + (index + 1) + (card.highYield ? '<span>High yield</span>' : "") + '</div><h3>' + escapeHtml(card.title) + '</h3><p>' + escapeHtml(card.body) + '</p></article>';
-        }).join("") : objectiveEmpty("No Learn cards in this objective yet.");
-      } else {
-        content = items.length ? items.map(renderQuestion).join("") : objectiveEmpty(currentMode === "apply" ? "No Apply cases in this objective yet." : "No Test questions in this objective yet.");
-      }
-      return '<section class="objective-section"><div class="objective-heading"><span>' + String(objectiveIndex + 1).padStart(2, "0") + '</span><div><p>Objective</p><h3>' + escapeHtml(objective.title) + '</h3>' + (objective.description ? '<small>' + escapeHtml(objective.description) + '</small>' : "") + '</div></div><div class="objective-content">' + content + '</div></section>';
-    }).join("") + (currentMode === "learn" ? '<button class="complete-button" id="complete-lecture" type="button">' + (progress[lectureKey(currentCourse, lecture)] ? "✓ Lecture complete" : "Mark lecture complete") + '</button>' : "");
-    var completeButton = document.getElementById("complete-lecture");
-    if (completeButton) completeButton.addEventListener("click", function () { progress[lectureKey(currentCourse, lecture)] = !progress[lectureKey(currentCourse, lecture)]; saveProgress(); renderStudy(); renderCourses(); });
-    host.querySelectorAll(".choice").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var block = button.closest(".question-card");
-        if (block.dataset.answered) return;
-        block.dataset.answered = "true";
-        var correct = Number(block.dataset.correct);
-        block.querySelectorAll(".choice").forEach(function (choice, index) {
-          choice.disabled = true;
-          if (index === correct) choice.classList.add("correct");
-          else if (choice === button) choice.classList.add("wrong");
-        });
-        block.querySelector(".explanation").hidden = false;
-      });
+      html += '<button type="button" class="objective-launch" data-objective="' + escapeHtml(objective.id) + '" ' + (!items.length ? "disabled" : "") + '><span class="objective-launch-num">' + String(index + 1).padStart(2, "0") + '</span><span class="objective-launch-copy"><strong>' + escapeHtml(objective.title) + '</strong><small>' + items.length + ' ' + copy[3] + '</small></span><span class="objective-launch-arrow">›</span></button>';
+    });
+    host().innerHTML = html + '</div>';
+    host().querySelectorAll("[data-objective]").forEach(function (button) {
+      button.addEventListener("click", function () { if (currentMode === "learn") startLearn(button.dataset.objective); else startQuiz(currentMode, button.dataset.objective); });
     });
   }
+  function cardHtml(card) { return card.html || '<p>' + escapeHtml(card.body || "") + '</p>'; }
+  function cardMarkup(objective, card, kicker) {
+    return '<article class="learn-card immersive-card"><div class="card-number">' + escapeHtml(kicker || objective.title) + (card.highYield ? '<span>High yield</span>' : "") + '</div><h3>' + escapeHtml(card.title) + '</h3><div class="learn-body">' + cardHtml(card) + '</div></article>';
+  }
+  function sessionHeader(label, detail, done, total, exitLabel) {
+    var percent = total ? Math.round(done / total * 100) : 0;
+    return '<div class="session-top"><button type="button" id="session-exit">← ' + escapeHtml(exitLabel || "All objectives") + '</button><span>' + escapeHtml(label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div><div class="session-counter">' + escapeHtml(detail) + '</div>';
+  }
+  function bindSessionExit(callback) { document.getElementById("session-exit").addEventListener("click", callback); }
 
-  function objectiveEmpty(message) {
-    return '<div class="objective-empty">' + escapeHtml(message) + '</div>';
+  function startLearn(id) {
+    var objective = objectiveById(id);
+    if (!objective || !(objective.cards || []).length) return;
+    learnState = { objective: objective, queue: objective.cards.map(function (_, index) { return index; }), position: 0, known: {}, firstPass: objective.cards.length };
+    renderLearnCard();
+  }
+  function renderLearnCard() {
+    var state = learnState;
+    if (!state || state.position >= state.queue.length) { renderLearnComplete(); return; }
+    var cardIndex = state.queue[state.position];
+    var card = state.objective.cards[cardIndex];
+    host().innerHTML = sessionHeader("Learn · Objective " + (objectives().indexOf(state.objective) + 1), (state.position + 1) + ' of ' + state.queue.length + ' · ' + state.objective.title, state.position, state.queue.length, "All objectives") + cardMarkup(state.objective, card, state.position >= state.firstPass ? "Review card" : "Concept " + (cardIndex + 1)) + '<div class="learn-actions"><button class="learn-btn learn-btn-dunno" id="learn-again" type="button">Not yet — show again</button><button class="learn-btn learn-btn-know" id="learn-know" type="button">I understand it</button></div>';
+    bindSessionExit(function () { learnState = null; renderModeHome(); });
+    document.getElementById("learn-again").addEventListener("click", function () { learnAnswer(false); });
+    document.getElementById("learn-know").addEventListener("click", function () { learnAnswer(true); });
+    scrollTop();
+  }
+  function learnAnswer(known) {
+    var state = learnState, cardIndex = state.queue[state.position];
+    if (known) state.known[cardIndex] = true; else state.queue.push(cardIndex);
+    state.position += 1; renderLearnCard();
+  }
+  function renderLearnComplete() {
+    var state = learnState, objective = state.objective, total = objective.cards.length;
+    host().innerHTML = '<section class="complete-panel"><span class="complete-icon">✓</span><p class="eyebrow">Objective complete</p><h3>' + escapeHtml(objective.title) + '</h3><p>You marked all ' + total + ' concept cards as understood.</p><div class="session-actions">' + ((objective.test || []).length ? '<button class="primary-action" id="learn-to-test" type="button">Test this objective →</button>' : "") + '<button class="secondary-action" id="learn-restart" type="button">Study again</button><button class="secondary-action" id="learn-home" type="button">All objectives</button></div></section>';
+    if (document.getElementById("learn-to-test")) document.getElementById("learn-to-test").addEventListener("click", function () { currentMode = "test"; startQuiz("test", objective.id); });
+    document.getElementById("learn-restart").addEventListener("click", function () { startLearn(objective.id); });
+    document.getElementById("learn-home").addEventListener("click", function () { learnState = null; renderModeHome(); });
   }
 
-  function recallKey(lecture, objective) {
-    return "pasem2:recall:" + currentCourse.id + ":" + lecture.id + ":" + objective.id;
+  function questionCardMarkup(question, mode, index) {
+    return '<article class="question-card immersive-card"><div class="card-number">' + (mode === "apply" ? "Clinical application" : "Active recall") + ' ' + (index + 1) + '</div><h3 class="' + (mode === "apply" ? "vignette" : "") + '">' + escapeHtml(question.prompt) + '</h3><div class="choices" id="choices">' + (question.choices || []).map(function (choice, choiceIndex) {
+      return '<button class="choice" type="button" data-choice="' + choiceIndex + '"><span>' + String.fromCharCode(65 + choiceIndex) + '</span>' + escapeHtml(choice) + '</button>';
+    }).join("") + '</div><div class="explanation" id="answer-explanation" hidden><strong>Explanation</strong><p>' + escapeHtml(question.explanation || "") + '</p></div><div id="linked-review"></div></article>';
   }
-
-  function loadRecall(lecture, objective) {
-    try {
-      return JSON.parse(localStorage.getItem(recallKey(lecture, objective))) || { mastered: [], skipPreviews: false };
-    } catch (error) {
-      return { mastered: [], skipPreviews: false };
-    }
+  function startQuiz(mode, id, questions) {
+    var objective = objectiveById(id), source = questions || (objective && objective[mode]);
+    if (!objective || !source || !source.length) return;
+    quizState = { mode: mode, objective: objective, queue: source.slice(), position: 0, correct: 0, missed: [], retry: !!questions };
+    renderQuizQuestion();
   }
-
-  function saveRecall(lecture, objective, mastered, skipPreviews) {
-    localStorage.setItem(recallKey(lecture, objective), JSON.stringify({
-      mastered: Object.keys(mastered),
-      skipPreviews: !!skipPreviews,
-      updated: Date.now()
-    }));
+  function renderQuizQuestion() {
+    var state = quizState;
+    if (!state || state.position >= state.queue.length) { renderQuizComplete(); return; }
+    var question = state.queue[state.position];
+    host().innerHTML = sessionHeader(state.mode === "apply" ? "Apply" : "Test", (state.position + 1) + ' of ' + state.queue.length + ' · ' + state.objective.title, state.position, state.queue.length, "All objectives") + questionCardMarkup(question, state.mode, state.position) + '<button class="primary-action full-action" id="question-next" type="button" hidden>' + (state.position + 1 === state.queue.length ? "See results" : "Next →") + '</button>';
+    bindSessionExit(function () { quizState = null; renderModeHome(); });
+    host().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerQuiz(Number(button.dataset.choice)); }); });
+    document.getElementById("question-next").addEventListener("click", function () { state.position += 1; renderQuizQuestion(); });
+    scrollTop();
   }
-
-  function recallPool(objective) {
-    var pool = [];
-    ["test", "apply"].forEach(function (kind) {
-      (objective[kind] || []).forEach(function (question, index) {
-        pool.push({ id: kind + ":" + index, kind: kind, question: question, card: linkedCardIndex(objective, question) });
-      });
+  function answerButtons(selected, correct) {
+    host().querySelectorAll("[data-choice]").forEach(function (button) {
+      button.disabled = true; var choice = Number(button.dataset.choice);
+      if (choice === correct) button.classList.add("correct"); else if (choice === selected) button.classList.add("wrong"); else button.classList.add("dimmed");
     });
-    return pool;
+  }
+  function showLinkedCard(objective, question, label) {
+    var cardIndex = linkedCardIndex(objective, question);
+    if (cardIndex >= 0) document.getElementById("linked-review").innerHTML = cardMarkup(objective, objective.cards[cardIndex], label || "Review this Learn card");
+  }
+  function answerQuiz(selected) {
+    var state = quizState, question = state.queue[state.position], correct = Number(question.correct);
+    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false;
+    if (selected === correct) state.correct += 1; else { state.missed.push(question); showLinkedCard(state.objective, question, "↩ Review the matching Learn card"); }
+    document.getElementById("question-next").hidden = false;
+  }
+  function renderQuizComplete() {
+    var state = quizState, percent = state.queue.length ? Math.round(state.correct / state.queue.length * 100) : 0;
+    host().innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (percent >= 80 ? "🎯" : "📚") + '</span><p class="eyebrow">' + (state.retry ? "Review round" : "Objective complete") + '</p><h3>' + escapeHtml(state.objective.title) + '</h3><p>' + state.correct + ' of ' + state.queue.length + ' correct · ' + percent + '%</p><div class="score-grid"><span><strong>' + state.correct + '</strong>Correct</span><span><strong>' + (state.queue.length - state.correct) + '</strong>Missed</span></div><div class="session-actions">' + (state.missed.length ? '<button class="primary-action" id="retry-missed" type="button">Redo ' + state.missed.length + ' missed →</button>' : "") + (state.mode === "test" && (state.objective.apply || []).length ? '<button class="secondary-action" id="go-apply" type="button">Apply this objective</button>' : "") + '<button class="secondary-action" id="quiz-restart" type="button">Restart</button><button class="secondary-action" id="quiz-home" type="button">All objectives</button></div></section>';
+    if (document.getElementById("retry-missed")) document.getElementById("retry-missed").addEventListener("click", function () { startQuiz(state.mode, state.objective.id, state.missed); });
+    if (document.getElementById("go-apply")) document.getElementById("go-apply").addEventListener("click", function () { currentMode = "apply"; startQuiz("apply", state.objective.id); });
+    document.getElementById("quiz-restart").addEventListener("click", function () { startQuiz(state.mode, state.objective.id); });
+    document.getElementById("quiz-home").addEventListener("click", function () { quizState = null; renderModeHome(); });
   }
 
   function linkedCardIndex(objective, question) {
     var cards = objective.cards || [];
     if (Number.isInteger(question.card) && question.card >= 0 && question.card < cards.length) return question.card;
     if (!cards.length) return -1;
-    var source = wordSet((question.prompt || "") + " " + (question.explanation || ""));
-    var bestIndex = -1;
-    var bestScore = 0;
+    var source = wordSet((question.prompt || "") + " " + (question.explanation || "") + " " + ((question.choices || [])[question.correct] || ""));
+    var bestIndex = 0, bestScore = -1;
     cards.forEach(function (card, index) {
-      var titleWords = wordSet(card.title || "");
-      var bodyWords = wordSet(card.body || "");
-      var score = overlapScore(source, titleWords) * 3 + overlapScore(source, bodyWords);
+      var score = overlap(source, wordSet(card.title || "")) * 4 + overlap(source, wordSet((card.body || "") + " " + (card.html || "")));
       if (score > bestScore) { bestScore = score; bestIndex = index; }
     });
     return bestIndex;
   }
-
   function wordSet(text) {
-    var stop = { the:1, and:1, for:1, with:1, from:1, that:1, this:1, what:1, which:1, when:1, where:1, why:1, how:1, are:1, was:1, were:1, into:1, your:1, patient:1 };
-    return String(text).toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).reduce(function (set, word) {
-      if (word.length > 2 && !stop[word]) set[word] = true;
-      return set;
-    }, {});
+    var stop = { the:1,and:1,for:1,with:1,from:1,that:1,this:1,what:1,which:1,when:1,where:1,why:1,how:1,are:1,was:1,were:1,into:1,your:1,patient:1,after:1,before:1 };
+    return String(text).toLowerCase().replace(/<[^>]+>/g, " ").replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).reduce(function (set, word) { if (word.length > 2 && !stop[word]) set[word] = true; return set; }, {});
   }
-
-  function overlapScore(left, right) {
-    return Object.keys(left).reduce(function (score, word) { return score + (right[word] ? 1 : 0); }, 0);
-  }
-
-  function shuffled(items) {
-    var copy = items.slice();
-    for (var i = copy.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = copy[i]; copy[i] = copy[j]; copy[j] = temp;
-    }
-    return copy;
-  }
-
-  function renderRecallObjectives(lecture) {
-    var host = document.getElementById("mode-content");
-    var objectives = lecture.objectives || [];
-    if (!objectives.length) {
-      host.innerHTML = emptyMode("No objectives yet.");
-      return;
-    }
-    host.innerHTML = '<div class="recall-objective-intro"><p class="eyebrow">Recall by objective</p><h3>Choose an objective</h3><p>Each section combines that objective\'s Test and Apply questions with its linked Learn cards.</p></div><div class="recall-objective-list">' + objectives.map(function (objective, index) {
-      var pool = recallPool(objective);
-      var ids = pool.reduce(function (set, item) { set[item.id] = true; return set; }, {});
-      var saved = loadRecall(lecture, objective);
-      var mastered = (saved.mastered || []).filter(function (id) { return ids[id]; }).length;
-      var percent = pool.length ? Math.round(mastered / pool.length * 100) : 0;
-      return '<button type="button" class="recall-objective" data-recall-objective="' + index + '" ' + (!pool.length ? "disabled" : "") + '><span class="objective-number">' + String(index + 1).padStart(2, "0") + '</span><span class="recall-objective-copy"><strong>' + escapeHtml(objective.title) + '</strong><small>' + (pool.length ? mastered + " of " + pool.length + " mastered" : "No Test or Apply questions yet") + '</small></span><span class="objective-percent">' + percent + '%</span><span class="objective-arrow">›</span></button>';
-    }).join("") + '</div>';
-    host.querySelectorAll("[data-recall-objective]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var index = Number(button.dataset.recallObjective);
-        renderRecallHome(lecture, objectives[index], index);
+  function overlap(left, right) { return Object.keys(left).reduce(function (score, word) { return score + (right[word] ? 1 : 0); }, 0); }
+  function recallKey() { return "pasem2:recall:" + currentCourse.id + ":" + lecture().id; }
+  function questionId(objective, kind, index) { return objective.id + "|" + kind + "|" + index; }
+  function cardId(objective, index) { return objective.id + "|card|" + index; }
+  function toSet(items) { return (items || []).reduce(function (set, item) { set[item] = true; return set; }, {}); }
+  function recallItems() {
+    var items = [];
+    objectives().forEach(function (objective) {
+      ["test", "apply"].forEach(function (kind) {
+        (objective[kind] || []).forEach(function (question, index) { items.push({ id: questionId(objective, kind, index), objective: objective, kind: kind, question: question, card: linkedCardIndex(objective, question) }); });
       });
     });
+    return items;
   }
-
-  function renderRecallHome(lecture, objective, objectiveIndex) {
-    var host = document.getElementById("mode-content");
-    var pool = recallPool(objective);
-    var saved = loadRecall(lecture, objective);
-    var poolIds = pool.reduce(function (ids, item) { ids[item.id] = true; return ids; }, {});
-    var mastered = (saved.mastered || []).filter(function (id) { return poolIds[id]; });
-    var done = mastered.length >= pool.length;
-    var percent = Math.round(mastered.length / pool.length * 100);
-    host.innerHTML = '<button class="recall-objectives-back" id="recall-objectives-back" type="button">← All objectives</button><section class="recall-home">' +
-      '<div class="recall-icon">↻</div><p class="eyebrow">Objective ' + (objectiveIndex + 1) + ' · Spaced repetition</p><h3>' + escapeHtml(objective.title) + '</h3>' +
-      '<p>Recall runs this entire objective: all of its Test and Apply questions, plus its linked Learn cards. Correct answers retire; missed questions return after a short gap.</p>' +
-      '<div class="recall-stats"><span><strong>' + mastered.length + '</strong> mastered</span><span><strong>' + pool.length + '</strong> total</span><span><strong>' + percent + '%</strong> complete</span></div>' +
-      '<label class="recall-option"><input id="skip-previews" type="checkbox" ' + (saved.skipPreviews ? "checked" : "") + '><span><strong>Skip Learn previews</strong><small>Go straight through Test and Apply. A linked Learn card still appears whenever you miss a question.</small></span></label>' +
-      '<div class="recall-actions"><button class="recall-start" id="start-recall" type="button">' + (done ? "Review again" : mastered.length ? "Resume Recall" : "Start Recall") + ' →</button>' +
-      (mastered.length ? '<button class="recall-restart" id="restart-recall" type="button">Restart</button>' : "") + '</div></section>';
-    document.getElementById("start-recall").addEventListener("click", function () {
-      startRecall(lecture, objective, objectiveIndex, document.getElementById("skip-previews").checked, done);
-    });
-    document.getElementById("recall-objectives-back").addEventListener("click", function () { renderRecallObjectives(lecture); });
-    var restart = document.getElementById("restart-recall");
-    if (restart) restart.addEventListener("click", function () {
-      if (!window.confirm("Restart Recall for this objective? Its Recall progress will be cleared.")) return;
-      startRecall(lecture, objective, objectiveIndex, document.getElementById("skip-previews").checked, true);
-    });
+  function loadRecall() {
+    var saved = readStore(recallKey(), { mastered: [], taught: [], skipPreviews: false });
+    return { mastered: toSet(saved.mastered), taught: toSet(saved.taught), skipPreviews: !!saved.skipPreviews };
   }
-
-  function startRecall(lecture, objective, objectiveIndex, skipPreviews, restart) {
-    var saved = loadRecall(lecture, objective);
-    var mastered = {};
-    var pool = recallPool(objective);
-    var poolIds = pool.reduce(function (ids, item) { ids[item.id] = true; return ids; }, {});
-    if (!restart) (saved.mastered || []).forEach(function (id) { if (poolIds[id]) mastered[id] = true; });
-    var remaining = pool.filter(function (item) { return !mastered[item.id]; });
-    if (!remaining.length) remaining = pool;
+  function saveRecall() {
+    if (recallState) writeStore(recallKey(), { mastered: Object.keys(recallState.mastered), taught: Object.keys(recallState.taught), skipPreviews: recallState.skipPreviews, updated: Date.now() });
+  }
+  function renderRecallHome() {
+    var saved = loadRecall(), items = recallItems();
+    var valid = items.reduce(function (set, item) { set[item.id] = true; return set; }, {});
+    var mastered = Object.keys(saved.mastered).filter(function (id) { return valid[id]; }).length;
+    var percent = items.length ? Math.round(mastered / items.length * 100) : 0;
+    host().innerHTML = '<section class="recall-home"><div class="recall-icon">↻</div><p class="eyebrow">One continuous deck</p><h3>Recall the entire Vaccines lecture</h3><p>Recall moves through all 27 objectives in order. For each Learn card, you see the concept first, then its Test questions, then its Apply cases before moving to the next concept.</p><div class="recall-stats"><span><strong>27</strong>objectives</span><span><strong>' + mastered + ' / ' + items.length + '</strong>mastered questions</span><span><strong>' + percent + '%</strong>complete</span></div><label class="recall-option"><input id="skip-previews" type="checkbox" ' + (saved.skipPreviews ? "checked" : "") + '><span><strong>Skip Learn previews</strong><small>Go straight through Test and Apply. A matching Learn card still appears after every miss.</small></span></label><div class="recall-actions"><button class="recall-start" id="start-recall" type="button">' + (mastered ? "Resume Recall" : "Start Recall") + ' →</button>' + (mastered ? '<button class="recall-restart" id="restart-recall" type="button">Restart</button>' : "") + '</div></section>';
+    document.getElementById("start-recall").addEventListener("click", function () { startRecall(document.getElementById("skip-previews").checked, false); });
+    if (document.getElementById("restart-recall")) document.getElementById("restart-recall").addEventListener("click", function () { if (window.confirm("Restart Recall for the entire Vaccines lecture?")) startRecall(document.getElementById("skip-previews").checked, true); });
+  }
+  function buildRecallSteps(mastered, taught, skipPreviews) {
     var steps = [];
-    if (skipPreviews) {
-      steps = shuffled(remaining).map(function (item) { return { type: "question", item: item }; });
-    } else {
-      var groups = {};
-      var unlinked = [];
-      remaining.forEach(function (item) {
-        if (item.card < 0) unlinked.push(item);
-        else (groups[item.card] || (groups[item.card] = [])).push(item);
+    objectives().forEach(function (objective) {
+      var grouped = {}, unlinked = [];
+      ["test", "apply"].forEach(function (kind) {
+        (objective[kind] || []).forEach(function (question, index) {
+          var item = { id: questionId(objective, kind, index), objective: objective, kind: kind, question: question, card: linkedCardIndex(objective, question) };
+          if (mastered[item.id]) return;
+          if (item.card >= 0) (grouped[item.card] || (grouped[item.card] = { test: [], apply: [] }))[kind].push(item); else unlinked.push(item);
+        });
       });
-      shuffled(Object.keys(groups)).forEach(function (cardIndex) {
-        steps.push({ type: "card", card: Number(cardIndex) });
-        shuffled(groups[cardIndex]).forEach(function (item) { steps.push({ type: "question", item: item }); });
+      (objective.cards || []).forEach(function (_, cardIndex) {
+        var group = grouped[cardIndex] || { test: [], apply: [] };
+        if (!skipPreviews && !taught[cardId(objective, cardIndex)] && (group.test.length || group.apply.length)) steps.push({ type: "card", objective: objective, card: cardIndex });
+        group.test.forEach(function (item) { steps.push({ type: "question", item: item }); });
+        group.apply.forEach(function (item) { steps.push({ type: "question", item: item }); });
       });
-      shuffled(unlinked).forEach(function (item) { steps.push({ type: "question", item: item }); });
-    }
-    recallState = { lecture: lecture, objective: objective, objectiveIndex: objectiveIndex, skipPreviews: skipPreviews, mastered: mastered, steps: steps, position: 0, total: pool.length };
-    saveRecall(lecture, objective, mastered, skipPreviews);
-    renderRecallStep();
-  }
-
-  function recallHeader() {
-    var mastered = Object.keys(recallState.mastered).length;
-    var percent = recallState.total ? Math.round(mastered / recallState.total * 100) : 0;
-    return '<div class="recall-session-head"><button id="exit-recall" type="button">← Recall overview</button><span>' + mastered + ' / ' + recallState.total + ' mastered</span></div>' +
-      '<div class="recall-progress"><span style="width:' + percent + '%"></span></div>';
-  }
-
-  function renderRecallStep() {
-    var host = document.getElementById("mode-content");
-    if (!recallState || recallState.position >= recallState.steps.length) {
-      renderRecallComplete();
-      return;
-    }
-    var step = recallState.steps[recallState.position];
-    if (step.type === "card") {
-      var card = recallState.objective.cards[step.card];
-      host.innerHTML = recallHeader() + '<article class="learn-card recall-preview"><div class="card-number">Learn preview' + (card.highYield ? '<span>High yield</span>' : "") + '</div><h3>' + escapeHtml(card.title) + '</h3><p>' + escapeHtml(card.body) + '</p></article><button class="recall-start" id="recall-next" type="button">Start questions →</button>';
-      bindRecallExit();
-      document.getElementById("recall-next").addEventListener("click", recallAdvance);
-      return;
-    }
-    renderRecallQuestion(step.item);
-  }
-
-  function renderRecallQuestion(item) {
-    var host = document.getElementById("mode-content");
-    var q = item.question;
-    host.innerHTML = recallHeader() + '<article class="question-card recall-question"><div class="card-number">' + escapeHtml(item.kind) + ' · Recall</div><h3>' + escapeHtml(q.prompt) + '</h3><div class="choices">' + (q.choices || []).map(function (choice, index) {
-      return '<button class="choice" type="button" data-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(choice) + '</button>';
-    }).join("") + '</div><div class="explanation" id="recall-explanation" hidden><strong>Explanation</strong><p>' + escapeHtml(q.explanation || "") + '</p></div><div id="recall-card"></div></article><button class="recall-start recall-next" id="recall-next" type="button" hidden>Continue →</button>';
-    bindRecallExit();
-    host.querySelectorAll("[data-choice]").forEach(function (button) {
-      button.addEventListener("click", function () { answerRecall(item, Number(button.dataset.choice)); });
+      unlinked.forEach(function (item) { steps.push({ type: "question", item: item }); });
     });
-    document.getElementById("recall-next").addEventListener("click", recallAdvance);
+    return steps;
   }
-
+  function startRecall(skipPreviews, restart) {
+    var saved = restart ? { mastered: {}, taught: {} } : loadRecall();
+    recallState = { mastered: saved.mastered || {}, taught: saved.taught || {}, skipPreviews: !!skipPreviews, total: recallItems().length, steps: [], position: 0 };
+    recallState.steps = buildRecallSteps(recallState.mastered, recallState.taught, recallState.skipPreviews);
+    saveRecall(); renderRecallStep();
+  }
+  function recallHeader(objective) {
+    var mastered = Object.keys(recallState.mastered).length;
+    return sessionHeader("Recall · Objective " + (objectives().indexOf(objective) + 1) + " of " + objectives().length, mastered + ' of ' + recallState.total + ' questions mastered · ' + objective.title, mastered, recallState.total, "Recall overview");
+  }
+  function renderRecallStep() {
+    var state = recallState;
+    if (!state || state.position >= state.steps.length) { renderRecallComplete(); return; }
+    var step = state.steps[state.position];
+    if (step.type === "card") {
+      var card = step.objective.cards[step.card];
+      host().innerHTML = recallHeader(step.objective) + '<div class="recall-step-label">Learn this concept</div>' + cardMarkup(step.objective, card, "Learn · Concept " + (step.card + 1)) + '<button class="primary-action full-action" id="recall-continue" type="button">I understand it — continue →</button>';
+      bindSessionExit(exitRecall);
+      document.getElementById("recall-continue").addEventListener("click", function () { state.taught[cardId(step.objective, step.card)] = true; saveRecall(); state.position += 1; renderRecallStep(); });
+    } else renderRecallQuestion(step.item);
+    scrollTop();
+  }
+  function renderRecallQuestion(item) {
+    host().innerHTML = recallHeader(item.objective) + '<div class="recall-step-label">' + (item.kind === "apply" ? "Apply this concept" : "Test this concept") + '</div>' + questionCardMarkup(item.question, item.kind, recallState.position) + '<button class="primary-action full-action" id="recall-next" type="button" hidden>Continue →</button>';
+    bindSessionExit(exitRecall);
+    host().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerRecall(item, Number(button.dataset.choice)); }); });
+    document.getElementById("recall-next").addEventListener("click", function () { recallState.position += 1; renderRecallStep(); });
+  }
   function answerRecall(item, selected) {
     var correct = Number(item.question.correct);
-    document.querySelectorAll("[data-choice]").forEach(function (button) {
-      button.disabled = true;
-      var choice = Number(button.dataset.choice);
-      if (choice === correct) button.classList.add("correct");
-      else if (choice === selected) button.classList.add("wrong");
-    });
-    document.getElementById("recall-explanation").hidden = false;
-    if (selected === correct) {
-      recallState.mastered[item.id] = true;
-    } else {
-      if (item.card >= 0) {
-        var card = recallState.objective.cards[item.card];
-        document.getElementById("recall-card").innerHTML = '<article class="learn-card missed-card"><div class="card-number">Review this Learn card</div><h3>' + escapeHtml(card.title) + '</h3><p>' + escapeHtml(card.body) + '</p></article>';
-      }
-      var returnAt = Math.min(recallState.position + 4, recallState.steps.length);
-      recallState.steps.splice(returnAt, 0, { type: "question", item: item });
-    }
-    saveRecall(recallState.lecture, recallState.objective, recallState.mastered, recallState.skipPreviews);
-    document.getElementById("recall-next").hidden = false;
+    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false;
+    if (selected === correct) recallState.mastered[item.id] = true;
+    else { showLinkedCard(item.objective, item.question, "↩ Review before this returns"); var returnAt = Math.min(recallState.position + 1 + RECALL_GAP, recallState.steps.length); recallState.steps.splice(returnAt, 0, { type: "question", item: item }); }
+    saveRecall(); document.getElementById("recall-next").hidden = false;
   }
-
-  function recallAdvance() {
-    recallState.position += 1;
-    renderRecallStep();
-  }
-
-  function bindRecallExit() {
-    document.getElementById("exit-recall").addEventListener("click", function () {
-      var lecture = recallState.lecture;
-      var objective = recallState.objective;
-      var objectiveIndex = recallState.objectiveIndex;
-      saveRecall(lecture, objective, recallState.mastered, recallState.skipPreviews);
-      recallState = null;
-      renderRecallHome(lecture, objective, objectiveIndex);
-    });
-  }
-
+  function exitRecall() { saveRecall(); recallState = null; renderRecallHome(); }
   function renderRecallComplete() {
-    var host = document.getElementById("mode-content");
-    var lecture = recallState.lecture;
-    var objective = recallState.objective;
-    var objectiveIndex = recallState.objectiveIndex;
-    var skipPreviews = recallState.skipPreviews;
-    saveRecall(lecture, objective, recallState.mastered, skipPreviews);
-    host.innerHTML = '<section class="recall-home"><div class="recall-icon">✓</div><p class="eyebrow">Objective complete</p><h3>' + escapeHtml(objective.title) + '</h3><p>You recalled every Test and Apply question in this objective.</p><div class="recall-actions"><button class="recall-start" id="recall-again" type="button">Review again →</button><button class="recall-restart" id="recall-overview" type="button">All objectives</button></div></section>';
-    document.getElementById("recall-again").addEventListener("click", function () { startRecall(lecture, objective, objectiveIndex, skipPreviews, true); });
-    document.getElementById("recall-overview").addEventListener("click", function () { recallState = null; renderRecallObjectives(lecture); });
+    var state = recallState; saveRecall();
+    host().innerHTML = '<section class="complete-panel"><span class="complete-icon">🏅</span><p class="eyebrow">Lecture mastered</p><h3>Vaccines Recall complete</h3><p>You worked through the Learn → Test → Apply sequence across all 27 objectives.</p><div class="session-actions"><button class="primary-action" id="recall-again" type="button">Restart Recall</button><button class="secondary-action" id="recall-home" type="button">Recall overview</button></div></section>';
+    document.getElementById("recall-again").addEventListener("click", function () { startRecall(state.skipPreviews, true); });
+    document.getElementById("recall-home").addEventListener("click", function () { recallState = null; renderRecallHome(); });
   }
 
-  function renderQuestion(question, index) {
-    return '<article class="question-card" data-correct="' + Number(question.correct) + '"><div class="card-number">Question ' + (index + 1) + '</div><h3>' + escapeHtml(question.prompt) + '</h3><div class="choices">' + (question.choices || []).map(function (choice, choiceIndex) {
-      return '<button class="choice" type="button"><span>' + String.fromCharCode(65 + choiceIndex) + '</span>' + escapeHtml(choice) + '</button>';
-    }).join("") + '</div><div class="explanation" hidden><strong>Explanation</strong><p>' + escapeHtml(question.explanation || "") + '</p></div></article>';
-  }
-
-  function emptyMode(message) { return '<div class="empty-state compact"><span>✦</span><h3>' + escapeHtml(message) + '</h3><p>Add content in <code>data/semester.js</code>.</p></div>'; }
-
-  document.getElementById("back-button").addEventListener("click", function () {
-    studyView.hidden = true;
-    workspace.hidden = false;
-    document.querySelector(".hero").hidden = false;
-    renderCourses();
-  });
-
+  document.getElementById("back-button").addEventListener("click", function () { clearSessions(); studyView.hidden = true; workspace.hidden = false; document.querySelector(".hero").hidden = false; renderCourses(); });
   document.getElementById("reset-progress").addEventListener("click", function () {
     if (!window.confirm("Reset all saved Semester 2 progress on this device?")) return;
-    progress = {};
-    Object.keys(localStorage).forEach(function (storageKey) {
-      if (storageKey.indexOf("pasem2:recall:") === 0) localStorage.removeItem(storageKey);
-    });
-    recallState = null;
-    saveProgress();
-    renderCourses();
-    if (!studyView.hidden) renderStudy();
+    progress = {}; Object.keys(localStorage).forEach(function (key) { if (key.indexOf("pasem2:") === 0) localStorage.removeItem(key); });
+    clearSessions(); writeStore(progressKey, progress); renderProgress(); renderCourses(); if (!studyView.hidden) renderStudy();
   });
-
-  renderCourses();
-  renderProgress();
+  renderCourses(); renderProgress();
 }());
