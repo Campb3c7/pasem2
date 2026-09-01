@@ -34,6 +34,12 @@ window.SEMESTER = {
           title: "Vaccines",
           description: "Vaccine lecture materials, recall questions, and clinical application cases.",
           objectives: window.VACCINE_OBJECTIVES || []
+        },
+        {
+          id: "viral-diseases",
+          title: "Viral Diseases",
+          description: "Viral pathophysiology, clinical recognition, diagnostics, treatment, prevention, and complications.",
+          objectives: window.VIRAL_DISEASE_OBJECTIVES || []
         }
       ]
     }
