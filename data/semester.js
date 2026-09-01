@@ -40,6 +40,12 @@ window.SEMESTER = {
           title: "Viral Diseases",
           description: "Viral pathophysiology, clinical recognition, diagnostics, treatment, prevention, and complications.",
           objectives: window.VIRAL_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "syphilis",
+          title: "Syphilis",
+          description: "Transmission, staging, clinical findings, diagnostics, treatment, follow-up, exposures, and reporting.",
+          objectives: window.SYPHILIS_OBJECTIVES || []
         }
       ]
     }
