@@ -46,6 +46,12 @@ window.SEMESTER = {
           title: "Syphilis",
           description: "Transmission, staging, clinical findings, diagnostics, treatment, follow-up, exposures, and reporting.",
           objectives: window.SYPHILIS_OBJECTIVES || []
+        },
+        {
+          id: "tick-borne-illnesses",
+          title: "Tick-borne Illnesses",
+          description: "Rocky Mountain spotted fever and Lyme disease epidemiology, presentation, diagnosis, treatment, and prevention.",
+          objectives: window.TICK_BORNE_OBJECTIVES || []
         }
       ]
     }
