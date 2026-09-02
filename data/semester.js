@@ -76,6 +76,12 @@ window.SEMESTER = {
           title: "Global Infections",
           description: "Global-health terminology, infection recognition, diagnostics, treatment, prevention, travel medicine, and public health.",
           objectives: window.GLOBAL_INFECTION_OBJECTIVES || []
+        },
+        {
+          id: "fungal-diseases",
+          title: "Fungal Diseases, Toxoplasmosis & MAC",
+          description: "Toxoplasmosis across patient populations, endemic and invasive fungal disease, aspergillosis syndromes, and MAC.",
+          objectives: window.FUNGAL_DISEASE_OBJECTIVES || []
         }
       ]
     }
