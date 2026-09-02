@@ -82,6 +82,12 @@ window.SEMESTER = {
           title: "Fungal Diseases, Toxoplasmosis & MAC",
           description: "Toxoplasmosis across patient populations, endemic and invasive fungal disease, aspergillosis syndromes, and MAC.",
           objectives: window.FUNGAL_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "germs-and-worms",
+          title: "Germs and Worms",
+          description: "Bacterial classification and syndromes, diarrheal pathogens, Clostridial disease, malaria, protozoa, and helminths.",
+          objectives: window.GERMS_WORMS_OBJECTIVES || []
         }
       ]
     }
