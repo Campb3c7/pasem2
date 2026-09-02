@@ -58,6 +58,12 @@ window.SEMESTER = {
           title: "Introduction to Infectious Disease",
           description: "Foundations of infection, immunity, clinical reasoning, diagnostics, treatment, microbiology, and prevention.",
           objectives: window.INTRO_ID_OBJECTIVES || []
+        },
+        {
+          id: "infectious-disease-pharmacology",
+          title: "Infectious Disease Pharmacology",
+          description: "Antibiotic selection and coverage, monitoring, adverse effects and interactions, antivirals, and systemic antifungals.",
+          objectives: window.ID_PHARM_OBJECTIVES || []
         }
       ]
     }
