@@ -70,6 +70,12 @@ window.SEMESTER = {
           title: "Pathophysiology of Sepsis",
           description: "Inflammation, shock, systemic organ injury, diagnostic workup, resuscitation, and febrile neutropenia.",
           objectives: window.SEPSIS_OBJECTIVES || []
+        },
+        {
+          id: "global-infections",
+          title: "Global Infections",
+          description: "Global-health terminology, infection recognition, diagnostics, treatment, prevention, travel medicine, and public health.",
+          objectives: window.GLOBAL_INFECTION_OBJECTIVES || []
         }
       ]
     }
