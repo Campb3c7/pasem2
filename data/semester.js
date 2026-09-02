@@ -88,6 +88,12 @@ window.SEMESTER = {
           title: "Germs and Worms",
           description: "Bacterial classification and syndromes, diarrheal pathogens, Clostridial disease, malaria, protozoa, and helminths.",
           objectives: window.GERMS_WORMS_OBJECTIVES || []
+        },
+        {
+          id: "infectious-disease-labs",
+          title: "Infectious Disease Labs",
+          description: "Specimen selection, direct microscopy, staining, culture, MIC interpretation, molecular testing, and serology.",
+          objectives: window.ID_LABS_OBJECTIVES || []
         }
       ]
     }
