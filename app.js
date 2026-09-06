@@ -16,6 +16,47 @@
   var recallState = null;
   var RECALL_GAP = 3;
 
+  randomizeQuestionBanks();
+
+  function shuffle(items) {
+    for (var index = items.length - 1; index > 0; index -= 1) {
+      var swapIndex = Math.floor(Math.random() * (index + 1));
+      var value = items[index];
+      items[index] = items[swapIndex];
+      items[swapIndex] = value;
+    }
+    return items;
+  }
+  function randomizeQuestions(questions) {
+    if (!questions || !questions.length) return;
+    var answerPositions = shuffle(questions.map(function (_, index) { return index % 4; }));
+    questions.forEach(function (question, questionIndex) {
+      var choices = (question.choices || []).slice();
+      var oldCorrect = Number(question.correct);
+      if (choices.length < 2 || oldCorrect < 0 || oldCorrect >= choices.length) return;
+      var answer = choices.splice(oldCorrect, 1)[0];
+      shuffle(choices);
+      var newCorrect = Math.min(answerPositions[questionIndex], choices.length);
+      choices.splice(newCorrect, 0, answer);
+      question.choices = choices;
+      question.correct = newCorrect;
+    });
+  }
+  function randomizeQuestionBanks() {
+    (semester.courses || []).forEach(function (course) {
+      (course.lectures || []).forEach(function (item) {
+        var testQuestions = [];
+        var applyQuestions = [];
+        (item.objectives || []).forEach(function (objective) {
+          testQuestions = testQuestions.concat(objective.test || []);
+          applyQuestions = applyQuestions.concat(objective.apply || []);
+        });
+        randomizeQuestions(testQuestions);
+        randomizeQuestions(applyQuestions);
+      });
+    });
+  }
+
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (char) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char];
