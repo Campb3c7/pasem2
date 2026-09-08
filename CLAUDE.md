@@ -39,7 +39,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 
 ## Diagnosis Drills
 
-- Quizlet-style diagnosis pairs live in `data/diagnosis-drills.js` as three independent sections: classification, hallmark presentation, and treatment matching.
+- Quizlet-style diagnosis pairs live in `data/diagnosis-drills.js` as four independent sections: classification, hallmark presentation, treatment matching, and diagnostic workup.
 - Present the description as the prompt and the diagnosis or clinical scenario as one of four choices.
 - Shuffle question order and answer position whenever a section starts. Reveal the complete pair only after the correct answer.
 - Use only supplied lecture content. A wrong diagnostic order receives a plausible non-diagnostic result from the shared engine.

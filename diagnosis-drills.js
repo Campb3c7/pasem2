@@ -30,6 +30,7 @@
   function questionPrompt(section) {
     if (section.id === "hallmarks") return "Which diagnosis best matches this presentation?";
     if (section.id === "treatment") return "Which diagnosis or clinical scenario matches this treatment?";
+    if (section.id === "diagnostics") return "Which diagnosis or condition matches this diagnostic workup?";
     return "Which diagnosis or condition matches this description?";
   }
   function currentItem() { return state.section.items[state.order[state.position]]; }
@@ -56,7 +57,7 @@
   function renderHome() {
     state = null;
     content.innerHTML = '<div class="drill-heading"><p class="eyebrow">Randomized multiple choice</p><h2>Diagnosis Drills</h2><p>Choose one set. Every session reshuffles both the questions and answer positions.</p></div><div class="drill-section-grid">' + sections.map(function (section, index) {
-      return '<button class="drill-section-card" type="button" data-drill-section="' + escapeHtml(section.id) + '"><span class="drill-section-number">0' + (index + 1) + '</span><strong>' + escapeHtml(section.title) + '</strong><span>' + escapeHtml(section.description) + '</span><small>' + section.items.length + ' questions</small></button>';
+      return '<button class="drill-section-card" type="button" data-drill-section="' + escapeHtml(section.id) + '"><span class="drill-section-number">' + String(index + 1).padStart(2, "0") + '</span><strong>' + escapeHtml(section.title) + '</strong><span>' + escapeHtml(section.description) + '</span><small>' + section.items.length + ' questions</small></button>';
     }).join("") + '</div>';
     content.querySelectorAll("[data-drill-section]").forEach(function (button) {
       button.addEventListener("click", function () { startSection(button.dataset.drillSection); });

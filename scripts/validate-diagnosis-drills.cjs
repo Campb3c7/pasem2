@@ -7,9 +7,9 @@ vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "data", "diagnosis-drills.js"), "utf8"), context);
 
 const sections = context.window.DIAGNOSIS_DRILL_SECTIONS;
-if (!Array.isArray(sections) || sections.length !== 3) throw new Error("Expected exactly three diagnosis drill sections.");
+if (!Array.isArray(sections) || sections.length !== 4) throw new Error("Expected exactly four diagnosis drill sections.");
 
-const expected = { classification: 200, hallmarks: 200, treatment: 268 };
+const expected = { classification: 200, hallmarks: 200, treatment: 268, diagnostics: 200 };
 const ids = new Set();
 sections.forEach((section) => {
   if (!expected[section.id]) throw new Error(`Unexpected section: ${section.id}`);

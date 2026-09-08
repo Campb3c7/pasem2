@@ -26,7 +26,7 @@ Cases live in `data/walkthrough/` and are grouped by clinical domain. Add a case
 
 ## Diagnosis Drills
 
-Diagnosis Drills contains three independent randomized multiple-choice sets: Disease Classification, Hallmark Presentation, and Treatment Match. Each question presents the supplied description and asks for its matching diagnosis or clinical scenario. Question order and the four answer positions reshuffle whenever a section starts.
+Diagnosis Drills contains four independent randomized multiple-choice sets: Disease Classification, Hallmark Presentation, Treatment Match, and Diagnostic Workup. Each question presents the supplied description and asks for its matching diagnosis or clinical scenario. Question order and the four answer positions reshuffle whenever a section starts.
 
 ## GitHub Pages
 

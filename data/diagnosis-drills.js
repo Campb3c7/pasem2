@@ -3361,6 +3361,1013 @@
         "description": "Filgrastim or pegfilgrastim may be used in selected patients; routine use is controversial"
       }
     ]
+  },
+  {
+    "id": "diagnostics",
+    "title": "Diagnostic Workup",
+    "description": "Identify the diagnosis or condition that matches the diagnostic test, workup, or defining result.",
+    "items": [
+      {
+        "id": "diagnostics-001",
+        "term": "Staphylococcus aureus infection",
+        "description": "Culture the involved site or blood depending on infection; Gram stain/culture identifies S. aureus and susceptibility testing distinguishes MSSA from MRSA"
+      },
+      {
+        "id": "diagnostics-002",
+        "term": "MSSA infection",
+        "description": "Culture with susceptibility testing showing methicillin-susceptible S. aureus"
+      },
+      {
+        "id": "diagnostics-003",
+        "term": "MRSA infection",
+        "description": "Culture with susceptibility testing showing methicillin-resistant S. aureus"
+      },
+      {
+        "id": "diagnostics-004",
+        "term": "Staphylococcus aureus bacteremia",
+        "description": "Positive blood cultures growing S. aureus"
+      },
+      {
+        "id": "diagnostics-005",
+        "term": "Staphylococcal endocarditis",
+        "description": "Blood cultures plus echocardiographic evidence of valvular vegetation"
+      },
+      {
+        "id": "diagnostics-006",
+        "term": "Staphylococcal osteomyelitis",
+        "description": "Imaging of affected bone plus culture of infected tissue/bone when obtained"
+      },
+      {
+        "id": "diagnostics-007",
+        "term": "Staphylococcal septic arthritis",
+        "description": "Joint aspiration with synovial fluid studies/culture demonstrating bacterial infection"
+      },
+      {
+        "id": "diagnostics-008",
+        "term": "Staphylococcal pneumonia",
+        "description": "Chest imaging showing pneumonia plus sputum/respiratory culture or blood culture when indicated"
+      },
+      {
+        "id": "diagnostics-009",
+        "term": "Staphylococcal deep abscess",
+        "description": "Clinical exam showing a localized purulent collection; imaging may be used for deep lesions and culture of drainage identifies organism"
+      },
+      {
+        "id": "diagnostics-010",
+        "term": "Staphylococcal necrotizing soft-tissue infection",
+        "description": "Clinical diagnosis of rapidly progressive destructive soft-tissue infection; imaging/surgical evaluation may demonstrate deep tissue involvement"
+      },
+      {
+        "id": "diagnostics-011",
+        "term": "Toxic shock syndrome",
+        "description": "Clinical syndrome based on characteristic systemic findings; no single diagnostic test emphasized in lecture"
+      },
+      {
+        "id": "diagnostics-012",
+        "term": "Staphylococcal scalded skin syndrome",
+        "description": "Clinical diagnosis based on characteristic diffuse superficial blistering/skin sloughing"
+      },
+      {
+        "id": "diagnostics-013",
+        "term": "Staphylococcus epidermidis infection",
+        "description": "Culture from suspected device/bloodstream infection; interpret cautiously because coagulase-negative staph may be contamination"
+      },
+      {
+        "id": "diagnostics-014",
+        "term": "Staphylococcus saprophyticus UTI",
+        "description": "Urinalysis consistent with UTI plus urine culture identifying S. saprophyticus"
+      },
+      {
+        "id": "diagnostics-015",
+        "term": "Group A streptococcal pharyngitis",
+        "description": "Clinical pharyngitis followed by rapid strep antigen testing and/or throat culture"
+      },
+      {
+        "id": "diagnostics-016",
+        "term": "Impetigo",
+        "description": "Usually clinical diagnosis from characteristic superficial skin lesions; culture if needed"
+      },
+      {
+        "id": "diagnostics-017",
+        "term": "Rheumatic fever",
+        "description": "Clinical diagnosis after preceding Group A strep infection using the characteristic multisystem presentation; no single confirmatory test emphasized in lecture"
+      },
+      {
+        "id": "diagnostics-018",
+        "term": "Poststreptococcal glomerulonephritis",
+        "description": "Clinical renal syndrome after recent strep infection with urinalysis/renal findings; no specific standalone diagnostic test emphasized"
+      },
+      {
+        "id": "diagnostics-019",
+        "term": "Streptococcus pneumoniae infection",
+        "description": "Diagnose based on site of infection and culture/Gram stain when obtained"
+      },
+      {
+        "id": "diagnostics-020",
+        "term": "Pneumococcal pneumonia",
+        "description": "Chest imaging showing pneumonia; sputum or blood culture can identify S. pneumoniae"
+      },
+      {
+        "id": "diagnostics-021",
+        "term": "Pneumococcal meningitis",
+        "description": "Lumbar puncture with CSF studies/culture demonstrating bacterial meningitis and S. pneumoniae"
+      },
+      {
+        "id": "diagnostics-022",
+        "term": "Pneumococcal otitis media",
+        "description": "Clinical otoscopic diagnosis of acute otitis media"
+      },
+      {
+        "id": "diagnostics-023",
+        "term": "Pneumococcal sinusitis",
+        "description": "Primarily clinical diagnosis of bacterial sinusitis; organism usually not specifically cultured"
+      },
+      {
+        "id": "diagnostics-024",
+        "term": "Enterococcal infection",
+        "description": "Culture from infected site or blood identifies Enterococcus; susceptibility testing is important"
+      },
+      {
+        "id": "diagnostics-025",
+        "term": "Listeriosis",
+        "description": "Culture of blood, CSF, or other involved sterile site identifies Listeria"
+      },
+      {
+        "id": "diagnostics-026",
+        "term": "Diphtheria",
+        "description": "Clinical suspicion from characteristic pharyngeal disease with organism confirmation by culture/testing when performed"
+      },
+      {
+        "id": "diagnostics-027",
+        "term": "Anthrax",
+        "description": "Diagnosis depends on clinical form with culture or organism-specific laboratory testing; no detailed diagnostic algorithm emphasized in lecture"
+      },
+      {
+        "id": "diagnostics-028",
+        "term": "Nocardiosis",
+        "description": "Culture and organism identification from involved tissue/respiratory specimen; often requires prolonged culture"
+      },
+      {
+        "id": "diagnostics-029",
+        "term": "Actinomycosis",
+        "description": "Culture/histologic evaluation of involved tissue or abscess; lecture does not give a separate detailed diagnostic algorithm"
+      },
+      {
+        "id": "diagnostics-030",
+        "term": "E. coli UTI",
+        "description": "Urinalysis showing evidence of UTI plus urine culture growing E. coli"
+      },
+      {
+        "id": "diagnostics-031",
+        "term": "E. coli pyelonephritis",
+        "description": "Clinical upper-UTI picture plus urinalysis and urine culture growing E. coli"
+      },
+      {
+        "id": "diagnostics-032",
+        "term": "STEC infection",
+        "description": "Stool testing/culture for diarrheal pathogen; identify Shiga toxin-producing E. coli"
+      },
+      {
+        "id": "diagnostics-033",
+        "term": "Hemolytic uremic syndrome",
+        "description": "Recognize after diarrheal illness with acute kidney injury plus hematologic abnormalities consistent with HUS"
+      },
+      {
+        "id": "diagnostics-034",
+        "term": "Shigellosis",
+        "description": "Stool culture/PCR identifying Shigella when testing is indicated"
+      },
+      {
+        "id": "diagnostics-035",
+        "term": "Bacillary dysentery",
+        "description": "Clinical inflammatory bloody diarrhea plus stool culture/PCR identifying Shigella"
+      },
+      {
+        "id": "diagnostics-036",
+        "term": "Cholera",
+        "description": "Often clinical in the correct exposure setting with profuse watery diarrhea; stool testing/culture can identify Vibrio cholerae"
+      },
+      {
+        "id": "diagnostics-037",
+        "term": "Helicobacter pylori infection",
+        "description": "Lecture does not provide a detailed standalone diagnostic pathway in this disease list"
+      },
+      {
+        "id": "diagnostics-038",
+        "term": "Campylobacter infection",
+        "description": "Stool culture/PCR identifying Campylobacter when diarrheal testing is indicated"
+      },
+      {
+        "id": "diagnostics-039",
+        "term": "Legionella pneumonia",
+        "description": "Pneumonia on imaging with organism-specific testing when suspected; detailed test algorithm not emphasized in the master lecture"
+      },
+      {
+        "id": "diagnostics-040",
+        "term": "Pertussis",
+        "description": "Clinical prolonged paroxysmal cough syndrome with organism-specific respiratory testing if confirmation needed"
+      },
+      {
+        "id": "diagnostics-041",
+        "term": "Meningococcal disease",
+        "description": "Blood culture and/or CSF studies depending on bacteremia versus meningitis"
+      },
+      {
+        "id": "diagnostics-042",
+        "term": "Meningococcal meningitis",
+        "description": "Lumbar puncture with CSF findings of bacterial meningitis and culture identifying N. meningitidis"
+      },
+      {
+        "id": "diagnostics-043",
+        "term": "Gonorrhea",
+        "description": "NAAT from appropriate genital/urine or exposed-site specimen"
+      },
+      {
+        "id": "diagnostics-044",
+        "term": "Pseudomonas infection",
+        "description": "Culture of the involved site or blood identifying Pseudomonas aeruginosa"
+      },
+      {
+        "id": "diagnostics-045",
+        "term": "Pseudomonas hospital-acquired infection",
+        "description": "Culture from suspected infection source showing Pseudomonas in the appropriate hospital-acquired clinical setting"
+      },
+      {
+        "id": "diagnostics-046",
+        "term": "Pseudomonas ventilator-associated pneumonia",
+        "description": "Chest imaging plus respiratory culture from ventilated patient identifying Pseudomonas"
+      },
+      {
+        "id": "diagnostics-047",
+        "term": "Pseudomonas UTI",
+        "description": "Urinalysis plus urine culture growing Pseudomonas"
+      },
+      {
+        "id": "diagnostics-048",
+        "term": "Pseudomonas bacteremia",
+        "description": "Positive blood cultures growing Pseudomonas"
+      },
+      {
+        "id": "diagnostics-049",
+        "term": "C. difficile infection",
+        "description": "Stool toxin assay or PCR in a patient with compatible diarrhea"
+      },
+      {
+        "id": "diagnostics-050",
+        "term": "Gas gangrene",
+        "description": "Primarily clinical recognition of rapidly destructive tissue infection with gas; imaging may demonstrate gas in tissues and culture can identify organism"
+      },
+      {
+        "id": "diagnostics-051",
+        "term": "Tetanus",
+        "description": "Clinical diagnosis based on characteristic muscle rigidity/spasms; no useful routine confirmatory test emphasized"
+      },
+      {
+        "id": "diagnostics-052",
+        "term": "Neonatal tetanus",
+        "description": "Clinical diagnosis based on neonatal rigidity/spasms and characteristic history"
+      },
+      {
+        "id": "diagnostics-053",
+        "term": "Botulism",
+        "description": "Clinical neurologic diagnosis with descending paralysis; laboratory toxin confirmation may be performed but lecture emphasizes clinical recognition"
+      },
+      {
+        "id": "diagnostics-054",
+        "term": "Infant botulism",
+        "description": "Clinical diagnosis in infant with flaccid weakness; confirmatory toxin testing may be performed but detailed test is not emphasized"
+      },
+      {
+        "id": "diagnostics-055",
+        "term": "Syphilis",
+        "description": "Screen with RPR or VDRL; if positive, confirm with a treponemal test such as TP-EIA or FTA-ABS"
+      },
+      {
+        "id": "diagnostics-056",
+        "term": "Primary syphilis",
+        "description": "Clinical chancre plus syphilis serology; RPR/VDRL may still be negative early, so repeat testing may be necessary"
+      },
+      {
+        "id": "diagnostics-057",
+        "term": "Secondary syphilis",
+        "description": "Compatible systemic/rash presentation plus positive RPR/VDRL confirmed by TP-EIA or FTA-ABS"
+      },
+      {
+        "id": "diagnostics-058",
+        "term": "Early latent syphilis",
+        "description": "Positive syphilis serology with no symptoms and evidence infection occurred within the early timeframe"
+      },
+      {
+        "id": "diagnostics-059",
+        "term": "Late latent syphilis",
+        "description": "Positive syphilis serology with no symptoms and infection beyond the early timeframe or timing unknown"
+      },
+      {
+        "id": "diagnostics-060",
+        "term": "Tertiary syphilis",
+        "description": "Positive syphilis serology plus clinical evidence of late organ involvement"
+      },
+      {
+        "id": "diagnostics-061",
+        "term": "Early neurosyphilis",
+        "description": "Lumbar puncture with reactive CSF-VDRL; CSF may show lymphocytic pleocytosis and elevated protein"
+      },
+      {
+        "id": "diagnostics-062",
+        "term": "Late neurosyphilis",
+        "description": "Lumbar puncture with CSF-VDRL plus compatible late neurologic syndrome"
+      },
+      {
+        "id": "diagnostics-063",
+        "term": "Tularemia",
+        "description": "Serology showing a four-fold rise in antibody titer between acute and convalescent samples; culture may be obtained from lesion, lymph node aspirate, pharyngeal washing, sputum, or gastric aspirate"
+      },
+      {
+        "id": "diagnostics-064",
+        "term": "Hansen disease",
+        "description": "In endemic/limited-resource settings may be diagnosed clinically; if uncertain, skin biopsy of an existing lesion is gold standard"
+      },
+      {
+        "id": "diagnostics-065",
+        "term": "Leprosy",
+        "description": "Clinical diagnosis can be sufficient in high-prevalence areas; skin biopsy of an existing lesion is gold standard when confirmation is needed"
+      },
+      {
+        "id": "diagnostics-066",
+        "term": "Yaws",
+        "description": "Lecture does not provide a detailed separate diagnostic algorithm in the retrieved material"
+      },
+      {
+        "id": "diagnostics-067",
+        "term": "Tuberculosis",
+        "description": "Evaluate with chest imaging and mycobacterial testing; PPD or QuantiFERON assesses infection, while active disease requires evaluation for active TB"
+      },
+      {
+        "id": "diagnostics-068",
+        "term": "Active tuberculosis",
+        "description": "Compatible pulmonary/systemic illness plus chest imaging; confirm with sputum evaluation for mycobacteria/AFB and organism testing"
+      },
+      {
+        "id": "diagnostics-069",
+        "term": "Mycobacterium avium complex infection",
+        "description": "Culture for nontuberculous mycobacteria from involved site; disease must correlate with compatible clinical presentation"
+      },
+      {
+        "id": "diagnostics-070",
+        "term": "Fibrocavitary pulmonary MAC",
+        "description": "Pulmonary imaging showing fibrocavitary disease plus respiratory cultures for MAC"
+      },
+      {
+        "id": "diagnostics-071",
+        "term": "Nodular bronchiectatic pulmonary MAC",
+        "description": "Pulmonary imaging showing nodular/bronchiectatic disease plus respiratory cultures for MAC"
+      },
+      {
+        "id": "diagnostics-072",
+        "term": "Disseminated MAC",
+        "description": "Culture from blood or involved tissue in a profoundly immunocompromised patient; typically occurs with CD4 <50"
+      },
+      {
+        "id": "diagnostics-073",
+        "term": "Malaria",
+        "description": "Examine blood for Plasmodium parasites; species identification distinguishes the four malaria species"
+      },
+      {
+        "id": "diagnostics-074",
+        "term": "Plasmodium falciparum malaria",
+        "description": "Blood examination demonstrating P. falciparum"
+      },
+      {
+        "id": "diagnostics-075",
+        "term": "Plasmodium vivax malaria",
+        "description": "Blood examination demonstrating P. vivax"
+      },
+      {
+        "id": "diagnostics-076",
+        "term": "Plasmodium ovale malaria",
+        "description": "Blood examination demonstrating P. ovale"
+      },
+      {
+        "id": "diagnostics-077",
+        "term": "Plasmodium malariae malaria",
+        "description": "Blood examination demonstrating P. malariae"
+      },
+      {
+        "id": "diagnostics-078",
+        "term": "Amebiasis",
+        "description": "Identify E. histolytica trophozoites or cysts in stool/tissue; multiple stool specimens may be needed"
+      },
+      {
+        "id": "diagnostics-079",
+        "term": "Giardiasis",
+        "description": "Stool examination for Giardia cysts/trophozoites or organism-specific stool testing as discussed in lecture"
+      },
+      {
+        "id": "diagnostics-080",
+        "term": "Enterobiasis",
+        "description": "Early-morning Scotch tape test demonstrating Enterobius ova from perianal skin folds"
+      },
+      {
+        "id": "diagnostics-081",
+        "term": "Pinworm infection",
+        "description": "Early-morning Scotch tape test showing pinworm ova"
+      },
+      {
+        "id": "diagnostics-082",
+        "term": "Ascariasis",
+        "description": "Stool O&P demonstrating Ascaris eggs; lecture also emphasizes clinical manifestations of larval migration"
+      },
+      {
+        "id": "diagnostics-083",
+        "term": "Hookworm infection",
+        "description": "Stool O&P demonstrating hookworm eggs; unexplained eosinophilia and anemia increase suspicion"
+      },
+      {
+        "id": "diagnostics-084",
+        "term": "Toxoplasmosis",
+        "description": "Diagnosis depends on population; serologic testing for Toxoplasma antibodies is commonly used"
+      },
+      {
+        "id": "diagnostics-085",
+        "term": "Toxoplasmosis in the immunocompetent adult",
+        "description": "Serology for Toxoplasma-specific antibodies in a compatible illness"
+      },
+      {
+        "id": "diagnostics-086",
+        "term": "Toxoplasmosis in the immunosuppressed adult",
+        "description": "Presumptive diagnosis in AIDS with CD4 <100, compatible neurologic syndrome, positive T. gondii IgG, and brain imaging showing ring-enhancing lesions"
+      },
+      {
+        "id": "diagnostics-087",
+        "term": "Congenital toxoplasmosis",
+        "description": "Mother: Toxoplasma IgM/IgG assessment and amniotic-fluid PCR when indicated; newborn: positive IgM/IgA or persistent IgG beyond 12 months; fetal ultrasound may show intracranial calcifications and ventricular dilation"
+      },
+      {
+        "id": "diagnostics-088",
+        "term": "CNS toxoplasmosis",
+        "description": "Brain CT/MRI showing ring-enhancing lesions in a patient with advanced immunosuppression plus positive Toxoplasma IgG"
+      },
+      {
+        "id": "diagnostics-089",
+        "term": "African trypanosomiasis",
+        "description": "Demonstrate parasite in blood, lymph node material, or other appropriate specimen; neurologic staging may require CSF evaluation"
+      },
+      {
+        "id": "diagnostics-090",
+        "term": "American trypanosomiasis",
+        "description": "Demonstration of T. cruzi in acute disease or serologic evidence in chronic disease"
+      },
+      {
+        "id": "diagnostics-091",
+        "term": "Chagas disease",
+        "description": "Serologic testing is used for chronic disease; acute infection may demonstrate the parasite directly"
+      },
+      {
+        "id": "diagnostics-092",
+        "term": "Cysticercosis",
+        "description": "Neurocysticercosis is identified by CT/MRI showing cystic or calcified brain lesions in the appropriate clinical/exposure setting"
+      },
+      {
+        "id": "diagnostics-093",
+        "term": "Onchocerciasis",
+        "description": "Gold standard is skin-snip biopsy showing the organism; slit-lamp exam evaluates ocular involvement"
+      },
+      {
+        "id": "diagnostics-094",
+        "term": "Dermatophyte infection",
+        "description": "KOH preparation of skin/hair/nail scraping showing fungal elements"
+      },
+      {
+        "id": "diagnostics-095",
+        "term": "Tinea corporis",
+        "description": "Clinical annular/scaly lesion plus KOH scraping if confirmation is needed"
+      },
+      {
+        "id": "diagnostics-096",
+        "term": "Tinea pedis",
+        "description": "Clinical scaling foot eruption plus KOH scraping if needed"
+      },
+      {
+        "id": "diagnostics-097",
+        "term": "Tinea cruris",
+        "description": "Clinical groin eruption plus KOH scraping if needed"
+      },
+      {
+        "id": "diagnostics-098",
+        "term": "Tinea capitis",
+        "description": "Clinical scalp/hair involvement with fungal testing/KOH or culture if confirmation is needed"
+      },
+      {
+        "id": "diagnostics-099",
+        "term": "Tinea unguium",
+        "description": "Nail scraping/clipping for KOH and fungal evaluation"
+      },
+      {
+        "id": "diagnostics-100",
+        "term": "Onychomycosis",
+        "description": "Nail specimen with KOH/fungal testing demonstrating fungal infection"
+      },
+      {
+        "id": "diagnostics-101",
+        "term": "Candidiasis",
+        "description": "Diagnose based on involved site; microscopy/KOH or culture may demonstrate Candida"
+      },
+      {
+        "id": "diagnostics-102",
+        "term": "Oral candidiasis",
+        "description": "Usually clinical visualization of removable white oral plaques; fungal testing if uncertain"
+      },
+      {
+        "id": "diagnostics-103",
+        "term": "Thrush",
+        "description": "Clinical diagnosis from characteristic white oral plaques; microscopy/culture if needed"
+      },
+      {
+        "id": "diagnostics-104",
+        "term": "Esophageal candidiasis",
+        "description": "Compatible dysphagia/odynophagia in high-risk patient; endoscopic visualization/biopsy may confirm"
+      },
+      {
+        "id": "diagnostics-105",
+        "term": "Lower respiratory tract candidiasis",
+        "description": "Requires evidence of invasive Candida involvement of lower respiratory tract; lecture does not give a separate simple screening test"
+      },
+      {
+        "id": "diagnostics-106",
+        "term": "Candidemia",
+        "description": "Obtain blood cultures; yeast growth supports diagnosis, but blood cultures are positive in only about 50%"
+      },
+      {
+        "id": "diagnostics-107",
+        "term": "Invasive candidiasis",
+        "description": "No single specific test; blood cultures plus high clinical suspicion and evidence of deep-organ involvement"
+      },
+      {
+        "id": "diagnostics-108",
+        "term": "Disseminated candidiasis",
+        "description": "Blood cultures plus findings of widespread organ involvement such as ocular or macronodular skin lesions"
+      },
+      {
+        "id": "diagnostics-109",
+        "term": "Sporotrichosis",
+        "description": "Clinical nodular lymphatic-spread pattern plus fungal culture from lesion when confirmation is needed"
+      },
+      {
+        "id": "diagnostics-110",
+        "term": "Aspergillosis",
+        "description": "Diagnostic approach depends on form; imaging, fungal studies, galactomannan, culture, and/or histopathology may be used"
+      },
+      {
+        "id": "diagnostics-111",
+        "term": "Allergic bronchopulmonary aspergillosis",
+        "description": "Diagnose from compatible allergic pulmonary syndrome with supportive pulmonary/immunologic findings; lecture-specific detailed criteria are not emphasized in this master list"
+      },
+      {
+        "id": "diagnostics-112",
+        "term": "Allergic Aspergillus sinusitis",
+        "description": "Sinus disease demonstrated clinically/imaging with evidence of allergic fungal involvement"
+      },
+      {
+        "id": "diagnostics-113",
+        "term": "Chronic pulmonary aspergillosis",
+        "description": "Chest imaging demonstrating chronic pulmonary disease/cavity-type involvement plus fungal evidence"
+      },
+      {
+        "id": "diagnostics-114",
+        "term": "Invasive aspergillosis",
+        "description": "Sputum or BAL culture plus histopathologic evidence of tissue invasion; serum or BAL galactomannan can support diagnosis"
+      },
+      {
+        "id": "diagnostics-115",
+        "term": "Pneumocystis jirovecii pneumonia",
+        "description": "Clinical suspicion in immunocompromised patient; CXR may show bilateral interstitial infiltrates or even appear normal; confirm organism from respiratory specimen/BAL when needed"
+      },
+      {
+        "id": "diagnostics-116",
+        "term": "Blastomycosis",
+        "description": "Pulmonary/systemic disease confirmed by fungal culture/histopathologic identification when pursued"
+      },
+      {
+        "id": "diagnostics-117",
+        "term": "Histoplasmosis",
+        "description": "Diagnosis may use fungal antigen testing, culture, histopathology, and imaging depending on disease form"
+      },
+      {
+        "id": "diagnostics-118",
+        "term": "Pulmonary histoplasmosis",
+        "description": "Chest imaging plus Histoplasma-specific testing such as antigen/culture depending on severity"
+      },
+      {
+        "id": "diagnostics-119",
+        "term": "Disseminated histoplasmosis",
+        "description": "Systemic involvement plus Histoplasma antigen/culture or tissue diagnosis; bone marrow/tissue may show involvement"
+      },
+      {
+        "id": "diagnostics-120",
+        "term": "Coccidioidomycosis",
+        "description": "Serology with IgM/IgG is commonly used; imaging supports pulmonary disease"
+      },
+      {
+        "id": "diagnostics-121",
+        "term": "Primary pulmonary coccidioidomycosis",
+        "description": "Chest imaging showing pulmonary disease plus Coccidioides serology"
+      },
+      {
+        "id": "diagnostics-122",
+        "term": "Disseminated coccidioidomycosis",
+        "description": "Evidence of extrapulmonary disease plus rising Coccidioides IgG/other organism confirmation; lumbar puncture if meningitis suspected"
+      },
+      {
+        "id": "diagnostics-123",
+        "term": "Cryptococcosis",
+        "description": "Serum cryptococcal antigen and/or culture depending on site"
+      },
+      {
+        "id": "diagnostics-124",
+        "term": "Pulmonary cryptococcosis",
+        "description": "Culture from sputum or pleural fluid or positive serum cryptococcal antigen"
+      },
+      {
+        "id": "diagnostics-125",
+        "term": "Disseminated cryptococcosis",
+        "description": "Serum cryptococcal antigen/culture with evaluation of involved organs; assess CNS involvement"
+      },
+      {
+        "id": "diagnostics-126",
+        "term": "Cryptococcal meningitis",
+        "description": "Lumbar puncture; CSF opening pressure, cell count/protein/glucose, cryptococcal antigen/culture"
+      },
+      {
+        "id": "diagnostics-127",
+        "term": "CNS cryptococcosis",
+        "description": "Lumbar puncture with CSF studies and cryptococcal testing; MRI may show CNS lesions in C. gattii disease"
+      },
+      {
+        "id": "diagnostics-128",
+        "term": "Influenza",
+        "description": "Usually clinical during influenza season but may be confirmed with influenza molecular/rapid viral testing from respiratory specimen"
+      },
+      {
+        "id": "diagnostics-129",
+        "term": "HSV-1 infection",
+        "description": "Usually clinical by visualization of characteristic vesicular lesions; if needed PCR is more sensitive, vesicle culture/DFA are alternatives; Tzanck smear shows multinucleated giant cells/intranuclear inclusions"
+      },
+      {
+        "id": "diagnostics-130",
+        "term": "HSV-2 infection",
+        "description": "Usually clinical visualization; PCR preferred if confirmation needed, with vesicular culture/DFA or type-specific serology in selected patients"
+      },
+      {
+        "id": "diagnostics-131",
+        "term": "Varicella",
+        "description": "Usually clinical diagnosis from characteristic generalized vesicular rash in different stages; PCR of lesion material can confirm if needed"
+      },
+      {
+        "id": "diagnostics-132",
+        "term": "Chickenpox",
+        "description": "Clinical diagnosis from diffuse vesicular lesions in multiple stages; PCR if confirmation needed"
+      },
+      {
+        "id": "diagnostics-133",
+        "term": "Herpes zoster",
+        "description": "Clinical diagnosis from unilateral dermatomal vesicular eruption; PCR from lesion if uncertain"
+      },
+      {
+        "id": "diagnostics-134",
+        "term": "Shingles",
+        "description": "Clinical diagnosis from painful unilateral dermatomal vesicles; PCR if confirmation needed"
+      },
+      {
+        "id": "diagnostics-135",
+        "term": "Epstein-Barr virus infection",
+        "description": "Monospot/heterophile antibody testing plus CBC showing atypical lymphocytes; EBV IgM appears early and IgG later"
+      },
+      {
+        "id": "diagnostics-136",
+        "term": "Infectious mononucleosis",
+        "description": "Monospot plus lymphocytic leukocytosis with atypical lymphocytes; EBV-specific serology when needed"
+      },
+      {
+        "id": "diagnostics-137",
+        "term": "Cytomegalovirus infection",
+        "description": "In mono-like illness with negative EBV testing, use CMV-specific serology; PCR may be used in immunocompromised disease"
+      },
+      {
+        "id": "diagnostics-138",
+        "term": "CMV disease",
+        "description": "Organ-specific evaluation plus CMV PCR/viral testing in immunocompromised patient"
+      },
+      {
+        "id": "diagnostics-139",
+        "term": "Parvovirus B19 infection",
+        "description": "Clinical diagnosis may be made from classic presentation; serology/PCR used when confirmation is needed, especially in high-risk patients"
+      },
+      {
+        "id": "diagnostics-140",
+        "term": "Erythema infectiosum",
+        "description": "Usually clinical diagnosis from characteristic slapped-cheek rash"
+      },
+      {
+        "id": "diagnostics-141",
+        "term": "Fifth disease",
+        "description": "Usually clinical diagnosis from slapped-cheek rash and subsequent exanthem"
+      },
+      {
+        "id": "diagnostics-142",
+        "term": "Measles",
+        "description": "Typically clinical diagnosis based on classic presentation including Koplik spots/rash; confirm with measles IgM/ELISA, four-fold antibody rise, viral culture, or fluorescent antibody testing"
+      },
+      {
+        "id": "diagnostics-143",
+        "term": "Mumps",
+        "description": "Clinical parotitis suggests diagnosis; laboratory confirmation with viral testing/serology may be used when needed"
+      },
+      {
+        "id": "diagnostics-144",
+        "term": "Rubella",
+        "description": "Definitive acute diagnosis with elevated rubella IgM or four-fold increase in IgG; virus isolation/PCR can also confirm"
+      },
+      {
+        "id": "diagnostics-145",
+        "term": "Coxsackievirus infection",
+        "description": "Usually clinical diagnosis from hand-foot-mouth disease or herpangina; if severe, PCR is preferred from throat, stool, or vesicular fluid"
+      },
+      {
+        "id": "diagnostics-146",
+        "term": "COVID-19",
+        "description": "Respiratory viral testing, especially SARS-CoV-2 antigen or molecular/PCR testing"
+      },
+      {
+        "id": "diagnostics-147",
+        "term": "RSV infection",
+        "description": "Respiratory specimen RSV antigen or molecular testing in a compatible bronchiolitis/pneumonia syndrome"
+      },
+      {
+        "id": "diagnostics-148",
+        "term": "Smallpox",
+        "description": "Clinical suspicion from characteristic pustular rash requires public-health/laboratory confirmation; detailed assay not emphasized in lecture"
+      },
+      {
+        "id": "diagnostics-149",
+        "term": "Chikungunya fever",
+        "description": "Early illness can be confirmed by RT-PCR; after several days use chikungunya IgM with confirmatory PRNT when needed"
+      },
+      {
+        "id": "diagnostics-150",
+        "term": "Zika",
+        "description": "RT-PCR on serum or urine within 7 days; positive PCR confirms; from day 4 onward use Zika IgM, with positive/equivocal results confirmed by PRNT"
+      },
+      {
+        "id": "diagnostics-151",
+        "term": "Dengue fever",
+        "description": "Clinical diagnosis may be used in endemic setting; RT-PCR within first 7 days or IgM at ≥4 days with PRNT confirmation; marked thrombocytopenia <100,000 supports dengue hemorrhagic fever"
+      },
+      {
+        "id": "diagnostics-152",
+        "term": "Ebola",
+        "description": "Isolate patient/contact public health; RT-PCR at specialized lab, with presumptive positive sent to CDC for confirmation; if negative before 72 hours of symptoms, repeat testing"
+      },
+      {
+        "id": "diagnostics-153",
+        "term": "Yellow fever",
+        "description": "Lecture discusses diagnosis as clinical plus specific laboratory testing but does not provide a detailed assay in the retrieved material"
+      },
+      {
+        "id": "diagnostics-154",
+        "term": "Rabies",
+        "description": "Diagnosis is primarily based on compatible progressive neurologic illness plus credible mammalian exposure; specialized testing is required through public health, but lecture emphasizes exposure assessment and clinical syndrome"
+      },
+      {
+        "id": "diagnostics-155",
+        "term": "MERS",
+        "description": "Respiratory viral molecular testing in a compatible severe respiratory illness with relevant exposure; detailed assay not emphasized"
+      },
+      {
+        "id": "diagnostics-156",
+        "term": "SARS",
+        "description": "Respiratory viral molecular testing in a compatible severe respiratory illness with relevant exposure; detailed assay not emphasized"
+      },
+      {
+        "id": "diagnostics-157",
+        "term": "Mpox",
+        "description": "Clinical suspicion from characteristic evolving lesions and lymphadenopathy; confirmatory testing of lesion material is used, though detailed assay is not emphasized in the retrieved lecture text"
+      },
+      {
+        "id": "diagnostics-158",
+        "term": "Monkeypox",
+        "description": "Clinical characteristic rash/lymphadenopathy plus confirmatory lesion testing"
+      },
+      {
+        "id": "diagnostics-159",
+        "term": "HIV infection",
+        "description": "Initial HIV antigen/antibody testing followed by confirmatory HIV testing; establish baseline with HIV viral load and CD4 count"
+      },
+      {
+        "id": "diagnostics-160",
+        "term": "HIV-1 infection",
+        "description": "HIV testing that identifies HIV-1 infection; viral load and CD4 establish disease status"
+      },
+      {
+        "id": "diagnostics-161",
+        "term": "HIV-2 infection",
+        "description": "HIV confirmatory testing differentiates HIV-2 from HIV-1"
+      },
+      {
+        "id": "diagnostics-162",
+        "term": "Acute HIV infection",
+        "description": "Suspect after recent exposure with acute retroviral syndrome; HIV RNA can detect early infection when antibody testing may not yet be positive"
+      },
+      {
+        "id": "diagnostics-163",
+        "term": "Acute retroviral syndrome",
+        "description": "Clinical syndrome after recent HIV exposure plus HIV testing, particularly HIV RNA during early infection"
+      },
+      {
+        "id": "diagnostics-164",
+        "term": "Clinical latency HIV",
+        "description": "Confirmed HIV infection with no major symptoms; stage using CD4 count"
+      },
+      {
+        "id": "diagnostics-165",
+        "term": "Symptomatic HIV",
+        "description": "Confirmed HIV with declining immune status and HIV-related manifestations; assess CD4 and viral load"
+      },
+      {
+        "id": "diagnostics-166",
+        "term": "AIDS",
+        "description": "CD4 <200 cells/mm3 OR any AIDS-defining diagnosis regardless of CD4 count"
+      },
+      {
+        "id": "diagnostics-167",
+        "term": "CDC Stage 0 HIV",
+        "description": "Confirmed HIV plus documented negative HIV test within the preceding 6 months"
+      },
+      {
+        "id": "diagnostics-168",
+        "term": "CDC Stage I HIV",
+        "description": "Confirmed HIV with CD4 ≥500 cells/mm3"
+      },
+      {
+        "id": "diagnostics-169",
+        "term": "CDC Stage II HIV",
+        "description": "Confirmed HIV with CD4 200-499 cells/mm3"
+      },
+      {
+        "id": "diagnostics-170",
+        "term": "CDC Stage III HIV",
+        "description": "CD4 <200 cells/mm3 or an AIDS-defining diagnosis"
+      },
+      {
+        "id": "diagnostics-171",
+        "term": "CDC Stage Unknown HIV",
+        "description": "Confirmed HIV without a recent CD4 count sufficient to stage disease"
+      },
+      {
+        "id": "diagnostics-172",
+        "term": "HIV-associated neurocognitive disorder",
+        "description": "Clinical neurocognitive evaluation after excluding other CNS causes; diagnosis depends on cognitive/functional impairment"
+      },
+      {
+        "id": "diagnostics-173",
+        "term": "HIV encephalopathy",
+        "description": "Clinical neurologic diagnosis in advanced HIV after excluding other infectious/structural CNS causes"
+      },
+      {
+        "id": "diagnostics-174",
+        "term": "Progressive multifocal leukoencephalopathy",
+        "description": "Brain MRI demonstrating characteristic white-matter disease plus CSF testing for causative virus when pursued"
+      },
+      {
+        "id": "diagnostics-175",
+        "term": "Primary CNS lymphoma",
+        "description": "Brain imaging showing CNS mass lesion; EBV PCR DNA in CSF can support diagnosis and tissue diagnosis may be required"
+      },
+      {
+        "id": "diagnostics-176",
+        "term": "Non-Hodgkin lymphoma",
+        "description": "Excisional lymph-node biopsy, often with bone-marrow biopsy; CT/PET used for staging rather than initial confirmation"
+      },
+      {
+        "id": "diagnostics-177",
+        "term": "Kaposi sarcoma",
+        "description": "Characteristic vascular lesions strongly suggest diagnosis; biopsy confirms when needed"
+      },
+      {
+        "id": "diagnostics-178",
+        "term": "Invasive cervical cancer",
+        "description": "Cervical evaluation with Pap/HPV screening leading to colposcopy/biopsy for diagnosis of invasive disease"
+      },
+      {
+        "id": "diagnostics-179",
+        "term": "HIV-associated nephropathy",
+        "description": "Heavy proteinuria with little significant hematuria raises suspicion; renal biopsy is required to establish diagnosis"
+      },
+      {
+        "id": "diagnostics-180",
+        "term": "HIV wasting syndrome",
+        "description": "Clinical definition of unintentional weight loss >10% associated with diarrhea or fever/weakness after evaluating other causes"
+      },
+      {
+        "id": "diagnostics-181",
+        "term": "Bacterial pneumonia in HIV",
+        "description": "Chest X-ray showing pneumonia; HIV patient may have diffuse multilobar infiltrates; sputum/blood cultures may identify bacterial cause"
+      },
+      {
+        "id": "diagnostics-182",
+        "term": "Meningitis in HIV",
+        "description": "Lumbar puncture with CSF analysis tailored to suspected infectious cause after CNS evaluation"
+      },
+      {
+        "id": "diagnostics-183",
+        "term": "Rocky Mountain spotted fever",
+        "description": "Primarily clinical diagnosis when compatible illness/tick exposure is present; serology is used for confirmation but early testing may not yet be positive"
+      },
+      {
+        "id": "diagnostics-184",
+        "term": "Lyme disease",
+        "description": "Erythema migrans lesion can be diagnosed clinically without testing; without EM use ELISA first and confirm positive/equivocal ELISA with Western blot"
+      },
+      {
+        "id": "diagnostics-185",
+        "term": "Early localized Lyme disease",
+        "description": "Clinical diagnosis when erythema migrans is present; serology may still be negative early and is not required for classic EM"
+      },
+      {
+        "id": "diagnostics-186",
+        "term": "Early disseminated Lyme disease",
+        "description": "EM lesions can still be diagnosed clinically; if cardiac/neurologic disease without EM, obtain ELISA then Western blot"
+      },
+      {
+        "id": "diagnostics-187",
+        "term": "Late Lyme disease",
+        "description": "Two-tier serology: ELISA followed by confirmatory Western blot in compatible late manifestations"
+      },
+      {
+        "id": "diagnostics-188",
+        "term": "Sepsis",
+        "description": "Diagnose infection with evidence of organ dysfunction; workup includes cultures, CBC/CMP and lactate with source-directed studies"
+      },
+      {
+        "id": "diagnostics-189",
+        "term": "Septic shock",
+        "description": "Sepsis requiring vasopressors to maintain MAP ≥65 mmHg with lactate >2 mmol/L despite adequate volume resuscitation"
+      },
+      {
+        "id": "diagnostics-190",
+        "term": "Bacteremia",
+        "description": "Positive blood cultures demonstrating viable bacteria in bloodstream"
+      },
+      {
+        "id": "diagnostics-191",
+        "term": "Systemic inflammatory response syndrome",
+        "description": "At least 2: HR >90, RR >20 or pCO2 <32, temp >38°C or <36°C, WBC >12,000 or <4,000 or >10% bands"
+      },
+      {
+        "id": "diagnostics-192",
+        "term": "Hypovolemic shock",
+        "description": "Clinical hemodynamic diagnosis based on shock with evidence of volume loss; no single laboratory test defines it"
+      },
+      {
+        "id": "diagnostics-193",
+        "term": "Cardiogenic shock",
+        "description": "Clinical/hemodynamic diagnosis showing shock from cardiac pump failure; cardiac evaluation/imaging helps establish cause"
+      },
+      {
+        "id": "diagnostics-194",
+        "term": "Obstructive shock",
+        "description": "Clinical/hemodynamic diagnosis showing shock from mechanical obstruction; imaging determines the obstructing cause"
+      },
+      {
+        "id": "diagnostics-195",
+        "term": "Distributive shock",
+        "description": "Clinical hemodynamic diagnosis with vasodilatory shock pattern; identify underlying cause such as sepsis"
+      },
+      {
+        "id": "diagnostics-196",
+        "term": "Febrile neutropenia",
+        "description": "ANC <1000 and falling or ANC <500 PLUS one temp of 38.3°C/101°F or sustained 38.0-38.2°C/100.5°F for 1 hour; then search for source with CXR, blood cultures, UA/urine culture and other cultures"
+      },
+      {
+        "id": "diagnostics-197",
+        "term": "Creutzfeldt-Jakob disease",
+        "description": "Clinical rapidly progressive neurologic syndrome with supportive neurologic testing/imaging; lecture does not provide a detailed diagnostic algorithm"
+      },
+      {
+        "id": "diagnostics-198",
+        "term": "Variant Creutzfeldt-Jakob disease",
+        "description": "Clinical progressive neurologic disease with appropriate exposure history and supportive prion evaluation; detailed testing not emphasized"
+      },
+      {
+        "id": "diagnostics-199",
+        "term": "Fatal familial insomnia",
+        "description": "Clinical progressive insomnia/autonomic dysfunction with familial prion context; definitive specialized testing not detailed in lecture"
+      },
+      {
+        "id": "diagnostics-200",
+        "term": "Gerstmann-Sträussler-Scheinker syndrome",
+        "description": "Familial progressive ataxic neurologic syndrome with specialized prion/genetic evaluation; detailed testing not emphasized"
+      }
+    ]
   }
 ];
 }());

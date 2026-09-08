@@ -19,11 +19,17 @@ const sources = [
     title: "Treatment Match",
     description: "Identify the diagnosis or clinical scenario that matches the treatment plan.",
     path: process.argv[4]
+  },
+  {
+    id: "diagnostics",
+    title: "Diagnostic Workup",
+    description: "Identify the diagnosis or condition that matches the diagnostic test, workup, or defining result.",
+    path: process.argv[5]
   }
 ];
 
 if (sources.some((source) => !source.path)) {
-  throw new Error("Pass the classification, hallmark, and treatment text files in that order.");
+  throw new Error("Pass the classification, hallmark, treatment, and diagnostic-workup text files in that order.");
 }
 
 function parse(source) {
