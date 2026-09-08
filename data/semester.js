@@ -94,6 +94,12 @@ window.SEMESTER = {
           title: "Infectious Disease Labs",
           description: "Specimen selection, direct microscopy, staining, culture, MIC interpretation, molecular testing, and serology.",
           objectives: window.ID_LABS_OBJECTIVES || []
+        },
+        {
+          id: "hiv-aids",
+          title: "HIV and AIDS",
+          description: "Virology, transmission, natural history, testing, ART, opportunistic disease, organ complications, special populations, and prevention.",
+          objectives: window.HIV_AIDS_OBJECTIVES || []
         }
       ]
     }
