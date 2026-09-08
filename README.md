@@ -24,6 +24,10 @@ The Disease Walkthrough presents every clue up front, then moves through four st
 
 Cases live in `data/walkthrough/` and are grouped by clinical domain. Add a case with the shared `DiseaseWalkthrough.makeCase(...)` format instead of changing the interface. Keep variants separate when pregnancy, age, immune status, allergy, severity, or a complication changes the clinical path. Run `node scripts/validate-walkthrough.cjs` after editing case data.
 
+## Diagnosis Drills
+
+Diagnosis Drills contains three independent randomized multiple-choice sets: Disease Classification, Hallmark Presentation, and Treatment Match. Each question presents the supplied description and asks for its matching diagnosis or clinical scenario. Question order and the four answer positions reshuffle whenever a section starts.
+
 ## GitHub Pages
 
 The included workflow publishes the repository automatically from `main`. In **Settings → Pages**, set **Source** to **GitHub Actions** once. The site will be available at:

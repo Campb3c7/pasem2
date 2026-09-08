@@ -34,6 +34,11 @@
         <span><strong>Disease Walkthrough</strong><small>Hallmarks → diagnostic test → diagnosis → treatment</small></span>
         <span aria-hidden="true">›</span>
       </button>
+      <button class="walkthrough-launch drill-launch" id="diagnosis-drill-launch" type="button">
+        <span class="walkthrough-launch-icon">A</span>
+        <span><strong>Diagnosis Drills</strong><small>Classification · hallmark presentation · treatment matching</small></span>
+        <span aria-hidden="true">›</span>
+      </button>
     </section>
 
     <section class="workspace" aria-labelledby="courses-title">
@@ -52,6 +57,11 @@
     <section id="walkthrough-view" class="walkthrough-view" hidden>
       <button class="back-button" id="walkthrough-back" type="button">← Study home</button>
       <div id="walkthrough-content"></div>
+    </section>
+
+    <section id="diagnosis-drill-view" class="walkthrough-view" hidden>
+      <button class="back-button" id="diagnosis-drill-back" type="button">← Study home</button>
+      <div id="diagnosis-drill-content"></div>
     </section>
   </main>
 
@@ -74,8 +84,10 @@
   <script src="data/walkthrough/cases-viral-global.js"></script>
   <script src="data/walkthrough/cases-fungal-opportunistic.js"></script>
   <script src="data/walkthrough/cases-hiv-sepsis.js"></script>
+  <script src="data/diagnosis-drills.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
   <script src="walkthrough.js"></script>
+  <script src="diagnosis-drills.js"></script>
 </body>
 </html>

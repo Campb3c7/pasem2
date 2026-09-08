@@ -36,6 +36,12 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - Keep every clue visible in the opening presentation. The mode teaches recognition and should not depend on hidden history.
 - Use a clinically meaningful variant only when population, severity, allergy, complication, or immune status changes the diagnostic or treatment path.
 - The treatment answer is the lecture's drug or management choice for that exact case. Doses are excluded unless the curriculum specifically tests them.
+
+## Diagnosis Drills
+
+- Quizlet-style diagnosis pairs live in `data/diagnosis-drills.js` as three independent sections: classification, hallmark presentation, and treatment matching.
+- Present the description as the prompt and the diagnosis or clinical scenario as one of four choices.
+- Shuffle question order and answer position whenever a section starts. Reveal the complete pair only after the correct answer.
 - Use only supplied lecture content. A wrong diagnostic order receives a plausible non-diagnostic result from the shared engine.
 - IDs must be unique and stable. Run `node scripts/validate-walkthrough.cjs` after editing case data.
 
