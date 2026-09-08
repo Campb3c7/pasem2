@@ -31,7 +31,8 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 ## Disease Walkthrough cases
 
 - Add cases to the matching `data/walkthrough/cases-*.js` file with `DiseaseWalkthrough.makeCase(...)`.
-- Each case moves through hallmark presentation, diagnostic choice, conclusive result, diagnosis, and treatment.
+- Each case moves through hallmark presentation, a four-option diagnostic choice, conclusive result, a four-option diagnosis, and a four-option treatment.
+- Shuffle the full case order at the start of every walkthrough session and shuffle each answer set. Do not reveal the disease title or source lecture before treatment is completed.
 - Keep every clue visible in the opening presentation. The mode teaches recognition and should not depend on hidden history.
 - Use a clinically meaningful variant only when population, severity, allergy, complication, or immune status changes the diagnostic or treatment path.
 - The treatment answer is the lecture's drug or management choice for that exact case. Doses are excluded unless the curriculum specifically tests them.

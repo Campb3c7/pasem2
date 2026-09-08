@@ -20,7 +20,7 @@ Progress is stored in the browser on the device being used.
 
 ## Disease Walkthrough
 
-The Disease Walkthrough presents every clue up front, then moves through four stages: hallmark presentation, diagnostic choice, diagnosis, and treatment. The diagnostic, diagnosis, and treatment fields are searchable dropdowns built from the complete case library. A wrong diagnostic order returns a reasonable non-diagnostic result and leaves the learner on that step.
+The Disease Walkthrough presents every clue up front, then moves through four stages: hallmark presentation, diagnostic choice, diagnosis, and treatment. Every stage uses four multiple-choice options. A wrong diagnostic order returns a reasonable non-diagnostic result and leaves the learner on that step. Each session shuffles all cases and answer positions, and the disease name and source lecture remain hidden until the case is completed.
 
 Cases live in `data/walkthrough/` and are grouped by clinical domain. Add a case with the shared `DiseaseWalkthrough.makeCase(...)` format instead of changing the interface. Keep variants separate when pregnancy, age, immune status, allergy, severity, or a complication changes the clinical path. Run `node scripts/validate-walkthrough.cjs` after editing case data.
 
