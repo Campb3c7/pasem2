@@ -7,7 +7,10 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `index.html` — page shell; do not put course content here.
 - `styles.css` — shared visual design.
 - `app.js` — Learn/Test/Apply/Recall behavior and local progress.
+- `walkthrough.js` — Disease Walkthrough state, answer checking, and progress.
 - `data/semester.js` — course and lecture catalog.
+- `data/walkthrough/schema.js` — reusable case schema and registration helpers.
+- `data/walkthrough/cases-*.js` — disease cases grouped by clinical domain.
 - `data/vaccines.js` — all Vaccines objective content.
 - `.github/workflows/pages.yml` — GitHub Pages deployment.
 
@@ -24,6 +27,16 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `card` is an optional zero-based Learn-card index used by Recall. If omitted, the engine links by keyword similarity.
 - IDs use lowercase letters, numbers, and dashes and must remain stable after progress is saved.
 - Never add patient-identifying information.
+
+## Disease Walkthrough cases
+
+- Add cases to the matching `data/walkthrough/cases-*.js` file with `DiseaseWalkthrough.makeCase(...)`.
+- Each case moves through hallmark presentation, diagnostic choice, conclusive result, diagnosis, and treatment.
+- Keep every clue visible in the opening presentation. The mode teaches recognition and should not depend on hidden history.
+- Use a clinically meaningful variant only when population, severity, allergy, complication, or immune status changes the diagnostic or treatment path.
+- The treatment answer is the lecture's drug or management choice for that exact case. Doses are excluded unless the curriculum specifically tests them.
+- Use only supplied lecture content. A wrong diagnostic order receives a plausible non-diagnostic result from the shared engine.
+- IDs must be unique and stable. Run `node scripts/validate-walkthrough.cjs` after editing case data.
 
 ## Validation
 

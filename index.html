@@ -29,6 +29,11 @@
         <div class="progress-copy"><span>Semester progress</span><strong id="progress-label">0%</strong></div>
         <div class="progress-track"><span id="progress-bar"></span></div>
       </div>
+      <button class="walkthrough-launch" id="walkthrough-launch" type="button">
+        <span class="walkthrough-launch-icon">⌁</span>
+        <span><strong>Disease Walkthrough</strong><small>Hallmarks → diagnostic test → diagnosis → treatment</small></span>
+        <span aria-hidden="true">›</span>
+      </button>
     </section>
 
     <section class="workspace" aria-labelledby="courses-title">
@@ -42,6 +47,11 @@
     <section id="study-view" class="study-view" hidden>
       <button class="back-button" id="back-button" type="button">← All courses</button>
       <div id="study-content"></div>
+    </section>
+
+    <section id="walkthrough-view" class="walkthrough-view" hidden>
+      <button class="back-button" id="walkthrough-back" type="button">← Study home</button>
+      <div id="walkthrough-content"></div>
     </section>
   </main>
 
@@ -58,7 +68,14 @@
   <script src="data/germs-and-worms.js"></script>
   <script src="data/infectious-disease-labs.js"></script>
   <script src="data/hiv-aids.js"></script>
+  <script src="data/walkthrough/schema.js"></script>
+  <script src="data/walkthrough/cases-bacterial-parasitic.js"></script>
+  <script src="data/walkthrough/cases-tick-syphilis.js"></script>
+  <script src="data/walkthrough/cases-viral-global.js"></script>
+  <script src="data/walkthrough/cases-fungal-opportunistic.js"></script>
+  <script src="data/walkthrough/cases-hiv-sepsis.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
+  <script src="walkthrough.js"></script>
 </body>
 </html>
