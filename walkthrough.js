@@ -8,6 +8,10 @@
   var workspace = document.querySelector(".workspace");
   var studyView = document.getElementById("study-view");
   var state = { order: [], position: 0, step: "test", choices: {} };
+  // These scenarios test management after naming or confirming the disease in the stem.
+  // They remain in Treatment Match, but are not fair unknown-patient walkthroughs.
+  var managementOnlyIds = new Set(data.managementOnlyIds || []);
+  var cases = data.cases.filter(function (item) { return !managementOnlyIds.has(item.id); });
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (char) {
@@ -15,27 +19,8 @@
     });
   }
   function normalize(value) { return String(value || "").trim().toLowerCase(); }
-  var diagnosisTerms = [
-    "Rocky Mountain spotted fever", "SARS-CoV-2", "C. difficile", "E. coli", "yellow fever", "sleeping sickness",
-    "febrile neutropenia", "tuberculosis", "coccidioidomycosis", "histoplasmosis", "toxoplasmosis", "cryptococcosis",
-    "candidiasis", "aspergillosis", "sporotrichosis", "blastomycosis", "onychomycosis", "trypanosomiasis", "cysticercosis",
-    "onchocerciasis", "Enterococcus", "Streptococcus", "Salmonella", "Pseudomonas", "Plasmodium", "Giardia", "Enterobius",
-    "Ascaris", "gonorrhea", "syphilis", "Lyme", "RMSF", "MRSA", "MSSA", "STEC", "Shigella", "cholera", "tetanus",
-    "botulism", "malaria", "amebiasis", "pinworm", "hookworm", "influenza", "varicella", "parvovirus", "measles", "mumps",
-    "rubella", "Coxsackie", "COVID-19", "chikungunya", "Zika", "dengue", "Ebola", "MERS", "SARS", "mpox", "rabies",
-    "tularemia", "leprosy", "yaws", "Chagas", "Candida", "Aspergillus", "Cryptococcus", "Histoplasma", "PCP", "Pneumocystis",
-    "HSV", "EBV", "CMV", "MAC", "sepsis", "septic shock"
-  ].sort(function (a, b) { return b.length - a.length; });
   function hideDiagnosisTerms(item, value) {
-    var labels = normalize(item.title + " " + (item.acceptedDiagnoses || []).join(" "));
-    var text = String(value || "");
-    diagnosisTerms.forEach(function (term) {
-      if (labels.indexOf(normalize(term)) < 0) return;
-      var pattern = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      text = text.replace(new RegExp(pattern, "gi"), "the suspected condition");
-    });
-    text = text.replace(/the suspected condition (infection|disease|syndrome)/gi, "the suspected condition");
-    return escapeHtml(text);
+    return escapeHtml(value);
   }
   function includesAnswer(value, answers) {
     var target = normalize(value);
@@ -54,7 +39,7 @@
   }
   function allValues(field, lecture) {
     var preferred = [], rest = [];
-    data.cases.forEach(function (item) {
+    cases.forEach(function (item) {
       (item[field] || []).forEach(function (value) {
         (item.lecture === lecture ? preferred : rest).push(value);
       });
@@ -74,20 +59,36 @@
     var accepted = item[acceptedField] || [];
     var correct = accepted[0];
     var choices = [correct];
-    (item[field] || []).forEach(function (value) {
-      if (!includesAnswer(value, accepted) && choices.indexOf(value) < 0) choices.push(value);
-    });
     var pool = allValues(field, item.lecture).filter(function (value) {
       return !includesAnswer(value, accepted) && choices.indexOf(value) < 0;
     });
     if (field === "tests") {
       var kind = testKind(correct);
-      pool = pool.filter(function (value) { return testKind(value) === kind; }).concat(pool.filter(function (value) { return testKind(value) !== kind; }));
+      var differentKinds = shuffle(pool.filter(function (value) { return testKind(value) !== kind; }));
+      var sameKind = shuffle(pool.filter(function (value) { return testKind(value) === kind; }));
+      var usedKinds = {};
+      differentKinds.forEach(function (value) {
+        var candidateKind = testKind(value);
+        if (choices.length < 4 && !usedKinds[candidateKind]) {
+          choices.push(value);
+          usedKinds[candidateKind] = true;
+        }
+      });
+      pool = differentKinds.concat(sameKind);
+    } else {
+      var localValues = [], outsideValues = [];
+      cases.forEach(function (entry) {
+        (entry[field] || []).forEach(function (value) {
+          if (includesAnswer(value, accepted) || localValues.indexOf(value) >= 0 || outsideValues.indexOf(value) >= 0) return;
+          (entry.lecture === item.lecture ? localValues : outsideValues).push(value);
+        });
+      });
+      pool = shuffle(localValues).slice(0, 2).concat(shuffle(outsideValues));
     }
     pool.forEach(function (value) { if (choices.length < 4) choices.push(value); });
     return shuffle(choices.slice(0, 4));
   }
-  function caseItem() { return data.cases[state.order[state.position]]; }
+  function caseItem() { return cases[state.order[state.position]]; }
   function completedCases() {
     try { var saved = JSON.parse(localStorage.getItem("pasem2:walkthrough-completed") || "[]"); return Array.isArray(saved) ? saved : []; }
     catch (error) { return []; }
@@ -102,7 +103,7 @@
     };
   }
   function startRandomSession() {
-    state.order = shuffle(data.cases.map(function (_, index) { return index; }));
+    state.order = shuffle(cases.map(function (_, index) { return index; }));
     state.position = 0;
     if (state.order.length) prepareCase();
     render();
@@ -116,11 +117,12 @@
     var item = caseItem();
     if (!item) { content.innerHTML = '<section class="complete-panel"><h2>No walkthrough cases are available.</h2></section>'; return; }
     var completed = completedCases();
-    content.innerHTML = '<div class="walkthrough-heading"><div><p class="eyebrow">Disease Walkthrough</p><h2>Unknown Patient</h2><p>Randomized case ' + (state.position + 1) + ' of ' + data.cases.length + '</p></div><button class="walkthrough-shuffle" id="walkthrough-shuffle" type="button">Shuffle new session</button></div><div class="walkthrough-progress"><span style="width:' + Math.round((state.position + 1) / data.cases.length * 100) + '%"></span></div><article class="walkthrough-patient"><div class="case-stage">1 · Hallmark presentation</div><h3>Patient presentation</h3><p>' + hideDiagnosisTerms(item, item.patient) + '</p><ul>' + item.hallmarks.map(function (fact) { return '<li>' + hideDiagnosisTerms(item, fact) + '</li>'; }).join("") + '</ul></article><section id="walkthrough-steps"></section><div class="walkthrough-footer"><span>' + completed.length + ' of ' + data.cases.length + ' cases completed on this device</span><button type="button" id="walkthrough-next">Next random case →</button></div>';
+    var completedInPool = completed.filter(function (id) { return cases.some(function (entry) { return entry.id === id; }); });
+    content.innerHTML = '<div class="walkthrough-heading"><div><p class="eyebrow">Disease Walkthrough</p><h2>Unknown Patient</h2><p>Randomized diagnosis-ready case ' + (state.position + 1) + ' of ' + cases.length + '</p></div><button class="walkthrough-shuffle" id="walkthrough-shuffle" type="button">Shuffle new session</button></div><div class="walkthrough-progress"><span style="width:' + Math.round((state.position + 1) / cases.length * 100) + '%"></span></div><article class="walkthrough-patient"><div class="case-stage">1 · Hallmark presentation</div><h3>Patient presentation</h3><p>' + hideDiagnosisTerms(item, item.patient) + '</p><ul>' + item.hallmarks.map(function (fact) { return '<li>' + hideDiagnosisTerms(item, fact) + '</li>'; }).join("") + '</ul></article><section id="walkthrough-steps"></section><div class="walkthrough-footer"><span>' + completedInPool.length + ' of ' + cases.length + ' diagnosis-ready cases completed on this device</span><button type="button" id="walkthrough-next">Next random case →</button></div>';
     document.getElementById("walkthrough-shuffle").addEventListener("click", startRandomSession);
     document.getElementById("walkthrough-next").addEventListener("click", function () {
       state.position += 1;
-      if (state.position >= state.order.length) { state.order = shuffle(data.cases.map(function (_, index) { return index; })); state.position = 0; }
+      if (state.position >= state.order.length) { state.order = shuffle(cases.map(function (_, index) { return index; })); state.position = 0; }
       prepareCase(); render(); window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
     });
     renderSteps();

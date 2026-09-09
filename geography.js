@@ -30,6 +30,9 @@
   }
   function currentItem() { return diseases[state.order[state.position]]; }
   function mapMarkup(item, showAll) {
+    var countries = (window.WORLD_COUNTRY_PATHS || []).map(function (country) {
+      return '<path d="' + country.d + '"><title>' + escapeHtml(country.name) + '</title></path>';
+    }).join("");
     var allPoints = showAll ? diseases.reduce(function (points, disease) { return points.concat(disease.points || []); }, []) : [];
     var dots = allPoints.map(function (point) {
       return '<circle class="geo-dot geo-dot-muted" cx="' + point[0] + '" cy="' + point[1] + '" r="5"></circle>';
@@ -37,6 +40,7 @@
     if (item) dots += (item.points || []).map(function (point) {
       return '<g class="geo-marker"><circle class="geo-pulse" cx="' + point[0] + '" cy="' + point[1] + '" r="16"></circle><circle class="geo-dot" cx="' + point[0] + '" cy="' + point[1] + '" r="7"></circle></g>';
     }).join("");
+    dots = '<g class="geo-countries">' + countries + '</g>' + dots;
     return '<div class="geo-map-wrap"><svg class="geo-map" viewBox="0 0 1000 500" role="img" aria-label="Flat world map highlighting ' + escapeHtml(item ? item.region : "the studied regions") + '"><rect class="geo-ocean" width="1000" height="500" rx="22"></rect><g class="geo-grid"><path d="M0 125H1000M0 250H1000M0 375H1000M250 0V500M500 0V500M750 0V500"></path></g><g class="geo-land"><path d="M55 91L111 49 194 39 263 67 303 111 269 143 222 151 193 193 149 180 124 146 88 135Z"></path><path d="M258 35L318 25 352 58 323 91 275 82Z"></path><path d="M245 211L294 215 331 253 334 304 315 360 282 430 258 392 249 326 229 270Z"></path><path d="M425 100L478 77 537 91 551 123 520 151 469 148 438 129Z"></path><path d="M446 159L530 151 572 204 565 264 535 334 493 357 458 312 431 238Z"></path><path d="M535 89L617 61 716 59 809 86 907 139 899 177 827 195 758 177 701 207 642 189 595 157 548 139Z"></path><path d="M694 192L744 207 764 245 741 274 708 244Z"></path><path d="M790 308L873 289 927 326 913 379 850 401 799 372Z"></path><path d="M878 238L895 249 887 269 870 258Z"></path></g>' + dots + '</svg><div class="geo-map-caption"><span>Flat map</span><strong>' + escapeHtml(item ? item.region : "Regional disease overview") + '</strong></div></div>';
   }
   function open() {

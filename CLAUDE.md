@@ -32,7 +32,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 
 - Add cases to the matching `data/walkthrough/cases-*.js` file with `DiseaseWalkthrough.makeCase(...)`.
 - Each case moves through hallmark presentation, a four-option diagnostic choice, conclusive result, a four-option diagnosis, and a four-option treatment.
-- Shuffle the full case order at the start of every walkthrough session and shuffle each answer set. Do not reveal the disease title or source lecture before treatment is completed.
+- Shuffle the diagnosis-ready case order at the start of every walkthrough session and shuffle each answer set. Keep management-only or pre-confirmed cases listed in `data/walkthrough/config.js`; those remain available in the treatment drills. Do not reveal the disease title or source lecture before treatment is completed.
 - Keep every clue visible in the opening presentation. The mode teaches recognition and should not depend on hidden history.
 - Use a clinically meaningful variant only when population, severity, allergy, complication, or immune status changes the diagnostic or treatment path.
 - The treatment answer is the lecture's drug or management choice for that exact case. Doses are excluded unless the curriculum specifically tests them.
@@ -46,7 +46,8 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 ## Disease Geography Lab
 
 - Regional disease data lives in `data/geography.js`. Include conditions only when geography materially helps recognition or the lecture explicitly teaches a distribution.
-- Keep the 2D map schematic and use it as a memory aid rather than a source of precise borders.
+- Country geometry lives in generated `data/world-map.js` and comes from Natural Earth 1:110m Admin 0 Countries. Rebuild it with `scripts/build-world-map.cjs` rather than hand-drawing continent paths.
+- Keep the 2D map as a memory aid; country outlines should be recognizable, while disease markers represent broad regional anchors rather than exact incidence boundaries.
 - Preserve the four paths: guided map learning, travel-to-disease quiz, disease-to-region quiz, and the interactive regional atlas.
 - Shuffle the guided and quiz sequences on every start. Keep four answer choices and allow retry after a miss.
 - Use only supplied lecture content. A wrong diagnostic order receives a plausible non-diagnostic result from the shared engine.
