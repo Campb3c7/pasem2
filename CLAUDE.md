@@ -42,6 +42,13 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - Quizlet-style diagnosis pairs live in `data/diagnosis-drills.js` as four independent sections: classification, hallmark presentation, treatment matching, and diagnostic workup.
 - Present the description as the prompt and the diagnosis or clinical scenario as one of four choices.
 - Shuffle question order and answer position whenever a section starts. Reveal the complete pair only after the correct answer.
+
+## Disease Geography Lab
+
+- Regional disease data lives in `data/geography.js`. Include conditions only when geography materially helps recognition or the lecture explicitly teaches a distribution.
+- Keep the 2D map schematic and use it as a memory aid rather than a source of precise borders.
+- Preserve the four paths: guided map learning, travel-to-disease quiz, disease-to-region quiz, and the interactive regional atlas.
+- Shuffle the guided and quiz sequences on every start. Keep four answer choices and allow retry after a miss.
 - Use only supplied lecture content. A wrong diagnostic order receives a plausible non-diagnostic result from the shared engine.
 - IDs must be unique and stable. Run `node scripts/validate-walkthrough.cjs` after editing case data.
 

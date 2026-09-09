@@ -28,6 +28,10 @@ Cases live in `data/walkthrough/` and are grouped by clinical domain. Add a case
 
 Diagnosis Drills contains four independent randomized multiple-choice sets: Disease Classification, Hallmark Presentation, Treatment Match, and Diagnostic Workup. Each question presents the supplied description and asks for its matching diagnosis or clinical scenario. Question order and the four answer positions reshuffle whenever a section starts.
 
+## Disease Geography Lab
+
+The Disease Geography Lab teaches the lecture's location-sensitive infections through a flat world map. Guided Map uses a repeat-at-the-end learning queue. Travel Clue Quiz asks for the disease from a mapped travel exposure, Reverse Map Quiz asks for the region from a disease name, and Regional Atlas provides an interactive overview. The active quiz order and answer positions reshuffle each session.
+
 ## GitHub Pages
 
 The included workflow publishes the repository automatically from `main`. In **Settings → Pages**, set **Source** to **GitHub Actions** once. The site will be available at:

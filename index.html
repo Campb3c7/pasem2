@@ -39,6 +39,11 @@
         <span><strong>Diagnosis Drills</strong><small>Classification · hallmarks · treatment · diagnostic workup</small></span>
         <span aria-hidden="true">›</span>
       </button>
+      <button class="walkthrough-launch geography-launch" id="geography-launch" type="button">
+        <span class="walkthrough-launch-icon">⌖</span>
+        <span><strong>Disease Geography Lab</strong><small>Learn travel regions with a flat map and randomized recall</small></span>
+        <span aria-hidden="true">›</span>
+      </button>
     </section>
 
     <section class="workspace" aria-labelledby="courses-title">
@@ -63,6 +68,11 @@
       <button class="back-button" id="diagnosis-drill-back" type="button">← Study home</button>
       <div id="diagnosis-drill-content"></div>
     </section>
+
+    <section id="geography-view" class="walkthrough-view geography-view" hidden>
+      <button class="back-button" id="geography-back" type="button">← Study home</button>
+      <div id="geography-content"></div>
+    </section>
   </main>
 
   <footer><span>PA Semester 2</span><span>Progress saves on this device.</span></footer>
@@ -85,9 +95,11 @@
   <script src="data/walkthrough/cases-fungal-opportunistic.js"></script>
   <script src="data/walkthrough/cases-hiv-sepsis.js"></script>
   <script src="data/diagnosis-drills.js"></script>
+  <script src="data/geography.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
   <script src="walkthrough.js"></script>
   <script src="diagnosis-drills.js"></script>
+  <script src="geography.js"></script>
 </body>
 </html>
