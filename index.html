@@ -44,6 +44,11 @@
         <span><strong>Disease Geography Lab</strong><small>Learn travel regions with a flat map and randomized recall</small></span>
         <span aria-hidden="true">›</span>
       </button>
+      <button class="walkthrough-launch diseases-launch" id="diseases-launch" type="button">
+        <span class="walkthrough-launch-icon">✚</span>
+        <span><strong>Diseases</strong><small>Every disease, lecture by lecture, with dedicated practice questions and per-disease progress</small></span>
+        <span aria-hidden="true">›</span>
+      </button>
     </section>
 
     <section class="workspace" aria-labelledby="courses-title">
@@ -73,6 +78,11 @@
       <button class="back-button" id="geography-back" type="button">← Study home</button>
       <div id="geography-content"></div>
     </section>
+
+    <section id="diseases-view" class="walkthrough-view diseases-view" hidden>
+      <button class="back-button" id="diseases-back" type="button">← Study home</button>
+      <div id="diseases-content"></div>
+    </section>
   </main>
 
   <footer><span>PA Semester 2</span><span>Progress saves on this device.</span></footer>
@@ -88,6 +98,7 @@
   <script src="data/germs-and-worms.js"></script>
   <script src="data/infectious-disease-labs.js"></script>
   <script src="data/hiv-aids.js"></script>
+  <script src="data/diseases.js"></script>
   <script src="data/walkthrough/schema.js"></script>
   <script src="data/walkthrough/config.js"></script>
   <script src="data/walkthrough/cases-bacterial-parasitic.js"></script>
@@ -103,5 +114,6 @@
   <script src="walkthrough.js"></script>
   <script src="diagnosis-drills.js"></script>
   <script src="geography.js"></script>
+  <script src="diseases.js"></script>
 </body>
 </html>
