@@ -164,7 +164,7 @@
     modeHost().querySelectorAll("[data-lecture]").forEach(function (button) {
       button.addEventListener("click", function () {
         infoLecture = lectures.find(function (lecture) { return lecture.id === button.dataset.lecture; });
-        renderRoot(); window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+        renderRoot(); holdScrollIntoView(modeHost(), 350, "start");
       });
     });
   }
@@ -189,7 +189,7 @@
     modeHost().querySelectorAll("[data-disease]").forEach(function (button) {
       button.addEventListener("click", function () {
         infoDisease = (lecture.diseases || []).find(function (disease) { return disease.id === button.dataset.disease; });
-        renderRoot(); window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+        renderRoot(); holdScrollIntoView(modeHost(), 350, "start");
       });
     });
   }
@@ -344,7 +344,16 @@
       position: 0, correctCount: 0, missed: []
     };
     renderPracticeQuestion();
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(modeHost(), 350, "start");
+  }
+  function holdScrollIntoView(el, ms, block) {
+    if (!el) return;
+    var deadline = performance.now() + ms;
+    function tick() {
+      el.scrollIntoView({ behavior: "instant", block: block || "nearest" });
+      if (performance.now() < deadline) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
   function interleave(items) {
     var shuffled = shuffle(items);
@@ -384,7 +393,7 @@
     document.getElementById("practice-exit").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
     modeHost().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerPractice(Number(button.dataset.choice)); }); });
     document.getElementById("practice-next").addEventListener("click", function () { state.position += 1; renderPracticeQuestion(); });
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(modeHost(), 350, "start");
   }
   function answerPractice(selected) {
     var state = practiceState, card = state.queue[state.position], correct = card.correct;
@@ -406,6 +415,7 @@
       }
     }
     document.getElementById("practice-next").hidden = false;
+    holdScrollIntoView(explanationBox, 350);
   }
   function renderPracticeComplete() {
     var state = practiceState;

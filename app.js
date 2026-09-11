@@ -72,7 +72,21 @@
   function objectives() { return (lecture() && lecture().objectives) || []; }
   function objectiveById(id) { return objectives().find(function (objective) { return objective.id === id; }); }
   function host() { return document.getElementById("mode-content"); }
-  function scrollTop() { window.scrollTo({ top: studyView.offsetTop, behavior: "smooth" }); }
+  function scrollTop() { var target = host(); if (target) holdScrollIntoView(target, 350, "start"); else window.scrollTo({ top: studyView.offsetTop, behavior: "smooth" }); }
+  // Replacing/disabling the just-interacted-with element triggers a browser-native
+  // focus/scroll adjustment that fights a one-time scrollIntoView call over several
+  // frames. Instead of guessing when that settles, keep re-pinning the target on every
+  // frame for a short window so our placement is always the last word.
+  function holdScrollIntoView(el, ms, block) {
+    if (!el) return;
+    var deadline = performance.now() + ms;
+    function tick() {
+      el.scrollIntoView({ behavior: "instant", block: block || "nearest" });
+      if (performance.now() < deadline) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function scrollExplanationIntoView() { holdScrollIntoView(document.getElementById("answer-explanation"), 350); }
   function allLectures() {
     return semester.courses.reduce(function (items, course) {
       return items.concat((course.lectures || []).map(function (item) { return { course: course, lecture: item }; }));
@@ -217,7 +231,7 @@
   }
   function answerQuiz(selected) {
     var state = quizState, question = state.queue[state.position], correct = Number(question.correct);
-    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false;
+    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false; scrollExplanationIntoView();
     if (selected === correct) state.correct += 1; else { state.missed.push(question); showLinkedCard(state.objective, question, "↩ Review the matching Learn card"); }
     document.getElementById("question-next").hidden = false;
   }
@@ -327,7 +341,7 @@
   }
   function answerRecall(item, selected) {
     var correct = Number(item.question.correct);
-    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false;
+    answerButtons(selected, correct); document.getElementById("answer-explanation").hidden = false; scrollExplanationIntoView();
     if (selected === correct) recallState.mastered[item.id] = true;
     else { showLinkedCard(item.objective, item.question, "↩ Review before this returns"); var returnAt = Math.min(recallState.position + 1 + RECALL_GAP, recallState.steps.length); recallState.steps.splice(returnAt, 0, { type: "question", item: item }); }
     saveRecall(); document.getElementById("recall-next").hidden = false;

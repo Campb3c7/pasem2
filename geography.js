@@ -28,6 +28,16 @@
   function unique(items) {
     return items.filter(function (item, index) { return items.indexOf(item) === index; });
   }
+
+  function holdScrollIntoView(el, ms, block) {
+    if (!el) return;
+    var deadline = performance.now() + ms;
+    function tick() {
+      el.scrollIntoView({ behavior: "instant", block: block || "nearest" });
+      if (performance.now() < deadline) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
   function currentItem() { return diseases[state.order[state.position]]; }
   function mapMarkup(item, showAll) {
     var countries = (window.WORLD_COUNTRY_PATHS || []).map(function (country) {
@@ -88,7 +98,7 @@
     bindExit();
     document.getElementById("geo-again").addEventListener("click", function () { state.order.push(state.order[state.position]); state.position += 1; renderLearn(); });
     document.getElementById("geo-know").addEventListener("click", function () { state.position += 1; renderLearn(); });
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(content, 350, "start");
   }
   function startQuiz(mode) {
     state = { mode: mode, order: shuffle(diseases.map(function (_, index) { return index; })), position: 0, score: 0, missedCurrent: false, answered: false, choices: [] };
@@ -111,7 +121,7 @@
     bindExit();
     content.querySelectorAll("[data-geo-choice]").forEach(function (button) { button.addEventListener("click", function () { answerQuiz(Number(button.dataset.geoChoice)); }); });
     document.getElementById("geo-next").addEventListener("click", nextQuiz);
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(content, 350, "start");
   }
   function answerQuiz(selectedIndex) {
     if (state.answered) return;
@@ -127,6 +137,7 @@
       explanation.hidden = false;
       explanation.className = "explanation drill-try-again";
       explanation.innerHTML = "<strong>Not this location pair</strong><p>Use the map position and exposure anchor, then try again.</p>";
+      holdScrollIntoView(explanation, 350);
       return;
     }
     state.answered = true;
@@ -138,6 +149,7 @@
     explanation.hidden = false;
     explanation.className = "explanation geo-answer";
     explanation.innerHTML = (state.mode === "reverse" ? mapMarkup(item, false) : "") + '<strong>' + escapeHtml(item.disease) + '</strong><p>' + escapeHtml(item.region) + '</p><p>' + escapeHtml(item.anchor) + '</p>';
+    holdScrollIntoView(explanation, 350);
     document.getElementById("geo-next").hidden = false;
   }
   function nextQuiz() {
@@ -180,7 +192,7 @@
     content.querySelectorAll("[data-atlas-id]").forEach(function (button) {
       button.addEventListener("click", function () { renderAtlas(diseases.find(function (item) { return item.id === button.dataset.atlasId; })); });
     });
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(content, 350, "start");
   }
 
   launch.addEventListener("click", open);

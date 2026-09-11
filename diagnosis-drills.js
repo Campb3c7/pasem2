@@ -34,6 +34,16 @@
     return "Which diagnosis or condition matches this description?";
   }
   function currentItem() { return state.section.items[state.order[state.position]]; }
+
+  function holdScrollIntoView(el, ms, block) {
+    if (!el) return;
+    var deadline = performance.now() + ms;
+    function tick() {
+      el.scrollIntoView({ behavior: "instant", block: block || "nearest" });
+      if (performance.now() < deadline) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
   function makeChoices(item) {
     var pool = unique(state.section.items.map(function (entry) { return entry.term; })).filter(function (term) { return term !== item.term; });
     return shuffle([item.term].concat(shuffle(pool).slice(0, 3)));
@@ -89,7 +99,7 @@
       button.addEventListener("click", function () { answer(Number(button.dataset.drillChoice)); });
     });
     document.getElementById("drill-next").addEventListener("click", nextQuestion);
-    window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+    holdScrollIntoView(content, 350, "start");
   }
   function answer(selectedIndex) {
     if (state.answered) return;
@@ -104,6 +114,7 @@
       explanation.hidden = false;
       explanation.className = "explanation drill-try-again";
       explanation.innerHTML = "<strong>Not this one</strong><p>Use the full description and try another answer.</p>";
+      holdScrollIntoView(explanation, 350);
       return;
     }
     state.answered = true;
@@ -116,6 +127,7 @@
     feedback.hidden = false;
     feedback.className = "explanation";
     feedback.innerHTML = '<strong>' + escapeHtml(item.term) + '</strong><p>' + escapeHtml(item.description) + '</p>';
+    holdScrollIntoView(feedback, 350);
     document.getElementById("drill-next").hidden = false;
   }
   function nextQuestion() {

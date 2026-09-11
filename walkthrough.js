@@ -19,6 +19,16 @@
     });
   }
   function normalize(value) { return String(value || "").trim().toLowerCase(); }
+
+  function holdScrollIntoView(el, ms, block) {
+    if (!el) return;
+    var deadline = performance.now() + ms;
+    function tick() {
+      el.scrollIntoView({ behavior: "instant", block: block || "nearest" });
+      if (performance.now() < deadline) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
   function hideDiagnosisTerms(item, value) {
     return escapeHtml(value);
   }
@@ -123,11 +133,13 @@
     document.getElementById("walkthrough-next").addEventListener("click", function () {
       state.position += 1;
       if (state.position >= state.order.length) { state.order = shuffle(cases.map(function (_, index) { return index; })); state.position = 0; }
-      prepareCase(); render(); window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
+      prepareCase(); render();
+      var patient = content.querySelector(".walkthrough-patient");
+      if (patient) patient.scrollIntoView({ behavior: "smooth", block: "start" }); else window.scrollTo({ top: view.offsetTop, behavior: "smooth" });
     });
     renderSteps();
   }
-  function renderSteps() {
+  function renderSteps(isAdvance) {
     var item = caseItem(), host = document.getElementById("walkthrough-steps"), html = "";
     html += '<article class="walkthrough-step active"><div class="case-stage">2 · Confirm the diagnosis</div><h3>What would you order?</h3><p>Choose the best confirmatory approach. An incorrect order returns the expected non-diagnostic result, then you can try again.</p>' + choiceMarkup("test", state.choices.test) + '<div id="test-feedback"></div></article>';
     if (state.step === "diagnosis" || state.step === "treatment" || state.step === "complete") html += '<article class="walkthrough-result"><span>Diagnostic result</span><strong>' + escapeHtml(item.result) + '</strong></article><article class="walkthrough-step active"><div class="case-stage">3 · Name the disease</div><h3>What is the diagnosis?</h3>' + choiceMarkup("diagnosis", state.choices.diagnosis) + '<div id="diagnosis-feedback"></div></article>';
@@ -137,9 +149,14 @@
     host.querySelectorAll('[data-walkthrough-answer="test"]').forEach(function (button) { button.addEventListener("click", function () { checkTest(button.dataset.answerValue); }); });
     host.querySelectorAll('[data-walkthrough-answer="diagnosis"]').forEach(function (button) { button.addEventListener("click", function () { checkDiagnosis(button.dataset.answerValue); }); });
     host.querySelectorAll('[data-walkthrough-answer="treatment"]').forEach(function (button) { button.addEventListener("click", function () { checkTreatment(button.dataset.answerValue); }); });
+    // Advancing a step reveals new content below the fold -- scroll it into view
+    // so the next question is immediately readable without hunting for it.
+    if (isAdvance && host.lastElementChild) holdScrollIntoView(host.lastElementChild, 350);
   }
   function feedback(id, title, body) {
-    document.getElementById(id).innerHTML = '<div class="walkthrough-feedback wrong"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(body) + '</p></div>';
+    var el = document.getElementById(id);
+    el.innerHTML = '<div class="walkthrough-feedback wrong"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(body) + '</p></div>';
+    holdScrollIntoView(el, 350);
   }
   function wrongResult(test) {
     var lower = normalize(test);
@@ -150,12 +167,12 @@
   }
   function checkTest(value) {
     var item = caseItem();
-    if (includesAnswer(value, item.acceptedTests)) { state.step = "diagnosis"; renderSteps(); }
+    if (includesAnswer(value, item.acceptedTests)) { state.step = "diagnosis"; renderSteps(true); }
     else feedback("test-feedback", value + " result", wrongResult(value) + " Choose the test that directly confirms the disease suggested by the hallmark features.");
   }
   function checkDiagnosis(value) {
     var item = caseItem();
-    if (includesAnswer(value, item.acceptedDiagnoses)) { state.step = "treatment"; renderSteps(); }
+    if (includesAnswer(value, item.acceptedDiagnoses)) { state.step = "treatment"; renderSteps(true); }
     else feedback("diagnosis-feedback", "Not this diagnosis", "Use the hallmark presentation and conclusive diagnostic result together. Try again.");
   }
   function checkTreatment(value) {
@@ -165,7 +182,7 @@
       var completed = completedCases();
       if (completed.indexOf(item.id) < 0) completed.push(item.id);
       localStorage.setItem("pasem2:walkthrough-completed", JSON.stringify(completed));
-      renderSteps();
+      renderSteps(true);
     } else feedback("treatment-feedback", "That treatment does not fit this case", "Recheck the patient population, severity, allergy status, and lecture-specific treatment, then try again.");
   }
   function open() {
