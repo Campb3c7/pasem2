@@ -19,6 +19,28 @@
   function K(title, html, test, application, highYield) {
     return C(title, html, [Q(test[0], test[1], test[2], test[3])], [Q(application[0], application[1], application[2], application[3])], highYield);
   }
+  var objectiveStatements = {
+    "01-exam-technique": "Describe the appropriate technique of physical exam maneuvers for head, ears, eyes, nose, throat, neck, and lymph nodes.",
+    "02-history": "Recall appropriate historical details to elicit from a patient based on their HEENT complaint and physical exam presentation.",
+    "03-normal-head-face": "Recall the normal symmetrical features of the head and face.",
+    "04-age-visual-acuity": "Describe the changes in visual acuity in the pediatric population and the geriatric population.",
+    "05-refractive-definitions": "Define hyperopia, myopia, and presbyopia.",
+    "06-visual-acuity": "Interpret visual acuity based on the results of a Snellen chart and recall when the count fingers or light perception methods should be used instead.",
+    "07-color-peripheral": "Select the most appropriate methods for testing color blindness and gross peripheral vision.",
+    "08-anisocoria": "Recall the definition and etiologies of anisocoria and correlate these to physical exam findings.",
+    "09-convergence-accommodation": "Recall how to assess convergence and accommodation and interpret the results.",
+    "10-swinging-flashlight": "Explain the swinging flashlight test and interpret the results.",
+    "11-extraocular-muscles": "Associate the extraocular muscles to the appropriate cranial nerves.",
+    "12-strabismus": "Recall the physical exam maneuvers that assess for strabismus.",
+    "13-fundoscopy": "Explain the correct technique for fundoscopy using traditional and panoptic ophthalmoscopes. Describe the structures that should be visualized on fundoscopy.",
+    "14-otoscopy": "Explain the correct technique for otoscopy in both the adult and pediatric populations. Differentiate between a normal TM and an abnormal TM and identify etiologies for abnormal TM appearances.",
+    "15-hearing-tests": "Describe gross hearing testing, Weber testing, and Rinne testing. Distinguish between conductive and sensorineural hearing loss based on physical exam maneuvers.",
+    "16-normal-nose-mouth-throat": "Recall the normal features of the nose, sinuses, mouth, and throat.",
+    "17-cranial-nerves": "Associate cranial nerves IX, X, and XII with their appropriate physical examination components.",
+    "18-thyroid": "Describe the appropriate physical exam technique for evaluation of the thyroid.",
+    "19-lymph-nodes": "Describe anatomical locations of the lymph nodes in HEENT system. Associate characteristics of lymphadenopathy with potential etiologies (malignancy, infection, etc.).  Recall the significance of Virchow’s node.",
+    "20-cultural-professionalism": "Implement professional technique in approaching a physical exam in a patient who has reservations or refuses certain components of an HEENT exam due to personal beliefs."
+  };
   function O(id, title, cards) {
     var test = [], apply = [];
     cards.forEach(function (card, cardIndex) {
@@ -29,7 +51,7 @@
         apply.push({ prompt: question.prompt, choices: question.choices, correct: question.correct, explanation: question.explanation, card: cardIndex });
       });
     });
-    return { id: id, title: title, cards: cards, test: test, apply: apply };
+    return { id: id, title: title, description: objectiveStatements[id] || "", cards: cards, test: test, apply: apply };
   }
   function T(headers, rows) {
     return '<table class="learn-table"><tr>' + headers.map(function (header) { return '<th>' + header + '</th>'; }).join('') + '</tr>' + rows.map(function (row) { return '<tr>' + row.map(function (cell) { return '<td>' + cell + '</td>'; }).join('') + '</tr>'; }).join('') + '</table>';
@@ -42,7 +64,7 @@
   }
 
   window.HEENT_HP_OBJECTIVES = [
-    O("01-exam-technique", "1. Describe the appropriate technique of physical exam maneuvers for head, ears, eyes, nose, throat, neck, and lymph nodes.", [
+    O("01-exam-technique", "1. Complete HEENT, Neck, and Lymph Exam", [
       K("Head and face examination", `<p><strong>Inspect</strong> head position and shape, skull size and contour, scalp, hair, and facial symmetry. Part the hair systematically from front to back when looking for dermatologic findings.</p><p><strong>Palpate</strong> the head and skull from front to back for tenderness, depressions, swelling, symmetry, and smoothness. The scalp should move freely.</p><p>For the TMJs, place fingers just anterior to both tragi with the mouth closed, then ask the patient to “chew” through multiple directions while assessing swelling, tenderness, clicks, hypertrophy, and range of motion.</p>`,
         ["Where are the fingers placed first when palpating the TMJs?", "Just anterior to both tragi", ["Over both mastoids", "At the supraclavicular fossae", "On the nasal bridge"], "The lecture places the examiner’s fingers just anterior to the bilateral tragi."],
         ["During a head examination, you need to assess scalp lesions and hair loss patterns. Which technique matches the lecture?", "Systematically part the hair from front to back", ["Inspect only the frontal hairline", "Percuss the scalp", "Examine only areas the patient identifies"], "Systematic parting from front to back exposes the scalp for inspection."], true),
@@ -63,7 +85,7 @@
         ["A patient has no tenderness with light cervical-node palpation. What is the next technique?", "Palpate more deeply", ["Stop the lymph examination", "Percuss the node", "Use the thumb to check for pulsation"], "The lecture directs light palpation first, followed by deeper palpation when tenderness is absent."], true)
     ]),
 
-    O("02-history", "2. Recall appropriate historical details to elicit from a patient based on their HEENT complaint and physical exam presentation.", [
+    O("02-history", "2. HEENT History", [
       K("HPI and symptom review", `<p>Shape the HPI around the chief complaint using <strong>OLDCARTS</strong> and timeline questions.</p>${T(["Area", "Associated symptoms from the lecture"], [["Head", "Headache, dizziness"], ["Eyes", "Blurry or double vision, floaters, flashers, loss, pain, redness, discharge"], ["Ears", "Ringing or hearing loss, earache, discharge"], ["Nose/sinus", "Discharge, congestion or pressure, epistaxis"], ["Mouth/throat", "Soreness, gum swelling or bleeding, hoarseness, malodorous breath, trouble swallowing"], ["Neck/lymph", "Mass or lump, thyroid mass/nodule/goiter, pain"]])}`,
         ["What framework does the lecture recommend for the HPI of an HEENT complaint?", "OLDCARTS plus timeline questions", ["CAGE alone", "Weber and Rinne", "PERRLA only"], "The HPI varies with the complaint and uses OLDCARTS and timeline questions."],
         ["A patient presents with hoarseness. Which related history area and associated symptom belong in the lecture’s review?", "Mouth/throat history including trouble swallowing", ["Ear history limited to childhood infections", "Head history limited to seizures", "Lymph history limited to skin lesions"], "Hoarseness and trouble swallowing appear in the mouth/throat symptom review."], true),
@@ -78,7 +100,7 @@
         ["A factory worker has hearing changes. Which social-history detail is especially relevant?", "Continuous loud-noise exposure and use of ear protection", ["Only last dental visit", "Only seat-belt use", "Only family thyroid disease"], "Noise exposure and ear protection are part of the employment and environmental history."], true)
     ]),
 
-    O("03-normal-head-face", "3. Recall the normal symmetrical features of the head and face.", [
+    O("03-normal-head-face", "3. Normal Head and Facial Symmetry", [
       K("Normal head and facial symmetry", `<p>The normal head is upright, still, and centered. The skull is <strong>normocephalic and atraumatic</strong>.</p><p>Eyelids, eyebrows, palpebral fissures, nasolabial folds, and the mouth should be symmetrical. Lesions, tics, and edema should generally be absent.</p>`,
         ["Which set of facial features should be symmetrical?", "Eyelids, eyebrows, palpebral fissures, nasolabial folds, and mouth", ["Only the pupils", "Only the ears", "Only the TMJs"], "The normal-inspection slide names these paired and midline facial features."],
         ["A patient’s head is erect and midline with a smooth, atraumatic skull and symmetric facial features. How does this compare with the lecture’s normal pattern?", "It matches the normal head and face examination", ["It establishes Bell’s palsy", "It demonstrates acromegaly", "It indicates a skull deformity"], "The listed findings match the lecture’s normal inspection and documentation examples."], true),
@@ -87,7 +109,7 @@
         ["TMJ palpation reveals tenderness and reduced range of motion. Is this part of the normal pattern?", "No; tenderness and decreased range of motion are findings to note", ["Yes; both are expected", "Yes, if bilateral", "Only malocclusion is relevant"], "The lecture’s normal sample has no TMJ tenderness and directs the examiner to note clicks and decreased ROM."], false)
     ]),
 
-    O("04-age-visual-acuity", "4. Describe the changes in visual acuity in the pediatric population and the geriatric population.", [
+    O("04-age-visual-acuity", "4. Pediatric and Geriatric Vision", [
       K("Pediatric visual development", `<p>Eyes develop during the first 8 weeks of gestation, and maternal infection or drug ingestion can cause malformation. Visual and color development follow nervous-system maturation.</p><ul><li>Peripheral vision is fully developed at birth.</li><li>Acuity develops rapidly in the first few months, then more slowly toward adult levels by age 4.</li><li>Infant color vision is less sensitive than adult color vision, but babies generally have good color vision by 5 months.</li></ul>`,
         ["By what age does visual acuity approach adult levels in the lecture?", "About age 4", ["At birth", "At 5 months", "At age 40"], "Acuity develops quickly early in life and then more slowly toward adult levels by age 4."],
         ["An infant’s peripheral vision is being discussed with a parent. Which statement follows the deck?", "Peripheral vision is fully developed at birth", ["Peripheral vision first appears at age 4", "Color vision is adult-level at birth", "Acuity is fixed at birth"], "The pediatric slide states that peripheral vision is fully developed at birth."], true),
@@ -96,7 +118,7 @@
         ["A 45-year-old reports gradual loss of near vision. Which lecture-listed age change fits?", "Presbyopia", ["Improved lens clarity", "Pediatric acuity development", "Full peripheral-vision development"], "The geriatric slide states that presbyopia usually begins at about age 40."], true)
     ]),
 
-    O("05-refractive-definitions", "5. Define hyperopia, myopia, and presbyopia.", [
+    O("05-refractive-definitions", "5. Hyperopia, Myopia, and Presbyopia", [
       K("Hyperopia", `<p><strong>Hyperopia</strong> is “far sighted”: distant objects remain in focus, while near objects do not come into proper focus.</p>`,
         ["What does hyperopia do to near vision?", "Near objects do not come into proper focus", ["Near objects are clear while distance is impaired", "Both near and far objects are distorted by an irregular cornea", "It causes a gradual age-related loss of near vision only"], "The lecture defines hyperopia by preserved distance focus and impaired near focus."],
         ["A patient sees distant road signs clearly but cannot bring nearby print into focus. Which definition matches?", "Hyperopia", ["Myopia", "Presbyopia by definition at any age", "Astigmatism only"], "This is the far-sighted pattern given for hyperopia."], true),
@@ -108,7 +130,7 @@
         ["A patient in the fifth decade gradually needs to hold reading material farther away. Which lecture definition applies?", "Presbyopia", ["Myopia", "Physiologic anisocoria", "Sensorineural hearing loss"], "The age and gradual near-vision loss match presbyopia as presented."], true)
     ]),
 
-    O("06-visual-acuity", "6. Interpret visual acuity based on the results of a Snellen chart and recall when the count fingers or light perception methods should be used instead.", [
+    O("06-visual-acuity", "6. Snellen Acuity, Count Fingers, and Light Perception", [
       K("Snellen and Rosenbaum technique", `${T(["Chart", "Purpose and distance"], [["Snellen", "Far vision at 20 feet"], ["Rosenbaum", "Near vision at 14 inches"]])}<p>Cover one eye with a card without pressing on it. Ask the patient to read the smallest possible line, then repeat with the other eye.</p><p>Missing 3 or more letters, or more than half a line, makes that line inaccurate. Move to larger or smaller lines until the smallest accurately read line is found.</p>`,
         ["How far should the patient stand from the Snellen chart?", "20 feet", ["14 inches", "2 feet", "10 feet"], "The deck uses a standard 20-foot Snellen distance."],
         ["A patient misses four letters on a Snellen line. What should the examiner do?", "Treat that line as inaccurate and move to a larger-print line", ["Record the line as accurate", "Press on the covered eye", "Switch immediately to Weber testing"], "Missing three or more letters or more than half the line is inaccurate."], true),
@@ -120,7 +142,7 @@
         ["A patient cannot identify fingers even at close range but can distinguish flashlight illumination from darkness. How should this ability be recorded?", "LP", ["NLP", "20/20", "OU corrected"], "LP documents retained light perception; NLP would mean no light perception."], true)
     ]),
 
-    O("07-color-peripheral", "7. Select the most appropriate methods for testing color blindness and gross peripheral vision.", [
+    O("07-color-peripheral", "7. Color and Peripheral Vision Testing", [
       K("Ishihara color testing", `<p>The <strong>Ishihara test</strong> uses color plates containing numbers in primary colors surrounded by color. The lecture presents it as the method for color-blindness testing.</p>`,
         ["Which method does the lecture use to test color blindness?", "Ishihara color plates", ["Snellen chart", "Rinne test", "Swinging flashlight test"], "Ishihara plates are the named color-vision test."],
         ["A patient reads distance letters normally but needs color-vision screening. Which tool should be selected?", "Ishihara plates", ["Rosenbaum chart", "512 Hz tuning fork", "Nasal speculum"], "The lecture separates acuity charts from Ishihara color testing."], true),
@@ -129,7 +151,7 @@
         ["During confrontation testing, a patient cannot see moving fingers in one nasal field. What does the lecture indicate?", "Possible peripheral vision loss requiring further testing", ["A normal finding", "Definite color blindness", "Conductive hearing loss"], "A missed confrontation field suggests peripheral loss and prompts further evaluation."], true)
     ]),
 
-    O("08-anisocoria", "8. Recall the definition and etiologies of anisocoria and correlate these to physical exam findings.", [
+    O("08-anisocoria", "8. Anisocoria", [
       K("Physiologic anisocoria", `<p><strong>Anisocoria</strong> means unequal pupil size. Physiologic, or simple, anisocoria is present in about 20% of people.</p><p>With physiologic anisocoria, both pupils still dilate in darkness and constrict with light.</p>`,
         ["What is anisocoria?", "Unequal pupil size", ["Loss of peripheral vision", "Unequal hearing", "Absent red reflex"], "The lecture defines anisocoria as pupils of unequal size."],
         ["A patient has unequal pupils, but both dilate in darkness and constrict with light. Which pattern does the deck describe?", "Physiologic anisocoria", ["An abnormal pupil that cannot respond", "RAPD from optic neuritis", "Argyll Robertson pupils"], "Preserved dilation and constriction in both eyes support the physiologic pattern."], true),
@@ -138,7 +160,7 @@
         ["After blunt trauma, one pupil constricts poorly while the other responds normally. How should this be interpreted from the slides?", "Abnormal anisocoria", ["Physiologic anisocoria", "Normal accommodation", "A normal direct response"], "Blunt trauma is listed as an etiology, and a poor response in one pupil is abnormal."], true)
     ]),
 
-    O("09-convergence-accommodation", "9. Recall how to assess convergence and accommodation and interpret the results.", [
+    O("09-convergence-accommodation", "9. Convergence and Accommodation", [
       K("Convergence and the near reaction", `<p>When gaze shifts from far to near, the pupils constrict. Ask the patient to follow a finger moved toward the bridge of the nose.</p><p>Normal eyes converge to within <strong>5–8 cm</strong> of the nose, and the pupils constrict.</p>`,
         ["What is the normal convergence endpoint in the lecture?", "Within 5–8 cm of the nose with pupillary constriction", ["At 20 feet with dilation", "At 14 inches without eye movement", "Only at the nasal bridge with no pupil change"], "The deck gives 5–8 cm and constriction as the normal near response."],
         ["During a convergence test, both eyes move inward to 6 cm from the nose and the pupils constrict. How should this be interpreted?", "Normal convergence", ["Abnormal anisocoria", "RAPD", "Failed accommodation"], "Six centimeters falls within the lecture’s normal 5–8 cm range."], true),
@@ -147,7 +169,7 @@
         ["After near convergence, the patient shifts focus to an object behind the examiner. What visible pupil response is expected?", "Dilation", ["Persistent constriction only", "Paradoxical bilateral dilation under direct light", "No pupil response"], "The deck instructs the examiner to watch for mydriasis when focus returns to distance."], true)
     ]),
 
-    O("10-swinging-flashlight", "10. Explain the swinging flashlight test and interpret the results.", [
+    O("10-swinging-flashlight", "10. Swinging Flashlight Test and RAPD", [
       K("Technique and normal response", `<ol><li>Dim the room and have the patient fixate on a distant object to prevent the near reaction.</li><li>Shine a bright light into one eye for 1 second and observe the speed and extent of contraction.</li><li>Quickly swing to the other eye for 1 second and compare.</li><li>Repeat back and forth to enhance the response.</li></ol><p>Normal pupils constrict promptly through direct and consensual responses, then dilate when the light is removed.</p>`,
         ["Why should the patient fixate on a distant object during the swinging flashlight test?", "To prevent the near reaction", ["To induce accommodation", "To test color blindness", "To increase tear production"], "Distance fixation prevents near-response constriction from confounding the light test."],
         ["Both pupils promptly constrict as the light alternates between the eyes. How does this compare with the expected result?", "It is a normal swinging-flashlight response", ["It proves an RAPD", "It indicates anisocoria", "It demonstrates strabismus"], "Prompt direct and consensual constriction is normal."], true),
@@ -156,7 +178,7 @@
         ["When the light swings to one eye, both pupils briefly constrict and then rapidly dilate. Which finding does this support?", "A relative afferent pupillary defect", ["A normal consensual response", "Normal physiologic anisocoria", "A positive Rinne test"], "A small afferent defect can produce brief constriction followed by rapid dilation."], true)
     ]),
 
-    O("11-extraocular-muscles", "11. Associate the extraocular muscles to the appropriate cranial nerves.", [
+    O("11-extraocular-muscles", "11. Extraocular Muscles and Cranial Nerves", [
       K("Testing the six cardinal fields", `<p>Keep the patient’s head straight and ask the patient to follow a finger using only the eyes. Draw a wide “H” to move gaze to the extreme right, right-up, right-down, extreme left, left-up, and left-down.</p><p>Look for discordant movements or nystagmus. Horizontal nystagmus can also be tested separately. Normal documentation is <strong>EOMI without nystagmus</strong>.</p>`,
         ["What path does the examiner draw to test the six cardinal fields of gaze?", "A wide H", ["A small circle only", "A vertical line only", "A Snellen fraction"], "The lecture uses a wide H while the patient follows with the eyes only."],
         ["A patient turns the head while following the examiner’s finger. What correction matches the technique?", "Keep the head straight and follow using only the eyes", ["Close both eyes", "Move only the head", "Cover both eyes"], "The six-field examination isolates eye movement by keeping the head still."], true),
@@ -165,7 +187,7 @@
         ["A gaze deficit corresponds to the superior oblique muscle on the lecture’s map. Which cranial nerve is associated?", "CN IV", ["CN III", "CN VI", "CN XII"], "The superior oblique is labeled with cranial nerve IV."], true)
     ]),
 
-    O("12-strabismus", "12. Recall the physical exam maneuvers that assess for strabismus.", [
+    O("12-strabismus", "12. Strabismus Testing", [
       K("Corneal light reflection or twinkle test", `<p>The twinkle test assesses strabismus and begins the pediatric evaluation to catch amblyopia early.</p><ol><li>Stand 2 feet from the patient.</li><li>Shine a light at the eyes and ask the patient to look at it.</li><li>Inspect the reflection on each cornea.</li></ol><p>Normal reflections sit slightly nasal to the center of both pupils. Asymmetric reflections suggesting esotropia or exotropia lead to the cover-uncover test.</p>`,
         ["Where should a normal corneal light reflection appear?", "Slightly nasal to the center of each pupil and symmetric", ["At the far temporal edge of each cornea", "Only in one eye", "On the upper eyelid"], "The normal twinkle is symmetric and slightly nasal to each pupil center."],
         ["A child has asymmetric corneal light reflections. What should the examiner do next according to the deck?", "Perform the cover-uncover test", ["Perform Weber testing", "Proceed directly to tonometry", "Stop the examination"], "An asymmetric twinkle response prompts cover-uncover testing."], true),
@@ -174,7 +196,7 @@
         ["The uncovered eye shifts to regain fixation when its partner is covered. How does this compare with the lecture’s normal result?", "It is abnormal because normal eyes maintain fixation", ["It is the expected normal response", "It confirms normal visual acuity", "It measures color blindness"], "Normal eyes maintain fixation through cover and uncover."], true)
     ]),
 
-    O("13-fundoscopy", "13. Explain the correct technique for fundoscopy using traditional and panoptic ophthalmoscopes. Describe the structures that should be visualized on fundoscopy.", [
+    O("13-fundoscopy", "13. Traditional and Panoptic Fundoscopy", [
       K("Purpose, focus, and preparation", `<p>Fundoscopy uses an ophthalmoscope to examine the fundus. The deck links retinal vessels to brain vessels and notes the examination’s value for metabolic, vascular, and retinal disease.</p><p>Darken the room and ask the patient to gaze at a stable distant point to help dilate the pupil. Adjust the focusing wheel toward positive numbers for farsightedness and toward negative numbers for nearsightedness.</p>`,
         ["Why does the patient gaze at a distant point before fundoscopy?", "To help dilate the pupil", ["To trigger the near reaction", "To test hearing", "To constrict the pupil"], "The deck uses distant fixation in a dark room to support pupil dilation."],
         ["A nearsighted examiner removes corrective lenses and cannot focus the fundus. Which adjustment does the lecture suggest?", "Turn the focusing wheel toward negative or red numbers", ["Turn only toward positive numbers", "Use the Rinne position", "Switch to an Ishihara plate"], "The slide directs a nearsighted examiner toward the negative/red side."], false),
@@ -189,7 +211,7 @@
         ["Fundoscopy shows poorly defined optic-disc margins and retinal hemorrhage. Does this match the lecture’s normal documentation?", "No; normal discs are well defined and hemorrhage is absent", ["Yes; both are normal", "Yes, if the red reflex is present", "Only the macula matters"], "The normal sample documents sharp discs and no hemorrhage."], true)
     ]),
 
-    O("14-otoscopy", "14. Explain the correct technique for otoscopy in both the adult and pediatric populations. Differentiate between a normal TM and an abnormal TM and identify etiologies for abnormal TM appearances.", [
+    O("14-otoscopy", "14. Adult and Pediatric Otoscopy", [
       K("Safe otoscope setup", `<ol><li>Tilt the patient’s head slightly away from the examined side.</li><li>Use the largest speculum the canal can accommodate.</li><li>Hold the otoscope like a pencil with the ulnar surface of the hand resting against the patient’s head as a pivot.</li><li>Inspect the canal from meatus to TM for discharge, redness, scaling, lesions, cerumen, or a foreign body.</li></ol>`,
         ["Why does the examiner rest the ulnar hand surface against the patient’s head?", "To create a stabilizing pivot point", ["To test mastoid tenderness", "To occlude the ear", "To measure bone conduction"], "The hand brace stabilizes the otoscope if the patient moves."],
         ["A patient may move during otoscopy. Which grip best follows the lecture?", "Pencil grip with the examiner’s hand braced against the head", ["Hold the scope without touching the head", "Use both hands on the speculum", "Brace on the patient’s shoulder"], "The lecture’s pencil grip and ulnar brace create a safe pivot."], true),
@@ -204,7 +226,7 @@
         ["A crying febrile child has an erythematous TM but no other findings yet. Which qualifier must be preserved?", "Fever and crying can also cause tympanic erythema", ["Erythema always proves acute otitis media", "Erythema proves cerumen impaction", "A red TM is always normal"], "The deck warns that fever and crying can redden the TM, so erythema alone is not definitive."], true)
     ]),
 
-    O("15-hearing-tests", "15. Describe gross hearing testing, Weber testing, and Rinne testing. Distinguish between conductive and sensorineural hearing loss based on physical exam maneuvers.", [
+    O("15-hearing-tests", "15. Hearing Tests and Hearing-Loss Patterns", [
       K("Gross hearing", `<p>Auditory testing evaluates CN VIII. For gross hearing, occlude one ear, stand 1–2 feet away, and whisper “1, 2, 3” or “a, b, c” into the unoccluded ear. Repeat on the other side.</p>`,
         ["How far away does the examiner stand for the whispered-voice test?", "About 1–2 feet", ["20 feet", "14 inches", "Across the building"], "The gross-hearing slide gives a distance of 1–2 feet."],
         ["To screen the right ear with whispered voice, what should the examiner do?", "Occlude the left ear and whisper from 1–2 feet away", ["Occlude the right ear and shout", "Place a tuning fork on the mastoid", "Use an Ishihara plate"], "Gross testing isolates the unoccluded ear using a quiet whispered sequence."], false),
@@ -219,7 +241,7 @@
         ["Weber lateralizes away from the right ear, while right Rinne remains AC greater than BC. What diagnosis fits the table?", "Right sensorineural hearing loss", ["Right conductive hearing loss", "Normal hearing", "Left conductive hearing loss"], "Sensorineural loss lateralizes to the normal ear and retains AC greater than BC in the affected ear."], true)
     ]),
 
-    O("16-normal-nose-mouth-throat", "16. Recall the normal features of the nose, sinuses, mouth, and throat.", [
+    O("16-normal-nose-mouth-throat", "16. Normal Nose, Sinus, Mouth, and Throat Findings", [
       K("Normal nose and sinus findings", `<p>Normal documentation describes pink, moist nasal mucosa without discharge, polyps, or edema; a midline septum; bilateral patency; no frontal or maxillary swelling; and no tenderness to palpation or percussion.</p>`,
         ["Which nasal mucosal appearance is normal in the lecture?", "Pink and moist without discharge, polyps, or edema", ["Blue and dry with polyps", "Markedly swollen with purulence", "Crusted with active bleeding"], "The sample documentation uses pink, moist mucosa without discharge, polyps, or edema."],
         ["A patient has a midline septum, bilateral patency, and no sinus tenderness. How should these findings be classified?", "Normal nose and sinus findings", ["Evidence of septal deviation", "Evidence of sinus swelling", "Evidence of nasal obstruction"], "These match the lecture’s normal documentation sample."], true),
@@ -234,7 +256,7 @@
         ["A clinician examines only the top of the tongue. Which additional views are needed?", "Lateral borders and the submandibular surface", ["Only the uvula", "Only the upper lip", "Only the hard palate"], "The deck specifically directs inspection of the lateral tongue and the surface beneath it."], false)
     ]),
 
-    O("17-cranial-nerves", "17. Associate cranial nerves IX, X, and XII with their appropriate physical examination components.", [
+    O("17-cranial-nerves", "17. Cranial Nerves IX, X, and XII", [
       K("CN IX and X", `${T(["Nerve", "Examination components"], [["CN IX, glossopharyngeal", "Elicit the gag reflex in an unconscious patient; distinguish sweet and sour"], ["CN X, vagus", "Observe the uvula rising midline and symmetrically during “ahhh”; observe swallowing"]])}<p>With vagus paralysis, the uvula deviates toward the unaffected side.</p>`,
         ["What is the expected uvular response when testing CN X?", "It rises midline and symmetrically during “ahhh”", ["It remains immobile in every normal patient", "It deviates to the affected side", "It retracts into the nasal cavity"], "The normal vagus examination produces a midline symmetric rise."],
         ["During “ahhh,” the uvula deviates to one side. Which interpretation does the lecture give?", "Possible vagus paralysis, with deviation toward the unaffected side", ["Normal CN X function", "A CN XII strength test", "A normal gag response"], "The slide states that vagus paralysis moves the uvula toward the unaffected side."], true),
@@ -243,7 +265,7 @@
         ["A patient’s protruded tongue is asymmetric and weak with abnormal speech. Which cranial-nerve examination is abnormal?", "CN XII", ["CN IX only", "CN X only", "CN VIII"], "Symmetry, movement, strength, and speech are components of the CN XII assessment."], true)
     ]),
 
-    O("18-thyroid", "18. Describe the appropriate physical exam technique for evaluation of the thyroid.", [
+    O("18-thyroid", "18. Thyroid Examination", [
       K("Thyroid inspection and palpation targets", `<p>Neck inspection includes fullness at the base of the neck, masses, and the act of swallowing. On palpation, assess the thyroid’s size, shape, configuration, consistency, tenderness, and nodules.</p>`,
         ["Which features should be assessed during thyroid palpation?", "Size, shape, configuration, consistency, tenderness, and nodules", ["Only skin color", "Only pulse rate", "Only swallowing sound"], "The thyroid slide lists all six palpation characteristics."],
         ["A patient has visible fullness at the base of the neck. Which focused examination follows?", "Palpate the thyroid for size, configuration, consistency, tenderness, and nodules", ["Perform Rinne testing", "Test color vision", "Evert the upper eyelid"], "Basal neck fullness is an inspection finding that leads into thyroid assessment."], true),
@@ -252,7 +274,7 @@
         ["The examiner cannot comfortably use the posterior thyroid approach. Which alternative is shown in the deck?", "An anterior approach", ["No other approach", "A transnasal approach", "Percussion over the mastoid"], "Both anterior and posterior approaches appear on the thyroid slide."], false)
     ]),
 
-    O("19-lymph-nodes", "19. Describe anatomical locations of the lymph nodes in HEENT system. Associate characteristics of lymphadenopathy with potential etiologies (malignancy, infection, etc.). Recall the significance of Virchow’s node.", [
+    O("19-lymph-nodes", "19. HEENT Lymph Nodes and Virchow’s Node", [
       K("Lymph-node groups and landmarks", `${T(["Region", "Locations shown in the deck"], [["Around the ear and scalp", "Preauricular, postauricular, occipital"], ["Jaw and chin", "Tonsillar, submandibular, submental"], ["Neck", "Superficial cervical, deep cervical chain, posterior cervical"], ["Lower neck", "Supraclavicular"], ["Upper limb", "Axillary and epitrochlear"]])}<p>The posterior cervical nodes lie in the posterior neck triangle. The anterior triangle contains the anterior cervical nodes.</p>`,
         ["Which lymph-node group lies above the clavicle?", "Supraclavicular nodes", ["Epitrochlear nodes", "Preauricular nodes", "Submental nodes"], "The anatomical image places the supraclavicular nodes immediately above the clavicle."],
         ["A palpable node is located just in front of the ear. Which group is this?", "Preauricular", ["Postauricular", "Occipital", "Epitrochlear"], "The slide image labels the nodes anterior to the ear as preauricular."], true),
@@ -273,7 +295,7 @@
         ["A neck mass transilluminates. Which comparison from the deck is relevant?", "Cysts generally transilluminate, while lymph nodes generally do not", ["All malignant nodes transilluminate", "Arteries never pulsate", "Every thyroid mass is posterior"], "Transillumination helps distinguish a cyst-like mass from a node."], false)
     ]),
 
-    O("20-cultural-professionalism", "20. Implement professional technique in approaching a physical exam in a patient who has reservations or refuses certain components of an HEENT exam due to personal beliefs.", [
+    O("20-cultural-professionalism", "20. Cultural Respect, Consent, and Exam Refusal", [
       K("Respectful cultural approach", `<p>Physical examination may expose body areas a patient normally shields from strangers. Approach the assessment with respect for the patient’s cultural and religious beliefs and customs.</p><p>The slides note that some patients may allow an examination only by a clinician of the same gender. Avoid flattering or coercive comments, which can be insulting and may imply that consent can be negotiated away.</p>`,
         ["What is the central approach when beliefs affect an HEENT examination?", "Respect the patient’s cultural or religious beliefs and customs", ["Proceed without discussion", "Use flattery to obtain consent", "Assume every patient has identical preferences"], "The lecture frames cultural consideration as a matter of respect and professionalism."],
         ["A patient requests an examiner of the same gender. What response best follows the lecture?", "Respect the request and approach the examination professionally", ["Dismiss the concern", "Use compliments to persuade the patient", "Perform the examination without consent"], "The slides recognize same-gender examination requirements in some circumstances."], true),
