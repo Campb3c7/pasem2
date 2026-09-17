@@ -134,6 +134,12 @@ window.SEMESTER = {
           title: "Dental Diseases",
           description: "Preventive dental care, caries, periodontal disease, dental trauma, postoperative complications, and endocarditis prophylaxis.",
           objectives: window.DENTAL_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "nose-sinus-disease",
+          title: "Nose & Sinus Disease",
+          description: "Nasal polyps, allergic rhinitis, acute rhinosinusitis, bacterial complications, and chronic rhinosinusitis subtypes.",
+          objectives: window.NOSE_SINUS_OBJECTIVES || []
         }
       ]
     }
