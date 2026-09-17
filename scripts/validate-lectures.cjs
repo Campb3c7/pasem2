@@ -17,7 +17,8 @@ global.window = global;
   "hiv-aids",
   "heent-anatomy-physiology",
   "heent-history-physical",
-  "mouth-throat-diseases"
+  "mouth-throat-diseases",
+  "dental-diseases"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 

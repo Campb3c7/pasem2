@@ -128,6 +128,12 @@ window.SEMESTER = {
           title: "Mouth and Throat Diseases",
           description: "Oral lesions, salivary-gland disease, pharyngitis, post-streptococcal disease, and laryngeal disorders.",
           objectives: window.MOUTH_THROAT_OBJECTIVES || []
+        },
+        {
+          id: "dental-diseases",
+          title: "Dental Diseases",
+          description: "Preventive dental care, caries, periodontal disease, dental trauma, postoperative complications, and endocarditis prophylaxis.",
+          objectives: window.DENTAL_DISEASE_OBJECTIVES || []
         }
       ]
     }
