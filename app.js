@@ -144,7 +144,7 @@
   function renderModeHome() {
     if (currentMode === "recall") { renderRecallHome(); return; }
     var copy = {
-      learn: ["Understand before you memorize", "Learn", 'Pick one objective. Work through one concept card at a time; anything marked “Not yet” returns at the end.', "cards"],
+      learn: ["Understand before you memorize", "Learn", 'Pick one objective. Work through one concept card at a time; anything marked “I don’t understand” returns at the end.', "cards"],
       test: ["Active recall", "Test", "Pick one objective. Answer one direct recall question at a time.", "questions"],
       apply: ["Clinical reasoning", "Apply", "Pick one objective. Work through one clinical application at a time.", "cases"]
     }[currentMode];
@@ -179,7 +179,7 @@
     if (!state || state.position >= state.queue.length) { renderLearnComplete(); return; }
     var cardIndex = state.queue[state.position];
     var card = state.objective.cards[cardIndex];
-    host().innerHTML = sessionHeader("Learn · Objective " + (objectives().indexOf(state.objective) + 1), (state.position + 1) + ' of ' + state.queue.length + ' · ' + state.objective.title, state.position, state.queue.length, "All objectives") + cardMarkup(state.objective, card, state.position >= state.firstPass ? "Review card" : "Concept " + (cardIndex + 1)) + '<div class="learn-actions"><button class="learn-btn learn-btn-dunno" id="learn-again" type="button">Not yet — show again</button><button class="learn-btn learn-btn-know" id="learn-know" type="button">I understand it</button></div>';
+    host().innerHTML = sessionHeader("Learn · Objective " + (objectives().indexOf(state.objective) + 1), (state.position + 1) + ' of ' + state.queue.length + ' · ' + state.objective.title, state.position, state.queue.length, "All objectives") + cardMarkup(state.objective, card, state.position >= state.firstPass ? "Review card" : "Concept " + (cardIndex + 1)) + '<div class="learn-actions"><button class="learn-btn learn-btn-dunno" id="learn-again" type="button">I don’t understand</button><button class="learn-btn learn-btn-know" id="learn-know" type="button">I understand</button></div>';
     bindSessionExit(function () { learnState = null; renderModeHome(); });
     document.getElementById("learn-again").addEventListener("click", function () { learnAnswer(false); });
     document.getElementById("learn-know").addEventListener("click", function () { learnAnswer(true); });

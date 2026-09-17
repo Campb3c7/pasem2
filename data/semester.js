@@ -102,6 +102,22 @@ window.SEMESTER = {
           objectives: window.HIV_AIDS_OBJECTIVES || []
         }
       ]
+    },
+    {
+      id: "ent",
+      title: "ENT",
+      short: "ENT",
+      icon: "👂",
+      color: "sage",
+      description: "Head, ears, eyes, nose, throat, and neck lectures.",
+      lectures: [
+        {
+          id: "heent-history-physical",
+          title: "HEENT H&P",
+          description: "History and physical examination of the head, eyes, ears, nose, sinuses, mouth, throat, neck, thyroid, and lymph nodes.",
+          objectives: window.HEENT_HP_OBJECTIVES || []
+        }
+      ]
     }
   ]
 };
