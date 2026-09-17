@@ -112,6 +112,12 @@ window.SEMESTER = {
       description: "Head, ears, eyes, nose, throat, and neck lectures.",
       lectures: [
         {
+          id: "heent-anatomy-physiology",
+          title: "HEENT Anatomy and Physiology",
+          description: "Eye, ear, nose, oral cavity, head, and neck anatomy and physiology.",
+          objectives: window.HEENT_AP_OBJECTIVES || []
+        },
+        {
           id: "heent-history-physical",
           title: "HEENT H&P",
           description: "History and physical examination of the head, eyes, ears, nose, sinuses, mouth, throat, neck, thyroid, and lymph nodes.",
