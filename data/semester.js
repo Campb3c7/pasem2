@@ -122,6 +122,12 @@ window.SEMESTER = {
           title: "HEENT H&P",
           description: "History and physical examination of the head, eyes, ears, nose, sinuses, mouth, throat, neck, thyroid, and lymph nodes.",
           objectives: window.HEENT_HP_OBJECTIVES || []
+        },
+        {
+          id: "mouth-throat-diseases",
+          title: "Mouth and Throat Diseases",
+          description: "Oral lesions, salivary-gland disease, pharyngitis, post-streptococcal disease, and laryngeal disorders.",
+          objectives: window.MOUTH_THROAT_OBJECTIVES || []
         }
       ]
     }
