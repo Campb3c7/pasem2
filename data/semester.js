@@ -140,6 +140,12 @@ window.SEMESTER = {
           title: "Nose & Sinus Disease",
           description: "Nasal polyps, allergic rhinitis, acute rhinosinusitis, bacterial complications, and chronic rhinosinusitis subtypes.",
           objectives: window.NOSE_SINUS_OBJECTIVES || []
+        },
+        {
+          id: "ear-disorders",
+          title: "Ear Disorders",
+          description: "External and middle-ear disease, vertigo, hearing loss, tuning-fork interpretation, and acoustic neuroma.",
+          objectives: window.EAR_DISORDER_OBJECTIVES || []
         }
       ]
     }

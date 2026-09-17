@@ -19,7 +19,8 @@ global.window = global;
   "heent-history-physical",
   "mouth-throat-diseases",
   "dental-diseases",
-  "nose-sinus-disease"
+  "nose-sinus-disease",
+  "ear-disorders"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 
