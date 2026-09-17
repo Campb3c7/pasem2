@@ -146,6 +146,12 @@ window.SEMESTER = {
           title: "Ear Disorders",
           description: "External and middle-ear disease, vertigo, hearing loss, tuning-fork interpretation, and acoustic neuroma.",
           objectives: window.EAR_DISORDER_OBJECTIVES || []
+        },
+        {
+          id: "heent-emergencies",
+          title: "HEENT Emergencies",
+          description: "Airway-threatening infections, epistaxis, facial fractures, neck trauma, and vascular emergencies.",
+          objectives: window.HEENT_EMERGENCY_OBJECTIVES || []
         }
       ]
     }
