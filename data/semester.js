@@ -158,6 +158,12 @@ window.SEMESTER = {
           title: "Eye Diseases",
           description: "Red eye, corneal and inflammatory disease, retinal emergencies, glaucoma, and ocular trauma.",
           objectives: window.EYE_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "heent-malignancy",
+          title: "HEENT Malignancy",
+          description: "Risk factors, field carcinogenesis, clinical evaluation, imaging, spread, treatment, and surveillance of head and neck cancer.",
+          objectives: window.HEENT_MALIGNANCY_OBJECTIVES || []
         }
       ]
     }
