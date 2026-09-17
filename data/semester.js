@@ -152,6 +152,12 @@ window.SEMESTER = {
           title: "HEENT Emergencies",
           description: "Airway-threatening infections, epistaxis, facial fractures, neck trauma, and vascular emergencies.",
           objectives: window.HEENT_EMERGENCY_OBJECTIVES || []
+        },
+        {
+          id: "eye-diseases",
+          title: "Eye Diseases",
+          description: "Red eye, corneal and inflammatory disease, retinal emergencies, glaucoma, and ocular trauma.",
+          objectives: window.EYE_DISEASE_OBJECTIVES || []
         }
       ]
     }

@@ -21,7 +21,8 @@ global.window = global;
   "dental-diseases",
   "nose-sinus-disease",
   "ear-disorders",
-  "heent-emergencies"
+  "heent-emergencies",
+  "eye-diseases"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 
