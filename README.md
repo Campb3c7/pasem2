@@ -4,6 +4,11 @@ A clean Semester 2 version of the PA study site. It keeps the original site's da
 
 ## Add course material
 
+Endocrine currently contains only **Endocrinology Anatomy**, sourced from Palmer's `Endocrine Anatomy.pptx` and the first ten objectives in `Endocrine/Objectives.txt`. The first section teaches all ten glands individually, with a separate location card and function card for each, and a direct question for each card. Five further sections cover pituitary relationships/vessels, adrenal vessels/nerves, pancreatic parts/ducts/vessels/nerves, thyroid vessels/nerves, and parathyroid vessels/nerves. All sections map to the original objectives in the launchers. Explicit card links support Recall. Other endocrine lectures have not been added.
+
+The material deliberately excludes incidental details such as gland dimensions, calcification deposits, adrenal shape, and lymphatic drainage not requested by the objectives. Concision must never omit a named objective component. The inferior thyroid artery origin is clarified as thyrocervical trunk → subclavian ([anatomy reference](https://www.ncbi.nlm.nih.gov/books/NBK560666/)); the slide abbreviates it to subclavian. No other endocrine lecture data is imported. Run `node scripts/validate-endocrine.cjs` to check the catalog, question structure, Recall links, and teaching/retrieval coverage for every objective component. Revised section IDs prevent saved Recall mastery from skipping the corrected material.
+
+
 Use [`data/semester.js`](data/semester.js) for the course/lecture catalog and a separate lecture file for its study material. Vaccines currently lives in [`data/vaccines.js`](data/vaccines.js).
 
 - Add a course to `courses`.

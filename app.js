@@ -151,7 +151,7 @@
     var html = '<div class="mode-intro"><p class="eyebrow">' + copy[0] + '</p><h3>' + copy[1] + '</h3><p>' + copy[2] + '</p></div><div class="objective-picker">';
     objectives().forEach(function (objective, index) {
       var items = currentMode === "learn" ? (objective.cards || []) : (objective[currentMode] || []);
-      html += '<button type="button" class="objective-launch" data-objective="' + escapeHtml(objective.id) + '" ' + (!items.length ? "disabled" : "") + '><span class="objective-launch-num">' + String(index + 1).padStart(2, "0") + '</span><span class="objective-launch-copy"><strong>' + escapeHtml(objective.title) + '</strong><small>' + items.length + ' ' + copy[3] + '</small></span><span class="objective-launch-arrow">›</span></button>';
+      html += '<button type="button" class="objective-launch" data-objective="' + escapeHtml(objective.id) + '" ' + (!items.length ? "disabled" : "") + '><span class="objective-launch-num">' + String(index + 1).padStart(2, "0") + '</span><span class="objective-launch-copy"><strong>' + escapeHtml(objective.title) + '</strong>' + (currentCourse.id === "endocrine" && objective.description ? '<small>' + escapeHtml(objective.description) + '</small>' : '') + '<small>' + items.length + ' ' + copy[3] + '</small></span><span class="objective-launch-arrow">›</span></button>';
     });
     host().innerHTML = html + '</div>';
     host().querySelectorAll("[data-objective]").forEach(function (button) {

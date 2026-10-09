@@ -166,6 +166,22 @@ window.SEMESTER = {
           objectives: window.HEENT_MALIGNANCY_OBJECTIVES || []
         }
       ]
+    },
+    {
+      id: "endocrine",
+      title: "Endocrine",
+      short: "ENDO",
+      icon: "🧬",
+      color: "gold",
+      description: "Objective-focused endocrine study, one lecture at a time.",
+      lectures: [
+        {
+          id: "endocrinology-anatomy",
+          title: "Endocrinology Anatomy",
+          description: "Learn the location and function of every gland individually, then study pituitary, adrenal, pancreatic, thyroid, and parathyroid anatomy. Covers all ten lecture objectives.",
+          objectives: window.ENDOCRINE_ANATOMY_OBJECTIVES || []
+        }
+      ]
     }
   ]
 };
