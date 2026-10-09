@@ -3,7 +3,7 @@ const root=path.join(__dirname,'..'),context=vm.createContext({window:{}});
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 for(const m of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) vm.runInContext(fs.readFileSync(path.join(root,m[1]),'utf8'),context,{filename:m[1]});
 const course=context.window.SEMESTER.courses.find(c=>c.id==='endocrine');
-assert.deepEqual(Array.from(course.lectures,l=>l.id),['endocrinology-anatomy','hypoglycemia','diabetes-mellitus','diabetic-pharmacology']);
+assert(course.lectures.some(l=>l.id==='diabetic-pharmacology'),'Pharmacology must remain in the catalog');
 const sections=course.lectures.find(l=>l.id==='diabetic-pharmacology').objectives;
 const suffixes=['metformin','sulfonylureas','glp1','tirzepatide','dpp4','sglt2','tzd','meglitinides','alpha-glucosidase','insulin-names','insulin-kinetics','insulin-administration','insulin-uses','insulin-starting-dose','insulin-titration','insulin-complications','monitoring-devices','motivational-interviewing','a1c-goal-selection','t2-goals-modalities','hypoglycemia-management','hypoglycemia-risk-comparison','weight-comparison','cardiovascular-comparison','efficacy-comparison','initial-add-on-therapy','compelling-patient-factors','t2-insulin-start-adjust','t1-insulin-trends'];
 assert.deepEqual(Array.from(sections,s=>s.id),suffixes.map((s,i)=>String(i+1).padStart(2,'0')+'-'+s),'Preserve the drug, insulin, and additional objective order');

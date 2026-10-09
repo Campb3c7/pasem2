@@ -198,6 +198,12 @@ window.SEMESTER = {
           title: "Diabetic Pharmacology",
           description: "Drug classes, every named medication, insulin kinetics/dosing/safety, monitoring, and patient-specific therapy decisions in the supplied objective order.",
           objectives: window.DIABETIC_PHARMACOLOGY_OBJECTIVES || []
+        },
+        {
+          id: "diabetes-special-considerations",
+          title: "Diabetes Mellitus Special Considerations",
+          description: "Five objectives in order: morning hyperglycemia, cause-based management, perioperative care, pregnancy, and weight management.",
+          objectives: window.DIABETES_SPECIAL_CONSIDERATIONS_OBJECTIVES || []
         }
       ]
     }
