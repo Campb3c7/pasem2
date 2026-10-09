@@ -186,6 +186,12 @@ window.SEMESTER = {
           title: "Hypoglycemia",
           description: "Nine objectives in order: glucose hormones, normal values, symptoms, causes, dumping syndrome, Whipple’s triad, alcohol/starvation, and treatment.",
           objectives: window.HYPOGLYCEMIA_OBJECTIVES || []
+        },
+        {
+          id: "diabetes-mellitus",
+          title: "Diabetes Mellitus",
+          description: "The 18 lecture objectives in order: diagnosis, T1DM, T2DM, LADA/MODY, lifestyle, lifespan care, health maintenance, cultural care, and ethics. Separate pharmacology and emergencies lectures are excluded.",
+          objectives: window.DIABETES_MELLITUS_OBJECTIVES || []
         }
       ]
     }
