@@ -222,6 +222,12 @@ window.SEMESTER = {
           title: "Adrenal Disease",
           description: "Sixteen objectives in order from both adrenal decks: insufficiency/crisis, cortisol excess, aldosterone disorders, androgen excess, pheochromocytoma, and incidental/pseudo-Cushing states.",
           objectives: window.ADRENAL_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "pagets-disease",
+          title: "Paget’s Disease",
+          description: "Four objectives in order: epidemiology/presentation, remodeling phases and complications, diagnosis/treatment/surveillance, and bisphosphonate use and adverse effects.",
+          objectives: window.PAGETS_DISEASE_OBJECTIVES || []
         }
       ]
     }
