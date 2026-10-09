@@ -3,7 +3,7 @@ const root = path.join(__dirname, '..'), context = vm.createContext({window:{}})
 const html = fs.readFileSync(path.join(root,'index.html'),'utf8');
 for (const match of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) vm.runInContext(fs.readFileSync(path.join(root,match[1]),'utf8'),context,{filename:match[1]});
 const endocrine = context.window.SEMESTER.courses.find(course => course.id === 'endocrine');
-assert.deepEqual(Array.from(endocrine.lectures, lecture => lecture.id), ['endocrinology-anatomy','hypoglycemia','diabetes-mellitus']);
+assert.deepEqual(Array.from(endocrine.lectures, lecture => lecture.id), ['endocrinology-anatomy','hypoglycemia','diabetes-mellitus','diabetic-pharmacology']);
 const sections = endocrine.lectures.find(lecture => lecture.id === 'diabetes-mellitus').objectives;
 const expectedIds = ['01-prediabetes-diabetes','02-t1-pathophysiology','03-t1-epidemiology','04-t1-presentation','05-differentiate-types','06-t1-diagnostic-testing','07-t1-mainstay','08-t1-a1c-goals','09-t2-pathophysiology','10-t2-epidemiology-risk','11-t2-presentation','12-t2-diagnosis','13-t2-lifestyle','14-lada-mody','15-lifespan-care','16-health-maintenance','17-cultural-care','18-ethics'];
 assert.deepEqual(Array.from(sections, section => section.id),expectedIds,'Preserve all 18 objectives in order');

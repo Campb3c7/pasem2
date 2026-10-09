@@ -192,6 +192,12 @@ window.SEMESTER = {
           title: "Diabetes Mellitus",
           description: "The 18 lecture objectives in order: diagnosis, T1DM, T2DM, LADA/MODY, lifestyle, lifespan care, health maintenance, cultural care, and ethics. Separate pharmacology and emergencies lectures are excluded.",
           objectives: window.DIABETES_MELLITUS_OBJECTIVES || []
+        },
+        {
+          id: "diabetic-pharmacology",
+          title: "Diabetic Pharmacology",
+          description: "Drug classes, every named medication, insulin kinetics/dosing/safety, monitoring, and patient-specific therapy decisions in the supplied objective order.",
+          objectives: window.DIABETIC_PHARMACOLOGY_OBJECTIVES || []
         }
       ]
     }
