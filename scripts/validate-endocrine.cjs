@@ -10,8 +10,8 @@ for (const match of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) {
 }
 const course = context.window.SEMESTER.courses.find(course => course.id === 'endocrine');
 assert(course, 'Endocrine must be loaded in the course catalog');
-assert.equal(course.lectures.length, 1, 'Only Anatomy is authorized');
-const sections = course.lectures[0].objectives;
+assert.equal(course.lectures.length, 2, 'Only Anatomy and Hypoglycemia are authorized');
+const sections = course.lectures.find(lecture => lecture.id === 'endocrinology-anatomy').objectives;
 assert.equal(sections.length, 6);
 const ids = new Set();
 let cards = 0, test = 0, apply = 0;

@@ -180,6 +180,12 @@ window.SEMESTER = {
           title: "Endocrinology Anatomy",
           description: "Learn the location and function of every gland individually, then study pituitary, adrenal, pancreatic, thyroid, and parathyroid anatomy. Covers all ten lecture objectives.",
           objectives: window.ENDOCRINE_ANATOMY_OBJECTIVES || []
+        },
+        {
+          id: "hypoglycemia",
+          title: "Hypoglycemia",
+          description: "Nine objectives in order: glucose hormones, normal values, symptoms, causes, dumping syndrome, Whipple’s triad, alcohol/starvation, and treatment.",
+          objectives: window.HYPOGLYCEMIA_OBJECTIVES || []
         }
       ]
     }
