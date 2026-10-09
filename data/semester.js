@@ -210,6 +210,12 @@ window.SEMESTER = {
           title: "Diabetes Mellitus Complications",
           description: "The 21 chronic-complication objectives in order: vascular risk, PAD, retinopathy, neuropathy, autonomic symptoms, and diabetic kidney disease.",
           objectives: window.DIABETES_COMPLICATIONS_OBJECTIVES || []
+        },
+        {
+          id: "diabetes-emergencies",
+          title: "Diabetes Mellitus Emergencies",
+          description: "Fifteen objectives in order: foot-ulcer assessment/infection, DKA recognition and lab-directed treatment, and HHS recognition, course, and prevention.",
+          objectives: window.DIABETES_EMERGENCIES_OBJECTIVES || []
         }
       ]
     }
