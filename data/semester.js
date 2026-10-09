@@ -216,6 +216,12 @@ window.SEMESTER = {
           title: "Diabetes Mellitus Emergencies",
           description: "Fifteen objectives in order: foot-ulcer assessment/infection, DKA recognition and lab-directed treatment, and HHS recognition, course, and prevention.",
           objectives: window.DIABETES_EMERGENCIES_OBJECTIVES || []
+        },
+        {
+          id: "adrenal-disease",
+          title: "Adrenal Disease",
+          description: "Sixteen objectives in order from both adrenal decks: insufficiency/crisis, cortisol excess, aldosterone disorders, androgen excess, pheochromocytoma, and incidental/pseudo-Cushing states.",
+          objectives: window.ADRENAL_DISEASE_OBJECTIVES || []
         }
       ]
     }
