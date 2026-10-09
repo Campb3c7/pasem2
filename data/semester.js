@@ -204,6 +204,12 @@ window.SEMESTER = {
           title: "Diabetes Mellitus Special Considerations",
           description: "Five objectives in order: morning hyperglycemia, cause-based management, perioperative care, pregnancy, and weight management.",
           objectives: window.DIABETES_SPECIAL_CONSIDERATIONS_OBJECTIVES || []
+        },
+        {
+          id: "diabetes-complications",
+          title: "Diabetes Mellitus Complications",
+          description: "The 21 chronic-complication objectives in order: vascular risk, PAD, retinopathy, neuropathy, autonomic symptoms, and diabetic kidney disease.",
+          objectives: window.DIABETES_COMPLICATIONS_OBJECTIVES || []
         }
       ]
     }
