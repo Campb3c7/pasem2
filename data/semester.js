@@ -228,6 +228,12 @@ window.SEMESTER = {
           title: "Paget’s Disease",
           description: "Four objectives in order: epidemiology/presentation, remodeling phases and complications, diagnosis/treatment/surveillance, and bisphosphonate use and adverse effects.",
           objectives: window.PAGETS_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "parathyroid-disease",
+          title: "Parathyroid Disease",
+          description: "Fourteen objectives in order: calcium and PTH physiology, calcium disorders, hyperparathyroid syndromes, malignancy, hypoparathyroidism, and PTH resistance.",
+          objectives: window.PARATHYROID_DISEASE_OBJECTIVES || []
         }
       ]
     }
