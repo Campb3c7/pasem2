@@ -252,6 +252,12 @@ window.SEMESTER = {
           title: "Thyroid Pharmacology",
           description: "Ten medication objectives in order: thyroid replacement, thionamides, beta blockers, and glucocorticoids for thyroid eye disease.",
           objectives: window.THYROID_PHARMACOLOGY_OBJECTIVES || []
+        },
+        {
+          id: "patient-education-follow-up",
+          title: "Patient Education & Follow-Up",
+          description: "Four objectives in order: effective patient education, follow-up decisions, appointment types and intervals, and condition/setting-based timing.",
+          objectives: window.PATIENT_EDUCATION_FOLLOW_UP_OBJECTIVES || []
         }
       ]
     }
