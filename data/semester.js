@@ -234,6 +234,12 @@ window.SEMESTER = {
           title: "Parathyroid Disease",
           description: "Fourteen objectives in order: calcium and PTH physiology, calcium disorders, hyperparathyroid syndromes, malignancy, hypoparathyroidism, and PTH resistance.",
           objectives: window.PARATHYROID_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "pituitary-diseases",
+          title: "Pituitary Diseases",
+          description: "Twenty-nine objectives in order: pituitary axes and deficiencies, sellar masses and functioning adenomas, and diabetes insipidus.",
+          objectives: window.PITUITARY_DISEASES_OBJECTIVES || []
         }
       ]
     }
