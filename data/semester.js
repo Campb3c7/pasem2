@@ -240,6 +240,12 @@ window.SEMESTER = {
           title: "Pituitary Diseases",
           description: "Twenty-nine objectives in order: pituitary axes and deficiencies, sellar masses and functioning adenomas, and diabetes insipidus.",
           objectives: window.PITUITARY_DISEASES_OBJECTIVES || []
+        },
+        {
+          id: "thyroid-disease",
+          title: "Thyroid Disease",
+          description: "Disease objectives in lecture order: physiology and testing, hypothyroidism, hyperthyroidism, Graves disease, thyroid emergencies, thyroiditis, goiter, nodules, and malignancy.",
+          objectives: window.THYROID_DISEASE_OBJECTIVES || []
         }
       ]
     }
