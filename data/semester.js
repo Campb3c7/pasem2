@@ -246,6 +246,12 @@ window.SEMESTER = {
           title: "Thyroid Disease",
           description: "Disease objectives in lecture order: physiology and testing, hypothyroidism, hyperthyroidism, Graves disease, thyroid emergencies, thyroiditis, goiter, nodules, and malignancy.",
           objectives: window.THYROID_DISEASE_OBJECTIVES || []
+        },
+        {
+          id: "thyroid-pharmacology",
+          title: "Thyroid Pharmacology",
+          description: "Ten medication objectives in order: thyroid replacement, thionamides, beta blockers, and glucocorticoids for thyroid eye disease.",
+          objectives: window.THYROID_PHARMACOLOGY_OBJECTIVES || []
         }
       ]
     }
