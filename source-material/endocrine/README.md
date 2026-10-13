@@ -25,10 +25,19 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 
 | Lecture | Diseases section |
 |---|---|
-| Adrenal Disease | Done: 11 diseases, 152 questions (awaiting user review) |
-| Pituitary Diseases | Done: 15 diseases, 136 questions (awaiting user review) |
-| Parathyroid Disease | Done: 10 diseases, 102 questions (awaiting user review) |
-| Diabetes Mellitus Emergencies | Done: 3 diseases, 64 questions (awaiting user review) |
+| Hypoglycemia | Done: 3 diseases, 36 questions |
+| Diabetes Mellitus | Done: 5 diseases, 67 questions |
+| DM Special Considerations | Done: 5 entries, 56 questions |
+| DM Complications | Done: 7 diseases, 84 questions |
+| DM Emergencies | Done: 3 diseases, 64 questions |
+| Adrenal Disease | Done: 11 diseases, 152 questions |
+| Paget's Disease | Done: 1 disease, 39 questions |
+| Parathyroid Disease | Done: 10 diseases, 102 questions |
+| Pituitary Diseases | Done: 15 diseases, 136 questions |
+| Thyroid Disease | Waiting on source material from the user |
+
+All awaiting user review. Endocrinology Anatomy, Diabetic Pharmacology, Thyroid Pharmacology, and
+Patient Education & Follow-Up get no entries of their own.
 
 ## Decks received
 

@@ -14,15 +14,23 @@
   }
   function HY(text) { return '<div class="box-hy"><span class="lbl">High yield</span><strong>' + text + "</strong></div>"; }
   function Mn(label, text) { return '<div class="box-mnemonic"><span class="lbl">' + label + '</span><strong>' + text + "</strong></div>"; }
+  // Question text, choices, explanations, names, and blurbs are shown as
+  // plain text, so decode HTML entities and drop inline tags authored there.
+  function plain(text) {
+    return String(text == null ? "" : text)
+      .replace(/<\/?(sup|sub|strong|em|b|i)>/g, "")
+      .replace(/&ge;/g, "≥").replace(/&le;/g, "≤").replace(/&rarr;/g, "→").replace(/&nbsp;/g, " ")
+      .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+  }
   function S(id, title, html) { return { id: id, title: title, html: html }; }
   function Q(section, prompt, choices, correct, explanation) {
-    return { section: section, prompt: prompt, choices: choices, correct: correct, explanation: explanation };
+    return { section: section, prompt: plain(prompt), choices: choices.map(plain), correct: correct, explanation: plain(explanation) };
   }
   function D(id, name, blurb, sections, questions) {
     var withIds = (questions || []).map(function (question, index) {
       return { id: id + "|" + index, section: question.section, prompt: question.prompt, choices: question.choices, correct: question.correct, explanation: question.explanation };
     });
-    return { id: id, name: name, blurb: blurb, sections: sections || [], questions: withIds };
+    return { id: id, name: plain(name), blurb: plain(blurb), sections: sections || [], questions: withIds };
   }
   function L(id, title, diseases) {
     return { id: id, title: title, diseases: diseases };
