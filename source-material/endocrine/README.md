@@ -33,8 +33,17 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 | Paget's Disease | `pagets-disease` |
 | Parathyroid Disease | `parathyroid-disease` |
 | Patient Education & Follow-Up | `patient-education-follow-up` |
+| Endocrinology Anatomy | `endocrine-anatomy` |
+| Pituitary Diseases | `pituitary-diseases` |
+| Thyroid Disease | `documents/thyroid-disease-supplemental-worksheet.docx` only (blank comparison-table template; text in `text/thyroid-disease-supplemental-worksheet.md`) |
 
-Still needed: Endocrinology Anatomy, Pituitary Diseases, Thyroid Disease, Thyroid Pharmacology.
+Thyroid Disease and Thyroid Pharmacology decks are too large to upload. For those two
+lectures the sources are the objectives, the worksheet (its columns show how the lecture
+splits the diseases: hypothyroid — primary overt/Hashimoto's, subclinical, central,
+myxedema coma, congenital; hyperthyroid — Graves', toxic MNG, subclinical, thyroid storm,
+central; thyroiditis — painless, postpartum, subacute, infectious; malignancy — papillary,
+follicular, anaplastic, medullary, lymphoma), and the existing `data/thyroid-disease.js` /
+`data/thyroid-pharmacology.js`, which were built from the slides and cite slide numbers.
 
 ## Reading the decks
 
