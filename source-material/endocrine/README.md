@@ -25,10 +25,23 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 
 | Lecture | File(s) |
 |---|---|
+| Hypoglycemia | `hypoglycemia` |
+| Diabetes Mellitus | `diabetes-mellitus` |
+| Diabetic Pharmacology | `diabetic-pharmacology` |
+| DM Special Considerations, DM Complications, DM Emergencies | `diabetes-special-considerations-complications-emergencies` (one combined deck) |
 | Adrenal Disease | `adrenal-disease-part-1`, `adrenal-disease-part-2` |
+| Paget's Disease | `pagets-disease` |
 | Parathyroid Disease | `parathyroid-disease` |
 | Patient Education & Follow-Up | `patient-education-follow-up` |
 
-Still needed: Endocrinology Anatomy, Hypoglycemia, Diabetes Mellitus, Diabetic
-Pharmacology, DM Special Considerations, DM Complications, DM Emergencies, Paget's
-Disease, Pituitary Diseases, Thyroid Disease, Thyroid Pharmacology.
+Still needed: Endocrinology Anatomy, Pituitary Diseases, Thyroid Disease, Thyroid Pharmacology.
+
+## Reading the decks
+
+- `text/*.md` is regenerated with `python3 scripts/extract-slides.py source-material/endocrine`.
+  It has slide text, tables, and speaker notes. `[picture]` marks slides whose content is
+  partly or wholly an image (tables, algorithms, diagrams) — render the deck to see those:
+  `soffice --headless --convert-to pdf --outdir <scratch> slides/<deck>.pptx`, then read the pages.
+- Known gaps in the files themselves: Hypoglycemia slide 14 ("Prevention of Hypoglycemia")
+  is blank; Diabetic Pharmacology slide 77 and Parathyroid slides 19 and 100 link to images
+  that are not embedded in the deck.

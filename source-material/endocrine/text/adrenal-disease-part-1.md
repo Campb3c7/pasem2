@@ -8,6 +8,7 @@
 ## Slide 2
 
 - The HPA Axis
+- [picture]
 - The adrenal gland is the target organ of the HPA axis.
   - The hypothalamus produces CRH, corticotropin releasing hormone.
   - CRH stimulates the anterior pituitary to produce ACTH, or adrenocorticotropic hormone.
@@ -16,6 +17,7 @@
 ## Slide 3
 
 - Adrenal Gland
+- [picture]
 - The adrenal cortex: consists of three layers which secrete steroid hormones.  From the outside in, the layers of the adrenal gland synthesize:
   - Mineralocorticoids
   - Glucocorticoids
@@ -27,6 +29,7 @@
 - Roids?
 - When most people think about steroids, they are considering anabolic androgenic steroids, based on testosterone.
 - These drugs are prescribed legitimately for testicular failure and hypotestosteronism, as well as illegally to improve sports performance.
+- [picture]
 - We’ll talk about the legitimate uses for androgenic steroids in GU, for now, we’ll focus on
 - glucocorticoids and mineralocorticoids.
 
@@ -112,6 +115,7 @@
 ## Slide 14
 
 - Adrenal Insufficiency
+- [picture]
 - Adrenal insufficiency is often primary:
 - Adrenal insufficiency may rarely be secondary or tertiary:
 
@@ -156,6 +160,7 @@
 ## Slide 20
 
 - Etiologies of Adrenal Insufficiency
+- [picture]
 - In these persons, the sterol precursors are shunted into an alternate hormone pathway.
 - Congenital causes: Congenital adrenal hyperplasia (CAH): affected individuals lack the enzyme necessary to produce cortisol. 21-hydroxylase deficiency is most common;
 
@@ -163,6 +168,8 @@
 
 - Etiologies of Adrenal Insufficiency
 - Congenital adrenal hyperplasia is very rare and is often recognized in infancy when female children have ambiguous genitalia and virilization at birth.  Or shortly after birth when the child develops hypotension, N/V and other symptoms of adrenal crisis.
+- [picture]
+- [picture]
 - Above: Newborn girl with an enlarged clitoris that resembles a penis and enlarged labia majora that may be mistaken for a scrotum.  Right: 12.4-year-old female with virilization.
 
 ## Slide 22
@@ -201,6 +208,7 @@
 ## Slide 26
 
 - Primary Adrenal Insufficiency
+- [picture]
 
 ## Slide 27
 
@@ -297,6 +305,7 @@
 - Occult malignancy
 - Anorexia nervosa
 - Death by tanning booth
+- [picture]
 
 ## Slide 37
 
@@ -473,6 +482,7 @@
 - Glucocorticoid Excess
   - and symptoms.
 - Patients with a typical appearance of glucocorticoid excess are often referred to as having a “Cushingoid appearance”.
+- [picture]
 - Glucocorticoid excess or Cushing’s syndrome is often suspected on the basis of patient appearance
 
 ## Slide 58
@@ -491,12 +501,14 @@
 
 ## Slide 60
 
+- [picture]
 - 70% of Cushing’s syndrome is due to a benign pituitary adenoma that over-secretes ACTH: this is also known as Cushing’s disease.
 - Excessive ACTH forces the adrenal gland to produce excessive cortisol.
 - What will happen to the rest of the ACTH producing pituitary tissue?
 
 ## Slide 61
 
+- [picture]
 - 15% of Cushing’s syndrome patients have a non-pituitary neoplasm that secretes ACTH as part of a paraneoplastic process.
 - SCLC is well known for this.
 - Carcinoid tumors of the GI system and lung are also likely.
@@ -505,6 +517,7 @@
 
 ## Slide 62
 
+- [picture]
 - 15% are due to excessive adrenal cortisol secretion:
 - Adrenal adenoma
 - Adrenal carcinoma
@@ -514,6 +527,7 @@
 ## Slide 63
 
 - Causes of Cushing’s
+- [picture]
 
 ## Slide 64
 
@@ -532,16 +546,21 @@
 
 ## Slide 66
 
+- [picture]
 
 ## Slide 67
 
+- [picture]
 
 ## Slide 68
 
 - Fragile Skin of Glucocorticoid Excess
+- [picture]
 
 ## Slide 69
 
+- [picture]
+- [picture]
 
 ## Slide 70
 
@@ -639,6 +658,7 @@
 ## Slide 83
 
 - The primary treatment of pituitary adenomas is surgical and is performed by a neurosurgeon skilled in this type of surgery.
+- [picture]
 
 ## Slide 84
 
@@ -651,12 +671,15 @@
 ## Slide 85
 
 - Adrenal adenomas: the most common adrenal source of Cushing’s, laparoscopic adrenal resection, sometimes done open with unilateral or bilateral flank incisions.
+- [picture]
 - Treatment of Cortisol Excess- Adrenal Etiologies
+- [picture]
 
 ## Slide 86
 
 - Treatment of Cortisol Excess- Adrenal Etiologies
 - Adrenal carcinomas are more highly suggested by androgen excess rather than cortisol.  All should be aggressively resected with an open abdominal laparotomy and exploration.
+- [picture]
 
 ## Slide 87
 
@@ -680,6 +703,8 @@
 
 ## Slide 90
 
+- [picture]
+- [picture]
 
 ## Slide 91
 

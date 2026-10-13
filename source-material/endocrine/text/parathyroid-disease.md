@@ -4,9 +4,11 @@
 - Parathyroid Disease
 - Katrina Raaf, MPAS, PA-C
 - Fall 2025
+- [picture]
 
 ## Slide 2
 
+- [picture]
 
 > Notes: Roles of PTH:
 > Activates osteoclasts and causes bone breakdown, which releases calcium into the bloodstream 
@@ -23,6 +25,7 @@
 - the thyroid.
 - Often ectopic (intra-thyroid, carotid sheath, mediastinum) and extra may be present
 - Parathyroid glands produce parathyroid hormone (PTH), which is a major player in the regulation of calcium homeostasis.
+- [picture]
 
 > Notes: https://thyroid.com.au/finding-the-parathyroid-gland/, Accessed 11/24/25
 
@@ -30,6 +33,7 @@
 
 - Calcium in the Body
 - Only 1% of body calcium circulates, yet that fraction drives nerve, muscle, clotting, and cell signaling.
+- [picture]
 - 99% of total body calcium is in the skeleton, which serves as both structural framework and the body’s calcium reservoir.
 - 1% of total calcium is in blood and soft tissue – this is tightly regulated by the parathyroid glands.
   - Half is ionized, or metabolically active.
@@ -71,7 +75,9 @@
 ## Slide 9
 
 - Too little calcium causes the cell membrane to become “twitchy” and easily excitable
+- [picture]
 - Hypocalcemia
+- [picture]
 - Involuntary carpopedal spasm
 
 ## Slide 10
@@ -79,6 +85,7 @@
 - Hallmarks of hypocalcemia include Chvostek and Trosseau sign
 - Hypocalcemia
 - Gently tapping the facial nerve causes twitching of the facial muscles
+- [picture]
 - Involuntary contraction of hand/wrist with inflation of blood pressure cuff
 
 ## Slide 11
@@ -112,6 +119,8 @@
 - Calcium Balance in the Body
 - The bones act as a calcium reservoir for the body, and bone is constantly being turned over.
 - Calcium can be extracted or deposited to keep serum calcium levels constant
+- [picture]
+- [picture]
 
 ## Slide 15
 
@@ -145,6 +154,7 @@
 
 ## Slide 19
 
+- [picture]
 - (vitamin D precursor)
 - 25(OH)D
 - 1,25(OH)2 D
@@ -158,12 +168,14 @@
 
 ## Slide 21
 
+- [picture]
 - Vitamin D
 - In supplements and food, vitamin D is available in two forms: D2 (ergocalciferol) and D3 (cholecalciferol). Both considered equal.
 - Overproduction of di-hydroxy (active form) vitamin D commonly occurs in granulomatous diseases including lymphoma, sarcoidosis, and tuberculosis.
 
 ## Slide 22
 
+- [picture]
 - 1st hydroxylation
 - Active vitamin D
 - 2nd hydroxylation
@@ -186,6 +198,7 @@
 - Positive bone balance (bone formation) is stimulated by exercise and anti-resorptive drugs (bisphosphonates), and conditions that promote bone formation over bone resorption.
 - Negative bone balance (bone loss) is caused by immobilization, weightlessness, and sex steroid deficiency
 - Bone density is assessed                                               using a DEXA scan
+- [picture]
 
 ## Slide 25
 
@@ -233,6 +246,7 @@
 
 ## Slide 30
 
+- [picture]
 
 ## Slide 31
 
@@ -249,6 +263,7 @@
   - Shortening of QT interval
   - Hypertension
   - Bradycardia
+- [picture]
 
 > Notes: Jill’s trick: One more “O” in the cardiac effect for calcium disorders. Hypercalcemia
 
@@ -297,6 +312,7 @@
 
 ## Slide 37
 
+- [picture]
 
 > Notes: After elevated serum calcium, we want to check 1) is it real and 2) why is it happening. Repeat calcium first.
 
@@ -340,6 +356,7 @@
 
 ## Slide 41
 
+- [picture]
 
 ## Slide 42
 
@@ -389,6 +406,9 @@
 ## Slide 45
 
 - Hypocalcemia Treatment
+- [picture]
+- [picture]
+- [picture]
 - Increasing dietary calcium
   - Dairy products: cheese, milk
   - Dark green leafy vegetables: broccoli, kale
@@ -438,6 +458,7 @@
 ## Slide 51
 
 - Classically, primary hyperparathyroidism presents         as stones, bones, groans, and moans
+- [picture]
 
 > Notes: https://www.threads.com/@medico_notes/post/DMVrY3wq6Tg/hyperparathyroidism-remember-it-with-a-smilethis-classic-mnemonic-helps-you-reca, Accessed 11/30/25
 
@@ -453,6 +474,7 @@
 ## Slide 53
 
 - Primary Hyperparathyroidism
+- [picture]
       - The bone is replaced by fibrous cysts resulting in:
       - Bone pain (most common)
       - Osteomalacia: soft bones
@@ -496,12 +518,15 @@
 - Surgery for Primary HPT
 - Thyrotoxicosis (tachycardia, fever, and diaphoresis) is also common due to thyroid manipulation during a parathyroidectomy.
 - Hyperthyroid symptoms are best managed with propranolol
+- [picture]
+- [picture]
 
 > Notes: https://ent-specialist.org/parathyroid-surgery/ Accessed 11/30/25
 > https://www.health.com/thyroid-storm-symptoms-8707002 Accessed 11/30/25
 
 ## Slide 59
 
+- [picture]
 - “Hungry Bones” syndrome
 - “Hungry bones” occurs after parathyroid glands are removed, the bones suddenly soak up so much calcium from the blood that the patient becomes dangerously low in calcium
 - Think of it as “starving bones” grabbing all the Ca they can
@@ -534,6 +559,7 @@
 
 ## Slide 63
 
+- [picture]
 - Hungry Bones Syndrome
 - BEFORE SURGERY
 
@@ -578,6 +604,7 @@
 - Calciphylaxis
 - Calciphylaxis is rare and is usually seen in ESRD patients with either secondary or tertiary HPT.
 - Characterized by ischemic necrosis of the skin due to calcium phosphate crystal deposition and subsequent inflammation in small-to-medium–sized vessels.
+- [picture]
 
 > Notes: https://www.researchgate.net/figure/Clinical-Images-of-a-Patient-with-Calciphylaxis-before-and-6-Months-after-Treatment-with_fig2_326655783, Accessed 11/30/25
 
@@ -626,6 +653,7 @@
 ## Slide 74
 
 - Let’s pause and make sure we understand all of that…
+- [picture]
 
 ## Slide 75
 
@@ -638,6 +666,7 @@
 
 ## Slide 76
 
+- [picture]
 - Excess PTH secretion draws too much calcium from the bones, weakening them.
 - Recall that bones are an immediate ‘bank’ where we can get calcium.
 - Secondary Hyperparathyroidism Effects of CKD on the bones
@@ -756,6 +785,8 @@
 
 ## Slide 88
 
+- [picture]
+- [picture]
 - Post kidney transplant in ESRD patient:
 - PTH levels persist  high Ca and low PO4
 
@@ -788,6 +819,7 @@
 
 ## Slide 92
 
+- [picture]
 
 > Notes: Let’s switch our focus to hypoparathyroidism. We don’t see this often, we are much more likely to see a hyperparathyroidism rather than a hypoparathyroidism.
 
@@ -832,6 +864,7 @@
 - signs of hypocalcemia:
   - Trosseau sign
   - Chvostek sign
+- [picture]
 
 ## Slide 97
 

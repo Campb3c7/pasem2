@@ -34,6 +34,7 @@
 - Hypoaldosteronism
 - We try to prevent this with strict BP and glucose control
 - Once present, hyporeninemic hypoaldosteronism is permanent.
+- [picture]
 - Hyporeninemic hypoaldosteronism is most commonly caused by diabetic nephropathy or chronic tubulointerstitial kidney disease.
 
 ## Slide 7
@@ -103,6 +104,7 @@
 - Most of the symptoms are related to low K+
 - Fatigue, weakness, nocturia, HA
 - If severe, patients may present with polydipsia, polyuria, and paresthesias.
+- [picture]
 - If severe, patients may have intermittent paralysis, tetany, positive Trousseau’s or Chvostek’s sign
 - --Trousseau’s sign- carpal or pedal spasm in response to inflation of a BP cuff on the arm or leg.  Chvostek’s sign- tapping the facial nerve (CN VII) elicits twitching of the face.  These signs are more commonly seen in hypocalcemia but may be present in hypokalemia.
 
@@ -326,6 +328,7 @@
 
 ## Slide 42
 
+- [picture]
 
 ## Slide 43
 
@@ -373,6 +376,7 @@
 - MEN1 Manifestations
 - Parathyroid adenoma resulting in primary hyperparathyroidism, affects almost all patients with MEN1 and is usually the first tumor to occur.
 - Anterior pituitary tumors, may be non-functional, if functional, usually prolactinoma.
+- [picture]
 - Enteropancreatic tumors (most commonly gastrinomas, insulinomas) and less commonly tumors of the skin, adrenal glands or carcinoid tumors
 
 ## Slide 49
@@ -380,6 +384,7 @@
 - MEN2 Syndromes
 - Persons with any of the MEN2 syndromes have a 95% chance of medullary thyroid cancer.
 - They also have a 50% chance of developing pheochromocytoma, but it is rarely malignant.
+- [picture]
 - MEN2 is divided into 3 types- MEN2A, MEN2B and FMTC (familial medullary thyroid CA)
     - Multiple other endocrine abnormalities distinguish each type of MEN2.
 

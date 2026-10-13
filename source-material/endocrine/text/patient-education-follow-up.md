@@ -22,6 +22,7 @@
 
 ## Slide 4
 
+- [picture]
 - “Patient education is a process by which health professionals impart information to patients and their caregivers to improve health status and encourages involvement in decision making related to ongoing care and treatment.”
 - -Fereidouni et al, 2019
 - Patient education should be included in every visit, every time.
@@ -44,6 +45,7 @@
 
 ## Slide 6
 
+- [picture]
 - https://www.cdc.gov/chronicdisease/resources/infographic/chronic-diseases.htm
 
 ## Slide 7
