@@ -26,6 +26,7 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 | Lecture | Diseases section |
 |---|---|
 | Adrenal Disease | Done: 11 diseases, 152 questions (awaiting user review) |
+| Pituitary Diseases | Done: 15 diseases, 136 questions (awaiting user review) |
 
 ## Decks received
 
