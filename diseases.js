@@ -1,17 +1,17 @@
 (function () {
   "use strict";
 
-  var lectures = (window.DISEASES && window.DISEASES.lectures) || [];
-  var launch = document.getElementById("diseases-launch");
-  var view = document.getElementById("diseases-view");
-  var content = document.getElementById("diseases-content");
-  var hero = document.querySelector(".hero");
-  var workspace = document.querySelector(".workspace");
+  // One Diseases tool per course. Each instance owns its own view, data, and
+  // progress key; every lookup is scoped to its own content container so two
+  // instances can coexist in the page.
+  function createDiseasesTool(config) {
+  var lectures = (config.data && config.data.lectures) || [];
+  var launch = document.getElementById(config.launchId);
+  var view = document.getElementById(config.viewId);
+  var content = document.getElementById(config.contentId);
   var studyView = document.getElementById("study-view");
-  var walkthroughView = document.getElementById("walkthrough-view");
-  var drillView = document.getElementById("diagnosis-drill-view");
-  var geographyView = document.getElementById("geography-view");
-  var progressKey = "pasem2:diseases:progress";
+  var progressKey = config.progressKey;
+  if (!launch || !view || !content) return;
 
   var currentMode = "information";
   // Information sub-state
@@ -22,6 +22,7 @@
   var practiceFilter = "all"; // "all" | "new"
   var practiceState = null;
 
+  function byId(id) { return content.querySelector("#" + id); }
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (character) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[character];
@@ -93,8 +94,8 @@
 
   // ---- open / close ---------------------------------------------------------
   function open() {
-    hero.hidden = true; workspace.hidden = true; studyView.hidden = true;
-    walkthroughView.hidden = true; drillView.hidden = true; geographyView.hidden = true;
+    studyView.hidden = true;
+    document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
     view.hidden = false;
     currentMode = "information"; infoLecture = null; infoDisease = null;
     practiceScope = null; practiceState = null;
@@ -103,6 +104,7 @@
   }
   function close() {
     view.hidden = true; studyView.hidden = false;
+    content.innerHTML = ""; practiceState = null;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -115,9 +117,9 @@
     ];
     var totalDiseases = lectures.reduce(function (sum, lecture) { return sum + (lecture.diseases || []).length; }, 0);
     content.innerHTML =
-      '<div class="diseases-heading"><p class="eyebrow">Comprehensive disease review</p><h2>Diseases</h2><p>Every disease you need to identify, diagnose, and treat -- organized lecture by lecture, tracked disease by disease. Separate from Disease Walkthrough: this is depth on one disease at a time, not a diagnostic mystery.</p>' +
-      '<span class="diseases-count-pill">' + totalDiseases + ' diseases across ' + lectures.length + ' lectures</span>' +
-      '<p class="diseases-note">Only 9 of the 12 infectious disease lectures appear here. Vaccines, Infectious Disease Pharmacology, and Infectious Disease Labs don\'t teach diseases to diagnose and treat -- they cover vaccine science, drug classes, and lab methodology instead, and already live elsewhere on the site (Vaccines has its own Learn/Test/Apply lecture; Pharmacology content feeds the treatment questions on diseases here; Labs content maps to Diagnosis Drills).</p></div>' +
+      '<div class="diseases-heading"><p class="eyebrow">' + escapeHtml(config.eyebrow) + '</p><h2>Diseases</h2><p>' + escapeHtml(config.intro) + '</p>' +
+      '<span class="diseases-count-pill">' + totalDiseases + (totalDiseases === 1 ? ' disease' : ' diseases') + ' across ' + lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures') + '</span>' +
+      (config.note ? '<p class="diseases-note">' + escapeHtml(config.note) + '</p>' : '') + '</div>' +
       '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
         return '<button type="button" class="mode-tab ' + (mode.id === currentMode ? "active" : "") + '" data-diseases-mode="' + mode.id + '">' + mode.label + '</button>';
       }).join("") + '</div><div id="diseases-mode-content"></div>';
@@ -131,7 +133,7 @@
     });
     renderModeContent();
   }
-  function modeHost() { return document.getElementById("diseases-mode-content"); }
+  function modeHost() { return byId("diseases-mode-content"); }
   function renderModeContent() {
     if (currentMode === "progress") { renderProgress(); return; }
     if (currentMode === "practice") { renderPracticeHome(); return; }
@@ -185,7 +187,7 @@
     });
     html += '</div>';
     modeHost().innerHTML = html;
-    document.getElementById("info-to-lectures").addEventListener("click", function () { infoLecture = null; renderRoot(); });
+    byId("info-to-lectures").addEventListener("click", function () { infoLecture = null; renderRoot(); });
     modeHost().querySelectorAll("[data-disease]").forEach(function (button) {
       button.addEventListener("click", function () {
         infoDisease = (lecture.diseases || []).find(function (disease) { return disease.id === button.dataset.disease; });
@@ -214,9 +216,9 @@
     }
     html += '</div></article>';
     modeHost().innerHTML = html;
-    document.getElementById("info-to-lecture").addEventListener("click", function () { infoDisease = null; renderRoot(); });
-    if (document.getElementById("disease-practice-start")) {
-      document.getElementById("disease-practice-start").addEventListener("click", function () {
+    byId("info-to-lecture").addEventListener("click", function () { infoDisease = null; renderRoot(); });
+    if (byId("disease-practice-start")) {
+      byId("disease-practice-start").addEventListener("click", function () {
         startPracticeForDiseases([disease], disease.name, null);
       });
     }
@@ -251,8 +253,8 @@
     });
     html += '</div>';
     modeHost().innerHTML = html;
-    if (document.getElementById("progress-reset-all")) {
-      document.getElementById("progress-reset-all").addEventListener("click", function () {
+    if (byId("progress-reset-all")) {
+      byId("progress-reset-all").addEventListener("click", function () {
         if (!window.confirm("Reset ALL Diseases progress? This clears every mastered question across every lecture.")) return;
         resetEverything(); renderRoot();
       });
@@ -296,12 +298,12 @@
     html += '<button type="button" class="secondary-action" id="practice-selected-lectures">Practice selected lectures →</button></div>';
     html += '<p class="practice-picker-label">Or practice a single disease from the Information tab -- open any disease and use its "Practice" button.</p>';
     modeHost().innerHTML = html;
-    document.getElementById("practice-everything").addEventListener("click", function () {
+    byId("practice-everything").addEventListener("click", function () {
       var diseases = [];
       lecturesWithQuestions.forEach(function (lecture) { diseases = diseases.concat(lecture.diseases || []); });
       askFilterThenStart(diseases, "Everything");
     });
-    document.getElementById("practice-selected-lectures").addEventListener("click", function () {
+    byId("practice-selected-lectures").addEventListener("click", function () {
       var checked = Array.prototype.slice.call(modeHost().querySelectorAll(".practice-lecture-check:checked")).map(function (box) { return box.value; });
       if (!checked.length) { window.alert("Select at least one lecture first."); return; }
       var chosen = lectures.filter(function (lecture) { return checked.indexOf(lecture.id) !== -1; });
@@ -323,9 +325,9 @@
       '<button type="button" class="disease-lecture-card" id="practice-filter-new"' + (newQuestions ? "" : " disabled") + '><strong>New only</strong><span class="disease-lecture-meta">' + newQuestions + ' cards you haven\'t gotten right yet</span></button>' +
       '</div><button type="button" class="secondary-action" id="practice-filter-back">← Back</button>';
     modeHost().innerHTML = html;
-    document.getElementById("practice-filter-all").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "all"); });
-    if (newQuestions) document.getElementById("practice-filter-new").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "new"); });
-    document.getElementById("practice-filter-back").addEventListener("click", renderPracticeHome);
+    byId("practice-filter-all").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "all"); });
+    if (newQuestions) byId("practice-filter-new").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "new"); });
+    byId("practice-filter-back").addEventListener("click", renderPracticeHome);
   }
   function startPracticeForDiseases(diseases, label, filter) {
     if (!filter) { askFilterThenStart(diseases, label); return; }
@@ -390,9 +392,9 @@
       '</div><div class="explanation" id="practice-explanation" hidden><strong>Explanation</strong><p></p></div><div id="practice-linked-info"></div></article>' +
       '<button class="primary-action full-action" id="practice-next" type="button" hidden>' + (state.position + 1 === state.queue.length ? "See results" : "Next →") + '</button>';
     modeHost().innerHTML = html;
-    document.getElementById("practice-exit").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
+    byId("practice-exit").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
     modeHost().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerPractice(Number(button.dataset.choice)); }); });
-    document.getElementById("practice-next").addEventListener("click", function () { state.position += 1; renderPracticeQuestion(); });
+    byId("practice-next").addEventListener("click", function () { state.position += 1; renderPracticeQuestion(); });
     holdScrollIntoView(modeHost(), 350, "start");
   }
   function answerPractice(selected) {
@@ -401,7 +403,7 @@
       button.disabled = true; var choice = Number(button.dataset.choice);
       if (choice === correct) button.classList.add("correct"); else if (choice === selected) button.classList.add("wrong"); else button.classList.add("dimmed");
     });
-    var explanationBox = document.getElementById("practice-explanation");
+    var explanationBox = byId("practice-explanation");
     explanationBox.hidden = false;
     explanationBox.querySelector("p").textContent = card.question.explanation || "";
     if (selected === correct) {
@@ -411,10 +413,10 @@
       state.missed.push(card);
       var section = (card.disease.sections || []).find(function (candidate) { return candidate.id === card.question.section; });
       if (section) {
-        document.getElementById("practice-linked-info").innerHTML = '<article class="learn-card immersive-card"><div class="card-number">↩ Review · ' + escapeHtml(card.disease.name) + '<span>' + escapeHtml(section.title) + '</span></div><div class="learn-body">' + section.html + '</div></article>';
+        byId("practice-linked-info").innerHTML = '<article class="learn-card immersive-card"><div class="card-number">↩ Review · ' + escapeHtml(card.disease.name) + '<span>' + escapeHtml(section.title) + '</span></div><div class="learn-body">' + section.html + '</div></article>';
       }
     }
-    document.getElementById("practice-next").hidden = false;
+    byId("practice-next").hidden = false;
     holdScrollIntoView(explanationBox, 350);
   }
   function renderPracticeComplete() {
@@ -424,15 +426,36 @@
       (state.missed.length ? '<button class="primary-action" id="practice-redo-missed" type="button">Redo ' + state.missed.length + ' missed →</button>' : "") +
       '<button class="secondary-action" id="practice-home" type="button">Practice home</button></div></section>';
     modeHost().innerHTML = html;
-    if (document.getElementById("practice-redo-missed")) {
-      document.getElementById("practice-redo-missed").addEventListener("click", function () {
+    if (byId("practice-redo-missed")) {
+      byId("practice-redo-missed").addEventListener("click", function () {
         practiceState = { label: state.label + " · missed", filter: state.filter, queue: state.missed.map(function (card) { return presentCard({ disease: card.disease, question: card.question }); }), position: 0, correctCount: 0, missed: [] };
         renderPracticeQuestion();
       });
     }
-    document.getElementById("practice-home").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
+    byId("practice-home").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
   }
 
   launch.addEventListener("click", open);
-  document.getElementById("diseases-back").addEventListener("click", close);
+  document.getElementById(config.backId).addEventListener("click", close);
+  }
+
+  var intro = "Every disease you need to identify, diagnose, and treat -- organized lecture by lecture, tracked disease by disease. Separate from Disease Walkthrough: this is depth on one disease at a time, not a diagnostic mystery.";
+
+  createDiseasesTool({
+    data: window.DISEASES,
+    launchId: "diseases-launch", viewId: "diseases-view", contentId: "diseases-content", backId: "diseases-back",
+    progressKey: "pasem2:diseases:progress",
+    eyebrow: "Infectious Disease · comprehensive disease review",
+    intro: intro,
+    note: "Only 9 of the 12 infectious disease lectures appear here. Vaccines, Infectious Disease Pharmacology, and Infectious Disease Labs don't teach diseases to diagnose and treat -- they cover vaccine science, drug classes, and lab methodology instead, and already live elsewhere on the site (Vaccines has its own Learn/Test/Apply lecture; Pharmacology content feeds the treatment questions on diseases here; Labs content maps to Diagnosis Drills)."
+  });
+
+  createDiseasesTool({
+    data: window.ENDOCRINE_DISEASES,
+    launchId: "endocrine-diseases-launch", viewId: "endocrine-diseases-view", contentId: "endocrine-diseases-content", backId: "endocrine-diseases-back",
+    progressKey: "pasem2:diseases:endocrine:progress",
+    eyebrow: "Endocrine · comprehensive disease review",
+    intro: "Every endocrine disease you need to identify, work up, and treat -- organized lecture by lecture, tracked disease by disease. Drugs from Diabetic and Thyroid Pharmacology appear in the treatment sections of the diseases they treat.",
+    note: "Lectures are added one at a time. Endocrinology Anatomy and Patient Education & Follow-Up teach no diseases of their own, so they will not appear here."
+  });
 }());

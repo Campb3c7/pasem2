@@ -21,6 +21,12 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 - Build one lecture at a time; the user reviews each before the next.
 - Wait until all decks are uploaded before starting disease content.
 
+## Progress
+
+| Lecture | Diseases section |
+|---|---|
+| Adrenal Disease | Done: 11 diseases, 152 questions (awaiting user review) |
+
 ## Decks received
 
 | Lecture | File(s) |

@@ -66,6 +66,16 @@
           </button>
         </div>
       </div>
+      <div class="course-tools" data-course-tools="endocrine" hidden>
+        <p class="eyebrow">Endocrine tools</p>
+        <div class="course-tools-grid">
+          <button class="walkthrough-launch diseases-launch" id="endocrine-diseases-launch" type="button">
+            <span class="walkthrough-launch-icon">✚</span>
+            <span><strong>Diseases</strong><small>Every endocrine disease, lecture by lecture, with dedicated practice questions and per-disease progress</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
       <div id="study-content"></div>
     </section>
 
@@ -88,6 +98,11 @@
       <button class="back-button" id="diseases-back" type="button">← Infectious Disease</button>
       <div id="diseases-content"></div>
     </section>
+
+    <section id="endocrine-diseases-view" class="walkthrough-view diseases-view" hidden>
+      <button class="back-button" id="endocrine-diseases-back" type="button">← Endocrine</button>
+      <div id="endocrine-diseases-content"></div>
+    </section>
   </main>
 
   <footer><span>PA Semester 2</span><span>Progress saves on this device.</span></footer>
@@ -103,6 +118,7 @@
   <script src="data/germs-and-worms.js"></script>
   <script src="data/infectious-disease-labs.js"></script>
   <script src="data/hiv-aids.js"></script>
+  <script src="data/disease-helpers.js"></script>
   <script src="data/diseases.js"></script>
   <script src="data/heent-history-physical.js"></script>
   <script src="data/heent-anatomy-physiology.js"></script>
@@ -137,6 +153,7 @@
   <script src="data/thyroid-disease.js"></script>
   <script src="data/thyroid-pharmacology.js"></script>
   <script src="data/patient-education-follow-up.js"></script>
+  <script src="data/diseases-endocrine.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
   <script src="walkthrough.js"></script>
