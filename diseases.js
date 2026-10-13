@@ -21,6 +21,7 @@
   var practiceScope = null; // { label, lectureIds: [] } or { label, diseaseIds: [ids] }
   var practiceFilter = "all"; // "all" | "new"
   var practiceState = null;
+  var practiceOrigin = null; // { lecture, disease } when practice started from a disease's Information page
 
   function byId(id) { return content.querySelector("#" + id); }
   function escapeHtml(value) {
@@ -98,7 +99,7 @@
     document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
     view.hidden = false;
     currentMode = "information"; infoLecture = null; infoDisease = null;
-    practiceScope = null; practiceState = null;
+    practiceScope = null; practiceState = null; practiceOrigin = null;
     renderRoot();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -219,6 +220,7 @@
     byId("info-to-lecture").addEventListener("click", function () { infoDisease = null; renderRoot(); });
     if (byId("disease-practice-start")) {
       byId("disease-practice-start").addEventListener("click", function () {
+        practiceOrigin = { lecture: lecture, disease: disease };
         startPracticeForDiseases([disease], disease.name, null);
       });
     }
@@ -280,6 +282,7 @@
   // PRACTICE -- scope picker -> filter -> interleaved card session
   // ============================================================================
   function renderPracticeHome() {
+    practiceOrigin = null;
     var progress = loadProgress();
     var lecturesWithQuestions = lectures.filter(function (lecture) { return lectureStats(progress, lecture).totalQuestions > 0; });
     if (!lecturesWithQuestions.length) {
@@ -313,6 +316,27 @@
       askFilterThenStart(diseases, label);
     });
   }
+  function backToOriginLecture() {
+    var origin = practiceOrigin;
+    practiceState = null; practiceOrigin = null;
+    currentMode = "information"; infoLecture = origin.lecture; infoDisease = null;
+    renderRoot(); holdScrollIntoView(modeHost(), 350, "start");
+  }
+  function openDiseaseInfo(lecture, disease) {
+    practiceState = null; practiceOrigin = null;
+    currentMode = "information"; infoLecture = lecture; infoDisease = disease;
+    renderRoot(); holdScrollIntoView(modeHost(), 350, "start");
+  }
+  function nextDiseaseInOrigin() {
+    if (!practiceOrigin) return null;
+    var list = practiceOrigin.lecture.diseases || [];
+    var index = list.indexOf(practiceOrigin.disease);
+    return index >= 0 && index + 1 < list.length ? list[index + 1] : null;
+  }
+  function leavePractice() {
+    if (practiceOrigin) { openDiseaseInfo(practiceOrigin.lecture, practiceOrigin.disease); return; }
+    practiceState = null; renderPracticeHome();
+  }
   function askFilterThenStart(diseases, label) {
     var progress = loadProgress();
     var totalQuestions = diseases.reduce(function (sum, disease) { return sum + (disease.questions || []).length; }, 0);
@@ -327,7 +351,7 @@
     modeHost().innerHTML = html;
     byId("practice-filter-all").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "all"); });
     if (newQuestions) byId("practice-filter-new").addEventListener("click", function () { startPracticeForDiseases(diseases, label, "new"); });
-    byId("practice-filter-back").addEventListener("click", renderPracticeHome);
+    byId("practice-filter-back").addEventListener("click", leavePractice);
   }
   function startPracticeForDiseases(diseases, label, filter) {
     if (!filter) { askFilterThenStart(diseases, label); return; }
@@ -380,7 +404,7 @@
   function practiceSessionHeader(detail) {
     var state = practiceState;
     var percent = state.queue.length ? Math.round(state.position / state.queue.length * 100) : 0;
-    return '<div class="session-top"><button type="button" id="practice-exit">← Practice</button><span>' + escapeHtml(state.label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div><div class="session-counter">' + escapeHtml(detail) + '</div>';
+    return '<div class="session-top"><button type="button" id="practice-exit">← ' + escapeHtml(practiceOrigin ? practiceOrigin.disease.name : "Practice") + '</button><span>' + escapeHtml(state.label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div><div class="session-counter">' + escapeHtml(detail) + '</div>';
   }
   function renderPracticeQuestion() {
     var state = practiceState;
@@ -392,7 +416,7 @@
       '</div><div class="explanation" id="practice-explanation" hidden><strong>Explanation</strong><p></p></div><div id="practice-linked-info"></div></article>' +
       '<button class="primary-action full-action" id="practice-next" type="button" hidden>' + (state.position + 1 === state.queue.length ? "See results" : "Next →") + '</button>';
     modeHost().innerHTML = html;
-    byId("practice-exit").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
+    byId("practice-exit").addEventListener("click", leavePractice);
     modeHost().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerPractice(Number(button.dataset.choice)); }); });
     byId("practice-next").addEventListener("click", function () { state.position += 1; renderPracticeQuestion(); });
     holdScrollIntoView(modeHost(), 350, "start");
@@ -424,6 +448,8 @@
     var percent = state.queue.length ? Math.round(state.correctCount / state.queue.length * 100) : 0;
     var html = '<section class="complete-panel"><span class="complete-icon">' + (percent >= 80 ? "🎯" : "📚") + '</span><p class="eyebrow">Practice complete</p><h3>' + escapeHtml(state.label) + '</h3><p>' + state.correctCount + ' of ' + state.queue.length + ' correct · ' + percent + '%</p><div class="score-grid"><span><strong>' + state.correctCount + '</strong>Correct</span><span><strong>' + (state.queue.length - state.correctCount) + '</strong>Missed</span></div><div class="session-actions">' +
       (state.missed.length ? '<button class="primary-action" id="practice-redo-missed" type="button">Redo ' + state.missed.length + ' missed →</button>' : "") +
+      (practiceOrigin ? '<button class="secondary-action" id="practice-back-lecture" type="button">← Back to ' + escapeHtml(practiceOrigin.lecture.title) + '</button>' : "") +
+      (nextDiseaseInOrigin() ? '<button class="secondary-action" id="practice-next-disease" type="button">Next: ' + escapeHtml(nextDiseaseInOrigin().name) + ' →</button>' : "") +
       '<button class="secondary-action" id="practice-home" type="button">Practice home</button></div></section>';
     modeHost().innerHTML = html;
     if (byId("practice-redo-missed")) {
@@ -433,6 +459,11 @@
       });
     }
     byId("practice-home").addEventListener("click", function () { practiceState = null; renderPracticeHome(); });
+    if (byId("practice-back-lecture")) byId("practice-back-lecture").addEventListener("click", backToOriginLecture);
+    if (byId("practice-next-disease")) {
+      var nextDisease = nextDiseaseInOrigin();
+      byId("practice-next-disease").addEventListener("click", function () { openDiseaseInfo(practiceOrigin.lecture, nextDisease); });
+    }
   }
 
   launch.addEventListener("click", open);
@@ -456,6 +487,6 @@
     progressKey: "pasem2:diseases:endocrine:progress",
     eyebrow: "Endocrine · comprehensive disease review",
     intro: "Every endocrine disease you need to identify, work up, and treat -- organized lecture by lecture, tracked disease by disease. Drugs from Diabetic and Thyroid Pharmacology appear in the treatment sections of the diseases they treat.",
-    note: "Lectures are added one at a time. Endocrinology Anatomy and Patient Education & Follow-Up teach no diseases of their own, so they will not appear here."
+    note: "Endocrinology Anatomy, Diabetic Pharmacology, Thyroid Pharmacology, and Patient Education & Follow-Up teach no diseases of their own, so they don't appear as lectures here -- the pharmacology lives in each disease's treatment section."
   });
 }());
