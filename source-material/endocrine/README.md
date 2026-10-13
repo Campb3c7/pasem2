@@ -34,7 +34,7 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 | Paget's Disease | Done: 1 disease, 39 questions |
 | Parathyroid Disease | Done: 10 diseases, 102 questions |
 | Pituitary Diseases | Done: 15 diseases, 136 questions |
-| Thyroid Disease | Full source context archived; no study-tool changes |
+| Thyroid Disease | Done: 25 diseases, 205 questions (includes Thyroid Pharmacology drugs) |
 
 All awaiting user review. Endocrinology Anatomy, Diabetic Pharmacology, Thyroid Pharmacology, and
 Patient Education & Follow-Up get no entries of their own.
