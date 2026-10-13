@@ -27,6 +27,8 @@ jobs:
         run: |
           mkdir _site
           cp -r $(ls -A | grep -vxE '\.git|\.github|source-material|_site') _site/
+      - name: Version script and stylesheet URLs so browsers fetch fresh code after each deploy
+        run: sed -i -E "s#(src|href)=\"([^\":]+\.(js|css))\"#\1=\"\2?v=${GITHUB_SHA::8}\"#g" _site/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
