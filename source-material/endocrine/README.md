@@ -34,7 +34,7 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 | Paget's Disease | Done: 1 disease, 39 questions |
 | Parathyroid Disease | Done: 10 diseases, 102 questions |
 | Pituitary Diseases | Done: 15 diseases, 136 questions |
-| Thyroid Disease | Waiting on source material from the user |
+| Thyroid Disease | Full source context archived; no study-tool changes |
 
 All awaiting user review. Endocrinology Anatomy, Diabetic Pharmacology, Thyroid Pharmacology, and
 Patient Education & Follow-Up get no entries of their own.
@@ -53,15 +53,10 @@ Patient Education & Follow-Up get no entries of their own.
 | Patient Education & Follow-Up | `patient-education-follow-up` |
 | Endocrinology Anatomy | `endocrine-anatomy` |
 | Pituitary Diseases | `pituitary-diseases` |
-| Thyroid Disease | `documents/thyroid-disease-supplemental-worksheet.docx` only (blank comparison-table template; text in `text/thyroid-disease-supplemental-worksheet.md`) |
+| Thyroid Disease | `text/thyroid-disease.md`, original embedded assets, and supplemental worksheet |
+| Thyroid Pharmacology | `text/thyroid-pharmacology.md` and original embedded assets |
 
-Thyroid Disease and Thyroid Pharmacology decks are too large to upload. For those two
-lectures the sources are the objectives, the worksheet (its columns show how the lecture
-splits the diseases: hypothyroid — primary overt/Hashimoto's, subclinical, central,
-myxedema coma, congenital; hyperthyroid — Graves', toxic MNG, subclinical, thyroid storm,
-central; thyroiditis — painless, postpartum, subacute, infectious; malignancy — papillary,
-follicular, anaplastic, medullary, lymphoma), and the existing `data/thyroid-disease.js` /
-`data/thyroid-pharmacology.js`, which were built from the slides and cite slide numbers.
+The complete thyroid lecture context is archived in [THYROID-CONTEXT.md](THYROID-CONTEXT.md), with all slide text and separate original-quality embedded visuals. The oversized PowerPoints are not committed. This archive is reference-only; use it as source context in future chats. No thyroid study-tool entries were added.
 
 ## Reading the decks
 
@@ -72,3 +67,4 @@ follicular, anaplastic, medullary, lymphoma), and the existing `data/thyroid-dis
 - Known gaps in the files themselves: Hypoglycemia slide 14 ("Prevention of Hypoglycemia")
   is blank; Diabetic Pharmacology slide 77 and Parathyroid slides 19 and 100 link to images
   that are not embedded in the deck.
+

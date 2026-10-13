@@ -1,0 +1,268 @@
+{
+  "source": "Thyroid disease - students 2026.pptx",
+  "source_sha256": "b15509c1f721a91b53d102c977edc681c2cc70d253381f8d7e9814393f08aa2e",
+  "counts": {
+    "slides": 182,
+    "text_blocks": 347,
+    "tables": 0,
+    "pictures": 46,
+    "notes": 0
+  },
+  "media": [
+    {
+      "file": "image44.png",
+      "bytes": 455717,
+      "sha256": "fd42557d8d4739cfd3bedb5adac753a8334eea95a534cdc7515e5d5f66c099f9"
+    },
+    {
+      "file": "image46.png",
+      "bytes": 983121,
+      "sha256": "0ab24c73fed8100bb9be8b75f1baf0d1fdadcb29dfe05e3bfb3781533122715c"
+    },
+    {
+      "file": "image48.png",
+      "bytes": 1314743,
+      "sha256": "70319383e27268f74b1afbb9816ddba25030780226165393d87c4101920afee9"
+    },
+    {
+      "file": "image1.png",
+      "bytes": 2172,
+      "sha256": "29348b9908154988e81adcbeadab6e94136f2c00340ccc21049a716da429dac9"
+    },
+    {
+      "file": "image2.png",
+      "bytes": 714527,
+      "sha256": "d7bfb415b4a1e702070e873b7168e928b17a85493ae2f06024f91f93cfed622f"
+    },
+    {
+      "file": "image3.svg",
+      "bytes": 2812,
+      "sha256": "28249c3109b9b65b983ce43e31c0aee83c9286191e7fa4732364160df6e2b4d5"
+    },
+    {
+      "file": "image4.svg",
+      "bytes": 2987,
+      "sha256": "f7f934fb3238583a1ad6872095d121f8621014d113878ccfc75e717b72fbc761"
+    },
+    {
+      "file": "image5.png",
+      "bytes": 185330,
+      "sha256": "fd904b4f4fd97a3db13ad95d10455478b816d60031bd345ef55986cc97718a39"
+    },
+    {
+      "file": "image6.png",
+      "bytes": 1429400,
+      "sha256": "12673f3f2faa3e15b5883f930d60369cd27faa55b5195034523a8332614530d4"
+    },
+    {
+      "file": "image7.png",
+      "bytes": 532570,
+      "sha256": "5eb546dd173e26845fcc5d33b9797352f64d43c42906c37a9a1b64982e583acc"
+    },
+    {
+      "file": "image8.png",
+      "bytes": 13567,
+      "sha256": "be081793acaa052ac87c27954cedd65fe2e7a334f06488d0a26ae3d67eec13c6"
+    },
+    {
+      "file": "image9.png",
+      "bytes": 26329,
+      "sha256": "774ff4cf84cdac1cdc184eff3c73ef0135e9547a44a4df5e6e031f015dc09a2a"
+    },
+    {
+      "file": "image10.png",
+      "bytes": 164032,
+      "sha256": "2ae285a0601c37183180475ba48a0714f7c1651122108fff8ce49eb114d051cf"
+    },
+    {
+      "file": "image11.jpeg",
+      "bytes": 17601,
+      "sha256": "8fd260778b7b30a47c0fc449474ca7871c488502c973a8386df4690e4e6387bd"
+    },
+    {
+      "file": "image12.png",
+      "bytes": 882604,
+      "sha256": "d1b045ff7ecce8b5e5ca9c3eaac68f1a9f5038e38667f4888b359f90b9c42e50"
+    },
+    {
+      "file": "image13.jpeg",
+      "bytes": 56773,
+      "sha256": "3033181127105202bb8d7855ea57c34f3c831669ba89b2670a17b833895d7064"
+    },
+    {
+      "file": "image14.jpg",
+      "bytes": 871502,
+      "sha256": "7768468995c226f4d11f1bc32e2cd80ce25ed4a9dc78c5717fe556b655fbc75a"
+    },
+    {
+      "file": "image15.jpeg",
+      "bytes": 138524,
+      "sha256": "4fc035c6a82857bf90f61d7d5370494eb12dfa6e3c1a2ee64027d3e2a6d1fb54"
+    },
+    {
+      "file": "image16.tiff",
+      "bytes": 387350,
+      "sha256": "598ccd0a3d0772d5e7c6b131ce3c894e2d0032c2e38a0b65cad92de1ad979580"
+    },
+    {
+      "file": "image17.png",
+      "bytes": 95403,
+      "sha256": "416e5997826d33b66d67a8bd49e8fb7d1bc1bc5abc540825ed07358ecc846f75"
+    },
+    {
+      "file": "image18.jpeg",
+      "bytes": 237890,
+      "sha256": "ada1514b5af2f43e8e2b6625b0277d55705e0d71fce3f136f34a01d5543cedba"
+    },
+    {
+      "file": "image19.png",
+      "bytes": 138631,
+      "sha256": "8b9f046af9ace8d62fcecf62e27118061c3a4ef628d935b9166801e77f61ea73"
+    },
+    {
+      "file": "image45.png",
+      "bytes": 39839,
+      "sha256": "1fc84dd6b38d6d96692e716515a6f0a4d740b93228b0c0a4110c88afee4974cb"
+    },
+    {
+      "file": "image20.png",
+      "bytes": 1789520,
+      "sha256": "f538ef543e6d3dc4acdd619041ec81332d76d232faa54916e81cc6f8bcc2d509"
+    },
+    {
+      "file": "image21.png",
+      "bytes": 46286,
+      "sha256": "3cb021a91f166ccf61b36258b4ec8e6a4ffae3c63753d3f1b48f2b68a2ca38e9"
+    },
+    {
+      "file": "image22.png",
+      "bytes": 513090,
+      "sha256": "4912dcc4388663e0d3ab662dd949dc60caec1012514ef96e79a0a8aabd717657"
+    },
+    {
+      "file": "image23.svg",
+      "bytes": 429,
+      "sha256": "9ea92c3ed32483b222b4051183bc15c400c038eae7165ff123b533930b074461"
+    },
+    {
+      "file": "image24.svg",
+      "bytes": 2396,
+      "sha256": "92962324e0d12bdc0f5db9352eb0e5b78f49be81391a7539d452d1353ae6d482"
+    },
+    {
+      "file": "image25.svg",
+      "bytes": 697,
+      "sha256": "7bfc5ef8e6fbe71262dbd31575d0f71f9b7ad27b7881dfeee8fb9146c0090376"
+    },
+    {
+      "file": "image26.svg",
+      "bytes": 713,
+      "sha256": "fd79647dded24e0bdae51a87d922895babe6654a53728edb9b32efbc7e3e7a9f"
+    },
+    {
+      "file": "image27.png",
+      "bytes": 750416,
+      "sha256": "285cc952b062cf2ed7185d10af33e9c10d4e33fe10687a2e6cc4eb8f8422bb83"
+    },
+    {
+      "file": "image28.png",
+      "bytes": 442267,
+      "sha256": "3b518f7458f985949c345b386504bc237820aa6b1af31d956d71e1f5048d83c2"
+    },
+    {
+      "file": "image29.png",
+      "bytes": 451218,
+      "sha256": "9723359dd432bb6d9ee946f083480ffc28e1ac425a2984cfa07f2a727cdc57c4"
+    },
+    {
+      "file": "image30.gif",
+      "bytes": 1627089,
+      "sha256": "ee4239a22ed56d3d8fa8abdde6d2d62b65b82aee04d829895953217a7fce7d4f"
+    },
+    {
+      "file": "image31.png",
+      "bytes": 47581,
+      "sha256": "1ea6b13ab419c66b5e2613362d44db7ca18de9dbca1a9e93fb640a912fed501d"
+    },
+    {
+      "file": "image32.png",
+      "bytes": 27194,
+      "sha256": "fcd9954be1f21d12681e22c1f0706102dede6efb597a16428c7b66f411cce3b1"
+    },
+    {
+      "file": "image33.png",
+      "bytes": 33880,
+      "sha256": "34dee0de75c212937e57e0705c56412cc6f56b872a630a6f1b8f3b91609b3acb"
+    },
+    {
+      "file": "image34.svg",
+      "bytes": 259,
+      "sha256": "02c17fd6d4a99f1eceb2a0182111b1c538fb6f4c9d662c040344df356439e7e8"
+    },
+    {
+      "file": "image35.svg",
+      "bytes": 368,
+      "sha256": "d1805aea62eee8459244825b550dbb5907abf25c637295640e6ec1ec4971bf61"
+    },
+    {
+      "file": "image36.png",
+      "bytes": 2308,
+      "sha256": "dd7ba499eaed4a45551974aa9384b3837e1fd43bf431d173fe3868ac67ade4b0"
+    },
+    {
+      "file": "image37.png",
+      "bytes": 119484,
+      "sha256": "33ec1f1bc4abbc117fe95beb79737c033cc866f17cc57dcc9bd69132445b53f1"
+    },
+    {
+      "file": "image38.jpeg",
+      "bytes": 46112,
+      "sha256": "8c505e29cf698eea81f73ffd3758a1a21c40f3fe11ff1281b7a5505ca206fc85"
+    },
+    {
+      "file": "image39.png",
+      "bytes": 48316,
+      "sha256": "c34f49382f49fa94875c359ab4860ec58b03bdba0f659e494ddbd51b9f317ea3"
+    },
+    {
+      "file": "image40.png",
+      "bytes": 297901,
+      "sha256": "60f861523394bbb53994080d87f5fe1e5b766afb578e39d116347988608a6d4a"
+    },
+    {
+      "file": "image41.png",
+      "bytes": 296328,
+      "sha256": "fa01be79f0bfa5efabcec8cc8bf852b36a2c06105808cf6eefaaa45c3bfa692c"
+    },
+    {
+      "file": "image42.png",
+      "bytes": 35282,
+      "sha256": "82cda6f14ab58ecf8481e5c60ddd17d5a5de2d74b2a9680c45c7335bb912cb05"
+    },
+    {
+      "file": "image43.png",
+      "bytes": 28522,
+      "sha256": "7c5d02d4e1ae4b7ae3943ec34bd92950d480afb8c897fd39f8707c4357d06086"
+    },
+    {
+      "file": "image47.png",
+      "bytes": 273165,
+      "sha256": "f9301e8ee4f13179fc28902385e9d96522586d9661c3dbe1fa827e2d04387011"
+    },
+    {
+      "file": "media1.mp4",
+      "bytes": 5881649,
+      "sha256": "dc7986bdc91d558b17ace9cf70c7b4bdb6b0c930d08d1c99b418803e505263b4"
+    },
+    {
+      "file": "model3d1.glb",
+      "bytes": 22963416,
+      "sha256": "cbcdbd512adf6b579f25aa585bab000def3fbe867e9e1345d3b238fdbbaae59c"
+    },
+    {
+      "file": "model3d2.glb",
+      "bytes": 24665908,
+      "sha256": "9d19e55476731e8001931f9b4506d43ddca5b33a819e873ad3d4ed561af8187f"
+    }
+  ]
+}

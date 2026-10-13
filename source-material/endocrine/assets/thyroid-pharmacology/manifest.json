@@ -1,0 +1,113 @@
+{
+  "source": "Thyroid Pharmacology - students.pptx",
+  "source_sha256": "2c6a289038a442c932cfdb10e9955c00a24cf28530d2fbf8f7744fcd7b312b12",
+  "counts": {
+    "slides": 21,
+    "text_blocks": 47,
+    "tables": 0,
+    "pictures": 2,
+    "notes": 0
+  },
+  "media": [
+    {
+      "file": "image1.jpg",
+      "bytes": 4032628,
+      "sha256": "a7a13329e77e10e1fe511c4d2decc92de15d11c84bf303bb25a95e9665a8e36a"
+    },
+    {
+      "file": "image2.png",
+      "bytes": 79438,
+      "sha256": "3e98a9e134c6e4688a679b948a383523da72fcb898a0281a2f6f31a4cd37fedc"
+    },
+    {
+      "file": "image3.png",
+      "bytes": 95724,
+      "sha256": "47da3bf1b735d4e213d1c30e1b0b5dbad051e53f58bacc5fd19bd207b6c53e51"
+    },
+    {
+      "file": "image4.jpeg",
+      "bytes": 42540,
+      "sha256": "d8f467bfec05b4b8bc22a4e9cba1134a57720fb0dcd8c3aa21317ea6aa1113af"
+    },
+    {
+      "file": "image5.png",
+      "bytes": 94072,
+      "sha256": "ad24eff6098349f4867cac38b8cbb7e49159a84a8fa4f9d0b6f0fc0ab37b689c"
+    },
+    {
+      "file": "image6.png",
+      "bytes": 68653,
+      "sha256": "48447413cc8c25273b64776a671a20a0139dabc833ce927a9a737547fc083301"
+    },
+    {
+      "file": "image7.png",
+      "bytes": 66253,
+      "sha256": "9fb9aba924dffd8b9ffa6b17b5c0107bc0aaa14510f7ee1ecf8ce6c6abb4f9e0"
+    },
+    {
+      "file": "image8.png",
+      "bytes": 46586,
+      "sha256": "323dfdfc18aa688f4ffe8649f246a6e15d4d5c1e3b56b349a52af9b614416f0d"
+    },
+    {
+      "file": "image9.png",
+      "bytes": 42416,
+      "sha256": "4463305ab9d740e869efdaba61bdea1584d7afc7291b299c7eaee11c56751966"
+    },
+    {
+      "file": "image10.png",
+      "bytes": 38106,
+      "sha256": "4890b83b0b3d8d9e898c48e6db4a254fe982c31059901f20b3b9446d30f02958"
+    },
+    {
+      "file": "image11.png",
+      "bytes": 27194,
+      "sha256": "fcd9954be1f21d12681e22c1f0706102dede6efb597a16428c7b66f411cce3b1"
+    },
+    {
+      "file": "image15.png",
+      "bytes": 37777,
+      "sha256": "9ba24ec51b419b59724a5b332b1bcf85ca451fdff36bfc8a052546f78e7f46d3"
+    },
+    {
+      "file": "image12.png",
+      "bytes": 50337,
+      "sha256": "731f118c240d533aa1580797b3a9a7669afff6cad4c4d38b9b849435b1d1516f"
+    },
+    {
+      "file": "image13.png",
+      "bytes": 44515,
+      "sha256": "495bd7fac579b7bd752580707523a428106b66e59ffb358c7db54a48ab50dcf1"
+    },
+    {
+      "file": "image17.png",
+      "bytes": 27394,
+      "sha256": "63871150f10c7875f3314818df467e04ca93d0123c98a54808ff7b370998f334"
+    },
+    {
+      "file": "image18.jpg",
+      "bytes": 156455,
+      "sha256": "323bd0a2bb8354b9825039255b5ceaf6496b003382cae1c6d967d9c60f4be168"
+    },
+    {
+      "file": "image14.png",
+      "bytes": 40673,
+      "sha256": "b87b35041132f5c97ba4aa25641784156a24757965736b8da2c6d6dd66122f42"
+    },
+    {
+      "file": "image16.png",
+      "bytes": 41594,
+      "sha256": "8862e932f7304aafc8434eeabdcf59e63fa3b3ae9afd3aad90d58c0313df828b"
+    },
+    {
+      "file": "model3d1.glb",
+      "bytes": 22963416,
+      "sha256": "cbcdbd512adf6b579f25aa585bab000def3fbe867e9e1345d3b238fdbbaae59c"
+    },
+    {
+      "file": "model3d2.glb",
+      "bytes": 24665908,
+      "sha256": "9d19e55476731e8001931f9b4506d43ddca5b33a819e873ad3d4ed561af8187f"
+    }
+  ]
+}
