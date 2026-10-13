@@ -12,7 +12,10 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `data/walkthrough/schema.js` — reusable case schema and registration helpers.
 - `data/walkthrough/cases-*.js` — disease cases grouped by clinical domain.
 - `data/vaccines.js` — all Vaccines objective content.
-- `.github/workflows/pages.yml` — GitHub Pages deployment.
+- `.github/workflows/pages.yml` — GitHub Pages deployment (excludes `source-material/`).
+- `source-material/<course>/` — original lecture slides, extracted text, and objectives. Repo-only reference; read its README before building course content.
+
+Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Diseases) launch from a `data-course-tools="<course id>"` row inside the course page, not from the home page.
 
 ## Content rules
 

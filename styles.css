@@ -31,3 +31,4 @@
 @media(max-width:760px){.progress-disease-row{grid-template-columns:1fr 60px auto}.progress-disease-bar{display:none}.practice-filter-grid{grid-template-columns:1fr}.progress-overview .secondary-action{margin-left:0}}
 .full-action{position:sticky;bottom:14px;z-index:5;box-shadow:0 10px 26px -6px rgba(0,0,0,.55)}
 .explanation,#test-feedback,#diagnosis-feedback,#treatment-feedback{scroll-margin-bottom:100px}
+.course-tools{margin:0 0 30px}.course-tools .eyebrow{margin-bottom:12px}.course-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.course-tools .walkthrough-launch{width:100%;margin-top:0}@media(max-width:760px){.course-tools-grid{grid-template-columns:1fr}}

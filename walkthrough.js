@@ -190,7 +190,7 @@
     startRandomSession(); window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function close() {
-    view.hidden = true; hero.hidden = false; workspace.hidden = false; window.scrollTo({ top: 0, behavior: "smooth" });
+    view.hidden = true; studyView.hidden = false; window.scrollTo({ top: 0, behavior: "smooth" });
   }
   document.getElementById("walkthrough-launch").addEventListener("click", open);
   document.getElementById("walkthrough-back").addEventListener("click", close);

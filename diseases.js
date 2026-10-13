@@ -102,7 +102,7 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function close() {
-    view.hidden = true; hero.hidden = false; workspace.hidden = false;
+    view.hidden = true; studyView.hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 

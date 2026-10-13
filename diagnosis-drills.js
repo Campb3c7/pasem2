@@ -60,8 +60,7 @@
   function close() {
     state = null;
     view.hidden = true;
-    hero.hidden = false;
-    workspace.hidden = false;
+    studyView.hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function renderHome() {

@@ -29,26 +29,6 @@
         <div class="progress-copy"><span>Semester progress</span><strong id="progress-label">0%</strong></div>
         <div class="progress-track"><span id="progress-bar"></span></div>
       </div>
-      <button class="walkthrough-launch" id="walkthrough-launch" type="button">
-        <span class="walkthrough-launch-icon">⌁</span>
-        <span><strong>Disease Walkthrough</strong><small>Hallmarks → diagnostic test → diagnosis → treatment</small></span>
-        <span aria-hidden="true">›</span>
-      </button>
-      <button class="walkthrough-launch drill-launch" id="diagnosis-drill-launch" type="button">
-        <span class="walkthrough-launch-icon">A</span>
-        <span><strong>Diagnosis Drills</strong><small>Classification · hallmarks · treatment · diagnostic workup</small></span>
-        <span aria-hidden="true">›</span>
-      </button>
-      <button class="walkthrough-launch geography-launch" id="geography-launch" type="button">
-        <span class="walkthrough-launch-icon">⌖</span>
-        <span><strong>Disease Geography Lab</strong><small>Learn travel regions with a flat map and randomized recall</small></span>
-        <span aria-hidden="true">›</span>
-      </button>
-      <button class="walkthrough-launch diseases-launch" id="diseases-launch" type="button">
-        <span class="walkthrough-launch-icon">✚</span>
-        <span><strong>Diseases</strong><small>Every disease, lecture by lecture, with dedicated practice questions and per-disease progress</small></span>
-        <span aria-hidden="true">›</span>
-      </button>
     </section>
 
     <section class="workspace" aria-labelledby="courses-title">
@@ -61,26 +41,51 @@
 
     <section id="study-view" class="study-view" hidden>
       <button class="back-button" id="back-button" type="button">← All courses</button>
+      <div class="course-tools" data-course-tools="infectious-disease" hidden>
+        <p class="eyebrow">Infectious Disease tools</p>
+        <div class="course-tools-grid">
+          <button class="walkthrough-launch" id="walkthrough-launch" type="button">
+            <span class="walkthrough-launch-icon">⌁</span>
+            <span><strong>Disease Walkthrough</strong><small>Hallmarks → diagnostic test → diagnosis → treatment</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <button class="walkthrough-launch drill-launch" id="diagnosis-drill-launch" type="button">
+            <span class="walkthrough-launch-icon">A</span>
+            <span><strong>Diagnosis Drills</strong><small>Classification · hallmarks · treatment · diagnostic workup</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <button class="walkthrough-launch geography-launch" id="geography-launch" type="button">
+            <span class="walkthrough-launch-icon">⌖</span>
+            <span><strong>Disease Geography Lab</strong><small>Learn travel regions with a flat map and randomized recall</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <button class="walkthrough-launch diseases-launch" id="diseases-launch" type="button">
+            <span class="walkthrough-launch-icon">✚</span>
+            <span><strong>Diseases</strong><small>Every disease, lecture by lecture, with dedicated practice questions and per-disease progress</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
       <div id="study-content"></div>
     </section>
 
     <section id="walkthrough-view" class="walkthrough-view" hidden>
-      <button class="back-button" id="walkthrough-back" type="button">← Study home</button>
+      <button class="back-button" id="walkthrough-back" type="button">← Infectious Disease</button>
       <div id="walkthrough-content"></div>
     </section>
 
     <section id="diagnosis-drill-view" class="walkthrough-view" hidden>
-      <button class="back-button" id="diagnosis-drill-back" type="button">← Study home</button>
+      <button class="back-button" id="diagnosis-drill-back" type="button">← Infectious Disease</button>
       <div id="diagnosis-drill-content"></div>
     </section>
 
     <section id="geography-view" class="walkthrough-view geography-view" hidden>
-      <button class="back-button" id="geography-back" type="button">← Study home</button>
+      <button class="back-button" id="geography-back" type="button">← Infectious Disease</button>
       <div id="geography-content"></div>
     </section>
 
     <section id="diseases-view" class="walkthrough-view diseases-view" hidden>
-      <button class="back-button" id="diseases-back" type="button">← Study home</button>
+      <button class="back-button" id="diseases-back" type="button">← Infectious Disease</button>
       <div id="diseases-content"></div>
     </section>
   </main>
