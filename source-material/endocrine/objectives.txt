@@ -1,0 +1,426 @@
+Endocrinology Anatomy Objectives:
+
+Discuss the function of each of the following endocrine glands (hypothalamus, pineal, pituitary, adrenals, pancreas, thyroid, thymus, gonads [ovaries & testicles] and parathyroid glands)
+Describe the location of each of the following endocrine glands (hypothalamus, pineal, pituitary, adrenals, pancreas, thyroid, thymus, gonads [ovaries & testicles] and parathyroid glands)
+Describe the vascular supply to the pituitary gland
+Discuss the Sella Turcica and its clinical significance
+Discuss the Cavernous sinus and its clinical significance
+Describe the vascular and nerve supply to the adrenal glands
+Describe the (4) parts of the pancreas as well as the main pancreatic duct, ampulla of Vater, and the accessory duct
+Describe the vascular and nerve supply to the pancreas
+Describe the vascular and nerve supply to the thyroid
+Describe the vascular and nerve supply to the parathyroid glands
+Hypoglycemia
+
+Describe the hormones and their function involved in glucose homeostasis.
+Insulin
+Glucagon
+Epinephrine
+Cortisol
+Growth Hormone
+Recall normal pre (<100 mg/dL) and post prandial (<140 mg/dL) glucose levels.
+Recognize clinical presentation hypoglycemia; what symptoms might a patient present with in the setting of hypoglycemia.
+Differentiate symptoms of neurogenic and neuroglycopenic hypoglycemia.
+In a case stem, recognize what history may potentially be the etiology of a patients hypoglycemia.
+Compare and Contrast to pathophysiology of dumping syndrome as a differential diagnosis in the setting of a hypoglycemia presentation.
+Apply the diagnostic criteria triad for hypoglycemia, Whipple’s triad, to a patient case.
+Explain the pathophysiology of alcohol/starvation hypoglycemia.
+Explain and apply the general treatment protocol for hypoglycemia.
+Diabetes Objectives
+
+Analyze a case stem and be able to diagnose prediabetes/diabetes by glucose or A1c level.
+T1DM:
+Describe the underlying pathophysiology at play.
+Recall the epidemiology, typical ages of patients.
+Describe the likely presentation and potential signs/symptoms of T1DM.
+Differentiate T1DM from T2DM using clinical features and appropriate diagnostic testing.
+
+Apply the glucose diagnostic criteria to make the diagnosis, and recall the other types of add on labs that may help support the diagnosis of T1DM (including autoantibodies and C-Peptide).
+Recall the mainstay treatment for T1DM. 
+Describe individualized A1C goals in pediatric and adult patients with T1DM.
+T2DM:
+Describe the underlying pathophysiology at play.
+Recall the epidemiology and risk factors or history associated with a typical T2DM patient.
+Describe the likely presentation and potential signs/symptoms of T2DM.
+Apply the glucose diagnostic criteria to make the diagnosis.
+Summarize the main lifestyle and non pharmacologic treatment in play for T2DM.
+Define the Diabetes variants LADA and MODY and recognize how they are different from T1&2DM.
+Discuss in application/group work how management of diabetes will vary across the lifespan. 
+Describe recommended health maintenance for patients with diabetes, including appropriate screening and monitoring intervals.
+Discuss the cultural competencies to consider when managing diabetes patients. 
+Discuss the ethical considerations PA's must have while managing patients with diabetes. 
+ 
+
+Diabetic Pharmacology Objectives:
+
+Biguanides:  metformin
+Recognize drug by trade and generic name
+Recognize mechanism of action and benefits of metformin therapy
+Recall side effects and contraindications
+Describe efficacy; i.e. how much will metformin lower A1c?
+Recall indications for usage, including off label
+Sulfonylureas: glyburide, glipizide, and glimepiride
+Recognize drugs by trade and generic name
+Recall mechanism of action, effectiveness, and indications for usage
+Recall side effects, adverse outcomes, and contraindications
+Describe efficacy; i.e. how much will they lower A1c?
+GLP-1 Receptor Agonists: semaglutide (both forms), exenetide, liraglutide,  and dulaglutide
+Recognize the drugs by trade and generic name
+Recall mechanism of action and other beneficial possible effects these drugs have on health
+Recall method and frequency of administration
+Describe efficacy; i.e. how much will this class lower A1c?
+Recall adverse reactions and contraindications for use
+GIP/GLP-1 Receptor Agonist: tirzepatide (Mounjaro/Zepbound)
+Recognize the drug by trade and generic name
+Recall mechanism of action and other beneficial possible effects this drug has on health
+Recall method and frequency of administration
+Describe efficacy; i.e. how much will tirzepatide lower A1c?
+Recall adverse reactions and contraindications for use
+DPP-4 Inhibitors: sitagliptin, saxagliptin, linagliptin, and alogliptin
+Recognize drugs by trade and generic names
+Recall mechanism of action and effectiveness
+Recall contraindications, adverse reactions, and side effects
+SGLT2 Inhibitors: canagliflozin, dapagliflozin, empaglifozin, ertugliflozin
+Recognize the drugs by trade and generic name
+Recall mechanism of action, effectiveness and other beneficial possible effects these drugs have on health
+Recall contraindications and side effects
+ TZD/ Glitazones: pioglitazone, rosiglitazone
+Recognize the drugs by trade and generic name
+Describe efficacy; i.e., how effective are they?
+Recall side effects, adverse reactions, and contraindications
+Meglitinides: repaglinide and nateglinide
+Recognize medications by name (both the trade and generic name will be given for these drugs when used in a question, but you must know the class they belong to).
+Recall side effects and contraindications
+Describe place in therapy and the reasons why these drugs are seldom used in practice
+Alpha Glucosidase Inhibitors: acarbose and miglitol
+Recognize medications by name (both the trade and generic name will be given for these drugs when used in a question, but you must know the class they belong to)
+Recall mechanism of action
+Describe reasons why these drugs are seldom used in practice
+Insulin
+Recognize the following insulins by trade and generic names.  
+Rapid-acting: lispro, aspart, glulisine
+Short-acting: regular insulin.  
+Intermediate-acting: NPH
+Long-acting:  glargine (both formulations), degludec
+Describe pharmacokinetics of rapid-acting, regular, intermediate, and basal insulins, explain how they would be dosed given their onset, peak, and duration of action and what would you expect their peak to look like
+Describe technique for administration of insulins
+Recall indications for the use of each of the types of insulin (meal time, pump use, basal dosing, correction dosing)
+Recall the initial recommended daily dose of insulin in units per kilogram and how it should be divided between types of insulin.
+Recall appropriate outpatient titration protocol
+Recall the complications and side effects of using insulin as well as how to prevent these side effects
+Additional Pharmacology Objectives:
+Educate a patient on the DM monitoring devices (glucometer, cgm). Describe their purpose, how they work and how they should use them.
+Discuss the importance of motivational interviewing to counsel patients and their families about disease prevention, health maintenance, and disease management demonstrating social and cultural humility.
+Determine given a clinical scenario and appropriate DM diagnosis an appropriate A1C goal target for that patient.
+Discuss the goals of T2DM treatment and all modalities, including diet, exercise, medications and surgery.
+Recognize the signs and symptoms and apply the appropriate management of a patient with hypoglycemia.
+Recall which of the diabetes drugs can be given with no or very low risk of hypoglycemia. Recall which have a high risk of hypoglycemia.
+List which of the diabetes drugs will cause patients to gain weight, which drugs are weight neutral, and which will cause weight loss
+Compare the cardiovascular effects of diabetes medications, including which agents have demonstrated cardiovascular benefit and which have important cardiovascular or heart-failure safety concerns.
+Recall the approximate strength of each drug class, compared to others.  If given a clinical scenario, be able to recall how effective a drug will be to get the patient to their therapeutic goal.
+Apply the current T2DM treatment approach to select appropriate initial and add-on pharmacologic therapy based on A1C, comorbidities, and individual patient factors.
+Given a clinical scenario, select appropriate pharmacologic therapy based on compelling patient factors, including ASCVD, heart failure, CKD, weight goals, hypoglycemia risk, adverse effects, cost/access, and patient preference.
+Recognize when it is appropriate to consider insulin in T2DM management and how to begin insulin dosing, as well as how to appropriately adjust it.
+Recognize general trends to consider when starting a T1DM on insulin, and how would insulin needs adjust over time. Describe the most physiologic way to dose insulin for a T1DM.
+ 
+
+Diabetes Mellitus Special Considerations Objectives:
+
+Interpret overnight glucose patterns to identify likely causes of morning hyperglycemia, including the dawn phenomenon, insufficient overnight insulin, and insulin administration/delivery issues.
+Recommend an appropriate management strategy based on the identified cause of morning hyperglycemia. 
+Describe the basic management of diabetes in the surgical patient in the pre-op, intra-op, and post-operative periods.
+Review the screening recommendations for gestational DM/DM in pregnancy, pre-conception glycemic A1C goals, common pregnancy complications, and timing of delivery for a diabetic pregnancy.
+Describe the various options available to assist a patient with diabetes and obesity with weight loss.
+Diabetes Mellitus Complications Objectives:
+
+Compare and contrast microvascular and macrovascular complications.
+Macrovascular Complications:
+Review the HLD concerns unique to diabetes as well as the general treatment recommendations.
+Remember the BP goal for diabetes.
+Identify the most common cause of death in type 2 diabetes.
+Remember what tests are used to evaluate PAD and recall the strategies to prevent/treat PAD in a diabetic patient.
+Microvascular:
+Retinopathy:
+Describe the ocular retinopathy complications of DM; be able to differentiate the description of proliferative versus non-proliferative retinopathy. 
+Remember the symptoms associated with diabetic retinopathy.
+Identify what specifically affects the course of retinopathy and other microvascular complication severity.
+Apply the Eye Exam screening recommendations to a diabetic patient case.
+Neuropathy:
+Apply the appropriate screening regimen and describe what takes place in a neuropathy screening exam.
+Recognize the presentation and downstream complications caused by distal symmetric polyneuropathy.
+Educate a patient on the proper management of their diabetes and foot care given neuropathy symptoms. 
+Identify the most common presentations of isolated peripheral neuropathy.
+Educate the patient on expected outcomes of their symptoms with isolated peripheral neuropathy as well as proper management.
+Identify the typical presentation of acute painful DM neuropathy.
+Recommend appropriate treatment options given a patient with acute painful DM neuropathy.
+Describe the presentation of some of the following types of autonomic neuropathy as well as the respective treatments for each. (postural hypotension, GI autonomic neuropathy, urinary retention, erectile dysfunction)
+Nephropathy:
+Describe the pathophysiology associated with diabetic kidney disease and the downstream effects of this.
+Connect these complications to the screening tests used to look for diabetic kidney disease.
+Apply the appropriate screen regimen and be able to properly classify albuminuria based on UACR results.
+Identify appropriate treatment strategies to prevent progression of diabetic kidney disease.
+Diabetes Mellitus Emergencies Objectives:
+
+Foot Ulcers:
+Describe the proper physical exam for foot ulcer evaluation. 
+Explain the multifactorial pathophysiology at play that puts a diabetic patient at risk for developing ulcers.
+Compare and contrast the typical findings of cellulitis and osteomyelitis.
+Select appropriate initial management and antimicrobial therapy for an infected diabetic foot ulcer based on infection severity and likely pathogens.
+DKA:
+Describe the pathophysiology at play in DKA and be able to readily identify the hallmark criteria of DKA (hyperglycemia, ketosis, acidosis).
+Describe the common etiologies of DKA and recognize the typical signs/symptoms of the presentation.
+Detail the lab findings that correlate with a diagnosis of DKA.
+Apply the appropriate treatment for DKA when given a patient's labs.
+Describe the anticipated course of the patients care when undergoing treatment for DKA.
+Identify proper strategies to prevent diabetic ketoacidosis.
+HHS:
+Describe the pathophysiology at play in HHS.
+Describe the common etiologies of HHS and recognize the typical signs/symptoms of the presentation.
+Detail the lab findings that correlate with a diagnosis of HHS.
+Describe the anticipated course the of the patients care when undergoing treatment for HHS.
+Recognize the population most likely affected by HHS and identify proper prevention strategies.
+ 
+
+ 
+
+Adrenal Disease Objectives:
+
+Briefly describe the anatomy and physiology of the adrenal glands, the hypothalamic-pituitary-adrenal axis, and the renin-angiotensin system.
+Describe the pathophysiology and etiologies of, symptoms, and signs of primary adrenal insufficiency, and list those which are common.
+Discuss the signs and symptoms of secondary adrenal insufficiency and adrenal crisis and discuss how they will differ from those of primary and non-emergent adrenal insufficiency.
+Detail the diagnostic evaluation for, treatment, and prognosis of adrenal insufficiency in both non-emergent and emergent situations.
+Review the pathophysiologic mechanisms of, symptoms, and signs of endogenous excess corticosteroid production (Cushing’s syndrome).  List those which are common.
+Describe the testing procedures to determine the diagnosis and source of endogenous excess corticosteroid production with attention to order of testing and the results of positive tests. 
+Detail the treatment of each of these diagnoses of cortisol excess.
+Discuss the most common causes of hypoaldosteronism and describe how the pathophysiology of hypoaldosteronism will cause the typical signs and symptoms of the disease. 
+List the treatment of hypoaldosteronism.
+Review the etiologies of, epidemiology of, and presenting signs and symptoms of hyperaldosteronism. 
+Recall the initial screening test for possible hyperaldosteronism and the treatment of different etiologies of hyperaldosteronism.
+Describe the etiologies, symptoms/signs, associated disorders and treatment of adrenal excess.
+Discuss the pathophysiology, location of, malignant potential of and signs and symptoms of pheochomacytoma. 
+Describe the diagnostic work-up, treatment, and surveillance of pheochomacytoma.
+Briefly review the etiologies of androgen excess in women and the disease processes/ metabolic derangements that androgen excess can lead to.
+Briefly review the presentation of and management of adrenal androgen deficiency, incidental adrenal masses and pseudo-Cushing’s syndrome.
+Paget’s Disease Objectives:
+
+Discuss the epidemiology, signs, symptoms, and most common clinical presentation of Paget’s.
+ Detail the pathophysiologic process of Paget’s in-depth and describe the progression to complications caused by pagetic bone.
+ Review the diagnostic testing for, lab abnormalities, surveillance of and treatment of Paget’s.
+ Describe the directions for administration, mechanism of action, and adverse effects of bisphosphonate therapy.
+Parathyroid Disease Objectives:
+
+Describe the metabolism of calcium in the body and the production of vitamin D, specifically recalling the role of parathyroid hormone, calcitonin, osteoclasts, the kidney, the liver and the small intestine. 
+List the actions of parathyroid hormone in the body and describe the role of PTH in maintaining calcium homeostasis.
+Describe the signs and symptoms of high or low calcium given a patient's serum calcium level and the determinants of symptoms. 
+Recall the treatment of asymptomatic and symptomatic hypocalcemia. 
+Describe the pharmacologic and nonpharmacologic management of asymptomatic and symptomatic hypercalcemia. 
+Detail the workup of a patient presenting with hypercalcemia. 
+Identify the characteristic laboratory patterns associated with primary and secondary hyperparathyroidism, hypercalcemia of malignancy, vitamin D intoxication, and granulomatous diseases. 
+Identify the causes of primary hyperparathyroidism and explain its clinical presentation, characteristic laboratory findings, treatment options, and potential treatment complications.  
+Explain the pathophysiology of hungry bone syndrome and identify the clinical scenarios and characteristic presentation associated with it. 
+Discuss the affected populations, pathophysiology, key laboratory findings, complications, and treatment approaches for secondary hyperparathyroidism. 
+Explain the progression from secondary to tertiary hyperparathyroidism and identify the associated clinical manifestations and standard treatments.
+Discuss the etiologies of, clinical presentation, lab findings, and treatment of hypercalcemia of malignancy.
+Review the etiologies of, clinical presentation, lab findings, and treatment of hypoparathyroidism.
+Recall the pathophysiology of pseudohypoparathyroidism.
+Pituitary Disease Objectives:
+
+ Review the anatomy and normal physiology of the hypothalamus and pituitary gland and describe each of the hypothalamic-pituitary- target organ axes, listing their hormones.
+Define hypofunction and hyperfunction in terms of their hormone secretion and the levels of endocrine disorders (primary, secondary, and tertiary).
+List the mechanisms of pituitary disease and recognize examples of etiologies of each.
+Define hypopituitarism and recognize its various underlying etiologies.
+Describe the overall effects of growth hormone on the body.
+Recognize the clinical manifestations of GH deficiency; compare and contrast the manifestations of GH deficiency in the congenital form, acquired form in children and acquired form in an adult
+Describe the best way to assess for GH deficiency in children and any additional workup necessary to complete if pituitary insufficiency is found.
+Differentiate the underlying mechanism in Laron Syndrome from the other forms of pituitary dwarfism and its physical characteristics.
+Recall the risk factors for GH deficiency in adults that warrant evaluation and the diagnostic pattern seen in those with GH deficiency.
+Describe the tests utilized to diagnose GH deficiency and instances in which tests are contraindicated.
+Recall the treatment for GH deficiency in children and adults.
+Recognize the clinical manifestations of ACTH deficiency and compare to primary adrenal insufficiency; understand the diagnosis and treatment of ACTH deficiency.
+Define hypogonadotropic hypogonadism and its clinical manifestations in congenital and acquired cases and in men and women.
+Describe the diagnosis of gonadotropin deficiency and how it is treated.
+Recognize the clinical manifestations and laboratory diagnosis of TSH deficiency and explain how this is considered secondary hypothyroidism; recall the treatment for TSH deficiency.
+Discuss the significance of the anatomy of the sellar region and how it relates to clinical manifestations of sellar masses.
+Classify pituitary adenomas by size (microadenoma vs macroadenoma) and functionality (hypersecretion vs nonfunctioning). Recall which hormone is most commonly secreted from micro and macroadenomas.
+Recall the diagnostic work-up of pituitary adenoma or incidentaloma.
+Recall the anterior pituitary cell types and how functioning pituitary adenomas arising from those cell types will manifest.
+Compare and contrast the characteristics of the pituitary adenomas found in women and men with hyperprolactinemia and how they present.
+Detail the process of diagnosing hyperprolactinemia and how it is treated whether symptomatic or asymptomatic, microadenoma or macroadenoma.
+Compare and contrast gigantism and acromegaly in terms of who they affect and their clinical presentation.
+Recognize the complications of longstanding acromegaly.
+Recall the diagnosis and treatment of gigantism and acromegaly.
+Recognize the result of functioning corticotrope and gonadotrophic adenomas; understand the presentation of a TSH-secreting adenoma as well as its diagnostic indicators and briefly review its general treatment methods.
+Recognize craniopharyngiomas in terms of its characteristics and presenting symptoms and treatment; define meningioma and recognize that it is nonfunctional and slow growing.
+List the most likely primary cancers that metastasize to the pituitary gland; identify where most metastatic deposits and masses are found and how they present.
+Describe the vasopressin/thirst pathway; Define diabetes insipidus and its two forms; recall the presentation of a patient with untreated DI as well as how a patient without access to water or a damaged thirst pathway may present.
+Recognize the most common causes of diabetes insipidus, how it is evaluated and treated. 
+Thyroid Disease & Pharmacology Objectives:
+
+Introduction:
+
+Describe the general anatomy of the thyroid gland and important surrounding structures (recurrent laryngeal nerve, parathyroid glands). Characterize follicle, colloid, thyroglobulin, and iodine.
+Paraphrase the process of thyroid hormone synthesis (include thyroglobulin, tyrosine, iodide/iodine, peroxidase, monoiodotyrosine, diiodotyrosine, TSH stimulation, proteases)
+Describe Thyroxine (T4) and Triiodothyronine (T3), including the coupling of their respective residues and which is less/more active. Recognize the peripheral conversion of T4 to T3 and where this takes place.
+Describe bound thyroid hormones and the three major circulating plasma proteins. Recognize the one that carries most of the thyroid hormone. Recognize the importance of bound hormones as a reservoir for free thyroid hormone. Describe free thyroid hormones.
+Paraphrase the H-P-T axis physiology (include the role of the hypothalamus, TRH, anterior pituitary, TSH, thyroid, and thyroid hormones).
+Summarize the major functions of the thyroid hormones as they relate to the specific organ systems (cardiovascular, gastrointestinal, neuromuscular, and neurologic).
+Recognize the best screening test and initial test for thyroid dysfunction. Describe the normal range for TSH. Describe the difference between total and free measurements of thyroid hormones. Describe the clinical caveats to thyroid function tests (i.e. biotin and pregnancy).
+Recognize the clinical use of thyroglobulin test.
+Associate the presence of thyroid autoantibodies with autoimmune conditions. Recognize TPO Ab and TRAb disease correlations.
+When screening for thyroid disorder, recall the follow up testing if TSH is increased or decreased.
+Describe the clinical usefulness of Ultrasound, MRI, and CT related to thyroid disorders.
+Regarding RAIU scan, recognize its contraindication and normal findings at 24 hours. Describe when values may be lower or higher than expected, as well as the meaning of cold spots and hot spots. If given a picture or description of an RAIU scan result, correlate the most likely etiology from Graves’ disease, Toxic multinodular goiter, toxic adenoma, and normal thyroid.
+Recognize the importance of FNA biopsy in the determination of benign vs malignant nodules.
+Hypothyroidism intro:
+
+Explain the difference between primary and central hypothyroidism and how the H-P-T axis is affected.
+Correlate the classic signs/symptoms with hypothyroidism.
+Recognize the associated thyroid function test results with primary (overt) hypothyroidism, subclinical hypothyroidism, and central hypothyroidism.
+Recall the follow-up imaging evaluation of a central hypothyroidism.
+Primary hypothyroidism
+
+Recognize the most common cause of primary hypothyroidism.
+Describe the treatment of overt hypothyroidism.
+Briefly explain why levothyroxine is preferred to liothyronine. Briefly explain why desiccated thyroid extract is no longer recommended.
+Briefly explain why thyroid hormone replacement should not primarily be used for weight loss.
+Recall appropriate monitoring of patients being treated with thyroid hormone replacement and its effect on symptom resolution.
+Describe the appropriate scenarios in which to treat subclinical hypothyroidism.
+Recognize the negative outcomes associated with maternal hypothyroidism.
+Recall normal TSH range during pregnancy
+Describe expectations of thyroid hormone in the post-partum period.
+Regarding chronic autoimmune thyroiditis (Hashimoto’s thyroiditis):
+Recall genetic conditions that increase the risk
+Describe its clinical course.
+Recognize the associated thyroid function test results and the role of antibody (specifically TPO) testing
+Regarding iatrogenic hypothyroidism, anticipate when we would expect it to occur following total thyroidectomy, radioiodine therapy, and external radiation of the neck area.
+Regarding iodine deficiency, recognize its prevalence world-wide and association to goiter. Describe treatment.
+Recall the drugs that are most commonly associated with drug-induced hypothyroidism.
+Central hypothyroidism
+
+Identify the most common cause pf secondary hypothyroidism and the syndrome associated in the postpartum period.
+Correlate clinical s/s with central hypothyroidism (as discussed). Recognize the thyroid function test results that indicate central hypothyroidism and recall the follow-up tests to evaluate the pituitary and hypothalamus.
+Describe the clinical caveat of anti-seizure drugs in the role of central hypothyroidism.
+Describe treatment and monitoring. Recall the importance of assessing adrenal insufficiency prior to starting levothyroxine.
+Myxedema coma
+
+Characterize the clinical features and precipitation factors.
+Also describe the s/s of infection in patients with myxedema coma.
+Identify features that distinguish it from accidental hypothermia.
+Discuss appropriate workup. Choose the correct treatment to manage the acute situation. Recall monitoring of treatment and describe follow-up.
+Congenital hypothyroidism
+
+Recall screening in US and why it’s performed.
+Identify the most common primary cause in the US and world-wide. Recall the most common central cause.
+Describe the fetal needs for maternal thyroid hormone and iodine.
+Describe the clinical presentation. Correlate thyroid function test results and when to start levothyroxine.
+Hyperthyroidism intro:
+
+Recognize the gender and age associations with toxic nodular goiter (toxic multinodular goiter) and Graves’ disease.
+Recall the common causes of hyperthyroidism. Differentiate primary hyperthyroidism from central hyperthyroidism.
+Associate the classic signs and symptoms. Recall other associated abnormal lab findings and complications that may arise.
+Describe the results of thyroid function tests of overt, subclinical, and central hyperthyroidism.
+Briefly describe further workup for central hyperthyroidism.
+Make a clinical diagnosis of Graves’ disease if given a clinical scenario.
+Choose appropriate further workup for hyperthyroidism.
+Associate RAIU scan findings with graves’ disease, toxic adenoma, toxic multinodular goiter, and thyroiditis.
+Graves’ disease
+
+Recognize the autoimmune dysfunction.
+Briefly describe the development of exophthalmos/proptosis. Describe additional ocular symptoms.
+Recognize patients who are at increased risk of worsening orbitopathy.
+Describe evaluation of orbitopathy. Differentiate mild, moderate, severe, and sight-threatening orbitopathy based on the collective proptosis measurement, vision changes, and effect on daily life.
+Choose appropriate management for all patients with orbitopathy. Describe radioiodine ablation use in mild and mod-severe forms.
+Describe additional first-line treatment for moderate to severe forms.
+Correctly identify sight-threatening orbitopathy and its treatment.
+Recognize goiter as a common, but not unique, feature of graves’ disease. Associate graves’ disease with pretibial myxedema. Describe the skin changes. Choose appropriate treatment to minimize inflammation.
+Recall the thyroid function test results and associate antibody testing with graves’ disease.
+Describe the utility of RAIU scan and its associated finding.
+Regarding treatment:
+Describe the role of beta blockers and the two that are commonly used.
+Choose the preferred thioamide (aka thionamide) for the general population as well as first trimester pregnancy. Recognize high recurrence rate and describe the associated monitoring.
+Describe radioiodine ablation. Indicate why it is generally preferred over surgery. Describe its place in therapy (“good choice for…”) Recognize it’s potential to worsen orbitopathy and contraindications. Recall radiation precautions are necessary following treatment. Anticipate hypothyroidism and treatment.
+Describe thyroidectomy and the risks (as discussed). Describe its place in therapy (“good choice for…”). Anticipate hypothyroidism and treatment.
+Overall, recognize individual factors that influence the decision of treatment (thioamides vs. radioiodine ablation vs. surgery).
+Toxic multinodular goiter
+
+Recall its common name. Identify the population most often affected. Associate signs and symptoms, and laboratory findings.
+Regarding RAIU scan, describe the findings of both Toxic MNG and toxic adenoma.
+Describe treatment. Choose appropriate indications when surgery is preferred over radioiodine ablation.
+Thyroid storm
+
+Recognize precipitating factors. Describe the effects on cardio, neuro, GI, and general body systems. Recognize the cardinal symptoms.
+Initiate appropriate workup and anticipate findings.
+Describe management in the acute phase. Identify correct thioamide dosing.
+Describe management in the stable phase.
+Discuss prognosis.
+Thyroiditis
+
+Describe the predictable course of transient thyroiditis. Correlate thyroiditis to the likely findings on workup.
+Regarding painless thyroiditis, describe the clinical presentation, treatment, and time to resolution.
+Regarding postpartum thyroiditis, describe clinical presentation and future risks. Adjust the imaging modality for patients who are breastfeeding.
+Regarding subacute, describe the clinical presentation, most commonly affected population, and treatment (1st and 2nd line).
+Regarding infectious, describe the clinical presentation, most common microbes, imaging modality and treatment.
+Goiter
+
+Describe nontoxic, toxic, and hypothyroid goiter. Recognize the most common cause in US and world-wide.
+Describe the initial evaluation of patients with goiter without compressive symptoms. Choose appropriate imaging if compressive symptoms are present.
+Recognize when surgical removal of goiter would be indicated.
+Solitary thyroid nodules and malignancy
+
+Recognize the factors that increase the risk of malignancy.
+Describe the findings on thyroid function tests and ultrasound that are concerning for malignancy.
+Describe FNA biopsy and its utility in diagnosing malignancy.
+Identify when an RAIU scan would be performed in the workup of solitary nodules. Differentiate malignancy from other hyperthyroid etiologies based on results.
+Recall the most common type of thyroid cancer (papillary), its prognosis relative to the others, and treatment.
+Regarding follicular thyroid cancer, recognize its ability to metastasis, treatment and prognosis.
+Regarding anaplastic thyroid cancer, recognize its frequency compared to the others, its prognosis, and treatment considerations.
+Regarding medullary thyroid cancer, recognize the involved cell type, its classic presentation, and age at onset. Correlate calcitonin and CEA levels. Recognize its association to MEN-2 syndrome and further workup.
+Regarding lymphoma of the thyroid, recognize its relation to Hashimoto’s, presentation, and treatment.
+Thyroid pharmacology
+
+Levothyroxine:
+Recognize its brand name, initial dosage, and amount of titration. Adjust this dosing for elderly patients and those with underling cardiovascular disease.
+Describe when to anticipate dosage increase and decrease.
+Discuss the black box warning.
+Describe noteworthy adverse effects.
+Provide patient education for adequate absorption.
+Describe low therapeutic index.
+Liothyronine:
+Describe the differences between levothyroxine (do not need to know specific dosing).
+Desiccated thyroid extract:
+Discuss why this is no longer a recommended treatment for hypothyroidism.
+Methimazole:
+Recognize its mechanism of action. Recall specific dosing for thyroid storm and alternate routes, as well as the need for it to be given at least an hour prior to iodine.
+Describe monitoring.
+Recall its noteworthy adverse effects (as discussed).
+Discuss its associated with birth defects.
+Propylthiouracil (PTU):
+Describe its mechanism of action, monitoring parameters, black box warning.
+Discuss its use in pregnancy.
+Atenolol:
+Recognize its category. Identify specific initial dosing and target heart rate goal. Identify when atenolol can be discontinued in the setting of hyperthyroidism.
+Recognize the noteworthy adverse effects and the contraindications.
+Propranolol:
+Recognize its category. Identify specific dosing for thyroid storm. Recall the noteworthy adverse effects and contraindications.
+Prednisone:
+Recall its indication, route, rate of improvement, and considerations of long-term steroid therapy.
+Methylprednisolone:
+Recall its indication, route/frequency, and describe why it may be a favorable choice.
+Dexamethasone:
+Recall its indication, route, dosage, and concurrent treatment.
+PHAS 522 Endocrine Application Session's Objectives:
+
+Apply knowledge of anatomy, physiology, genetics, and pathophysiology to the diagnosis and treatment of endocrine conditions.
+Formulate a differential diagnosis utilizing historical data, physical examination findings, and the results of diagnostic studies.
+Create an evidence-based treatment plan that takes into account the availability of healthcare resources and the religious and cultural preferences of patients.
+Discuss ethical issues that might arise from treating patients with these conditions.
+Counsel patients and their families about disease prevention, health maintenance, and disease management demonstrating social and cultural competency.
+
+PEARL: Patient Education and Follow Up Objectives:
+
+Recognize the importance of patient education in the clinical setting, being able to describe when it should be used, what should be included, and the best methods to implement it into patient care.
+Describe the importance of follow up and the best way to approach decisions on the timeline for follow up with primary care and referrals to specialists.
+Recognize appointment types and the general recommendations for their follow up time frames.
+Identify appropriate follow up time frames based on condition seen for and environment patient is going to be seen at.
+ 
+
