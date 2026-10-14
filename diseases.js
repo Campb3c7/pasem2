@@ -34,6 +34,10 @@
     catch (error) { return fallback; }
   }
   function writeStore(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) {} }
+  // Per-viewer preference shared by every Diseases tool; on unless turned off.
+  var autoAdvanceKey = "pasem2:diseases:autoAdvance";
+  var AUTO_ADVANCE_MS = 900;
+  function autoAdvanceOn() { return readStore(autoAdvanceKey, true) !== false; }
   function loadProgress() { return readStore(progressKey, {}); }
   function saveProgress(progress) { writeStore(progressKey, progress); }
   function shuffle(items) {
@@ -404,7 +408,8 @@
   function practiceSessionHeader(detail) {
     var state = practiceState;
     var percent = state.queue.length ? Math.round(state.position / state.queue.length * 100) : 0;
-    return '<div class="session-top"><button type="button" id="practice-exit">← ' + escapeHtml(practiceOrigin ? practiceOrigin.disease.name : "Practice") + '</button><span>' + escapeHtml(state.label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div><div class="session-counter">' + escapeHtml(detail) + '</div>';
+    return '<div class="session-top"><button type="button" id="practice-exit">← ' + escapeHtml(practiceOrigin ? practiceOrigin.disease.name : "Practice") + '</button><span>' + escapeHtml(state.label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div><div class="session-counter">' + escapeHtml(detail) + '</div>' +
+      '<label class="auto-advance-toggle"><input type="checkbox" id="practice-auto-advance"' + (autoAdvanceOn() ? " checked" : "") + '> Auto-advance when correct</label>';
   }
   function renderPracticeQuestion() {
     var state = practiceState;
@@ -417,6 +422,7 @@
       '<button class="primary-action full-action" id="practice-next" type="button" hidden>' + (state.position + 1 === state.queue.length ? "See results" : "Next →") + '</button>';
     modeHost().innerHTML = html;
     byId("practice-exit").addEventListener("click", leavePractice);
+    byId("practice-auto-advance").addEventListener("change", function (event) { writeStore(autoAdvanceKey, event.target.checked); });
     modeHost().querySelectorAll("[data-choice]").forEach(function (button) { button.addEventListener("click", function () { answerPractice(Number(button.dataset.choice)); }); });
     byId("practice-next").addEventListener("click", function () { state.position += 1; renderPracticeQuestion(); });
     holdScrollIntoView(modeHost(), 350, "start");
@@ -433,6 +439,16 @@
     if (selected === correct) {
       state.correctCount += 1;
       markCorrect(card.disease.id, card.question.id);
+      if (autoAdvanceOn()) {
+        var answeredPosition = state.position;
+        byId("practice-next").hidden = false;
+        // Skip ahead unless the learner already moved on, exited, or switched it off.
+        window.setTimeout(function () {
+          if (practiceState !== state || state.position !== answeredPosition || !autoAdvanceOn()) return;
+          state.position += 1; renderPracticeQuestion();
+        }, AUTO_ADVANCE_MS);
+        return;
+      }
     } else {
       state.missed.push(card);
       var section = (card.disease.sections || []).find(function (candidate) { return candidate.id === card.question.section; });
