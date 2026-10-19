@@ -12,6 +12,9 @@
   var studyView = document.getElementById("study-view");
   var progressKey = config.progressKey;
   if (!launch || !view || !content) return;
+  // Labels let the same engine run other per-item tools (e.g. Concepts).
+  var TITLE = config.title || "Diseases", ONE = config.one || "disease", MANY = config.many || "diseases";
+  function count(n) { return n + " " + (n === 1 ? ONE : MANY); }
 
   var currentMode = "information";
   // Information sub-state
@@ -122,8 +125,8 @@
     ];
     var totalDiseases = lectures.reduce(function (sum, lecture) { return sum + (lecture.diseases || []).length; }, 0);
     content.innerHTML =
-      '<div class="diseases-heading"><p class="eyebrow">' + escapeHtml(config.eyebrow) + '</p><h2>Diseases</h2><p>' + escapeHtml(config.intro) + '</p>' +
-      '<span class="diseases-count-pill">' + totalDiseases + (totalDiseases === 1 ? ' disease' : ' diseases') + ' across ' + lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures') + '</span>' +
+      '<div class="diseases-heading"><p class="eyebrow">' + escapeHtml(config.eyebrow) + '</p><h2>' + escapeHtml(TITLE) + '</h2><p>' + escapeHtml(config.intro) + '</p>' +
+      '<span class="diseases-count-pill">' + count(totalDiseases) + ' across ' + lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures') + '</span>' +
       (config.note ? '<p class="diseases-note">' + escapeHtml(config.note) + '</p>' : '') + '</div>' +
       '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
         return '<button type="button" class="mode-tab ' + (mode.id === currentMode ? "active" : "") + '" data-diseases-mode="' + mode.id + '">' + mode.label + '</button>';
@@ -161,9 +164,9 @@
       var hasQuestions = stats.totalQuestions > 0;
       var percent = hasQuestions ? Math.round(stats.correctQuestions / stats.totalQuestions * 100) : 0;
       html += '<button type="button" class="disease-lecture-card" data-lecture="' + escapeHtml(lecture.id) + '">' +
-        '<span class="disease-lecture-kicker">' + stats.diseaseCount + (stats.diseaseCount === 1 ? " disease" : " diseases") + '</span>' +
+        '<span class="disease-lecture-kicker">' + count(stats.diseaseCount) + '</span>' +
         '<strong>' + escapeHtml(lecture.title) + '</strong>' +
-        '<span class="disease-lecture-meta">' + (hasQuestions ? percent + '% mastered · ' + stats.diseasesWithContent + '/' + stats.diseaseCount + ' diseases have questions' : 'Content coming soon') + '</span>' +
+        '<span class="disease-lecture-meta">' + (hasQuestions ? percent + '% mastered · ' + stats.diseasesWithContent + '/' + stats.diseaseCount + ' ' + MANY + ' have questions' : 'Content coming soon') + '</span>' +
         '</button>';
     });
     html += '</div>';
@@ -179,7 +182,7 @@
     var lecture = infoLecture;
     var progress = loadProgress();
     var html = '<div class="session-top"><button type="button" id="info-to-lectures">← All lectures</button><span>' + escapeHtml(lecture.title) + '</span></div>' +
-      '<div class="diseases-heading compact"><h2>' + escapeHtml(lecture.title) + '</h2><p>Pick a disease to review what you need to know about it and, once its question bank is ready, jump straight into practicing that disease.</p></div><div class="disease-grid">';
+      '<div class="diseases-heading compact"><h2>' + escapeHtml(lecture.title) + '</h2><p>Pick a ' + ONE + ' to review what you need to know about it and, once its question bank is ready, jump straight into practicing that ' + ONE + '.</p></div><div class="disease-grid">';
     (lecture.diseases || []).forEach(function (disease) {
       var stats = diseaseStats(progress, disease);
       var hasQuestions = stats.total > 0;
@@ -211,13 +214,13 @@
     if (hasContent) {
       html += disease.sections.map(function (section) { return '<section class="disease-detail-section"><h3>' + escapeHtml(section.title || "") + '</h3>' + (section.html || "") + '</section>'; }).join("");
     } else {
-      html += '<div class="empty-state compact"><span>📖</span><h3>Reference content coming soon</h3><p>This disease is confirmed on the list, but its full write-up hasn\'t been added to the site yet.</p></div>';
+      html += '<div class="empty-state compact"><span>📖</span><h3>Reference content coming soon</h3><p>This ' + ONE + ' is confirmed on the list, but its full write-up hasn\'t been added to the site yet.</p></div>';
     }
     html += '<div class="disease-practice">';
     if (hasQuestions) {
       html += '<div class="disease-practice-stats"><strong>' + stats.correct + ' / ' + stats.total + '</strong><span>questions mastered</span></div><button type="button" class="primary-action" id="disease-practice-start">Practice ' + escapeHtml(disease.name) + ' →</button>';
     } else {
-      html += '<div class="empty-state compact"><span>❓</span><h3>Practice questions coming soon</h3><p>This disease\'s question bank hasn\'t been written yet.</p></div>';
+      html += '<div class="empty-state compact"><span>❓</span><h3>Practice questions coming soon</h3><p>This ' + ONE + '\'s question bank hasn\'t been written yet.</p></div>';
     }
     html += '</div></article>';
     modeHost().innerHTML = html;
@@ -239,7 +242,7 @@
     lectures.forEach(function (lecture) { var stats = lectureStats(progress, lecture); overallTotal += stats.totalQuestions; overallCorrect += stats.correctQuestions; });
     var overallPercent = overallTotal ? Math.round(overallCorrect / overallTotal * 100) : 0;
     var html = '<div class="progress-overview"><div><strong>' + overallPercent + '%</strong><span>overall mastered</span></div><div><strong>' + overallCorrect + ' / ' + overallTotal + '</strong><span>questions correct</span></div>' +
-      (overallTotal ? '<button type="button" class="secondary-action" id="progress-reset-all">Reset all Diseases progress</button>' : "") + '</div><div class="progress-lecture-list">';
+      (overallTotal ? '<button type="button" class="secondary-action" id="progress-reset-all">Reset all ' + escapeHtml(TITLE) + ' progress</button>' : "") + '</div><div class="progress-lecture-list">';
     lectures.forEach(function (lecture) {
       var stats = lectureStats(progress, lecture);
       var hasQuestions = stats.totalQuestions > 0;
@@ -261,7 +264,7 @@
     modeHost().innerHTML = html;
     if (byId("progress-reset-all")) {
       byId("progress-reset-all").addEventListener("click", function () {
-        if (!window.confirm("Reset ALL Diseases progress? This clears every mastered question across every lecture.")) return;
+        if (!window.confirm("Reset ALL " + TITLE + " progress? This clears every mastered question across every lecture.")) return;
         resetEverything(); renderRoot();
       });
     }
@@ -303,7 +306,7 @@
       html += '<label class="recall-option practice-lecture-option"><input type="checkbox" class="practice-lecture-check" value="' + escapeHtml(lecture.id) + '"><span><strong>' + escapeHtml(lecture.title) + '</strong><small>' + stats.totalQuestions + ' cards · ' + Math.round(stats.correctQuestions / stats.totalQuestions * 100) + '% mastered</small></span></label>';
     });
     html += '<button type="button" class="secondary-action" id="practice-selected-lectures">Practice selected lectures →</button></div>';
-    html += '<p class="practice-picker-label">Or practice a single disease from the Information tab -- open any disease and use its "Practice" button.</p>';
+    html += '<p class="practice-picker-label">Or practice a single ' + ONE + ' from the Information tab -- open any ' + ONE + ' and use its "Practice" button.</p>';
     modeHost().innerHTML = html;
     byId("practice-everything").addEventListener("click", function () {
       var diseases = [];
@@ -504,5 +507,15 @@
     eyebrow: "Endocrine · comprehensive disease review",
     intro: "Every endocrine disease you need to identify, work up, and treat -- organized lecture by lecture, tracked disease by disease. Drugs from Diabetic and Thyroid Pharmacology appear in the treatment sections of the diseases they treat.",
     note: "Endocrinology Anatomy, Diabetic Pharmacology, Thyroid Pharmacology, and Patient Education & Follow-Up teach no diseases of their own, so they don't appear as lectures here -- the pharmacology lives in each disease's treatment section."
+  });
+
+  createDiseasesTool({
+    data: window.CARDIO_PART1_CONCEPTS,
+    title: "Concepts", one: "concept", many: "concepts",
+    launchId: "cardio-concepts-launch", viewId: "cardio-concepts-view", contentId: "cardio-concepts-content", backId: "cardio-concepts-back",
+    progressKey: "pasem2:concepts:cardio-part-1:progress",
+    eyebrow: "Cardio Part 1 · understand the why",
+    intro: "The ideas you have to reason with, not just memorize -- each concept explains the mechanism, walks the cause-and-effect chain, ties it to what you'll find on exam, and lists the classic traps. Practice is mostly \"what happens if...\" prediction questions.",
+    note: "Memorization facts stay in each lecture's Learn/Test/Apply. Physiology carries most of the concepts; Anatomy and H&P have fewer because more of them is pure recall."
   });
 }());
