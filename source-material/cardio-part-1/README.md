@@ -13,6 +13,20 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 - The student supplies the Part 1 lecture list from the class calendar. Do not build
   lectures until that list arrives.
 
-## Part 1 lectures
+## Part 1 sections (from the student's calendar, 2026-10-19)
 
-Not yet confirmed.
+One section per objective block, however many class days it spans.
+
+| Section | Objectives block | Deck in project files |
+|---|---|---|
+| Cardio A&P | Cardiology Anatomy | Cardio Anatomy.pptx |
+| Cardio Physiology (deck uploaded; confirm it is Part 1) | Cardiology Physiology | Cardiovascular Physiology.pptx |
+| Cardio H&P | Cardiovascular H&P | Cardiovascular H&P.pptx |
+| Heart Sounds | Heart Sounds | missing |
+| Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
+| Hypertension | Hypertension, Parts I, II and III (Hypertension Crisis is a separate block; confirm) | missing |
+| Cardiac Devices | Cardiac Device | missing |
+| Intro to Imaging | Introduction to Radiology | missing |
+| Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
+| EKG (EKG 1 and 2) | EKG | missing |
+| Valvular Disease | Valvular Disease | Valvular Disease - student.pptx |
