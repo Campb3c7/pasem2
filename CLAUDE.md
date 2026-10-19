@@ -24,6 +24,13 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Question ids are `<disease id>|<index>`: only append questions to a disease, never insert or reorder.
 - Run `node scripts/validate-diseases.cjs` after editing either data file.
 
+## Concepts tool
+
+- Cardio Part 1 has a Concepts tool (cause-and-effect reasoning, not recall). It reuses `createDiseasesTool(...)` with `title/one/many` labels, so its data has the Diseases shape and helpers.
+- Data: one file per lecture, `data/concepts-<lecture id>.js`, gathered by `data/concepts-cardio-part-1.js` (`window.CARDIO_PART1_CONCEPTS`).
+- Every concept has four sections in order: `idea`, `chain` (an `<ol class="concept-chain">`), `bedside`, `traps`. Questions are mostly prediction ("X rises — what happens to Y?"). Ids are `<concept id>|<index>`: only append.
+- Run `node scripts/validate-concepts-<lecture id>.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.

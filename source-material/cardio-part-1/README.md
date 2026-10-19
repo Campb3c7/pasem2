@@ -40,4 +40,6 @@ One section per objective block, however many class days it spans.
 | Cardiovascular Physiology | Learn/Test/Apply/Recall: 8 objectives, 52 cards, 167 questions (`node scripts/validate-cardio-physiology.cjs`) |
 | Cardiovascular H&P | Learn/Test/Apply/Recall: 15 objectives, 68 cards, 199 questions (`node scripts/validate-cardio-history-physical.cjs`); OSCE objectives not included |
 
+Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 17/128, H&P 12/100.
+
 Heart Sounds is waiting on its deck.
