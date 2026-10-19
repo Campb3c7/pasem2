@@ -20,7 +20,7 @@ One section per objective block, however many class days it spans.
 | Section | Objectives block | Deck in project files |
 |---|---|---|
 | Cardio A&P | Cardiology Anatomy | Cardio Anatomy.pptx |
-| Cardio Physiology (deck uploaded; confirm it is Part 1) | Cardiology Physiology | Cardiovascular Physiology.pptx |
+| Cardio Physiology (taught with Anatomy on the "Cardio A&P" day) | Cardiology Physiology | Cardiovascular Physiology.pptx |
 | Cardio H&P | Cardiovascular H&P | Cardiovascular H&P.pptx |
 | Heart Sounds | Heart Sounds | missing |
 | Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
