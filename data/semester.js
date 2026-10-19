@@ -260,6 +260,34 @@ window.SEMESTER = {
           objectives: window.PATIENT_EDUCATION_FOLLOW_UP_OBJECTIVES || []
         }
       ]
+    },
+    {
+      id: "cardio-part-1",
+      title: "Cardio Part 1",
+      short: "CARDIO 1",
+      icon: "🫀",
+      color: "rose",
+      description: "Cardiology exam 1 lectures, one objective at a time.",
+      lectures: [
+        {
+          id: "cardio-anatomy",
+          title: "Cardiovascular Anatomy",
+          description: "Thoracic cage and surface lines, mediastinum and pericardium, heart structure, valve projection versus auscultation, and the major vessels of the thorax, abdomen, and extremities.",
+          objectives: window.CARDIO_ANATOMY_OBJECTIVES || []
+        },
+        {
+          id: "cardio-physiology",
+          title: "Cardiovascular Physiology",
+          description: "Systemic and pulmonic circulation, blood-flow principles, conduction and refractory periods, the cardiac cycle, determinants of cardiac output, arteries versus veins, and blood-flow control.",
+          objectives: window.CARDIO_PHYSIOLOGY_OBJECTIVES || []
+        },
+        {
+          id: "cardio-history-physical",
+          title: "Cardiovascular H&P",
+          description: "Cardiac history questions, chronic-care follow-up, exam landmarks, auscultation, heart sounds, PMI, JVP, pulses and bruits, special tests, and cultural considerations.",
+          objectives: window.CARDIO_HP_OBJECTIVES || []
+        }
+      ]
     }
   ]
 };
