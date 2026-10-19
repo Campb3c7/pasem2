@@ -3,6 +3,8 @@
 Reference only. This folder is excluded from the GitHub Pages deploy (see
 `.github/workflows/pages.yml`) and is never loaded by the site.
 
+- `slides/` — original lecture decks.
+- `text/` — slide text + speaker notes extracted with `scripts/extract-slides.py` (search these first).
 - `objectives.txt` — official PHAS 517 cardiology objectives for the whole course
   (all three exams). Only the lectures assigned to Part 1 are built here.
 
@@ -10,8 +12,7 @@ Reference only. This folder is excluded from the GitHub Pages deploy (see
 
 - Cardiology is split into three exams, so the site gets **Cardio Part 1**, Part 2,
   and Part 3 as separate courses rather than one Cardio course.
-- The student supplies the Part 1 lecture list from the class calendar. Do not build
-  lectures until that list arrives.
+- Lectures are built in calendar order as the student asks; Diseases-style tools come later.
 
 ## Part 1 sections (from the student's calendar, 2026-10-19)
 
@@ -30,3 +31,13 @@ One section per objective block, however many class days it spans.
 | Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
 | EKG (EKG 1 and 2) | EKG | missing |
 | Valvular Disease | Valvular Disease | Valvular Disease - student.pptx |
+
+## Built
+
+| Lecture | Status |
+|---|---|
+| Cardiovascular Anatomy | Learn/Test/Apply/Recall: 11 objectives, 58 cards, 223 questions (`node scripts/validate-cardio-anatomy.cjs`) |
+| Cardiovascular Physiology | Learn/Test/Apply/Recall: 8 objectives, 52 cards, 167 questions (`node scripts/validate-cardio-physiology.cjs`) |
+| Cardiovascular H&P | Learn/Test/Apply/Recall: 15 objectives, 68 cards, 199 questions (`node scripts/validate-cardio-history-physical.cjs`); OSCE objectives not included |
+
+Heart Sounds is waiting on its deck.
