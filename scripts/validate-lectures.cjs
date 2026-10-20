@@ -26,7 +26,11 @@ global.window = global;
   "heent-malignancy",
   "cardio-anatomy",
   "cardio-physiology",
-  "cardio-history-physical"
+  "cardio-history-physical",
+  "lipids-dyslipidemia",
+  "hypertension",
+  "cardiomyopathies",
+  "valvular-disease"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 
