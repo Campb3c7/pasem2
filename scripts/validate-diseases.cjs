@@ -1,4 +1,4 @@
-// Validates both Diseases tools' data (window.DISEASES, window.ENDOCRINE_DISEASES).
+// Validates every Diseases tool's data (Infectious Disease, Endocrine, Cardio Part 1).
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
@@ -9,7 +9,7 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const match of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) {
   vm.runInContext(fs.readFileSync(path.join(root, match[1]), 'utf8'), context, { filename: match[1] });
 }
-for (const name of ['DISEASES', 'ENDOCRINE_DISEASES']) {
+for (const name of ['DISEASES', 'ENDOCRINE_DISEASES', 'CARDIO_PART1_DISEASES']) {
   const data = context.window[name];
   assert(data && data.lectures.length, name + ' must be loaded');
   const lectureIds = new Set(), diseaseIds = new Set();

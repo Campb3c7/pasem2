@@ -44,6 +44,8 @@ One section per objective block, however many class days it spans.
 | Cardiomyopathies | 18 sections (HCM split in four), 74 cards, 258 questions (`validate-cardiomyopathies.cjs`) |
 | Valvular Disease | 25 sections (one per lesion), 55 cards, 216 questions (`validate-valvular-disease.cjs`). The 74 MB deck is not committed; its text is in `text/valvular-disease.md` and the original is in the project files |
 
-Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 17/128, H&P 12/100.
+Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 17/128, H&P 12/100, Lipids 10/76, Hypertension 14/123, Cardiomyopathies 11/87, Valvular 10/80.
+
+Diseases tool (Cardio Part 1 page): Lipids 6 diseases/109 questions, Hypertension 12/161, Cardiomyopathies 8/134 (includes a "General Approach" entry for the lecture-wide objectives), Valvular 13/151 (valve-surgery objectives live under Prosthetic Valve Endocarditis). Anatomy, Physiology and H&P teach no diseases.
 
 Heart Sounds is waiting on its deck.

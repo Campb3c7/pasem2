@@ -5,5 +5,7 @@
   Question ids are "<concept id>|<index>": only append questions.
 */
 window.CARDIO_PART1_CONCEPTS = {
-  lectures: [window.CARDIO_CONCEPTS_ANATOMY, window.CARDIO_CONCEPTS_PHYSIOLOGY, window.CARDIO_CONCEPTS_HP].filter(Boolean)
+  lectures: [window.CARDIO_CONCEPTS_ANATOMY, window.CARDIO_CONCEPTS_PHYSIOLOGY, window.CARDIO_CONCEPTS_HP,
+    window.CARDIO_CONCEPTS_LIPIDS, window.CARDIO_CONCEPTS_HYPERTENSION, window.CARDIO_CONCEPTS_CARDIOMYOPATHIES,
+    window.CARDIO_CONCEPTS_VALVULAR].filter(Boolean)
 };

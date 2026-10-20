@@ -510,12 +510,21 @@
   });
 
   createDiseasesTool({
+    data: window.CARDIO_PART1_DISEASES,
+    launchId: "cardio-diseases-launch", viewId: "cardio-diseases-view", contentId: "cardio-diseases-content", backId: "cardio-diseases-back",
+    progressKey: "pasem2:diseases:cardio-part-1:progress",
+    eyebrow: "Cardio Part 1 · comprehensive disease review",
+    intro: "Every Cardio Part 1 disease you need to identify, work up, and treat -- organized lecture by lecture, tracked disease by disease. Lipid and antihypertensive drugs appear in the treatment sections of the diseases they treat.",
+    note: "Anatomy, Physiology, and History & Physical teach no diseases of their own, so they don't appear as lectures here."
+  });
+
+  createDiseasesTool({
     data: window.CARDIO_PART1_CONCEPTS,
     title: "Concepts", one: "concept", many: "concepts",
     launchId: "cardio-concepts-launch", viewId: "cardio-concepts-view", contentId: "cardio-concepts-content", backId: "cardio-concepts-back",
     progressKey: "pasem2:concepts:cardio-part-1:progress",
     eyebrow: "Cardio Part 1 · understand the why",
     intro: "The ideas you have to reason with, not just memorize -- each concept explains the mechanism, walks the cause-and-effect chain, ties it to what you'll find on exam, and lists the classic traps. Practice is mostly \"what happens if...\" prediction questions.",
-    note: "Memorization facts stay in each lecture's Learn/Test/Apply. Physiology carries most of the concepts; Anatomy and H&P have fewer because more of them is pure recall."
+    note: "Memorization facts stay in each lecture's Learn/Test/Apply. Physiology, Hypertension, and Valvular Disease carry the most mechanism; Anatomy and H&P have fewer concepts because more of them is pure recall."
   });
 }());

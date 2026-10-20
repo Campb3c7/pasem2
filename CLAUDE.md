@@ -20,9 +20,9 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 ## Diseases tools
 
 - `diseases.js` creates one Diseases tool per course with `createDiseasesTool(...)`; each has its own view, data global, and progress key.
-- Infectious Disease data: `data/diseases.js` (`window.DISEASES`). Endocrine data: `data/diseases-endocrine.js` (`window.ENDOCRINE_DISEASES`). Shared authoring helpers: `data/disease-helpers.js`.
+- Infectious Disease data: `data/diseases.js` (`window.DISEASES`). Endocrine data: `data/diseases-endocrine.js` (`window.ENDOCRINE_DISEASES`). Cardio Part 1 data: one file per disease lecture, `data/diseases-cardio-*.js`, gathered by `data/diseases-cardio-part-1.js` (`window.CARDIO_PART1_DISEASES`); each has `scripts/validate-diseases-cardio-*.cjs`. Shared authoring helpers: `data/disease-helpers.js`.
 - Question ids are `<disease id>|<index>`: only append questions to a disease, never insert or reorder.
-- Run `node scripts/validate-diseases.cjs` after editing either data file.
+- Run `node scripts/validate-diseases.cjs` after editing any Diseases data file.
 
 ## Concepts tool
 
