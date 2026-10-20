@@ -25,7 +25,7 @@ One section per objective block, however many class days it spans.
 | Cardio H&P | Cardiovascular H&P | Cardiovascular H&P.pptx |
 | Heart Sounds | Heart Sounds | missing |
 | Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
-| Hypertension | Hypertension, Parts I, II and III (Hypertension Crisis is a separate block; confirm) | missing |
+| Hypertension | Hypertension, Parts I, II and III (Hypertension Crisis is a separate block; confirm) | hypertension-part-1/2/3.pptx (Veal) |
 | Cardiac Devices | Cardiac Device | missing |
 | Intro to Imaging | Introduction to Radiology | missing |
 | Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
