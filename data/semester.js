@@ -286,6 +286,30 @@ window.SEMESTER = {
           title: "Cardiovascular H&P",
           description: "Cardiac history questions, chronic-care follow-up, exam landmarks, auscultation, heart sounds, PMI, JVP, pulses and bruits, special tests, and cultural considerations.",
           objectives: window.CARDIO_HP_OBJECTIVES || []
+        },
+        {
+          id: "lipids-dyslipidemia",
+          title: "Lipids & Dyslipidemia",
+          description: "Atherosclerosis and ASCVD, lipoprotein metabolism, risk factors, familial dyslipidemias, lipid panels and advanced testing, risk calculation, lifestyle, every lipid-lowering drug class, and follow-up.",
+          objectives: window.LIPIDS_DYSLIPIDEMIA_OBJECTIVES || []
+        },
+        {
+          id: "hypertension",
+          title: "Hypertension",
+          description: "Parts I–III: epidemiology, BP physiology, measurement, diagnosis and staging, primary and secondary causes, end-organ effects, workup, targets, lifestyle, chronic care, and every antihypertensive class.",
+          objectives: window.HYPERTENSION_OBJECTIVES || []
+        },
+        {
+          id: "cardiomyopathies",
+          title: "Cardiomyopathies",
+          description: "General presentation, workup, management, and genetics, then HCM, ARVC, dilated, restrictive, myocarditis, peripartum, and Takotsubo cardiomyopathy.",
+          objectives: window.CARDIOMYOPATHY_OBJECTIVES || []
+        },
+        {
+          id: "valvular-disease",
+          title: "Valvular Disease",
+          description: "Echo in valve disease, each stenotic and regurgitant lesion, rheumatic heart disease, valve replacement choices, anticoagulation, prosthetic valve endocarditis, and surgical approaches.",
+          objectives: window.VALVULAR_DISEASE_OBJECTIVES || []
         }
       ]
     }

@@ -79,6 +79,11 @@
       <div class="course-tools" data-course-tools="cardio-part-1" hidden>
         <p class="eyebrow">Cardio Part 1 tools</p>
         <div class="course-tools-grid">
+          <button class="walkthrough-launch diseases-launch" id="cardio-diseases-launch" type="button">
+            <span class="walkthrough-launch-icon">✚</span>
+            <span><strong>Diseases</strong><small>Every Cardio Part 1 disease, lecture by lecture, with dedicated practice questions and per-disease progress</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
           <button class="walkthrough-launch concepts-launch" id="cardio-concepts-launch" type="button">
             <span class="walkthrough-launch-icon">⇢</span>
             <span><strong>Concepts</strong><small>The why behind each lecture: cause-and-effect chains and "what happens if…" practice</small></span>
@@ -114,6 +119,10 @@
       <div id="endocrine-diseases-content"></div>
     </section>
 
+    <section id="cardio-diseases-view" class="walkthrough-view diseases-view" hidden>
+      <button class="back-button" id="cardio-diseases-back" type="button">← Cardio Part 1</button>
+      <div id="cardio-diseases-content"></div>
+    </section>
     <section id="cardio-concepts-view" class="walkthrough-view diseases-view" hidden>
       <button class="back-button" id="cardio-concepts-back" type="button">← Cardio Part 1</button>
       <div id="cardio-concepts-content"></div>
@@ -172,10 +181,23 @@
   <script src="data/cardio-anatomy.js"></script>
   <script src="data/cardio-physiology.js"></script>
   <script src="data/cardio-history-physical.js"></script>
+  <script src="data/lipids-dyslipidemia.js"></script>
+  <script src="data/hypertension.js"></script>
+  <script src="data/cardiomyopathies.js"></script>
+  <script src="data/valvular-disease.js"></script>
   <script src="data/concepts-cardio-anatomy.js"></script>
   <script src="data/concepts-cardio-physiology.js"></script>
   <script src="data/concepts-cardio-history-physical.js"></script>
+  <script src="data/concepts-lipids-dyslipidemia.js"></script>
+  <script src="data/concepts-hypertension.js"></script>
+  <script src="data/concepts-cardiomyopathies.js"></script>
+  <script src="data/concepts-valvular-disease.js"></script>
   <script src="data/concepts-cardio-part-1.js"></script>
+  <script src="data/diseases-cardio-lipids.js"></script>
+  <script src="data/diseases-cardio-hypertension.js"></script>
+  <script src="data/diseases-cardio-cardiomyopathies.js"></script>
+  <script src="data/diseases-cardio-valvular.js"></script>
+  <script src="data/diseases-cardio-part-1.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
   <script src="walkthrough.js"></script>
