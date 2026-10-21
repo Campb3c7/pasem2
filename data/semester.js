@@ -300,6 +300,12 @@ window.SEMESTER = {
           objectives: window.HYPERTENSION_OBJECTIVES || []
         },
         {
+          id: "cardiac-devices",
+          title: "Cardiac Devices",
+          description: "Pacemaker vs ICD indications, pacemaker codes, placement, battery life and testing, perioperative management, magnet response, electromagnetic interference, and device infection.",
+          objectives: window.CARDIAC_DEVICES_OBJECTIVES || []
+        },
+        {
           id: "cardiomyopathies",
           title: "Cardiomyopathies",
           description: "General presentation, workup, management, and genetics, then HCM, ARVC, dilated, restrictive, myocarditis, peripartum, and Takotsubo cardiomyopathy.",
