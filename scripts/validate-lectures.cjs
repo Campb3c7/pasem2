@@ -29,6 +29,7 @@ global.window = global;
   "cardio-history-physical",
   "lipids-dyslipidemia",
   "hypertension",
+  "cardiac-devices",
   "cardiomyopathies",
   "valvular-disease"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));

@@ -41,6 +41,7 @@ One section per objective block, however many class days it spans.
 | Cardiovascular H&P | Learn/Test/Apply/Recall: 15 objectives, 68 cards, 199 questions (`node scripts/validate-cardio-history-physical.cjs`); OSCE objectives not included |
 | Lipids & Dyslipidemia | 27 sections (drug objective split per class), 85 cards, 348 questions (`validate-lipids-dyslipidemia.cjs`) |
 | Hypertension (Parts I–III) | 35 sections (drug objective split per class), 95 cards, 357 questions (`validate-hypertension.cjs`); Hypertension Crisis block not included |
+| Cardiac Devices | 10 sections (objective 3 split in four), 37 cards, 133 questions (`validate-cardiac-devices.cjs`) |
 | Cardiomyopathies | 18 sections (HCM split in four), 74 cards, 258 questions (`validate-cardiomyopathies.cjs`) |
 | Valvular Disease | 25 sections (one per lesion), 55 cards, 216 questions (`validate-valvular-disease.cjs`). The 74 MB deck is not committed; its text is in `text/valvular-disease.md` and the original is in the project files |
 
