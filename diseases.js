@@ -515,7 +515,7 @@
     progressKey: "pasem2:diseases:cardio-part-1:progress",
     eyebrow: "Cardio Part 1 · comprehensive disease review",
     intro: "Every Cardio Part 1 disease you need to identify, work up, and treat -- organized lecture by lecture, tracked disease by disease. Lipid and antihypertensive drugs appear in the treatment sections of the diseases they treat.",
-    note: "Anatomy, Physiology, and History & Physical teach no diseases of their own, so they don't appear as lectures here."
+    note: "Anatomy, Physiology, H&P, and Cardiac Devices aren't disease lectures, so their entries are the clinical conditions those lectures teach you to recognize or manage."
   });
 
   createDiseasesTool({
