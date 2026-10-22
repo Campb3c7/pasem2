@@ -1,0 +1,25 @@
+Introduction to Radiology Objectives:
+
+Define the various modalities of diagnostic imaging and recall their comparative cost and any populations who would be at risk from their use. 
+List the modalities that use ionizing radiation.
+Recall the definitions of the following terms with regards to radiology: artifact, image contrast, and penetration of a radiograph.
+Recall the indications for contrast when performing imaging, such that, if given a clinical scenario you would be able to determine if contrast would be beneficial.
+Recall the contraindications/precautions for iodated and gadolinium contrast when performing imaging, such that, if given a clinical scenario you would be able to determine if contrast would be contraindicated.
+Recall the symptoms of iodated contrast reactions and the effects of contrast extravasation into the subcutaneous tissue and the peritoneum/ mediastinum.
+Describe how x-rays are used to generate plain film radiographs and recognize the situations and structures of the body which are best evaluated by conventional radiographs.
+Compare and contrast radiography and fluoroscopy, and recognize the clinical situations in which fluoroscopy is used.
+When considering radiography, recall why different projections are used and compare and contrast the limitations, deficiencies and benefits of a PA and an AP chest radiograph.
+Describe how a CT scan is performed and how the images are produced.
+Recognize the situations and structures of the body which are best evaluated by CT scan.
+Describe the benefit of setting a window width and a window level when viewing a CT and be able to predict the effect that is seen if these settings are changed.
+Recall the difference in technique or computer processing that define the following studies: a CT with IV contrast, a high-resolution CT, a CT angiography and a 3D CT reconstruction study.
+Recognize axial views, coronal views, and sagittal views on a CT or MRI if given an image.
+Describe the basic science behind the diagnostic image that is seen on a magnetic resonance image study and the utility of MRI sequences.
+Recognize the situations and structures of the body which are best evaluated by MRI.
+Recall the limitations and precautions of magnetic resonance imaging.
+Describe how ultrasound is used to acquire images and recognize the areas of the body which are best evaluated by ultrasound.
+Define the term: acoustic shadowing and recall what it signifies.
+Recall how the addition of doppler will change an ultrasound image.
+Describe the general principles involved in conducting a nuclear medicine study and for the types of nuclear medicine studies reviewed in class, describe briefly how these are done.
+Recall the important safety considerations that must be in place when using MRI and nuclear medicine technology.
+For each of the imaging modalities discussed, counsel a patient on the procedure of obtaining the imaging study, such that if the patient had questions or concerns, the student could confidently talk the patient through the process of the radiologic study.

@@ -318,6 +318,38 @@ window.SEMESTER = {
           objectives: window.VALVULAR_DISEASE_OBJECTIVES || []
         }
       ]
+    },
+    {
+      id: "radiology",
+      title: "Radiology",
+      short: "RADIOLOGY",
+      icon: "🩻",
+      color: "violet",
+      description: "Intro to Radiology exam lectures, one objective at a time. Later parts are added here as they are taught.",
+      lectures: [
+        {
+          id: "intro-radiology-part-1",
+          title: "Intro to Radiology Part One",
+          description: "Modality cost and radiation risk, image terms, contrast indications, contraindications and reactions, radiography and fluoroscopy, PA vs AP films, CT technique, windows, CT study types, imaging planes, and patient counseling.",
+          objectives: window.RADIOLOGY_PART1_OBJECTIVES || []
+        }
+      ]
+    },
+    {
+      id: "ekg",
+      title: "EKG",
+      short: "EKG",
+      icon: "📈",
+      color: "rose",
+      description: "EKG interpretation exam, one objective at a time.",
+      lectures: [
+        {
+          id: "ekg-interpretation",
+          title: "EKG Interpretation",
+          description: "EKG I–IV: waveforms and intervals, lead views, the stepwise approach, sinus, atrial, junctional, and ventricular rhythms, AV blocks, premature beats, QTc, axis, hypertrophy and bundle branch blocks, MI localization, STEMI criteria, and electrolytes.",
+          objectives: window.EKG_INTERPRETATION_OBJECTIVES || []
+        }
+      ]
     }
   ]
 };

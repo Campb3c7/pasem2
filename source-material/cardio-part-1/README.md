@@ -27,9 +27,9 @@ One section per objective block, however many class days it spans.
 | Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
 | Hypertension | Hypertension, Parts I, II and III (Hypertension Crisis is a separate block; confirm) | hypertension-part-1/2/3.pptx (Veal) |
 | Cardiac Devices | Cardiac Device | missing |
-| Intro to Imaging | Introduction to Radiology | missing |
+| ~~Intro to Imaging~~ | Introduction to Radiology | Separate exam: built as the Radiology course (`source-material/radiology-part-1/`) |
 | Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
-| EKG (EKG 1 and 2) | EKG | missing |
+| ~~EKG~~ | EKG | Separate exam: built as the EKG course (`source-material/ekg/`) |
 | Valvular Disease | Valvular Disease | Valvular Disease - student.pptx |
 
 ## Built

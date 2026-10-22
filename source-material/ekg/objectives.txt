@@ -1,0 +1,18 @@
+EKG Objectives:
+
+Define the key properties of myocardial cells.
+Explain the heart’s conduction pathway and point out the depolarization and repolarization portions of the atria and ventricles on the EKG.
+Recall the normal appearance, amplitude, and duration of the P wave, PR segment, PR interval, QRS complex, J point, ST segment, QT interval, and T wave.
+Recall when U waves and delta waves appear on an EKG.
+Compare and contrast physiologic and pathologic Q waves.
+Compare and contrast the views of the limb and precordial leads on a 12 lead EKG.
+Interpret rhythm strips and 12 lead EKGs using a stepwise approach.
+Explain the pathophysiology and distinguish the appearance of normal sinus rhythm, sinus bradycardia, sinus tachycardia, sinus dysrhythmia/arrhythmia, sinus arrest/pause, atrial tachycardia, wandering atrial pacemaker, multifocal atrial tachycardia, atrial flutter, atrial fibrillation, junctional bradycardia, junctional rhythm, accelerated junctional rhythm, junctional tachycardia, idioventricular rhythm, accelerated idioventricular rhythm, ventricular tachycardia, ventricular fibrillation, asystole, and AV blocks (1st degree, 2nd degree types I and II, 3rd degree) on an EKG.
+Recognize PACs, PJCs, and PVCs on an EKG.
+Explain the concerning arrhythmias that can arise from a prolonged QTc interval.
+Identify the correct axis on an EKG and recall the conditions that can cause an altered electrical axis.
+Explain the pathophysiology of and identify hypertrophy, enlargement, ventricular strain, bundle branch blocks, and hemiblocks on an EKG.
+Identify pericarditis, pericardial effusion, pulmonary embolus, and pacemakers on an EKG.
+Differentiate myocardial damage on an EKG and identify what area of the heart is damaged on a 12 lead EKG.
+Determine diagnostic ST segment elevation on a 12 lead EKG.
+Recognize changes on an EKG caused by hyperkalemia, hypokalemia, hypercalcemia, and hypocalcemia.
