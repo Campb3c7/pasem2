@@ -300,6 +300,12 @@ window.SEMESTER = {
           objectives: window.HYPERTENSION_OBJECTIVES || []
         },
         {
+          id: "hypertensive-crisis",
+          title: "Hypertensive Crisis",
+          description: "Hypertensive urgency vs emergency, remodeling and autoregulation, crisis history, exam and work-up, CNS and cardiac end-organ damage, IV drugs (nitroprusside, nitroglycerin, nicardipine), condition-specific BP goals, and hypertension in pregnancy.",
+          objectives: window.HYPERTENSIVE_CRISIS_OBJECTIVES || []
+        },
+        {
           id: "cardiac-devices",
           title: "Cardiac Devices",
           description: "Pacemaker vs ICD indications, pacemaker codes, placement, battery life and testing, perioperative management, magnet response, electromagnetic interference, and device infection.",

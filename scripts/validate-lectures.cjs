@@ -29,6 +29,7 @@ global.window = global;
   "cardio-history-physical",
   "lipids-dyslipidemia",
   "hypertension",
+  "hypertensive-crisis",
   "cardiac-devices",
   "cardiomyopathies",
   "valvular-disease",

@@ -25,7 +25,8 @@ One section per objective block, however many class days it spans.
 | Cardio H&P | Cardiovascular H&P | Cardiovascular H&P.pptx |
 | Heart Sounds | Heart Sounds | missing |
 | Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
-| Hypertension | Hypertension, Parts I, II and III (Hypertension Crisis is a separate block; confirm) | hypertension-part-1/2/3.pptx (Veal) |
+| Hypertension | Hypertension, Parts I, II and III | hypertension-part-1/2/3.pptx (Veal) |
+| Hypertensive Crisis | Hypertension Crisis (confirmed Part 1, 2026-10-23) | hypertensive-crisis.pptx (Veal) |
 | Cardiac Devices | Cardiac Device | missing |
 | ~~Intro to Imaging~~ | Introduction to Radiology | Separate exam: built as the Radiology course (`source-material/radiology-part-1/`) |
 | Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
@@ -40,13 +41,14 @@ One section per objective block, however many class days it spans.
 | Cardiovascular Physiology | Learn/Test/Apply/Recall: 8 objectives, 52 cards, 167 questions (`node scripts/validate-cardio-physiology.cjs`) |
 | Cardiovascular H&P | Learn/Test/Apply/Recall: 15 objectives, 68 cards, 199 questions (`node scripts/validate-cardio-history-physical.cjs`); OSCE objectives not included |
 | Lipids & Dyslipidemia | 27 sections (drug objective split per class), 85 cards, 348 questions (`validate-lipids-dyslipidemia.cjs`) |
-| Hypertension (Parts I–III) | 35 sections (drug objective split per class), 95 cards, 357 questions (`validate-hypertension.cjs`); Hypertension Crisis block not included |
+| Hypertension (Parts I–III) | 35 sections (drug objective split per class), 95 cards, 357 questions (`validate-hypertension.cjs`) |
+| Hypertensive Crisis | 23 sections (objective 4 split in four, 8 in five, 9 per condition plus sympathetic overactivity), 56 cards, 256 questions (`validate-hypertensive-crisis.cjs`). Objectives 1–2 repeat Hypertension 11–12 and are rebuilt from this deck plus Part II slides 27–40. Slide 14's "SAH" description reads like a subdural hematoma; flagged on the card |
 | Cardiac Devices | 10 sections (objective 3 split in four), 37 cards, 133 questions (`validate-cardiac-devices.cjs`) |
 | Cardiomyopathies | 18 sections (HCM split in four), 74 cards, 258 questions (`validate-cardiomyopathies.cjs`) |
 | Valvular Disease | 25 sections (one per lesion), 55 cards, 216 questions (`validate-valvular-disease.cjs`). The 74 MB deck is not committed; its text is in `text/valvular-disease.md` and the original is in the project files |
 
-Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 17/128, H&P 12/100, Lipids 10/76, Hypertension 14/123, Cardiac Devices 8/57, Cardiomyopathies 11/87, Valvular 10/80.
+Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 17/128, H&P 12/100, Lipids 10/76, Hypertension 14/123, Hypertensive Crisis 9/60, Cardiac Devices 8/57, Cardiomyopathies 11/87, Valvular 10/80.
 
-Diseases tool (Cardio Part 1 page): Anatomy 3 entries/26 questions, Physiology 6/48, H&P 11/106, Lipids 6 diseases/109 questions, Hypertension 12/161, Cardiac Devices 8/79, Cardiomyopathies 8/134 (includes a "General Approach" entry for the lecture-wide objectives), Valvular 13/151 (valve-surgery objectives live under Prosthetic Valve Endocarditis). Anatomy, Physiology, H&P and Devices hold the clinical conditions those lectures teach (no workup/treatment sections where the slides teach none).
+Diseases tool (Cardio Part 1 page): Anatomy 3 entries/26 questions, Physiology 6/48, H&P 11/106, Lipids 6 diseases/109 questions, Hypertension 12/161, Hypertensive Crisis 13/97, Cardiac Devices 8/79, Cardiomyopathies 8/134 (includes a "General Approach" entry for the lecture-wide objectives), Valvular 13/151 (valve-surgery objectives live under Prosthetic Valve Endocarditis). Anatomy, Physiology, H&P and Devices hold the clinical conditions those lectures teach (no workup/treatment sections where the slides teach none).
 
 Heart Sounds is waiting on its deck.
