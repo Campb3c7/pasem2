@@ -294,10 +294,22 @@ window.SEMESTER = {
           objectives: window.LIPIDS_DYSLIPIDEMIA_OBJECTIVES || []
         },
         {
-          id: "hypertension",
-          title: "Hypertension",
-          description: "Parts I–III: epidemiology, BP physiology, measurement, diagnosis and staging, primary and secondary causes, end-organ effects, workup, targets, lifestyle, chronic care, and every antihypertensive class.",
-          objectives: window.HYPERTENSION_OBJECTIVES || []
+          id: "hypertension-part-1",
+          title: "Hypertension Part I",
+          description: "Epidemiology and social determinants, BP physiology (RAAS, sympathetic tone, baroreceptors), primary vs secondary hypertension, renovascular and resistant HTN, secondary causes and their testing, and primary HTN mechanisms.",
+          objectives: window.HYPERTENSION_PART1_OBJECTIVES || []
+        },
+        {
+          id: "hypertension-part-2",
+          title: "Hypertension Part II",
+          description: "Measuring BP in the office, at home, and ambulatory, diagnostic criteria and staging, vascular, cardiac, CNS and renal effects, drugs and substances that raise BP, history and exam, and the initial work-up.",
+          objectives: window.HYPERTENSION_PART2_OBJECTIVES || []
+        },
+        {
+          id: "hypertension-part-3",
+          title: "Hypertension Part III",
+          description: "BP targets, lifestyle, chronic care visits, treatment principles and compelling indications, drug choice by race and in pregnancy, every antihypertensive class, non-BP uses, and overdose.",
+          objectives: window.HYPERTENSION_PART3_OBJECTIVES || []
         },
         {
           id: "hypertensive-crisis",

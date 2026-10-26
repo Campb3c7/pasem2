@@ -1,18 +1,18 @@
-// Validates data/diseases-cardio-hypertension.js (Cardio Part 1 Diseases: Hypertension).
+// Validates data/diseases-cardio-hypertension-part-2.js (Cardio Part 1 Diseases: Hypertension Part II).
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const context = vm.createContext({ window: {} });
-for (const file of ['data/disease-helpers.js', 'data/diseases-cardio-hypertension.js']) {
+for (const file of ['data/disease-helpers.js', 'data/diseases-cardio-hypertension-part-2.js']) {
   vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
 }
-const lecture = context.window.CARDIO_DISEASES_HYPERTENSION;
-assert(lecture && Array.isArray(lecture.diseases) && lecture.diseases.length, 'CARDIO_DISEASES_HYPERTENSION must be loaded');
-assert.equal(lecture.id, 'hypertension');
-assert.equal(lecture.title, 'Hypertension');
-const required = ['htn-primary', 'htn-target-organ-damage', 'htn-secondary', 'htn-renovascular', 'htn-coarctation', 'htn-pheochromocytoma', 'htn-primary-aldosteronism', 'htn-osa', 'htn-drug-induced', 'htn-resistant', 'htn-compelling-indications', 'htn-special-populations'];
+const lecture = context.window.CARDIO_DISEASES_HYPERTENSION_PART2;
+assert(lecture && Array.isArray(lecture.diseases) && lecture.diseases.length, 'CARDIO_DISEASES_HYPERTENSION_PART2 must be loaded');
+assert.equal(lecture.id, 'hypertension-part-2');
+assert.equal(lecture.title, 'Hypertension Part II');
+const required = ['htn-target-organ-damage', 'htn-drug-induced'];
 const tag = /<\/?[a-z][^>]*>/i;
 const entity = /&[a-z0-9#]+;/i;
 function plainText(value, where) {
@@ -54,4 +54,4 @@ for (const disease of lecture.diseases) {
   });
 }
 for (const id of required) assert(ids.has(id), 'missing required disease ' + id);
-console.log('CARDIO_DISEASES_HYPERTENSION: ' + lecture.diseases.length + ' diseases, ' + questions + ' questions — ' + lecture.diseases.map(d => d.id + ' (' + d.questions.length + ')').join(', '));
+console.log('CARDIO_DISEASES_HYPERTENSION_PART2: ' + lecture.diseases.length + ' diseases, ' + questions + ' questions — ' + lecture.diseases.map(d => d.id + ' (' + d.questions.length + ')').join(', '));

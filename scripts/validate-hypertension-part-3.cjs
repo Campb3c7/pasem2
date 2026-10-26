@@ -1,28 +1,12 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
-const root=path.join(__dirname,'..'),file='data/hypertension.js',context=vm.createContext({window:{}});
+const root=path.join(__dirname,'..'),file='data/hypertension-part-3.js',context=vm.createContext({window:{}});
 vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
-const sections=context.window.HYPERTENSION_OBJECTIVES;
-assert(Array.isArray(sections),'HYPERTENSION_OBJECTIVES missing');
-/* 24 official objectives in order; objective 22 is split into one section per drug class (22a-22l). */
-assert.deepEqual(Array.from(sections,s=>s.id),["01-epidemiology-sdoh","02-bp-physiology","03-primary-vs-secondary","04-bp-measurement","05-abpm-hbpm","06-diagnostic-criteria","07-stages","08-renovascular-resistant","09-secondary-workup","10-primary-etiologies","11-remodeling","12-cns-renal-autoregulation","13-medications","14-substances","15-history-physical","16-workup-risk","17-bp-targets","18-lifestyle","19-chronic-care","20-treatment-principles","21-race-pregnancy","22a-thiazide-diuretics","22b-loop-diuretics","22c-potassium-sparing","22d-aldosterone-antagonists","22e-ace-inhibitors","22f-arbs","22g-calcium-channel-blockers","22h-beta-blockers","22i-mixed-alpha-beta","22j-alpha-1-blockers","22k-central-alpha-2-agonists","22l-direct-vasodilators","23-non-bp-indications","24-overdose"]);
+const sections=context.window.HYPERTENSION_PART3_OBJECTIVES;
+assert(Array.isArray(sections),'HYPERTENSION_PART3_OBJECTIVES missing');
+/* Official objectives 17, 18, 19, 20, 21, 22, 23, 24 of "Hypertension, Parts I, II and III", in order; objective 22 is split into one section per drug class (22a-22l). */
+assert.deepEqual(Array.from(sections,s=>s.id),["17-bp-targets","18-lifestyle","19-chronic-care","20-treatment-principles","21-race-pregnancy","22a-thiazide-diuretics","22b-loop-diuretics","22c-potassium-sparing","22d-aldosterone-antagonists","22e-ace-inhibitors","22f-arbs","22g-calcium-channel-blockers","22h-beta-blockers","22i-mixed-alpha-beta","22j-alpha-1-blockers","22k-central-alpha-2-agonists","22l-direct-vasodilators","23-non-bp-indications","24-overdose"]);
 /* Required components per section, taken from the objective wording. */
 const required=[
-["global-prevalence","global-awareness-control","us-prevalence","us-demographics","us-control","complication-risk","control-benefits","sdoh-domains","sdoh-disparities","health-literacy"],
-["map","co-tpr","map-calculation","determinants","baroreceptor-reflex","short-term-neural","sympathetic-activity","chemoreceptors","volume-receptors","raas-triggers","macula-densa","long-term-humoral","angiotensin-ii","aldosterone"],
-["primary-epidemiology","secondary-epidemiology","primary-pathophysiology","secondary-pathophysiology","secondary-etiologies"],
-["cuff-size","patient-prep","positioning","no-talking","both-arms","orthostatic","measurement-errors"],
-["hbpm-technique","hbpm-utility","abpm-technique","abpm-utility","non-dippers","white-coat","office-comparison","comparable-values"],
-["average-readings","out-of-office-confirmation","single-visit-exceptions","white-coat-hypertension","worked-example"],
-["normal","elevated","stage-1","stage-2","isolated-systolic","isolated-diastolic","higher-category-rule"],
-["renovascular-definition","ras-populations","resistant-definition","resistant-management"],
-["when-to-suspect","ras-clues","ras-testing","pckd","coarctation","pheochromocytoma","hyperaldosteronism","cushing","thyroid","osa","medication-causes"],
-["sns-hyperactivity","genetics","nephron-mass","sodium-handling","immunologic","developmental","non-modifiable","obesity","diabetes-dyslipidemia","ckd","alcohol","sodium-potassium","inactivity","smoking","sleep","polycythemia","nsaids","counseling"],
-["natural-history","vascular-remodeling","lvh","diastolic-dysfunction","hhd-continuum"],
-["cerebral-autoregulation","acute-rise-effects","autoregulation-shift","slow-lowering","renal-autoregulation","renal-mechanisms"],
-["nsaids","pseudoephedrine","ocps","triptans","other-prescription-drugs","withdrawal-situations"],
-["alcohol","cocaine","methamphetamine","st-johns-wort","other-substances"],
-["history-prior-events","end-organ-symptoms","secondary-cause-history","vitals","fundoscopic","vascular-exam","cardiac-exam","lung-neuro"],
-["initial-labs","ekg-echo","cv-risk-factors","risk-calculator"],
 ["bp-goal","treatment-thresholds","risk-based-initiation","reassessment-intervals","withholding-treatment"],
 ["lifestyle-table","weight-loss","dash","sodium","exercise","alcohol-limits","tobacco","dash-foods","drink-definition","motivational-interviewing"],
 ["bp-review","symptom-review","adherence","exam-labs","lifestyle-goal","follow-up-intervals"],
@@ -64,4 +48,4 @@ sections.forEach((s,i)=>{
     assert(s.test.some(q=>q.card===ci),`No test for ${s.id} card ${ci}`);assert(s.apply.some(q=>q.card===ci),`No apply for ${s.id} card ${ci}`);});
   cards+=s.cards.length;test+=s.test.length;apply+=s.apply.length;
 });
-console.log(`Hypertension I–III: ${sections.length} ordered sections (24 objectives; drug classes split 22a–22l); ${cards} Learn cards, ${test} Test questions, ${apply} Apply cases. ${required.flat().length} components checked; question links valid.`);
+console.log(`Hypertension Part III: ${sections.length} ordered sections; ${cards} Learn cards, ${test} Test questions, ${apply} Apply cases. ${required.flat().length} components checked; question links valid.`);

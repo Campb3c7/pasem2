@@ -1,14 +1,14 @@
-// Validates data/concepts-hypertension.js (Concepts tool, Hypertension).
+// Validates data/concepts-hypertension-part-1.js (Concepts tool, Hypertension Part I).
 const fs = require("node:fs"), vm = require("node:vm"), assert = require("node:assert/strict"), path = require("node:path");
 const root = path.join(__dirname, "..");
 const context = vm.createContext({ window: {} });
-for (const file of ["data/disease-helpers.js", "data/concepts-hypertension.js"]) {
+for (const file of ["data/disease-helpers.js", "data/concepts-hypertension-part-1.js"]) {
   vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), context, { filename: file });
 }
-const lecture = context.window.CARDIO_CONCEPTS_HYPERTENSION;
-assert(lecture && Array.isArray(lecture.diseases), "CARDIO_CONCEPTS_HYPERTENSION missing");
-assert.equal(lecture.id, "hypertension");
-assert.equal(lecture.title, "Hypertension");
+const lecture = context.window.CARDIO_CONCEPTS_HYPERTENSION_PART1;
+assert(lecture && Array.isArray(lecture.diseases), "CARDIO_CONCEPTS_HYPERTENSION_PART1 missing");
+assert.equal(lecture.id, "hypertension-part-1");
+assert.equal(lecture.title, "Hypertension Part I");
 const idPattern = /^[a-z0-9-]+$/;
 const sectionIds = ["idea", "chain", "bedside", "traps"];
 const plain = (label, text) => {
@@ -39,4 +39,4 @@ for (const c of lecture.diseases) {
     questions++;
   });
 }
-console.log(`hypertension concepts OK: ${lecture.diseases.length} concepts, ${questions} questions`);
+console.log(`hypertension part I concepts OK: ${lecture.diseases.length} concepts, ${questions} questions`);
