@@ -29,6 +29,7 @@ One section per objective block, however many class days it spans.
 | Hypertension Part II | Same block: objectives 4–7, 11–16 | hypertension-part-2.pptx (Veal) |
 | Hypertension Part III | Same block: objectives 17–24 | hypertension-part-3.pptx (Veal) |
 | Hypertensive Crisis | Hypertension Crisis (confirmed Part 1, 2026-10-23) | hypertensive-crisis.pptx (Veal) |
+| Hypertension (Total) | Review of all four above (Anna's request, 2026-10-28) | Learn cards reused from the four lectures; no deck of its own |
 | Cardiac Devices | Cardiac Device | missing |
 | ~~Intro to Imaging~~ | Introduction to Radiology | Separate exam: built as the Radiology course (`source-material/radiology-part-1/`) |
 | Cardiomyopathy | Cardiomyopathy | Cardiomyopathies.pptx |
@@ -49,6 +50,7 @@ Hypertension's single objective list (Parts I, II and III) is split across three
 | Hypertension Part II | Objectives 4–7, 11–16: 10 sections, 27 cards, 99 questions (`validate-hypertension-part-2.cjs`) |
 | Hypertension Part III | Objectives 17–24 (drug objective split per class): 19 sections, 45 cards, 175 questions (`validate-hypertension-part-3.cjs`) |
 | Hypertensive Crisis | 23 sections (objective 4 split in four, 8 in five, 9 per condition plus sympathetic overactivity), 56 cards, 256 questions (`validate-hypertensive-crisis.cjs`). Objectives 1–2 repeat Hypertension 11–12 and are rebuilt from this deck plus Part II slides 27–40. Slide 14's "SAH" description reads like a subdural hematoma; flagged on the card |
+| Hypertension (Total) | All Hypertension I–III and Crisis objectives in one lecture: 56 sections, 145 Learn cards reused from the four files (Part II 11–12 merged into Crisis 1–2's cards), 411 new questions (224 Test, 187 Apply) that never repeat a source prompt (`validate-hypertension-total.cjs`). No Diseases or Concepts entries of its own: the four lectures' entries already cover it |
 | Cardiac Devices | 10 sections (objective 3 split in four), 37 cards, 133 questions (`validate-cardiac-devices.cjs`) |
 | Cardiomyopathies | 18 sections (HCM split in four), 74 cards, 258 questions (`validate-cardiomyopathies.cjs`) |
 | Valvular Disease | 25 sections (one per lesion), 55 cards, 216 questions (`validate-valvular-disease.cjs`). The 74 MB deck is not committed; its text is in `text/valvular-disease.md` and the original is in the project files |

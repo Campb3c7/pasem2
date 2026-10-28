@@ -318,6 +318,12 @@ window.SEMESTER = {
           objectives: window.HYPERTENSIVE_CRISIS_OBJECTIVES || []
         },
         {
+          id: "hypertension-total",
+          title: "Hypertension (Total)",
+          description: "Everything from Hypertension Parts I, II, III and Hypertensive Crisis in one review: all objectives with the same Learn cards and brand-new Test questions and Apply cases.",
+          objectives: window.HYPERTENSION_TOTAL_OBJECTIVES || []
+        },
+        {
           id: "cardiac-devices",
           title: "Cardiac Devices",
           description: "Pacemaker vs ICD indications, pacemaker codes, placement, battery life and testing, perioperative management, magnet response, electromagnetic interference, and device infection.",

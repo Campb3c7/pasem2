@@ -32,6 +32,7 @@ global.window = global;
   "hypertension-part-2",
   "hypertension-part-3",
   "hypertensive-crisis",
+  "hypertension-total",
   "cardiac-devices",
   "cardiomyopathies",
   "valvular-disease",

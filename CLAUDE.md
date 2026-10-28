@@ -8,6 +8,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `styles.css` — shared visual design.
 - `app.js` — Learn/Test/Apply/Recall behavior and local progress.
 - `walkthrough.js` — Disease Walkthrough state, answer checking, and progress.
+- `keyboard.js` — site-wide quiz shortcuts: A/B/C/D picks an answer, Space goes to the next question once it shows.
 - `data/semester.js` — course and lecture catalog.
 - `data/walkthrough/schema.js` — reusable case schema and registration helpers.
 - `data/walkthrough/cases-*.js` — disease cases grouped by clinical domain.
