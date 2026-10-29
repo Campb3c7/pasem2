@@ -527,4 +527,14 @@
     intro: "The ideas you have to reason with, not just memorize -- each concept explains the mechanism, walks the cause-and-effect chain, ties it to what you'll find on exam, and lists the classic traps. Practice is mostly \"what happens if...\" prediction questions.",
     note: "Memorization facts stay in each lecture's Learn/Test/Apply. Physiology, Hypertension, and Valvular Disease carry the most mechanism; Anatomy and H&P have fewer concepts because more of them is pure recall."
   });
+
+  createDiseasesTool({
+    data: window.CARDIO_PART1_PATHOPHYS,
+    title: "Pathophysiology", one: "topic", many: "topics",
+    launchId: "cardio-pathophys-launch", viewId: "cardio-pathophys-view", contentId: "cardio-pathophys-content", backId: "cardio-pathophys-back",
+    progressKey: "pasem2:pathophys:cardio-part-1:progress",
+    eyebrow: "Cardio Part 1 · pathophysiology practice",
+    intro: "Practice-first pathophysiology: why each disease, finding, and drug effect happens, spread across every Cardio Part 1 lecture. Start a practice set for the whole course or one lecture; miss a question and the key mechanism appears so you can review it on the spot.",
+    note: "Heart Sounds isn't here yet because its deck hasn't been added. The Concepts tool goes deeper on each mechanism if a topic keeps tripping you up."
+  });
 }());

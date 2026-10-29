@@ -61,4 +61,6 @@ Diseases tool (Cardio Part 1 page): Anatomy 3 entries/26 questions, Physiology 6
 
 Heart Murmurs tool (Cardio Part 1 page, 2026-10-29): practice-only, 10 sets / 202 questions (`node scripts/validate-murmurs.cjs`), built from Valvular, H&P and Cardiomyopathies. The "Other heart sounds" set (PDA, VSD, Still's, rub, splits, grading) uses standard teaching for the Heart Sounds objectives; check it against that deck when it arrives.
 
+Pathophysiology tool (Cardio Part 1 page, Anna's request 2026-10-29): 100 practice questions in 23 topics across all 11 lectures, in `data/pathophys-cardio-part-1.js` (`validate-pathophys-cardio-part-1.cjs`). Add a Heart Sounds lecture there when that deck arrives.
+
 Heart Sounds is waiting on its deck.

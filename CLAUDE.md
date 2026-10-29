@@ -38,6 +38,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Each question is `Q(prompt, answer, [3 wrong], explanation, map?, flag?)`; `map: { spot, radiate }` draws the chest map with spot names hidden until answered. Ids are `<section id>|<index>`: only append.
 - Run `node scripts/validate-murmurs.cjs` after editing.
 
+## Pathophysiology tool
+
+- Cardio Part 1 has a practice-first Pathophysiology tool (about 100 "why does this happen" questions across every lecture). It reuses `createDiseasesTool(...)` with `topic` labels.
+- Data: `data/pathophys-cardio-part-1.js` (`window.CARDIO_PART1_PATHOPHYS`), lecture → topic → one short `key` review section + questions. Ids are `<topic id>|<index>`: only append.
+- Run `node scripts/validate-pathophys-cardio-part-1.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.
