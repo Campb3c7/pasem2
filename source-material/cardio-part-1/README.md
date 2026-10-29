@@ -59,4 +59,6 @@ Concepts tool (Cardio Part 1 page): Anatomy 5 concepts/42 questions, Physiology 
 
 Diseases tool (Cardio Part 1 page): Anatomy 3 entries/26 questions, Physiology 6/48, H&P 11/106, Lipids 6 diseases/109 questions, Hypertension Part I 7/94, Part II 2/23, Part III 3/44, Hypertensive Crisis 13/97, Cardiac Devices 8/79, Cardiomyopathies 8/134 (includes a "General Approach" entry for the lecture-wide objectives), Valvular 13/151 (valve-surgery objectives live under Prosthetic Valve Endocarditis). Anatomy, Physiology, H&P and Devices hold the clinical conditions those lectures teach (no workup/treatment sections where the slides teach none).
 
+Heart Murmurs tool (Cardio Part 1 page, 2026-10-29): practice-only, 10 sets / 202 questions (`node scripts/validate-murmurs.cjs`), built from Valvular, H&P and Cardiomyopathies. The "Other heart sounds" set (PDA, VSD, Still's, rub, splits, grading) uses standard teaching for the Heart Sounds objectives; check it against that deck when it arrives.
+
 Heart Sounds is waiting on its deck.

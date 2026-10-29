@@ -79,6 +79,11 @@
       <div class="course-tools" data-course-tools="cardio-part-1" hidden>
         <p class="eyebrow">Cardio Part 1 tools</p>
         <div class="course-tools-grid">
+          <button class="walkthrough-launch murmurs-launch" id="murmurs-launch" type="button">
+            <span class="walkthrough-launch-icon">♡</span>
+            <span><strong>Heart Murmurs</strong><small>Practice by spot, timing, sound, radiation, and maneuver, plus "you hear this here, what is it?" drills</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
           <button class="walkthrough-launch diseases-launch" id="cardio-diseases-launch" type="button">
             <span class="walkthrough-launch-icon">✚</span>
             <span><strong>Diseases</strong><small>The conditions behind every Cardio Part 1 lecture, with dedicated practice questions and per-disease progress</small></span>
@@ -126,6 +131,10 @@
     <section id="cardio-concepts-view" class="walkthrough-view diseases-view" hidden>
       <button class="back-button" id="cardio-concepts-back" type="button">← Cardio Part 1</button>
       <div id="cardio-concepts-content"></div>
+    </section>
+    <section id="murmurs-view" class="walkthrough-view murmurs-view" hidden>
+      <button class="back-button" id="murmurs-back" type="button">← Cardio Part 1</button>
+      <div id="murmurs-content"></div>
     </section>
   </main>
 
@@ -216,12 +225,14 @@
   <script src="data/diseases-cardio-cardiomyopathies.js"></script>
   <script src="data/diseases-cardio-valvular.js"></script>
   <script src="data/diseases-cardio-part-1.js"></script>
+  <script src="data/murmurs.js"></script>
   <script src="data/semester.js"></script>
   <script src="app.js"></script>
   <script src="walkthrough.js"></script>
   <script src="diagnosis-drills.js"></script>
   <script src="geography.js"></script>
   <script src="diseases.js"></script>
+  <script src="murmurs.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>

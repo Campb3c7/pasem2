@@ -32,6 +32,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Every concept has four sections in order: `idea`, `chain` (an `<ol class="concept-chain">`), `bedside`, `traps`. Questions are mostly prediction ("X rises — what happens to Y?"). Ids are `<concept id>|<index>`: only append.
 - Run `node scripts/validate-concepts-<lecture id>.cjs` after editing.
 
+## Heart Murmurs tool
+
+- Cardio Part 1 practice-only tool: `murmurs.js` (engine) and `data/murmurs.js` (`window.HEART_MURMURS`: spots, chart, sections of questions). It launches first in the Cardio Part 1 tools row.
+- Each question is `Q(prompt, answer, [3 wrong], explanation, map?, flag?)`; `map: { spot, radiate }` draws the chest map with spot names hidden until answered. Ids are `<section id>|<index>`: only append.
+- Run `node scripts/validate-murmurs.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.
