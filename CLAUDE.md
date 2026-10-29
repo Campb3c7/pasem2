@@ -44,6 +44,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Data: `data/pathophys-cardio-part-1.js` (`window.CARDIO_PART1_PATHOPHYS`), lecture → topic → one short `key` review section + questions. Ids are `<topic id>|<index>`: only append.
 - Run `node scripts/validate-pathophys-cardio-part-1.cjs` after editing.
 
+## Medications tool
+
+- Cardio Part 1 has a Medications tool grouped by drug class, not lecture (drugs cross lectures). It reuses `createDiseasesTool(...)` with `groupOne/groupMany` ("drug class") labels and `flashcards: true`, which adds a Flashcards tab (one card per section; Space flips, A = Again, B = Got it).
+- Data: one file per drug class, `data/meds-cardio-<class>.js`, built with `data/medication-helpers.js` (`Med(...)` gives the five sections `uses`, `moa`, `avoid`, `se`, `pearls`; `Guide(...)` is for cross-class "which drug when" tables), gathered by `data/medications-cardio-part-1.js` (`window.CARDIO_PART1_MEDICATIONS`). Each entry lists `lectures` that teach it.
+- Ids are `med-*` or `guide-*`; question ids are `<id>|<index>`: only append. Run `node scripts/validate-medications-cardio-part-1.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.

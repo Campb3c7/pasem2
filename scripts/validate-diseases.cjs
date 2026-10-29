@@ -9,7 +9,7 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const match of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) {
   vm.runInContext(fs.readFileSync(path.join(root, match[1]), 'utf8'), context, { filename: match[1] });
 }
-for (const name of ['DISEASES', 'ENDOCRINE_DISEASES', 'CARDIO_PART1_DISEASES']) {
+for (const name of ['DISEASES', 'ENDOCRINE_DISEASES', 'CARDIO_PART1_DISEASES', 'CARDIO_PART1_MEDICATIONS']) {
   const data = context.window[name];
   assert(data && data.lectures.length, name + ' must be loaded');
   const lectureIds = new Set(), diseaseIds = new Set();

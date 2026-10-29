@@ -15,6 +15,12 @@
   // Labels let the same engine run other per-item tools (e.g. Concepts).
   var TITLE = config.title || "Diseases", ONE = config.one || "disease", MANY = config.many || "diseases";
   function count(n) { return n + " " + (n === 1 ? ONE : MANY); }
+  // Top-level groups are lectures by default; Medications groups by drug class.
+  var GROUP = config.groupOne || "lecture", GROUPS = config.groupMany || "lectures";
+  function groupCount(n) { return n + " " + (n === 1 ? GROUP : GROUPS); }
+  function lectureTags(item) {
+    return item.lectures && item.lectures.length ? '<span class="med-lecture-tags">' + escapeHtml(item.lectures.join(" · ")) + '</span>' : "";
+  }
 
   var currentMode = "information";
   // Information sub-state
@@ -25,6 +31,7 @@
   var practiceFilter = "all"; // "all" | "new"
   var practiceState = null;
   var practiceOrigin = null; // { lecture, disease } when practice started from a disease's Information page
+  var flashState = null; // Flashcards session (config.flashcards only)
 
   function byId(id) { return content.querySelector("#" + id); }
   function escapeHtml(value) {
@@ -106,13 +113,13 @@
     document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
     view.hidden = false;
     currentMode = "information"; infoLecture = null; infoDisease = null;
-    practiceScope = null; practiceState = null; practiceOrigin = null;
+    practiceScope = null; practiceState = null; practiceOrigin = null; flashState = null;
     renderRoot();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function close() {
     view.hidden = true; studyView.hidden = false;
-    content.innerHTML = ""; practiceState = null;
+    content.innerHTML = ""; practiceState = null; flashState = null;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -123,10 +130,11 @@
       { id: "progress", label: "Progress" },
       { id: "practice", label: "Practice" }
     ];
+    if (config.flashcards) modes.splice(1, 0, { id: "flashcards", label: "Flashcards" });
     var totalDiseases = lectures.reduce(function (sum, lecture) { return sum + (lecture.diseases || []).length; }, 0);
     content.innerHTML =
       '<div class="diseases-heading"><p class="eyebrow">' + escapeHtml(config.eyebrow) + '</p><h2>' + escapeHtml(TITLE) + '</h2><p>' + escapeHtml(config.intro) + '</p>' +
-      '<span class="diseases-count-pill">' + count(totalDiseases) + ' across ' + lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures') + '</span>' +
+      '<span class="diseases-count-pill">' + count(totalDiseases) + ' across ' + groupCount(lectures.length) + '</span>' +
       (config.note ? '<p class="diseases-note">' + escapeHtml(config.note) + '</p>' : '') + '</div>' +
       '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
         return '<button type="button" class="mode-tab ' + (mode.id === currentMode ? "active" : "") + '" data-diseases-mode="' + mode.id + '">' + mode.label + '</button>';
@@ -136,6 +144,7 @@
         currentMode = button.dataset.diseasesMode;
         if (currentMode !== "information") { infoLecture = null; infoDisease = null; }
         if (currentMode !== "practice") { practiceState = null; }
+        if (currentMode !== "flashcards") { flashState = null; }
         renderRoot();
       });
     });
@@ -145,6 +154,7 @@
   function renderModeContent() {
     if (currentMode === "progress") { renderProgress(); return; }
     if (currentMode === "practice") { renderPracticeHome(); return; }
+    if (currentMode === "flashcards") { renderFlashHome(); return; }
     renderInformation();
   }
 
@@ -181,7 +191,7 @@
   function renderInfoLectureList() {
     var lecture = infoLecture;
     var progress = loadProgress();
-    var html = '<div class="session-top"><button type="button" id="info-to-lectures">← All lectures</button><span>' + escapeHtml(lecture.title) + '</span></div>' +
+    var html = '<div class="session-top"><button type="button" id="info-to-lectures">← All ' + GROUPS + '</button><span>' + escapeHtml(lecture.title) + '</span></div>' +
       '<div class="diseases-heading compact"><h2>' + escapeHtml(lecture.title) + '</h2><p>Pick a ' + ONE + ' to review what you need to know about it and, once its question bank is ready, jump straight into practicing that ' + ONE + '.</p></div><div class="disease-grid">';
     (lecture.diseases || []).forEach(function (disease) {
       var stats = diseaseStats(progress, disease);
@@ -189,7 +199,7 @@
       var hasContent = (disease.sections || []).length > 0;
       html += '<button type="button" class="disease-card" data-disease="' + escapeHtml(disease.id) + '">' +
         '<strong>' + escapeHtml(disease.name) + '</strong>' +
-        '<span class="disease-card-blurb">' + escapeHtml(disease.blurb || "") + '</span>' +
+        '<span class="disease-card-blurb">' + escapeHtml(disease.blurb || "") + '</span>' + lectureTags(disease) +
         '<span class="disease-card-meta">' + (hasQuestions ? stats.correct + '/' + stats.total + ' questions mastered' : hasContent ? 'Reference ready · questions coming soon' : 'Coming soon') + '</span>' +
         '</button>';
     });
@@ -210,7 +220,7 @@
     var hasContent = (disease.sections || []).length > 0;
     var hasQuestions = stats.total > 0;
     var html = '<div class="session-top"><button type="button" id="info-to-lecture">← ' + escapeHtml(lecture.title) + '</button><span>' + escapeHtml(disease.name) + '</span></div>' +
-      '<article class="disease-detail"><p class="eyebrow">' + escapeHtml(lecture.title) + '</p><h2>' + escapeHtml(disease.name) + '</h2><p class="disease-detail-blurb">' + escapeHtml(disease.blurb || "") + '</p>';
+      '<article class="disease-detail"><p class="eyebrow">' + escapeHtml(lecture.title) + '</p><h2>' + escapeHtml(disease.name) + '</h2><p class="disease-detail-blurb">' + escapeHtml(disease.blurb || "") + '</p>' + (disease.lectures && disease.lectures.length ? '<p class="med-lecture-line">Taught in: ' + lectureTags(disease) + '</p>' : "");
     if (hasContent) {
       html += disease.sections.map(function (section) { return '<section class="disease-detail-section"><h3>' + escapeHtml(section.title || "") + '</h3>' + (section.html || "") + '</section>'; }).join("");
     } else {
@@ -247,7 +257,7 @@
       var stats = lectureStats(progress, lecture);
       var hasQuestions = stats.totalQuestions > 0;
       var percent = hasQuestions ? Math.round(stats.correctQuestions / stats.totalQuestions * 100) : 0;
-      html += '<section class="progress-lecture"><div class="progress-lecture-head"><strong>' + escapeHtml(lecture.title) + '</strong>' + (hasQuestions ? '<span>' + percent + '% · ' + stats.correctQuestions + '/' + stats.totalQuestions + '</span><button type="button" class="progress-reset-lecture" data-lecture="' + escapeHtml(lecture.id) + '">Reset lecture</button>' : '<span class="faint">No questions yet</span>') + '</div>';
+      html += '<section class="progress-lecture"><div class="progress-lecture-head"><strong>' + escapeHtml(lecture.title) + '</strong>' + (hasQuestions ? '<span>' + percent + '% · ' + stats.correctQuestions + '/' + stats.totalQuestions + '</span><button type="button" class="progress-reset-lecture" data-lecture="' + escapeHtml(lecture.id) + '">Reset ' + GROUP + '</button>' : '<span class="faint">No questions yet</span>') + '</div>';
       if (hasQuestions) {
         html += '<div class="progress-disease-list">';
         (lecture.diseases || []).forEach(function (disease) {
@@ -264,7 +274,7 @@
     modeHost().innerHTML = html;
     if (byId("progress-reset-all")) {
       byId("progress-reset-all").addEventListener("click", function () {
-        if (!window.confirm("Reset ALL " + TITLE + " progress? This clears every mastered question across every lecture.")) return;
+        if (!window.confirm("Reset ALL " + TITLE + " progress? This clears every mastered question across every " + GROUP + ".")) return;
         resetEverything(); renderRoot();
       });
     }
@@ -293,19 +303,19 @@
     var progress = loadProgress();
     var lecturesWithQuestions = lectures.filter(function (lecture) { return lectureStats(progress, lecture).totalQuestions > 0; });
     if (!lecturesWithQuestions.length) {
-      modeHost().innerHTML = '<div class="empty-state compact"><span>🗂️</span><h3>No practice questions yet</h3><p>Question banks are added lecture by lecture. Check the Information tab to see what\'s been written so far.</p></div>';
+      modeHost().innerHTML = '<div class="empty-state compact"><span>🗂️</span><h3>No practice questions yet</h3><p>Question banks are added ' + GROUP + ' by ' + GROUP + '. Check the Information tab to see what\'s been written so far.</p></div>';
       return;
     }
     var everyoneTotal = 0;
     lecturesWithQuestions.forEach(function (lecture) { everyoneTotal += lectureStats(progress, lecture).totalQuestions; });
-    var html = '<div class="diseases-heading compact"><h2>Practice</h2><p>Choose a scope, choose whether to include cards you\'ve already mastered, then go. Every card can show up in any scope -- nothing is exclusive to "its" lecture.</p></div>';
+    var html = '<div class="diseases-heading compact"><h2>Practice</h2><p>Choose a scope, choose whether to include cards you\'ve already mastered, then go. Every card can show up in any scope -- nothing is exclusive to "its" ' + GROUP + '.</p></div>';
     html += '<div class="practice-scope-everything"><button type="button" class="primary-action" id="practice-everything">Practice everything (' + everyoneTotal + ' cards) →</button></div>';
-    html += '<div class="practice-lecture-picker"><p class="practice-picker-label">Or choose one or more lectures</p>';
+    html += '<div class="practice-lecture-picker"><p class="practice-picker-label">Or choose one or more ' + GROUPS + '</p>';
     lecturesWithQuestions.forEach(function (lecture) {
       var stats = lectureStats(progress, lecture);
       html += '<label class="recall-option practice-lecture-option"><input type="checkbox" class="practice-lecture-check" value="' + escapeHtml(lecture.id) + '"><span><strong>' + escapeHtml(lecture.title) + '</strong><small>' + stats.totalQuestions + ' cards · ' + Math.round(stats.correctQuestions / stats.totalQuestions * 100) + '% mastered</small></span></label>';
     });
-    html += '<button type="button" class="secondary-action" id="practice-selected-lectures">Practice selected lectures →</button></div>';
+    html += '<button type="button" class="secondary-action" id="practice-selected-lectures">Practice selected ' + GROUPS + ' →</button></div>';
     html += '<p class="practice-picker-label">Or practice a single ' + ONE + ' from the Information tab -- open any ' + ONE + ' and use its "Practice" button.</p>';
     modeHost().innerHTML = html;
     byId("practice-everything").addEventListener("click", function () {
@@ -315,11 +325,11 @@
     });
     byId("practice-selected-lectures").addEventListener("click", function () {
       var checked = Array.prototype.slice.call(modeHost().querySelectorAll(".practice-lecture-check:checked")).map(function (box) { return box.value; });
-      if (!checked.length) { window.alert("Select at least one lecture first."); return; }
+      if (!checked.length) { window.alert("Select at least one " + GROUP + " first."); return; }
       var chosen = lectures.filter(function (lecture) { return checked.indexOf(lecture.id) !== -1; });
       var diseases = [];
       chosen.forEach(function (lecture) { diseases = diseases.concat(lecture.diseases || []); });
-      var label = chosen.length === 1 ? chosen[0].title : chosen.length + " lectures";
+      var label = chosen.length === 1 ? chosen[0].title : groupCount(chosen.length);
       askFilterThenStart(diseases, label);
     });
   }
@@ -485,6 +495,101 @@
     }
   }
 
+  // ============================================================================
+  // FLASHCARDS -- one card per section: front = item + topic, back = section.
+  // Only when config.flashcards is set. "Again" cards return at the end.
+  // ============================================================================
+  var FLASH_PROMPTS = config.flashPrompts || {};
+  var FLASH_OTHER = config.flashOtherLabel || "Other";
+  function flashTopicOf(section) { return FLASH_PROMPTS[section.id] ? section.id : "other"; }
+  function flashTopics() {
+    var topics = Object.keys(FLASH_PROMPTS).map(function (id) { return { id: id, label: FLASH_PROMPTS[id].label }; });
+    var hasOther = allDiseases().some(function (item) { return (item.disease.sections || []).some(function (section) { return flashTopicOf(section) === "other"; }); });
+    if (hasOther) topics.push({ id: "other", label: FLASH_OTHER });
+    return topics;
+  }
+  function flashCardsFor(groups, topicIds) {
+    var cards = [];
+    groups.forEach(function (lecture) {
+      (lecture.diseases || []).forEach(function (disease) {
+        (disease.sections || []).forEach(function (section) {
+          if (topicIds.indexOf(flashTopicOf(section)) === -1) return;
+          cards.push({ lecture: lecture, disease: disease, section: section });
+        });
+      });
+    });
+    return cards;
+  }
+  function renderFlashHome() {
+    flashState = null;
+    var topics = flashTopics();
+    var total = flashCardsFor(lectures, topics.map(function (topic) { return topic.id; })).length;
+    var html = '<div class="diseases-heading compact"><h2>Flashcards</h2><p>Each card names a ' + ONE + ' and one thing to recall about it. Say the answer to yourself, flip the card (Space), then mark it <strong>Again</strong> (A) or <strong>Got it</strong> (B). Cards you mark Again come back at the end until you get them.</p></div>' +
+      '<div class="practice-scope-everything"><button type="button" class="primary-action" id="flash-everything">Study every card (' + total + ') →</button></div>' +
+      '<div class="practice-lecture-picker"><p class="practice-picker-label">Or pick what to drill</p><div class="flash-topic-row">' +
+      topics.map(function (topic) { return '<label class="flash-topic"><input type="checkbox" class="flash-topic-check" value="' + escapeHtml(topic.id) + '" checked> ' + escapeHtml(topic.label) + '</label>'; }).join("") +
+      '</div>';
+    lectures.forEach(function (lecture) {
+      html += '<label class="recall-option practice-lecture-option"><input type="checkbox" class="flash-group-check" value="' + escapeHtml(lecture.id) + '"><span><strong>' + escapeHtml(lecture.title) + '</strong><small>' + count((lecture.diseases || []).length) + '</small></span></label>';
+    });
+    html += '<button type="button" class="secondary-action" id="flash-selected">Study selected →</button><p class="practice-picker-label">No ' + GROUP + ' ticked = all ' + GROUPS + '.</p></div>';
+    modeHost().innerHTML = html;
+    byId("flash-everything").addEventListener("click", function () { startFlash(lectures, topics.map(function (topic) { return topic.id; }), "Every card"); });
+    byId("flash-selected").addEventListener("click", function () {
+      var topicIds = Array.prototype.slice.call(modeHost().querySelectorAll(".flash-topic-check:checked")).map(function (box) { return box.value; });
+      var groupIds = Array.prototype.slice.call(modeHost().querySelectorAll(".flash-group-check:checked")).map(function (box) { return box.value; });
+      if (!topicIds.length) { window.alert("Pick at least one thing to drill."); return; }
+      var groups = groupIds.length ? lectures.filter(function (lecture) { return groupIds.indexOf(lecture.id) !== -1; }) : lectures;
+      var topicLabel = topicIds.length === topics.length ? "All topics" : topics.filter(function (topic) { return topicIds.indexOf(topic.id) !== -1; }).map(function (topic) { return topic.label; }).join(", ");
+      var groupLabel = groups.length === lectures.length ? "All " + GROUPS : groups.length === 1 ? groups[0].title : groupCount(groups.length);
+      startFlash(groups, topicIds, groupLabel + " · " + topicLabel);
+    });
+  }
+  function startFlash(groups, topicIds, label) {
+    var cards = flashCardsFor(groups, topicIds);
+    if (!cards.length) { window.alert("No cards match that choice."); return; }
+    flashState = { label: label, queue: shuffle(cards), position: 0, revealed: false, firstTry: 0, again: 0, seen: {} };
+    renderFlashCard();
+  }
+  function renderFlashCard() {
+    var state = flashState;
+    if (!state || state.position >= state.queue.length) { renderFlashComplete(); return; }
+    var card = state.queue[state.position];
+    var prompt = FLASH_PROMPTS[card.section.id] ? FLASH_PROMPTS[card.section.id].prompt : card.section.title + "?";
+    var remaining = state.queue.length - state.position;
+    var percent = Math.round(state.position / state.queue.length * 100);
+    var html = '<div class="session-top"><button type="button" id="flash-exit">← Flashcards</button><span>' + escapeHtml(state.label) + '</span></div><div class="session-progress"><span style="width:' + percent + '%"></span></div>' +
+      '<div class="session-counter">' + remaining + ' card' + (remaining === 1 ? '' : 's') + ' left' + (state.again ? ' · ' + state.again + ' marked again' : '') + '</div>' +
+      '<article class="learn-card immersive-card flash-card"><div class="card-number">' + escapeHtml(card.lecture.title) + '</div>' +
+      '<div class="flash-front"><h3>' + escapeHtml(card.disease.name) + '</h3><p class="flash-prompt">' + escapeHtml(prompt) + '</p>' + (card.disease.blurb ? '<p class="flash-blurb">' + escapeHtml(card.disease.blurb) + '</p>' : '') + '</div>' +
+      (state.revealed ? '<div class="learn-body flash-back">' + card.section.html + '</div>' : '') + '</article>' +
+      (state.revealed
+        ? '<div class="choices flash-grade" id="flash-grade"><button class="choice" type="button" data-flash="again"><span>A</span>Again</button><button class="choice" type="button" data-flash="got"><span>B</span>Got it</button></div>'
+        : '<button class="primary-action full-action" id="flash-reveal" type="button">Show answer (Space)</button>');
+    modeHost().innerHTML = html;
+    byId("flash-exit").addEventListener("click", renderFlashHome);
+    if (byId("flash-reveal")) byId("flash-reveal").addEventListener("click", function () { state.revealed = true; renderFlashCard(); });
+    modeHost().querySelectorAll("[data-flash]").forEach(function (button) {
+      button.addEventListener("click", function () { gradeFlash(button.dataset.flash === "got"); });
+    });
+    holdScrollIntoView(modeHost(), 250, "start");
+  }
+  function gradeFlash(gotIt) {
+    var state = flashState, card = state.queue[state.position];
+    var key = card.disease.id + "|" + card.section.id;
+    if (gotIt) { if (!state.seen[key]) state.firstTry += 1; }
+    else { state.again += 1; state.queue.push(card); }
+    state.seen[key] = true;
+    state.position += 1; state.revealed = false;
+    renderFlashCard();
+  }
+  function renderFlashComplete() {
+    var state = flashState;
+    var unique = Object.keys(state.seen).length;
+    modeHost().innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (state.firstTry === unique ? "🎯" : "📚") + '</span><p class="eyebrow">Flashcards complete</p><h3>' + escapeHtml(state.label) + '</h3><p>' + state.firstTry + ' of ' + unique + ' cards right on the first try</p><div class="score-grid"><span><strong>' + state.firstTry + '</strong>First try</span><span><strong>' + (unique - state.firstTry) + '</strong>Needed repeats</span></div><div class="session-actions"><button class="primary-action" id="flash-home" type="button">Flashcards home</button></div></section>';
+    byId("flash-home").addEventListener("click", renderFlashHome);
+  }
+
   launch.addEventListener("click", open);
   document.getElementById(config.backId).addEventListener("click", close);
   }
@@ -536,5 +641,25 @@
     eyebrow: "Cardio Part 1 · pathophysiology practice",
     intro: "Practice-first pathophysiology: why each disease, finding, and drug effect happens, spread across every Cardio Part 1 lecture. Start a practice set for the whole course or one lecture; miss a question and the key mechanism appears so you can review it on the spot.",
     note: "Heart Sounds isn't here yet because its deck hasn't been added. The Concepts tool goes deeper on each mechanism if a topic keeps tripping you up."
+  });
+
+  createDiseasesTool({
+    data: window.CARDIO_PART1_MEDICATIONS,
+    title: "Medications", one: "medication", many: "medications",
+    groupOne: "drug class", groupMany: "drug classes",
+    launchId: "cardio-meds-launch", viewId: "cardio-meds-view", contentId: "cardio-meds-content", backId: "cardio-meds-back",
+    progressKey: "pasem2:medications:cardio-part-1:progress",
+    eyebrow: "Cardio Part 1 · every drug you need to know",
+    intro: "Every Cardio Part 1 drug, grouped by class instead of by lecture because the same drugs come back in lecture after lecture. Each one has the same five parts: what it treats, how it works, contraindications, side effects, and must-know pearls, with the lectures that teach it.",
+    note: "Use Flashcards to drill one part at a time (for example only side effects), and Practice for exam-style questions. \"Which drug when\" compares drugs across classes: compelling indications, hypertensive emergency picks, pregnancy, HCM, drugs that raise BP, and overdoses.",
+    flashcards: true,
+    flashPrompts: {
+      uses: { label: "What it treats", prompt: "What does it treat?" },
+      moa: { label: "How it works", prompt: "How does it work?" },
+      avoid: { label: "Contraindications", prompt: "Contraindications and cautions?" },
+      se: { label: "Side effects", prompt: "Side effects?" },
+      pearls: { label: "Pearls", prompt: "Must-know pearls?" }
+    },
+    flashOtherLabel: "Which-drug-when tables"
   });
 }());

@@ -3,7 +3,7 @@
 (function () {
   "use strict";
   var CHOICE_GROUPS = ".choices, .walkthrough-choices";
-  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next"];
+  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal"];
 
   function isVisible(el) {
     return !!el && !el.hidden && el.getClientRects().length > 0;

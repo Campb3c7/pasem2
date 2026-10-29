@@ -64,3 +64,5 @@ Heart Murmurs tool (Cardio Part 1 page, 2026-10-29): practice-only, 10 sets / 20
 Pathophysiology tool (Cardio Part 1 page, Anna's request 2026-10-29): 100 practice questions in 23 topics across all 11 lectures, in `data/pathophys-cardio-part-1.js` (`validate-pathophys-cardio-part-1.cjs`). Add a Heart Sounds lecture there when that deck arrives.
 
 Heart Sounds is waiting on its deck.
+
+Medications tool (Cardio Part 1 page, 2026-10-29): 9 drug classes, 39 entries (33 drugs/classes + 6 "which drug when" guides), 280 questions plus flashcards (`node scripts/validate-medications-cardio-part-1.cjs`). Drugs come from Hypertension I-III, Hypertensive Crisis, Lipids, Cardiomyopathies, Valvular Disease and Cardiac Devices.
