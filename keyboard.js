@@ -1,9 +1,11 @@
 /* Keyboard shortcuts for every multiple-choice quiz on the site.
-   A/B/C/D (either case) picks that answer. Space moves to the next question once it is showing. */
+   A/B/C/D (either case) picks that answer. Space moves to the next question once it is showing.
+   H shows a hint where a quiz offers one (Struggles). */
 (function () {
   "use strict";
   var CHOICE_GROUPS = ".choices, .walkthrough-choices";
-  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal"];
+  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next"];
+  var HINT_BUTTONS = ["struggle-hint"];
 
   function isVisible(el) {
     return !!el && !el.hidden && el.getClientRects().length > 0;
@@ -43,6 +45,14 @@
       if (!button || button.disabled) return;
       event.preventDefault();
       button.click();
+      return;
+    }
+
+    if (/^h$/i.test(key)) {
+      for (var h = 0; h < HINT_BUTTONS.length; h += 1) {
+        var hint = document.getElementById(HINT_BUTTONS[h]);
+        if (isVisible(hint) && !hint.disabled) { event.preventDefault(); hint.click(); return; }
+      }
       return;
     }
 

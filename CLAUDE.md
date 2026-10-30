@@ -8,7 +8,7 @@ This is a static GitHub Pages study site. There is no build step and no framewor
 - `styles.css` — shared visual design.
 - `app.js` — Learn/Test/Apply/Recall behavior and local progress.
 - `walkthrough.js` — Disease Walkthrough state, answer checking, and progress.
-- `keyboard.js` — site-wide quiz shortcuts: A/B/C/D picks an answer, Space goes to the next question once it shows.
+- `keyboard.js` — site-wide quiz shortcuts: A/B/C/D picks an answer, Space goes to the next question once it shows, H shows a hint where offered.
 - `data/semester.js` — course and lecture catalog.
 - `data/walkthrough/schema.js` — reusable case schema and registration helpers.
 - `data/walkthrough/cases-*.js` — disease cases grouped by clinical domain.
@@ -49,6 +49,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Cardio Part 1 has a Medications tool grouped by drug class, not lecture (drugs cross lectures). It reuses `createDiseasesTool(...)` with `groupOne/groupMany` ("drug class") labels and `flashcards: true`, which adds a Flashcards tab (one card per section; Space flips, A = Again, B = Got it).
 - Data: one file per drug class, `data/meds-cardio-<class>.js`, built with `data/medication-helpers.js` (`Med(...)` gives the five sections `uses`, `moa`, `avoid`, `se`, `pearls`; `Guide(...)` is for cross-class "which drug when" tables), gathered by `data/medications-cardio-part-1.js` (`window.CARDIO_PART1_MEDICATIONS`). Each entry lists `lectures` that teach it.
 - Ids are `med-*` or `guide-*`; question ids are `<id>|<index>`: only append. Run `node scripts/validate-medications-cardio-part-1.cjs` after editing.
+
+## Struggles tool
+
+- Cardio Part 1 tool built from Anna's starred Quizlet cards: `struggles.js` (engine) and `data/struggles-cardio-part-1.js` (`window.CARDIO_PART1_STRUGGLES`: `corrections` list + `groups`). Recall style: each group shows one targeted `learn` card, then its questions; a miss shows the card again and requeues the question.
+- Each question is `Q(prompt, answer, [3 wrong], explanation, hint?)`; H shows the hint. Group `source` is the Quizlet name, shown only as a label. Ids are `<group id>|<index>`: only append.
+- Check new cards against the slides and add any fix to `corrections`. Run `node scripts/validate-struggles-cardio-part-1.cjs` after editing.
 
 ## Content rules
 

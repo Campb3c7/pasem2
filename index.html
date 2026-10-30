@@ -84,6 +84,11 @@
             <span><strong>Heart Murmurs</strong><small>Practice by spot, timing, sound, radiation, and maneuver, plus "you hear this here, what is it?" drills</small></span>
             <span aria-hidden="true">›</span>
           </button>
+          <button class="walkthrough-launch struggles-launch" id="struggles-launch" type="button">
+            <span class="walkthrough-launch-icon">★</span>
+            <span><strong>Struggles</strong><small>Your starred Quizlet cards: a short Learn card for each group, then questions, Recall style</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
           <button class="walkthrough-launch diseases-launch" id="cardio-diseases-launch" type="button">
             <span class="walkthrough-launch-icon">✚</span>
             <span><strong>Diseases</strong><small>The conditions behind every Cardio Part 1 lecture, with dedicated practice questions and per-disease progress</small></span>
@@ -145,6 +150,10 @@
     <section id="murmurs-view" class="walkthrough-view murmurs-view" hidden>
       <button class="back-button" id="murmurs-back" type="button">← Cardio Part 1</button>
       <div id="murmurs-content"></div>
+    </section>
+    <section id="struggles-view" class="walkthrough-view struggles-view" hidden>
+      <button class="back-button" id="struggles-back" type="button">← Cardio Part 1</button>
+      <div id="struggles-content"></div>
     </section>
     <section id="cardio-pathophys-view" class="walkthrough-view diseases-view" hidden>
       <button class="back-button" id="cardio-pathophys-back" type="button">← Cardio Part 1</button>
@@ -245,6 +254,7 @@
   <script src="data/diseases-cardio-valvular.js"></script>
   <script src="data/diseases-cardio-part-1.js"></script>
   <script src="data/murmurs.js"></script>
+  <script src="data/struggles-cardio-part-1.js"></script>
   <script src="data/medication-helpers.js"></script>
   <script src="data/meds-cardio-diuretics.js"></script>
   <script src="data/meds-cardio-raas.js"></script>
@@ -263,6 +273,7 @@
   <script src="geography.js"></script>
   <script src="diseases.js"></script>
   <script src="murmurs.js"></script>
+  <script src="struggles.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>
