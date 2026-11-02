@@ -15,7 +15,20 @@
   var PROGRESS_KEY = "pasem2:heart-sounds:cardio-part-1:progress";
   var EXAM_SIZE = 15;
   var PASS = 0.7;
-  var recordings = data.recordings;
+  // Two pools: the class tracks (main page) and "Additional practice" (outside recordings).
+  var POOLS = {
+    class: { recordings: data.recordings, groups: data.groups, lookalikes: data.lookalikes },
+    extra: { recordings: data.extra.recordings, groups: data.extra.groups, lookalikes: data.extra.lookalikes }
+  };
+  var pool = "class";
+  var recordings, groups, lookalikes;
+  function setPool(name) {
+    pool = name;
+    recordings = POOLS[name].recordings;
+    groups = POOLS[name].groups;
+    lookalikes = POOLS[name].lookalikes;
+  }
+  setPool("class");
   var state = null;
 
   // ---- helpers -------------------------------------------------------------
@@ -34,8 +47,8 @@
   }
   function pick(items) { return items[Math.floor(Math.random() * items.length)]; }
   function dxById(id) { return data.diagnoses.find(function (entry) { return entry.id === id; }); }
-  function recById(id) { return recordings.find(function (entry) { return entry.id === id; }); }
-  function groupById(id) { return data.groups.find(function (entry) { return entry.id === id; }); }
+  function recById(id) { return data.recordings.concat(data.extra.recordings).find(function (entry) { return entry.id === id; }); }
+  function groupById(id) { return groups.find(function (entry) { return entry.id === id; }); }
   function fieldById(id) { return data.fields.find(function (entry) { return entry.id === id; }); }
   function accepted(recording) { return [recording.dx].concat(recording.accept || []); }
   function loadProgress() {
@@ -136,7 +149,7 @@
   }
   function sessionTop(title, position, total, extra) {
     var percent = Math.round(position / Math.max(total, 1) * 100);
-    return '<div class="session-top"><button type="button" id="hs-home">← Heart Sounds</button><span>' + escapeHtml(title) + '</span></div>' +
+    return '<div class="session-top"><button type="button" id="hs-home">← ' + (pool === "extra" ? "Additional practice" : "Heart Sounds") + '</button><span>' + escapeHtml(title) + '</span></div>' +
       '<div class="session-progress"><span style="width:' + percent + '%"></span></div>' +
       '<div class="session-counter">' + (position + 1) + ' of ' + total + (extra ? ' · ' + extra : "") + '</div>';
   }
@@ -147,6 +160,7 @@
     studyView.hidden = true;
     document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
     view.hidden = false;
+    setPool("class");
     renderHome();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -166,16 +180,20 @@
       lecture.map(function (dx) {
         var count = recordings.filter(function (recording) { return accepted(recording).indexOf(dx.id) !== -1; }).length;
         return '<tr><th>' + escapeHtml(dx.name) + '</th><td>' + (count ? count : '<span class="hs-missing">none yet</span>') + '</td><td>' + escapeHtml(dx.where) + '</td><td>' + escapeHtml(dx.clue) + '</td></tr>';
-      }).join("") + '</tbody></table></div><p class="hs-muted">Sounds marked "none yet" have no recording in your files. Their facts still show up in the mock exam\'s "where is it best heard" questions.</p></details>';
+      }).join("") + '</tbody></table></div><p class="hs-muted">Sounds marked "none yet" have no recording in this section. Their facts still show up in the mock exam\'s "where is it best heard" questions.</p></details>';
   }
   function renderHome() {
     stopAudio();
     state = null;
     var total = recordings.length;
-    var html = '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks: 10 sounds, each with and without the lecture. Use headphones.</p>' +
-      '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named · ' + countDone("describe") + ' of ' + total + ' described</span></div>';
+    var extra = pool === "extra";
+    var html = extra
+      ? '<div class="session-top"><button type="button" id="hs-to-class">← Your class tracks</button><span>Additional practice</span></div>' +
+        '<div class="drill-heading murmur-heading"><p class="eyebrow">Heart Sounds · additional practice</p><h2>Additional practice</h2><p>' + total + ' outside recordings, kept apart from your class tracks: the University of Michigan library and a congenital heart disease set (real patients, more background noise). Same practice modes.</p>'
+      : '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks: 10 sounds, each with and without the lecture. Use headphones.</p>';
+    html += '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named · ' + countDone("describe") + ' of ' + total + ' described</span></div>';
     html += '<div class="hs-modes">' +
-      modeCard("tracks", "0", "Your 20 class tracks", "Every Canvas track in order, 1 to 20, with what each one is.") +
+      (extra ? "" : modeCard("tracks", "0", "Your 20 class tracks", "Every Canvas track in order, 1 to 20, with what each one is.")) +
       modeCard("learn", "1", "Listen and learn", "Go one by one through a section. Each clip shows its label, timing diagram, and how to recognize it.") +
       modeCard("name", "2", "Name it", "Hear a clip, pick the diagnosis from four choices. Shuffled. Retry after a miss.") +
       modeCard("describe", "3", "Describe it", "Hear a clip, then fill in timing, shape, extra sound, pitch, quality, and diagnosis from drop-downs.") +
@@ -183,18 +201,26 @@
       modeCard("exam", "5", "Mock exam", EXAM_SIZE + " mixed questions on clips, one try each. 70% to pass, like the real exam.") +
       '</div>';
     html += '<div id="hs-picker"></div>';
+    if (!extra) {
+      html += '<button class="walkthrough-launch hs-extra-launch" type="button" id="hs-to-extra"><span class="walkthrough-launch-icon">+</span><span><strong>Additional practice</strong><small>' + data.extra.recordings.length + ' outside recordings (Michigan library and a congenital heart disease set) in their own section, with the same practice modes</small></span><span aria-hidden="true">›</span></button>';
+    }
     html += coverageTable();
-    html += '<p class="murmur-footnote hs-sources"><strong>Sources.</strong> ' + escapeHtml(data.sources.class) + ' <button type="button" id="hs-reset">Reset heart sounds progress</button></p>';
+    html += '<p class="murmur-footnote hs-sources"><strong>Sources.</strong> ' + (extra ? escapeHtml(data.sources.michigan) + ' ' + escapeHtml(data.sources.congenital) : escapeHtml(data.sources.class)) + ' <button type="button" id="hs-reset">Reset heart sounds progress</button></p>';
     content.innerHTML = html;
     content.querySelectorAll("[data-hs-mode]").forEach(function (button) {
       button.addEventListener("click", function () { choose(button.dataset.hsMode); });
     });
+    var toExtra = document.getElementById("hs-to-extra");
+    if (toExtra) toExtra.addEventListener("click", function () { setPool("extra"); renderHome(); content.scrollIntoView({ behavior: "instant", block: "start" }); });
+    var toClass = document.getElementById("hs-to-class");
+    if (toClass) toClass.addEventListener("click", function () { setPool("class"); renderHome(); content.scrollIntoView({ behavior: "instant", block: "start" }); });
     document.getElementById("hs-reset").addEventListener("click", function () {
       if (!window.confirm("Reset Heart Sounds progress on this device?")) return;
       saveProgress({});
       renderHome();
     });
   }
+
   function modeCard(id, number, title, text) {
     return '<button class="drill-section-card murmur-section-card hs-mode" type="button" data-hs-mode="' + id + '"><span class="drill-section-number">0' + number + '</span><strong>' + escapeHtml(title) + '</strong><span>' + escapeHtml(text) + '</span></button>';
   }
@@ -207,8 +233,8 @@
     var titles = { learn: "Listen and learn", name: "Name it", describe: "Describe it" };
     var progress = loadProgress();
     var kind = mode === "name" ? "mc" : "describe";
-    var options = [{ id: "all", title: "Everything", description: "All " + recordings.length + " recordings, shuffled." }].concat(data.groups);
-    if (mode === "learn") options = data.groups;
+    var options = [{ id: "all", title: "Everything", description: "All " + recordings.length + " recordings, shuffled." }].concat(groups.filter(function (group) { return recordings.some(function (recording) { return recording.group === group.id; }); }));
+    if (mode === "learn") options = options.slice(1);
     picker.innerHTML = '<div class="hs-picker"><p class="eyebrow">' + escapeHtml(titles[mode]) + ' · pick a section</p><div class="drill-section-grid">' + options.map(function (group) {
       var items = group.id === "all" ? recordings : recordings.filter(function (recording) { return recording.group === group.id; });
       var done = items.filter(function (recording) { return progress[recording.id] && progress[recording.id][kind]; }).length;
@@ -236,7 +262,7 @@
       rows.push({ track: recording.track, file: recording.file, recording: recording, version: "sound only" });
     });
     rows.sort(function (a, b) { return a.track - b.track; });
-    content.innerHTML = '<div class="session-top"><button type="button" id="hs-home">← Heart Sounds</button><span>Your 20 class tracks</span></div>' +
+    content.innerHTML = '<div class="session-top"><button type="button" id="hs-home">← ' + (pool === "extra" ? "Additional practice" : "Heart Sounds") + '</button><span>Your 20 class tracks</span></div>' +
       '<div class="drill-heading"><p class="eyebrow">Canvas order</p><h2>Your 20 class tracks</h2><p>Tracks 1 to 10 have the lecture talking over them. Tracks 11 to 20 are the same sounds alone.</p></div>' +
       '<div class="hs-track-list">' + rows.map(function (row) {
         var dx = dxById(row.recording.dx);
@@ -272,14 +298,14 @@
     content.scrollIntoView({ behavior: "instant", block: "start" });
   }
   function sourceName(recording) {
-    return { class: "Class recording" }[recording.source];
+    return { class: "Class recording", michigan: "Michigan library", congenital: "Congenital set" }[recording.source];
   }
 
   // ---- 2. Name it --------------------------------------------------------------
   // Wrong answers come first from look-alike sets, then from anything else.
   function similarDx(recording) {
     var ids = [];
-    data.lookalikes.forEach(function (set) {
+    lookalikes.forEach(function (set) {
       if (set.recordings.indexOf(recording.id) === -1) return;
       set.recordings.forEach(function (id) { ids.push(recById(id).dx); });
     });
@@ -427,9 +453,9 @@
   // ---- 4. Side by side -------------------------------------------------------------
   function renderCompareList() {
     stopAudio();
-    content.innerHTML = '<div class="session-top"><button type="button" id="hs-home">← Heart Sounds</button><span>Side by side</span></div>' +
+    content.innerHTML = '<div class="session-top"><button type="button" id="hs-home">← ' + (pool === "extra" ? "Additional practice" : "Heart Sounds") + '</button><span>Side by side</span></div>' +
       '<div class="drill-heading"><p class="eyebrow">Look-alikes</p><h2>Side by side</h2><p>Sounds that are easy to mix up, next to each other. Play one, then the other, and listen for the clue.</p></div>' +
-      '<div class="drill-section-grid">' + data.lookalikes.map(function (set, index) {
+      '<div class="drill-section-grid">' + lookalikes.map(function (set, index) {
         return '<button class="drill-section-card" type="button" data-hs-set="' + set.id + '"><span class="drill-section-number">' + String(index + 1).padStart(2, "0") + '</span><strong>' + escapeHtml(set.title) + '</strong><small>' + set.recordings.length + ' clips</small></button>';
       }).join("") + '</div>';
     wireHome();
@@ -440,7 +466,7 @@
   }
   function renderCompare(id) {
     stopAudio();
-    var set = data.lookalikes.find(function (entry) { return entry.id === id; });
+    var set = lookalikes.find(function (entry) { return entry.id === id; });
     content.innerHTML = '<div class="session-top"><button type="button" id="hs-back-compare">← All look-alikes</button><span>Side by side</span></div>' +
       '<div class="drill-heading"><p class="eyebrow">Side by side</p><h2>' + escapeHtml(set.title) + '</h2></div>' +
       '<div class="explanation hs-clue"><strong>How to tell them apart</strong><p>' + escapeHtml(set.clue) + '</p></div>' +

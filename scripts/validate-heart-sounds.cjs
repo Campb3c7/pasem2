@@ -10,7 +10,7 @@ const data = sandbox.window.HEART_SOUNDS;
 const errors = [];
 const dxIds = new Set();
 const recIds = new Set();
-const groupIds = new Set((data.groups || []).map((group) => group.id));
+const groupIds = new Set((data.groups || []).concat(data.extra ? data.extra.groups : []).map((group) => group.id));
 const sources = new Set(Object.keys(data.sources || {}));
 const extraKeys = new Set(["S3", "S4", "EC", "MSC", "OS"]);
 const shapes = new Set(["plateau", "cresc", "decresc", "diamond", "rumble", "machinery"]);
@@ -21,7 +21,7 @@ const shapes = new Set(["plateau", "cresc", "decresc", "diamond", "rumble", "mac
   dxIds.add(dx.id);
   ["name", "where", "listen", "clue", "why"].forEach((key) => { if (!dx[key]) errors.push(`${dx.id}: missing ${key}`); });
 });
-(data.recordings || []).forEach((rec) => {
+(data.recordings || []).concat(data.extra ? data.extra.recordings : []).forEach((rec) => {
   const where = rec.id;
   if (!/^[a-z0-9-]+$/.test(rec.id)) errors.push(`Bad recording id: ${rec.id}`);
   if (recIds.has(rec.id)) errors.push(`Duplicate recording id: ${rec.id}`);
@@ -45,10 +45,17 @@ const shapes = new Set(["plateau", "cresc", "decresc", "diamond", "rumble", "mac
   (rec.diagram.x || []).forEach((key) => { if (!extraKeys.has(key)) errors.push(`${where}: bad diagram extra ${key}`); });
   (rec.diagram.m || []).forEach((m) => { if (!shapes.has(m.shape)) errors.push(`${where}: bad murmur shape ${m.shape}`); });
 });
+const extraIds = new Set((data.extra ? data.extra.recordings : []).map((rec) => rec.id));
+(data.recordings || []).forEach((rec) => { if (rec.source !== "class") errors.push(`${rec.id}: main page is class tracks only`); });
+(data.extra ? data.extra.recordings : []).forEach((rec) => { if (rec.source === "class") errors.push(`${rec.id}: class track in additional practice`); });
+(data.extra ? data.extra.lookalikes : []).forEach((set) => {
+  set.recordings.forEach((id) => { if (!extraIds.has(id)) errors.push(`extra ${set.id}: ${id} is not an additional-practice recording`); });
+});
 (data.lookalikes || []).forEach((set) => {
+  set.recordings.forEach((id) => { if (extraIds.has(id)) errors.push(`${set.id}: ${id} belongs to additional practice`); });
   if (!set.title || !set.clue) errors.push(`${set.id}: missing title/clue`);
   set.recordings.forEach((id) => { if (!recIds.has(id)) errors.push(`${set.id}: unknown recording ${id}`); });
 });
 
 if (errors.length) { console.error(errors.join("\n")); process.exit(1); }
-console.log(`OK: ${recIds.size} recordings, ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets`);
+console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets`);
