@@ -137,16 +137,22 @@
   }
   function revealCard(recording) {
     var dx = dxById(recording.dx);
-    var also = (recording.accept || []).map(function (id) { return dxById(id).name; });
+    var means = recording.means || (recording.title + " = " + dx.name + ".");
+    var others = (recording.accept || []).map(dxById);
     return '<div class="hs-reveal">' +
-      '<div class="hs-reveal-top"><div><p class="eyebrow">' + escapeHtml(dx.name) + (dx.lecture ? "" : " · not on the lecture list") + '</p><h4>' + escapeHtml(recording.title) + '</h4><p class="hs-spot">Recorded at: ' + escapeHtml(recording.spot) + '</p></div></div>' +
+      '<div class="hs-means"><span>This sound means</span><strong>' + escapeHtml(dx.name) + '</strong><p>' + escapeHtml(means) + '</p></div>' +
+      '<div class="hs-reveal-top"><div><p class="eyebrow">What you hear' + (dx.lecture ? "" : " · " + escapeHtml(dx.name) + " is not on the lecture list") + '</p><h4>' + escapeHtml(recording.title) + '</h4><p class="hs-spot">Recorded at: ' + escapeHtml(recording.spot) + '</p></div></div>' +
       diagram(recording.diagram, true) +
       '<dl class="hs-attrs">' + attrRows(recording) + '</dl>' +
       (recording.note ? '<p class="hs-note">' + escapeHtml(recording.note) + '</p>' : "") +
-      (also.length ? '<p class="hs-also">Same sound pattern also fits: ' + escapeHtml(also.join(", ")) + '.</p>' : "") +
+      '<h5 class="hs-sub">' + escapeHtml(dx.name) + ': what to know</h5>' +
       '<div class="hs-dx-facts"><div><strong>Best heard</strong><span>' + escapeHtml(dx.where) + '</span></div><div><strong>Listen for</strong><span>' + escapeHtml(dx.clue) + '</span></div><div><strong>Bedside</strong><span>' + escapeHtml(dx.listen) + '</span></div><div><strong>Why</strong><span>' + escapeHtml(dx.why) + '</span></div></div>' +
+      (others.length ? '<h5 class="hs-sub">Same sound, other causes: how to tell</h5><div class="hs-dx-facts">' + others.map(function (other) {
+        return '<div><strong>' + escapeHtml(other.name) + '</strong><span>' + escapeHtml(other.where) + '. ' + escapeHtml(other.listen) + ' ' + escapeHtml(other.why) + '</span></div>';
+      }).join("") + '</div>' : "") +
       '</div>';
   }
+
   function sessionTop(title, position, total, extra) {
     var percent = Math.round(position / Math.max(total, 1) * 100);
     return '<div class="session-top"><button type="button" id="hs-home">← ' + (pool === "extra" ? "Additional practice" : "Heart Sounds") + '</button><span>' + escapeHtml(title) + '</span></div>' +
@@ -174,6 +180,12 @@
   }
 
   // ---- home ------------------------------------------------------------------
+  function cheatSheet() {
+    return '<details class="murmur-chart hs-cheat"><summary>What each class sound means</summary><div class="murmur-chart-scroll"><table><thead><tr><th>You hear</th><th>It means</th><th>Details</th></tr></thead><tbody>' +
+      recordings.map(function (recording) {
+        return '<tr><th>' + escapeHtml(recording.title) + '</th><td><strong>' + escapeHtml(dxById(recording.dx).name) + '</strong></td><td>' + escapeHtml(recording.means || "") + '</td></tr>';
+      }).join("") + '</tbody></table></div></details>';
+  }
   function coverageTable() {
     var lecture = data.diagnoses.filter(function (dx) { return dx.lecture; });
     return '<details class="murmur-chart hs-coverage"><summary>Lecture sounds and how many recordings each has</summary><div class="murmur-chart-scroll"><table><thead><tr><th>Sound</th><th>Recordings</th><th>Best heard</th><th>Listen for</th></tr></thead><tbody>' +
@@ -193,7 +205,6 @@
       : '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks: 10 sounds, each with and without the lecture. Use headphones.</p>';
     html += '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named · ' + countDone("describe") + ' of ' + total + ' described</span></div>';
     html += '<div class="hs-modes">' +
-      (extra ? "" : modeCard("tracks", "0", "Your 20 class tracks", "Every Canvas track in order, 1 to 20, with what each one is.")) +
       modeCard("learn", "1", "Listen and learn", "Go one by one through a section. Each clip shows its label, timing diagram, and how to recognize it.") +
       modeCard("name", "2", "Name it", "Hear a clip, pick the diagnosis from four choices. Shuffled. Retry after a miss.") +
       modeCard("describe", "3", "Describe it", "Hear a clip, then fill in timing, shape, extra sound, pitch, quality, and diagnosis from drop-downs.") +
@@ -204,6 +215,7 @@
     if (!extra) {
       html += '<button class="walkthrough-launch hs-extra-launch" type="button" id="hs-to-extra"><span class="walkthrough-launch-icon">+</span><span><strong>Additional practice</strong><small>' + data.extra.recordings.length + ' outside recordings (Michigan library and a congenital heart disease set) in their own section, with the same practice modes</small></span><span aria-hidden="true">›</span></button>';
     }
+    if (!extra) html += cheatSheet();
     html += coverageTable();
     html += '<p class="murmur-footnote hs-sources"><strong>Sources.</strong> ' + (extra ? escapeHtml(data.sources.michigan) + ' ' + escapeHtml(data.sources.congenital) : escapeHtml(data.sources.class)) + ' <button type="button" id="hs-reset">Reset heart sounds progress</button></p>';
     content.innerHTML = html;
@@ -228,7 +240,6 @@
   function choose(mode) {
     if (mode === "exam") { startExam(); return; }
     if (mode === "compare") { renderCompareList(); return; }
-    if (mode === "tracks") { renderTracks(); return; }
     var picker = document.getElementById("hs-picker");
     var titles = { learn: "Listen and learn", name: "Name it", describe: "Describe it" };
     var progress = loadProgress();
@@ -251,25 +262,6 @@
       });
     });
     picker.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  // ---- 0. Class tracks in Canvas order ----------------------------------------
-  function renderTracks() {
-    stopAudio();
-    var rows = [];
-    recordings.filter(function (recording) { return recording.source === "class"; }).forEach(function (recording) {
-      rows.push({ track: recording.narratedTrack, file: recording.narrated, recording: recording, version: "with lecture" });
-      rows.push({ track: recording.track, file: recording.file, recording: recording, version: "sound only" });
-    });
-    rows.sort(function (a, b) { return a.track - b.track; });
-    content.innerHTML = '<div class="session-top"><button type="button" id="hs-home">← ' + (pool === "extra" ? "Additional practice" : "Heart Sounds") + '</button><span>Your 20 class tracks</span></div>' +
-      '<div class="drill-heading"><p class="eyebrow">Canvas order</p><h2>Your 20 class tracks</h2><p>Tracks 1 to 10 have the lecture talking over them. Tracks 11 to 20 are the same sounds alone.</p></div>' +
-      '<div class="hs-track-list">' + rows.map(function (row) {
-        var dx = dxById(row.recording.dx);
-        return '<article class="hs-track-row"><div><p class="eyebrow">Track ' + row.track + ' · ' + row.version + '</p><h4>' + escapeHtml(row.recording.title) + '</h4><p class="hs-spot">' + escapeHtml(dx.name) + '</p></div>' + audioTag(row.file) + '</article>';
-      }).join("") + '</div>';
-    wireHome();
-    content.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
   // ---- 1. Listen and learn ---------------------------------------------------

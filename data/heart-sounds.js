@@ -95,6 +95,21 @@
     R("class-mid-diastolic", "diastolic", "class", K + "20-mid-diastolic-only.mp3", "Mid-diastolic murmur", "ms", "Class recording", ["Mid-diastolic", "Rumble", "None", "Low", "Rumbling"], { m: [DIA(0.25, 0.8, "rumble")] }, "A low rumble in the middle of diastole, after S2 and away from it. Mitral stenosis.", { narrated: K + "10-mid-diastolic-with-lecture.mp3" , track: 20, narratedTrack: 10 })
   ];
 
+  // Plain answer to "what does this sound mean?" for each class sound.
+  var MEANS = {
+    "class-baseline": "Normal heart. S1 is the mitral and tricuspid valves closing; S2 is the aortic and pulmonic valves closing. No murmur, no extra sounds.",
+    "class-split-s2": "Physiologic split S2 = normal. Inspiration delays pulmonic valve closure. A split that is also there on expiration is pathologic: wide (pulmonic stenosis, RBBB), fixed (ASD), or paradoxical (severe aortic stenosis, LBBB).",
+    "class-s3": "S3 = volume overload: heart failure, dilated cardiomyopathy, severe MR or TR. Can be normal in athletes, pregnancy, and young people.",
+    "class-s4": "S4 = a stiff ventricle (pressure overload): hypertension, hypertrophic cardiomyopathy, aortic stenosis. Always pathologic.",
+    "class-os": "Opening snap = mitral stenosis (rarely tricuspid stenosis). Usually followed by a low mid-diastolic rumble.",
+    "class-holosystolic": "Holosystolic murmur = mitral regurgitation (apex, radiates to the axilla). The same shape is tricuspid regurgitation at the left lower sternal border (louder on inspiration) or a VSD (harsh, left sternal border 3rd to 5th ICS).",
+    "class-systolic-decrescendo": "Early systolic decrescendo murmur = mitral regurgitation (acute MR). The small, normal left atrium fills up fast, so the leak fades before S2. A small VSD can sound the same.",
+    "class-diamond": "Crescendo-decrescendo (diamond) systolic murmur = aortic stenosis (right 2nd ICS, radiates to the carotids). At the left 2nd ICS it is pulmonic stenosis. Soft and musical in a healthy child = innocent (Still's) murmur.",
+    "class-systolic-crescendo": "Late systolic crescendo murmur = mitral valve prolapse with mitral regurgitation. Often comes right after a midsystolic click.",
+    "class-mid-diastolic": "Mid-diastolic rumble = mitral stenosis (apex, bell, left lateral decubitus, often after an opening snap). Tricuspid stenosis is the rare look-alike."
+  };
+  RECORDINGS.forEach(function (recording) { if (MEANS[recording.id]) recording.means = MEANS[recording.id]; });
+
   // Look-alike sets for "Side by side".
   var LOOKALIKES = [
     { id: "systolic-shapes", title: "Systolic shapes: holo vs early decrescendo vs diamond vs late crescendo", clue: "Where does the murmur start and stop? Holo fills S1 to S2. Early decrescendo starts at S1 and fades. Diamond has a gap at both ends and swells in the middle. Late crescendo starts after a gap and builds into S2.", recordings: ["class-holosystolic", "class-systolic-decrescendo", "class-diamond", "class-systolic-crescendo"] },
