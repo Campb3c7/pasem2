@@ -187,6 +187,53 @@
     return copy;
   }).filter(function (set) { return set.recordings.length >= 2; });
 
+
+  // ---- Tiers (Anna, 2026-11-02). Tier 1 = the 10 class sounds (RECORDINGS).
+  // Tier 2 = objective sounds with no class audio: learn by ear from outside clips.
+  // Tier 3 = facts only, practiced with written questions.
+  function T2(id, name, dx, signature, means, recordings) {
+    return { id: id, name: name, dx: dx, signature: signature, means: means, recordings: recordings };
+  }
+  var TIER2 = [
+    T2("ar", "Aortic regurgitation", "ar", "Blowing, high-pitched decrescendo that starts right at S2.", "Early diastolic decrescendo = aortic regurgitation. Leaky aortic valve: blood falls back into the LV as soon as diastole starts. Best at the left 2nd to 4th ICS with the patient leaning forward, exhaled and holding.", ["um-aortic-regurgitation", "um-as-ar", "chd-as-ar"]),
+    T2("ejection-click", "Ejection click", "bicuspid", "High-pitched click right after S1, usually followed by a diamond murmur.", "Ejection click = a stenotic semilunar valve snapping open: bicuspid aortic valve or aortic stenosis (or pulmonic stenosis). Early in systole, right after S1.", ["chd-bicuspid", "um-pulmonic-stenosis"]),
+    T2("midsystolic-click", "Midsystolic click", "mvp", "A click in the middle of systole, often followed by a late systolic murmur.", "Midsystolic click = mitral valve prolapse. The leaflet snaps back into the atrium and the chordae stop it short. Standing or Valsalva moves the click earlier; squatting moves it later.", ["um-mid-click", "um-click-late-systolic"]),
+    T2("pda", "Patent ductus arteriosus", "pda", "Harsh, continuous machinery murmur that runs through S2.", "Continuous machinery murmur = PDA. Aortic pressure stays above pulmonary pressure all cycle, so flow never stops. Pulmonic area, newborns.", ["chd-pda"]),
+    T2("vsd", "Ventricular septal defect", "vsd", "Harsh holosystolic murmur at the left lower sternal border.", "Harsh holosystolic murmur at the left sternal border (3rd to 5th ICS) = VSD. Blood shunts LV to RV all of systole. Same shape as MR, but location and harshness differ.", ["chd-vsd"]),
+    T2("stills", "Still's (innocent) murmur", "innocent", "Soft, musical or vibratory systolic murmur in a healthy child.", "Soft musical systolic murmur in a well child = Still's (innocent) murmur. Loudest supine at the left sternal border or apex; disappears with standing. Diastolic murmurs are never innocent.", ["chd-innocent-s3", "um-innocent"]),
+    T2("rub", "Pericardial friction rub", "rub", "Scratchy, high-pitched, with 1 to 3 parts per beat.", "Scratchy sound with up to 3 parts = pericardial friction rub (pericarditis). Best at the left sternal border leaning forward, louder on expiration. No recording in your files: listen to one online.", [])
+  ];
+  function T3(prompt, answer, wrong, explanation) { return { q: prompt, a: answer, w: wrong, x: explanation }; }
+  var TIER3 = {
+    facts: [
+      { title: "Pulmonic stenosis", text: "Harsh crescendo-decrescendo like AS, but at the left 2nd ICS. May radiate to the left neck or shoulder. Ejection click and wide split S2 may be present." },
+      { title: "Tricuspid regurgitation", text: "Blowing holosystolic like MR, but at the left lower sternal border. Louder on inspiration (Carvallo's sign). Severe: S3." },
+      { title: "Pulmonic regurgitation", text: "Blowing early diastolic decrescendo like AR, but louder on inspiration." },
+      { title: "Tricuspid stenosis", text: "Like mitral stenosis (rumble) but at the left lower sternal border and louder on inspiration. Rare." },
+      { title: "Venous hum", text: "Soft continuous hum, right supraclavicular, loudest sitting up. Disappears lying down, with jugular compression, or with the head turned. Innocent." },
+      { title: "Abnormal S2 splits", text: "Physiologic = inspiration only (normal). Wide = always split, wider on inspiration (pulmonic stenosis, RBBB). Fixed = always split, never changes (ASD). Paradoxical = splits on expiration (severe AS, LBBB)." },
+      { title: "Grading (out of 6)", text: "1 faint, needs tuning in. 2 quiet but heard right away. 3 moderately loud. 4 loud with a thrill. 5 heard with the stethoscope partly off the chest. 6 heard with no stethoscope." },
+      { title: "Bell vs diaphragm", text: "Bell, light touch = low pitch (S3, S4, MS rumble). Diaphragm, firm = high pitch (S1, S2, AR, MR, clicks)." },
+      { title: "Right-sided rule", text: "Right-sided sounds (TR, PR, PS, TS) get louder on inspiration because more blood returns to the right heart." }
+    ],
+    questions: [
+      T3("A harsh crescendo-decrescendo systolic murmur is loudest at the LEFT 2nd ICS with a wide split S2. What is it?", "Pulmonic stenosis", ["Aortic stenosis", "Mitral regurgitation", "Ventricular septal defect"], "Same diamond shape as AS, but the left upper sternal border and a wide split point to the pulmonic valve."),
+      T3("A blowing holosystolic murmur at the left lower sternal border gets louder when the patient breathes in. What is it?", "Tricuspid regurgitation", ["Mitral regurgitation", "Aortic stenosis", "Mitral valve prolapse"], "Carvallo's sign: TR gets louder on inspiration. MR sounds the same but sits at the apex and does not change with breathing."),
+      T3("What is Carvallo's sign?", "A tricuspid regurgitation murmur that gets louder on inspiration", ["An S3 that disappears on standing", "A click that moves earlier with Valsalva", "A rub that gets louder on expiration"], "Inspiration increases venous return to the right heart, so right-sided murmurs get louder."),
+      T3("A blowing early diastolic decrescendo murmur gets louder with inspiration. What is it?", "Pulmonic regurgitation", ["Aortic regurgitation", "Mitral stenosis", "Patent ductus arteriosus"], "PR sounds like AR, but it is right-sided, so inspiration makes it louder."),
+      T3("A soft continuous hum above the right clavicle disappears when the child lies down. What is it?", "Venous hum", ["Patent ductus arteriosus", "Pericardial friction rub", "Still's murmur"], "Venous hum is jugular venous flow, not the heart. Lying down or compressing the jugular vein stops it."),
+      T3("An S2 split that never changes with breathing suggests…", "Atrial septal defect", ["Normal physiology", "Severe aortic stenosis", "Mitral stenosis"], "Fixed split = ASD. A normal (physiologic) split is there on inspiration only."),
+      T3("An S2 that splits on expiration and closes on inspiration (paradoxical split) suggests…", "Severe aortic stenosis or LBBB", ["Atrial septal defect", "Pulmonic stenosis", "Normal physiology"], "Anything that delays aortic closure (severe AS, LBBB) pushes A2 after P2, so the split reverses."),
+      T3("An S2 that is split on expiration and gets wider on inspiration (wide split) suggests…", "Pulmonic stenosis or RBBB", ["Atrial septal defect", "Severe aortic stenosis", "Mitral regurgitation"], "Something delays pulmonic closure, so P2 is always late and gets later on inspiration."),
+      T3("A murmur is loud with a palpable thrill but is not heard with the stethoscope lifted off the chest. Grade?", "4/6", ["2/6", "3/6", "6/6"], "Grade 4 is the first grade with a thrill. 5 is heard with the stethoscope partly off the chest; 6 with no stethoscope at all."),
+      T3("A murmur is audible with the stethoscope completely off the chest. Grade?", "6/6", ["4/6", "5/6", "3/6"], "6/6: audible without a stethoscope. 5/6 still needs the stethoscope partly on the chest."),
+      T3("Which part of the stethoscope is best for an S3, S4, or the mitral stenosis rumble?", "Bell, with light pressure", ["Diaphragm, with firm pressure", "Either, with firm pressure", "Diaphragm, with light pressure"], "Low-pitched sounds: bell, light touch. High-pitched sounds: diaphragm, firm."),
+      T3("Why do right-sided murmurs get louder on inspiration?", "Inspiration increases venous return to the right heart", ["Inspiration slows the heart rate", "Inspiration raises left atrial pressure", "Inspiration closes the aortic valve early"], "Negative chest pressure pulls more blood into the right heart, so right-sided flow and murmurs increase."),
+      T3("A low rumble at the left lower sternal border that gets louder on inspiration is most likely…", "Tricuspid stenosis", ["Mitral stenosis", "Aortic regurgitation", "Venous hum"], "Same rumble as MS, but right-sided: left lower sternal border and louder on inspiration. Rare."),
+      T3("Which pair of murmurs radiates to the carotids and the left axilla, respectively?", "Aortic stenosis and mitral regurgitation", ["Mitral stenosis and aortic regurgitation", "Pulmonic stenosis and tricuspid regurgitation", "VSD and PDA"], "AS follows flow up into the carotids; MR follows backflow toward the left axilla.")
+    ]
+  };
+
   window.HEART_SOUNDS = {
     audioBase: "audio/heart-sounds/",
     options: OPTIONS,
@@ -196,6 +243,8 @@
     recordings: RECORDINGS,
     lookalikes: LOOKALIKES,
     extra: { groups: EXTRA_GROUPS, recordings: EXTRA_RECORDINGS, lookalikes: EXTRA_LOOKALIKES },
+    tier2: TIER2,
+    tier3: TIER3,
     sources: {
       class: "Class recordings from the Heart Sounds lecture (Canvas). Each comes as sound only and with the lecture talking over it.",
       michigan: "Heart Sound and Murmur Library, Richard Judge and Rajesh Mangrulkar, University of Michigan Medical School (2015), CC BY-SA 4.0.",

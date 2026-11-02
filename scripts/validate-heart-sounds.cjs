@@ -57,5 +57,20 @@ const extraIds = new Set((data.extra ? data.extra.recordings : []).map((rec) => 
   set.recordings.forEach((id) => { if (!recIds.has(id)) errors.push(`${set.id}: unknown recording ${id}`); });
 });
 
+const t2Ids = new Set();
+(data.tier2 || []).forEach((item) => {
+  if (!/^[a-z0-9-]+$/.test(item.id) || t2Ids.has(item.id)) errors.push(`tier2: bad or duplicate id ${item.id}`);
+  t2Ids.add(item.id);
+  if (!item.name || !item.signature || !item.means) errors.push(`tier2 ${item.id}: missing name/signature/means`);
+  if (item.dx && !dxIds.has(item.dx)) errors.push(`tier2 ${item.id}: unknown diagnosis ${item.dx}`);
+  (item.recordings || []).forEach((id) => { if (!extraIds.has(id)) errors.push(`tier2 ${item.id}: ${id} is not an additional-practice recording`); });
+});
+const tier3 = data.tier3 || { facts: [], questions: [] };
+tier3.facts.forEach((fact, i) => { if (!fact.title || !fact.text) errors.push(`tier3 fact ${i}: missing title/text`); });
+tier3.questions.forEach((q, i) => {
+  if (!q.q || !q.a || !q.x || !Array.isArray(q.w) || q.w.length !== 3) errors.push(`tier3 question ${i}: needs prompt, answer, 3 wrong, explanation`);
+  else if (new Set([q.a].concat(q.w)).size !== 4) errors.push(`tier3 question ${i}: duplicate choices`);
+});
+
 if (errors.length) { console.error(errors.join("\n")); process.exit(1); }
-console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets`);
+console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets, ${t2Ids.size} Tier 2 sounds, ${tier3.facts.length} Tier 3 facts + ${tier3.questions.length} questions`);

@@ -36,9 +36,9 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 
 - Listening tool for the Heart Sounds audio exam: `heart-sounds.js` (engine) and `data/heart-sounds.js` (`window.HEART_SOUNDS`). It is its own course card on the home page (course `heart-sounds` in `data/semester.js` with `tool: "heart-sounds"` and no lectures; `app.js` opens `window.HeartSoundsTool` instead of a course page). Anna moved it out of Cardio Part 1 on 2026-11-02, next to Radiology and EKG.
 - Audio lives in `audio/heart-sounds/{class,michigan,congenital}/` (sources and licenses in that folder's README). Each recording has `dx` (a diagnosis id), `timing`, `shape`, `extra`, `pitch`, `quality` (values from `options`; `null` = not quizzed), a `diagram` spec, and a `note`. `accept` lists other diagnoses the same sound pattern fits.
-- The main page is class tracks only: all 20 (10 sounds, sound-only and with-lecture). Outside recordings (Michigan library, congenital set) live in `HEART_SOUNDS.extra` and show only in the separate "Additional practice" section, which has the same modes. Never mix the two (the validator checks).
+- The page is organized in three tiers. Tier 1 = the 10 class sounds (both tracks each): One by one, All at once, Quiz, Mock exam (15 questions, 70% to pass). Tier 1 uses class clips only; never put outside clips there. Tier 2 (`HEART_SOUNDS.tier2`: AR, ejection click, midsystolic click, PDA, VSD, Still's, rub) uses outside clips from `HEART_SOUNDS.extra` (Michigan library, congenital set): One by one, All at once, Quiz. Tier 3 (`HEART_SOUNDS.tier3`) is fact cards plus written questions (ids `t3|<index>`: only append).
 - Every reveal leads with "This sound means" (diagnosis name + `means` text, set in `MEANS` for class sounds) so the shape is always tied to the diagnosis. Anna wants that link spelled out everywhere.
-- Modes: Listen and learn (one by one per group), Name it (multiple choice), Side by side (`lookalikes`), Mock exam (15 questions, 70% to pass). Anna dropped the drop-down "Describe it" mode; don't bring it back.
+- Anna dropped "Describe it" (drop-downs), Side by side, and the separate Additional practice section (2026-11-02); don't bring them back unless she asks.
 - Recording ids are progress keys: never rename. Run `node scripts/validate-heart-sounds.cjs` after editing.
 
 ## Heart Murmurs tool
