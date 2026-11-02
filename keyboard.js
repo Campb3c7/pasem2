@@ -1,11 +1,11 @@
 /* Keyboard shortcuts for every multiple-choice quiz on the site.
    A/B/C/D (either case) picks that answer. Space moves to the next question once it is showing.
-   H shows a hint where a quiz offers one (Struggles). */
+   H shows a hint where a quiz offers one (Struggles, Heart Sounds). */
 (function () {
   "use strict";
   var CHOICE_GROUPS = ".choices, .walkthrough-choices";
-  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next"];
-  var HINT_BUTTONS = ["struggle-hint"];
+  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next", "hs-next"];
+  var HINT_BUTTONS = ["struggle-hint", "hs-hint"];
 
   function isVisible(el) {
     return !!el && !el.hidden && el.getClientRects().length > 0;
@@ -13,7 +13,7 @@
   function typingInField(target) {
     if (!target) return false;
     var tag = (target.tagName || "").toLowerCase();
-    return tag === "input" || tag === "textarea" || tag === "select" || target.isContentEditable;
+    return tag === "input" || tag === "textarea" || tag === "select" || tag === "audio" || tag === "video" || target.isContentEditable;
   }
   // The active question is the last visible choice group on the page
   // (the Disease Walkthrough stacks its steps, and the newest step is last).

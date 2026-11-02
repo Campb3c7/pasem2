@@ -23,7 +23,7 @@ One section per objective block, however many class days it spans.
 | Cardio A&P | Cardiology Anatomy | Cardio Anatomy.pptx |
 | Cardio Physiology (taught with Anatomy on the "Cardio A&P" day) | Cardiology Physiology | Cardiovascular Physiology.pptx |
 | Cardio H&P | Cardiovascular H&P | Cardiovascular H&P.pptx |
-| Heart Sounds | Heart Sounds | missing |
+| Heart Sounds | Heart Sounds | Heart Sounds - student.pptx (Wireman; text in `text/heart-sounds.md`) |
 | Lipids (includes lipid pharmacology) | Lipids | Lipid Physiology and Dyslipidemia.pptx (drug classes on slides 62-93) |
 | Hypertension Part I | Hypertension, Parts I, II and III: objectives 1–3, 8–10 | hypertension-part-1.pptx (Veal) |
 | Hypertension Part II | Same block: objectives 4–7, 11–16 | hypertension-part-2.pptx (Veal) |
@@ -63,6 +63,6 @@ Heart Murmurs tool (Cardio Part 1 page, 2026-10-29): practice-only, 10 sets / 20
 
 Pathophysiology tool (Cardio Part 1 page, Anna's request 2026-10-29): 100 practice questions in 23 topics across all 11 lectures, in `data/pathophys-cardio-part-1.js` (`validate-pathophys-cardio-part-1.cjs`). Add a Heart Sounds lecture there when that deck arrives.
 
-Heart Sounds is waiting on its deck.
+Heart Sounds (deck arrived 2026-11-02): a listening exam (up to 15 audio questions, 70% to pass). Built first as the Heart Sounds listening tool (`heart-sounds.js`, `data/heart-sounds.js`): 42 labeled recordings (10 class tracks, 23 Michigan library, 9 congenital set). No recordings yet for TR, PR, venous hum, or friction rub. Still to do: the Learn/Test/Apply lecture, Diseases and Concepts entries, a Pathophysiology topic, and fixing the Heart Murmurs "Other heart sounds" set against the deck (add venous hum; ASD and LBBB are not in this deck; deck grade 5 = stethoscope partly off the chest, 6 = no stethoscope).
 
 Medications tool (Cardio Part 1 page, 2026-10-29): 9 drug classes, 39 entries (33 drugs/classes + 6 "which drug when" guides), 280 questions plus flashcards (`node scripts/validate-medications-cardio-part-1.cjs`). Drugs come from Hypertension I-III, Hypertensive Crisis, Lipids, Cardiomyopathies, Valvular Disease and Cardiac Devices.

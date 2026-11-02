@@ -32,6 +32,13 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Every concept has four sections in order: `idea`, `chain` (an `<ol class="concept-chain">`), `bedside`, `traps`. Questions are mostly prediction ("X rises — what happens to Y?"). Ids are `<concept id>|<index>`: only append.
 - Run `node scripts/validate-concepts-<lecture id>.cjs` after editing.
 
+## Heart Sounds tool
+
+- Cardio Part 1 listening tool for the Heart Sounds lecture's audio exam: `heart-sounds.js` (engine) and `data/heart-sounds.js` (`window.HEART_SOUNDS`). It launches first in the Cardio Part 1 tools row.
+- Audio lives in `audio/heart-sounds/{class,michigan,congenital}/` (sources and licenses in that folder's README). Each recording has `dx` (a diagnosis id), `timing`, `shape`, `extra`, `pitch`, `quality` (values from `options`; `null` = not quizzed), a `diagram` spec, and a `note`. `accept` lists other diagnoses the same sound pattern fits.
+- Modes: Listen and learn (one by one per group), Name it (multiple choice), Describe it (drop-downs), Side by side (`lookalikes`), Mock exam (15 questions, 70% to pass).
+- Recording ids are progress keys: never rename. Run `node scripts/validate-heart-sounds.cjs` after editing.
+
 ## Heart Murmurs tool
 
 - Cardio Part 1 practice-only tool: `murmurs.js` (engine) and `data/murmurs.js` (`window.HEART_MURMURS`: spots, chart, sections of questions). It launches first in the Cardio Part 1 tools row.
