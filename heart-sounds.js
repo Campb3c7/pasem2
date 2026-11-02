@@ -1,16 +1,14 @@
-/* Heart Sounds listening tool (Cardio Part 1).
-   Five ways to study the same labeled recordings (data/heart-sounds.js):
-   Listen and learn, Name it (multiple choice), Describe it (drop-downs),
-   Side by side (look-alikes), and a 15-question mock exam. */
+/* Heart Sounds listening tool: its own course card on the home page.
+   Four ways to study the labeled recordings (data/heart-sounds.js):
+   Listen and learn, Name it (multiple choice), Side by side (look-alikes), and a 15-question mock exam. */
 (function () {
   "use strict";
 
   var data = window.HEART_SOUNDS;
-  var launch = document.getElementById("heart-sounds-launch");
   var view = document.getElementById("heart-sounds-view");
   var content = document.getElementById("heart-sounds-content");
   var studyView = document.getElementById("study-view");
-  if (!data || !launch || !view || !content) return;
+  if (!data || !view || !content) return;
 
   var PROGRESS_KEY = "pasem2:heart-sounds:cardio-part-1:progress";
   var EXAM_SIZE = 15;
@@ -164,6 +162,8 @@
   // ---- open / close ----------------------------------------------------------
   function open() {
     studyView.hidden = true;
+    document.querySelector(".workspace").hidden = true;
+    document.querySelector(".hero").hidden = true;
     document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
     view.hidden = false;
     setPool("class");
@@ -174,8 +174,10 @@
     stopAudio();
     state = null;
     view.hidden = true;
-    studyView.hidden = false;
     content.innerHTML = "";
+    // Heart Sounds is its own course on the home page, so Back returns home.
+    document.querySelector(".workspace").hidden = false;
+    document.querySelector(".hero").hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -203,13 +205,12 @@
       ? '<div class="session-top"><button type="button" id="hs-to-class">← Your class tracks</button><span>Additional practice</span></div>' +
         '<div class="drill-heading murmur-heading"><p class="eyebrow">Heart Sounds · additional practice</p><h2>Additional practice</h2><p>' + total + ' outside recordings, kept apart from your class tracks: the University of Michigan library and a congenital heart disease set (real patients, more background noise). Same practice modes.</p>'
       : '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks: 10 sounds, each with and without the lecture. Use headphones.</p>';
-    html += '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named · ' + countDone("describe") + ' of ' + total + ' described</span></div>';
+    html += '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named on the first try</span></div>';
     html += '<div class="hs-modes">' +
       modeCard("learn", "1", "Listen and learn", "Go one by one through a section. Each clip shows its label, timing diagram, and how to recognize it.") +
       modeCard("name", "2", "Name it", "Hear a clip, pick the diagnosis from four choices. Shuffled. Retry after a miss.") +
-      modeCard("describe", "3", "Describe it", "Hear a clip, then fill in timing, shape, extra sound, pitch, quality, and diagnosis from drop-downs.") +
-      modeCard("compare", "4", "Side by side", "Look-alike sounds next to each other with the one clue that splits them.") +
-      modeCard("exam", "5", "Mock exam", EXAM_SIZE + " mixed questions on clips, one try each. 70% to pass, like the real exam.") +
+      modeCard("compare", "3", "Side by side", "Look-alike sounds next to each other with the one clue that splits them.") +
+      modeCard("exam", "4", "Mock exam", EXAM_SIZE + " mixed questions on clips, one try each. 70% to pass, like the real exam.") +
       '</div>';
     html += '<div id="hs-picker"></div>';
     if (!extra) {
@@ -236,14 +237,14 @@
   function modeCard(id, number, title, text) {
     return '<button class="drill-section-card murmur-section-card hs-mode" type="button" data-hs-mode="' + id + '"><span class="drill-section-number">0' + number + '</span><strong>' + escapeHtml(title) + '</strong><span>' + escapeHtml(text) + '</span></button>';
   }
-  // Learn, Name it, and Describe it start with a section choice.
+  // Listen and learn and Name it start with a section choice.
   function choose(mode) {
     if (mode === "exam") { startExam(); return; }
     if (mode === "compare") { renderCompareList(); return; }
     var picker = document.getElementById("hs-picker");
-    var titles = { learn: "Listen and learn", name: "Name it", describe: "Describe it" };
+    var titles = { learn: "Listen and learn", name: "Name it" };
     var progress = loadProgress();
-    var kind = mode === "name" ? "mc" : "describe";
+    var kind = "mc";
     var options = [{ id: "all", title: "Everything", description: "All " + recordings.length + " recordings, shuffled." }].concat(groups.filter(function (group) { return recordings.some(function (recording) { return recording.group === group.id; }); }));
     if (mode === "learn") options = options.slice(1);
     picker.innerHTML = '<div class="hs-picker"><p class="eyebrow">' + escapeHtml(titles[mode]) + ' · pick a section</p><div class="drill-section-grid">' + options.map(function (group) {
@@ -258,7 +259,6 @@
         var title = id === "all" ? "Everything" : groupById(id).title;
         if (mode === "learn") startLearn(title, items);
         else if (mode === "name") startName(title, items);
-        else startDescribe(title, items);
       });
     });
     picker.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -368,74 +368,6 @@
     explanation.hidden = true;
     document.getElementById("hs-hint").hidden = true;
     document.getElementById("hs-hint-text").hidden = true;
-    document.getElementById("hs-reveal").innerHTML = revealCard(recording);
-    var next = document.getElementById("hs-next");
-    next.hidden = false;
-    next.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }
-
-  // ---- 3. Describe it ------------------------------------------------------------
-  function startDescribe(title, items) {
-    state = { mode: "describe", title: title, items: shuffle(items), position: 0, allRight: 0 };
-    renderDescribe();
-  }
-  function selectHtml(id, label, options) {
-    return '<label class="hs-select"><span>' + escapeHtml(label) + '</span><select data-hs-field="' + id + '"><option value="">Choose…</option>' +
-      options.map(function (option) { return '<option value="' + escapeHtml(option.value) + '">' + escapeHtml(option.text) + '</option>'; }).join("") + '</select><em class="hs-mark" data-hs-mark="' + id + '"></em></label>';
-  }
-  function renderDescribe() {
-    stopAudio();
-    var recording = state.items[state.position];
-    var last = state.position + 1 === state.items.length;
-    var fields = data.fields.filter(function (field) { return recording[field.id] != null; });
-    state.checked = false;
-    var selects = fields.map(function (field) {
-      return selectHtml(field.id, field.label, data.options[field.id].map(function (option) { return { value: option, text: option }; }));
-    }).join("") + selectHtml("dx", "Diagnosis", data.diagnoses.map(function (dx) { return { value: dx.id, text: dx.name }; }));
-    content.innerHTML = sessionTop("Describe it · " + state.title, state.position, state.items.length, state.allRight + " fully right") +
-      '<article class="question-card immersive-card hs-card"><div class="card-number">Describe what you hear</div><div class="hs-player">' + audioTag(recording.file) + '</div>' +
-      '<p class="hs-spot">Recorded at: ' + escapeHtml(recording.spot) + '</p>' +
-      '<div class="hs-form">' + selects + '</div>' +
-      '<button class="primary-action full-action" id="hs-check" type="button">Check my answers</button>' +
-      '<div class="explanation" id="hs-explanation" hidden></div><div id="hs-reveal"></div></article>' +
-      '<button class="primary-action full-action" id="hs-next" type="button" hidden>' + (last ? "See results" : "Next clip →") + '</button>';
-    wireHome();
-    document.getElementById("hs-check").addEventListener("click", function () { checkDescribe(recording, fields); });
-    document.getElementById("hs-next").addEventListener("click", function () {
-      state.position += 1;
-      if (state.position >= state.items.length) renderDone("Describe it · " + state.title, state.allRight, state.items.length, function () { startDescribe(state.title, state.items); });
-      else renderDescribe();
-    });
-    content.scrollIntoView({ behavior: "instant", block: "start" });
-  }
-  function checkDescribe(recording, fields) {
-    var answers = {};
-    content.querySelectorAll("[data-hs-field]").forEach(function (select) { answers[select.dataset.hsField] = select.value; });
-    var explanation = document.getElementById("hs-explanation");
-    var blank = Object.keys(answers).filter(function (key) { return !answers[key]; });
-    if (blank.length && !state.checked) {
-      explanation.hidden = false;
-      explanation.className = "explanation drill-try-again";
-      explanation.innerHTML = "<strong>Fill in every box first</strong><p>Pick your best guess for each one.</p>";
-      return;
-    }
-    state.checked = true;
-    var right = 0;
-    var list = fields.map(function (field) { return field.id; }).concat(["dx"]);
-    list.forEach(function (id) {
-      var ok = id === "dx" ? accepted(recording).indexOf(answers[id]) !== -1 : answers[id] === recording[id];
-      if (ok) right += 1;
-      var markEl = content.querySelector('[data-hs-mark="' + id + '"]');
-      var correctText = id === "dx" ? dxById(recording.dx).name : recording[id];
-      markEl.className = "hs-mark " + (ok ? "ok" : "bad");
-      markEl.textContent = ok ? "✓" : "✗ " + correctText;
-      content.querySelector('[data-hs-field="' + id + '"]').disabled = true;
-    });
-    if (right === list.length) { state.allRight += 1; mark(recording.id, "describe"); }
-    explanation.hidden = false;
-    explanation.className = "explanation";
-    explanation.innerHTML = '<strong>' + right + ' of ' + list.length + ' right</strong><p>' + (right === list.length ? "Every attribute matched." : "The right answer shows next to each miss.") + '</p>';
-    document.getElementById("hs-check").hidden = true;
     document.getElementById("hs-reveal").innerHTML = revealCard(recording);
     var next = document.getElementById("hs-next");
     next.hidden = false;
@@ -582,11 +514,11 @@
 
   function renderDone(title, score, total, again) {
     stopAudio();
-    content.innerHTML = '<section class="complete-panel"><span class="complete-icon">✓</span><p class="eyebrow">Set complete</p><h3>' + escapeHtml(title) + '</h3><p>' + score + ' of ' + total + ' right' + (state.mode === "describe" ? " on every attribute." : " on the first try.") + '</p><div class="session-actions"><button class="primary-action" id="hs-again" type="button">Shuffle and go again</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
+    content.innerHTML = '<section class="complete-panel"><span class="complete-icon">✓</span><p class="eyebrow">Set complete</p><h3>' + escapeHtml(title) + '</h3><p>' + score + ' of ' + total + ' right' + " on the first try." + '</p><div class="session-actions"><button class="primary-action" id="hs-again" type="button">Shuffle and go again</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
     document.getElementById("hs-again").addEventListener("click", again);
     document.getElementById("hs-done").addEventListener("click", renderHome);
   }
 
-  launch.addEventListener("click", open);
+  window.HeartSoundsTool = { open: open };
   document.getElementById("heart-sounds-back").addEventListener("click", close);
 }());

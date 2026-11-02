@@ -374,6 +374,16 @@ window.SEMESTER = {
           objectives: window.EKG_INTERPRETATION_OBJECTIVES || []
         }
       ]
+    },
+    {
+      id: "heart-sounds",
+      title: "Heart Sounds",
+      short: "LISTENING EXAM",
+      icon: "🩺",
+      color: "sage",
+      description: "Heart Sounds listening exam: hear each class recording, learn what it means, and practice naming it.",
+      tool: "heart-sounds",
+      lectures: []
     }
   ]
 };

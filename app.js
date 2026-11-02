@@ -108,8 +108,13 @@
       var card = document.createElement("button");
       card.type = "button";
       card.className = "course-card " + (course.color || "gold");
-      card.innerHTML = '<span class="course-icon">' + escapeHtml(course.icon || "📘") + '</span><span class="course-kicker">' + escapeHtml(course.short || "PA") + '</span><strong>' + escapeHtml(course.title) + '</strong><span class="course-description">' + escapeHtml(course.description || "") + '</span><span class="course-meta"><span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + ' complete</span></span>';
-      card.addEventListener("click", function () { openCourse(course); });
+      var meta = course.tool ? '<span>Listening practice</span><span>Open →</span>' : '<span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + ' complete</span>';
+      card.innerHTML = '<span class="course-icon">' + escapeHtml(course.icon || "📘") + '</span><span class="course-kicker">' + escapeHtml(course.short || "PA") + '</span><strong>' + escapeHtml(course.title) + '</strong><span class="course-description">' + escapeHtml(course.description || "") + '</span><span class="course-meta">' + meta + '</span>';
+      card.addEventListener("click", function () {
+        // Tool-only courses (Heart Sounds) open their tool straight from the home page.
+        if (course.tool === "heart-sounds" && window.HeartSoundsTool) { workspace.hidden = true; document.querySelector(".hero").hidden = true; window.HeartSoundsTool.open(); return; }
+        openCourse(course);
+      });
       grid.appendChild(card);
     });
   }
