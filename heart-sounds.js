@@ -172,8 +172,7 @@
     stopAudio();
     state = null;
     var total = recordings.length;
-    var classCount = recordings.filter(function (recording) { return recording.source === "class"; }).length;
-    var html = '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks (10 sounds, each with and without the lecture) plus ' + (total - classCount) + ' clips from a congenital heart disease set. Use headphones.</p>' +
+    var html = '<div class="drill-heading murmur-heading"><p class="eyebrow">Cardio Part 1 · listening practice</p><h2>Heart Sounds</h2><p>Hear it, then name it. All 20 of your class tracks: 10 sounds, each with and without the lecture. Use headphones.</p>' +
       '<span class="diseases-count-pill">' + countDone("mc") + ' of ' + total + ' named · ' + countDone("describe") + ' of ' + total + ' described</span></div>';
     html += '<div class="hs-modes">' +
       modeCard("tracks", "0", "Your 20 class tracks", "Every Canvas track in order, 1 to 20, with what each one is.") +
@@ -185,7 +184,7 @@
       '</div>';
     html += '<div id="hs-picker"></div>';
     html += coverageTable();
-    html += '<p class="murmur-footnote hs-sources"><strong>Sources.</strong> ' + escapeHtml(data.sources.class) + ' ' + escapeHtml(data.sources.congenital) + ' <button type="button" id="hs-reset">Reset heart sounds progress</button></p>';
+    html += '<p class="murmur-footnote hs-sources"><strong>Sources.</strong> ' + escapeHtml(data.sources.class) + ' <button type="button" id="hs-reset">Reset heart sounds progress</button></p>';
     content.innerHTML = html;
     content.querySelectorAll("[data-hs-mode]").forEach(function (button) {
       button.addEventListener("click", function () { choose(button.dataset.hsMode); });
@@ -273,7 +272,7 @@
     content.scrollIntoView({ behavior: "instant", block: "start" });
   }
   function sourceName(recording) {
-    return { class: "Class recording", congenital: "Congenital set" }[recording.source];
+    return { class: "Class recording" }[recording.source];
   }
 
   // ---- 2. Name it --------------------------------------------------------------
@@ -494,7 +493,10 @@
     return attributeQuestion(recording, type);
   }
   function startExam() {
-    var clips = shuffle(recordings).slice(0, EXAM_SIZE);
+    // Only 10 class sounds, so clips repeat with a different question about them.
+    var clips = [];
+    while (clips.length < EXAM_SIZE) clips = clips.concat(shuffle(recordings));
+    clips = clips.slice(0, EXAM_SIZE);
     state = { mode: "exam", questions: clips.map(buildQuestion), position: 0, score: 0, misses: [] };
     renderExam();
   }

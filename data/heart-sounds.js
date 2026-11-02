@@ -60,8 +60,7 @@
     { id: "normal", title: "Normal and split S2", description: "Baseline S1/S2 and the physiologic split." },
     { id: "extra", title: "Extra sounds", description: "S3, S4, clicks, and the opening snap." },
     { id: "systolic", title: "Systolic murmurs", description: "Holosystolic, early systolic decrescendo, diamond mid-systolic, and late systolic crescendo." },
-    { id: "diastolic", title: "Diastolic murmurs", description: "The mid-diastolic rumble of mitral stenosis." },
-    { id: "congenital", title: "Congenital and other", description: "PDA, VSD, ASD, pulmonic stenosis, AS + AR, and an innocent murmur, recorded in children." }
+    { id: "diastolic", title: "Diastolic murmurs", description: "The mid-diastolic rumble of mitral stenosis." }
   ];
 
   // R(id, group, source, file, title, dx, spot, attrs, diagram, note, extra)
@@ -78,7 +77,7 @@
   }
   var NONE = ["No murmur", "No murmur", "None", "No murmur", "No murmur"];
   function only(extra) { return ["No murmur", "No murmur", extra, "No murmur", "No murmur"]; }
-  var C = "congenital/", K = "class/";
+  var K = "class/";
   var SYS = function (from, to, shape) { return { phase: "sys", from: from, to: to, shape: shape }; };
   var DIA = function (from, to, shape) { return { phase: "dia", from: from, to: to, shape: shape }; };
 
@@ -93,30 +92,15 @@
     R("class-systolic-decrescendo", "systolic", "class", K + "13-systolic-decrescendo-only.mp3", "Early systolic decrescendo murmur", "mr", "Class recording", ["Early systolic", "Decrescendo", "None", null, null], { m: [SYS(0, 0.6, "decresc")] }, "Starts loud right at S1 and fades before S2. Classic for acute MR (or a small VSD). The track starts with normal beats, then the murmur comes in.", { narrated: K + "03-systolic-decrescendo-with-lecture.mp3", accept: ["vsd"] , track: 13, narratedTrack: 3 }),
     R("class-diamond", "systolic", "class", K + "17-diamond-mid-systolic-only.mp3", "Diamond mid-systolic murmur", "as", "Class recording", ["Mid-systolic", "Crescendo-decrescendo (diamond)", "None", null, null], { m: [SYS(0.12, 0.88, "diamond")] }, "Gap after S1, murmur swells and fades, gap before S2. The ejection (stenosis) shape: AS or PS, or an innocent flow murmur if soft.", { narrated: K + "07-diamond-mid-systolic-with-lecture.mp3", accept: ["ps", "innocent"] , track: 17, narratedTrack: 7 }),
     R("class-systolic-crescendo", "systolic", "class", K + "19-systolic-crescendo-only.mp3", "Late systolic crescendo murmur", "mvp", "Class recording", ["Late systolic", "Crescendo", "None", null, null], { m: [SYS(0.45, 1, "cresc")] }, "Quiet start of systole, then a murmur that builds right up to S2. The late MR of mitral valve prolapse. The track starts with normal beats.", { narrated: K + "09-systolic-crescendo-with-lecture.mp3", accept: ["mr"] , track: 19, narratedTrack: 9 }),
-    R("class-mid-diastolic", "diastolic", "class", K + "20-mid-diastolic-only.mp3", "Mid-diastolic murmur", "ms", "Class recording", ["Mid-diastolic", "Rumble", "None", "Low", "Rumbling"], { m: [DIA(0.25, 0.8, "rumble")] }, "A low rumble in the middle of diastole, after S2 and away from it. Mitral stenosis.", { narrated: K + "10-mid-diastolic-with-lecture.mp3" , track: 20, narratedTrack: 10 }),
-
-    // ---- Congenital Heart Disease Sounds (teachingheartauscultation.com, free MP3s). Real children, short clips.
-    R("chd-normal", "normal", "congenital", C + "5-normal-sounds.mp3", "Normal heart sounds (20-year-old)", "normal", "Left upper sternal edge, diaphragm", ["No murmur", "No murmur", null, "No murmur", "No murmur"], {}, "A healthy young adult. A real chest, so there is more background noise than the class tracks."),
-    R("chd-bicuspid", "extra", "congenital", C + "6-bicuspid-aortic-valve.mp3", "Bicuspid aortic valve (ejection click)", "bicuspid", "Apex", [null, null, "Ejection click", null, null], { x: ["EC"] }, "A 10-year-old before hockey. Listen for the click right after S1. Ignore the skin crackles."),
-    R("chd-innocent-s3", "congenital", "congenital", C + "8-innocent-murmur-and-s3.mp3", "Innocent murmur and S3 (healthy 7-year-old)", "innocent", "Apex, bell", [null, null, "S3", null, "Musical or vibratory"], { x: ["S3"], m: [SYS(0.05, 0.6, "diamond")] }, "A musical systolic murmur plus an S3. Both are normal in a healthy child."),
-    R("chd-pda", "congenital", "congenital", C + "3-pda.mp3", "Patent ductus arteriosus", "pda", "Left upper sternal edge", ["Continuous through S2", "Machinery (continuous)", null, null, "Machinery"], { m: [{ phase: "cont", shape: "machinery" }] }, "The murmur never stops. It peaks around S2 and fades in diastole. A 4-year-old with bounding pulses."),
-    R("chd-vsd", "congenital", "congenital", C + "9-vsd.mp3", "Ventricular septal defect", "vsd", "Left sternal edge, 4th interspace", ["Holosystolic", "Plateau", null, "High", "Harsh"], { m: [SYS(0, 1, "plateau")] }, "Holosystolic like MR, but heard at the left lower sternal border in a child.", { accept: ["mr"] }),
-    R("chd-asd-1", "congenital", "congenital", C + "1-asd.mp3", "Atrial septal defect (4-year-old girl)", "asd", "Left upper sternal edge", ["Mid-systolic", "Crescendo-decrescendo (diamond)", "Fixed split S2", null, null], { s2: "fixed", m: [SYS(0.15, 0.8, "diamond")] }, "Soft ejection murmur and a split S2 that does not change with breathing."),
-    R("chd-asd-2", "congenital", "congenital", C + "7-asd.mp3", "Atrial septal defect (4-year-old boy)", "asd", "Left upper sternal edge", ["Mid-systolic", "Crescendo-decrescendo (diamond)", "Fixed split S2", null, null], { s2: "fixed", m: [SYS(0.15, 0.8, "diamond")] }, "A second ASD to practice the fixed split."),
-    R("chd-pulmonic-stenosis", "congenital", "congenital", C + "2-pulmonary-stenosis.mp3", "Pulmonary stenosis (9-year-old)", "ps", "Left upper sternal border", ["Mid-systolic", "Crescendo-decrescendo (diamond)", null, "High", "Harsh"], { m: [SYS(0.1, 0.9, "diamond")] }, "Harsh ejection murmur at the left upper sternal border."),
-    R("chd-as-ar", "congenital", "congenital", C + "4-aortic-stenosis-and-regurgitation.mp3", "Aortic stenosis and regurgitation (10-year-old with fever)", "as-ar", "Aortic area", ["Systolic and diastolic (to-and-fro)", "Diamond, then decrescendo", null, null, "Harsh, then blowing"], { m: [SYS(0.1, 0.9, "diamond"), DIA(0, 0.55, "decresc")] }, "Ten days of fever and bounding pulses: think endocarditis damaging the aortic valve.")
+    R("class-mid-diastolic", "diastolic", "class", K + "20-mid-diastolic-only.mp3", "Mid-diastolic murmur", "ms", "Class recording", ["Mid-diastolic", "Rumble", "None", "Low", "Rumbling"], { m: [DIA(0.25, 0.8, "rumble")] }, "A low rumble in the middle of diastole, after S2 and away from it. Mitral stenosis.", { narrated: K + "10-mid-diastolic-with-lecture.mp3" , track: 20, narratedTrack: 10 })
   ];
 
   // Look-alike sets for "Side by side".
   var LOOKALIKES = [
-    { id: "holo", title: "Holosystolic: MR vs VSD (vs TR)", clue: "Same shape. Location decides: MR at the apex to the axilla, VSD at the left lower sternal border and harsh, TR at the left lower sternal border and louder on inspiration.", recordings: ["class-holosystolic", "chd-vsd"] },
     { id: "systolic-shapes", title: "Systolic shapes: holo vs early decrescendo vs diamond vs late crescendo", clue: "Where does the murmur start and stop? Holo fills S1 to S2. Early decrescendo starts at S1 and fades. Diamond has a gap at both ends and swells in the middle. Late crescendo starts after a gap and builds into S2.", recordings: ["class-holosystolic", "class-systolic-decrescendo", "class-diamond", "class-systolic-crescendo"] },
-    { id: "ejection", title: "Diamond murmurs: AS vs PS vs innocent vs ASD", clue: "AS: right upper sternal border, harsh, to the carotids. PS: left upper, harsh, maybe a click and wide split. Innocent: soft and musical in a child. ASD: soft, with a fixed split S2.", recordings: ["class-diamond", "chd-pulmonic-stenosis", "chd-innocent-s3", "chd-asd-1"] },
     { id: "after-s2", title: "Something right after S2: split S2 vs opening snap vs S3", clue: "Split S2: very close, only on inspiration. Opening snap: high and crisp, a bit later. S3: later still, dull and low, bell only.", recordings: ["class-split-s2", "class-os", "class-s3"] },
     { id: "gallops", title: "S3 vs S4", clue: "S3 right after S2 (Ken-tuc-ky). S4 right before S1 (Ten-nes-see). Both low: use the bell.", recordings: ["class-s3", "class-s4"] },
-    { id: "mitral-stenosis", title: "Mitral stenosis: opening snap vs mid-diastolic rumble", clue: "Both are MS. The snap is a sharp sound just after S2. The rumble is a low murmur that follows in mid-diastole.", recordings: ["class-os", "class-mid-diastolic"] },
-    { id: "splits", title: "Split S2: physiologic vs fixed", clue: "Physiologic: only on inspiration. Fixed (ASD): split in every beat and never changes with breathing.", recordings: ["class-split-s2", "chd-asd-1"] },
-    { id: "both-phases", title: "Both phases: PDA vs AS + AR", clue: "PDA runs straight through S2 like machinery. AS + AR is two separate murmurs with a break at S2 (to-and-fro).", recordings: ["chd-pda", "chd-as-ar"] }
+    { id: "mitral-stenosis", title: "Mitral stenosis: opening snap vs mid-diastolic rumble", clue: "Both are MS. The snap is a sharp sound just after S2. The rumble is a low murmur that follows in mid-diastole.", recordings: ["class-os", "class-mid-diastolic"] }
   ];
 
 
@@ -129,8 +113,7 @@
     recordings: RECORDINGS,
     lookalikes: LOOKALIKES,
     sources: {
-      class: "Class recordings from the Heart Sounds lecture (Canvas). Each comes as sound only and with the lecture talking over it.",
-      congenital: "Congenital Heart Disease Sounds, teachingheartauscultation.com (free MP3s). Live recordings from children."
+      class: "Class recordings from the Heart Sounds lecture (Canvas). Each comes as sound only and with the lecture talking over it."
     }
   };
 }());

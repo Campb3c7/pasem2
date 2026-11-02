@@ -35,8 +35,8 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 ## Heart Sounds tool
 
 - Cardio Part 1 listening tool for the Heart Sounds lecture's audio exam: `heart-sounds.js` (engine) and `data/heart-sounds.js` (`window.HEART_SOUNDS`). It launches first in the Cardio Part 1 tools row.
-- Audio lives in `audio/heart-sounds/{class,congenital}/` (sources and licenses in that folder's README). Each recording has `dx` (a diagnosis id), `timing`, `shape`, `extra`, `pitch`, `quality` (values from `options`; `null` = not quizzed), a `diagram` spec, and a `note`. `accept` lists other diagnoses the same sound pattern fits.
-- Anna wants all 20 class tracks on the page (sound-only and with-lecture versions); she removed the Michigan library on 2026-11-02 and does not want it back.
+- Audio lives in `audio/heart-sounds/class/` (sources and licenses in that folder's README). Each recording has `dx` (a diagnosis id), `timing`, `shape`, `extra`, `pitch`, `quality` (values from `options`; `null` = not quizzed), a `diagram` spec, and a `note`. `accept` lists other diagnoses the same sound pattern fits.
+- Anna wants all 20 class tracks on the page (sound-only and with-lecture versions); on 2026-11-02 she had the Michigan library and congenital-set clips removed: class clips only unless she asks.
 - Modes: Your 20 class tracks (Canvas order), Listen and learn (one by one per group), Name it (multiple choice), Describe it (drop-downs), Side by side (`lookalikes`), Mock exam (15 questions, 70% to pass).
 - Recording ids are progress keys: never rename. Run `node scripts/validate-heart-sounds.cjs` after editing.
 
