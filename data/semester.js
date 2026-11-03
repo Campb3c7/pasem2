@@ -350,7 +350,14 @@ window.SEMESTER = {
       icon: "💓",
       color: "rose",
       description: "Cardiology exam 2: syncope, arrhythmias and their drugs, endocarditis and pericardial disease, vascular disease, shock and fluids, and CV surgery. Lectures are added here one at a time.",
-      lectures: []
+      lectures: [
+        {
+          id: "arrhythmias",
+          title: "Arrhythmias",
+          description: "Conduction and mechanisms, sinus arrhythmia and PACs, instability signs, sinus brady, sick sinus, every AV block and escape rhythm, sinus tach, AF, flutter, MAT, AVNRT, WPW and AVRT, PVCs, VT, torsades, VF, PEA and asystole, the ACLS drugs, and cardioversion vs defibrillation with joules.",
+          objectives: window.ARRHYTHMIAS_OBJECTIVES || []
+        }
+      ]
     },
     {
       id: "radiology",

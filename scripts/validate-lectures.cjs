@@ -37,7 +37,8 @@ global.window = global;
   "cardiomyopathies",
   "valvular-disease",
   "intro-radiology-part-1",
-  "ekg-interpretation"
+  "ekg-interpretation",
+  "arrhythmias"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 
