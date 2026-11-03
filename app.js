@@ -108,7 +108,7 @@
       var card = document.createElement("button");
       card.type = "button";
       card.className = "course-card " + (course.color || "gold");
-      var meta = course.tool ? '<span>Listening practice</span><span>Open →</span>' : '<span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + ' complete</span>';
+      var meta = course.tool ? '<span>Listening practice' + (total ? ' + lecture' : '') + '</span><span>Open →</span>' : '<span>' + total + (total === 1 ? " lecture" : " lectures") + '</span><span>' + complete + ' complete</span>';
       card.innerHTML = '<span class="course-icon">' + escapeHtml(course.icon || "📘") + '</span><span class="course-kicker">' + escapeHtml(course.short || "PA") + '</span><strong>' + escapeHtml(course.title) + '</strong><span class="course-description">' + escapeHtml(course.description || "") + '</span><span class="course-meta">' + meta + '</span>';
       card.addEventListener("click", function () {
         // Tool-only courses (Heart Sounds) open their tool straight from the home page.
@@ -118,6 +118,11 @@
       grid.appendChild(card);
     });
   }
+  // Heart Sounds' listening page opens its lecture (Learn/Test/Apply/Recall) through this.
+  window.PasemOpenCourse = function (id) {
+    var course = (semester.courses || []).find(function (item) { return item.id === id; });
+    if (course) { clearSessions(); openCourse(course); }
+  };
   function openCourse(course) {
     currentCourse = course; currentLecture = 0; currentMode = "learn";
     workspace.hidden = true; document.querySelector(".hero").hidden = true; studyView.hidden = false;

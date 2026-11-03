@@ -225,6 +225,15 @@
     var progress = loadProgress();
     var t1done = recordings.filter(function (recording) { return progress[recording.id] && progress[recording.id].mc; }).length;
     var html = '<div class="drill-heading murmur-heading"><p class="eyebrow">Listening exam</p><h2>Heart Sounds</h2><p>Up to 15 questions on audio clips, 70% to pass. Learn it in three tiers: Tier 1 by ear first, Tier 2 a few listens each, Tier 3 as facts.</p></div>';
+    var lectureCourse = ((window.SEMESTER || {}).courses || []).find(function (course) { return course.id === "heart-sounds"; });
+    var lectureObjectives = lectureCourse && lectureCourse.lectures && lectureCourse.lectures[0] ? lectureCourse.lectures[0].objectives : [];
+    if (lectureObjectives.length && window.PasemOpenCourse) {
+      var lectureCards = lectureObjectives.reduce(function (sum, item) { return sum + item.cards.length; }, 0);
+      var lectureQs = lectureObjectives.reduce(function (sum, item) { return sum + item.test.length + item.apply.length; }, 0);
+      html += '<section class="hs-tier hs-lecture-tier"><div class="hs-tier-head"><span class="hs-tier-badge t3">Lecture</span><div><h3>The word part: every detail</h3><p>The whole lecture as Learn, Test, Apply and Recall: ' + lectureObjectives.length + ' sections, ' + lectureCards + ' cards, ' + lectureQs + ' questions. Know these and many exam questions give themselves away from the words.</p></div></div><div class="hs-modes">' +
+        tierButton("lecture", "Open the lecture", "Learn, Test, Apply, Recall. Spots, S1/S2, splits, gallops, clicks, every murmur, maneuvers, word clues.") +
+        '</div></section>';
+    }
     var exDone = exam.questions.filter(function (question, index) { return progress["ex|" + index] && progress["ex|" + index].mc; }).length;
     html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Exam practice</span><div><h3>Questions like the real exam</h3><p>A short patient story plus a clip, then one question: name it, systolic or diastolic, which maneuver, volume or pressure overload. Every clip is one of your class sounds (sound only, with the spoken name cut off). ' + exDone + ' of ' + exam.questions.length + ' right on the first try.</p></div></div><div class="hs-modes">' +
       tierButton("ex-exam", "Practice exam", exam.size + " questions, one try each, 70% to pass. Covers all 10 sounds.") +
@@ -257,6 +266,7 @@
     });
   }
   function act(action) {
+    if (action === "lecture") { stopAudio(); state = null; view.hidden = true; content.innerHTML = ""; window.PasemOpenCourse("heart-sounds"); return; }
     if (action === "ex-exam") startExamPractice(true);
     else if (action === "ex-all") startExamPractice(false);
     else if (action === "t1-learn") startLearn("Tier 1 · one by one", tier1Entries());
@@ -676,6 +686,8 @@
     document.getElementById("hs-done").addEventListener("click", renderHome);
   }
 
+  var listenLaunch = document.getElementById("heart-sounds-listen-launch");
+  if (listenLaunch) listenLaunch.addEventListener("click", open);
   window.HeartSoundsTool = { open: open };
   document.getElementById("heart-sounds-back").addEventListener("click", close);
 }());

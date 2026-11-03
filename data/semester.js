@@ -383,7 +383,14 @@ window.SEMESTER = {
       color: "sage",
       description: "Heart Sounds listening exam: hear each class recording, learn what it means, and practice naming it.",
       tool: "heart-sounds",
-      lectures: []
+      lectures: [
+        {
+          id: "heart-sounds-lecture",
+          title: "Heart Sounds Lecture",
+          description: "Every detail of the Wireman deck for the word part of the exam: listening spots, S1 and S2, splits, S3 and S4, clicks and snaps, timing, shape, grade, pitch and quality, every murmur, the others (PDA, VSD, Still's, venous hum, rub), every maneuver, and vignette word clues.",
+          objectives: window.HEART_SOUNDS_LECTURE_OBJECTIVES || []
+        }
+      ]
     }
   ]
 };

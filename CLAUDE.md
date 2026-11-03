@@ -41,6 +41,7 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Every reveal leads with "This sound means" (diagnosis name + `means` text, set in `MEANS` for class sounds) so the shape is always tied to the diagnosis. Anna wants that link spelled out everywhere.
 - Anna dropped "Describe it" (drop-downs), Side by side, and the separate Additional practice section (2026-11-02); don't bring them back unless she asks.
 - Recording ids are progress keys: never rename. Run `node scripts/validate-heart-sounds.cjs` after editing.
+- Heart Sounds Lecture (Anna, 2026-11-03): the written side of the exam as a normal Learn/Test/Apply/Recall lecture in the `heart-sounds` course (`data/heart-sounds-lecture.js`, `window.HEART_SOUNDS_LECTURE_OBJECTIVES`). Not split by objective: 14 sections covering every detail of the deck plus maneuver, word-clue and class-recording reviews. The home card still opens the listening page, whose top "Lecture" block opens the course page via `window.PasemOpenCourse`; the course page's tools row has a Listening practice button back. Run `node scripts/validate-heart-sounds-lecture.cjs` after editing.
 
 ## Heart Murmurs tool
 
