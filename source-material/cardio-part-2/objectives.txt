@@ -1,0 +1,189 @@
+Syncope Objectives:
+
+Define syncope and differentiate syncope from presyncope based on the clinical presentation.
+Explain the pathophysiology of syncope and identify its most common etiologies.
+Compare and contrast the epidemiology, pathophysiology, historical features, and physical exam findings associated with the major classifications of syncope.
+Differentiate the major classifications of syncope based on diagnostic evaluation, treatment, and clinical disposition.
+Recall the definition and diagnostic testing for orthostatic hypotension.
+Identify the three major etiologies for cardiac syncope (structural heart disease, arrhythmia, and cardiopulmonary obstruction) and their associated underlying medical conditions.
+Explain the pathophysiology, clinical features and presentation of aortic stenosis and hypertrophic cardiomyopathy that contribute to syncope.
+Recognize the EKG findings of atrioventricular (AV) blocks that can cause bradyarrhythmias leading to syncope.
+Differentiate a Brugada ECG pattern (Types 1 and 2) from Brugada syndrome.
+Describe the pathophysiology, epidemiology, clinical presentation, characteristic ECG findings, and identify appropriate management.
+Recognize the pathophysiology, clinical features, characteristic ECG findings, and management of long QT syndrome.
+Identify medications and electrolyte abnormalities known to cause prolonged QT interval and recognize their potential to increase the risk of ventricular arrhythmias and syncope.
+Recognize the clinical presentation and characteristic EKG findings of Wolff-Parkinson-White (WPW) Syndrome.
+Recognize the clinical features of polymorphic ventricular tachycardia.
+Describe the pathophysiology and clinical presentation of cardiopulmonary conditions that may cause syncope, including pulmonary embolism, myocardial infarction, aortic dissection, and cardiac tamponade.
+Differentiate syncope from seizure using patient history, associated symptoms, and findings during and after the event.
+Apply a systematic approach to syncope evaluation, including focused history-taking, physical exam, orthostatic vital signs, ECG interpretation, and selection of additional diagnostic testing when indicated.
+Identify high-risk historical features, physical exam findings, and ECG abnormalities associated with potentially life-threatening causes of syncope.
+Differentiate patients with syncope who are appropriate for outpatient management from those who require emergency evaluation, observation, or hospital admission based on high-risk clinical features and suspected etiology.
+
+Inpatient & Long-Term Arrhythmia Management Objectives:
+
+Review the risk factors and triggers of atrial fibrillation. 
+Describe the epidemiology, pathophysiology, and remodeling of the atria that occur in atrial fibrillation. Recall the classification of atrial fibrillation.
+Detail the clinical presentation, workup, and management of atrial fibrillation. Compare and contrast the advantages and disadvantages of pursuing a rhythm control vs a rate control strategy in atrial fibrillation.
+Briefly describe the technique for performing cardioversion, radiofrequency catheter ablation, and the maze procedure. 
+List the following anti-arrhythmic drugs by trade and generic name and if listed below, recall the following principles of treatment.
+Amiodarone (Pacerone, Cordarone)- especially useful in persistent AF, drug of choice in atrial fib for patients with cardiac disease-CAD or systolic or diastolic heart failure
+Dronedarone (Multaq): contraindicated in recent HF or severe NYHA class HF, permanent AF
+Sotalol (Betapace): contraindicated in patients with HF or prolonged QT
+Dofetilide (Tikosyn): must be started in the hospital, used in patients with HF, CAD, CVA, HTN who also have atrial fibrillation
+Discuss the risk of stroke in non-valvular AF and the factors which influence this risk. Describe the difference in stroke risk in paroxysmal vs persistent vs permanent atrial fibrillation. 
+Describe the utility of the CHADS2-VASc scoring system in determining the drug of choice for embolic stroke prevention. Describe the utility of the HAS-BLED scoring system to determine the risk of major bleed in patients treated with warfarin. 
+Recall the elements of the CHADS2-VASc scoring system and if given a scenario, be able to calculate a CHADS2-VASc score and know how to apply this information. 
+Compare and contrast the limitations, risks, and benefits of anticoagulation with warfarin and the DOACs. Know the following DOACs by trade and generic name: dabigitran, rivaroxaban, and apixaban. 
+Review the management of the hospital patient with NSVT and the indications for more extensive testing as well as the elements of the work-up.
+Discuss the evaluation of a patient with persistent sinus tachycardia and review the syndromes of inappropriate sinus tachycardia and POTS.
+
+Infective Endocarditis & Pericardial Disease Objectives:
+
+Detail the epidemiology, risk factors for development, causative organisms, pathophysiology/ hemodynamics, and clinical presentation of infectious endocarditis.
+Review the diagnostic work-up, Duke criteria (memorize the major only), complications and treatment, including surgical indications, and prognosis of native valve endocarditis.
+Compare and contrast the causative organisms, clinical presentation, diagnostic work-up, and treatment of right-sided endocarditis and PVE to NVE.
+Describe the AHA guidelines for prophylaxis of IE, including cardiac conditions and procedures for which prophylaxis is recommended and drug regimen of choice.
+Discuss the pathophysiology, etiologies, symptoms, signs, diagnostic work-up, and treatment of acute pericarditis, pericardial effusion, cardiac tamponade, and constrictive pericarditis.
+
+Vascular Disease Objectives:
+
+Peripheral Arterial Disease:
+
+Describe clinical syndrome of claudication and differentiate vascular claudication from pseudoclaudication. 
+Explain management and vascular testing in a primary care setting for asymptomatic and symptomatic patients. 
+Explain the risk factors, describe the clinical features, and the appropriate recommendation for the diagnosis, utilization of diagnostic tools, and management of peripheral arterial disease
+Given a clinical vignette identify Aortoiliac Occlusive Disease “Leriche Syndrome”
+Describe and ABIs, when clinically indicated and be able to interpret ABI readings, including when exercise ABI or toe-brachial index testing is indicated.  
+Compare and contrast wet, dry, and gas gangrene regarding the risk factors, clinical features, diagnosis, and treatment of gangrene (wet, dry, and myonecrosis)
+Differential the four clinical categories of PAD, and explain how classification influence management and urgency of vascular evaluation.
+Acute ischemic limb:
+
+Define what acute ischemic limb is and be able to identify clinical symptoms, physical exam findings, diagnostic workup, and management.
+Aneurysm:
+
+Define an abdominal aortic aneurysm
+Review risk factors and clinical features of abdominal aortic aneurysm
+Recall the common locations of aneurysms throughout the body, presenting symptoms and potential complications with these locations
+Review genetic syndromes associated with increased risk of aortic aneurysm/dissection
+Describe the diagnosis, monitoring, and medical and surgical management of abdominal aortic aneurysms
+Explain the recommended screening indications for abdominal aortic aneurysms and monitoring guidelines for size and sex in known AAA. 
+Review surgical indications for abdominal aortic aneurysms, including size for sex.
+Aortic Dissection:
+
+Detail pathogenesis and risk factors, clinical signs and symptoms, classification, and mortality risk of aortic dissection
+Be able to explain and choose appropriate diagnostic workup and management of dissections based on classifications and symptoms.
+Vasculitis:
+
+Detail clinical signs, and symptoms, diagnosis and treatment of (Kawasaki Disease, Takayasu Arteritis, Buerger Disease, Raynaud Phenomenon)
+Define arteriovenous malformations, physical exam finding and potential complications
+Venous Insufficiency:
+
+Detail the pathophysiology, risk factors and clinical signs and symptoms of the various stages of venous insufficiency
+Explain diagnostic workup and appropriate management of venous insufficiency
+Phlebitis / Thrombophlebitis:
+
+Recall Risk factors, clinical signs, and symptoms, diagnosis, and management of phlebitis/thrombophlebitis
+Define Trousseau syndrome and cancers most often associated with this.
+Venous Thromboembolism:
+
+Recall types of venous thromboembolisms
+Detail the pathogenesis and risk factors of VTE (i.e. Virchow Triad)
+Recall how to utilize the diagnostic tools in the evaluation of PE and create an appropriate diagnostic workup when there is clinical concern for DVT/PE.
+Memorize the modified Wells criteria for PE only not DVT
+Memorize the pulmonary embolism rule-out criteria (PERC)
+Detail the management strategies utilized for the treatment of DVT types of PE
+For special populations (pregnancy/chronic kidney disease/malignancy ) recall the variances in diagnostic work up and/or treatment compared to the general population 
+Recall criteria for outpatient and inpatient disposition of a DVT
+Define post-thrombotic syndrome and recall appropriate management and prevention.  
+
+
+Shock, Pressors & Fluid Management Objectives:
+
+Recall the various types of shock and provide an example for each.
+Compare and contrast the phases of shock.
+Recall the body’s response to shock.
+Recognize the epidemiology, risk factors, etiologies, clinical features, and diagnostic tests used in the evaluation of cardiogenic shock.
+Recall the emergent management strategies of cardiogenic shock.
+Recall the indications, mechanisms of action, and special considerations of dobutamine, dopamine, norepinephrine, and epinephrine in the treatment of cardiogenic shock.
+Recall the dosing thresholds for dopamine and the physiologic effects at each dosing stage.
+Recall the indications for the devices used to manage shock.
+Determine the goals of resuscitation in shock.
+Analyze the body fluid distributions and compartments.
+Analyze the forces that play an effect on body fluid distribution.
+Compare and contrast colloid and crystalloid fluids and the indications for each.
+Compare and contrast sensible and insensible fluid losses.
+Recall the pathophysiology of the body’s response to hypovolemia.
+Recognize the history, signs, and symptoms of hypovolemia if given a clinical scenario.
+Recall the goals of IV fluid replacement.
+Analyze the pathophysiology of the 3:1 rule.
+Recall the indications and administration of blood transfusions.
+Recall the correct management strategy regarding resuscitation.
+Recognize when to utilize isotonic, hypotonic, and hypertonic solutions if given a clinical scenario.
+
+
+Arrhythmias Objectives:
+
+Recall normal electrophysiology of the heart.
+List the general mechanisms of arrhythmias.
+Recognize sinus arrhythmia and premature atrial contractions (PAC) by definition and EKG findings.
+Identify the risk factors of and treatment approach to premature atrial contractions
+Recognize the indicators of hemodynamic instability in a patient with a dysrhythmia.
+Describe the pathophysiology, clinical features, ECG findings, and treatment of sinus bradycardia, Sick Sinus Syndrome and AV blocks.
+Compare and contrast the characteristics of the various AV blocks.
+Define sinus tachycardia and recognize the scenarios in which sinus tachycardia is likely to be seen, as well as clinical presentation and treatment approach.
+Explain the pathophysiology, clinical features, ECG findings, and treatment of A-Fib RVR and A-Flutter RVR, Multifocal Atrial Tachycardia (MAT), AVNRT and AVRT.
+Recognize common etiologies and risk factors for Atrial Fibrillation and Atrial Flutter as well as MAT.
+Recognize the characteristics of Wolff-Parkinson-White (WPW) pattern and explain its relationship with AVRT.
+Compare and contrast characteristics and treatment of Orthodromic and Antidromic AVRT.
+Recognize the appearance of premature ventricular contractions (PVCs), both infrequent and patterned (bigeminy and trigeminy); explain the treatment approach and underlying disease processes that may require exclusion.
+Characterize ventricular tachycardia in terms of duration (sustained vs nonsustained), morphology (monomorphic vs. polymorphic) and hemodynamic stability (stable vs unstable).
+Recognize Torsades de Pointes and risk factors for developing it.
+Recall the pathophysiology of and risk factors associated with ventricular tachycardia in general.
+Recognize the clinical presentation of ventricular tachycardia and outline the correct steps in treating pulseless V-Tach, unstable V-tach with a pulse and stable V-Tach with a pulse.
+Recognize the pathophysiology, ECG findings, risk factors, clinical features, and management of ventricular fibrillation (V-Fib).
+Identify Pulseless Electrical Activity (PEA) and Asystole and recall the appropriate treatment unique to these rhythms during ACLS protocol.
+Recall indications, doses, and the correct sequence administration of the following medications:
+Atropine
+Adenosine
+Amiodarone
+Epinephrine
+Magnesium
+Metoprolol
+Cardizem
+Compare and contrast synchronized cardioversion and “defibrillation."
+List the correct joules required for defibrillation.
+List the correct joules and the subsequent joules for cardioversion of unstable V-Tach, unstable atrial fibrillation with RVR.
+Arrhythmia Pharmacology Objectives:
+
+Recall the drug class, indications and dosing of atropine.
+Recall the mechanism of action of atropine and recognize common side effects as well as evidence of atropine toxicity.
+Recognize the brand and generic name of adenosine and indications in which to use it; recall the appropriate dose and contraindications for use.
+Recall the mechanism of action of adenosine.
+Recognize when digoxin might be used for a patient as well as the mechanism of action. Recognize risk factors, clinical presentation and general treatment approach of digoxin toxicity. Recognize that there is a narrow therapeutic window and risk of increased half life in the setting of renal failure.
+Recall the mechanism of action for the 4 classes of antiarrhythmic agents and the phases of the cardiac action potential that are being affected
+Na+ channel blockers
+β-blockers
+K+ channel blockers
+Ca+ channel blockers
+Compare and contrast the subclassifications of sodium channel blockers and beta blockers.
+Recall generic & brand names of the anti-arrhythmic agents as well as their contraindications and significant adverse effects
+Recall the monitoring parameters required for the use of lidocaine; recognize the clinical presentation of lidocaine toxicity.
+Recognize beta blocker toxicity.
+Recall the appropriate dose of Amiodarone (initial and subsequent dose) when used during ACLS protocol; recognize the manifestations of amiodarone toxicity as well as general drug and food interactions. 
+
+
+Cardiovascular Surgery Objectives:
+
+Identify the three invasive interventions for CAD
+Identify the criterion on which the SYNTAX Scoring systems are based
+Determine which patients need an elective or emergent CABG
+Describe the basic components and functions of the CPB
+Name the primary electrolyte in cardioplegia
+Associate the blood vessels used as conduits in CABG in order of patency rates
+Identify the biggest risks for a poor outcome after CABG
+Assess and manage the potential complications following a CABG Surgery.
+Utilize the various monitoring tools available in the ICU to diagnose the post-operative complication.
+
+
+

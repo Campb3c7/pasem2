@@ -344,6 +344,15 @@ window.SEMESTER = {
       ]
     },
     {
+      id: "cardio-part-2",
+      title: "Cardio Part 2",
+      short: "CARDIO 2",
+      icon: "💓",
+      color: "rose",
+      description: "Cardiology exam 2: syncope, arrhythmias and their drugs, endocarditis and pericardial disease, vascular disease, shock and fluids, and CV surgery. Lectures are added here one at a time.",
+      lectures: []
+    },
+    {
       id: "radiology",
       title: "Radiology",
       short: "RADIOLOGY",
