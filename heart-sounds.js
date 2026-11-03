@@ -37,6 +37,12 @@
   function dxById(id) { return data.diagnoses.find(function (entry) { return entry.id === id; }); }
   function recById(id) { return data.recordings.concat(data.extra.recordings).find(function (entry) { return entry.id === id; }); }
   function fieldById(id) { return data.fields.find(function (entry) { return entry.id === id; }); }
+  var exam = window.HEART_SOUNDS_EXAM || { clips: {}, questions: [], size: 15 };
+  // Quiz clips: the sound-only track with the spoken name cut off (data/heart-sounds-exam.js).
+  function quizFile(recording) {
+    var key = Object.keys(exam.clips).find(function (k) { return exam.clips[k].recording === recording.id; });
+    return key ? exam.clips[key].file : recording.file;
+  }
   function accepted(recording) { return [recording.dx].concat(recording.accept || []); }
   function loadProgress() {
     try { var value = localStorage.getItem(PROGRESS_KEY); return value ? JSON.parse(value) : {}; }
@@ -219,6 +225,11 @@
     var progress = loadProgress();
     var t1done = recordings.filter(function (recording) { return progress[recording.id] && progress[recording.id].mc; }).length;
     var html = '<div class="drill-heading murmur-heading"><p class="eyebrow">Listening exam</p><h2>Heart Sounds</h2><p>Up to 15 questions on audio clips, 70% to pass. Learn it in three tiers: Tier 1 by ear first, Tier 2 a few listens each, Tier 3 as facts.</p></div>';
+    var exDone = exam.questions.filter(function (question, index) { return progress["ex|" + index] && progress["ex|" + index].mc; }).length;
+    html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Exam practice</span><div><h3>Questions like the real exam</h3><p>A short patient story plus a clip, then one question: name it, systolic or diastolic, which maneuver, volume or pressure overload. Every clip is one of your class sounds (sound only, with the spoken name cut off). ' + exDone + ' of ' + exam.questions.length + ' right on the first try.</p></div></div><div class="hs-modes">' +
+      tierButton("ex-exam", "Practice exam", exam.size + " questions, one try each, 70% to pass. Covers all 10 sounds.") +
+      tierButton("ex-all", "Every question", "All " + exam.questions.length + " questions, shuffled, one try each.") +
+      '</div></section>';
     html += '<section class="hs-tier"><div class="hs-tier-head"><span class="hs-tier-badge">Tier 1</span><div><h3>Name these by ear</h3><p>Your 10 class sounds (all 20 tracks). Most of the exam will be these. ' + t1done + ' of 10 named on the first try.</p></div></div><div class="hs-modes">' +
       tierButton("t1-learn", "One by one", "Each sound with both tracks, its diagram, and what it means.") +
       tierButton("t1-all", "All at once", "All 10 sounds on one page to read and listen through.") +
@@ -246,7 +257,9 @@
     });
   }
   function act(action) {
-    if (action === "t1-learn") startLearn("Tier 1 · one by one", tier1Entries());
+    if (action === "ex-exam") startExamPractice(true);
+    else if (action === "ex-all") startExamPractice(false);
+    else if (action === "t1-learn") startLearn("Tier 1 · one by one", tier1Entries());
     else if (action === "t1-all") renderAll("Tier 1 · all at once", "Your 10 class sounds. Play the sound-only track, then check what it means.", tier1Entries());
     else if (action === "t1-quiz") startQuiz("Tier 1 quiz", tier1Entries(), "t1");
     else if (action === "t1-exam") startExam();
@@ -341,7 +354,7 @@
     state.choices = choicesFor(entry, state.tier);
     var last = state.position + 1 === state.items.length;
     content.innerHTML = sessionTop(state.title, state.position, state.items.length, state.firstTry + " right on the first try") +
-      '<article class="question-card immersive-card hs-card"><div class="card-number">What is this?</div><div class="hs-player">' + audioTag(entry.recording.file) + '</div>' +
+      '<article class="question-card immersive-card hs-card"><div class="card-number">What is this?</div><div class="hs-player">' + audioTag(state.tier === "t1" ? quizFile(entry.recording) : entry.recording.file) + '</div>' +
       '<div class="choices" id="hs-choices">' + state.choices.map(function (name, index) {
         return '<button class="choice" type="button" data-hs-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(name) + '</button>';
       }).join("") + '</div><div class="explanation" id="hs-explanation" hidden></div><div id="hs-reveal"></div></article>' +
@@ -508,7 +521,7 @@
     state.answered = false;
     var last = state.position + 1 === state.questions.length;
     content.innerHTML = sessionTop("Mock exam", state.position, state.questions.length, state.score + " right so far") +
-      '<article class="question-card immersive-card hs-card"><div class="card-number">Question ' + (state.position + 1) + '</div><div class="hs-player">' + audioTag(question.recording.file) + '</div>' +
+      '<article class="question-card immersive-card hs-card"><div class="card-number">Question ' + (state.position + 1) + '</div><div class="hs-player">' + audioTag(quizFile(question.recording)) + '</div>' +
       '<h3>' + escapeHtml(question.prompt) + '</h3>' +
       '<div class="choices' + (question.kind === "diagram" ? " hs-diagram-choices" : "") + '" id="hs-choices">' + question.choices.map(function (choice, index) {
         var body = question.kind === "diagram" ? diagram(choice, true) : escapeHtml(choice);
@@ -561,6 +574,98 @@
       (misses ? '<ul class="hs-misses">' + misses + '</ul>' : "") +
       '<div class="session-actions"><button class="primary-action" id="hs-again" type="button">New mock exam</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
     document.getElementById("hs-again").addEventListener("click", startExam);
+    document.getElementById("hs-done").addEventListener("click", renderHome);
+  }
+
+  // ---- Exam practice -----------------------------------------------------------------
+  function examItems(short) {
+    var items = exam.questions.map(function (question, index) { return { id: "ex|" + index, question: question }; });
+    if (!short) return shuffle(items);
+    // Deal one question per sound in turn so a short exam still covers every sound.
+    var bySound = {};
+    shuffle(items).forEach(function (item) { (bySound[item.question.sound] = bySound[item.question.sound] || []).push(item); });
+    var sounds = shuffle(Object.keys(bySound));
+    var dealt = [];
+    while (dealt.length < exam.size && sounds.some(function (sound) { return bySound[sound].length; })) {
+      sounds.forEach(function (sound) { if (dealt.length < exam.size && bySound[sound].length) dealt.push(bySound[sound].shift()); });
+    }
+    return shuffle(dealt);
+  }
+  function startExamPractice(short) {
+    state = { mode: "ex", short: short, title: short ? "Practice exam" : "Every question", items: examItems(short), position: 0, score: 0, misses: [] };
+    renderExamPractice();
+  }
+  function renderExamPractice() {
+    stopAudio();
+    var item = state.items[state.position];
+    var question = item.question;
+    var clip = exam.clips[question.sound];
+    state.answered = false;
+    state.choices = question.order ? question.order.slice() : shuffle([question.answer].concat(question.wrong));
+    var last = state.position + 1 === state.items.length;
+    content.innerHTML = sessionTop(state.title, state.position, state.items.length, state.score + " right so far") +
+      '<div class="hs-exam-layout"><article class="question-card immersive-card hs-card hs-exam-q"><div class="card-number">Question ' + (state.position + 1) + '</div>' +
+      (question.vignette ? '<p class="hs-vignette">' + escapeHtml(question.vignette) + '</p>' : "") +
+      '<h3>' + escapeHtml(question.question) + '</h3>' +
+      '<div class="choices" id="hs-choices">' + state.choices.map(function (choice, index) {
+        return '<button class="choice" type="button" data-hs-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(choice) + '</button>';
+      }).join("") + '</div><div class="explanation" id="hs-explanation" hidden></div><div id="hs-reveal"></div></article>' +
+      '<aside class="hs-attachment"><p class="eyebrow">Question ' + (state.position + 1) + ' attachment</p>' + audioTag(clip.file) + '</aside></div>' +
+      '<button class="primary-action full-action" id="hs-next" type="button" hidden>' + (last ? "See my score" : "Next question →") + '</button>';
+    wireHome();
+    content.querySelectorAll("[data-hs-choice]").forEach(function (button) {
+      button.addEventListener("click", function () { answerExamPractice(Number(button.dataset.hsChoice)); });
+    });
+    document.getElementById("hs-next").addEventListener("click", function () {
+      state.position += 1;
+      if (state.position >= state.items.length) renderExamPracticeResult();
+      else renderExamPractice();
+    });
+    content.scrollIntoView({ behavior: "instant", block: "start" });
+  }
+  function soundCard(clip) {
+    var recording = recById(clip.recording);
+    var dx = dxById(recording.dx);
+    return '<div class="hs-reveal"><div class="hs-means"><span>The sound in this clip</span><strong>' + escapeHtml(recording.title) + '</strong><p>' + escapeHtml(recording.means || dx.name) + '</p></div>' +
+      diagram(recording.diagram, true) + '<p class="hs-muted">Clip: ' + escapeHtml(clip.from) + ', class recording.</p></div>';
+  }
+  function answerExamPractice(index) {
+    if (state.answered) return;
+    state.answered = true;
+    var item = state.items[state.position];
+    var question = item.question;
+    var ok = state.choices[index] === question.answer;
+    if (ok) { state.score += 1; mark(item.id, "mc"); }
+    else state.misses.push(item);
+    content.querySelectorAll("[data-hs-choice]").forEach(function (button, buttonIndex) {
+      button.disabled = true;
+      if (state.choices[buttonIndex] === question.answer) button.classList.add("correct");
+      else if (buttonIndex === index) button.classList.add("wrong");
+      else button.classList.add("dimmed");
+    });
+    var explanation = document.getElementById("hs-explanation");
+    explanation.hidden = false;
+    explanation.className = "explanation" + (ok ? "" : " drill-try-again");
+    explanation.innerHTML = '<strong>' + (ok ? "Correct: " : "Answer: ") + escapeHtml(question.answer) + '</strong><p>' + escapeHtml(question.why) + '</p>';
+    document.getElementById("hs-reveal").innerHTML = soundCard(exam.clips[question.sound]);
+    var next = document.getElementById("hs-next");
+    next.hidden = false;
+    next.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function renderExamPracticeResult() {
+    stopAudio();
+    var total = state.items.length;
+    var percent = Math.round(state.score / total * 100);
+    var passed = state.score / total >= PASS;
+    var short = state.short;
+    var misses = state.misses.map(function (item) {
+      var recording = recById(exam.clips[item.question.sound].recording);
+      return '<li><strong>' + escapeHtml(recording.title) + '</strong><span>' + escapeHtml(item.question.question) + ' → ' + escapeHtml(item.question.answer) + '</span></li>';
+    }).join("");
+    content.innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (passed ? "✓" : "!") + '</span><p class="eyebrow">' + escapeHtml(state.title) + '</p><h3>' + percent + '%: ' + (passed ? "Pass" : "Below 70%") + '</h3><p>' + state.score + ' of ' + total + ' right. You need ' + Math.ceil(total * PASS) + ' of ' + total + ' to pass.</p>' +
+      (misses ? '<ul class="hs-misses">' + misses + '</ul>' : "") +
+      '<div class="session-actions"><button class="primary-action" id="hs-again" type="button">' + (short ? "New practice exam" : "Shuffle and go again") + '</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
+    document.getElementById("hs-again").addEventListener("click", function () { startExamPractice(short); });
     document.getElementById("hs-done").addEventListener("click", renderHome);
   }
 

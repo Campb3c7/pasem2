@@ -72,5 +72,32 @@ tier3.questions.forEach((q, i) => {
   else if (new Set([q.a].concat(q.w)).size !== 4) errors.push(`tier3 question ${i}: duplicate choices`);
 });
 
+// Exam practice (data/heart-sounds-exam.js): class clips only, every class sound has a clip.
+const examBox = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(root, "data", "heart-sounds-exam.js"), "utf8"), examBox);
+const exam = examBox.window.HEART_SOUNDS_EXAM;
+const classIds = new Set((data.recordings || []).map((rec) => rec.id));
+const clipRecs = new Set();
+Object.entries(exam.clips).forEach(([key, clip]) => {
+  if (!classIds.has(clip.recording)) errors.push(`exam clip ${key}: ${clip.recording} is not a class recording`);
+  if (clipRecs.has(clip.recording)) errors.push(`exam clip ${key}: duplicate recording ${clip.recording}`);
+  clipRecs.add(clip.recording);
+  if (/with-lecture/.test(clip.file)) errors.push(`exam clip ${key}: use the sound-only track`);
+  if (!fs.existsSync(path.join(root, data.audioBase, clip.file))) errors.push(`exam clip ${key}: missing audio ${clip.file}`);
+  if (!clip.from) errors.push(`exam clip ${key}: missing from`);
+});
+classIds.forEach((id) => { if (!clipRecs.has(id)) errors.push(`exam: no clip for class recording ${id}`); });
+exam.questions.forEach((q, i) => {
+  const where = `exam question ${i}`;
+  if (!exam.clips[q.sound]) errors.push(`${where}: unknown sound ${q.sound}`);
+  if (!q.question || !q.answer || !q.why) errors.push(`${where}: needs question, answer, why`);
+  if (!Array.isArray(q.wrong) || q.wrong.length < 1 || q.wrong.length > 3) errors.push(`${where}: 1 to 3 wrong answers`);
+  const all = [q.answer].concat(q.wrong || []);
+  if (new Set(all).size !== all.length) errors.push(`${where}: duplicate choices`);
+  if (q.order && (q.order.length !== all.length || all.some((choice) => q.order.indexOf(choice) === -1))) errors.push(`${where}: order does not match choices`);
+});
+const examSounds = new Set(exam.questions.map((q) => q.sound));
+Object.keys(exam.clips).forEach((key) => { if (!examSounds.has(key)) errors.push(`exam: no questions for ${key}`); });
+
 if (errors.length) { console.error(errors.join("\n")); process.exit(1); }
-console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets, ${t2Ids.size} Tier 2 sounds, ${tier3.facts.length} Tier 3 facts + ${tier3.questions.length} questions`);
+console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets, ${t2Ids.size} Tier 2 sounds, ${tier3.facts.length} Tier 3 facts + ${tier3.questions.length} questions, exam practice ${exam.questions.length} questions on ${Object.keys(exam.clips).length} clips`);
