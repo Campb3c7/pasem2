@@ -36,3 +36,4 @@ Diseases and Concepts tools like Part 1.
 | Lecture | Status |
 |---|---|
 | Arrhythmias | 38 sections (objective 6 split per brady rhythm, 9 into AF, flutter, MAT, AVNRT, AVRT, 20 per drug), 85 cards, 300 Test, 118 Apply (`node scripts/validate-arrhythmias.cjs`). AF, flutter and MAT detail comes from the Chronic Arrhythmia deck (slides 16–26, 46–49, 56). Defibrillation joules, the 12 mg adenosine repeat, the 150 mg second arrest amiodarone dose, IV metoprolol 5 mg doses and R-wave sync timing are AHA ACLS values marked "not on the slides" on their cards; check them against the Arrhythmia Pharmacology deck. |
+| Syncope | 19 sections (one per objective; objective 10 built as Brugada syndrome), 37 cards, 145 Test, 53 Apply (`node scripts/validate-syncope.cjs`). Blanks the deck leaves for class (slide 22 carotid triggers, slide 24 positive massage, slide 89 10:20 rule) are filled from standard teaching and labeled on the cards. |

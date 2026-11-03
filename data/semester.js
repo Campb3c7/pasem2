@@ -356,6 +356,12 @@ window.SEMESTER = {
           title: "Arrhythmias",
           description: "Conduction and mechanisms, sinus arrhythmia and PACs, instability signs, sinus brady, sick sinus, every AV block and escape rhythm, sinus tach, AF, flutter, MAT, AVNRT, WPW and AVRT, PVCs, VT, torsades, VF, PEA and asystole, the ACLS drugs, and cardioversion vs defibrillation with joules.",
           objectives: window.ARRHYTHMIAS_OBJECTIVES || []
+        },
+        {
+          id: "syncope",
+          title: "Syncope",
+          description: "Syncope vs presyncope, reflex (vasovagal, situational, carotid sinus), orthostatic and cardiac syncope, aortic stenosis and HCM, AV blocks, Brugada, long QT and QT drugs, WPW, polymorphic VT, PE, MI, dissection and tamponade, syncope vs seizure, workup, high-risk findings, and admit vs discharge.",
+          objectives: window.SYNCOPE_OBJECTIVES || []
         }
       ]
     },
