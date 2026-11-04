@@ -362,6 +362,12 @@ window.SEMESTER = {
           title: "Syncope",
           description: "Syncope vs presyncope, reflex (vasovagal, situational, carotid sinus), orthostatic and cardiac syncope, aortic stenosis and HCM, AV blocks, Brugada, long QT and QT drugs, WPW, polymorphic VT, PE, MI, dissection and tamponade, syncope vs seizure, workup, high-risk findings, and admit vs discharge.",
           objectives: window.SYNCOPE_OBJECTIVES || []
+        },
+        {
+          id: "arrhythmia-management",
+          title: "Inpatient & Long-Term Arrhythmia Management",
+          description: "AF risk factors, types, workup and acute care, rate vs rhythm control, cardioversion, ablation and Maze, antiarrhythmic classes with amiodarone, dronedarone, sotalol and dofetilide, CHA2DS2-VASc and HAS-BLED with calculation practice, warfarin vs DOACs, in-hospital NSVT, and sinus tach, IST and POTS.",
+          objectives: window.ARRHYTHMIA_MANAGEMENT_OBJECTIVES || []
         }
       ]
     },
