@@ -186,5 +186,11 @@
     Q("mid-diastolic", "A 50-year-old has this low-pitched murmur at the apex.", "Which part of the stethoscope is best for this murmur?", "The bell, with light pressure", ["The diaphragm, pressed firmly", "The diaphragm, with light pressure", "The bell, pressed firmly"], "Low-pitched sounds (MS rumble, S3, S4): bell with a light touch. Pressing hard turns the bell into a diaphragm.")
   ];
 
-  window.HEART_SOUNDS_EXAM = { clips: CLIPS, questions: QUESTIONS, size: 15 };
+  // Sets are ranges of the question list (Anna went through Set 1 first). New sets append.
+  var SETS = [
+    { id: "set-1", title: "Set 1", from: 0, to: 50 },
+    { id: "set-2", title: "Set 2", from: 50, to: 100 }
+  ];
+
+  window.HEART_SOUNDS_EXAM = { clips: CLIPS, questions: QUESTIONS, sets: SETS, size: 15 };
 }());

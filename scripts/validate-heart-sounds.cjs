@@ -96,6 +96,12 @@ exam.questions.forEach((q, i) => {
   if (new Set(all).size !== all.length) errors.push(`${where}: duplicate choices`);
   if (q.order && (q.order.length !== all.length || all.some((choice) => q.order.indexOf(choice) === -1))) errors.push(`${where}: order does not match choices`);
 });
+let setEnd = 0;
+(exam.sets || []).forEach((set) => {
+  if (set.from !== setEnd || set.to <= set.from || set.to > exam.questions.length) errors.push(`exam ${set.id}: sets must be back-to-back ranges of the question list`);
+  setEnd = set.to;
+});
+if (exam.sets && setEnd !== exam.questions.length) errors.push(`exam: ${exam.questions.length - setEnd} questions are in no set`);
 const examSounds = new Set(exam.questions.map((q) => q.sound));
 Object.keys(exam.clips).forEach((key) => { if (!examSounds.has(key)) errors.push(`exam: no questions for ${key}`); });
 

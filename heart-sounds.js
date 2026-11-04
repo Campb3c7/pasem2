@@ -234,11 +234,15 @@
         tierButton("lecture", "Open the lecture", "Learn, Test, Apply, Recall. Spots, S1/S2, splits, gallops, clicks, every murmur, maneuvers, word clues.") +
         '</div></section>';
     }
-    var exDone = exam.questions.filter(function (question, index) { return progress["ex|" + index] && progress["ex|" + index].mc; }).length;
-    html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Exam practice</span><div><h3>Questions like the real exam</h3><p>A short patient story plus a clip, then one question: name it, systolic or diastolic, which maneuver, volume or pressure overload. Every clip is one of your class sounds (sound only, with the spoken name cut off). ' + exDone + ' of ' + exam.questions.length + ' right on the first try.</p></div></div><div class="hs-modes">' +
-      tierButton("ex-exam", "Practice exam", exam.size + " questions, one try each, 70% to pass. Covers all 10 sounds.") +
-      tierButton("ex-all", "Every question", "All " + exam.questions.length + " questions, shuffled, one try each.") +
-      '</div></section>';
+    html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Exam practice</span><div><h3>Questions like the real exam</h3><p>A short patient story plus a clip, then one question: name it, systolic or diastolic, which maneuver, volume or pressure overload. Every clip is one of your class sounds (sound only, with the spoken name cut off).</p></div></div>' +
+      examSets().map(function (set) {
+        var count = set.to - set.from;
+        var done = 0;
+        for (var i = set.from; i < set.to; i += 1) if (progress["ex|" + i] && progress["ex|" + i].mc) done += 1;
+        return '<h4 class="hs-set-title">' + escapeHtml(set.title) + ' <span>' + done + ' of ' + count + ' right on the first try</span></h4><div class="hs-modes">' +
+          tierButton("ex-exam:" + set.id, set.title + ": practice exam", exam.size + " questions, one try each, 70% to pass. Covers all 10 sounds.") +
+          tierButton("ex-all:" + set.id, set.title + ": every question", "All " + count + " questions, shuffled, one try each.") + '</div>';
+      }).join("") + '</section>';
     html += '<section class="hs-tier"><div class="hs-tier-head"><span class="hs-tier-badge">Tier 1</span><div><h3>Name these by ear</h3><p>Your 10 class sounds (all 20 tracks). Most of the exam will be these. ' + t1done + ' of 10 named on the first try.</p></div></div><div class="hs-modes">' +
       tierButton("t1-learn", "One by one", "Each sound with both tracks, its diagram, and what it means.") +
       tierButton("t1-all", "All at once", "All 10 sounds on one page to read and listen through.") +
@@ -267,8 +271,7 @@
   }
   function act(action) {
     if (action === "lecture") { stopAudio(); state = null; view.hidden = true; content.innerHTML = ""; window.PasemOpenCourse("heart-sounds"); return; }
-    if (action === "ex-exam") startExamPractice(true);
-    else if (action === "ex-all") startExamPractice(false);
+    if (/^ex-/.test(action)) startExamPractice(action.indexOf("ex-exam") === 0, action.split(":")[1]);
     else if (action === "t1-learn") startLearn("Tier 1 · one by one", tier1Entries());
     else if (action === "t1-all") renderAll("Tier 1 · all at once", "Your 10 class sounds. Play the sound-only track, then check what it means.", tier1Entries());
     else if (action === "t1-quiz") startQuiz("Tier 1 quiz", tier1Entries(), "t1");
@@ -588,8 +591,9 @@
   }
 
   // ---- Exam practice -----------------------------------------------------------------
-  function examItems(short) {
-    var items = exam.questions.map(function (question, index) { return { id: "ex|" + index, question: question }; });
+  function examSets() { return exam.sets && exam.sets.length ? exam.sets : [{ id: "all", title: "All questions", from: 0, to: exam.questions.length }]; }
+  function examItems(short, set) {
+    var items = exam.questions.map(function (question, index) { return { id: "ex|" + index, question: question }; }).slice(set.from, set.to);
     if (!short) return shuffle(items);
     // Deal one question per sound in turn so a short exam still covers every sound.
     var bySound = {};
@@ -601,8 +605,9 @@
     }
     return shuffle(dealt);
   }
-  function startExamPractice(short) {
-    state = { mode: "ex", short: short, title: short ? "Practice exam" : "Every question", items: examItems(short), position: 0, score: 0, misses: [] };
+  function startExamPractice(short, setId) {
+    var set = examSets().find(function (entry) { return entry.id === setId; }) || examSets()[0];
+    state = { mode: "ex", short: short, setId: set.id, title: set.title + (short ? " · practice exam" : " · every question"), items: examItems(short, set), position: 0, score: 0, misses: [] };
     renderExamPractice();
   }
   function renderExamPractice() {
@@ -668,6 +673,7 @@
     var percent = Math.round(state.score / total * 100);
     var passed = state.score / total >= PASS;
     var short = state.short;
+    var setId = state.setId;
     var misses = state.misses.map(function (item) {
       var recording = recById(exam.clips[item.question.sound].recording);
       return '<li><strong>' + escapeHtml(recording.title) + '</strong><span>' + escapeHtml(item.question.question) + ' → ' + escapeHtml(item.question.answer) + '</span></li>';
@@ -675,7 +681,7 @@
     content.innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (passed ? "✓" : "!") + '</span><p class="eyebrow">' + escapeHtml(state.title) + '</p><h3>' + percent + '%: ' + (passed ? "Pass" : "Below 70%") + '</h3><p>' + state.score + ' of ' + total + ' right. You need ' + Math.ceil(total * PASS) + ' of ' + total + ' to pass.</p>' +
       (misses ? '<ul class="hs-misses">' + misses + '</ul>' : "") +
       '<div class="session-actions"><button class="primary-action" id="hs-again" type="button">' + (short ? "New practice exam" : "Shuffle and go again") + '</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
-    document.getElementById("hs-again").addEventListener("click", function () { startExamPractice(short); });
+    document.getElementById("hs-again").addEventListener("click", function () { startExamPractice(short, setId); });
     document.getElementById("hs-done").addEventListener("click", renderHome);
   }
 
