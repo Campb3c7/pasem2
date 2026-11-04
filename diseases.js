@@ -662,4 +662,24 @@
     },
     flashOtherLabel: "Which-drug-when tables"
   });
+
+  createDiseasesTool({
+    data: window.CARDIO_PART2_MEDICATIONS,
+    title: "Medications", one: "medication", many: "medications",
+    groupOne: "drug class", groupMany: "drug classes",
+    launchId: "cardio2-meds-launch", viewId: "cardio2-meds-view", contentId: "cardio2-meds-content", backId: "cardio2-meds-back",
+    progressKey: "pasem2:medications:cardio-part-2:progress",
+    eyebrow: "Cardio Part 2 · every drug you need to know",
+    intro: "Every Cardio Part 2 drug, grouped by class instead of by lecture because the same drugs come back across Arrhythmias, Arrhythmia Management, Arrhythmia Pharmacology, Vascular and Shock. Each one has the same five parts: what it treats, how it works, contraindications, side effects, and must-know pearls, with the lectures that teach it.",
+    note: "Use Flashcards to drill one part at a time (for example only doses and contraindications), and Practice for exam-style questions. \"Which drug when\" compares drugs across classes: drug by rhythm, AF drug by heart type, anticoagulant by situation, shock pressors and fluids, vascular picks, and drugs that cause brady, long QT or syncope. Hypertension uses of beta blockers and CCBs stay in Cardio Part 1 Medications.",
+    flashcards: true,
+    flashPrompts: {
+      uses: { label: "What it treats", prompt: "What does it treat?" },
+      moa: { label: "How it works", prompt: "How does it work (and dose)?" },
+      avoid: { label: "Contraindications", prompt: "Contraindications and cautions?" },
+      se: { label: "Side effects", prompt: "Side effects?" },
+      pearls: { label: "Pearls", prompt: "Must-know pearls?" }
+    },
+    flashOtherLabel: "Which-drug-when tables"
+  });
 }());

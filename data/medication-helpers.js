@@ -1,5 +1,5 @@
 /*
-  Authoring helpers for the Cardio Part 1 Medications tool. Medications reuse
+  Authoring helpers for the Cardio Part 1 and Part 2 Medications tools. Medications reuse
   the Diseases data shape and engine (diseases.js): drug class group ->
   medication -> sections + questions, built on window.DiseaseContent.
 
@@ -11,7 +11,7 @@
     pearls Must-know pearls (members, monitoring, interactions, overdose)
   Guide() is for "which drug when" comparison entries with their own sections.
 
-  `lectures` lists the Cardio Part 1 lectures that teach the drug; the engine
+  `lectures` lists the lectures that teach the drug; the engine
   shows it as a tag line. Question ids are "<medication id>|<index>" and
   progress is saved against them: only APPEND questions to a medication.
 */
