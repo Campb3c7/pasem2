@@ -236,7 +236,7 @@
     }
     var mockList = window.HEART_SOUNDS_MOCKS || [];
     if (mockList.length) {
-      html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Practice exams</span><div><h3>Five full exams, like the real one</h3><p>15 questions each, written to match your Examplify practice exam. Answers stay hidden until you submit, then you get your score and a full review. 70% to pass.</p></div></div><div class="hs-modes">' +
+      html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Practice exams</span><div><h3>Full exams, like the real one</h3><p>15 questions each, written to match your Examplify practice exam. Answers stay hidden until you submit, then you get your score and a full review. 70% to pass.</p></div></div><div class="hs-modes">' +
         mockList.map(function (mock) {
           var best = progress[mock.id];
           return tierButton(mock.id, mock.title, mock.questions.length + " questions." + (best ? " Best: " + best.best + " of " + best.of + "." : " Not taken yet."));
