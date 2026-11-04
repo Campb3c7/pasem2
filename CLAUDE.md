@@ -62,6 +62,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Data: one file per drug class, `data/meds-cardio-<class>.js`, built with `data/medication-helpers.js` (`Med(...)` gives the five sections `uses`, `moa`, `avoid`, `se`, `pearls`; `Guide(...)` is for cross-class "which drug when" tables), gathered by `data/medications-cardio-part-1.js` (`window.CARDIO_PART1_MEDICATIONS`). Each entry lists `lectures` that teach it.
 - Ids are `med-*` or `guide-*`; question ids are `<id>|<index>`: only append. Run `node scripts/validate-medications-cardio-part-1.cjs` after editing.
 
+## Cardio Part 2 Medications tool
+
+- Same engine and shape as the Cardio Part 1 Medications tool (`createDiseasesTool(...)` with `flashcards: true`), launched from the `data-course-tools="cardio-part-2"` row.
+- Data: one file per drug class, `data/meds-cardio2-<class>.js` (built with `data/medication-helpers.js`), gathered by `data/medications-cardio-part-2.js` (`window.CARDIO_PART2_MEDICATIONS`). Lecture tags use the Part 2 lecture titles. Facts not on the slides are marked "(standard teaching)". Hypertension uses of shared drugs stay in Part 1.
+- Ids `med-*` / `guide-*`; question ids `<id>|<index>`: only append. Run `node scripts/validate-medications-cardio-part-2.cjs` after editing.
+
 ## Struggles tool
 
 - Cardio Part 1 tool built from Anna's starred Quizlet cards: `struggles.js` (engine) and `data/struggles-cardio-part-1.js` (`window.CARDIO_PART1_STRUGGLES`: `corrections` list + `groups`). Recall style: each group shows one targeted `learn` card, then its questions; a miss shows the card again and requeues the question.
