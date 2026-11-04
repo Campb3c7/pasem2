@@ -380,6 +380,12 @@ window.SEMESTER = {
           title: "Vascular Disease Part 1",
           description: "Claudication vs pseudoclaudication, PAD testing, ABI and TBI, management and the four PAD categories, Leriche, gangrene, acute limb ischemia, aneurysms with AAA screening, monitoring and repair, aortic dissection, Kawasaki, Takayasu, Buerger, Raynaud, and AVMs.",
           objectives: window.VASCULAR_DISEASE_PART_1_OBJECTIVES || []
+        },
+        {
+          id: "vascular-disease-part-2",
+          title: "Vascular Disease Part 2",
+          description: "Venous insufficiency, varicose veins and ulcers, superficial thrombophlebitis and Trousseau syndrome, Virchow triad, DVT and PE workup, modified Wells and PERC, PE risk classes, anticoagulants, tPA, IVC filters, duration, pregnancy, CKD and cancer, DVT disposition, and post-thrombotic syndrome.",
+          objectives: window.VASCULAR_DISEASE_PART_2_OBJECTIVES || []
         }
       ]
     },
