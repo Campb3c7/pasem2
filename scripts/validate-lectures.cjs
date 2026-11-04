@@ -44,6 +44,7 @@ global.window = global;
   "endocarditis-pericardial",
   "vascular-disease-part-1",
   "vascular-disease-part-2",
+  "shock-pressors-fluids",
   "arrhythmia-pharmacology"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));

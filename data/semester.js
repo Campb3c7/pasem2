@@ -388,6 +388,12 @@ window.SEMESTER = {
           objectives: window.VASCULAR_DISEASE_PART_2_OBJECTIVES || []
         },
         {
+          id: "shock-pressors-fluids",
+          title: "Shock, Pressors & Fluid Management",
+          description: "The four shock types and phases, the body's response, cardiogenic shock causes, signs, tests and emergency care, dobutamine, dopamine (dose tiers), norepinephrine and epinephrine, Foley, central and arterial lines, IABP, Swan-Ganz and LVAD, resuscitation goals, fluid compartments and forces, osmolality and tonicity, crystalloids vs colloids, hypovolemia, the 3:1 rule, transfusions, fluid rates, and isotonic, hypotonic and hypertonic fluids.",
+          objectives: window.SHOCK_PRESSORS_FLUIDS_OBJECTIVES || []
+        },
+        {
           id: "arrhythmia-pharmacology",
           title: "Arrhythmia Pharmacology",
           description: "Atropine, adenosine and digoxin with toxicity, the action potential and the four antiarrhythmic classes, IA/IB/IC and selective vs nonselective beta blockers, each antiarrhythmic's names, doses, contraindications and side effects, lidocaine monitoring and toxicity, beta blocker toxicity, and amiodarone ACLS dosing, toxicity and interactions.",
