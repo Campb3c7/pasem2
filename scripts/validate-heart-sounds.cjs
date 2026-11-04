@@ -102,8 +102,27 @@ let setEnd = 0;
   setEnd = set.to;
 });
 if (exam.sets && setEnd !== exam.questions.length) errors.push(`exam: ${exam.questions.length - setEnd} questions are in no set`);
+// Practice exams (data/heart-sounds-mocks.js): fixed 15-question exams on the class clips.
+const mockBox = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(root, "data", "heart-sounds-mocks.js"), "utf8"), mockBox);
+const mocks = mockBox.window.HEART_SOUNDS_MOCKS;
+const mockIds = new Set();
+mocks.forEach((mock) => {
+  if (!/^mock-[0-9]+$/.test(mock.id) || mockIds.has(mock.id)) errors.push(`mock ${mock.id}: bad or duplicate id`);
+  mockIds.add(mock.id);
+  if (mock.questions.length !== 15) errors.push(`${mock.id}: has ${mock.questions.length} questions, needs 15`);
+  mock.questions.forEach((q, i) => {
+    const where = `${mock.id} question ${i + 1}`;
+    if (!exam.clips[q.sound]) errors.push(`${where}: unknown sound ${q.sound}`);
+    if (!q.stem && !q.question) errors.push(`${where}: needs a stem or question`);
+    if (!Array.isArray(q.choices) || q.choices.length < 2 || q.choices.length > 4) errors.push(`${where}: 2 to 4 choices`);
+    else if (new Set(q.choices).size !== q.choices.length) errors.push(`${where}: duplicate choices`);
+    if (!(q.correct >= 0 && q.correct < (q.choices || []).length)) errors.push(`${where}: bad correct index`);
+    if (!q.why) errors.push(`${where}: missing why`);
+  });
+});
 const examSounds = new Set(exam.questions.map((q) => q.sound));
 Object.keys(exam.clips).forEach((key) => { if (!examSounds.has(key)) errors.push(`exam: no questions for ${key}`); });
 
 if (errors.length) { console.error(errors.join("\n")); process.exit(1); }
-console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets, ${t2Ids.size} Tier 2 sounds, ${tier3.facts.length} Tier 3 facts + ${tier3.questions.length} questions, exam practice ${exam.questions.length} questions on ${Object.keys(exam.clips).length} clips`);
+console.log(`OK: ${data.recordings.length} class + ${extraIds.size} additional recordings (${recIds.size} total), ${dxIds.size} diagnoses, ${data.lookalikes.length} look-alike sets, ${t2Ids.size} Tier 2 sounds, ${tier3.facts.length} Tier 3 facts + ${tier3.questions.length} questions, exam practice ${exam.questions.length} questions on ${Object.keys(exam.clips).length} clips, ${mocks.length} practice exams`);

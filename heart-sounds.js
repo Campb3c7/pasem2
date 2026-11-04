@@ -234,6 +234,14 @@
         tierButton("lecture", "Open the lecture", "Learn, Test, Apply, Recall. Spots, S1/S2, splits, gallops, clicks, every murmur, maneuvers, word clues.") +
         '</div></section>';
     }
+    var mockList = window.HEART_SOUNDS_MOCKS || [];
+    if (mockList.length) {
+      html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Practice exams</span><div><h3>Five full exams, like the real one</h3><p>15 questions each, written to match your Examplify practice exam. Answers stay hidden until you submit, then you get your score and a full review. 70% to pass.</p></div></div><div class="hs-modes">' +
+        mockList.map(function (mock) {
+          var best = progress[mock.id];
+          return tierButton(mock.id, mock.title, mock.questions.length + " questions." + (best ? " Best: " + best.best + " of " + best.of + "." : " Not taken yet."));
+        }).join("") + '</div></section>';
+    }
     html += '<section class="hs-tier hs-exam-tier"><div class="hs-tier-head"><span class="hs-tier-badge t-ex">Exam practice</span><div><h3>Questions like the real exam</h3><p>A short patient story plus a clip, then one question: name it, systolic or diastolic, which maneuver, volume or pressure overload. Every clip is one of your class sounds (sound only, with the spoken name cut off).</p></div></div>' +
       examSets().map(function (set) {
         var count = set.to - set.from;
@@ -271,7 +279,8 @@
   }
   function act(action) {
     if (action === "lecture") { stopAudio(); state = null; view.hidden = true; content.innerHTML = ""; window.PasemOpenCourse("heart-sounds"); return; }
-    if (/^ex-/.test(action)) startExamPractice(action.indexOf("ex-exam") === 0, action.split(":")[1]);
+    if (/^mock-/.test(action)) startMock(action);
+    else if (/^ex-/.test(action)) startExamPractice(action.indexOf("ex-exam") === 0, action.split(":")[1]);
     else if (action === "t1-learn") startLearn("Tier 1 · one by one", tier1Entries());
     else if (action === "t1-all") renderAll("Tier 1 · all at once", "Your 10 class sounds. Play the sound-only track, then check what it means.", tier1Entries());
     else if (action === "t1-quiz") startQuiz("Tier 1 quiz", tier1Entries(), "t1");
@@ -683,6 +692,82 @@
       '<div class="session-actions"><button class="primary-action" id="hs-again" type="button">' + (short ? "New practice exam" : "Shuffle and go again") + '</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>';
     document.getElementById("hs-again").addEventListener("click", function () { startExamPractice(short, setId); });
     document.getElementById("hs-done").addEventListener("click", renderHome);
+  }
+
+  // ---- Practice exams (fixed, Examplify style) ------------------------------------
+  // Answers stay hidden until the exam is submitted, like the real exam.
+  var mocks = window.HEART_SOUNDS_MOCKS || [];
+  function startMock(id) {
+    var mock = mocks.find(function (entry) { return entry.id === id; });
+    state = { mode: "mock", mock: mock, position: 0, picks: mock.questions.map(function () { return null; }) };
+    renderMock();
+  }
+  function renderMock() {
+    stopAudio();
+    var mock = state.mock;
+    var question = mock.questions[state.position];
+    var clip = exam.clips[question.sound];
+    var pick = state.picks[state.position];
+    var last = state.position + 1 === mock.questions.length;
+    var answered = state.picks.filter(function (value) { return value !== null; }).length;
+    content.innerHTML = sessionTop(mock.title, state.position, mock.questions.length, answered + " answered") +
+      '<div class="hs-exam-layout"><article class="question-card immersive-card hs-card hs-exam-q"><div class="card-number">Question ' + (state.position + 1) + '</div>' +
+      (question.stem ? '<p class="hs-vignette">' + escapeHtml(question.stem) + '</p>' : "") +
+      (question.question ? '<h3>' + escapeHtml(question.question) + '</h3>' : "") +
+      '<p class="hs-muted">Answers: A - ' + String.fromCharCode(64 + question.choices.length) + (pick !== null ? ' · Currently selected: ' + String.fromCharCode(65 + pick) : "") + '</p>' +
+      '<div class="choices" id="hs-choices">' + question.choices.map(function (choice, index) {
+        return '<button class="choice' + (pick === index ? " selected" : "") + '" type="button" data-hs-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(choice) + '</button>';
+      }).join("") + '</div></article>' +
+      '<aside class="hs-attachment"><p class="eyebrow">Question #' + (state.position + 1) + ' attachment</p>' + audioTag(clip.file) + '</aside></div>' +
+      '<div class="hs-nav">' + (state.position ? '<button class="secondary-action" id="hs-prev" type="button">Previous</button>' : "") +
+      '<button class="primary-action" id="hs-next" type="button">' + (last ? "Submit exam" : "Next") + '</button></div>';
+    wireHome();
+    content.querySelectorAll("[data-hs-choice]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        state.picks[state.position] = Number(button.dataset.hsChoice);
+        var keep = window.scrollY;
+        renderMock();
+        window.scrollTo(0, keep);
+      });
+    });
+    var prev = document.getElementById("hs-prev");
+    if (prev) prev.addEventListener("click", function () { state.position -= 1; renderMock(); });
+    document.getElementById("hs-next").addEventListener("click", function () {
+      if (!last) { state.position += 1; renderMock(); return; }
+      var blank = state.picks.filter(function (value) { return value === null; }).length;
+      if (blank && !window.confirm(blank + " question" + (blank > 1 ? "s are" : " is") + " unanswered. Submit anyway?")) return;
+      renderMockResult();
+    });
+  }
+  function renderMockResult() {
+    stopAudio();
+    var mock = state.mock;
+    var total = mock.questions.length;
+    var score = mock.questions.filter(function (question, index) { return state.picks[index] === question.correct; }).length;
+    var percent = Math.round(score / total * 100);
+    var passed = score / total >= PASS;
+    var progress = loadProgress();
+    var best = progress[mock.id] && progress[mock.id].best || 0;
+    if (score > best) { progress[mock.id] = { best: score, of: total }; saveProgress(progress); }
+    var review = mock.questions.map(function (question, index) {
+      var pick = state.picks[index];
+      var ok = pick === question.correct;
+      var letter = function (value) { return value === null ? "no answer" : String.fromCharCode(65 + value) + ". " + question.choices[value]; };
+      var recording = recById(exam.clips[question.sound].recording);
+      return '<article class="hs-review ' + (ok ? "ok" : "bad") + '"><p class="eyebrow">Question ' + (index + 1) + (ok ? " · correct" : " · missed") + '</p>' +
+        (question.stem ? '<p class="hs-vignette">' + escapeHtml(question.stem) + '</p>' : "") +
+        (question.question ? '<h4>' + escapeHtml(question.question) + '</h4>' : "") +
+        (ok ? "" : '<p class="hs-review-pick">Your answer: ' + escapeHtml(letter(pick)) + '</p>') +
+        '<p class="hs-review-answer">Answer: ' + escapeHtml(letter(question.correct)) + '</p>' +
+        '<p class="hs-note">' + escapeHtml(question.why) + '</p>' +
+        '<p class="hs-muted">The clip: ' + escapeHtml(recording.title) + ', ' + escapeHtml(exam.clips[question.sound].from) + '</p>' + audioTag(exam.clips[question.sound].file) + '</article>';
+    }).join("");
+    content.innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (passed ? "✓" : "!") + '</span><p class="eyebrow">' + escapeHtml(mock.title) + '</p><h3>' + percent + '%: ' + (passed ? "Pass" : "Below 70%") + '</h3><p>' + score + ' of ' + total + ' right. You need ' + Math.ceil(total * PASS) + ' of ' + total + ' to pass.</p>' +
+      '<div class="session-actions"><button class="primary-action" id="hs-again" type="button">Retake this exam</button><button class="secondary-action" id="hs-done" type="button">Heart Sounds home</button></div></section>' +
+      '<h3 class="hs-review-title">Review</h3><div class="hs-review-list">' + review + '</div>';
+    document.getElementById("hs-again").addEventListener("click", function () { startMock(mock.id); });
+    document.getElementById("hs-done").addEventListener("click", renderHome);
+    content.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
   function renderDone(title, score, total, again) {
