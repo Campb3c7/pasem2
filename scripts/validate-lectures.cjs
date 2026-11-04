@@ -41,7 +41,8 @@ global.window = global;
   "arrhythmias",
   "syncope",
   "arrhythmia-management",
-  "endocarditis-pericardial"
+  "endocarditis-pericardial",
+  "vascular-disease-part-1"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 

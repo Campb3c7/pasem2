@@ -374,6 +374,12 @@ window.SEMESTER = {
           title: "Infective Endocarditis & Pericardial Disease",
           description: "IE risk factors, organisms, vegetations and classic signs, blood cultures, echo and the major Duke criteria, complications, antibiotics and surgery, right-sided and prosthetic valve IE, AHA prophylaxis, and acute pericarditis, effusion, tamponade and constrictive pericarditis.",
           objectives: window.ENDOCARDITIS_PERICARDIAL_OBJECTIVES || []
+        },
+        {
+          id: "vascular-disease-part-1",
+          title: "Vascular Disease Part 1",
+          description: "Claudication vs pseudoclaudication, PAD testing, ABI and TBI, management and the four PAD categories, Leriche, gangrene, acute limb ischemia, aneurysms with AAA screening, monitoring and repair, aortic dissection, Kawasaki, Takayasu, Buerger, Raynaud, and AVMs.",
+          objectives: window.VASCULAR_DISEASE_PART_1_OBJECTIVES || []
         }
       ]
     },
