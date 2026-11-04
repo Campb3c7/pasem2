@@ -40,7 +40,8 @@ global.window = global;
   "ekg-interpretation",
   "arrhythmias",
   "syncope",
-  "arrhythmia-management"
+  "arrhythmia-management",
+  "endocarditis-pericardial"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 

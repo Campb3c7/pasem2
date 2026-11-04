@@ -368,6 +368,12 @@ window.SEMESTER = {
           title: "Inpatient & Long-Term Arrhythmia Management",
           description: "AF risk factors, types, workup and acute care, rate vs rhythm control, cardioversion, ablation and Maze, antiarrhythmic classes with amiodarone, dronedarone, sotalol and dofetilide, CHA2DS2-VASc and HAS-BLED with calculation practice, warfarin vs DOACs, in-hospital NSVT, and sinus tach, IST and POTS.",
           objectives: window.ARRHYTHMIA_MANAGEMENT_OBJECTIVES || []
+        },
+        {
+          id: "endocarditis-pericardial",
+          title: "Infective Endocarditis & Pericardial Disease",
+          description: "IE risk factors, organisms, vegetations and classic signs, blood cultures, echo and the major Duke criteria, complications, antibiotics and surgery, right-sided and prosthetic valve IE, AHA prophylaxis, and acute pericarditis, effusion, tamponade and constrictive pericarditis.",
+          objectives: window.ENDOCARDITIS_PERICARDIAL_OBJECTIVES || []
         }
       ]
     },
