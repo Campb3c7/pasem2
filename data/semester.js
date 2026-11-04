@@ -386,6 +386,12 @@ window.SEMESTER = {
           title: "Vascular Disease Part 2",
           description: "Venous insufficiency, varicose veins and ulcers, superficial thrombophlebitis and Trousseau syndrome, Virchow triad, DVT and PE workup, modified Wells and PERC, PE risk classes, anticoagulants, tPA, IVC filters, duration, pregnancy, CKD and cancer, DVT disposition, and post-thrombotic syndrome.",
           objectives: window.VASCULAR_DISEASE_PART_2_OBJECTIVES || []
+        },
+        {
+          id: "arrhythmia-pharmacology",
+          title: "Arrhythmia Pharmacology",
+          description: "Atropine, adenosine and digoxin with toxicity, the action potential and the four antiarrhythmic classes, IA/IB/IC and selective vs nonselective beta blockers, each antiarrhythmic's names, doses, contraindications and side effects, lidocaine monitoring and toxicity, beta blocker toxicity, and amiodarone ACLS dosing, toxicity and interactions.",
+          objectives: window.ARRHYTHMIA_PHARMACOLOGY_OBJECTIVES || []
         }
       ]
     },

@@ -3,10 +3,9 @@
    Sources outside this deck, labeled on the cards:
    - AF, flutter and MAT (objectives 9-10) are taught in the Chronic Arrhythmia Management deck (slides 16-26, 46-49, 56);
      this deck only lists them in its tachyarrhythmia table.
-   - Defibrillation joules (objective 22), the 12 mg repeat adenosine dose, the 150 mg second amiodarone dose in arrest,
-     IV metoprolol 5 mg doses, and the R-wave timing of synchronized shocks are not in the deck text. They are standard
-     AHA ACLS values and are marked "ACLS standard, not on the slides" so Anna can check them against the Arrhythmia
-     Pharmacology deck when it arrives.
+   - The 12 mg repeat adenosine dose, the 150 mg second amiodarone arrest dose and IV metoprolol 5 mg doses are confirmed
+     by the Arrhythmia Pharmacology deck (slides 11, 46, 41). Defibrillation joules (objective 22) and the R-wave timing
+     of synchronized shocks are in neither deck: standard AHA ACLS values, labeled on their cards.
    Picture-only slides are EKG strips and conduction diagrams; slide 3 (action potential phases) and slide 111
    (pre-excitation vs orthodromic vs antidromic) were read from the images. */
 (function () {
@@ -1015,7 +1014,7 @@
       C("Adenosine: when, how much, and when not",
         "<p><strong>Indication:</strong> stable <strong>regular narrow-complex SVT</strong> (AVNRT, orthodromic AVRT) after <strong>vagal maneuvers</strong> fail.</p>" +
         "<p><strong>Dose:</strong> <strong>6 mg IV</strong> (rapid push). Rapid onset, <strong>short half-life</strong>, works in <strong>&gt; 80%</strong> of AVNRT.</p>" +
-        ACLS.replace("ACLS standard, not on the slides.", "If 6 mg fails, ACLS repeats with 12 mg rapid IV push (ACLS standard, not on the slides).") +
+        note("If 6 mg fails after 1–2 minutes, give 12 mg rapid IV push (may repeat once). Confirmed in the Arrhythmia Pharmacology deck, slide 11.") +
         hy("<strong>Avoid in pre-excited rhythms</strong> (antidromic AVRT, pre-excited AF): it is an AV nodal blocker."),
         ["adenosine-indication", "adenosine-dose", "adenosine-avoid"],
         [q("Adenosine first dose for stable AVNRT?", "6 mg IV rapid push", ["1 mg IV", "12 mg IV slow push", "300 mg IV"], "6 mg IV."),
@@ -1034,7 +1033,7 @@
           ["<strong>Stable VT</strong> with a pulse", "<strong>150 mg IV over 10 min</strong>, may repeat; then <strong>1 mg/min × 6 h</strong>"],
           ["<strong>AF with RVR</strong>", "IV drip; may <strong>cardiovert</strong> the patient"],
           ["Chronic VT", "If beta-blockers are not enough"]]) +
-        ACLS.replace("ACLS standard, not on the slides.", "A second arrest dose of 150 mg is ACLS standard, not on the slides.") +
+        note("The second arrest dose is 150 mg IV. Confirmed in the Arrhythmia Pharmacology deck, slide 46.") +
         hy("Amiodarone is an AV nodal blocker too: <strong>avoid in pre-excited rhythms</strong>."),
         ["amio-arrest", "amio-stable-vt", "amio-af", "amio-avoid"],
         [q("Amiodarone dose in VF/pulseless VT cardiac arrest?", "300 mg IV/IO", ["150 mg over 10 minutes", "1 mg every 3–5 minutes", "6 mg rapid push"], "300 mg after the third shock."),
@@ -1082,7 +1081,7 @@
           ["<strong>AF with RVR</strong>", "IV boluses; <strong>choice with ischemia, infarction or CAD</strong>"],
           ["Symptomatic PVCs", "First line"],
           ["Chronic VT with structural disease", "Primary drug"]]) +
-        ACLS.replace("ACLS standard, not on the slides.", "Typical IV dosing is 5 mg every 5 minutes up to 15 mg (ACLS standard, not on the slides).") +
+        note("IV dosing is 5 mg every 5 minutes, up to 3 doses (15 mg). Confirmed in the Arrhythmia Pharmacology deck, slide 41.") +
         hy("Avoid in pre-excited rhythms (WPW with AF or antidromic AVRT)."),
         ["metoprolol-uses", "metoprolol-dose"],
         [q("Metoprolol dose for persistent symptomatic PACs?", "25 mg BID", ["100 mg IV", "5 mg once a week", "1 mg/min"], "Metoprolol 25 mg BID."),
@@ -1133,7 +1132,7 @@
           ["<strong>Biphasic</strong> (most modern devices)", "<strong>120–200 J</strong> per manufacturer; if unknown, use the <strong>maximum</strong>"],
           ["<strong>Monophasic</strong>", "<strong>360 J</strong>"],
           ["Later shocks", "Same or higher energy"]]) +
-        note("The deck says to defibrillate VF, pulseless VT and sustained polymorphic VT but does not list joules. These are AHA ACLS values. Check them against the Arrhythmia Pharmacology deck when it arrives."),
+        note("The deck says to defibrillate VF, pulseless VT and sustained polymorphic VT but does not list joules. These are AHA ACLS values. The Arrhythmia Pharmacology deck does not list joules either."),
         ["defib-biphasic", "defib-monophasic"],
         [q("Energy for a biphasic defibrillator in VF (ACLS)?", "120–200 J per manufacturer, or the maximum if unknown", ["50 J", "10 J", "500 J"], "Biphasic 120–200 J."),
           q("Energy for a monophasic defibrillator in VF (ACLS)?", "360 J", ["100 J", "200 J", "50 J"], "Monophasic 360 J."),
