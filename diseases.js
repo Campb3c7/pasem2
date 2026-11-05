@@ -701,4 +701,14 @@
     },
     flashOtherLabel: "Which-drug-when tables"
   });
+
+  createDiseasesTool({
+    data: window.CARDIO_PART2_SCORES,
+    title: "Scores & Calculators", one: "score", many: "scores",
+    launchId: "cardio2-scores-launch", viewId: "cardio2-scores-view", contentId: "cardio2-scores-content", backId: "cardio2-scores-back",
+    progressKey: "pasem2:scores:cardio-part-2:progress",
+    eyebrow: "Cardio Part 2 · do the math",
+    intro: "Every score, cutoff and formula from the Cardio Part 2 slides as a live calculator: tick what applies or type the numbers, and the result and next step update as you go. Each one also explains what the number means and the common traps.",
+    note: "Practice gives you a short case, you work out the score, and pick the answer and next step. Anything not on the slides is marked (standard teaching). CV Surgery will be added once its deck arrives."
+  });
 }());

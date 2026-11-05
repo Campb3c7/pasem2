@@ -80,6 +80,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Data: one file per lecture, `data/concepts-cardio2-<lecture>.js` (id prefixes `arrc-`, `sync-`, `mgmtc-`, `iepc-`, `vas1c-`, `vas2c-`, `shkc-`, `pharmc-`), gathered by `data/concepts-cardio-part-2.js` (`window.CARDIO_PART2_CONCEPTS`). Same four sections per concept (`idea`, `chain`, `bedside`, `traps`); mostly "what happens if" questions. Anything the slides only imply is marked "Clarification (standard physiology)".
 - Ids `<concept id>|<index>`: only append. Run `node scripts/validate-concepts-cardio-part-2.cjs` after editing (prompts must be unique across the tool; a new lecture file must be added to its list).
 
+## Cardio Part 2 Scores & Calculators tool
+
+- Same Diseases engine (`createDiseasesTool(...)`, `score/scores` labels), launched from the `data-course-tools="cardio-part-2"` row (`#cardio2-scores-launch`). Data: `data/scores-cardio-part-2.js` (`window.CARDIO_PART2_SCORES`), grouped by Part 2 lecture.
+- Each entry (`sc-*`) has sections `calc` (live calculator, always first), `use`, `traps`. Calculators are built with `window.ScoreCalc` from `data/score-helpers.js`: `points(id, items, bands)` for tick-box scores, `form(id, fields)` + `formula(id, fn)` for number/select ones; the calculator id must equal the entry id. `score-calc.js` (loaded after `diseases.js`) makes them live via event delegation, so section HTML stays static.
+- Questions are short cases that need the calculation. Ids `<id>|<index>`: only append. Facts not on the slides are marked "(standard teaching)". Run `node scripts/validate-scores-cardio-part-2.cjs` after editing (it also checks each formula against worked examples; add one for any new formula).
+
 ## Struggles tool
 
 - Cardio Part 1 tool built from Anna's starred Quizlet cards: `struggles.js` (engine) and `data/struggles-cardio-part-1.js` (`window.CARDIO_PART1_STRUGGLES`: `corrections` list + `groups`). Recall style: each group shows one targeted `learn` card, then its questions; a miss shows the card again and requeues the question.
