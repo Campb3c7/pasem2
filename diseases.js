@@ -643,6 +643,16 @@
   });
 
   createDiseasesTool({
+    data: window.CARDIO_PART2_CONCEPTS,
+    title: "Concepts", one: "concept", many: "concepts",
+    launchId: "cardio2-concepts-launch", viewId: "cardio2-concepts-view", contentId: "cardio2-concepts-content", backId: "cardio2-concepts-back",
+    progressKey: "pasem2:concepts:cardio-part-2:progress",
+    eyebrow: "Cardio Part 2 · understand the why",
+    intro: "The ideas behind Cardio Part 2 you have to reason with, not just memorize -- each concept explains the mechanism, walks the cause-and-effect chain, ties it to the bedside, and lists the classic traps. Practice is mostly \"what happens if...\" prediction questions.",
+    note: "Facts stay in the Diseases and Medications tools; these are the mechanisms that make those facts make sense. Anything the slides only imply is labeled \"Clarification (standard physiology)\". CV Surgery will be added once its deck arrives."
+  });
+
+  createDiseasesTool({
     data: window.CARDIO_PART1_PATHOPHYS,
     title: "Pathophysiology", one: "topic", many: "topics",
     launchId: "cardio-pathophys-launch", viewId: "cardio-pathophys-view", contentId: "cardio-pathophys-content", backId: "cardio-pathophys-back",

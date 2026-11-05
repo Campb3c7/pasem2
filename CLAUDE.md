@@ -74,6 +74,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Data: one file per lecture, `data/diseases-cardio2-<lecture>.js` (id prefixes `arr-`, `syn-`, `mgmt-`, `iep-`, `vas1-`, `vas2-`, `shk-`, `pharm-`), gathered by `data/diseases-cardio-part-2.js` (`window.CARDIO_PART2_DISEASES`). AF is split into four `mgmt-af-*` entries; Arrhythmia Pharmacology's entries are drug toxicities. Facts not on the slides are marked "(standard teaching)".
 - Ids `<disease id>|<index>`: only append. Run `node scripts/validate-diseases-cardio-part-2.cjs` after editing (prompts must be unique across the tool; a new lecture file must be added to its list).
 
+## Cardio Part 2 Concepts tool
+
+- Same engine and shape as the Cardio Part 1 Concepts tool (`createDiseasesTool(...)` with concept labels), launched from the `data-course-tools="cardio-part-2"` row (`#cardio2-concepts-launch`).
+- Data: one file per lecture, `data/concepts-cardio2-<lecture>.js` (id prefixes `arrc-`, `sync-`, `mgmtc-`, `iepc-`, `vas1c-`, `vas2c-`, `shkc-`, `pharmc-`), gathered by `data/concepts-cardio-part-2.js` (`window.CARDIO_PART2_CONCEPTS`). Same four sections per concept (`idea`, `chain`, `bedside`, `traps`); mostly "what happens if" questions. Anything the slides only imply is marked "Clarification (standard physiology)".
+- Ids `<concept id>|<index>`: only append. Run `node scripts/validate-concepts-cardio-part-2.cjs` after editing (prompts must be unique across the tool; a new lecture file must be added to its list).
+
 ## Struggles tool
 
 - Cardio Part 1 tool built from Anna's starred Quizlet cards: `struggles.js` (engine) and `data/struggles-cardio-part-1.js` (`window.CARDIO_PART1_STRUGGLES`: `corrections` list + `groups`). Recall style: each group shows one targeted `learn` card, then its questions; a miss shows the card again and requeues the question.
