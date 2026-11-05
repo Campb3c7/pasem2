@@ -4,7 +4,7 @@
 (function () {
   "use strict";
   var CHOICE_GROUPS = ".choices, .walkthrough-choices";
-  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next", "hs-next"];
+  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next", "hs-next", "rhythm-next"];
   var HINT_BUTTONS = ["struggle-hint", "hs-hint"];
 
   function isVisible(el) {

@@ -86,6 +86,13 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Each entry (`sc-*`) has sections `calc` (live calculator, always first), `use`, `traps`. Calculators are built with `window.ScoreCalc` from `data/score-helpers.js`: `points(id, items, bands)` for tick-box scores, `form(id, fields)` + `formula(id, fn)` for number/select ones; the calculator id must equal the entry id. `score-calc.js` (loaded after `diseases.js`) makes them live via event delegation, so section HTML stays static.
 - Questions are short cases that need the calculation. Ids `<id>|<index>`: only append. Facts not on the slides are marked "(standard teaching)". Run `node scripts/validate-scores-cardio-part-2.cjs` after editing (it also checks each formula against worked examples; add one for any new formula).
 
+## Cardio Part 2 Rhythm strips tool
+
+- Custom engine `rhythm-strips.js` (loaded after `score-calc.js`), launched from the `data-course-tools="cardio-part-2"` row (`#cardio2-rhythms-launch`, view `#cardio2-rhythms-view`). Modes: Learn by group (gallery with "New strip"), Name that rhythm (15 strips, a miss comes back once), Read it step by step (rate by the 6-second method, regularity, P, PR, QRS, name). Space = `rhythm-next`.
+- Strips are drawn fresh each time by `data/rhythm-synth.js` (`window.RhythmSynth.make(spec, seed)`: pure, no DOM; 6-second strip, standard paper). Generators: sinus, pause, ectopic (pac/pvc, `every`), af, flutter, mat, svt, junctional, wenckebach, mobitz2, chb, idioventricular, vt, torsades, vf, asystole.
+- Data: `data/rhythm-strips-cardio-part-2.js` (`window.CARDIO2_RHYTHMS`): `steps` (answer sets for step mode) and groups of rhythms `R(id, name, gen, rate range, look, clue, mgmt, steps, confuse)`. Ids `rs-*` are progress keys (`pasem2:rhythms:cardio-part-2:progress`): never rename. Arrest rhythms have `rate: null` and `steps: null`.
+- Run `node scripts/validate-rhythm-strips-cardio-part-2.cjs` after editing (draws every rhythm 60 times and checks the counted rate stays in range; rhythms with identical step answers must have non-overlapping rates).
+
 ## Struggles tool
 
 - Cardio Part 1 tool built from Anna's starred Quizlet cards: `struggles.js` (engine) and `data/struggles-cardio-part-1.js` (`window.CARDIO_PART1_STRUGGLES`: `corrections` list + `groups`). Recall style: each group shows one targeted `learn` card, then its questions; a miss shows the card again and requeues the question.
