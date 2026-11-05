@@ -624,6 +624,15 @@
   });
 
   createDiseasesTool({
+    data: window.CARDIO_PART2_DISEASES,
+    launchId: "cardio2-diseases-launch", viewId: "cardio2-diseases-view", contentId: "cardio2-diseases-content", backId: "cardio2-diseases-back",
+    progressKey: "pasem2:diseases:cardio-part-2:progress",
+    eyebrow: "Cardio Part 2 · comprehensive disease review",
+    intro: "Every Cardio Part 2 condition you need to recognize, work up, and treat -- organized lecture by lecture, tracked entry by entry. Drugs appear in the treatment sections of the conditions they treat; the Medications tool has the full drug cards.",
+    note: "Atrial fibrillation is split into four entries (diagnosis, acute care, rate vs rhythm, stroke prevention). Arrhythmia Pharmacology's entries are the drug toxicities. Facts not on the slides are marked \"(standard teaching)\". CV Surgery will be added once its deck arrives."
+  });
+
+  createDiseasesTool({
     data: window.CARDIO_PART1_CONCEPTS,
     title: "Concepts", one: "concept", many: "concepts",
     launchId: "cardio-concepts-launch", viewId: "cardio-concepts-view", contentId: "cardio-concepts-content", backId: "cardio-concepts-back",
