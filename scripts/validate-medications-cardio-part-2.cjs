@@ -9,7 +9,7 @@ const context = vm.createContext({ window: {} });
 for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), context, { filename: file });
 const data = context.window.CARDIO_PART2_MEDICATIONS;
 assert(data && data.lectures.length === onDisk.length, "every meds-cardio2 file must be gathered in medications-cardio-part-2.js");
-const lectureTitles = new Set(["Arrhythmias", "Syncope", "Inpatient & Long-Term Arrhythmia Management", "Infective Endocarditis & Pericardial Disease", "Vascular Disease Part 1", "Vascular Disease Part 2", "Shock, Pressors & Fluid Management", "Arrhythmia Pharmacology"]);
+const lectureTitles = new Set(["Arrhythmias", "Syncope", "Inpatient & Long-Term Arrhythmia Management", "Infective Endocarditis & Pericardial Disease", "Vascular Disease Part 1", "Vascular Disease Part 2", "Vascular Surgery", "Shock, Pressors & Fluid Management", "Arrhythmia Pharmacology"]);
 const medSections = ["uses", "moa", "avoid", "se", "pearls"];
 const idPattern = /^[a-z0-9-]+$/;
 const plain = (label, text) => {

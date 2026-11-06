@@ -388,6 +388,12 @@ window.SEMESTER = {
           objectives: window.VASCULAR_DISEASE_PART_2_OBJECTIVES || []
         },
         {
+          id: "vascular-surgery",
+          title: "Vascular Surgery",
+          description: "When to call a vascular surgeon, inflow and outflow, angioplasty, stents, endarterectomy and bypass grafts, surgical complications and PAD follow-up, carotid anatomy, symptomatic vs asymptomatic carotid disease, CEA and stenting criteria, carotid surgery complications and nerve injuries, and amputation indications, levels and complications.",
+          objectives: window.VASCULAR_SURGERY_OBJECTIVES || []
+        },
+        {
           id: "shock-pressors-fluids",
           title: "Shock, Pressors & Fluid Management",
           description: "The four shock types and phases, the body's response, cardiogenic shock causes, signs, tests and emergency care, dobutamine, dopamine (dose tiers), norepinephrine and epinephrine, Foley, central and arterial lines, IABP, Swan-Ganz and LVAD, resuscitation goals, fluid compartments and forces, osmolality and tonicity, crystalloids vs colloids, hypovolemia, the 3:1 rule, transfusions, fluid rates, and isotonic, hypotonic and hypertonic fluids.",

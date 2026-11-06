@@ -14,6 +14,7 @@ const lectures = [
   ['ie-pericardial', 'CARDIO2_DISEASES_IE_PERICARDIAL', 'ie-pericardial', 'iep-'],
   ['vascular-1', 'CARDIO2_DISEASES_VASCULAR_1', 'vascular-1', 'vas1-'],
   ['vascular-2', 'CARDIO2_DISEASES_VASCULAR_2', 'vascular-2', 'vas2-'],
+  ['vascular-surgery', 'CARDIO2_DISEASES_VASCULAR_SURGERY', 'vascular-surgery', 'vsurg-'],
   ['shock', 'CARDIO2_DISEASES_SHOCK', 'shock', 'shk-'],
   ['pharmacology', 'CARDIO2_DISEASES_PHARM', 'pharmacology', 'pharm-']
 ];
