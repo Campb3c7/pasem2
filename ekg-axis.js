@@ -197,6 +197,8 @@
     run();
   }
 
+  // Shared with the mock exam (ekg-mock.js).
+  window.EKGDraw = Object.assign(window.EKGDraw || {}, { axisLeads: function (angle) { return '<div class="ax-leads">' + ["I", "aVF"].map(function (l) { return leadSvg(l, angle); }).join("") + '</div>'; }, axisWheel: wheelSvg });
   launch.addEventListener("click", open);
   document.getElementById("ekg-axis-back").addEventListener("click", close);
 }());

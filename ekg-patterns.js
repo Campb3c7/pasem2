@@ -238,6 +238,8 @@
     el("pt-done").addEventListener("click", renderHome);
   }
 
+  // Shared with the mock exam (ekg-mock.js).
+  window.EKGDraw = Object.assign(window.EKGDraw || {}, { pattern: drawing });
   launch.addEventListener("click", open);
   document.getElementById("ekg-patterns-back").addEventListener("click", close);
 }());

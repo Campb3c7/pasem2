@@ -184,6 +184,11 @@
             <span><strong>Pattern gallery</strong><small>Potassium and calcium, atrial enlargement, RVH/LVH and strain, RBBB/LBBB, hemiblocks, delta waves, pericarditis, effusion, PE, pacers, long QT and Q waves: drawn, explained, and quizzed</small></span>
             <span aria-hidden="true">›</span>
           </button>
+          <button class="walkthrough-launch rhythms-launch" id="ekg-mock-launch" type="button">
+            <span class="walkthrough-launch-icon">✎</span>
+            <span><strong>Mock exam</strong><small>Every class poll question from the 11/9 EKG App session, then a fresh 40-question mock exam mixing workbook strips, rhythm strips, patterns, axis, STEMIs and written questions, scored with a full review</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
         </div>
       </div>
       <div id="study-content"></div>
@@ -277,6 +282,10 @@
     <section id="ekg-mi-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-mi-back" type="button">← EKG</button>
       <div id="ekg-mi-content"></div>
+    </section>
+    <section id="ekg-mock-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-mock-back" type="button">← EKG</button>
+      <div id="ekg-mock-content"></div>
     </section>
     <section id="ekg-patterns-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-patterns-back" type="button">← EKG</button>
@@ -434,6 +443,7 @@
   <script src="data/ekg-axis.js"></script>
   <script src="data/ekg-mi.js"></script>
   <script src="data/ekg-patterns.js"></script>
+  <script src="data/ekg-class-polls.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
   <script src="data/syncope.js"></script>
@@ -460,6 +470,7 @@
   <script src="ekg-axis.js"></script>
   <script src="ekg-mi.js"></script>
   <script src="ekg-patterns.js"></script>
+  <script src="ekg-mock.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>

@@ -320,6 +320,8 @@
     runSingle();
   }
 
+  // Shared with the mock exam (ekg-mock.js).
+  window.EKGDraw = Object.assign(window.EKGDraw || {}, { twelveLead: twelveLead });
   launch.addEventListener("click", open);
   document.getElementById("ekg-mi-back").addEventListener("click", close);
 }());
