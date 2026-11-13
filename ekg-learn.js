@@ -1,4 +1,4 @@
-/* EKG "Start here": a guided path that teaches EKG from zero before the practice tools. Short lessons in
+/* EKG "Start here" figures (lesson engine: learn-path.js). A guided path that teaches EKG from zero before the practice tools. Short lessons in
    order, one idea per page, each with a picture (animated heart + strip, annotated beats, graph paper,
    rate rulers, generated rhythm strips, real workbook strips), then a few easy check questions, a
    "remember" summary and buttons that open the matching practice tool.
@@ -9,28 +9,14 @@
   var data = window.EKG_LEARN;
   var launch = document.getElementById("ekg-learn-launch");
   var view = document.getElementById("ekg-learn-view");
-  var content = document.getElementById("ekg-learn-content");
-  var studyView = document.getElementById("study-view");
-  if (!data || !launch || !view || !content) return;
+  if (!data || !launch || !view || !window.createLearnPath) return;
+  var uid = 0;
 
-  var PROGRESS_KEY = "pasem2:ekg-learn:progress";
-  var lessons = data.lessons, byId = {};
-  lessons.forEach(function (l, i) { l.index = i; byId[l.id] = l; });
-  var state = null, uid = 0;
-
-  function el(id) { return content.querySelector("#" + id); }
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c];
     });
   }
-  function shuffle(items) {
-    var copy = items.slice();
-    for (var i = copy.length - 1; i > 0; i -= 1) { var j = Math.floor(Math.random() * (i + 1)); var v = copy[i]; copy[i] = copy[j]; copy[j] = v; }
-    return copy;
-  }
-  function loadProgress() { try { var v = localStorage.getItem(PROGRESS_KEY); return v ? JSON.parse(v) : {}; } catch (e) { return {}; } }
-  function saveProgress(p) { try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch (e) {} }
   function f1(n) { return Number(n).toFixed(1); }
 
   // ---- one heartbeat as a function of time ---------------------------------
@@ -233,169 +219,38 @@
   }
 
   function figure(f) {
-    if (!f) return "";
-    if (Array.isArray(f)) return f.every(function (x) { return x.type === "beat" || x.type === "damage"; }) ? '<div class="lh-figs">' + f.map(figure).join("") + '</div>' : f.map(figure).join("");
-    var html = "";
-    if (f.type === "heart") html = heartSvg(f);
-    else if (f.type === "sync") html = syncFigure(f);
-    else if (f.type === "beat") html = beatFigure(f);
-    else if (f.type === "paper") html = paperFigure();
-    else if (f.type === "rate") html = rateFigure(f);
-    else if (f.type === "strip") html = stripFigure(f);
-    else if (f.type === "workbook") html = workbookFigure(f);
-    else if (f.type === "twelve") html = twelveFigure(f);
-    else if (f.type === "leadmap") html = window.EKGDraw && window.EKGDraw.leadMap ? window.EKGDraw.leadMap(f.leads || null) : "";
-    else if (f.type === "axis") html = axisFigure(f);
-    else if (f.type === "pattern") html = patternFigure(f);
-    else if (f.type === "damage") html = window.EKGDraw && window.EKGDraw.damageLead ? window.EKGDraw.damageLead(f.id, f.lead) : "";
-    return '<figure class="lh-figure">' + html + (f.caption && f.type !== "workbook" ? '<figcaption class="lh-caption">' + f.caption + '</figcaption>' : "") + '</figure>';
+    if (f.type === "heart") return heartSvg(f);
+    if (f.type === "sync") return syncFigure(f);
+    if (f.type === "beat") return beatFigure(f);
+    if (f.type === "paper") return paperFigure();
+    if (f.type === "rate") return rateFigure(f);
+    if (f.type === "strip") return stripFigure(f);
+    if (f.type === "workbook") return workbookFigure(f);
+    if (f.type === "twelve") return twelveFigure(f);
+    if (f.type === "leadmap") return window.EKGDraw && window.EKGDraw.leadMap ? window.EKGDraw.leadMap(f.leads || null) : "";
+    if (f.type === "axis") return axisFigure(f);
+    if (f.type === "pattern") return patternFigure(f);
+    if (f.type === "damage") return window.EKGDraw && window.EKGDraw.damageLead ? window.EKGDraw.damageLead(f.id, f.lead) : "";
+    return "";
   }
-  function bindFigures() {
+  function bindFigures(content) {
     content.querySelectorAll(".lh-redraw").forEach(function (button) {
       button.addEventListener("click", function () {
         var box = button.closest(".lh-strip"), spec = JSON.parse(box.dataset.lhStrip);
         var tmp = document.createElement("div"); tmp.innerHTML = stripFigure(spec);
-        box.replaceWith(tmp.firstChild); bindFigures();
+        box.replaceWith(tmp.firstChild); bindFigures(content);
       });
     });
   }
 
-  // ---- open / close --------------------------------------------------------
-  function open() {
-    studyView.hidden = true;
-    document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
-    document.querySelectorAll("[data-rhythm-tool]").forEach(function (other) { other.innerHTML = ""; });
-    view.hidden = false;
-    renderHome();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-  function close() { state = null; view.hidden = true; studyView.hidden = false; content.innerHTML = ""; refreshLaunch(); window.scrollTo({ top: 0, behavior: "smooth" }); }
-  function nextLesson(progress) {
-    for (var i = 0; i < lessons.length; i += 1) if (!progress[lessons[i].id]) return lessons[i];
-    return null;
-  }
-  function refreshLaunch() {
-    var note = document.getElementById("ekg-learn-status");
-    if (!note) return;
-    var progress = loadProgress(), done = lessons.filter(function (l) { return progress[l.id]; }).length, next = nextLesson(progress);
-    note.textContent = done ? done + " of " + lessons.length + " lessons done" + (next ? " · next: " + next.title : " · all done") : lessons.length + " short lessons, about 10 minutes each. Start with lesson 1.";
-  }
-
-  // ---- home: the path ------------------------------------------------------
-  function renderHome() {
-    state = null;
-    var progress = loadProgress(), next = nextLesson(progress), done = lessons.filter(function (l) { return progress[l.id]; }).length;
-    var html = '<div class="drill-heading"><p class="eyebrow">EKG · start here</p><h2>Learn EKG from zero</h2>' +
-      '<p>' + data.intro + '</p></div>' +
-      '<div class="lh-continue"><div><strong>' + (done ? done + " of " + lessons.length + " lessons done" : "Nothing done yet, and that's fine") + '</strong><span>' + (next ? "Next up: " + escapeHtml(next.title) : "You finished every lesson. The practice tools are all yours.") + '</span></div>' +
-      (next ? '<button class="primary-action" type="button" data-lh-open="' + next.id + '">' + (done ? "Continue →" : "Start lesson 1 →") + '</button>' : "") + '</div>';
-    data.parts.forEach(function (part) {
-      var list = lessons.filter(function (l) { return l.part === part.id; });
-      html += '<section class="lh-part"><p class="eyebrow">' + escapeHtml(part.title) + '</p><p class="lh-part-blurb">' + escapeHtml(part.blurb) + '</p><div class="lh-lessons">';
-      if (!list.length) html += '<p class="lh-soon">Coming next: ' + escapeHtml(part.soon || "") + '</p>';
-      list.forEach(function (l) {
-        var p = progress[l.id], isNext = next && next.id === l.id;
-        html += '<button class="lh-lesson' + (p ? " done" : "") + (isNext ? " next" : "") + '" type="button" data-lh-open="' + l.id + '"><span class="lh-num">' + (p ? "✓" : l.index + 1) + '</span><span><strong>' + escapeHtml(l.title) + '</strong><small>' + escapeHtml(l.goal) + '</small></span><span class="lh-arrow" aria-hidden="true">›</span></button>';
-      });
-      html += '</div></section>';
-    });
-    content.innerHTML = html;
-    content.querySelectorAll("[data-lh-open]").forEach(function (b) { b.addEventListener("click", function () { startLesson(byId[b.dataset.lhOpen]); }); });
-  }
-
-  // ---- a lesson ------------------------------------------------------------
-  function startLesson(lesson) {
-    var checks = shuffle(lesson.checks).map(function (c) {
-      var choices = shuffle([c.answer].concat(c.wrong));
-      return { prompt: c.prompt, choices: choices, answer: choices.indexOf(c.answer), why: c.why };
-    });
-    state = { lesson: lesson, page: 0, checks: checks, check: 0, right: 0, answered: false };
-    renderPage();
-  }
-  function steps() { return state.lesson.pages.length + state.checks.length + 1; }
-  function dots(current) {
-    var total = steps(), s = '<div class="lh-dots" aria-hidden="true">';
-    for (var i = 0; i < total; i += 1) s += '<span class="' + (i < current ? "past" : i === current ? "now" : "") + (i >= state.lesson.pages.length && i < total - 1 ? " check" : "") + '"></span>';
-    return s + '</div>';
-  }
-  function topBar() {
-    var l = state.lesson;
-    return '<div class="session-top"><button type="button" id="lh-home">← All lessons</button><span>Lesson ' + (l.index + 1) + ' of ' + lessons.length + '</span></div><h2 class="lh-title">' + escapeHtml(l.title) + '</h2>';
-  }
-  function renderPage() {
-    var l = state.lesson;
-    if (state.page < l.pages.length) {
-      var pg = l.pages[state.page];
-      content.innerHTML = topBar() + dots(state.page) +
-        '<article class="learn-card lh-page"><p class="card-number">' + (state.page + 1) + ' of ' + l.pages.length + '</p><h3>' + escapeHtml(pg.title) + '</h3>' + figure(pg.fig) + '<div class="learn-body lh-text">' + pg.html + '</div></article>' +
-        '<div class="hs-nav">' + (state.page ? '<button class="secondary-action" id="lh-prev" type="button">← Back</button>' : "") +
-        '<button class="primary-action" id="learn-next" type="button">' + (state.page + 1 === l.pages.length ? "Quick check →" : "Next →") + '</button></div>';
-      wire();
-      bindFigures();
-      if (el("lh-prev")) el("lh-prev").addEventListener("click", function () { state.page -= 1; renderPage(); });
-      el("learn-next").addEventListener("click", function () { state.page += 1; renderPage(); });
-    } else if (state.check < state.checks.length) renderCheck();
-    else renderDone();
-    content.scrollIntoView({ behavior: "instant", block: "start" });
-  }
-  function wire() { el("lh-home").addEventListener("click", renderHome); }
-  function renderCheck() {
-    var l = state.lesson, c = state.checks[state.check];
-    content.innerHTML = topBar() + dots(l.pages.length + state.check) +
-      '<p class="recall-step-label">Quick check ' + (state.check + 1) + ' of ' + state.checks.length + ' · no pressure, it just helps it stick</p>' +
-      '<article class="question-card immersive-card"><h3>' + escapeHtml(c.prompt) + '</h3><div class="choices">' + c.choices.map(function (x, i) {
-        return '<button class="choice" type="button" data-choice="' + i + '"><span>' + String.fromCharCode(65 + i) + '</span>' + escapeHtml(x) + '</button>';
-      }).join("") + '</div><div class="explanation" id="lh-explanation" hidden></div></article>' +
-      '<button class="primary-action full-action" id="learn-next" type="button" hidden>' + (state.check + 1 === state.checks.length ? "Finish lesson →" : "Next →") + '</button>';
-    wire();
-    var group = content.querySelector(".choices"), answered = false;
-    group.querySelectorAll("[data-choice]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        if (answered) return;
-        answered = true;
-        var selected = Number(button.dataset.choice), right = selected === c.answer;
-        if (right) state.right += 1;
-        group.querySelectorAll("[data-choice]").forEach(function (b) {
-          var i = Number(b.dataset.choice); b.disabled = true;
-          b.classList.add(i === c.answer ? "correct" : i === selected ? "wrong" : "dimmed");
-        });
-        var exp = el("lh-explanation");
-        exp.hidden = false;
-        exp.innerHTML = '<strong>' + (right ? "Right: " : "It's: ") + escapeHtml(c.choices[c.answer]) + '</strong><p>' + c.why + '</p>';
-        el("learn-next").hidden = false;
-        exp.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      });
-    });
-    el("learn-next").addEventListener("click", function () { state.check += 1; renderPage(); });
-  }
-  function renderDone() {
-    var l = state.lesson, progress = loadProgress();
-    progress[l.id] = { done: true, right: state.right, of: state.checks.length };
-    saveProgress(progress);
-    var next = lessons[l.index + 1];
-    content.innerHTML = topBar() + dots(steps() - 1) +
-      '<section class="complete-panel lh-done"><span class="complete-icon">✓</span><p class="eyebrow">Lesson ' + (l.index + 1) + ' done</p><h3>' + escapeHtml(l.title) + '</h3><p>' + state.right + ' of ' + state.checks.length + ' checks right' + (state.right < state.checks.length ? ". Have another look at the pages for the ones you missed whenever you like." : ". Nice.") + '</p></section>' +
-      '<article class="learn-card lh-remember"><p class="eyebrow">Remember</p><ul class="lh-remember-list">' + l.remember.map(function (x) { return '<li>' + x + '</li>'; }).join("") + '</ul></article>' +
-      ((l.practice || []).length ? '<article class="learn-card lh-practice"><p class="eyebrow">Practice this</p>' + l.practice.map(function (p, i) {
-        return '<button class="lh-practice-btn" type="button" data-lh-practice="' + i + '"><strong>' + escapeHtml(p.label) + ' →</strong><small>' + escapeHtml(p.note) + '</small></button>';
-      }).join("") + '</article>' : "") +
-      '<div class="hs-nav"><button class="secondary-action" id="lh-again" type="button">Read it again</button>' +
-      (next ? '<button class="primary-action" id="learn-next" type="button">Next lesson: ' + escapeHtml(next.title) + ' →</button>' : '<button class="primary-action" id="learn-next" type="button">All lessons</button>') + '</div>';
-    wire();
-    el("lh-again").addEventListener("click", function () { startLesson(l); });
-    el("learn-next").addEventListener("click", function () { if (next) startLesson(next); else renderHome(); });
-    content.querySelectorAll("[data-lh-practice]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var p = l.practice[Number(b.dataset.lhPractice)], target = document.getElementById(p.launch);
-        if (!target) return;
-        close();
-        target.click();
-        if (p.then) setTimeout(function () { var t = document.getElementById(p.then); if (t) t.click(); }, 50);
-      });
-    });
-  }
-
-  launch.addEventListener("click", open);
-  document.getElementById("ekg-learn-back").addEventListener("click", close);
-  refreshLaunch();
+  var path = window.createLearnPath({
+    data: data, viewId: "ekg-learn-view", contentId: "ekg-learn-content", backId: "ekg-learn-back", statusId: "ekg-learn-status",
+    progressKey: "pasem2:ekg-learn:progress", eyebrow: "EKG · start here", heading: "Learn EKG from zero",
+    statusCopy: data.lessons.length + " short lessons, about 10 minutes each. Start with lesson 1.",
+    figure: figure, bindFigures: bindFigures,
+    isSmall: function (f) { return f.type === "beat" || f.type === "damage"; },
+    ownCaption: function (f) { return f.type === "workbook"; },
+    beforeOpen: function () { document.querySelectorAll("[data-rhythm-tool]").forEach(function (other) { other.innerHTML = ""; }); }
+  });
+  if (path) launch.addEventListener("click", function () { path.open(); });
 }());

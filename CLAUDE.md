@@ -112,6 +112,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Mock exam: `ekg-mock.js` + `data/ekg-class-polls.js` (`window.EKG_CLASS_POLLS`: the 11/9 EKG App class poll questions with the answers marked correct in class; open-ended polls turned into multiple choice; ids `poll-<n>`: only append). Modes: Class poll review (instant feedback, misses return) and a fresh 40-question Mock exam (`MIX`: workbook strips, generated rhythms, patterns, axis, STEMI 12-leads, polls, lecture test/apply), answers hidden until Submit, then score by part + full review; best score in `pasem2:ekg-mock:progress`. Drawings come from `window.EKGDraw`, exported by `ekg-patterns.js`, `ekg-axis.js` and `ekg-mi.js`. Run `node scripts/validate-ekg-mock.cjs`.
 - Step-by-step strip questions keep the strip in a sticky `.wb-sticky` box and fold answered steps (`.rs-part-done`): Anna found scrolling between strip and questions annoying (2026-11-13).
 
+## Guided "from zero" paths
+
+- Shared lesson engine: `learn-path.js` (`window.createLearnPath(cfg)`): parts → lessons (one idea per page with a figure) → 3+ easy checks → `remember` list → `practice` buttons (`launch` = a tool's launch id, optional `then`; or `objective: { course, lecture, mode, id }`, opened through `window.PasemStartObjective` in `app.js`). Each path supplies its own figure renderer. Lesson ids are progress keys: never rename.
+- EKG "Start here": `ekg-learn.js` (figures) + `data/ekg-learn.js` (see EKG tools).
+- Shock, Pressors & Fluids "Learn it from zero" (Anna, 2026-11-13): `shock-learn.js` (figures: circuit, equation, ventricle, Starling curve, receptors, dopamine slider, MAP slider, IABP, compartments, capillary, tonicity…) + `data/shock-learn.js` (`window.SHOCK_LEARN`, 15 lessons `shl-*`, progress `pasem2:shock-learn:progress`). Its gold card renders at the top of the Cardio Part 2 Shock lecture through `window.PasemLectureIntros["shock-pressors-fluids"]` (called by `app.js` `renderStudy`). Physiology first, facts from the deck, anything else marked standard teaching. Run `node scripts/validate-shock-learn.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.

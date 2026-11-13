@@ -138,7 +138,7 @@
     if (!lectures.length) { studyContent.innerHTML = '<div class="empty-state"><span>📚</span><h2>No lectures yet</h2></div>'; return; }
     var lect = lectures[currentLecture];
     var modes = ["learn", "test", "apply", "recall"];
-    studyContent.innerHTML = '<div class="study-heading"><p class="eyebrow">' + escapeHtml(currentCourse.title) + '</p><h2>' + escapeHtml(lect.title) + '</h2><p>' + escapeHtml(lect.description || "") + '</p></div><div class="lecture-tabs" role="tablist">' + lectures.map(function (item, index) {
+    studyContent.innerHTML = '<div class="study-heading"><p class="eyebrow">' + escapeHtml(currentCourse.title) + '</p><h2>' + escapeHtml(lect.title) + '</h2><p>' + escapeHtml(lect.description || "") + '</p></div><div id="lecture-intro-slot"></div><div class="lecture-tabs" role="tablist">' + lectures.map(function (item, index) {
       return '<button type="button" class="lecture-tab ' + (index === currentLecture ? "active" : "") + '" data-lecture="' + index + '">' + escapeHtml(item.title) + '</button>';
     }).join("") + '</div><div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
       return '<button type="button" class="mode-tab ' + (mode === currentMode ? "active" : "") + '" data-mode="' + mode + '">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '<span>' + modeCount(mode, lect) + '</span></button>';
@@ -149,8 +149,22 @@
     studyContent.querySelectorAll("[data-mode]").forEach(function (button) {
       button.addEventListener("click", function () { currentMode = button.dataset.mode; clearSessions(); renderStudy(); });
     });
+    // A lecture can have a guided "from zero" path card above its tabs (window.PasemLectureIntros[lecture id](slot)).
+    var intro = window.PasemLectureIntros && window.PasemLectureIntros[lect.id];
+    if (intro) intro(document.getElementById("lecture-intro-slot"));
     renderModeHome();
   }
+  // Guided paths open a lecture objective straight in Learn/Test/Apply through this.
+  window.PasemStartObjective = function (courseId, lectureId, mode, objectiveId) {
+    var course = (semester.courses || []).find(function (item) { return item.id === courseId; });
+    if (!course) return;
+    var index = (course.lectures || []).findIndex(function (item) { return item.id === lectureId; });
+    if (index < 0) return;
+    clearSessions(); openCourse(course);
+    currentLecture = index; currentMode = mode || "learn"; renderStudy();
+    if (!objectiveById(objectiveId)) return;
+    if (currentMode === "learn") startLearn(objectiveId); else if (currentMode !== "recall") startQuiz(currentMode, objectiveId);
+  };
   function clearSessions() { learnState = null; quizState = null; recallState = null; }
   function renderModeHome() {
     if (currentMode === "recall") { renderRecallHome(); return; }
