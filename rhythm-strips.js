@@ -1,18 +1,22 @@
-/* Rhythm strips (Cardio Part 2): a gallery of every rhythm, a "Name that rhythm" quiz and a
-   step-by-step reading drill. Strips come from window.RhythmSynth, so each one is new.
-   Data: window.CARDIO2_RHYTHMS (data/rhythm-strips-cardio-part-2.js). Progress per rhythm id. */
+/* Rhythm strips: a gallery of every rhythm, a "Name that rhythm" quiz and a step-by-step reading
+   drill. Strips come from window.RhythmSynth, so each one is new. One tool per course, made by
+   createRhythmTool(cfg) at the bottom: Cardio Part 2 (window.CARDIO2_RHYTHMS) and EKG
+   (window.EKG_RHYTHMS). Progress per rhythm id, under each tool's own key. */
 (function () {
   "use strict";
 
-  var data = window.CARDIO2_RHYTHMS;
+  function createRhythmTool(cfg) {
+  var data = cfg.data;
   var synth = window.RhythmSynth;
-  var launch = document.getElementById("cardio2-rhythms-launch");
-  var view = document.getElementById("cardio2-rhythms-view");
-  var content = document.getElementById("cardio2-rhythms-content");
+  var launch = document.getElementById(cfg.prefix + "-launch");
+  var view = document.getElementById(cfg.prefix + "-view");
+  var content = document.getElementById(cfg.prefix + "-content");
   var studyView = document.getElementById("study-view");
   if (!data || !synth || !launch || !view || !content) return;
+  content.setAttribute("data-rhythm-tool", cfg.prefix);
+  function el(id) { return content.querySelector("#" + id); }
 
-  var PROGRESS_KEY = "pasem2:rhythms:cardio-part-2:progress";
+  var PROGRESS_KEY = cfg.progressKey;
   var QUIZ_LENGTH = 15, STEP_LENGTH = 8, RETURN_GAP = 3;
   var groups = data.groups;
   var all = [], byId = {};
@@ -54,13 +58,14 @@
   function teach(rhythm, made) {
     return '<div class="box-hy"><span class="lbl">How to spot it</span>' + escapeHtml(rhythm.clue) + '</div>' +
       (made ? '<p class="rs-rate">' + escapeHtml(rateLine(made)) + '</p>' : "") +
-      lookTable(rhythm) + '<p class="rs-mgmt"><strong>Management:</strong> ' + escapeHtml(rhythm.mgmt) + '</p>';
+      lookTable(rhythm) + '<p class="rs-mgmt"><strong>' + (cfg.extraLabel || "Management") + ':</strong> ' + escapeHtml(rhythm.mgmt) + '</p>';
   }
 
   // ---- open / close --------------------------------------------------------
   function open() {
     studyView.hidden = true;
     document.querySelectorAll(".walkthrough-view").forEach(function (section) { section.hidden = true; });
+    document.querySelectorAll("[data-rhythm-tool]").forEach(function (other) { if (other !== content) other.innerHTML = ""; });
     view.hidden = false;
     renderHome();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -75,14 +80,14 @@
   function top(label) {
     return '<div class="session-top"><button type="button" id="rhythm-home">← Rhythm strips</button><span>' + escapeHtml(label) + '</span></div>';
   }
-  function bindHome() { document.getElementById("rhythm-home").addEventListener("click", renderHome); }
+  function bindHome() { el("rhythm-home").addEventListener("click", renderHome); }
 
   // ---- home ----------------------------------------------------------------
   function renderHome() {
     state = null;
     var progress = loadProgress();
-    var html = '<div class="drill-heading"><p class="eyebrow">Cardio Part 2 · 6-second strips</p><h2>Rhythm strips</h2>' +
-      '<p>Every rhythm from the Arrhythmias and Arrhythmia Management lectures. Each strip is drawn fresh, so you never see the same one twice. Paper is standard: one small box is 0.04 s, one big box is 0.2 s, and the strip is 6 seconds long.</p>' +
+    var html = '<div class="drill-heading"><p class="eyebrow">' + cfg.eyebrow + '</p><h2>' + cfg.title + '</h2>' +
+      '<p>' + cfg.intro + ' Each strip is drawn fresh, so you never see the same one twice. Paper is standard: one small box is 0.04 s, one big box is 0.2 s, and the strip is 6 seconds long.</p>' +
       '<span class="diseases-count-pill">' + knownCount(all) + ' of ' + all.length + ' rhythms named right on your last try</span></div>';
     html += '<div class="murmur-quick rs-quick">' +
       '<button class="murmur-quick-card" type="button" id="rhythm-quiz"><span>Quiz</span><strong>Name that rhythm →</strong><small>' + QUIZ_LENGTH + ' strips from every group. Misses come back a few strips later.</small></button>' +
@@ -95,8 +100,8 @@
     });
     html += '</div>';
     content.innerHTML = html;
-    document.getElementById("rhythm-quiz").addEventListener("click", function () { startQuiz("Name that rhythm", all, QUIZ_LENGTH); });
-    document.getElementById("rhythm-steps").addEventListener("click", startSteps);
+    el("rhythm-quiz").addEventListener("click", function () { startQuiz("Name that rhythm", all, QUIZ_LENGTH); });
+    el("rhythm-steps").addEventListener("click", startSteps);
     content.querySelectorAll("[data-rhythm-group]").forEach(function (button) {
       button.addEventListener("click", function () { renderGroup(groups.find(function (g) { return g.id === button.dataset.rhythmGroup; })); });
     });
@@ -115,11 +120,11 @@
     bindHome();
     content.querySelectorAll("[data-rhythm-new]").forEach(function (button) {
       button.addEventListener("click", function () {
-        var box = document.getElementById("strip-" + button.dataset.rhythmNew);
+        var box = el("strip-" + button.dataset.rhythmNew);
         box.innerHTML = strip(byId[button.dataset.rhythmNew]).svg;
       });
     });
-    document.getElementById("rhythm-group-quiz").addEventListener("click", function () {
+    el("rhythm-group-quiz").addEventListener("click", function () {
       startQuiz(group.title, group.rhythms, Math.min(12, group.rhythms.length * 2));
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -183,7 +188,7 @@
       step.answered = true;
       var correct = step.ids.indexOf(rhythm.id), right = selected === correct;
       markChoices(group, correct, selected);
-      var exp = document.getElementById("rhythm-explanation");
+      var exp = el("rhythm-explanation");
       exp.hidden = false;
       exp.innerHTML = '<strong>' + (right ? "Correct: " : "Answer: ") + escapeHtml(rhythm.name) + '</strong>' +
         (right ? "" : '<p>You picked ' + escapeHtml(byId[step.ids[selected]].name) + '. ' + escapeHtml(byId[step.ids[selected]].clue) + '</p>') +
@@ -196,10 +201,10 @@
         record(rhythm.id, false);
         if (!step.retry) state.steps.splice(Math.min(state.position + 1 + RETURN_GAP, state.steps.length), 0, { rhythm: rhythm, retry: true });
       }
-      document.getElementById("rhythm-next").hidden = false;
+      el("rhythm-next").hidden = false;
       exp.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
-    document.getElementById("rhythm-next").addEventListener("click", function () { state.position += 1; renderQuiz(); });
+    el("rhythm-next").addEventListener("click", function () { state.position += 1; renderQuiz(); });
     content.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
@@ -244,7 +249,7 @@
       '<article class="question-card immersive-card rs-question">' + stripHtml(step.made) + '<div id="rhythm-parts"></div><div class="explanation" id="rhythm-explanation" hidden></div></article>' +
       '<button class="primary-action full-action" id="rhythm-next" type="button" hidden>Next strip →</button>';
     bindHome();
-    document.getElementById("rhythm-next").addEventListener("click", function () { state.position += 1; renderStepStrip(); });
+    el("rhythm-next").addEventListener("click", function () { state.position += 1; renderStepStrip(); });
     showPart(step);
     content.scrollIntoView({ behavior: "instant", block: "start" });
   }
@@ -253,7 +258,7 @@
     var wrap = document.createElement("div");
     wrap.className = "rs-part";
     wrap.innerHTML = '<p class="rs-part-title"><span>' + (step.index + 1) + '/' + step.parts.length + '</span>' + escapeHtml(part.title) + '</p>' + choicesHtml(part.name, part.labels) + '<p class="rs-part-note" hidden></p>';
-    document.getElementById("rhythm-parts").appendChild(wrap);
+    el("rhythm-parts").appendChild(wrap);
     var group = wrap.querySelector(".choices");
     var answered = false;
     bindChoices(group, function (selected) {
@@ -276,10 +281,10 @@
     record(rhythm.id, nameRight);
     state.done += 1;
     if (step.allRight) state.firstTry += 1; else state.missed[rhythm.id] = true;
-    var exp = document.getElementById("rhythm-explanation");
+    var exp = el("rhythm-explanation");
     exp.hidden = false;
     exp.innerHTML = '<strong>' + escapeHtml(rhythm.name) + (step.allRight ? " · every step right" : "") + '</strong><div class="learn-body">' + teach(rhythm, step.made) + '</div>';
-    document.getElementById("rhythm-next").hidden = false;
+    el("rhythm-next").hidden = false;
     exp.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
@@ -292,12 +297,24 @@
       '<p>' + finished.firstTry + ' of ' + finished.total + (finished.kind === "steps" ? " strips with every step right." : " right on the first try.") + '</p>' + stepsLine +
       (missedIds.length ? '<p class="rs-missed">Worth another look: ' + missedIds.map(function (id) { return escapeHtml(byId[id].name); }).join(", ") + '</p>' : "") +
       '<div class="session-actions"><button class="primary-action" id="rhythm-again" type="button">Go again</button><button class="secondary-action" id="rhythm-done" type="button">All rhythms</button></div></section>';
-    document.getElementById("rhythm-again").addEventListener("click", function () {
+    el("rhythm-again").addEventListener("click", function () {
       if (finished.kind === "steps") startSteps(); else startQuiz(finished.title, finished.pool, finished.total);
     });
-    document.getElementById("rhythm-done").addEventListener("click", renderHome);
+    el("rhythm-done").addEventListener("click", renderHome);
   }
 
   launch.addEventListener("click", open);
-  document.getElementById("cardio2-rhythms-back").addEventListener("click", close);
+  document.getElementById(cfg.prefix + "-back").addEventListener("click", close);
+  }
+
+  createRhythmTool({
+    prefix: "cardio2-rhythms", data: window.CARDIO2_RHYTHMS, progressKey: "pasem2:rhythms:cardio-part-2:progress",
+    eyebrow: "Cardio Part 2 · 6-second strips", title: "Rhythm strips",
+    intro: "Every rhythm from the Arrhythmias and Arrhythmia Management lectures."
+  });
+  createRhythmTool({
+    prefix: "ekg-rhythms", data: window.EKG_RHYTHMS, progressKey: "pasem2:rhythms:ekg:progress",
+    eyebrow: "EKG · 6-second strips", title: "Rhythm trainer", extraLabel: "Why it happens",
+    intro: "Every rhythm in EKG objectives 8 and 9, plus torsades from objective 10, sorted the way the EKG lectures teach them."
+  });
 }());

@@ -103,6 +103,7 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 
 - Course-specific tools for the `ekg` course launch from the `data-course-tools="ekg"` row. The written content is the `ekg-interpretation` lecture (`data/ekg-interpretation.js`).
 - Workbook strips: `ekg-workbook.js` (engine) and `data/ekg-workbook.js` (`window.EKG_WORKBOOK`): Anna's 174 Independent EKG Workbook strips (`images/ekg-workbook/wb-NNN.webp`, cropped so the blanks and textbook captions don't give answers away) with the workbook answer key verbatim in `key`. Modes: step by step (regularity, rate band, P, PR, QRS, name), Name that strip (misses return), Browse; filter by rhythm group, Not tried yet, My misses. Where the site's answer differs from the key, `note` says why (strip 2: key says NSR at 50 bpm, site says sinus bradycardia). Ids `wb-NNN` are progress keys. Run `node scripts/validate-ekg-workbook.cjs` after editing.
+- Rhythm trainer: the same engine as Cardio Part 2 Rhythm strips. `rhythm-strips.js` is now a factory, `createRhythmTool(cfg)`, called once per course (prefix `cardio2-rhythms` and `ekg-rhythms`); data `data/rhythm-strips-ekg.js` (`window.EKG_RHYTHMS`, ids `ekr-*` are progress keys under `pasem2:rhythms:ekg:progress`). It covers every objective 8/9 rhythm plus torsades, and the `mgmt` field shows as "Why it happens" (pathophysiology). Synth generators added for it: `atach`, and `ectopic` with `type: "pjc"`. Run `node scripts/validate-rhythm-strips-ekg.cjs` (and the Cardio Part 2 one if the synth changes).
 
 ## Content rules
 

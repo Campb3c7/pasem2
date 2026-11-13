@@ -82,8 +82,13 @@
         out.q.push(narrowBeat(t, rr)); out.p.push({ t: t - pr }); n += 1;
         var early = s.every ? (n % (s.every - 1 || 1) === 0) : singles.some(function (x) { return t < x && t + rr >= x; });
         if (early && (s.every || r() < 0.95)) {
-          var et = t + rr * (s.type === "pac" ? 0.62 : 0.58);
-          if (s.type === "pac") {
+          var et = t + rr * (s.type === "pvc" ? 0.58 : 0.62);
+          if (s.type === "pjc") {
+            // Early narrow beat from the junction: no upright P; a small inverted P right after it.
+            out.p.push({ t: et + 0.08, amp: -0.1, sd: 0.018 });
+            out.q.push(narrowBeat(et, rr));
+            t = et + rr;
+          } else if (s.type === "pac") {
             out.p.push({ t: et - 0.15, amp: 0.1, sd: 0.016, bi: true });
             out.q.push(narrowBeat(et, rr));
             t = et + rr;
@@ -124,6 +129,13 @@
         out.p.push({ t: t - between(r, [0.12, 0.2]), amp: sh.amp, sd: sh.sd, bi: sh.bi });
         t += rr;
       }
+      return out;
+    },
+    atach: function (r, s) {
+      // Ectopic atrial focus: regular and fast, every QRS has a P, but the P is small and pointed
+      // (not the sinus shape) and often sits on the end of the previous T wave.
+      var rate = between(r, s.rate), rr = 60 / rate, pr = between(r, [0.11, 0.13]), out = { p: [], q: [] };
+      for (var t = -1.4 + r() * rr; t < T + 0.6; t += rr) { out.q.push(narrowBeat(t, rr)); out.p.push({ t: t - pr, amp: 0.13, sd: 0.014 }); }
       return out;
     },
     svt: function (r, s) {
