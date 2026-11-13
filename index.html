@@ -152,7 +152,13 @@
         </div>
       </div>
       <div class="course-tools" data-course-tools="ekg" hidden>
-        <p class="eyebrow">EKG tools</p>
+        <button class="lh-start" id="ekg-learn-launch" type="button">
+          <span class="lh-start-kicker">Start here</span>
+          <strong>Learn EKG from zero</strong>
+          <span class="lh-start-copy">Short lessons that teach it properly before the practice tools: the heart's wiring, what each wave means, measuring, the five questions for every strip, then each rhythm family and the 12-lead.</span>
+          <span class="lh-start-status" id="ekg-learn-status"></span>
+        </button>
+        <p class="eyebrow">EKG practice tools</p>
         <div class="course-tools-grid">
           <button class="walkthrough-launch rhythms-launch" id="ekg-workbook-launch" type="button">
             <span class="walkthrough-launch-icon">▤</span>
@@ -282,6 +288,10 @@
     <section id="ekg-mi-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-mi-back" type="button">← EKG</button>
       <div id="ekg-mi-content"></div>
+    </section>
+    <section id="ekg-learn-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-learn-back" type="button">← EKG</button>
+      <div id="ekg-learn-content"></div>
     </section>
     <section id="ekg-mock-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-mock-back" type="button">← EKG</button>
@@ -444,6 +454,7 @@
   <script src="data/ekg-mi.js"></script>
   <script src="data/ekg-patterns.js"></script>
   <script src="data/ekg-class-polls.js"></script>
+  <script src="data/ekg-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
   <script src="data/syncope.js"></script>
@@ -471,6 +482,7 @@
   <script src="ekg-mi.js"></script>
   <script src="ekg-patterns.js"></script>
   <script src="ekg-mock.js"></script>
+  <script src="ekg-learn.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>
