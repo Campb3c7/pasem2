@@ -4,14 +4,15 @@
 const fs = require("fs"), path = require("path");
 global.window = {};
 const root = path.join(__dirname, "..");
-["data/ekg-learn.js", "data/rhythm-strips-ekg.js", "data/ekg-workbook.js"].forEach((f) => require(path.join(root, f)));
+["data/ekg-learn.js", "data/rhythm-strips-ekg.js", "data/ekg-workbook.js", "data/ekg-mi.js", "data/ekg-patterns.js"].forEach((f) => require(path.join(root, f)));
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const toolJs = ["ekg-workbook.js", "rhythm-strips.js", "ekg-compare.js", "ekg-axis.js", "ekg-mi.js", "ekg-patterns.js", "ekg-mock.js"].map((f) => fs.readFileSync(path.join(root, f), "utf8")).join("\n");
 const L = window.EKG_LEARN, errors = [];
 const rhythms = new Set(); window.EKG_RHYTHMS.groups.forEach((g) => g.rhythms.forEach((r) => rhythms.add(r.id)));
 const strips = new Set(window.EKG_WORKBOOK.strips.map((s) => s.id));
 const parts = new Set(L.parts.map((p) => p.id)), ids = new Set();
-const FIG = new Set(["heart", "sync", "beat", "paper", "rate", "strip", "workbook"]);
+const FIG = new Set(["heart", "sync", "beat", "paper", "rate", "strip", "workbook", "twelve", "leadmap", "axis", "pattern", "damage"]);
+const walls = new Set(window.EKG_MI.walls.map((w) => w.id)), dmg = new Set(window.EKG_MI.damage.map((d) => d.id)), pats = new Set(window.EKG_PATTERNS.patterns.map((p) => p.id));
 L.lessons.forEach((l) => {
   if (ids.has(l.id)) errors.push(l.id + ": duplicate id"); ids.add(l.id);
   if (!/^learn-[a-z0-9-]+$/.test(l.id)) errors.push(l.id + ": id should be learn-*");
@@ -23,6 +24,9 @@ L.lessons.forEach((l) => {
       if (!FIG.has(f.type)) errors.push(l.id + " page " + (i + 1) + ": unknown figure " + f.type);
       if (f.type === "strip" && !rhythms.has(f.rhythm)) errors.push(l.id + ": unknown rhythm " + f.rhythm);
       if (f.type === "workbook" && !strips.has(f.id)) errors.push(l.id + ": unknown workbook strip " + f.id);
+      if (f.type === "twelve" && f.wall && !walls.has(f.wall)) errors.push(l.id + ": unknown wall " + f.wall);
+      if (f.type === "damage" && !dmg.has(f.id)) errors.push(l.id + ": unknown damage " + f.id);
+      if (f.type === "pattern" && !pats.has(f.id)) errors.push(l.id + ": unknown pattern " + f.id);
     });
   });
   if (l.checks.length < 3) errors.push(l.id + ": needs at least 3 checks");

@@ -524,6 +524,189 @@
         { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"AV blocks\" and draw several of each until the PR pattern jumps out." },
         { label: "Workbook strips", launch: "ekg-workbook-launch", note: "Tap the \"AV blocks\" filter, then Name that strip." }
       ]
+    },
+
+    /* ---------------- 11 ---------------- */
+    {
+      id: "learn-leads", part: "p3", title: "Leads and the axis", goal: "Twelve cameras on one heartbeat, and which way the spark points overall.",
+      pages: [
+        { title: "Twelve cameras, one heartbeat", fig: { type: "twelve" },
+          html: "<p>A rhythm strip is one view. A <strong>12-lead EKG</strong> uses <strong>10 stickers</strong> to record the same heartbeat from <strong>12 angles</strong>. Think of 12 cameras around the heart.</p>" +
+            "<p>One rule explains why the same beat looks different in each lead:</p>" +
+            hy("Spark moving <strong>toward</strong> a lead's positive electrode = <strong>upright</strong> wave. Moving <strong>away</strong> = <strong>downward</strong> wave.") +
+            "<p>That's why <strong>aVR</strong> (looking from the right shoulder) is normally <strong>upside down</strong>: the spark travels away from it, down and to the left.</p>" },
+        { title: "Two sets of cameras", fig: { type: "leadmap" },
+          html: tbl(["", "Limb leads", "Chest (precordial) leads"], [
+              ["Leads", "I, II, III, aVR, aVL, aVF", "V1-V6"],
+              ["They look", "From the <strong>front</strong>: up/down and left/right", "<strong>Around</strong> the chest, from front to side"],
+              ["Stickers", "Arms and left leg", "V1-V2 beside the sternum (4th space), V4 midclavicular, V5 anterior axillary, V6 midaxillary (5th space)"]]) +
+            "<p>On the printout, the leads sit in a fixed grid: I, II, III down the first column, aVR, aVL, aVF in the second, then V1-V6.</p>" },
+        { title: "Which wall each camera sees", fig: { type: "leadmap" },
+          html: tbl(["Wall", "Leads"], [
+              ["<strong>Inferior</strong> (bottom)", "<strong>II, III, aVF</strong>"],
+              ["<strong>Lateral</strong> (left side)", "<strong>I, aVL, V5, V6</strong>"],
+              ["<strong>Septal</strong>", "<strong>V1, V2</strong>"],
+              ["<strong>Anterior</strong> (front)", "<strong>V3, V4</strong>"],
+              ["Posterior (back)", "Only V7-V9 on a 15-lead; mirror image in V1-V3"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span>"<strong>SAL</strong>t is bad for the heart": across V1-V6 it\'s <strong>S</strong>eptal, <strong>A</strong>nterior, <strong>L</strong>ateral. And II, III, aVF make the <strong>inferior triangle</strong> in the lower left of the printout.</div>' +
+            "<p>This map is the whole key to finding a heart attack in the next lesson.</p>" },
+        { title: "The axis: the spark's overall direction", fig: { type: "axis", angle: 60, leads: false },
+          html: "<p>Add up all the little sparks of one heartbeat and you get one overall arrow: the <strong>electrical axis</strong>.</p>" +
+            "<p>Normally it points <strong>down and to the patient's left</strong>, between <strong>0° and +90°</strong>. <strong>Why?</strong> The left ventricle has much more muscle than the right, so its forces win the tug-of-war.</p>" },
+        { title: "Read it with two leads: thumbs up or down", fig: { type: "axis", angle: -45 },
+          html: "<p>Look only at <strong>lead I</strong> and <strong>aVF</strong>. Is the QRS mostly up or mostly down in each?</p>" +
+            tbl(["Lead I", "aVF", "Axis"], [["Up", "Up", "<strong>Normal</strong>"], ["Up", "Down", "<strong>Left</strong> axis deviation"], ["Down", "Up", "<strong>Right</strong> axis deviation"], ["Down", "Down", "<strong>Extreme</strong>"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span>Make two thumbs (left = lead I, right = aVF). Both up = normal. Thumbs <strong>leaving</strong> each other (I up, aVF down) = <strong>left</strong>. Thumbs <strong>reaching</strong> toward each other (I down, aVF up) = <strong>right</strong>.</div>' +
+            "<p>The example above: lead I up, aVF down, so this is left axis deviation.</p>" },
+        { title: "What swings the axis", fig: { type: "axis", angle: 120 },
+          html: hy("The axis goes <strong>toward extra muscle</strong> (hypertrophy) and <strong>away from dead muscle</strong> (infarct, which has no electrical force).") +
+            tbl(["Cause", "Axis"], [
+              ["RV hypertrophy, thin people, children", "<strong>Right</strong>"],
+              ["LV hypertrophy; pregnancy or abdominal obesity (diaphragm pushes the heart sideways)", "<strong>Left</strong>"],
+              ["Left anterior hemiblock / left posterior hemiblock", "<strong>Left</strong> / <strong>right</strong>"]]) +
+            "<p>The example above is right axis deviation: lead I down, aVF up.</p>" }
+      ],
+      checks: [
+        K("Which leads look at the inferior wall?", "II, III, aVF", ["I, aVL, V5, V6", "V1, V2", "V3, V4"], "The inferior triangle in the lower left of the printout."),
+        K("Lead I is upright and aVF is negative. What is the axis?", "Left axis deviation", ["Normal axis", "Right axis deviation", "Extreme axis deviation"], "Thumbs leaving each other = left."),
+        K("A patient has right ventricular hypertrophy. Which way will the axis shift?", "Right", ["Left", "It won't change", "Extreme"], "The axis moves toward the extra muscle."),
+        K("Why does the normal axis point down and to the left?", "The left ventricle has more muscle, so its forces dominate", ["The SA node is on the left", "The heart sits on the right side of the chest", "aVR is negative"], "More muscle, more electrical force: the LV wins."),
+        K("Which lead is normally upside down on a normal EKG?", "aVR", ["Lead II", "aVF", "V6"], "aVR looks from the right shoulder, and the spark travels away from it.")
+      ],
+      remember: [
+        "Spark <strong>toward</strong> a lead = upright; <strong>away</strong> = down. aVR is normally negative.",
+        "<strong>Inferior II, III, aVF</strong>. <strong>Lateral I, aVL, V5, V6</strong>. <strong>Septal V1-V2</strong>, <strong>anterior V3-V4</strong> (SAL).",
+        "Axis from <strong>lead I + aVF</strong>: both up normal; leaving = left; reaching = right.",
+        "Axis goes <strong>toward hypertrophy</strong>, <strong>away from infarct</strong>."
+      ],
+      practice: [
+        { label: "Axis trainer", launch: "ekg-axis-launch", note: "Start with \"Lead I + aVF\", then try all six limb leads." },
+        { label: "MI locator", launch: "ekg-mi-launch", note: "The lead map with SAL, ready for the next lesson." }
+      ]
+    },
+
+    /* ---------------- 12 ---------------- */
+    {
+      id: "learn-mi", part: "p3", title: "Heart attacks on the EKG", goal: "Ischemia, injury and infarction, the STEMI rule, and finding the wall.",
+      pages: [
+        { title: "Starving muscle changes the EKG in order", fig: [{ type: "damage", id: "dmg-normal", caption: "Normal" }, { type: "damage", id: "dmg-t-inversion", caption: "Ischemia: T inverted" }, { type: "damage", id: "dmg-st-elevation", caption: "Injury: ST up" }, { type: "damage", id: "dmg-q-wave", caption: "Infarction: Q wave" }],
+          html: "<p>When a coronary artery is blocked, the muscle it feeds goes through three stages, and each shows up on a different part of the complex:</p>" +
+            tbl(["Stage", "What's happening", "EKG"], [
+              ["<strong>Ischemia</strong>", "Not enough oxygen", "<strong>T wave</strong> changes (peaked or symmetrically inverted), <strong>ST depression</strong>"],
+              ["<strong>Injury</strong>", "Cells are being damaged", "<strong>ST elevation</strong>"],
+              ["<strong>Infarction</strong>", "Cells have died (scar)", "<strong>Pathologic Q waves</strong>"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span>"<strong>T</strong>hen <strong>ST</strong>, then <strong>Q</strong>": ischemia, injury, infarction. The pictures above show each stage next to a normal complex.</div>' },
+        { title: "Ischemia: T waves and ST depression", fig: [{ type: "damage", id: "dmg-hyperacute", caption: "Tall, peaked T" }, { type: "damage", id: "dmg-t-inversion", caption: "Symmetric inverted T" }, { type: "damage", id: "dmg-st-depression", caption: "Flat ST depression" }],
+          html: "<ul><li><strong>T wave changes come first</strong>: tall peaked T waves, or <strong>symmetric inverted</strong> T waves. Inverted T waves can return to normal if the ischemia resolves.</li>" +
+            "<li><strong>ST depression</strong> more than 1 mm, measured 0.04 s after the J point, in 2 or more leads looking at the same area.</li>" +
+            "<li>A <strong>flat ST depression</strong> is also the pattern of a <strong>subendocardial</strong> (inner-layer) infarction.</li></ul>" +
+            "<p>T inversion has other causes too (pericarditis, hypertrophy, BBB, electrolytes), so it only means ischemia when the story fits.</p>" },
+        { title: "Injury: ST elevation and the STEMI rule", fig: { type: "damage", id: "dmg-st-elevation" },
+          html: "<p><strong>ST elevation is the earliest reliable sign that an acute MI has happened.</strong> To call it a STEMI, measure carefully:</p>" +
+            "<ol class=\"lh-steps\"><li>Find the <strong>J point</strong> (where the QRS ends), then go <strong>0.04 s</strong> (1 small box) to the right.</li><li>Compare that spot with the <strong>PR segment</strong> (the baseline).</li><li>It counts if it's up <strong>more than 1 mm in a limb lead</strong> or <strong>more than 2 mm in a chest lead</strong>,</li><li>in <strong>2 or more leads that look at the same wall</strong>.</li></ol>" +
+            "<p>Not every MI is a STEMI, but a STEMI needs this exact pattern.</p>" },
+        { title: "Infarction: pathologic Q waves", fig: { type: "damage", id: "dmg-q-wave" },
+          html: "<p>Dead muscle makes no electricity. A camera looking at a dead patch \"sees through\" it to the spark moving <strong>away</strong> on the far side, so the R wave shrinks and a deep <strong>Q wave</strong> appears.</p>" +
+            "<p>A Q is <strong>pathologic</strong> when it's <strong>wider than 0.04 s</strong> and at least <strong>one third the height of the R</strong>, in 2 or more neighboring leads. It forms hours to days after the MI and means <strong>irreversible damage</strong>.</p>" +
+            "<p>A tiny q under 0.04 s in the lateral leads is normal (the septum firing).</p>" },
+        { title: "Find the wall: which cameras see it?", fig: { type: "twelve", wall: "wall-inferior" },
+          html: "<p>Use the map from the last lesson. In this 12-lead, the ST is up in <strong>II, III and aVF</strong>, so it's an <strong>inferior STEMI</strong>.</p>" +
+            "<p>Notice the ST is <strong>down</strong> in I and aVL. That's a <strong>reciprocal change</strong>: the cameras on the opposite side see the mirror image. Reciprocal changes support a real STEMI.</p>" +
+            tbl(["STEMI", "ST up in", "Usual artery"], [
+              ["<strong>Inferior</strong>", "II, III, aVF", "RCA"],
+              ["<strong>Lateral</strong>", "I, aVL, V5, V6", "Circumflex"],
+              ["<strong>Anterior</strong>", "V2-V4", "LAD"],
+              ["<strong>Septal</strong>", "V1-V3", "LAD"],
+              ["<strong>Posterior</strong>", "ST <em>down</em>, tall R in V1-V3 (mirror image)", "RCA or circumflex"]]) },
+        { title: "Why some MIs cause heart blocks", fig: { type: "twelve", wall: "wall-anterior" },
+          html: "<p>Each artery also feeds part of the wiring, so the wall that's damaged predicts the block you might see:</p>" +
+            "<ul><li>The <strong>RCA</strong> supplies the <strong>AV node</strong> in most people (80-95%). So an <strong>inferior MI</strong> can cause AV node blocks: 1st degree and <strong>Wenckebach</strong>.</li>" +
+            "<li>The <strong>LAD</strong> supplies most of the <strong>bundle branches</strong>. So an <strong>anterior MI</strong> (shown above: ST up in V2-V4) can cause <strong>type II block</strong> and <strong>bundle branch blocks</strong>.</li></ul>" +
+            "<p>This ties Part 2 and Part 3 together: inferior → toll booth problems; anterior → express-lane problems.</p>" },
+        { title: "Not every ST elevation is a heart attack", fig: { type: "pattern", id: "pt-pericarditis" },
+          html: "<p><strong>Pericarditis</strong> (an inflamed sac around the heart) also raises the ST, but it looks different:</p>" +
+            tbl(["", "Pericarditis", "STEMI"], [
+              ["Where", "<strong>Diffuse</strong>: almost every lead", "One wall's leads, with reciprocal changes"],
+              ["ST shape", "Concave, \"saggy\"", "Territorial"],
+              ["Q waves", "Don't form", "May form"],
+              ["T inversion", "Only after the ST normalizes", "Before the ST normalizes"]]) +
+            "<p>Other things that raise the ST: ventricular hypertrophy, bundle branch blocks, PE, hyperkalemia.</p>" }
+      ],
+      checks: [
+        K("What is the earliest reliable EKG sign of an acute MI?", "ST elevation", ["Pathologic Q waves", "T wave inversion", "A new U wave"], "ST elevation (injury) comes early. Q waves take hours to days."),
+        K("ST elevation in II, III and aVF. Which wall, and which artery usually?", "Inferior wall; the right coronary artery", ["Lateral wall; the circumflex", "Anterior wall; the LAD", "Septal wall; the LAD"], "II, III, aVF = the inferior triangle, usually the RCA."),
+        K("How much ST elevation counts in a chest (precordial) lead?", "More than 2 mm, 0.04 s after the J point, in 2+ leads facing the same wall", ["More than 1 mm in any single lead", "More than 2 mm at the peak of the T wave", "Any elevation in aVR"], "Limb leads > 1 mm, chest leads > 2 mm, measured at J + 0.04 s, in 2+ contiguous leads."),
+        K("A deep, wide Q wave (0.06 s, half the height of the R) appears in V2-V4. What does it mean?", "Infarction: that muscle has died", ["Ischemia that will fully reverse", "Hyperkalemia", "A normal septal q"], "Pathologic Q = wider than 0.04 s and at least 1/3 of the R: irreversible damage."),
+        K("ST elevation in almost every lead, concave and saggy, with no reciprocal changes. What is most likely?", "Pericarditis", ["Inferior STEMI", "Hypokalemia", "Left bundle branch block"], "Diffuse, saggy ST elevation without a territory or reciprocal changes = pericarditis.")
+      ],
+      remember: [
+        "<strong>T, then ST, then Q</strong>: ischemia (T changes, ST down) → injury (ST up) → infarction (Q).",
+        "STEMI: measure at <strong>J + 0.04 s</strong>; <strong>&gt; 1 mm limb</strong>, <strong>&gt; 2 mm chest</strong>, <strong>2+ leads, same wall</strong>.",
+        "Inferior = II, III, aVF (RCA, AV node blocks). Anterior = V2-V4 (LAD, type II and BBB).",
+        "Reciprocal changes = mirror image opposite. Pericarditis = diffuse saggy ST, no Q."
+      ],
+      practice: [
+        { label: "MI locator", launch: "ekg-mi-launch", note: "Locate the STEMI, STEMI or not? (measure it), and ischemia vs injury vs infarction." }
+      ]
+    },
+
+    /* ---------------- 13 ---------------- */
+    {
+      id: "learn-patterns", part: "p3", title: "Patterns: enlargement, blocks and electrolytes", goal: "The 12-lead patterns from objectives 12, 13 and 16, each with its reason.",
+      pages: [
+        { title: "More muscle, more signal", fig: { type: "pattern", id: "pt-lvh" },
+          html: "<p>Two different changes, both making waves bigger:</p>" +
+            tbl(["", "Hypertrophy", "Enlargement"], [["Wall", "<strong>Thicker</strong>", "Thinner, stretched"], ["Chamber", "May get smaller", "Bigger"], ["Usually", "Ventricles", "Atria"]]) +
+            "<p>On the EKG, either one shows as a <strong>taller</strong> or <strong>wider</strong> wave, and the <strong>axis shifts toward</strong> the bigger side.</p>" },
+        { title: "Atrial enlargement: look at the P wave", fig: [{ type: "pattern", id: "pt-rae" }, { type: "pattern", id: "pt-lae" }],
+          html: "<p>Remember: the <strong>first half</strong> of the P is the right atrium, the <strong>second half</strong> is the left.</p>" +
+            "<ul><li><strong>Right atrial enlargement</strong>: P <strong>taller than 2.5 mm</strong> (in II), or a biphasic P in V1 whose first part is bigger.</li>" +
+            "<li><strong>Left atrial enlargement</strong>: in V1, the <strong>second part dips at least 1 mm below</strong> the baseline and is wider than 0.04 s.</li></ul>" +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>R</strong>AE = <strong>R</strong>aised P. <strong>L</strong>AE = <strong>L</strong>ong, <strong>L</strong>ow ending in V1.</div>' },
+        { title: "Ventricular hypertrophy", fig: [{ type: "pattern", id: "pt-lvh" }, { type: "pattern", id: "pt-rvh" }],
+          html: "<p><strong>LVH</strong>: the thick LV makes <strong>tall R waves in V5-V6</strong> (cameras over the LV) and <strong>deep S waves in V1</strong> (the same force seen from the other side).</p>" +
+            hy("Classic LVH rule: <strong>S in V1 + R in V5 or V6 &gt; 35 mm</strong>.") +
+            "<p><strong>RVH</strong>: <strong>right axis deviation</strong> and a <strong>tall R in V1</strong> (bigger than the S) that shrinks toward V6, the reverse of normal.</p>" +
+            "<p>A working-too-hard heart can also show <strong>strain</strong>: ST depression with an asymmetric inverted T (V5-V6 for the left, V1 for the right).</p>" },
+        { title: "Bundle branch blocks: one ventricle waits its turn", fig: [{ type: "pattern", id: "pt-rbbb" }, { type: "pattern", id: "pt-lbbb" }],
+          html: "<p>If one bundle branch is blocked, that ventricle has to wait for the signal to creep over from the other side. The two ventricles fire one after the other, so the QRS is <strong>wide (0.12 s or more)</strong> with <strong>two peaks</strong> (R and R').</p>" +
+            tbl(["", "Right BBB", "Left BBB"], [["Best seen in", "<strong>V1-V2</strong>", "<strong>V5-V6</strong>"], ["Looks like", "\"Rabbit ears\" or an M (RSR')", "Wide, tall R with a flat or notched top"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span>Like a turn signal: <strong>R</strong>BBB shows in the <strong>r</strong>ight-sided leads (V1-V2), <strong>L</strong>BBB in the <strong>l</strong>eft-sided leads (V5-V6).</div>' +
+            "<p><strong>Hemiblocks</strong> (one fascicle of the left bundle) don't widen the QRS; they only swing the axis: <strong>left anterior → left axis</strong>, <strong>left posterior → right axis</strong>.</p>" },
+        { title: "Potassium", fig: [{ type: "pattern", id: "pt-hyperk-early" }, { type: "pattern", id: "pt-hypok" }],
+          html: "<p><strong>High potassium</strong> changes things in order as it climbs:</p>" +
+            "<p class=\"lh-big\">peaked T → flat P → long PR → wide QRS → sine wave</p>" +
+            "<p>A sine wave is close to cardiac arrest.</p>" +
+            "<p><strong>Low potassium</strong>: everything sinks (ST depression, flat T waves) and a <strong>U wave</strong> pops up after the T. The QT gets longer.</p>" +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span>High K: the T goes <strong>up</strong> (peaked). Low K: the T goes <strong>down</strong> and a <strong>U</strong> appears.</div>' },
+        { title: "Calcium: it's all about the QT", fig: [{ type: "pattern", id: "pt-hypocalcemia" }, { type: "pattern", id: "pt-hypercalcemia" }],
+          html: "<p>Calcium mostly changes the <strong>length of the ST segment</strong>, and so the <strong>QT</strong>:</p>" +
+            tbl(["", "QT", "Risk"], [["<strong>Low calcium</strong>", "<strong>Long</strong>", "Torsades; weaker contraction"], ["<strong>High calcium</strong>", "<strong>Short</strong>", "Arrhythmias"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>Low and long</strong>: low calcium, long QT.</div>' },
+        { title: "Four more you need to know", fig: [{ type: "pattern", id: "pt-effusion" }, { type: "pattern", id: "pt-pe" }, { type: "pattern", id: "pt-paced-v" }, { type: "pattern", id: "pt-wpw" }],
+          html: tbl(["Pattern", "What you see", "Why"], [
+              ["<strong>Pericardial effusion</strong>", "<strong>Low voltage</strong>; QRS height alternates beat to beat (<strong>electrical alternans</strong>)", "Fluid muffles the signal; the heart swings in the fluid"],
+              ["<strong>Pulmonary embolus</strong>", "<strong>S1Q3T3</strong> (classic but not common), right axis, RBBB, tall P", "Sudden strain on the right heart"],
+              ["<strong>Pacemaker</strong>", "<strong>Spike</strong>, then a wide QRS (ventricular) or a P (atrial)", "The device fires; a paced ventricle conducts cell to cell"],
+              ["<strong>WPW (delta wave)</strong>", "<strong>Short PR</strong> and a <strong>slurred upstroke</strong> on the QRS", "An extra pathway skips the AV node's delay"]]) }
+      ],
+      checks: [
+        K("Tall, peaked T waves in every lead. What should you suspect first?", "Hyperkalemia", ["Hypokalemia", "Hypocalcemia", "Pericardial effusion"], "Peaked T is the first sign of high potassium."),
+        K("Flat T waves with a U wave after them. What is it?", "Hypokalemia", ["Hyperkalemia", "Hypercalcemia", "Left bundle branch block"], "Low K: things sink and a U wave appears."),
+        K("A wide QRS with \"rabbit ears\" (RSR') in V1. What is it?", "Right bundle branch block", ["Left bundle branch block", "Left anterior hemiblock", "Delta wave"], "RBBB shows in the right-sided leads, V1-V2."),
+        K("Which electrolyte problem prolongs the QT?", "Low calcium", ["High calcium", "High potassium only", "Low sodium"], "Low and long: low calcium, long QT (low potassium also lengthens it)."),
+        K("Which finding supports left ventricular hypertrophy?", "S in V1 + R in V5 or V6 greater than 35 mm", ["A tall R in V1 bigger than the S", "P wave taller than 2.5 mm", "Low voltage in every lead"], "The thick LV makes tall R waves over it (V5-V6) and deep S waves opposite it (V1).")
+      ],
+      remember: [
+        "Enlargement and hypertrophy = <strong>taller or wider</strong> waves, axis <strong>toward</strong> the bigger side.",
+        "<strong>RAE</strong> = raised P. <strong>LAE</strong> = long, low end of P in V1. <strong>LVH</strong> = S(V1) + R(V5/6) &gt; 35 mm.",
+        "<strong>RBBB</strong> rabbit ears in V1-V2; <strong>LBBB</strong> wide notched R in V5-V6. Hemiblocks only swing the axis.",
+        "<strong>High K</strong>: peaked T → sine wave. <strong>Low K</strong>: flat T, U wave. <strong>Low Ca</strong>: long QT."
+      ],
+      practice: [
+        { label: "Pattern gallery", launch: "ekg-patterns-launch", note: "All 26 patterns drawn, then Name that pattern and What would you see?" },
+        { label: "Mock exam: class poll review", launch: "ekg-mock-launch", then: "mock-polls", note: "Now that you've done every lesson, the 31 class poll questions are a great check." }
+      ]
     }
   ];
 

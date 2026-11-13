@@ -213,9 +213,28 @@
     return '<div class="wb-strip"><img src="images/ekg-workbook/' + spec.id + '.webp" alt="Workbook rhythm strip" decoding="async"></div>' + (spec.caption ? '<p class="lh-caption">' + spec.caption + '</p>' : "");
   }
 
+  // 12-lead pieces borrowed from the MI locator, axis trainer and pattern gallery (window.EKGDraw).
+  function twelveFigure(f) {
+    var draw = window.EKGDraw, mi = window.EKG_MI;
+    if (!draw || !draw.twelveLead || !mi) return "";
+    var wall = f.wall ? mi.walls.filter(function (w) { return w.id === f.wall; })[0] : null;
+    return '<div class="lh-twelve">' + draw.twelveLead(wall, { st: 3, q: !!f.q }) + '</div>';
+  }
+  function axisFigure(f) {
+    var draw = window.EKGDraw;
+    if (!draw || !draw.axisWheel) return "";
+    return '<div class="lh-axis-fig">' + draw.axisWheel(f.angle == null ? null : f.angle, true) + (f.leads === false ? "" : draw.axisLeads(f.angle)) + '</div>';
+  }
+  function patternFigure(f) {
+    var draw = window.EKGDraw, pt = window.EKG_PATTERNS;
+    if (!draw || !draw.pattern || !pt) return "";
+    var p = pt.patterns.filter(function (x) { return x.id === f.id; })[0];
+    return p ? '<p class="lh-strip-name">' + escapeHtml(f.label || p.name) + '</p>' + draw.pattern(p) : "";
+  }
+
   function figure(f) {
     if (!f) return "";
-    if (Array.isArray(f)) return f.every(function (x) { return x.type === "beat"; }) ? '<div class="lh-figs">' + f.map(figure).join("") + '</div>' : f.map(figure).join("");
+    if (Array.isArray(f)) return f.every(function (x) { return x.type === "beat" || x.type === "damage"; }) ? '<div class="lh-figs">' + f.map(figure).join("") + '</div>' : f.map(figure).join("");
     var html = "";
     if (f.type === "heart") html = heartSvg(f);
     else if (f.type === "sync") html = syncFigure(f);
@@ -224,6 +243,11 @@
     else if (f.type === "rate") html = rateFigure(f);
     else if (f.type === "strip") html = stripFigure(f);
     else if (f.type === "workbook") html = workbookFigure(f);
+    else if (f.type === "twelve") html = twelveFigure(f);
+    else if (f.type === "leadmap") html = window.EKGDraw && window.EKGDraw.leadMap ? window.EKGDraw.leadMap(f.leads || null) : "";
+    else if (f.type === "axis") html = axisFigure(f);
+    else if (f.type === "pattern") html = patternFigure(f);
+    else if (f.type === "damage") html = window.EKGDraw && window.EKGDraw.damageLead ? window.EKGDraw.damageLead(f.id, f.lead) : "";
     return '<figure class="lh-figure">' + html + (f.caption && f.type !== "workbook" ? '<figcaption class="lh-caption">' + f.caption + '</figcaption>' : "") + '</figure>';
   }
   function bindFigures() {

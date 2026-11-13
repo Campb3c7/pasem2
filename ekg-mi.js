@@ -321,7 +321,14 @@
   }
 
   // Shared with the mock exam (ekg-mock.js).
-  window.EKGDraw = Object.assign(window.EKGDraw || {}, { twelveLead: twelveLead });
+  window.EKGDraw = Object.assign(window.EKGDraw || {}, {
+    twelveLead: twelveLead, leadMap: mapHtml,
+    damageLead: function (dmgId, lead) {
+      var d = data.damage.filter(function (x) { return x.id === dmgId; })[0], m = Object.assign({}, data.leads[lead || "V5"], d.change);
+      if (d.change.st > 0) m.t = m.t + d.change.st;
+      return '<div class="mi-measure single">' + leadSvg(lead || "V5", m, 6, "big") + '</div>';
+    }
+  });
   launch.addEventListener("click", open);
   document.getElementById("ekg-mi-back").addEventListener("click", close);
 }());
