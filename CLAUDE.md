@@ -99,6 +99,11 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Each question is `Q(prompt, answer, [3 wrong], explanation, hint?)`; H shows the hint. Group `source` is the Quizlet name, shown only as a label. Ids are `<group id>|<index>`: only append.
 - Check new cards against the slides and add any fix to `corrections`. Run `node scripts/validate-struggles-cardio-part-1.cjs` after editing.
 
+## EKG tools
+
+- Course-specific tools for the `ekg` course launch from the `data-course-tools="ekg"` row. The written content is the `ekg-interpretation` lecture (`data/ekg-interpretation.js`).
+- Workbook strips: `ekg-workbook.js` (engine) and `data/ekg-workbook.js` (`window.EKG_WORKBOOK`): Anna's 174 Independent EKG Workbook strips (`images/ekg-workbook/wb-NNN.webp`, cropped so the blanks and textbook captions don't give answers away) with the workbook answer key verbatim in `key`. Modes: step by step (regularity, rate band, P, PR, QRS, name), Name that strip (misses return), Browse; filter by rhythm group, Not tried yet, My misses. Where the site's answer differs from the key, `note` says why (strip 2: key says NSR at 50 bpm, site says sinus bradycardia). Ids `wb-NNN` are progress keys. Run `node scripts/validate-ekg-workbook.cjs` after editing.
+
 ## Content rules
 
 - Keep each lecture's curriculum in its own `data/*.js` file and connect it from `data/semester.js`.

@@ -151,6 +151,16 @@
           </button>
         </div>
       </div>
+      <div class="course-tools" data-course-tools="ekg" hidden>
+        <p class="eyebrow">EKG tools</p>
+        <div class="course-tools-grid">
+          <button class="walkthrough-launch rhythms-launch" id="ekg-workbook-launch" type="button">
+            <span class="walkthrough-launch-icon">▤</span>
+            <span><strong>Workbook strips</strong><small>All 174 real strips from your Independent EKG Workbook with the answer key: read each one step by step, quick-name them, or browse by rhythm</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
       <div id="study-content"></div>
     </section>
 
@@ -226,6 +236,10 @@
     <section id="cardio2-rhythms-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="cardio2-rhythms-back" type="button">← Cardio Part 2</button>
       <div id="cardio2-rhythms-content"></div>
+    </section>
+    <section id="ekg-workbook-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-workbook-back" type="button">← EKG</button>
+      <div id="ekg-workbook-content"></div>
     </section>
   </main>
 
@@ -369,6 +383,7 @@
   <script src="data/scores-cardio-part-2.js"></script>
   <script src="data/rhythm-synth.js"></script>
   <script src="data/rhythm-strips-cardio-part-2.js"></script>
+  <script src="data/ekg-workbook.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
   <script src="data/syncope.js"></script>
@@ -390,6 +405,7 @@
   <script src="murmurs.js"></script>
   <script src="heart-sounds.js"></script>
   <script src="struggles.js"></script>
+  <script src="ekg-workbook.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>
