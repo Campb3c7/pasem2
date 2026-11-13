@@ -246,7 +246,7 @@
     });
     step.index = 0; step.allRight = true;
     content.innerHTML = header() + '<div class="recall-step-label">Strip ' + (state.position + 1) + ' of ' + state.total + '</div>' +
-      '<article class="question-card immersive-card rs-question">' + stripHtml(step.made) + '<div id="rhythm-parts"></div><div class="explanation" id="rhythm-explanation" hidden></div></article>' +
+      '<article class="question-card immersive-card rs-question wb-stepcard"><div class="wb-sticky">' + stripHtml(step.made) + '</div><div id="rhythm-parts"></div><div class="explanation" id="rhythm-explanation" hidden></div></article>' +
       '<button class="primary-action full-action" id="rhythm-next" type="button" hidden>Next strip →</button>';
     bindHome();
     el("rhythm-next").addEventListener("click", function () { state.position += 1; renderStepStrip(); });
@@ -270,9 +270,11 @@
       var note = wrap.querySelector(".rs-part-note");
       note.hidden = false;
       note.className = "rs-part-note " + (right ? "ok" : "bad");
-      note.textContent = (right ? "Right. " : "It's: " + part.answer + ". ") + (part.name === "rate" ? rateLine(step.made) : "");
+      note.textContent = (right ? "Right: " + part.answer + ". " : "It's: " + part.answer + ". ") + (part.name === "rate" ? rateLine(step.made) : "");
       step.index += 1;
-      if (step.index < step.parts.length) { showPart(step); wrap.nextSibling && wrap.nextSibling.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+      // Fold the answered step into one line so the strip and the next question stay together.
+      setTimeout(function () { wrap.classList.add("rs-part-done"); }, right ? 350 : 900);
+      if (step.index < step.parts.length) showPart(step);
       else finishStep(step, right);
     });
   }
