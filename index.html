@@ -179,6 +179,11 @@
             <span><strong>MI locator</strong><small>The 12-lead map (SAL), then locate STEMIs on drawn 12-leads (wall, artery, reciprocal leads), check STEMI criteria by measuring, and tell ischemia from injury from infarction</small></span>
             <span aria-hidden="true">›</span>
           </button>
+          <button class="walkthrough-launch rhythms-launch" id="ekg-patterns-launch" type="button">
+            <span class="walkthrough-launch-icon">≋</span>
+            <span><strong>Pattern gallery</strong><small>Potassium and calcium, atrial enlargement, RVH/LVH and strain, RBBB/LBBB, hemiblocks, delta waves, pericarditis, effusion, PE, pacers, long QT and Q waves: drawn, explained, and quizzed</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
         </div>
       </div>
       <div id="study-content"></div>
@@ -272,6 +277,10 @@
     <section id="ekg-mi-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-mi-back" type="button">← EKG</button>
       <div id="ekg-mi-content"></div>
+    </section>
+    <section id="ekg-patterns-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-patterns-back" type="button">← EKG</button>
+      <div id="ekg-patterns-content"></div>
     </section>
     <section id="ekg-workbook-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-workbook-back" type="button">← EKG</button>
@@ -424,6 +433,7 @@
   <script src="data/ekg-compare.js"></script>
   <script src="data/ekg-axis.js"></script>
   <script src="data/ekg-mi.js"></script>
+  <script src="data/ekg-patterns.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
   <script src="data/syncope.js"></script>
@@ -449,6 +459,7 @@
   <script src="ekg-compare.js"></script>
   <script src="ekg-axis.js"></script>
   <script src="ekg-mi.js"></script>
+  <script src="ekg-patterns.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>
