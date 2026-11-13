@@ -270,6 +270,260 @@
         { label: "Workbook strips: Read it step by step", launch: "ekg-workbook-launch", then: "wb-steps", note: "Real strips from your workbook, the five questions one at a time, checked against the answer key." },
         { label: "Rhythm trainer: Read it step by step", launch: "ekg-rhythms-launch", then: "rhythm-steps", note: "The same routine on freshly drawn strips." }
       ]
+    },
+
+    /* ---------------- 6 ---------------- */
+    {
+      id: "learn-sinus", part: "p2", title: "Sinus rhythms", goal: "The SA node is still the drummer; only the speed or the steadiness changes.",
+      pages: [
+        { title: "Same drummer, different speeds", fig: { type: "strip", rhythm: "ekr-nsr", marks: "p", label: "Normal sinus rhythm" },
+          html: "<p>In every sinus rhythm the <strong>SA node is still pacing</strong>, so three answers stay normal:</p>" +
+            "<ul><li>an <strong>upright, rounded P before every QRS</strong>, all the same shape,</li><li>a <strong>normal PR</strong> (0.12-0.20 s), and</li><li>a <strong>narrow QRS</strong>.</li></ul>" +
+            "<p>What changes is the <strong>rate</strong>, or whether the beat is <strong>steady</strong>. So once you see sinus P waves, the only questions left are \"how fast?\" and \"is it even?\"</p>" },
+        { title: "Sinus bradycardia: under 60", fig: { type: "strip", rhythm: "ekr-sb", marks: "p" },
+          html: "<p>Everything looks normal, just <strong>slower than 60</strong>. The drummer is playing slowly.</p>" +
+            "<p>It can be perfectly normal, for example in a fit athlete at rest or during sleep, or it can come from something slowing the SA node down, such as medications (standard teaching).</p>" +
+            hy("Sinus P before every QRS + rate under 60 = <strong>sinus bradycardia</strong>.") },
+        { title: "Sinus tachycardia: 100 to 160", fig: { type: "strip", rhythm: "ekr-st", marks: "p" },
+          html: "<p>Everything looks normal, just <strong>faster than 100</strong> (up to about 160). The P waves are still clearly visible in front of each QRS.</p>" +
+            "<p><strong>Why it happens:</strong> the body is asking for more blood flow, so the SA node speeds up, as with exercise, fever, pain, anxiety or blood loss (standard teaching). Treat the cause, not the rhythm.</p>" +
+            "<p>A very fast rate shortens the time the ventricles have to fill, and the QT may shorten a little.</p>" },
+        { title: "Sinus arrhythmia: speeds up and slows down", fig: { type: "strip", rhythm: "ekr-sa", marks: "p" },
+          html: "<p>The drummer <strong>speeds up and slows down in waves</strong>. Every beat is still a normal sinus beat, but the gaps between them change.</p>" +
+            "<p>The rule from the lecture: the <strong>PP interval varies by 0.12 s or more</strong> (3 small boxes). The rate is usually 60-100.</p>" +
+            "<p>It commonly follows breathing, speeding up as you breathe in (standard teaching), and is common and harmless in young people.</p>" },
+        { title: "Sinus arrest or pause: the drummer skips", fig: { type: "strip", rhythm: "ekr-pause", marks: "p" },
+          html: "<p>The SA node <strong>fails to fire</strong> for a moment. You see a <strong>gap with no P and no QRS</strong>, then normal sinus beats start again.</p>" +
+            "<p>Before and after the pause, every beat is a normal sinus beat. The study guide calls it \"regular with an irregular beat\": a break in the rhythm during the pause.</p>" },
+        { title: "The sinus family at a glance", fig: { type: "heart", on: ["sa"] },
+          html: tbl(["Rhythm", "Rate", "Regular?", "The clue"], [
+              ["<strong>Normal sinus rhythm</strong>", "60-100", "Yes", "Everything normal"],
+              ["<strong>Sinus bradycardia</strong>", "under 60", "Yes", "Normal but slow"],
+              ["<strong>Sinus tachycardia</strong>", "100-160", "Yes", "Normal but fast"],
+              ["<strong>Sinus arrhythmia</strong>", "60-100", "No", "Speeds up and slows down; PP varies ≥ 0.12 s"],
+              ["<strong>Sinus arrest/pause</strong>", "Underlying", "Except the pause", "A gap with no P and no QRS"]]) }
+      ],
+      checks: [
+        K("Regular, upright P before every QRS, PR 0.16 s, narrow QRS, rate 48. What is it?", "Sinus bradycardia", ["Normal sinus rhythm", "Junctional rhythm", "1st degree AV block"], "Everything is sinus and normal except the rate, which is under 60."),
+        K("Regular, upright P before every QRS, narrow QRS, rate 125. What is it?", "Sinus tachycardia", ["Atrial flutter", "Ventricular tachycardia", "Sinus arrhythmia"], "Sinus P waves are visible in front of each QRS; only the rate is high (100-160)."),
+        K("All the beats look like normal sinus beats, but the rhythm speeds up and slows down in waves. What is it?", "Sinus arrhythmia", ["Sinus arrest", "Atrial fibrillation", "Wandering atrial pacemaker"], "Same normal P waves, with a PP interval that varies by 0.12 s or more. AF has no P waves; WAP has 3+ P shapes."),
+        K("Normal sinus beats, then a gap with no P wave and no QRS, then normal sinus beats again. What is it?", "Sinus arrest/pause", ["2nd degree AV block type II", "A PVC", "Sinus bradycardia"], "The SA node didn't fire at all, so there's no P. In an AV block you would see a P with no QRS after it.")
+      ],
+      remember: [
+        "Sinus = <strong>upright P before every QRS</strong>, normal PR, narrow QRS. Only rate or steadiness changes.",
+        "<strong>Brady under 60</strong>, <strong>NSR 60-100</strong>, <strong>tachy 100-160</strong>.",
+        "<strong>Sinus arrhythmia</strong>: speeds up and slows down (PP varies ≥ 0.12 s).",
+        "<strong>Sinus pause</strong>: a gap with <strong>no P</strong> (the SA node didn't fire)."
+      ],
+      practice: [
+        { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"Sinus rhythms\" and press New strip a few times for each one." },
+        { label: "Workbook strips", launch: "ekg-workbook-launch", note: "Tap the \"Sinus rhythms\" filter, then Name that strip." }
+      ]
+    },
+
+    /* ---------------- 7 ---------------- */
+    {
+      id: "learn-atrial", part: "p2", title: "Atrial rhythms", goal: "Something in the atria other than the SA node takes over, so the P waves change.",
+      pages: [
+        { title: "A new drummer in the atria", fig: { type: "strip", rhythm: "ekr-pac", marks: "p", label: "Normal beats plus one early atrial beat" },
+          html: "<p>Sometimes a spot in the atria <strong>other than the SA node</strong> (an <strong>ectopic focus</strong>) starts firing.</p>" +
+            "<ul><li>The <strong>P wave changes</strong>: the spark starts in a different place, so it crosses the atria by a different route and draws a different shape (pointed, flat or upside down).</li>" +
+            "<li>The <strong>QRS stays narrow</strong>: once the signal gets through the AV node, it uses the normal express lanes.</li></ul>" +
+            hy("Atrial rhythms: <strong>odd, extra, or missing P waves</strong>, but a <strong>narrow QRS</strong>.") +
+            "<p><strong>Why they matter:</strong> fast atrial rhythms shorten filling time and weaken the atrial kick, so cardiac output drops.</p>" },
+        { title: "PAC: one early atrial beat", fig: { type: "strip", rhythm: "ekr-pac", marks: "p" },
+          html: "<p>A <strong>premature atrial contraction</strong> is a single beat that comes <strong>early</strong>, with its own <strong>odd-looking P</strong>, followed by a <strong>normal narrow QRS</strong>. Then the normal rhythm carries on.</p>" +
+            "<p>It's an early <em>beat</em>, not a rhythm. Common triggers include caffeine, alcohol, pregnancy, hypoxia, electrolyte problems and digoxin toxicity. In a healthy heart, PACs don't matter (they may feel like a skipped beat).</p>" },
+        { title: "Atrial tachycardia: the focus fires fast", fig: { type: "strip", rhythm: "ekr-atach" },
+          html: "<p>The ectopic focus fires <strong>fast, usually 160-250</strong>, and overrides the SA node. The rhythm is regular and the QRS is narrow.</p>" +
+            "<p>At that speed the P waves are often <strong>buried in the T wave</strong> before them. When you can't tell whether a fast, narrow rhythm is atrial or junctional, it gets the umbrella name <strong>SVT</strong> (supraventricular tachycardia).</p>" },
+        { title: "WAP and MAT: the drummer keeps moving", fig: [{ type: "strip", rhythm: "ekr-wap", marks: "p" }, { type: "strip", rhythm: "ekr-mat", marks: "p" }],
+          html: "<p>Here the pacemaker <strong>wanders</strong> between several spots, so the P waves come in <strong>3 or more different shapes</strong> (one before each QRS), and the rhythm is irregular.</p>" +
+            tbl(["", "Rate", "Note"], [["<strong>Wandering atrial pacemaker</strong>", "<strong>60-100</strong>", "Can be normal; also drug toxicity (digitalis)"], ["<strong>Multifocal atrial tachycardia</strong>", "<strong>100-160</strong>", "Classic with a <strong>COPD exacerbation</strong>; often mistaken for AF"]]) +
+            hy("Same picture, different speed: <strong>under 100 = WAP</strong>, <strong>over 100 = MAT</strong>.") },
+        { title: "Atrial flutter: one loop, going round and round", fig: [{ type: "strip", rhythm: "ekr-flutter21", label: "Flutter, 2:1" }, { type: "strip", rhythm: "ekr-flutter41", label: "Flutter, 4:1" }],
+          html: "<p>In flutter, a signal gets stuck running in a <strong>loop</strong> around the atria (reentry), firing them <strong>250-350 times a minute</strong>. Each lap draws one flutter wave, so the baseline looks like a <strong>sawtooth</strong>.</p>" +
+            "<p>The toll booth can't let all of those through, so only every 2nd, 3rd or 4th one reaches the ventricles (a <strong>2:1, 3:1 or 4:1</strong> conduction ratio). That's why the QRS rate is much slower than the flutter rate.</p>" },
+        { title: "Atrial fibrillation: the atria quiver", fig: { type: "strip", rhythm: "ekr-af" },
+          html: "<p>In AF, <strong>many tiny loops</strong> fire chaotically all over the atria (over 350 a minute). The atria don't squeeze; they <strong>quiver</strong>. So there's <strong>no real P wave</strong>, just a <strong>wavy, chaotic baseline</strong>.</p>" +
+            "<p>The AV node is bombarded and lets signals through at random, so the QRS rhythm is <strong>irregularly irregular</strong>. If the ventricular rate is over 100, that's AF with <strong>rapid ventricular response (RVR)</strong>.</p>" +
+            hy("<strong>Why blood thinners?</strong> Quivering atria don't empty, so blood pools (especially in the left atrial appendage) and can clot. A clot that breaks off can cause a <strong>stroke</strong>. AF also loses the atrial kick.") },
+        { title: "The atrial family at a glance", fig: { type: "heart", on: ["atria"] },
+          html: tbl(["Rhythm", "Rate", "The clue"], [
+              ["<strong>PAC</strong>", "Underlying", "One early beat with an odd P, narrow QRS"],
+              ["<strong>Atrial tachycardia</strong>", "160-250", "Fast, regular, P often hidden in the T"],
+              ["<strong>WAP</strong>", "60-100", "3+ P shapes, irregular"],
+              ["<strong>MAT</strong>", "100-160", "3+ P shapes, irregular, fast"],
+              ["<strong>Atrial flutter</strong>", "Atria 250-350", "Sawtooth"],
+              ["<strong>Atrial fibrillation</strong>", "Atria over 350", "No P, wavy baseline, irregularly irregular"]]) }
+      ],
+      checks: [
+        K("The baseline looks like the teeth of a saw between narrow QRS complexes. What is it?", "Atrial flutter", ["Atrial fibrillation", "Multifocal atrial tachycardia", "Ventricular fibrillation"], "Each sawtooth wave is one lap of the loop around the atria (250-350 a minute)."),
+        K("Irregularly irregular, narrow QRS, no P waves, wavy baseline. What is it?", "Atrial fibrillation", ["Atrial flutter", "Sinus arrhythmia", "Wandering atrial pacemaker"], "No P + wavy baseline + no pattern at all = AF."),
+        K("Why are patients with atrial fibrillation often put on blood thinners?", "The quivering atria don't empty, so blood pools and can clot", ["The ventricular rate is over 200", "The QRS becomes wide", "The SA node stops working"], "Pooled blood (especially in the left atrial appendage) can clot and travel to the brain."),
+        K("Irregular, narrow QRS, rate 130, and at least three different P wave shapes. What is it?", "Multifocal atrial tachycardia", ["Wandering atrial pacemaker", "Atrial fibrillation", "Sinus tachycardia"], "3+ P shapes = WAP or MAT. Over 100 = MAT."),
+        K("One beat comes early with an odd-shaped P wave and a normal narrow QRS. What is it?", "A PAC", ["A PVC", "A sinus pause", "A dropped beat"], "Early beat + its own P + narrow QRS = premature atrial contraction.")
+      ],
+      remember: [
+        "Atrial rhythms: the <strong>P wave changes</strong> (odd, extra, sawtooth or gone) but the <strong>QRS stays narrow</strong>.",
+        "<strong>PAC</strong> = one early beat with an odd P. <strong>Atrial tach</strong> = 160-250, P hidden in the T.",
+        "3+ P shapes: <strong>WAP under 100</strong>, <strong>MAT over 100</strong> (COPD).",
+        "<strong>Flutter</strong> = sawtooth (one loop). <strong>AF</strong> = no P, wavy, irregularly irregular; clots → anticoagulate."
+      ],
+      practice: [
+        { label: "Look-alikes & study guide", launch: "ekg-compare-launch", note: "Flutter vs AF, WAP vs MAT, and more, side by side with the one question that splits them." },
+        { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"Atrial rhythms\" and draw a few of each." }
+      ]
+    },
+
+    /* ---------------- 8 ---------------- */
+    {
+      id: "learn-junctional", part: "p2", title: "Junctional rhythms", goal: "The AV junction paces from the middle, so the P wave goes backward or hides.",
+      pages: [
+        { title: "When the junction takes over", fig: { type: "heart", on: ["av", "atria", "his", "bb", "purk", "vent"] },
+          html: "<p>If the SA node is suppressed (hypoxia, ischemia, MI or drug toxicity, for example), the <strong>AV junction</strong> takes over as the drummer at its own rate, <strong>40-60</strong>.</p>" +
+            "<p>Because it fires from the <strong>middle</strong> of the heart, the signal goes two ways at once:</p>" +
+            "<ul><li><strong>Down</strong> to the ventricles the normal way, so the <strong>QRS is narrow</strong>.</li>" +
+            "<li><strong>Up</strong> into the atria <strong>backward</strong> (retrograde), so the <strong>P wave is upside down</strong>.</li></ul>" +
+            "<p>The atria and ventricles squeeze at about the same time, so the atrial kick is lost.</p>" },
+        { title: "Where did the P wave go?", fig: [{ type: "beat", labels: ["P", "R"], invP: true, pr: 0.09, caption: "Inverted P just before (short PR)" }, { type: "beat", labels: ["R"], noP: true, caption: "Hidden inside the QRS" }, { type: "beat", labels: ["R", "P"], pAfter: true, caption: "Inverted P after the QRS" }],
+          html: "<p>It depends on which gets the signal first, the atria or the ventricles:</p>" +
+            "<ul><li><strong>Atria first</strong>: an inverted P just <strong>before</strong> the QRS, with a <strong>short PR</strong>.</li>" +
+            "<li><strong>Both at once</strong>: the P is <strong>hidden inside the QRS</strong>, so you see no P.</li>" +
+            "<li><strong>Ventricles first</strong>: an inverted P <strong>after</strong> the QRS.</li></ul>" +
+            hy("<strong>Narrow QRS</strong> + P that is <strong>inverted, missing, or after the QRS</strong> = junctional.") },
+        { title: "Named by rate", fig: [{ type: "strip", rhythm: "ekr-jr", label: "Junctional (escape) rhythm, 40-60" }, { type: "strip", rhythm: "ekr-ajr", label: "Accelerated junctional, 60-100" }],
+          html: tbl(["Rhythm", "Rate"], [
+              ["<strong>Junctional bradycardia</strong>", "under 40"],
+              ["<strong>Junctional (escape) rhythm</strong>", "<strong>40-60</strong>, the junction's home rate"],
+              ["<strong>Accelerated junctional rhythm</strong>", "60-100"],
+              ["<strong>Junctional tachycardia</strong>", "100-180"]]) +
+            "<div class=\"box-mnemonic\"><span class=\"lbl\">Mnemonic</span>The junction's home rate is <strong>40-60</strong>. Below it = brady; above it up to 100 = accelerated; over 100 = tachy.</div>" +
+            "<p>All are regular with a narrow QRS. Only the rate changes the name.</p>" },
+        { title: "PJC: one early junctional beat", fig: { type: "strip", rhythm: "ekr-pjc", marks: "p" },
+          html: "<p>A <strong>premature junctional complex</strong> is one early beat from the junction: an early <strong>narrow</strong> QRS with an <strong>inverted, hidden, or after-the-QRS P</strong>.</p>" +
+            "<p>Compare it with a PAC: both are early and narrow, but a PAC has an upright (just odd-shaped) P in front, while a PJC's P is inverted or missing.</p>" +
+            "<p>More than 4-6 a minute deserves a closer look. Causes include digoxin toxicity, caffeine and an inferior MI.</p>" }
+      ],
+      checks: [
+        K("Regular, narrow QRS, rate 50, an inverted P wave just before each QRS with a short PR. What is it?", "Junctional (escape) rhythm", ["Sinus bradycardia", "Idioventricular rhythm", "1st degree AV block"], "Inverted P + narrow QRS = junctional, and 40-60 is the junction's own rate."),
+        K("Same picture as a junctional rhythm, but the rate is 85. What is it called?", "Accelerated junctional rhythm", ["Junctional tachycardia", "Normal sinus rhythm", "Junctional bradycardia"], "The junction's home rate is 40-60; 60-100 is accelerated; over 100 is tachycardia."),
+        K("Why is the P wave upside down in a junctional rhythm?", "The signal travels up through the atria backward (retrograde)", ["The atria are enlarged", "The SA node fires twice", "The ventricles fire first every time"], "The spark starts in the middle and spreads upward, the opposite of normal, so the P flips."),
+        K("Why is the QRS still narrow in a junctional rhythm?", "The signal still goes down the His bundle and bundle branches normally", ["The ventricles are smaller than usual", "The AV node speeds up conduction", "There is no QRS in junctional rhythms"], "Only the start point moved. Below the junction, the express lanes work as usual.")
+      ],
+      remember: [
+        "Junctional = <strong>narrow QRS</strong> + P that's <strong>inverted, hidden, or after the QRS</strong>.",
+        "The P flips because the atria are fired <strong>backward</strong> (retrograde).",
+        "Home rate <strong>40-60</strong> (escape); under 40 brady; 60-100 accelerated; over 100 tachy.",
+        "<strong>PJC</strong> = one early narrow beat with an inverted or hidden P."
+      ],
+      practice: [
+        { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"Junctional rhythms\" and look for where the P went on each strip." },
+        { label: "Look-alikes & study guide", launch: "ekg-compare-launch", note: "PAC vs PJC, and the junctional family by rate." }
+      ]
+    },
+
+    /* ---------------- 9 ---------------- */
+    {
+      id: "learn-ventricular", part: "p2", title: "Ventricular rhythms", goal: "The ventricles start the beat themselves: wide, bizarre, and often dangerous.",
+      pages: [
+        { title: "When the ventricles start the beat", fig: { type: "beat", labels: ["R", "T"], wide: true, noP: true, brackets: ["QRS"], times: true },
+          html: "<p>When the beat starts in the ventricle muscle itself, two things happen:</p>" +
+            "<ul><li><strong>No P wave</strong>: the atria didn't start it.</li>" +
+            "<li>A <strong>wide, bizarre QRS</strong> (0.12 s or more): the signal can't use the express lanes, so it creeps from cell to cell. The T wave often points the opposite way.</li></ul>" +
+            hy("<strong>Wide and bizarre, no P</strong> = think ventricular.") +
+            "<p><strong>Why they're dangerous:</strong> the ventricles squeeze out of step, so less blood gets pumped. Most ventricular rhythms are potentially life-threatening.</p>" },
+        { title: "PVC: one early wide beat", fig: [{ type: "strip", rhythm: "ekr-pvc", label: "Normal beats plus a PVC" }, { type: "strip", rhythm: "ekr-bigeminy", label: "Bigeminy: every other beat is a PVC" }],
+          html: "<p>A <strong>premature ventricular contraction</strong> is one <strong>early, wide, bizarre</strong> beat with no P in front, from an irritable spot in the ventricle.</p>" +
+            "<p>In ischemia, these PVCs warn that a dangerous rhythm may follow:</p>" +
+            "<ul><li><strong>Frequent</strong>: many per minute.</li><li><strong>Multifocal</strong>: different shapes, so more than one irritable spot.</li><li><strong>Early (R on T)</strong>: lands on the T wave before it.</li><li><strong>Grouped</strong>: bigeminy (every other beat), trigeminy (every third), couplets, runs.</li></ul>" +
+            "<p>The least worrying kind: occasional <strong>unifocal</strong> PVCs (all the same shape).</p>" },
+        { title: "The slow ones: last-resort backups", fig: [{ type: "strip", rhythm: "ekr-idio", label: "Idioventricular rhythm, 20-40" }, { type: "strip", rhythm: "ekr-aivr", label: "Accelerated idioventricular rhythm, 40-100" }],
+          html: "<p>If the SA node and the junction both fail, the ventricles pace themselves at <strong>20-40</strong>: <strong>idioventricular rhythm</strong>. It's regular and wide with no P. It's the last backup drummer, an <strong>agonal</strong> rhythm with little to no output.</p>" +
+            "<p>The same picture at <strong>40-100</strong> is <strong>accelerated idioventricular rhythm (AIVR)</strong>. It's classic <strong>after an MI or after clot-busting drugs</strong> (reperfusion). The patient may look fine, but it's still considered unstable.</p>" },
+        { title: "Ventricular tachycardia", fig: [{ type: "strip", rhythm: "ekr-vt", label: "VT (monomorphic)" }, { type: "strip", rhythm: "ekr-torsades", label: "Torsades de pointes" }],
+          html: "<p><strong>VT</strong>: wide, regular, <strong>100-250</strong>, no P waves. It comes in bursts or is sustained, <strong>with or without a pulse</strong>. Always treat it as serious.</p>" +
+            "<p><strong>Torsades de pointes</strong> is a polymorphic VT whose QRS complexes <strong>twist around the baseline</strong>, getting taller and shorter. It's the danger of a <strong>long QT</strong> (lesson 3).</p>" },
+        { title: "VF and asystole", fig: [{ type: "strip", rhythm: "ekr-vf", label: "Ventricular fibrillation" }, { type: "strip", rhythm: "ekr-asys", label: "Asystole" }],
+          html: "<p><strong>Ventricular fibrillation</strong>: chaotic firing all over the ventricles, so they <strong>quiver</strong> and pump nothing. You see a wavy line with no real QRS. It's the most common cause of cardiac arrest outside the hospital in adults. Treatment: <strong>prompt defibrillation</strong>.</p>" +
+            "<p><strong>Asystole</strong>: no electrical activity at all, a flat line. It is almost always terminal, and it is <strong>not shockable</strong>.</p>" },
+        { title: "The ventricular family at a glance", fig: { type: "heart", on: ["vent"] },
+          html: tbl(["Rhythm", "Rate", "The clue"], [
+              ["<strong>PVC</strong>", "Underlying", "One early wide beat, no P"],
+              ["<strong>Idioventricular</strong>", "20-40", "Slow, wide, regular"],
+              ["<strong>AIVR</strong>", "40-100", "Wide, regular; after MI or reperfusion"],
+              ["<strong>VT</strong>", "100-250", "Fast, wide, regular"],
+              ["<strong>Torsades</strong>", "Fast", "Wide, twisting; long QT"],
+              ["<strong>VF</strong>", "None", "Chaotic wavy line; shock"],
+              ["<strong>Asystole</strong>", "None", "Flat line; not shockable"]]) }
+      ],
+      checks: [
+        K("Wide QRS complexes at 180, regular, no P waves. What is it?", "Ventricular tachycardia", ["Sinus tachycardia", "Atrial flutter", "Accelerated idioventricular rhythm"], "Wide + fast (100-250) + no P = VT until proven otherwise."),
+        K("A chaotic, wavy line with no recognizable QRS complexes. What is it, and what does it need?", "Ventricular fibrillation; prompt defibrillation", ["Asystole; defibrillation", "Atrial fibrillation; a blood thinner", "Torsades; observation"], "VF = the ventricles quiver and pump nothing. It's shockable; asystole is not."),
+        K("Regular, wide QRS complexes at 32 per minute with no P waves. What is it?", "Idioventricular rhythm", ["Junctional rhythm", "Sinus bradycardia", "Ventricular tachycardia"], "The ventricles' own rate is 20-40, and the QRS is wide because they started the beat."),
+        K("Which kind of PVC is the least worrying?", "Occasional unifocal PVCs", ["Multifocal PVCs", "R-on-T PVCs", "PVCs in couplets"], "Multifocal, early (R on T), frequent and grouped PVCs all warn of a dangerous rhythm. Occasional same-shaped ones are the least concerning.")
+      ],
+      remember: [
+        "Ventricular = <strong>wide, bizarre QRS, no P</strong> (the signal crept cell to cell).",
+        "<strong>PVC</strong> = one early wide beat; worry if frequent, multifocal, R on T, or grouped.",
+        "By rate: <strong>idioventricular 20-40</strong>, <strong>AIVR 40-100</strong>, <strong>VT 100-250</strong>.",
+        "<strong>Torsades</strong> twists (long QT). <strong>VF</strong> = chaos, shock it. <strong>Asystole</strong> = flat, not shockable."
+      ],
+      practice: [
+        { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"Ventricular rhythms\" and \"Early beats\"." },
+        { label: "Look-alikes & study guide", launch: "ekg-compare-launch", note: "Idioventricular vs AIVR vs VT, and VF vs asystole." }
+      ]
+    },
+
+    /* ---------------- 10 ---------------- */
+    {
+      id: "learn-blocks", part: "p2", title: "AV blocks", goal: "The toll booth gets slow, tired, or closes completely.",
+      pages: [
+        { title: "Back to the toll booth", fig: { type: "heart", on: ["sa", "atria", "av"] },
+          html: "<p>In an AV block, the SA node fires normally, so the <strong>P waves are normal and on time</strong>. The trouble is getting through the AV node and the wires below it.</p>" +
+            "<p>For every block, look at two things:</p><ul><li>Is there a <strong>QRS after every P</strong>?</li><li>What is the <strong>PR interval</strong> doing: long, getting longer, or all over the place?</li></ul>" +
+            "<p>Causes include ischemia or MI, degeneration of the conduction system, congenital problems and medications (especially digitalis).</p>" },
+        { title: "1st degree: every car gets through, slowly", fig: [{ type: "beat", labels: ["P", "R"], brackets: ["PR"], pr: 0.3, times: true }, { type: "strip", rhythm: "ekr-avb1", marks: "p" }],
+          html: "<p>Every P is followed by a QRS, but the <strong>PR is longer than 0.20 s</strong> (more than 5 small boxes), and it's the <strong>same length every beat</strong>.</p>" +
+            "<p>Nothing is actually blocked; it's just slow. It's usually harmless, but it can progress, especially with an inferior MI.</p>" },
+        { title: "2nd degree type I (Wenckebach): longer, longer, drop", fig: { type: "strip", rhythm: "ekr-avb2i", marks: "p" },
+          html: "<p>The toll booth gets more and more <strong>tired</strong>: the <strong>PR gets longer with each beat</strong> until one P <strong>doesn't get through</strong> (no QRS after it). Then the PR resets and the cycle repeats.</p>" +
+            "<div class=\"box-mnemonic\"><span class=\"lbl\">Mnemonic</span>\"<strong>Longer, longer, longer, drop</strong>: now you've got a Wenckebach.\"</div>" +
+            "<p>The block is <strong>at the AV node</strong>. It's often seen with an acute <strong>inferior MI</strong> and can be temporary.</p>" },
+        { title: "2nd degree type II: sudden drops", fig: { type: "strip", rhythm: "ekr-avb2ii", marks: "p" },
+          html: "<p>The PR is <strong>constant</strong> on every conducted beat, then <strong>suddenly</strong> a P has no QRS after it, with no warning lengthening first.</p>" +
+            "<p>The block is <strong>lower</strong>, in the His bundle or bundle branches, so the QRS may be wide. It's associated with an <strong>anterior wall MI</strong>.</p>" +
+            hy("Type II is <strong>more dangerous</strong> than type I: it more often progresses to complete heart block or asystole.") },
+        { title: "3rd degree: the toll booth is closed", fig: { type: "strip", rhythm: "ekr-avb3", marks: "p" },
+          html: "<p>No signals get through. The atria keep beating to the SA node, and a <strong>backup drummer below the block</strong> paces the ventricles. The two run <strong>independently</strong>.</p>" +
+            "<ul><li><strong>More P waves than QRS complexes</strong>, and the P waves <strong>march through</strong> at their own steady rate, even landing on the QRS or T.</li><li>The PR is all over the place because there is no real relationship.</li></ul>" +
+            "<p>The ventricular rate depends on the backup: <strong>narrow at 40-60</strong> if the junction is pacing, <strong>wide at 20-40</strong> if the ventricles are (more emergent). All forms are potentially life-threatening.</p>" },
+        { title: "The four blocks at a glance", fig: { type: "heart", on: ["av", "his", "bb"] },
+          html: tbl(["Block", "PR", "Dropped QRS?"], [
+              ["<strong>1st degree</strong>", "Constant, over 0.20 s", "No"],
+              ["<strong>2nd degree type I</strong>", "Gets <strong>longer</strong> each beat", "Yes, then the PR resets"],
+              ["<strong>2nd degree type II</strong>", "<strong>Constant</strong>", "Yes, suddenly"],
+              ["<strong>3rd degree</strong>", "<strong>No relationship</strong>", "P waves and QRS are independent"]]) +
+            '<div class="box-mnemonic"><span class="lbl">Picture it</span>1st = slow toll booth. Type I = a tired toll booth that takes a break. Type II = a gate that slams shut without warning. 3rd = closed, and a backup drummer runs the ventricles.</div>' }
+      ],
+      checks: [
+        K("The PR gets longer with each beat until a P wave has no QRS after it, then the pattern repeats. What is it?", "2nd degree AV block type I (Wenckebach)", ["2nd degree AV block type II", "1st degree AV block", "3rd degree AV block"], "Longer, longer, longer, drop = Wenckebach."),
+        K("Every P is followed by a QRS, and the PR is always 0.32 s. What is it?", "1st degree AV block", ["Normal sinus rhythm", "2nd degree AV block type I", "Junctional rhythm"], "Constant PR over 0.20 s with no dropped beats = 1st degree."),
+        K("The PR is constant, then suddenly a P wave is not followed by a QRS. What is it?", "2nd degree AV block type II", ["2nd degree AV block type I", "Sinus arrest", "1st degree AV block"], "No warning lengthening before the drop = type II."),
+        K("P waves march through at their own regular rate, with no relationship to the slower QRS complexes. What is it?", "3rd degree (complete) AV block", ["2nd degree AV block type II", "Atrial flutter", "Sinus bradycardia"], "Atria and ventricles beat independently: complete heart block."),
+        K("Which second-degree block is more dangerous?", "Type II", ["Type I (Wenckebach)", "They're equally dangerous", "Neither is ever dangerous"], "Type II is lower in the system and more often progresses to complete heart block or asystole.")
+      ],
+      remember: [
+        "AV blocks: the <strong>P waves are normal</strong>; ask whether every P gets a QRS, and what the PR is doing.",
+        "<strong>1st</strong> = PR over 0.20 s, constant, nothing dropped.",
+        "<strong>Type I</strong> = longer, longer, drop. <strong>Type II</strong> = constant PR, sudden drop (more dangerous).",
+        "<strong>3rd</strong> = P waves march through, unrelated to the QRS; a backup drummer paces the ventricles."
+      ],
+      practice: [
+        { label: "Look-alikes & study guide", launch: "ekg-compare-launch", note: "The AV blocks side by side: the one question that splits them is what the PR does." },
+        { label: "Rhythm trainer", launch: "ekg-rhythms-launch", note: "Open \"AV blocks\" and draw several of each until the PR pattern jumps out." },
+        { label: "Workbook strips", launch: "ekg-workbook-launch", note: "Tap the \"AV blocks\" filter, then Name that strip." }
+      ]
     }
   ];
 

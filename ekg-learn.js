@@ -39,7 +39,9 @@
   function beatTimes(o) {
     o = o || {};
     var pr = o.pr || 0.155, q = 0.02 + pr, wide = !!o.wide;
-    return { p0: 0.02, pPeak: 0.065, p1: 0.11, q0: q, j: q + (wide ? 0.15 : 0.07), tPeak: q + (wide ? 0.36 : 0.29), tEnd: q + (wide ? 0.47 : 0.38), wide: wide, noP: !!o.noP, invP: !!o.invP };
+    var r = { p0: 0.02, pPeak: 0.065, p1: 0.11, q0: q, j: q + (wide ? 0.15 : 0.07), tPeak: q + (wide ? 0.36 : 0.29), tEnd: q + (wide ? 0.47 : 0.38), wide: wide, noP: !!o.noP, invP: !!o.invP || !!o.pAfter };
+    if (o.pAfter) { r.pPeak = r.j + 0.05; r.p0 = r.pPeak - 0.045; r.p1 = r.pPeak + 0.045; }
+    return r;
   }
   function beatValue(t, b) {
     var v = 0;
@@ -201,7 +203,7 @@
       out.qrs.forEach(function (t, i) { add += '<text class="lh-mark" x="' + f1(t * 150) + '" y="16" text-anchor="middle">' + (i + 1) + '</text>'; });
       add += '<text class="lh-mark lh-mark-sec" x="4" y="176">0 s</text><text class="lh-mark lh-mark-sec" x="450" y="176" text-anchor="middle">3 s</text><text class="lh-mark lh-mark-sec" x="896" y="176" text-anchor="end">6 s</text>';
     }
-    if (spec.marks === "p") out.atrial.forEach(function (t) { if (t >= 0 && t <= 6) add += '<text class="lh-mark lh-mark-p" x="' + f1(t * 150) + '" y="16" text-anchor="middle">P</text>'; });
+    if (spec.marks === "p") out.atrial.forEach(function (t) { if (t >= 0 && t <= 6) add += '<text class="lh-mark lh-mark-p" x="' + f1(t * 150) + '" y="32" text-anchor="middle">P</text>'; });
     if (add) svg = svg.replace(/<\/svg>\s*$/, add + "</svg>");
     var extra = spec.marks === "count" ? '<p class="lh-caption">' + out.qrs.length + ' QRS complexes in 6 seconds × 10 = about <strong>' + out.qrs.length * 10 + '</strong> per minute.</p>' : "";
     return '<div class="lh-strip" data-lh-strip="' + escapeHtml(JSON.stringify(spec)) + '"><p class="lh-strip-name">' + escapeHtml(spec.label || r.name) + '</p><div class="rs-box">' + svg + '</div>' + extra +
