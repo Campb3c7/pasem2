@@ -158,6 +158,12 @@
           <span class="lh-start-copy">Short lessons that teach it properly before the practice tools: the heart's wiring, what each wave means, measuring, the five questions for every strip, then each rhythm family and the 12-lead.</span>
           <span class="lh-start-status" id="ekg-learn-status"></span>
         </button>
+        <p class="eyebrow">EKG flashcards</p>
+        <button class="walkthrough-launch rhythms-launch fc-launch" id="ekg-flash-launch" type="button">
+          <span class="walkthrough-launch-icon">❏</span>
+          <span><strong>Flashcards: Learn</strong><small>16 term-and-definition sets, one per objective, studied like Quizlet Learn: 4 choices, short rounds, missed cards come back until mastered. Answer with the term, the definition, or both; study one set or all of them.</small></span>
+          <span aria-hidden="true">›</span>
+        </button>
         <p class="eyebrow">EKG practice tools</p>
         <div class="course-tools-grid">
           <button class="walkthrough-launch rhythms-launch" id="ekg-ladder-launch" type="button">
@@ -314,6 +320,10 @@
       <button class="back-button" id="ekg-ladder-back" type="button">← EKG</button>
       <div id="ekg-ladder-content"></div>
     </section>
+    <section id="ekg-flash-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-flash-back" type="button">← EKG</button>
+      <div id="ekg-flash-content"></div>
+    </section>
     <section id="ekg-workbook-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-workbook-back" type="button">← EKG</button>
       <div id="ekg-workbook-content"></div>
@@ -469,6 +479,7 @@
   <script src="data/ekg-class-polls.js"></script>
   <script src="data/ekg-learn.js"></script>
   <script src="data/ekg-ladder.js"></script>
+  <script src="data/ekg-flashcards.js"></script>
   <script src="data/shock-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
@@ -498,6 +509,7 @@
   <script src="ekg-patterns.js"></script>
   <script src="ekg-mock.js"></script>
   <script src="ekg-ladder.js"></script>
+  <script src="ekg-flashcards.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="shock-learn.js"></script>
