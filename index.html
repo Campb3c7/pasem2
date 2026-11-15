@@ -160,6 +160,11 @@
         </button>
         <p class="eyebrow">EKG practice tools</p>
         <div class="course-tools-grid">
+          <button class="walkthrough-launch rhythms-launch" id="ekg-ladder-launch" type="button">
+            <span class="walkthrough-launch-icon">☰</span>
+            <span><strong>Rhythm ladder</strong><small>Every rhythm group in short tap-and-pick rounds on fresh strips: count it, steady or not, P waves, PR, narrow or wide, which one, then name it. Misses come back.</small></span>
+            <span aria-hidden="true">›</span>
+          </button>
           <button class="walkthrough-launch rhythms-launch" id="ekg-workbook-launch" type="button">
             <span class="walkthrough-launch-icon">▤</span>
             <span><strong>Workbook strips</strong><small>All 174 real strips from your Independent EKG Workbook with the answer key: read each one step by step, quick-name them, or browse by rhythm</small></span>
@@ -304,6 +309,10 @@
     <section id="ekg-patterns-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-patterns-back" type="button">← EKG</button>
       <div id="ekg-patterns-content"></div>
+    </section>
+    <section id="ekg-ladder-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-ladder-back" type="button">← EKG</button>
+      <div id="ekg-ladder-content"></div>
     </section>
     <section id="ekg-workbook-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-workbook-back" type="button">← EKG</button>
@@ -459,6 +468,7 @@
   <script src="data/ekg-patterns.js"></script>
   <script src="data/ekg-class-polls.js"></script>
   <script src="data/ekg-learn.js"></script>
+  <script src="data/ekg-ladder.js"></script>
   <script src="data/shock-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
@@ -487,6 +497,7 @@
   <script src="ekg-mi.js"></script>
   <script src="ekg-patterns.js"></script>
   <script src="ekg-mock.js"></script>
+  <script src="ekg-ladder.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="shock-learn.js"></script>

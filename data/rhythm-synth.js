@@ -1,7 +1,7 @@
 /*
   Rhythm strip synthesizer (Cardio Part 2 Rhythm strips). Pure functions, no DOM, so validators
   can load it. RhythmSynth.make(spec, seed) builds one 6-second lead II-style strip:
-    { qrs: [times in s], atrial: [P / flutter times], rate, svg }.
+    { qrs: [times in s], wide: [true for wide beats], atrial: [P / flutter times], rate, svg }.
   Paper: 25 mm/s and 10 mm/mV; 1 small box = 0.04 s, 1 large box = 0.2 s. The drawing is
   schematic (sums of smooth waves), made to show the teaching features, not a recorded EKG.
   spec.gen picks the generator; the other spec fields are its ranges (see GENERATORS).
@@ -248,13 +248,14 @@
       var y = Math.max(2, Math.min(H - 2, Y0 - v * PX_MV));
       points.push((t * PX_S).toFixed(1) + "," + y.toFixed(1));
     }
-    var visible = parts.q.filter(function (q) { return q.t >= 0 && q.t < T; }).map(function (q) { return q.t; });
+    var visibleBeats = parts.q.filter(function (q) { return q.t >= 0 && q.t < T; });
+    var visible = visibleBeats.map(function (q) { return q.t; });
     var rate = countRate(parts.q);
     if (rate == null && visible.length === 1) rate = 10;
     var atrial = (parts.atrial || parts.p.map(function (p) { return p.t; })).filter(function (x) { return x >= 0 && x < T; });
     var svg = '<svg class="rs-strip" viewBox="0 0 ' + T * PX_S + " " + H + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="6-second rhythm strip">' +
       grid() + '<polyline class="rs-trace" points="' + points.join(" ") + '"/></svg>';
-    return { qrs: visible, count: visible.length, atrial: atrial, rate: rate, chaotic: !!parts.chaotic, svg: svg };
+    return { qrs: visible, wide: visibleBeats.map(function (q) { return q.kind === "wide"; }), count: visible.length, atrial: atrial, rate: rate, chaotic: !!parts.chaotic, svg: svg };
   }
 
   window.RhythmSynth = { make: make, generators: GENERATORS, seconds: T };
