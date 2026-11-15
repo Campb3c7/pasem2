@@ -1,4 +1,4 @@
-/* EKG Rhythm ladder: each rhythm group as short rounds of taps and picks on fresh strips.
+/* EKG Rhythm ladder: "which rhythm is it?" multiple choice on fresh strips, by rhythm group.
    Data: window.EKG_LADDER (data/ekg-ladder.js) + window.EKG_RHYTHMS; strips: window.RhythmSynth.
    Misses come back later in the round and go into "Redo misses" (Leitner boxes). Progress:
    pasem2:ekg-ladder:progress = { rungs: { id: { stars } }, items: { "rung|rhythm": { box, at } } }. */
@@ -232,7 +232,7 @@
       '<p>Short rounds. One thing at a time.</p><span class="diseases-count-pill">★ ' + totalStars + ' / ' + maxStars + '</span></div>';
     html += '<div class="murmur-quick rs-quick">' +
       (next ? '<button class="murmur-quick-card" type="button" id="ld-continue"><span>Next round</span><strong>' + esc(next.title) + ' →</strong><small>' + esc(next.groupRef.title) + ' · ' + next.n + ' questions</small></button>'
-        : '<button class="murmur-quick-card" type="button" id="ld-continue"><span>Every round done</span><strong>Name it: everything →</strong><small>Fresh strips every time</small></button>') +
+        : '<button class="murmur-quick-card" type="button" id="ld-continue"><span>Every round done</span><strong>Every rhythm →</strong><small>Fresh strips every time</small></button>') +
       '<button class="murmur-quick-card" type="button" id="ld-review"' + (due ? "" : " disabled") + '><span>Misses</span><strong>Redo misses' + (due ? " (" + due + ")" : "") + ' →</strong><small>' + (due ? "Up to " + REVIEW_LENGTH + " quick ones" : "Nothing waiting") + '</small></button></div>';
     html += '<div class="struggle-group-list">';
     data.groups.forEach(function (g, i) {
@@ -242,7 +242,7 @@
     });
     html += '</div>';
     content.innerHTML = html;
-    el("ld-continue").addEventListener("click", function () { startRound(next || rungById["ld-m-name"]); });
+    el("ld-continue").addEventListener("click", function () { startRound(next || rungById["ld-mix-1"]); });
     el("ld-review").addEventListener("click", startReview);
     content.querySelectorAll("[data-ld-group]").forEach(function (b) {
       b.addEventListener("click", function () { renderGroup(data.groups.find(function (g) { return g.id === b.dataset.ldGroup; })); });
@@ -288,7 +288,7 @@
     if (state.pos >= state.steps.length) { renderDone(); return; }
     var step = state.steps[state.pos], rung = step.rung, q = buildQuestion(rung, step.rhythm);
     step.q = q;
-    var ask = rung.kind === "pick" ? rung.ask : rung.kind === "name" ? "Name it." : rung.kind === "family" ? "Which group?" :
+    var ask = rung.kind === "pick" ? rung.ask : rung.kind === "name" ? "Which rhythm is it?" : rung.kind === "family" ? "Which group?" :
       rung.kind === "which" ? "Which is " + step.rhythm.name + "?" : rung.kind === "tapQrs" ? "Tap every QRS." : rung.kind === "tapP" ? "Tap every P wave." :
       rung.kind === "tapEarly" ? "Tap the early beat." : rung.kind === "tapDrop" ? "Tap the P with no QRS." : "Tap the pause.";
     var stripsHtml = rung.kind === "which"

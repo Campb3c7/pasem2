@@ -58,7 +58,7 @@ function checkPick(rung, r, m) {
 
 for (const g of data.groups) {
   assert(/^[a-z]+$/.test(g.id) && g.title, 'bad group ' + g.id);
-  assert(g.rungs.length >= 3, g.id + ' needs 3+ rounds');
+  assert(g.rungs.length >= 1, g.id + ' needs a round');
   for (const rung of g.rungs) {
     rungCount++;
     assert(/^ld-[a-z0-9-]+$/.test(rung.id), 'bad rung id ' + rung.id);
@@ -66,7 +66,7 @@ for (const g of data.groups) {
     ids.add(rung.id);
     assert(KINDS.includes(rung.kind), rung.id + ' unknown kind ' + rung.kind);
     assert(rung.title && rung.title.length <= 32, rung.id + ' title missing or too long');
-    assert(Number.isInteger(rung.n) && rung.n >= 3 && rung.n <= 12, rung.id + ' n should be 3-12');
+    assert(Number.isInteger(rung.n) && rung.n >= 3 && rung.n <= 15, rung.id + ' n should be 3-15');
     let pool = [];
     if (rung.kind === 'pick') {
       const keys = Object.keys(rung.options);
@@ -84,7 +84,9 @@ for (const g of data.groups) {
     } else {
       pool = rung.pool === 'all' ? Object.keys(byId) : rung.pool;
       assert(Array.isArray(pool) && pool.length >= 1, rung.id + ' needs a pool');
-      if (rung.kind === 'name') assert(pool.length >= 2, rung.id + ' name pool needs 2+');
+      if (rung.kind === 'name') assert(pool.length >= 3, rung.id + ' name pool needs 3+');
+      // Anna: in a group's round, every choice comes from that group (the engine draws choices from the pool only).
+      if (g.id !== 'mixed') { const fams = new Set(pool.map(id => byId[id] && rhythms.groups.find(rg => rg.rhythms.includes(byId[id])).id)); assert(fams.size === 1, rung.id + ' mixes rhythm groups'); }
     }
     for (const id of pool) assert(byId[id], rung.id + ' unknown rhythm ' + id);
     for (const id of new Set(pool)) {
