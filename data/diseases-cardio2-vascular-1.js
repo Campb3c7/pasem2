@@ -47,7 +47,7 @@
       Q("workup", "A diabetic with CKD has an ABI of 1.6. What does it mean and what next?", ["Non-compressible calcified arteries; get a toe-brachial index", "Normal; no further testing", "Severe PAD; amputate", "DVT; get a duplex"], 0, "ABI > 1.4 = calcified vessels; TBI clarifies."),
       Q("workup", "How is the ABI calculated?", ["Ankle systolic pressure divided by brachial systolic pressure", "Brachial divided by ankle", "Ankle diastolic divided by brachial diastolic", "Toe pressure minus arm pressure"], 0, "Ankle SBP ÷ brachial SBP."),
       Q("treatment", "Which claudication drug is contraindicated in heart failure?", ["Cilostazol", "Aspirin", "Clopidogrel", "Atorvastatin"], 0, "Cilostazol increases mortality in CHF."),
-      Q("treatment", "Which therapy reliably improves claudication symptoms?", ["Structured exercise therapy", "Bed rest", "Compression stockings", "Leg elevation"], 0, "Structured exercise improves symptoms."),
+      Q("treatment", "Which therapy reliably improves claudication symptoms?", ["Structured exercise therapy", "Bed rest", "Compression stockings", "Leg elevation"], 0, "Regular walking builds collaterals and improves muscle oxygen use, so patients walk farther."),
       Q("presentation", "Which skin finding fits severe PAD?", ["Shiny hairless skin with dependent rubor", "Brown hemosiderin staining at the ankle", "Pitting edema to the knee", "Varicosities"], 0, "Arterial insufficiency: shiny, hairless, cool skin, thick nails, dependent rubor; edema is mild."),
       Q("overview", "A PAD patient has foot rest pain and a nonhealing toe ulcer for 3 weeks. Category?", ["Chronic limb-threatening ischemia", "Asymptomatic PAD", "Acute limb ischemia", "Chronic symptomatic PAD"], 0, "Rest pain, nonhealing wounds or gangrene > 2 weeks = CLTI."),
       Q("overview", "What is the most important prognostic concern in PAD?", ["High risk of MI and stroke", "Amputation in most patients", "Venous ulcers", "Pulmonary embolism"], 0, "PAD confers a high 10-year CVD risk; ~20% have a CV event."),
@@ -68,9 +68,9 @@
       Q("overview", "A 70-year-old's legs tingle and ache when he stands to wash dishes; it eases when he sits or leans on a cart. Pulses are normal. Diagnosis?", ["Pseudoclaudication from lumbar spinal stenosis", "PAD claudication", "DVT", "Acute limb ischemia"], 0, "Pain on standing, relief with sitting or flexion."),
       Q("overview", "Most specific finding for pseudoclaudication?", ["No pain while sitting", "Pain after a set walking distance", "Absent pulses", "Shiny hairless skin"], 0, "No pain with sitting was the most specific finding."),
       Q("overview", "What relieves PAD claudication but NOT pseudoclaudication?", ["Simply standing still", "Sitting down", "Bending forward", "Lying flat"], 0, "Claudication resolves with rest even standing; spinal stenosis needs flexion or sitting."),
-      Q("workup", "Which three causes of calf pain can't be missed?", ["PAD claudication, ischemic leg, DVT", "Strain, Baker cyst, varicose veins", "Myositis, vasculitis, tendon rupture", "Gout, cellulitis, cramps"], 0, "The lecture's can't-miss list."),
+      Q("workup", "Which three causes of calf pain can't be missed?", ["PAD claudication, ischemic leg, DVT", "Strain, Baker cyst, varicose veins", "Myositis, vasculitis, tendon rupture", "Gout, cellulitis, cramps"], 0, "Claudication, an ischemic leg and DVT can each threaten the limb or life."),
       Q("overview", "Is pseudoclaudication caused by PAD?", ["No, it is a spinal cause that mimics PAD", "Yes, by small vessel PAD", "Yes, by aortoiliac disease", "Only in diabetics"], 0, "Not a condition caused by PAD; important to differentiate."),
-      Q("overview", "What posture makes pseudoclaudication worse?", ["Standing erect", "Sitting", "Leaning forward", "Lying on the side"], 0, "Exacerbated by standing erect.")
+      Q("overview", "What posture makes pseudoclaudication worse?", ["Standing erect", "Sitting", "Leaning forward", "Lying on the side"], 0, "Standing extends the spine and narrows the canal, compressing the nerves in spinal stenosis.")
     ]),
 
     D("vas1-leriche", "Leriche Syndrome (Aortoiliac Occlusive Disease)", "Aortoiliac atherosclerosis: buttock/thigh/hip claudication, impotence, weak femoral pulses; aortoiliac bypass.", [
@@ -82,11 +82,11 @@
         ["Treatment", "<strong>Aortoiliac (aortobifemoral) bypass graft</strong>"]
       ]) + Mn("Leriche triad", "Buttock claudication + impotence + absent femoral pulses."))
     ], [
-      Q("overview", "A 58-year-old smoker has buttock and thigh claudication, erectile dysfunction and weak femoral pulses. Diagnosis?", ["Leriche syndrome", "Popliteal entrapment", "Spinal stenosis", "Buerger disease"], 0, "Aortoiliac occlusive disease."),
+      Q("overview", "A 58-year-old smoker has buttock and thigh claudication, erectile dysfunction and weak femoral pulses. Diagnosis?", ["Leriche syndrome", "Popliteal entrapment", "Spinal stenosis", "Buerger disease"], 0, "An aortoiliac blockage starves the buttocks, thighs and penis, and weakens femoral pulses."),
       Q("overview", "Where is the blockage in Leriche syndrome?", ["Distal aorta and iliac arteries", "Superficial femoral artery", "Tibial arteries", "Renal arteries"], 0, "Severe atherosclerosis of the abdominal aorta and iliacs."),
       Q("overview", "Treatment for Leriche syndrome?", ["Aortoiliac bypass graft", "Cilostazol alone", "Warfarin", "Sympathectomy"], 0, "Aortoiliac bypass graft; bypass is also indicated for vasculogenic ED."),
       Q("overview", "Where is the claudication in Leriche syndrome?", ["Buttock, thigh and hip", "Calf only", "Foot arch", "Arms"], 0, "Proximal lesion = proximal claudication."),
-      Q("overview", "Which pulse is weak in Leriche syndrome?", ["Femoral", "Radial", "Carotid", "Only dorsalis pedis with normal femorals"], 0, "Poor femoral pulses."),
+      Q("overview", "Which pulse is weak in Leriche syndrome?", ["Femoral", "Radial", "Carotid", "Only dorsalis pedis with normal femorals"], 0, "The blockage is above the femoral arteries, so femoral pulses are weak."),
       Q("overview", "Which sexual symptom is part of Leriche syndrome?", ["Erectile dysfunction", "Priapism", "Infertility", "Gynecomastia"], 0, "Often associated with erectile dysfunction.")
     ]),
 
@@ -117,9 +117,9 @@
       S("treatment", "Treatment", "<p>Vascular surgery consult; revascularize when indicated (doesn't revive dead tissue); amputation/debridement when indicated. <strong>Not a surgical emergency.</strong> <strong>No antibiotics</strong> unless infection is suspected. Manage the underlying disease.</p>" + HY("Dry = dead, dark, demarcated, no drama (not emergent, no antibiotics)."))
     ], [
       Q("overview", "A PAD patient's toe is black, dry and shriveled with a sharp line between dead and healthy tissue. Diagnosis?", ["Dry gangrene", "Wet gangrene", "Gas gangrene", "Frostnip"], 0, "Dry, black, clearly demarcated eschar."),
-      Q("treatment", "Are antibiotics needed for dry gangrene?", ["Not unless infection is suspected", "Always, IV", "Always, oral", "Only clindamycin"], 0, "Dry gangrene is sterile."),
+      Q("treatment", "Are antibiotics needed for dry gangrene?", ["Not unless infection is suspected", "Always, IV", "Always, oral", "Only clindamycin"], 0, "Dry gangrene is dead but uninfected tissue, so antibiotics are only for signs of infection."),
       Q("treatment", "Is dry gangrene a surgical emergency?", ["No", "Yes, operate within 1 hour", "Yes, it causes sepsis", "Only in diabetics"], 0, "Not a surgical emergency, unlike wet or gas gangrene."),
-      Q("overview", "What happens to dry gangrene if it isn't removed?", ["Autoamputation", "Full recovery", "Conversion to DVT", "Spread to the heart"], 0, "Autoamputation will eventually occur."),
+      Q("overview", "What happens to dry gangrene if it isn't removed?", ["Autoamputation", "Full recovery", "Conversion to DVT", "Spread to the heart"], 0, "Dead tissue dries out and separates at the demarcation line on its own."),
       Q("overview", "Which is a cause of dry gangrene?", ["Frostbite", "Clostridium perfringens", "Deep contaminated wound", "Recent bowel surgery"], 0, "PAD, vasculitis and cold injury."),
       Q("treatment", "Will revascularization bring dead gangrenous tissue back?", ["No", "Yes, always", "Yes, if done within a week", "Only with hyperbaric oxygen"], 0, "Revascularization does not restore what is dead.")
     ]),
@@ -151,13 +151,13 @@
       ]) + "<p>Mortality <strong>80–90% untreated</strong>, 10–25% treated.</p>"),
       S("treatment", "Treatment", "<p><strong>Immediate surgical exploration and debridement</strong> (don't delay for imaging; X-ray/CT may show gas). Empiric <strong>vancomycin + piperacillin-tazobactam + clindamycin</strong>; confirmed: <strong>IV penicillin G + clindamycin</strong>. <strong>Clindamycin suppresses toxin production</strong>. IV fluids, tetanus prophylaxis.</p>" + HY("Pain out of proportion + crepitus after trauma or surgery = gas gangrene → OR now + clindamycin."))
     ], [
-      Q("presentation", "Two days after a deep farm injury, a man has severe leg pain out of proportion to exam, crepitus, bronze skin and dishwater drainage. Diagnosis?", ["Clostridial myonecrosis (gas gangrene)", "Dry gangrene", "Cellulitis", "DVT"], 0, "Classic gas gangrene."),
-      Q("overview", "Most common organism in gas gangrene?", ["Clostridium perfringens", "Staph aureus", "Strep pyogenes", "Pseudomonas"], 0, "C. perfringens."),
+      Q("presentation", "Two days after a deep farm injury, a man has severe leg pain out of proportion to exam, crepitus, bronze skin and dishwater drainage. Diagnosis?", ["Clostridial myonecrosis (gas gangrene)", "Dry gangrene", "Cellulitis", "DVT"], 0, "Deep dirty wounds let Clostridium grow; gas causes crepitus and toxins destroy muscle."),
+      Q("overview", "Most common organism in gas gangrene?", ["Clostridium perfringens", "Staph aureus", "Strep pyogenes", "Pseudomonas"], 0, "C. perfringens is an anaerobe from soil that thrives in deep dirty wounds."),
       Q("treatment", "Why is clindamycin added for gas gangrene?", ["It inhibits bacterial toxin production", "It covers MRSA best", "It is the only drug that reaches muscle", "It prevents tetanus"], 0, "Clindamycin suppresses clostridial toxin production."),
       Q("treatment", "Empiric antibiotics for suspected gas gangrene?", ["Vancomycin + piperacillin-tazobactam + clindamycin", "Cephalexin alone", "Doxycycline", "Amoxicillin"], 0, "Broad coverage plus clindamycin; then PCN G + clindamycin once confirmed."),
       Q("treatment", "Most important treatment for gas gangrene?", ["Immediate surgical exploration and debridement", "Wait for CT results", "Hyperbaric oxygen first", "Antibiotics alone"], 0, "Surgical exploration must not be delayed."),
       Q("presentation", "Which vital sign clue suggests clostridial infection?", ["Tachycardia out of proportion to fever", "Bradycardia", "Hypertension", "Hypothermia"], 0, "Low-grade fever with disproportionate tachycardia."),
-      Q("overview", "Mortality of untreated gas gangrene?", ["80-90%", "1-2%", "10%", "50%"], 0, "80-90% untreated; 10-25% treated.")
+      Q("overview", "Mortality of untreated gas gangrene?", ["80-90%", "1-2%", "10%", "50%"], 0, "The toxins spread fast and destroy tissue, so almost everyone dies without treatment.")
     ]),
 
     D("vas1-aaa", "Abdominal Aortic Aneurysm (AAA)", "Aorta ≥ 3 cm in older male smokers: usually silent; US screening and surveillance; repair at 5.5 cm (men) / 5.0 cm (women).", [
@@ -187,7 +187,7 @@
       Q("presentation", "A 75-year-old male smoker collapses, then has abdominal and back pain with BP 95/60. Diagnosis to exclude first?", ["Ruptured abdominal aortic aneurysm", "Renal colic", "Vasovagal syncope", "Diverticulitis"], 0, "Older patient with syncope and abdominal pain: suspect rupture."),
       Q("workup", "Which 66-year-old should get one-time AAA ultrasound screening?", ["A man who ever smoked", "A woman who never smoked with no family history", "A man aged 50", "Anyone with HTN at 40"], 0, "Men ≥ 65 who have ever smoked."),
       Q("treatment", "At what diameter is an asymptomatic AAA repaired in a man?", ["5.5 cm", "3.0 cm", "4.0 cm", "7.0 cm"], 0, "≥ 5.5 cm in men, ≥ 5.0 cm in women."),
-      Q("treatment", "At what diameter is an asymptomatic AAA repaired in a woman?", ["5.0 cm", "5.5 cm", "4.0 cm", "6.0 cm"], 0, "Women: ≥ 5.0 cm."),
+      Q("treatment", "At what diameter is an asymptomatic AAA repaired in a woman?", ["5.0 cm", "5.5 cm", "4.0 cm", "6.0 cm"], 0, "Women's aortas are smaller and rupture at smaller sizes, so they're repaired at 5.0 cm."),
       Q("workup", "A 3.4 cm AAA is found. How often is it rechecked?", ["Ultrasound every 3 years", "Every 6 months", "Every month", "Never"], 0, "3.0-3.9 cm: US every 3 years."),
       Q("overview", "Strongest modifiable risk factor for AAA?", ["Smoking", "Diabetes", "Obesity", "Hyperlipidemia"], 0, "Smoking; diabetics actually have slower growth."),
       Q("treatment", "Which antibiotic class should AAA patients avoid if possible?", ["Fluoroquinolones", "Penicillins", "Macrolides", "Cephalosporins"], 0, "Avoidance of fluoroquinolones if able."),
@@ -216,13 +216,13 @@
       Q("presentation", "A 60-year-old hypertensive man has sudden tearing chest pain to the back between his shoulder blades and a 30 mmHg arm BP difference. Diagnosis?", ["Aortic dissection", "STEMI", "Pericarditis", "Pulmonary embolism"], 0, "Tearing pain + arm BP difference > 20."),
       Q("treatment", "First drug for acute aortic dissection?", ["IV esmolol or labetalol", "Nitroprusside", "Hydralazine", "Heparin"], 0, "Beta blocker first for HR 60-80."),
       Q("treatment", "Why must a vasodilator never be started before the beta blocker in dissection?", ["Reflex tachycardia raises shear stress", "It causes bradycardia", "It worsens hypokalemia", "It is ineffective"], 0, "HR control is key; vasodilators alone cause reflex tachycardia."),
-      Q("treatment", "Target HR and SBP in acute aortic dissection?", ["HR 60-80 and SBP 100-120", "HR 100 and SBP 160", "HR 40 and SBP 80", "HR 90 and SBP 140"], 0, "Goals per the lecture."),
+      Q("treatment", "Target HR and SBP in acute aortic dissection?", ["HR 60-80 and SBP 100-120", "HR 100 and SBP 160", "HR 40 and SBP 80", "HR 90 and SBP 140"], 0, "Slowing the HR and lowering BP reduce the force on the torn aortic wall."),
       Q("treatment", "Management of a Stanford Type A dissection?", ["Emergent surgical repair plus anti-impulse therapy", "Medical therapy alone", "Thrombolysis", "Outpatient follow-up"], 0, "Type A involves the ascending aorta: surgery."),
       Q("treatment", "Management of an uncomplicated Stanford Type B dissection?", ["Medical anti-impulse therapy", "Emergent open repair", "tPA", "Pericardiocentesis"], 0, "Uncomplicated Type B: medical therapy."),
       Q("workup", "Preferred imaging for a stable patient with suspected dissection?", ["CTA chest, abdomen and pelvis", "Chest X-ray only", "MRA", "D-dimer only"], 0, "CTA is preferred; TEE if unstable."),
       Q("overview", "Most important risk factor for aortic dissection?", ["Hypertension", "Diabetes", "Hyperlipidemia", "Smoking alone"], 0, "HTN: stress on the aortic wall."),
       Q("presentation", "A dissection patient develops a new diastolic murmur. Why?", ["Aortic regurgitation from root involvement", "Mitral stenosis", "Pericardial rub", "VSD"], 0, "Dissection back toward the heart causes AR."),
-      Q("overview", "How fast does mortality rise in untreated Type A dissection?", ["1-2% per hour early on", "1% per year", "Not at all", "50% per minute"], 0, "Historically 1-2% per hour."),
+      Q("overview", "How fast does mortality rise in untreated Type A dissection?", ["1-2% per hour early on", "1% per year", "Not at all", "50% per minute"], 0, "A Type A dissection can rupture or tamponade at any moment, so it needs emergency surgery."),
       Q("workup", "Which TEE use fits suspected dissection?", ["An unstable patient who can't go to CT", "Routine screening", "Outpatient surveillance", "Ruling out PAD"], 0, "TEE helps in hemodynamically unstable patients.")
     ]),
 
@@ -233,7 +233,7 @@
       S("treatment", "Treatment", "<p><strong>Smoking cessation is the only way to halt it.</strong> Vasodilators (CCB) investigational; revascularization limited by small vessels; amputation sometimes.</p>" + HY("Young heavy smoker + digit ulcers + corkscrew collaterals = Buerger → stop smoking."))
     ], [
       Q("overview", "A 32-year-old man who smokes 2 packs a day has painful fingertip ulcers, cold hands and a positive Allen test. Diagnosis?", ["Thromboangiitis obliterans (Buerger disease)", "PAD", "Raynaud's phenomenon only", "Takayasu arteritis"], 0, "Young heavy smoker with distal ischemia."),
-      Q("workup", "Classic angiographic finding in Buerger disease?", ["Corkscrew collaterals around segmental occlusions", "Diffuse atherosclerotic plaque", "Aortic aneurysm", "String of beads"], 0, "Corkscrew collaterals are classic."),
+      Q("workup", "Classic angiographic finding in Buerger disease?", ["Corkscrew collaterals around segmental occlusions", "Diffuse atherosclerotic plaque", "Aortic aneurysm", "String of beads"], 0, "Segmental blockages force small collaterals to grow around them in a corkscrew shape."),
       Q("overview", "Is Buerger disease atherosclerotic?", ["No, it is inflammatory", "Yes, in large arteries", "Yes, only in diabetics", "Only in the aorta"], 0, "Non-atherosclerotic disease of small to medium vessels."),
       Q("presentation", "Which early manifestation is typical of Buerger disease?", ["Superficial thrombophlebitis and cold sensitivity", "Tearing back pain", "Pulsatile abdominal mass", "Strawberry tongue"], 0, "Early signs include superficial thrombophlebitis and cold sensitivity."),
       Q("workup", "Why can the ABI be normal in Buerger disease?", ["The disease is segmental and distal", "It only affects veins", "It raises BP", "It calcifies arteries"], 0, "Segmental disease: toe and finger indices may show impaired perfusion."),
@@ -255,9 +255,9 @@
     ], [
       Q("presentation", "A 21-year-old woman's fingers turn white, then blue, then red in cold air. Autoantibodies are negative. Diagnosis?", ["Primary Raynaud's phenomenon", "Buerger disease", "Scleroderma", "Acute limb ischemia"], 0, "Young woman, mild, no autoantibodies: primary."),
       Q("presentation", "What is the color sequence in Raynaud's?", ["White, blue, red", "Red, white, blue", "Blue, red, white", "Black, white, red"], 0, "Pallor → cyanosis → reactive hyperemia."),
-      Q("treatment", "First-line drug for Raynaud's?", ["Calcium channel blocker", "Beta blocker", "Aspirin", "Warfarin"], 0, "CCBs cause vasodilation."),
+      Q("treatment", "First-line drug for Raynaud's?", ["Calcium channel blocker", "Beta blocker", "Aspirin", "Warfarin"], 0, "CCBs relax the arterial smooth muscle, preventing the digital artery spasm."),
       Q("overview", "A 45-year-old with Raynaud's, puffy fingers and sclerodactyly. What secondary cause should you consider?", ["Scleroderma (CREST)", "Hypothyroidism", "Asthma", "Gout"], 0, "Secondary Raynaud's: scleroderma, SLE, RA, polymyositis."),
-      Q("overview", "Which occupation can cause secondary Raynaud's?", ["Jackhammer operator", "Office worker", "Teacher", "Pilot"], 0, "Repetitive vibration trauma."),
+      Q("overview", "Which occupation can cause secondary Raynaud's?", ["Jackhammer operator", "Office worker", "Teacher", "Pilot"], 0, "Repetitive vibration injures the small finger vessels, causing spasm."),
       Q("overview", "Which feature favors secondary over primary Raynaud's?", ["Onset after 30 with positive autoantibodies", "Onset at 18", "Mild symptoms", "No finger edema"], 0, "Secondary: older onset, severe, edema, arthritis, autoantibodies.")
     ]),
 
@@ -274,10 +274,10 @@
     ], [
       Q("presentation", "A 25-year-old Japanese woman has fatigue, low-grade fever, arm claudication, a weak left radial pulse and a carotid bruit. Diagnosis?", ["Takayasu arteritis", "Giant cell arteritis", "Buerger disease", "Kawasaki disease"], 0, "Large-vessel vasculitis in a young Asian woman."),
       Q("treatment", "First-line treatment for Takayasu arteritis?", ["Corticosteroids", "Aspirin alone", "IVIG", "Smoking cessation"], 0, "Corticosteroids, DMARDs and vascular surgery consult."),
-      Q("overview", "Which vessels does Takayasu arteritis involve?", ["Aorta and its major branches", "Small digital arteries", "Coronary arteries in children", "Veins of the leg"], 0, "Large vessel vasculitis."),
+      Q("overview", "Which vessels does Takayasu arteritis involve?", ["Aorta and its major branches", "Small digital arteries", "Coronary arteries in children", "Veins of the leg"], 0, "Takayasu is a large-vessel vasculitis, so it hits the aorta and its main branches."),
       Q("presentation", "Why do half of Takayasu patients have hypertension?", ["Renal artery stenosis or aortic coarctation", "High salt diet", "Steroids", "Hyperthyroidism"], 0, "HTN from renal artery stenosis or coarctation."),
       Q("treatment", "How is Takayasu arteritis confirmed?", ["High ESR/CRP with angiographic stenosis of the aorta or branches", "Temporal artery biopsy", "Positive Allen test", "Echo showing vegetation"], 0, "Biopsy is impractical; angiography shows stenosis."),
-      Q("overview", "What percentage of Takayasu patients are female?", ["80-90%", "50%", "10%", "100%"], 0, "80-90% are female.")
+      Q("overview", "What percentage of Takayasu patients are female?", ["80-90%", "50%", "10%", "100%"], 0, "Takayasu mostly affects young women.")
     ]),
 
     D("vas1-kawasaki", "Kawasaki Disease", "Medium-vessel vasculitis in children < 5: fever ≥ 5 days + 4 of 5 features; coronary aneurysms; IVIG + aspirin.", [
@@ -295,9 +295,9 @@
       Q("treatment", "Initial treatment of Kawasaki disease?", ["IVIG plus high-dose aspirin", "Steroids alone", "Penicillin", "Ibuprofen"], 0, "IVIG single infusion + aspirin 30-50 mg/kg, then low dose."),
       Q("overview", "Most feared complication of Kawasaki disease?", ["Coronary artery aneurysm", "Renal failure", "Aortic dissection", "Stroke from AF"], 0, "Coronary involvement → aneurysm, MI."),
       Q("presentation", "How many days of fever are typical for Kawasaki disease?", ["5 or more", "1", "2", "14 or more"], 0, "Fever ≥ 5 days plus ≥ 4 of 5 features."),
-      Q("presentation", "What kind of conjunctivitis is seen in Kawasaki disease?", ["Bilateral non-exudative", "Unilateral purulent", "Bilateral with thick discharge", "None"], 0, "Bilateral nonexudative conjunctival injection."),
+      Q("presentation", "What kind of conjunctivitis is seen in Kawasaki disease?", ["Bilateral non-exudative", "Unilateral purulent", "Bilateral with thick discharge", "None"], 0, "Kawasaki causes red eyes without pus in both eyes."),
       Q("treatment", "What aspirin dose follows defervescence in Kawasaki disease?", ["Low dose 3-5 mg/kg/day", "High dose 100 mg/kg/day", "None", "325 mg TID"], 0, "Low-dose aspirin after the fever resolves."),
-      Q("overview", "What age group gets Kawasaki disease?", ["Children under 5", "Teenagers", "Young women", "Older adults"], 0, "Typically younger than 5.")
+      Q("overview", "What age group gets Kawasaki disease?", ["Children under 5", "Teenagers", "Young women", "Older adults"], 0, "Kawasaki is a vasculitis of young children, usually under 5.")
     ]),
 
     D("vas1-avm", "Arteriovenous Malformation (AVM)", "Direct artery-to-vein connection bypassing capillaries: bruit or pulsatile mass; brain AVMs bleed or seize; embolize or excise.", [
@@ -310,7 +310,7 @@
     ], [
       Q("overview", "A 25-year-old has a first seizure; MRA shows a tangle of vessels shunting arterial blood straight into veins. Diagnosis?", ["Arteriovenous malformation", "Berry aneurysm", "Glioma", "Venous thrombosis"], 0, "Brain AVMs cause seizures, deficits or hemorrhage."),
       Q("overview", "What is bypassed in an AVM?", ["The capillary bed", "The heart", "The veins", "The arteries"], 0, "Blood shunts from artery directly into vein."),
-      Q("overview", "Which hereditary syndrome features AVMs?", ["Hereditary hemorrhagic telangiectasia", "Marfan syndrome", "Turner syndrome", "Down syndrome"], 0, "Osler-Weber-Rendu syndrome."),
+      Q("overview", "Which hereditary syndrome features AVMs?", ["Hereditary hemorrhagic telangiectasia", "Marfan syndrome", "Turner syndrome", "Down syndrome"], 0, "HHT (Osler-Weber-Rendu) is inherited and causes AVMs and telangiectasias."),
       Q("treatment", "How are symptomatic AVMs treated?", ["Surgical removal or endovascular embolization", "Warfarin", "Steroids", "Compression stockings"], 0, "Treatment is individualized: surgery or embolization."),
       Q("overview", "What is an acquired artery-vein connection made for dialysis called?", ["AV fistula", "AV malformation", "Pseudoaneurysm", "Varicose vein"], 0, "Acquired connections are AVFs, distinct from congenital AVMs."),
       Q("overview", "What complication can an AVM in bone cause?", ["Pathologic fracture", "Osteomyelitis", "Gout", "Bone marrow failure"], 0, "AVMs in bone cause pathologic fractures."),

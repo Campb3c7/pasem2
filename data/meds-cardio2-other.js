@@ -62,7 +62,7 @@
     }, [
       Q("uses", "A 22-year-old woman's fingers turn white, then blue, then red in the cold. Drug if avoidance is not enough?", ["A calcium channel blocker such as nifedipine", "A beta blocker", "Warfarin", "Cilostazol"], 0, "Raynaud's: avoid triggers and use calcium channel blockers for vasodilation."),
       Q("pearls", "What is the only way to halt Buerger disease?", ["Smoking cessation", "Calcium channel blockers", "Warfarin", "Steroids"], 0, "Smoking cessation is the only way to halt progression; vasodilators are investigational."),
-      Q("moa", "How do CCBs help Raynaud's?", ["Vasodilation of the spasming digital arteries", "Thinning the blood", "Slowing the heart", "Reducing inflammation"], 0, "CCBs cause vasodilation."),
+      Q("moa", "How do CCBs help Raynaud's?", ["Vasodilation of the spasming digital arteries", "Thinning the blood", "Slowing the heart", "Reducing inflammation"], 0, "CCBs relax the arterial smooth muscle, preventing the digital artery spasm."),
       Q("se", "Which side effect is common with dihydropyridine CCBs?", ["Peripheral edema", "Bradycardia and heart block", "Constipation as the main effect", "Bronchospasm"], 0, "DHP CCBs: edema, flushing, headache, reflex tachycardia (standard teaching).")
     ])
   ]);

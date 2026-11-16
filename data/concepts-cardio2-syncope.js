@@ -41,11 +41,11 @@
       Q("chain", "Why does a fainting patient usually wake up within a minute without treatment?", ["Lying flat restores blood flow to the brain", "Adrenaline wakes them", "The seizure ends", "Glucose rises"], 0, "Supine position restores cerebral perfusion."),
       Q("idea", "Why is hypoglycemia not classified as syncope?", ["It causes LOC without global cerebral hypoperfusion", "It never causes LOC", "It always lasts seconds", "It is cardiac"], 0, "Syncope requires transient global hypoperfusion."),
       Q("bedside", "A collapsed patient is confused for 25 minutes afterward. What does that suggest?", ["A seizure or other mimic rather than syncope", "Classic vasovagal syncope", "Orthostatic syncope", "Situational syncope"], 0, "Syncope recovery is spontaneous and complete."),
-      Q("traps", "A bystander props a fainting man upright in his chair. What happens?", ["Brain perfusion stays low and recovery is delayed", "He recovers faster", "Nothing changes", "His BP rises"], 0, "Lay them flat."),
+      Q("traps", "A bystander props a fainting man upright in his chair. What happens?", ["Brain perfusion stays low and recovery is delayed", "He recovers faster", "Nothing changes", "His BP rises"], 0, "Upright, gravity keeps blood away from the brain, so recovery is delayed; lay them flat."),
       Q("chain", "Which of the three syncope categories depends on a drop in vascular tone from vagal overcorrection?", ["Reflex", "Orthostatic", "Cardiac", "Neurologic"], 0, "Reflex syncope: vasodilation ± bradycardia."),
-      Q("bedside", "Why is presyncope worked up the same way as syncope?", ["It shares the same causes and prognosis", "It always becomes syncope", "It is always cardiac", "It requires an EEG"], 0, "Same prognosis."),
+      Q("bedside", "Why is presyncope worked up the same way as syncope?", ["It shares the same causes and prognosis", "It always becomes syncope", "It is always cardiac", "It requires an EEG"], 0, "Presyncope comes from the same causes and carries the same prognosis, so it gets the same workup."),
       Q("traps", "Which finding is equally common in syncope and seizure?", ["Urinary incontinence", "Postictal confusion", "Lateral tongue biting", "Tonic-clonic activity from the outset"], 0, "Incontinence and injury occur in both."),
-      Q("chain", "Why does a person lose postural tone in syncope?", ["The whole brain, including tone-maintaining centers, goes offline", "Muscles become ischemic", "Potassium rises", "The spinal cord is injured"], 0, "Global cerebral hypoperfusion.")
+      Q("chain", "Why does a person lose postural tone in syncope?", ["The whole brain, including tone-maintaining centers, goes offline", "Muscles become ischemic", "Potassium rises", "The spinal cord is injured"], 0, "With the whole brain underperfused, the centers that keep muscle tone go offline and the person slumps.")
     ]),
 
     D("sync-reflex-overcorrection", "Reflex syncope: the autonomic overcorrection", "A trigger first raises sympathetic tone; the body overcorrects with a vagal surge, dropping vascular tone and heart rate together, and the prodrome is the warning.", [
@@ -68,14 +68,14 @@
         "<strong>Restricting fluids.</strong> More volume buffers the drop; hydrate and add salt."
       ]))
     ], [
-      Q("chain", "During a vasovagal faint, what happens to sympathetic and parasympathetic tone?", ["Sympathetic falls and parasympathetic rises", "Both rise", "Sympathetic rises and parasympathetic falls", "Neither changes"], 0, "Reflex vagal overcorrection."),
+      Q("chain", "During a vasovagal faint, what happens to sympathetic and parasympathetic tone?", ["Sympathetic falls and parasympathetic rises", "Both rise", "Sympathetic rises and parasympathetic falls", "Neither changes"], 0, "The vagal reflex overshoots, so sympathetic tone drops and parasympathetic tone rises."),
       Q("bedside", "A woman feels warm, sweaty and nauseous while standing in a hot church. What should she do right away?", ["Lie down", "Stand still and lock her knees", "Walk outside quickly", "Drink coffee"], 0, "Supine position during prodrome aborts the faint."),
       Q("chain", "Why does adding salt and fluid help recurrent vasovagal syncope?", ["A fuller circulation buffers the reflex drop in BP", "It slows the heart", "It blocks the vagus nerve", "It raises potassium"], 0, "Hydrate 2-2.5 L and add salt."),
-      Q("traps", "A vasovagal patient's heart rate stayed at 80 while BP fell to 70/40. Is that consistent?", ["Yes; vasodilation alone can cause reflex syncope", "No; vasovagal always causes bradycardia", "No; this must be cardiac", "Only in children"], 0, "Vasodilation and/or bradycardia."),
-      Q("idea", "What produces the warning symptoms before a vasovagal faint?", ["The same autonomic shift that drops BP", "A seizure aura", "Low blood sugar", "An arrhythmia"], 0, "Prodrome is autonomic."),
+      Q("traps", "A vasovagal patient's heart rate stayed at 80 while BP fell to 70/40. Is that consistent?", ["Yes; vasodilation alone can cause reflex syncope", "No; vasovagal always causes bradycardia", "No; this must be cardiac", "Only in children"], 0, "Reflex syncope can drop BP through vasodilation alone, without bradycardia."),
+      Q("idea", "What produces the warning symptoms before a vasovagal faint?", ["The same autonomic shift that drops BP", "A seizure aura", "Low blood sugar", "An arrhythmia"], 0, "The same autonomic shift causes sweating, nausea and warmth before BP falls."),
       Q("bedside", "Why are injuries more likely when older adults have reflex syncope?", ["They may have no prodrome to warn them", "They faint for longer", "Their BP is higher", "They have seizures"], 0, "Lack of prodrome raises injury risk."),
       Q("chain", "How does a hard coughing fit trigger situational syncope?", ["High intrathoracic pressure cuts venous return and stimulates vagal reflexes", "It causes a PE", "It shocks the heart", "It raises preload"], 0, "Situational triggers raise intrathoracic pressure or stimulate the vagus."),
-      Q("chain", "Pressing on the carotid sinus in a susceptible older man causes what response?", ["Bradycardia, asystole or hypotension", "Tachycardia and hypertension", "Torsades", "Atrial fibrillation"], 0, "Carotid sinus hypersensitivity.")
+      Q("chain", "Pressing on the carotid sinus in a susceptible older man causes what response?", ["Bradycardia, asystole or hypotension", "Tachycardia and hypertension", "Torsades", "Atrial fibrillation"], 0, "A hypersensitive carotid sinus overreacts, slowing or stopping the heart and dropping BP.")
     ]),
 
     D("sync-standing-compensation", "Standing up: what keeps you conscious", "Standing pools blood in the legs; baroreceptors respond by squeezing vessels and speeding the heart. Orthostatic syncope is a failure of that response, and POTS is an overshoot of the heart rate.", [
@@ -99,13 +99,13 @@
         "<strong>Checking BP only at 1 minute.</strong> The definition allows up to 3 minutes."
       ]))
     ], [
-      Q("chain", "What is the first thing that happens to stroke volume when someone stands up?", ["It falls because blood pools in the legs", "It rises", "It stays the same", "It doubles"], 0, "Pooling lowers venous return."),
-      Q("chain", "A patient on doxazosin stands up and faints. Which compensation did the drug block?", ["Alpha-1 mediated vasoconstriction", "Beta-1 heart rate rise", "ADH release", "Vagal tone"], 0, "Alpha blockers block vasoconstriction."),
+      Q("chain", "What is the first thing that happens to stroke volume when someone stands up?", ["It falls because blood pools in the legs", "It rises", "It stays the same", "It doubles"], 0, "Standing pools blood in the legs, so less returns to the heart and stroke volume falls."),
+      Q("chain", "A patient on doxazosin stands up and faints. Which compensation did the drug block?", ["Alpha-1 mediated vasoconstriction", "Beta-1 heart rate rise", "ADH release", "Vagal tone"], 0, "Doxazosin blocks α1 receptors, so vessels can't constrict to hold BP up on standing."),
       Q("traps", "An orthostatic patient on metoprolol has no rise in heart rate when BP drops. Why?", ["The beta blocker blunts the compensatory tachycardia", "He isn't orthostatic", "He has POTS", "His volume is high"], 0, "Beta blockers blunt the HR response."),
-      Q("idea", "Why do POTS patients rarely faint even though their heart races?", ["Their vasoconstriction still works, so BP holds", "Their BP rises too high", "Their HR falls", "They have no symptoms"], 0, "Intact baroreceptor reflex."),
+      Q("idea", "Why do POTS patients rarely faint even though their heart races?", ["Their vasoconstriction still works, so BP holds", "Their BP rises too high", "Their HR falls", "They have no symptoms"], 0, "Their vasoconstriction still works, so the heart races but BP holds."),
       Q("bedside", "Midodrine helps orthostatic symptoms by replacing which part of the response?", ["Vasoconstriction", "Heart rate", "Volume", "Vagal tone"], 0, "Midodrine is an alpha-1 agonist."),
-      Q("bedside", "How does fludrocortisone help orthostatic symptoms?", ["Expands blood volume through salt and water retention", "Constricts vessels", "Speeds the heart", "Blocks the vagus"], 0, "Mineralocorticoid."),
-      Q("chain", "Why does Parkinson's disease cause orthostatic syncope?", ["Autonomic failure prevents the reflex vasoconstriction and HR rise", "It lowers blood volume", "It causes heart block", "It blocks venous return directly"], 0, "Autonomic dysfunction."),
+      Q("bedside", "How does fludrocortisone help orthostatic symptoms?", ["Expands blood volume through salt and water retention", "Constricts vessels", "Speeds the heart", "Blocks the vagus"], 0, "Fludrocortisone holds salt and water, which expands blood volume."),
+      Q("chain", "Why does Parkinson's disease cause orthostatic syncope?", ["Autonomic failure prevents the reflex vasoconstriction and HR rise", "It lowers blood volume", "It causes heart block", "It blocks venous return directly"], 0, "Parkinson disease damages autonomic nerves, so vessels can't constrict and HR can't rise on standing."),
       Q("traps", "BP is normal at 1 minute of standing but falls 25 points at 3 minutes. Is that orthostatic hypotension?", ["Yes; the definition allows up to 3 minutes", "No; it must drop at 1 minute", "No; only diastolic counts", "Only if HR rises"], 0, "Sustained drop within 3 minutes.")
     ]),
 
@@ -130,14 +130,14 @@
         "<strong>Assuming a normal exam rules out HCM.</strong> Exam may be normal; get the echo."
       ]))
     ], [
-      Q("chain", "Why does severe aortic stenosis cause syncope during exercise?", ["Output can't rise past the fixed valve to match exercise vasodilation", "Exercise triggers a vagal reflex", "The valve leaks", "Exercise raises SVR"], 0, "Fixed outflow."),
+      Q("chain", "Why does severe aortic stenosis cause syncope during exercise?", ["Output can't rise past the fixed valve to match exercise vasodilation", "Exercise triggers a vagal reflex", "The valve leaks", "Exercise raises SVR"], 0, "The stiff valve fixes output, and exercise dilates muscle vessels, so BP and brain flow drop."),
       Q("chain", "An HCM patient becomes dehydrated during a race. What happens to the outflow obstruction?", ["It worsens because the smaller LV cavity narrows the outflow tract", "It improves", "It disappears", "It is unaffected"], 0, "Less preload worsens dynamic obstruction."),
-      Q("idea", "What happens to systemic vascular resistance during exercise?", ["It falls as muscle beds dilate", "It rises sharply", "It stays constant", "It doubles"], 0, "Exercise-induced vasodilation."),
+      Q("idea", "What happens to systemic vascular resistance during exercise?", ["It falls as muscle beds dilate", "It rises sharply", "It stays constant", "It doubles"], 0, "Exercising muscle dilates its vessels, so total SVR falls."),
       Q("bedside", "Which history points most strongly to cardiac syncope?", ["Fainting in the middle of a basketball game", "Fainting at a blood draw", "Fainting after standing in a hot room", "Fainting while urinating"], 0, "Exertional syncope is a red flag."),
-      Q("traps", "Why could a diuretic worsen symptoms in HCM?", ["Lower preload shrinks the LV and worsens obstruction", "It raises BP", "It causes AF", "It thickens the septum"], 0, "Standard teaching."),
+      Q("traps", "Why could a diuretic worsen symptoms in HCM?", ["Lower preload shrinks the LV and worsens obstruction", "It raises BP", "It causes AF", "It thickens the septum"], 0, "Less preload shrinks the LV, so the thick septum and mitral leaflet block outflow more."),
       Q("bedside", "Which test fits syncope that occurs with exercise?", ["Echo and exercise stress testing", "Tilt table", "Carotid massage", "EEG"], 0, "Structural evaluation and stress testing."),
-      Q("chain", "Why is AS the leading structural cause of syncope in the elderly but HCM in the young?", ["AS is degenerative calcification with age; HCM is genetic and shows up early", "AS is genetic", "HCM only affects the elderly", "They are the same disease"], 0, "Older: AS; younger: HOCM."),
-      Q("bedside", "What is the definitive treatment for syncope from severe AS?", ["Aortic valve replacement", "Salt tablets", "Beta blocker alone", "Tilt training"], 0, "High mortality untreated.")
+      Q("chain", "Why is AS the leading structural cause of syncope in the elderly but HCM in the young?", ["AS is degenerative calcification with age; HCM is genetic and shows up early", "AS is genetic", "HCM only affects the elderly", "They are the same disease"], 0, "AS comes from calcification over decades; HCM is inherited and shows up young."),
+      Q("bedside", "What is the definitive treatment for syncope from severe AS?", ["Aortic valve replacement", "Salt tablets", "Beta blocker alone", "Tilt training"], 0, "Symptomatic severe AS has high mortality without valve replacement.")
     ]),
 
     D("sync-cardiac-clues", "Why some clues point to the heart", "Arrhythmias don't care about posture or triggers, so faints that are sudden, supine, exertional, or without warning in older or heart-disease patients point to a cardiac cause.", [
@@ -163,12 +163,12 @@
       ]))
     ], [
       Q("chain", "Why can arrhythmic syncope happen while lying in bed?", ["The rhythm drops output regardless of posture", "Blood pools in the legs when supine", "Vagal tone rises when lying down", "It can't; supine syncope is impossible"], 0, "Arrhythmias don't depend on posture."),
-      Q("chain", "Why does cardiac syncope often lack a prodrome?", ["The output drop is sudden with no autonomic build-up", "The patient is asleep", "Cardiac syncope is slow", "Prodrome only happens in seizures"], 0, "Sudden, no warning."),
+      Q("chain", "Why does cardiac syncope often lack a prodrome?", ["The output drop is sudden with no autonomic build-up", "The patient is asleep", "Cardiac syncope is slow", "Prodrome only happens in seizures"], 0, "Arrhythmias drop output instantly, so there's no time for warning symptoms."),
       Q("bedside", "A 72-year-old man with prior MI and EF 30% faints once while seated. Disposition?", ["Admit for monitoring and work-up", "Discharge with hydration advice", "Tilt table as outpatient", "No work-up"], 0, "Cardiac features and structural disease."),
       Q("idea", "Which history most strongly favors reflex syncope?", ["Recurrent faints since age 15 with nausea before each one", "One faint at age 70 while lying down", "Fainting during a sprint", "Faint with no warning and a family history of sudden death"], 0, "Long history, young onset, prodrome."),
-      Q("bedside", "Which EKG finding in a syncope patient is diagnostic and high risk?", ["Mobitz II block", "Sinus arrhythmia", "Single PAC", "Normal sinus rhythm"], 0, "High-grade AV block."),
+      Q("bedside", "Which EKG finding in a syncope patient is diagnostic and high risk?", ["Mobitz II block", "Sinus arrhythmia", "Single PAC", "Normal sinus rhythm"], 0, "Mobitz II can progress to complete block and sudden death, so it's high risk."),
       Q("traps", "A patient faints while lying on the couch watching TV. Which cause is least likely?", ["Orthostatic hypotension", "VT", "Complete heart block", "Sick sinus syndrome"], 0, "Orthostatic needs an upright posture."),
-      Q("bedside", "What is the one-year mortality of documented cardiac syncope?", ["More than 30%", "Under 1%", "About 5%", "Same as vasovagal"], 0, "Harbinger of sudden death."),
+      Q("bedside", "What is the one-year mortality of documented cardiac syncope?", ["More than 30%", "Under 1%", "About 5%", "Same as vasovagal"], 0, "Cardiac syncope signals serious heart disease, so over 30% die within a year."),
       Q("chain", "Why does a family history of sudden cardiac death raise concern in a young fainter?", ["Inherited conditions like HCM, long QT or Brugada can cause fatal arrhythmias", "It suggests vasovagal syncope", "It means dehydration", "It rules out cardiac causes"], 0, "Genetic arrhythmic and structural disease.")
     ])
   ]);

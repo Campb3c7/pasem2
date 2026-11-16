@@ -35,12 +35,12 @@
       ]))
     ], [
       Q("chain", "An 80-year-old with LVH goes into AF at 140 and develops crackles. Why?", ["Lost atrial kick plus short diastole raises LA and pulmonary pressure", "AF causes pneumonia", "The atria leak", "The rate is too slow"], 0, "Stiff ventricle + RVR → pulmonary edema."),
-      Q("idea", "What is the atrial kick?", ["The atrial contraction that tops off ventricular filling at end-diastole", "The ventricular ejection", "The opening of the mitral valve", "The QRS complex"], 0, "Late diastolic atrial contraction."),
+      Q("idea", "What is the atrial kick?", ["The atrial contraction that tops off ventricular filling at end-diastole", "The ventricular ejection", "The opening of the mitral valve", "The QRS complex"], 0, "Right before systole the atria squeeze to push the last bit of blood into the ventricles."),
       Q("chain", "Which patient loses the most output when AF removes the kick?", ["An elderly patient with a stiff, hypertrophied LV", "A healthy 25-year-old", "A patient with a compliant LV and slow rate", "A patient with a pacemaker"], 0, "Stiff ventricles depend on the kick."),
       Q("bedside", "Where do most AF symptoms come from?", ["The rapid ventricular rate", "The irregularity itself", "Atrial stretch", "Low potassium"], 0, "Most symptoms relate to RVR."),
       Q("bedside", "Why does restoring sinus rhythm improve exercise tolerance?", ["The atrial kick returns and boosts filling", "It lowers BP", "It slows the heart below 50", "It removes clot"], 0, "Maintaining the kick improves HF symptoms and exercise."),
-      Q("traps", "A young healthy patient in rate-controlled AF feels nearly normal. Why?", ["A compliant ventricle fills well without the kick", "AF has no effect on anyone", "The kick is unimportant in all patients", "Young atria still contract"], 0, "Compliant LVs lose little."),
-      Q("chain", "Why does slowing the ventricular rate in AF often relieve dyspnea within hours?", ["Longer diastole restores filling and lowers LA pressure", "It restores the atrial kick", "It removes clot", "It raises BP"], 0, "Rate control lengthens diastole."),
+      Q("traps", "A young healthy patient in rate-controlled AF feels nearly normal. Why?", ["A compliant ventricle fills well without the kick", "AF has no effect on anyone", "The kick is unimportant in all patients", "Young atria still contract"], 0, "A young, compliant ventricle fills mostly passively, so losing the atrial kick costs little output."),
+      Q("chain", "Why does slowing the ventricular rate in AF often relieve dyspnea within hours?", ["Longer diastole restores filling and lowers LA pressure", "It restores the atrial kick", "It removes clot", "It raises BP"], 0, "A slower rate gives the ventricle more diastolic time to fill, so less blood backs into the lungs."),
       Q("bedside", "After cardioversion, which function recovers more slowly?", ["Atrial function", "Ventricular function", "AV node conduction", "SA node automaticity"], 0, "Atria take longer to recover.")
     ]),
 
@@ -66,11 +66,11 @@
       ]))
     ], [
       Q("chain", "Why is cardioversion of AF lasting more than 48 hours risky without precautions?", ["A clot may have formed and restored contraction can eject it", "The shock causes clots", "The heart can't be shocked after 48 hours", "It causes heart block"], 0, "Thrombus assumed after 48 h."),
-      Q("idea", "Where do AF clots usually form and why?", ["The left atrial appendage, where blood stagnates", "The right ventricle, from high pressure", "The aorta, from turbulence", "The pulmonary veins, from fast flow"], 0, "LAA stasis."),
-      Q("bedside", "Which test is done to exclude clot before cardioversion?", ["TEE", "TTE", "CT head", "D-dimer"], 0, "TEE visualizes the LAA."),
+      Q("idea", "Where do AF clots usually form and why?", ["The left atrial appendage, where blood stagnates", "The right ventricle, from high pressure", "The aorta, from turbulence", "The pulmonary veins, from fast flow"], 0, "The LAA is a blind pouch, so blood pools there when the atrium stops contracting and clots."),
+      Q("bedside", "Which test is done to exclude clot before cardioversion?", ["TEE", "TTE", "CT head", "D-dimer"], 0, "TEE sits right behind the left atrium, so it can see the appendage and rule out clot."),
       Q("chain", "Why does anticoagulation continue after a successful cardioversion?", ["Atria recover slowly and AF can relapse unnoticed", "The shock damages vessels", "Sinus rhythm raises clot risk permanently", "It doesn't need to"], 0, "Relapse risk and slow atrial recovery."),
-      Q("traps", "A patient's AF is paroxysmal, not permanent. How does that change stroke prophylaxis?", ["It doesn't; stroke risk is the same", "No prophylaxis needed", "Aspirin only", "Only during episodes"], 0, "Same rate of stroke."),
-      Q("bedside", "How does a Watchman device lower stroke risk?", ["It seals off the left atrial appendage where clots form", "It slows the AV node", "It dissolves clots", "It restores sinus rhythm"], 0, "LAA occlusion."),
+      Q("traps", "A patient's AF is paroxysmal, not permanent. How does that change stroke prophylaxis?", ["It doesn't; stroke risk is the same", "No prophylaxis needed", "Aspirin only", "Only during episodes"], 0, "Clot risk depends on the patient's risk factors, not on whether AF comes and goes."),
+      Q("bedside", "How does a Watchman device lower stroke risk?", ["It seals off the left atrial appendage where clots form", "It slows the AV node", "It dissolves clots", "It restores sinus rhythm"], 0, "Most AF clots form in the LAA, so plugging it removes the main clot source."),
       Q("traps", "After successful ablation, can the patient stop anticoagulation because they're in sinus?", ["No; ablation doesn't change the anticoagulation strategy", "Yes, always", "Yes, after 1 week", "Only if under 60"], 0, "RFCA isn't done to get off AC."),
       Q("chain", "Which part of Virchow's triad explains AF clots?", ["Stasis", "Endothelial injury only", "Hypercoagulable genetics", "None"], 0, "Static blood in the atria.")
     ]),
@@ -95,14 +95,14 @@
         "<strong>Thinking ablation is first line.</strong> Patients must fail at least one antiarrhythmic first."
       ]))
     ], [
-      Q("chain", "Why does persistent AF become harder to convert over time?", ["Atrial remodeling makes AF self-sustaining", "The SA node dies immediately", "Clots block conduction", "Potassium falls"], 0, "AF is self-promoting."),
-      Q("idea", "Which two things does AF need to start?", ["A trigger and a permissive atrial substrate", "Fever and dehydration", "A heart block and a PVC", "Hypokalemia and a long QT"], 0, "Trigger + substrate."),
+      Q("chain", "Why does persistent AF become harder to convert over time?", ["Atrial remodeling makes AF self-sustaining", "The SA node dies immediately", "Clots block conduction", "Potassium falls"], 0, "The longer AF lasts, the more the atrium stretches and scars, so AF keeps itself going."),
+      Q("idea", "Which two things does AF need to start?", ["A trigger and a permissive atrial substrate", "Fever and dehydration", "A heart block and a PVC", "Hypokalemia and a long QT"], 0, "A trigger starts the abnormal firing, and a diseased atrium lets it keep circulating."),
       Q("bedside", "When does catheter ablation work best?", ["In short-duration AF", "After 10 years of permanent AF", "Only in the elderly", "Only with mitral stenosis"], 0, "Best success with short-duration AF."),
-      Q("chain", "What does pulmonary vein isolation target?", ["The triggering foci in pulmonary vein muscle sleeves", "The AV node", "The SA node", "The tricuspid annulus"], 0, "Isolates arrhythmogenic tissue."),
-      Q("bedside", "Why is restoring sinus rhythm early favored in most new AF?", ["It can slow or reverse atrial dilation and LV dysfunction", "It eliminates stroke risk", "It is cheaper than rate control", "It avoids anticoagulation"], 0, "Prevents remodeling-driven cardiomyopathy."),
+      Q("chain", "What does pulmonary vein isolation target?", ["The triggering foci in pulmonary vein muscle sleeves", "The AV node", "The SA node", "The tricuspid annulus"], 0, "Most AF triggers fire from pulmonary vein muscle sleeves, so isolating them stops AF starting."),
+      Q("bedside", "Why is restoring sinus rhythm early favored in most new AF?", ["It can slow or reverse atrial dilation and LV dysfunction", "It eliminates stroke risk", "It is cheaper than rate control", "It avoids anticoagulation"], 0, "The longer AF lasts, the more the atria and LV remodel, so early sinus rhythm prevents it."),
       Q("traps", "A frail 90-year-old with new AF. Why is rate control preferred?", ["Rate-control drugs have fewer interactions and side effects", "Rhythm control is impossible after 80", "Rate control prevents strokes", "She has no remodeling"], 0, "Frail elderly → rate control."),
       Q("chain", "Over decades, why do some patients move from rhythm to rate control?", ["The atria degenerate and AF keeps recurring", "Drugs become stronger", "They develop WPW", "The AV node heals"], 0, "Patients may graduate to rate control."),
-      Q("traps", "When is a patient a candidate for AF ablation?", ["Lifestyle-limiting AF after failing or not tolerating at least one antiarrhythmic", "At diagnosis for everyone", "Only after a stroke", "Only if they refuse anticoagulation"], 0, "Indications per the slides.")
+      Q("traps", "When is a patient a candidate for AF ablation?", ["Lifestyle-limiting AF after failing or not tolerating at least one antiarrhythmic", "At diagnosis for everyone", "Only after a stroke", "Only if they refuse anticoagulation"], 0, "Ablation is invasive, so it's for AF that limits life after at least one drug fails.")
     ]),
 
     D("mgmtc-drug-fits-heart", "Matching the antiarrhythmic to the heart", "Sodium-channel blockers are dangerous in scarred or failing hearts, so the structure of the heart decides the drug: IC for normal hearts, amiodarone or dofetilide for CAD/HF.", [
@@ -126,13 +126,13 @@
         "<strong>Assuming amiodarone is 'safe' long term.</strong> Lung, liver, thyroid toxicity need monitoring."
       ]))
     ], [
-      Q("chain", "Why is flecainide avoided after a myocardial infarction?", ["Slowed conduction in scarred tissue promotes re-entrant VT", "It raises BP", "It causes thyroid disease", "It is a beta blocker"], 0, "Proarrhythmic in structural disease."),
-      Q("bedside", "AF with ischemic cardiomyopathy and EF 25%. Which rhythm drug?", ["Amiodarone", "Flecainide", "Dronedarone", "Propafenone"], 0, "Amiodarone: least proarrhythmic."),
-      Q("bedside", "A 35-year-old with a structurally normal heart has rare AF episodes. Which drug can be used as 'pill in the pocket'?", ["Flecainide", "Amiodarone", "Dofetilide", "Sotalol"], 0, "IC for normal hearts."),
+      Q("chain", "Why is flecainide avoided after a myocardial infarction?", ["Slowed conduction in scarred tissue promotes re-entrant VT", "It raises BP", "It causes thyroid disease", "It is a beta blocker"], 0, "Flecainide slows conduction, and in scarred tissue that sets up re-entrant VT and sudden death."),
+      Q("bedside", "AF with ischemic cardiomyopathy and EF 25%. Which rhythm drug?", ["Amiodarone", "Flecainide", "Dronedarone", "Propafenone"], 0, "Amiodarone rarely causes arrhythmias and doesn't weaken the heart, so it's safe at EF 25%."),
+      Q("bedside", "A 35-year-old with a structurally normal heart has rare AF episodes. Which drug can be used as 'pill in the pocket'?", ["Flecainide", "Amiodarone", "Dofetilide", "Sotalol"], 0, "Flecainide converts AF well and is safe when the heart has no scar or weakness."),
       Q("traps", "Which antiarrhythmic doubles the risk of death in heart failure?", ["Dronedarone", "Amiodarone", "Dofetilide", "Metoprolol"], 0, "Contraindicated in HF and permanent AF."),
-      Q("chain", "Why must an AV nodal blocker be added when flecainide treats flutter?", ["Slowing the flutter rate can allow 1:1 AV conduction", "Flecainide causes bradycardia", "It prevents QT prolongation", "It treats hypertension"], 0, "Boxed warning."),
-      Q("idea", "What is proarrhythmia?", ["An antiarrhythmic drug causing a new or worse arrhythmia", "A rhythm before AF", "A drug that speeds sinus rate", "A pacemaker malfunction"], 0, "Drug-induced arrhythmia."),
-      Q("bedside", "Why is dofetilide a reasonable choice in HFrEF?", ["It doesn't change cardiac output or SVR", "It strengthens contraction", "It needs no monitoring", "It is a beta blocker"], 0, "Hemodynamically neutral."),
+      Q("chain", "Why must an AV nodal blocker be added when flecainide treats flutter?", ["Slowing the flutter rate can allow 1:1 AV conduction", "Flecainide causes bradycardia", "It prevents QT prolongation", "It treats hypertension"], 0, "Flecainide slows the flutter enough that the AV node can pass every beat (1:1), so the HR shoots up."),
+      Q("idea", "What is proarrhythmia?", ["An antiarrhythmic drug causing a new or worse arrhythmia", "A rhythm before AF", "A drug that speeds sinus rate", "A pacemaker malfunction"], 0, "Antiarrhythmics change the heart's electricity, which can create a new or worse arrhythmia."),
+      Q("bedside", "Why is dofetilide a reasonable choice in HFrEF?", ["It doesn't change cardiac output or SVR", "It strengthens contraction", "It needs no monitoring", "It is a beta blocker"], 0, "Dofetilide doesn't depress the heart or change output, so it won't worsen heart failure."),
       Q("traps", "Which drug is acceptable in CAD but should be avoided in HF?", ["Sotalol", "Amiodarone", "Dofetilide", "Apixaban"], 0, "Sotalol OK in CAD; proarrhythmia rises in HF.")
     ]),
 
@@ -157,14 +157,14 @@
         "<strong>Forgetting the two 2-point items.</strong> Age ≥ 75 and prior stroke/TIA."
       ]))
     ], [
-      Q("chain", "A patient's HAS-BLED is 4 because of uncontrolled BP and daily NSAIDs. First step?", ["Control BP and stop NSAIDs, then reassess", "Stop anticoagulation", "Double the dose", "Switch to aspirin"], 0, "Correct bleeding risks."),
-      Q("idea", "What does CHA2DS2-VASc estimate?", ["Annual stroke risk in non-valvular AF", "Bleeding risk on warfarin", "Chance of cardioversion success", "Risk of heart block"], 0, "Stroke risk score."),
-      Q("bedside", "Why can't the CHA2DS2-VASc score guide a patient with AF and moderate mitral stenosis?", ["It was built for non-valvular AF; these patients get warfarin", "It overestimates bleeding", "Mitral stenosis has no stroke risk", "It only applies to men"], 0, "Valvular AF."),
-      Q("traps", "Why do elderly patients often have both high stroke and high bleeding scores?", ["Age and hypertension count in both scores", "Old age lowers stroke risk", "Bleeding scores ignore age", "They are always on warfarin"], 0, "Overlapping risk factors."),
-      Q("bedside", "When does the Watchman make sense?", ["High stroke risk with bleeding on anticoagulation", "Low stroke risk", "Mechanical valve", "Any new AF"], 0, "Bleeding issues on AC."),
+      Q("chain", "A patient's HAS-BLED is 4 because of uncontrolled BP and daily NSAIDs. First step?", ["Control BP and stop NSAIDs, then reassess", "Stop anticoagulation", "Double the dose", "Switch to aspirin"], 0, "Uncontrolled BP and NSAIDs are fixable bleeding risks, so fix them before deciding against anticoagulation."),
+      Q("idea", "What does CHA2DS2-VASc estimate?", ["Annual stroke risk in non-valvular AF", "Bleeding risk on warfarin", "Chance of cardioversion success", "Risk of heart block"], 0, "CHA2DS2-VASc adds up stroke risk factors to estimate yearly stroke risk in AF."),
+      Q("bedside", "Why can't the CHA2DS2-VASc score guide a patient with AF and moderate mitral stenosis?", ["It was built for non-valvular AF; these patients get warfarin", "It overestimates bleeding", "Mitral stenosis has no stroke risk", "It only applies to men"], 0, "Mitral stenosis AF carries a very high clot risk, so warfarin is given no matter the score."),
+      Q("traps", "Why do elderly patients often have both high stroke and high bleeding scores?", ["Age and hypertension count in both scores", "Old age lowers stroke risk", "Bleeding scores ignore age", "They are always on warfarin"], 0, "Age and hypertension raise both clot risk and bleeding risk, so both scores climb together."),
+      Q("bedside", "When does the Watchman make sense?", ["High stroke risk with bleeding on anticoagulation", "Low stroke risk", "Mechanical valve", "Any new AF"], 0, "If a patient can't stay on anticoagulation because of bleeding, closing the LAA protects without long-term blood thinners."),
       Q("chain", "A 70-year-old woman with hypertension and diabetes. CHA2DS2-VASc?", ["4", "2", "3", "5"], 0, "Age 65-74 (1) + female (1) + HTN (1) + DM (1) = 4."),
-      Q("bedside", "Why are DOACs preferred over warfarin for most non-valvular AF?", ["No INR monitoring and better stroke prevention", "They have no bleeding risk", "They are cheaper", "They work in mechanical valves"], 0, "Per the lecture."),
-      Q("traps", "Which two items earn 2 points each in CHA2DS2-VASc?", ["Age 75 or older and prior stroke or TIA", "Diabetes and hypertension", "Female sex and CHF", "Vascular disease and age 65"], 0, "A2 and S2.")
+      Q("bedside", "Why are DOACs preferred over warfarin for most non-valvular AF?", ["No INR monitoring and better stroke prevention", "They have no bleeding risk", "They are cheaper", "They work in mechanical valves"], 0, "DOACs need no INR checks, interact less and prevent stroke at least as well with less brain bleeding."),
+      Q("traps", "Which two items earn 2 points each in CHA2DS2-VASc?", ["Age 75 or older and prior stroke or TIA", "Diabetes and hypertension", "Female sex and CHF", "Vascular disease and age 65"], 0, "Age 75+ and prior stroke/TIA are the strongest stroke predictors, so each gets 2 points.")
     ])
   ]);
 }());

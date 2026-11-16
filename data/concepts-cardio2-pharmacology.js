@@ -37,11 +37,11 @@
     ], [
       Q("chain", "A patient starts a Class I sodium channel blocker. Which EKG interval widens most directly?", ["QRS", "PR", "RR only", "P wave only"], 0, "Blocking phase-0 Na⁺ slows ventricular conduction. Clarification (standard physiology): wider QRS."),
       Q("chain", "A patient starts a Class III potassium channel blocker. Which interval lengthens?", ["QT", "PR", "QRS only", "None"], 0, "Prolonged phase-3 repolarization lengthens the QT."),
-      Q("idea", "Why do diltiazem and verapamil slow the AV node but not ventricular conduction?", ["Nodal phase 0 depends on Ca²⁺, while ventricular phase 0 depends on Na⁺", "They block Na⁺", "They only work in the atria", "They block K⁺"], 0, "Key distinction from the slides."),
+      Q("idea", "Why do diltiazem and verapamil slow the AV node but not ventricular conduction?", ["Nodal phase 0 depends on Ca²⁺, while ventricular phase 0 depends on Na⁺", "They block Na⁺", "They only work in the atria", "They block K⁺"], 0, "Nodal cells depolarize with Ca²⁺, so CCBs slow them; ventricular cells use Na⁺ and are spared."),
       Q("chain", "How do beta blockers slow the sinus rate?", ["They flatten the phase-4 slope in the SA node", "They block phase-0 Na⁺", "They prolong phase 3", "They block A1 receptors"], 0, "Class II lowers the SA phase-4 slope."),
       Q("bedside", "AF with RVR, no pre-excitation, stable. What is the drug target?", ["Slow AV conduction (β blocker or diltiazem/verapamil)", "Block ventricular Na⁺ channels", "Prolong the QT", "Speed up the SA node"], 0, "Rate control targets the AV node."),
       Q("idea", "Which ion drives phase 3 repolarization in ventricular muscle?", ["Potassium", "Sodium", "Calcium", "Chloride"], 0, "Phase 3 = K⁺-dependent repolarization."),
-      Q("idea", "What is phase 4 in nodal tissue responsible for?", ["Automaticity", "Rapid depolarization", "The plateau", "Repolarization"], 0, "Phase 4 = automaticity."),
+      Q("idea", "What is phase 4 in nodal tissue responsible for?", ["Automaticity", "Rapid depolarization", "The plateau", "Repolarization"], 0, "In nodal cells phase 4 slowly drifts up to threshold, which is what lets them fire on their own."),
       Q("traps", "Which antiarrhythmic classes also block potassium channels, prolonging repolarization?", ["IA and IC", "IB only", "II only", "IV only"], 0, "IA and IC also block K⁺.")
     ]),
 
@@ -72,7 +72,7 @@
       Q("traps", "A patient on dofetilide becomes bradycardic. Why does this raise torsades risk?", ["The QT lengthens most at slow rates", "Bradycardia shortens the QT", "Dofetilide stops working", "Potassium rises"], 0, "Reverse use-dependence plus bradycardia lengthens QT."),
       Q("idea", "Rank the Class I subclasses from fastest to slowest Na⁺ channel release.", ["IB, IA, IC", "IC, IA, IB", "IA, IB, IC", "IA, IC, IB"], 0, "IB rapid, IA intermediate, IC slow."),
       Q("bedside", "Which patient is the best candidate for flecainide?", ["A patient with recurrent AF and a structurally normal heart", "A patient 2 months after an anterior MI", "A patient with HFrEF", "A patient with severe LVH and scar"], 0, "Avoid IC in structural heart disease."),
-      Q("bedside", "What should accompany flecainide when treating atrial flutter?", ["An AV nodal blocker such as a beta blocker or digoxin", "A QT-prolonging drug", "IV fluids", "Nothing else"], 0, "Preemptive negative chronotropic therapy.")
+      Q("bedside", "What should accompany flecainide when treating atrial flutter?", ["An AV nodal blocker such as a beta blocker or digoxin", "A QT-prolonging drug", "IV fluids", "Nothing else"], 0, "Flecainide slows flutter, which can let the AV node pass every beat, so block the node too.")
     ]),
 
     D("pharmc-qt-stacking", "QT drugs add up", "Every potassium-channel blocker lengthens repolarization; stack two, start with a long QTc, or let a renally cleared drug accumulate, and the QT can reach torsades range.", [
@@ -103,7 +103,7 @@
       Q("chain", "Why is sotalol contraindicated when CrCl is below 40?", ["It is renally cleared and accumulates, prolonging the QT further", "It damages the kidneys", "It becomes inactive", "It causes hypokalemia"], 0, "Dosing is based on renal function and QTc. Clarification (standard teaching): renal accumulation."),
       Q("bedside", "What does the 3-day inpatient start of dofetilide watch for?", ["To monitor QT, creatinine clearance, and rhythm for torsades during the first 3 days", "It is IV only", "It needs daily lab dosing forever", "It causes hypotension in all patients"], 0, "Hospitalized for 3 days with CrCl, QT, and rhythm monitoring."),
       Q("traps", "Which EKG intervals does procainamide (Class IA) prolong?", ["QRS, PR, and QT", "QT only", "PR only", "None"], 0, "Procainamide toxicity: QRS, PR, QT prolongation."),
-      Q("chain", "What rhythm does excessive QT prolongation cause?", ["Torsades de pointes (polymorphic VT)", "Atrial flutter", "Sinus tachycardia", "Mobitz I"], 0, "QT prolongation risks torsades."),
+      Q("chain", "What rhythm does excessive QT prolongation cause?", ["Torsades de pointes (polymorphic VT)", "Atrial flutter", "Sinus tachycardia", "Mobitz I"], 0, "A long QT lets afterdepolarizations fire, which starts polymorphic VT (torsades)."),
       Q("bedside", "Amiodarone is stopped. Why do its effects and interactions persist for weeks?", ["Its half-life is extremely long (weeks)", "It is renally cleared", "It binds K⁺ permanently", "It is stored in the AV node"], 0, "Oral half-life about 58 days.")
     ]),
 
@@ -130,7 +130,7 @@
       Q("idea", "In pre-excited AF, why does blocking the AV node speed up the ventricular rate?", ["Impulses reroute through the accessory pathway, which has no rate limit", "The AV node speeds up", "The SA node fires faster", "Potassium falls"], 0, "The AV node is the speed limit; block it and the pathway takes over."),
       Q("bedside", "A 24-year-old has an irregular, wide-complex tachycardia at 260 with varying QRS shapes, BP stable. What drug fits?", ["Procainamide", "Diltiazem", "Adenosine", "Digoxin"], 0, "Pre-excited AF: avoid nodal blockers; procainamide."),
       Q("chain", "Diltiazem is given for AF in a patient with WPW. What is the risk?", ["Ventricular fibrillation", "Complete heart block only", "Hypokalemia", "Sinus bradycardia only"], 0, "Contraindicated with accessory pathway (risk of VF)."),
-      Q("traps", "Which drugs are on the avoid list in pre-excited AF?", ["Adenosine, beta blockers, diltiazem/verapamil, digoxin, and IV amiodarone", "Procainamide and ibutilide", "Only digoxin", "Only beta blockers"], 0, "Safety exception from the slides."),
+      Q("traps", "Which drugs are on the avoid list in pre-excited AF?", ["Adenosine, beta blockers, diltiazem/verapamil, digoxin, and IV amiodarone", "Procainamide and ibutilide", "Only digoxin", "Only beta blockers"], 0, "Blocking the AV node pushes impulses down the accessory pathway, which can cause VF."),
       Q("bedside", "What is first line for antidromic (wide-complex) AVRT in WPW?", ["Procainamide", "Verapamil", "Metoprolol", "Lidocaine"], 0, "Procainamide is first line for antidromic AVRT."),
       Q("chain", "In which WPW rhythm are AV nodal blockers acceptable?", ["Orthodromic AVRT (narrow, conducting down the AV node)", "Pre-excited AF", "Antidromic AVRT", "Pre-excited flutter"], 0, "Orthodromic AVRT: vagal, adenosine, then CCB/BB."),
       Q("bedside", "Which Class III drug is listed for stable AF/flutter with RVR in WPW?", ["Ibutilide", "Sotalol", "Dofetilide", "Amiodarone IV"], 0, "Ibutilide indication: stable AF/flutter with RVR in WPW.")
@@ -156,7 +156,7 @@
         "<strong>Giving it in an active asthma attack.</strong> Bronchospasm is a contraindication."
       ]))
     ], [
-      Q("idea", "Why must adenosine be given as a rapid push followed by a saline flush?", ["Its half-life is under 10 seconds, so it must reach the heart quickly", "It is irritating to veins", "It needs to be diluted", "It works only in the lungs"], 0, "Half-life under 10 seconds."),
+      Q("idea", "Why must adenosine be given as a rapid push followed by a saline flush?", ["Its half-life is under 10 seconds, so it must reach the heart quickly", "It is irritating to veins", "It needs to be diluted", "It works only in the lungs"], 0, "Adenosine is broken down in under 10 seconds, so it must reach the heart quickly."),
       Q("chain", "How does adenosine break AVNRT?", ["It briefly blocks the AV node, which is part of the reentry circuit", "It prolongs the QT", "It speeds the SA node", "It blocks ventricular Na⁺ channels"], 0, "Brief AV block interrupts re-entry pathways."),
       Q("idea", "What is adenosine's main cellular effect in the AV node?", ["Opening K⁺ channels so K⁺ leaves the cell", "Blocking Na⁺ channels", "Blocking β1 receptors", "Opening Ca²⁺ channels"], 0, "K⁺ channels activated (main effect); Ca²⁺ influx inhibited."),
       Q("bedside", "A patient has a few seconds of asystole and a sense of doom after adenosine. What next?", ["Reassure; these effects are expected and pass in seconds", "Start CPR immediately", "Give atropine", "Give a second drug to reverse it"], 0, "Short half-life means minimal toxicity; transient effects expected."),

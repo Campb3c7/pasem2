@@ -130,7 +130,7 @@
       Q("types", "AF that self-terminates within 7 days is called what?", ["Paroxysmal", "Persistent", "Permanent", "Long-standing persistent"], 0, "Paroxysmal AF: < 7 days, often < 24 h."),
       Q("types", "AF lasting over a year that the patient and clinician have accepted without further rhythm attempts?", ["Permanent AF", "Persistent AF", "Lone AF", "Paroxysmal AF"], 0, "Permanent AF is accepted; no attempts to restore NSR."),
       Q("overview", "Where does AF most often originate?", ["Pulmonary vein muscle sleeves in the left atrium", "The tricuspid annulus", "The AV node", "The right ventricle"], 0, "Arrhythmogenic sleeves extending into the pulmonary veins."),
-      Q("workup", "Which thyroid labs are ordered for new AF?", ["TSH and free T4", "Thyroglobulin", "Anti-TPO only", "Reverse T3"], 0, "Evaluate for thyrotoxicosis."),
+      Q("workup", "Which thyroid labs are ordered for new AF?", ["TSH and free T4", "Thyroglobulin", "Anti-TPO only", "Reverse T3"], 0, "Thyrotoxicosis is a reversible AF trigger, so TSH and free T4 are checked in every new AF."),
       Q("workup", "What important finding can a TTE not reliably exclude in AF?", ["Left atrial appendage thrombus", "LVH", "Mitral stenosis", "Low EF"], 0, "TEE is needed to exclude LA thrombus."),
       Q("types", "A 40-year-old man with AF and no heart disease or risk factors. His father had AF. Classification?", ["Lone AF", "Permanent AF", "Valvular AF", "Post-operative AF"], 0, "Lone AF: under 60, no structural disease; often familial."),
       Q("overview", "Why does AF keep itself going over time?", ["Electrical and structural atrial remodeling", "It lowers potassium", "It thickens the septum", "It damages the SA node only"], 0, "AF is self-promoting through remodeling."),
@@ -189,7 +189,7 @@
       Q("types", "Which test is done right before elective cardioversion to look for clot?", ["TEE", "TTE", "CT head", "Chest X-ray"], 0, "TEE; cardiovert if no LA thrombus."),
       Q("presentation", "A symptomatic 55-year-old relapses into AF after two cardioversions on two antiarrhythmics. Likely next step?", ["RF catheter ablation", "Permanent rate control only", "Stop anticoagulation", "Maze without other surgery"], 0, "Failed cardioversions and antiarrhythmics → ablation."),
       Q("presentation", "A 70-year-old faints on low-dose metoprolol and diltiazem, failed four cardioversions and digoxin. Best option?", ["AV node ablation and permanent pacemaker", "Higher-dose diltiazem", "Fifth cardioversion", "Stop all anticoagulation"], 0, "Can't tolerate rate control and can't hold NSR → AV node ablation + PPM."),
-      Q("presentation", "After AV node ablation and pacemaker, does the patient still need anticoagulation?", ["Yes, the atria still fibrillate", "No, the stroke risk is gone", "Only aspirin", "Only for 6 weeks"], 0, "They still require anticoagulation."),
+      Q("presentation", "After AV node ablation and pacemaker, does the patient still need anticoagulation?", ["Yes, the atria still fibrillate", "No, the stroke risk is gone", "Only aspirin", "Only for 6 weeks"], 0, "Ablation only stops impulses reaching the ventricles; the atria still fibrillate and can still clot."),
       Q("presentation", "When is a Cox-Maze procedure done?", ["During cardiac surgery for another reason", "As first-line therapy", "Instead of anticoagulation", "In the ED"], 0, "Maze is done when the patient is having cardiac surgery anyway."),
       Q("presentation", "Does catheter ablation let a patient stop anticoagulation?", ["No; there's no change in anticoagulation strategy", "Yes, always", "Yes, if successful once", "Only if under 60"], 0, "RFCA is not done to get off anticoagulation.")
     ]),
@@ -216,7 +216,7 @@
     ], [
       Q("workup", "A 90-year-old man with AF has a TIA and no other history. CHA2DS2-VASc score?", ["4", "2", "3", "5"], 0, "Age ≥ 75 = 2, TIA = 2: total 4."),
       Q("workup", "CHA2DS2-VASc of 3 in non-valvular AF. Management?", ["Anticoagulate, preferably with a DOAC", "Aspirin alone", "Nothing", "Clopidogrel alone"], 0, "Score ≥ 3: warfarin or DOAC, DOAC preferred."),
-      Q("workup", "CHA2DS2-VASc of 0 per the lecture. Prevention?", ["Enteric-coated aspirin 81-325 mg", "Apixaban", "Warfarin", "Watchman"], 0, "Score 0-1: EC aspirin alone per the slide."),
+      Q("workup", "CHA2DS2-VASc of 0 per the lecture. Prevention?", ["Enteric-coated aspirin 81-325 mg", "Apixaban", "Warfarin", "Watchman"], 0, "At a score of 0–1, stroke risk is too low to justify anticoagulant bleeding, so aspirin alone."),
       Q("treatment", "A patient with AF and a mechanical mitral valve needs anticoagulation. Which drug?", ["Warfarin", "Apixaban", "Rivaroxaban", "Dabigatran"], 0, "DOACs can't be used with mechanical valves or significant mitral disease."),
       Q("treatment", "An 82-year-old weighing 55 kg with SCr 1.2 takes apixaban for AF. Dose?", ["2.5 mg twice daily", "5 mg twice daily", "10 mg twice daily", "20 mg daily"], 0, "Two of three criteria (age ≥ 80, weight ≤ 60 kg) → 2.5 mg BID."),
       Q("overview", "How does paroxysmal AF compare with permanent AF in stroke risk?", ["No different", "Paroxysmal is much lower", "Paroxysmal needs no prophylaxis", "Permanent is lower"], 0, "Stroke risk is no different; all types need prophylaxis."),

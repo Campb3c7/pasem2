@@ -61,7 +61,7 @@
       Q("workup", "How many Duke criteria make a definite IE diagnosis?", ["2 major, or 1 major + 3 minor, or 5 minor", "1 major alone", "3 minor", "Any positive culture"], 0, "2 major OR 1 major + 3 minor OR 5 minor."),
       Q("treatment", "Treatment for MSSA endocarditis?", ["Nafcillin IV for at least 6 weeks", "Oral amoxicillin 2 weeks", "Vancomycin 10 days", "PCN G 4 weeks"], 0, "MSSA: nafcillin ≥ 6 weeks; MRSA: vancomycin ≥ 6 weeks."),
       Q("treatment", "A patient with aortic valve IE develops new complete heart block. What is suspected and how is it treated?", ["Myocardial abscess needing surgery", "Drug side effect; stop antibiotics", "Rheumatic fever; give steroids", "Normal finding; observe"], 0, "Abscess can affect the conduction system and is a surgical indication."),
-      Q("overview", "Which valve is most commonly affected in IE overall?", ["Mitral", "Tricuspid", "Pulmonic", "Aortic"], 0, "Mitral ~41%, aortic ~37%."),
+      Q("overview", "Which valve is most commonly affected in IE overall?", ["Mitral", "Tricuspid", "Pulmonic", "Aortic"], 0, "The mitral valve takes the highest pressures and is most often damaged, so it's infected most (~41%)."),
       Q("overview", "Which VSD is more likely to get infected?", ["A small VSD with a high pressure gradient", "A large VSD", "A closed VSD", "All equally"], 0, "Small, tight lesions with a high pressure differential predispose to IE."),
       Q("workup", "A TTE is negative but IE is still suspected. Next imaging?", ["Transesophageal echo", "CXR", "Repeat TTE in a year", "MRI brain"], 0, "If TTE is negative, get a TEE."),
       Q("presentation", "A 65-year-old with recent root canal has recurrent confusion and 'UTIs' with negative cultures. What should you suspect?", ["Subacute infective endocarditis", "Dementia", "Pyelonephritis", "Stroke only"], 0, "This is the deck's Anne case: indolent IE presenting as recurrent AMS."),
@@ -79,7 +79,7 @@
     ], [
       Q("presentation", "A 41-year-old who injects heroin has fever 102.4, track marks, a forearm abscess and a soft systolic murmur at the LSB. Diagnosis?", ["Tricuspid valve endocarditis", "Mitral stenosis", "Acute pericarditis", "Aortic dissection"], 0, "This is the deck's Cynthia case: right-sided IE in IVDU."),
       Q("overview", "Which valve is most often infected in IV drug users?", ["Tricuspid", "Mitral", "Aortic", "Pulmonic"], 0, "IE is more likely to affect the tricuspid valve in IVDU."),
-      Q("overview", "What percent of IVDU endocarditis is S. aureus?", ["About 70%", "About 10%", "About 2%", "100%"], 0, "S. aureus ~70%."),
+      Q("overview", "What percent of IVDU endocarditis is S. aureus?", ["About 70%", "About 10%", "About 2%", "100%"], 0, "S. aureus lives on skin and gets injected with the needle, causing about 70% of IVDU IE."),
       Q("treatment", "Which pathogen should you consider covering in IVDU endocarditis because of poor hygiene?", ["Candida (fungal)", "HACEK only", "Strep bovis", "Coxiella"], 0, "Pseudomonas, Serratia, Candida and polymicrobial infections occur."),
       Q("presentation", "Where do emboli from tricuspid IE usually go?", ["The lungs", "The brain", "The kidneys", "The fingers"], 0, "Right-sided vegetations embolize to the pulmonary circulation."),
       Q("overview", "Do most IVDU endocarditis patients have known valve disease?", ["No", "Yes, almost all", "Only rheumatic disease", "Only prosthetic valves"], 0, "The majority do not have known valve disease.")
@@ -161,11 +161,11 @@
     ], [
       Q("presentation", "A dialysis patient has muffled heart sounds, a PMI you can't feel, and normal BP. Likely finding?", ["Pericardial effusion", "Constrictive pericarditis", "Mitral stenosis", "Aortic regurgitation"], 0, "Muffled sounds and impalpable PMI suggest effusion; uremia is a common cause."),
       Q("workup", "Test of choice for a pericardial effusion?", ["Echocardiogram", "CT head", "Cardiac cath", "Holter"], 0, "Echo shows the effusion and tamponade physiology."),
-      Q("workup", "Management of a small asymptomatic pericardial effusion?", ["Serial echocardiograms", "Emergent pericardiocentesis", "Pericardiectomy", "Thrombolysis"], 0, "Observe with serial echos."),
+      Q("workup", "Management of a small asymptomatic pericardial effusion?", ["Serial echocardiograms", "Emergent pericardiocentesis", "Pericardiectomy", "Thrombolysis"], 0, "A small effusion without symptoms isn't compressing the heart, so just watch it with echos."),
       Q("workup", "What does a large effusion do to the chest X-ray?", ["Enlarges the cardiac silhouette", "Shows a widened mediastinum from aorta", "Shows Kerley B lines only", "Nothing"], 0, "Enlargement of the cardiac silhouette."),
       Q("overview", "What mostly decides whether an effusion causes symptoms?", ["How fast it accumulates", "The patient's age", "The color of the fluid", "Heart rate alone"], 0, "Rapid accumulation is poorly tolerated; slow ones can grow large silently (standard teaching)."),
       Q("workup", "Recurrent loculated pericardial effusions are treated with what?", ["Pericardial window", "Diuretics", "Beta blockers", "Observation"], 0, "Pericardial window for recurrent or loculated effusions."),
-      Q("overview", "Which is a common cause of pericardial effusion?", ["Malignancy", "Hypertension", "Hyperlipidemia", "Asthma"], 0, "Idiopathic, uremia, neoplastic, pericarditis.")
+      Q("overview", "Which is a common cause of pericardial effusion?", ["Malignancy", "Hypertension", "Hyperlipidemia", "Asthma"], 0, "Cancer can spread to the pericardium and make it leak fluid.")
     ]),
 
     D("iep-tamponade", "Cardiac Tamponade", "Effusion compresses the heart: Beck's triad, pulsus paradoxus, electrical alternans; pericardiocentesis.", [
@@ -179,7 +179,7 @@
       S("workup", "Diagnosis", "<p><strong>Echo</strong> (test of choice): effusion with tamponade physiology. EKG: <strong>low voltage, electrical (QRS) alternans</strong>. CXR: big silhouette.</p>"),
       S("treatment", "Treatment", "<p><strong>Medical emergency</strong>: IV fluids, vasopressors for hypotension, emergent <strong>pericardiocentesis</strong>; window if recurrent or loculated.</p>" + HY("Hypotension + JVD + muffled sounds + pulsus paradoxus = tamponade → fluids + pericardiocentesis."))
     ], [
-      Q("presentation", "What is Beck's triad?", ["Hypotension, JVD, muffled heart sounds", "Fever, murmur, emboli", "Chest pain, rub, ST elevation", "Edema, ascites, knock"], 0, "Classic tamponade triad."),
+      Q("presentation", "What is Beck's triad?", ["Hypotension, JVD, muffled heart sounds", "Fever, murmur, emboli", "Chest pain, rub, ST elevation", "Edema, ascites, knock"], 0, "Fluid squeezes the heart: low BP, backed-up neck veins and muffled sounds."),
       Q("presentation", "What is pulsus paradoxus?", ["SBP drop of more than 10 mmHg during inspiration", "Pulse that rises with inspiration", "Alternating strong and weak beats", "Pulse deficit between arms"], 0, "Fall in SBP > 10 mmHg during inspiration."),
       Q("treatment", "A hypotensive patient with a large effusion and tamponade on echo. Definitive treatment?", ["Emergent pericardiocentesis", "Colchicine", "Diuretics", "Beta blocker"], 0, "Tamponade is an emergency: fluids, pressors, pericardiocentesis."),
       Q("workup", "Which EKG finding suggests tamponade?", ["Electrical alternans", "Delta wave", "Peaked T waves", "Prolonged QT"], 0, "Dampened voltage and QRS alternans."),
@@ -203,7 +203,7 @@
       Q("presentation", "Years after chest radiation, a patient has edema, ascites, high JVP and an early diastolic knock. CXR shows a calcified pericardium. Diagnosis?", ["Constrictive pericarditis", "Cardiac tamponade", "Dilated cardiomyopathy", "Mitral stenosis"], 0, "Calcified pericardium + knock + right-sided failure."),
       Q("presentation", "What is a pericardial knock?", ["An early diastolic sound at the LSB from abrupt halt of filling", "A late systolic click", "A three-part scratchy rub", "A holosystolic murmur"], 0, "Early diastolic sound as filling stops."),
       Q("treatment", "Why are beta blockers and CCBs avoided in constrictive pericarditis?", ["Tachycardia is protective when stroke volume is fixed", "They cause tamponade", "They worsen calcification", "They interact with colchicine"], 0, "Tachycardia is a protective mechanism."),
-      Q("treatment", "Treatment for moderate to severe constrictive pericarditis?", ["Pericardiectomy", "Pericardiocentesis", "Valve replacement", "Heart transplant first"], 0, "Pericardiectomy."),
+      Q("treatment", "Treatment for moderate to severe constrictive pericarditis?", ["Pericardiectomy", "Pericardiocentesis", "Valve replacement", "Heart transplant first"], 0, "The stiff pericardium is the problem, so surgically removing it lets the heart fill again."),
       Q("workup", "Essential diagnostic test for constrictive pericarditis?", ["Echocardiogram", "Troponin", "D-dimer", "Stress test"], 0, "Echo shows thick, immobile pericardium and septal motion changes."),
       Q("overview", "Most common cause of constrictive pericarditis in developing countries?", ["Tuberculosis", "Radiation", "Viral", "Uremia"], 0, "TB is most common in developing countries; idiopathic/viral in developed ones."),
       Q("treatment", "Early constrictive pericarditis is treated with what?", ["NSAIDs and colchicine for 2-3 months", "Immediate surgery", "Antibiotics", "Beta blockers"], 0, "Early disease is treated like acute pericarditis.")

@@ -91,7 +91,7 @@
     ], [
       Q("overview", "What is the most common cause of sick sinus syndrome?", ["Age-related degeneration of the SA node", "Lyme disease", "Digoxin", "Congenital"], 0, "Most common intrinsic cause is age-related SA node degeneration."),
       Q("overview", "An 80-year-old's monitor shows runs of AF alternating with long pauses. Name?", ["Tachy-brady syndrome (sick sinus)", "Mobitz II", "MAT", "WPW"], 0, "Alternating bradycardia and tachycardia is tachy-brady syndrome, a form of SND."),
-      Q("presentation", "What is the key to diagnosing sick sinus syndrome?", ["Correlating symptoms with the rhythm", "Troponin", "Echo", "Tilt table"], 0, "Symptom-rhythm correlation is essential."),
+      Q("presentation", "What is the key to diagnosing sick sinus syndrome?", ["Correlating symptoms with the rhythm", "Troponin", "Echo", "Tilt table"], 0, "SSS can look normal between episodes, so symptoms must be matched to the rhythm at that moment."),
       Q("presentation", "What is chronotropic incompetence?", ["Heart rate cannot rise appropriately with activity", "Heart rate is too fast at rest", "Dropped QRS complexes", "Short PR"], 0, "Inappropriate heart rate response to physiologic demand."),
       Q("treatment", "A patient with SSS needs a beta blocker for AF but becomes bradycardic. Solution?", ["Permanent pacemaker, then continue the drug", "Stop all rate control forever", "Atropine daily", "Digoxin"], 0, "SND due to necessary medications is a pacemaker indication."),
       Q("treatment", "What is the first step in a patient with new sinus node dysfunction?", ["Treat reversible causes and hold offending drugs", "Immediate pacemaker", "Ablation", "Amiodarone"], 0, "Initial management: reversible causes and offending meds; pacer if that fails."),
@@ -154,7 +154,7 @@
       Q("treatment", "What is the definitive treatment of complete heart block?", ["Permanent pacemaker", "Atropine daily", "Amiodarone", "Ablation"], 0, "Permanent pacemaker insertion is required."),
       Q("treatment", "Complete heart block with BP 70/40. What happens immediately with atropine?", ["Place transcutaneous pacer pads", "Give adenosine", "Wait for cardiology", "Give metoprolol"], 0, "Atropine 1 mg and immediately place pacer pads."),
       Q("presentation", "Why are patients with a ventricular escape rhythm often unstable?", ["The slow wide escape often can't maintain cardiac output", "It causes hypertension", "It is too fast", "It triggers AF"], 0, "Ventricular escape pacemakers often fail to maintain output."),
-      Q("overview", "Which drugs can cause complete heart block?", ["Beta blockers, CCBs and digoxin", "Statins", "Atropine", "Dopamine"], 0, "AV-nodal blocking agents are listed causes.")
+      Q("overview", "Which drugs can cause complete heart block?", ["Beta blockers, CCBs and digoxin", "Statins", "Atropine", "Dopamine"], 0, "These drugs slow AV nodal conduction, and too much can block it completely.")
     ]),
 
     D("arr-escape-rhythms", "Junctional & Ventricular Escape Rhythms", "Backup pacemakers when the SA node or AV conduction fails.", [
@@ -256,7 +256,7 @@
       ]) + unstable)
     ], [
       Q("overview", "How many consecutive PVCs define ventricular tachycardia?", ["Three or more", "Two", "Five", "Ten"], 0, "VT: three or more consecutive PVCs."),
-      Q("overview", "What separates sustained from nonsustained VT?", ["Lasting more than 30 seconds", "Rate over 200", "Wide QRS", "Pulse present"], 0, "Nonsustained < 30 s and self-terminating; sustained > 30 s."),
+      Q("overview", "What separates sustained from nonsustained VT?", ["Lasting more than 30 seconds", "Rate over 200", "Wide QRS", "Pulse present"], 0, "VT lasting over 30 seconds (or causing collapse) is sustained; shorter runs are nonsustained."),
       Q("treatment", "Monomorphic VT at 170 with BP 80/50 and confusion, pulse present. Treatment?", ["Synchronized cardioversion at 100 J", "Amiodarone 150 mg and wait", "Unsynchronized shock 360 J only after CPR", "Adenosine"], 0, "Unstable VT with a pulse: immediate synchronized cardioversion."),
       Q("treatment", "Stable monomorphic VT. First drug?", ["Amiodarone 150 mg IV over 10 minutes", "Adenosine 6 mg", "Diltiazem", "Atropine"], 0, "Stable VT: amiodarone or procainamide; cardioversion if they fail."),
       Q("overview", "What is the most common cause of VT?", ["Ischemic heart disease or acute MI", "WPW", "Hyperthyroidism", "Caffeine"], 0, "Chronic ischemic heart disease and acute MI."),
@@ -281,7 +281,7 @@
       S("presentation", "Presentation", "<p>Sudden collapse: <strong>unconscious, unresponsive, pulseless</strong>. Before: chest pain, dyspnea, N/V.</p>"),
       S("treatment", "ACLS & aftercare", "<ol><li>CPR, attach defibrillator → <strong>shock</strong>.</li><li>CPR 2 min, IV/IO → still shockable: shock, CPR, <strong>epinephrine 1 mg</strong> (q3–5 min).</li><li>Still shockable: shock, CPR, <strong>amiodarone 300 mg</strong> (then 150).</li><li>Look for <strong>H's and T's</strong>: hypovolemia, hypoxia, H+ (acidosis), hypo/hyperkalemia, hypothermia; tension PTX, tamponade, toxins (tablets), thrombosis (coronary, PE).</li></ol><p>After ROSC fix ischemia, metabolic and toxic triggers. Long term: <strong>ICD</strong> for prior VF or sustained VT.</p>")
     ], [
-      Q("treatment", "A man collapses; monitor shows VF. First action?", ["Defibrillate and start CPR", "Atropine", "Adenosine", "Synchronized cardioversion"], 0, "Shockable rhythm: defibrillate."),
+      Q("treatment", "A man collapses; monitor shows VF. First action?", ["Defibrillate and start CPR", "Atropine", "Adenosine", "Synchronized cardioversion"], 0, "VF is a shockable rhythm with no output, so shock immediately and start CPR."),
       Q("treatment", "VF persists after the second shock. Which drug now?", ["Epinephrine 1 mg IV", "Amiodarone 150 mg", "Atropine 1 mg", "Magnesium"], 0, "After the second shock: epinephrine; after the third: amiodarone 300."),
       Q("treatment", "Which drug follows the third shock for refractory VF?", ["Amiodarone 300 mg", "Adenosine 12 mg", "Digoxin", "Procainamide"], 0, "Amiodarone 300 mg (or lidocaine)."),
       Q("overview", "A teenage baseball player collapses in VF after a ball strikes his chest. Name?", ["Commotio cordis", "Brugada", "Tamponade", "Aortic dissection"], 0, "Blunt chest trauma causing VF is commotio cordis."),

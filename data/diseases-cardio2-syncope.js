@@ -33,7 +33,7 @@
       Q("presentation", "A 19-year-old faints while having blood drawn. She felt warm, nauseous and saw her vision narrow first, then woke within seconds. Diagnosis?", ["Vasovagal syncope", "Cardiac syncope", "Seizure", "Orthostatic hypotension from drugs"], 0, "A trigger plus the classic prodrome points to vasovagal (reflex) syncope."),
       Q("overview", "What is the most common type of syncope?", ["Reflex syncope", "Cardiac syncope", "Orthostatic syncope", "Neurologic syncope"], 0, "Reflex syncope, which includes vasovagal, is the most common type."),
       Q("overview", "What happens to autonomic tone at the moment of a vasovagal faint?", ["Parasympathetic activity rises and sympathetic activity falls", "Sympathetic activity surges", "Both rise together", "Neither changes"], 0, "The ANS overcorrects: parasympathetic up, sympathetic down, causing vasodilation and sometimes bradycardia."),
-      Q("treatment", "First-line management for recurrent vasovagal syncope?", ["Avoid triggers, lie down with prodrome, hydrate 2-2.5 L, salt if needed", "Permanent pacemaker", "Beta blocker for everyone", "Driving restriction for life"], 0, "Initial treatment is non-pharmacologic."),
+      Q("treatment", "First-line management for recurrent vasovagal syncope?", ["Avoid triggers, lie down with prodrome, hydrate 2-2.5 L, salt if needed", "Permanent pacemaker", "Beta blocker for everyone", "Driving restriction for life"], 0, "Vasovagal syncope is benign, so start with trigger avoidance and more fluid and salt to support BP."),
       Q("workup", "Which test identifies vasovagal syncope after a cardiac cause is excluded?", ["Tilt-table testing", "Exercise stress test", "Holter monitor", "Cardiac catheterization"], 0, "Tilt-table testing is for recurrent syncope with cardiac causes excluded."),
       Q("presentation", "What share of vasovagal episodes cause injury?", ["About 30%", "About 1%", "About 75%", "None; it is always harmless"], 0, "Prognosis is benign, but injuries occur in about 30% of episodes."),
       Q("overview", "Why is presyncope worked up like syncope?", ["It carries the same prognosis", "It always progresses to syncope", "It is always cardiac", "It is never benign"], 0, "Presyncope should be investigated the same way because it has the same prognosis."),
@@ -101,10 +101,10 @@
       S("workup", "Diagnosis & prognosis", "<p><strong>Echo</strong> confirms. High mortality untreated: <strong>aortic valve replacement</strong> usually indicated.</p>" + HY("Elderly man + exertional syncope + harsh RUSB murmur = AS → echo → valve replacement."))
     ], [
       Q("presentation", "An 82-year-old man is found on the floor after a night-time bathroom trip. He has a 3/6 systolic ejection murmur at the RUSB and severe aortic calcification on echo. Likely cause?", ["Aortic stenosis", "Vasovagal syncope", "Brugada syndrome", "Carotid sinus syndrome"], 0, "This is the deck's Mick case: structural syncope from AS."),
-      Q("overview", "Most common structural cause of syncope in older patients?", ["Aortic stenosis", "HCM", "Mitral prolapse", "ASD"], 0, "Older: AS. Younger: HOCM."),
+      Q("overview", "Most common structural cause of syncope in older patients?", ["Aortic stenosis", "HCM", "Mitral prolapse", "ASD"], 0, "Aortic valves calcify and narrow with age, blocking output on exertion."),
       Q("overview", "Why does AS cause syncope with exertion?", ["Fixed outflow can't raise output to match exercise vasodilation", "Exercise triggers vagal tone", "AS causes long QT", "Exercise blocks the AV node"], 0, "Inability to increase CO in response to exercise-induced peripheral vasodilation."),
       Q("presentation", "Which triad marks severe aortic stenosis?", ["Exertional dyspnea, syncope, angina", "Fever, murmur, emboli", "Hypotension, JVD, muffled sounds", "Tearing pain, pulse deficit, widened mediastinum"], 0, "DOE, presyncope/syncope and exertional angina."),
-      Q("workup", "Which test diagnoses aortic stenosis?", ["Echocardiogram", "Tilt table", "D-dimer", "EEG"], 0, "Diagnosis: echo."),
+      Q("workup", "Which test diagnoses aortic stenosis?", ["Echocardiogram", "Tilt table", "D-dimer", "EEG"], 0, "Echo measures the valve area and pressure gradient."),
       Q("workup", "Treatment for symptomatic severe AS with syncope?", ["Aortic valve replacement", "Salt and fluids", "Midodrine", "Observation only"], 0, "High mortality if untreated; valve replacement is usually indicated."),
       Q("overview", "What is the 1-year mortality after documented cardiac syncope?", ["Over 30%", "Under 1%", "About 5%", "Same as vasovagal"], 0, "Cardiac syncope is a harbinger of sudden death.")
     ]),
@@ -120,11 +120,11 @@
     ], [
       Q("presentation", "A 17-year-old basketball player faints mid-game. His uncle died suddenly at 30. EKG shows LVH. Most likely cause?", ["Hypertrophic cardiomyopathy", "Vasovagal syncope", "Aortic stenosis", "Carotid sinus syndrome"], 0, "Exertional syncope in a young patient with family history: HCM."),
       Q("overview", "What is the inheritance of HCM?", ["Autosomal dominant", "X-linked recessive", "Autosomal recessive", "Mitochondrial"], 0, "Ask about family history of HCM or sudden cardiac death."),
-      Q("workup", "Test to diagnose HCM?", ["Transthoracic echo", "Tilt table", "Carotid massage", "CT head"], 0, "Diagnostics: transthoracic echo."),
+      Q("workup", "Test to diagnose HCM?", ["Transthoracic echo", "Tilt table", "Carotid massage", "CT head"], 0, "Echo shows the thick septum and any outflow obstruction."),
       Q("overview", "What worsens outflow obstruction in HCM?", ["Exertion and dehydration", "Lying down", "Squatting", "Fluids"], 0, "Obstruction gets worse with exertion or dehydration."),
       Q("presentation", "Which extra heart sound may be heard in HCM?", ["S4", "S3 only", "Opening snap", "Pericardial knock"], 0, "Nonspecific findings include S4, systolic murmur and LV heave."),
-      Q("overview", "About how many HCM patients have syncope or presyncope?", ["1 in 4", "1 in 100", "Nearly all", "None"], 0, "About 1 in 4."),
-      Q("overview", "Most common structural cause of syncope in younger patients?", ["Hypertrophic cardiomyopathy", "Aortic stenosis", "Mitral stenosis", "Constrictive pericarditis"], 0, "Older: AS; younger: HOCM.")
+      Q("overview", "About how many HCM patients have syncope or presyncope?", ["1 in 4", "1 in 100", "Nearly all", "None"], 0, "About a quarter faint from outflow obstruction or arrhythmia."),
+      Q("overview", "Most common structural cause of syncope in younger patients?", ["Hypertrophic cardiomyopathy", "Aortic stenosis", "Mitral stenosis", "Constrictive pericarditis"], 0, "HCM is inherited, so it shows up young with a thick septum that blocks outflow.")
     ]),
 
     D("syn-long-qt", "Long QT Syndrome", "Prolonged repolarization (congenital or drug/electrolyte) that can degenerate into torsades and sudden death.", [
@@ -143,7 +143,7 @@
       Q("overview", "Which electrolyte disorders prolong the QT?", ["Hypokalemia and hypomagnesemia", "Hyperkalemia and hypercalcemia", "Hypernatremia", "Hyperphosphatemia"], 0, "Low K and low Mg are the lecture's electrolyte causes."),
       Q("overview", "Which antipsychotic is a classic QT-prolonging drug?", ["Haloperidol", "Lithium", "Buspirone", "Bupropion"], 0, "Haloperidol and ziprasidone; also SSRIs and TCAs."),
       Q("presentation", "Why does torsades often present as brief syncope rather than arrest?", ["It usually resolves on its own within seconds", "It never affects output", "It is always slow", "It only happens asleep"], 0, "Torsades usually self-terminates within seconds."),
-      Q("overview", "Which antimicrobial classes prolong the QT?", ["Fluoroquinolones, macrolides and azoles", "Penicillins and cephalosporins", "Tetracyclines", "Aminoglycosides only"], 0, "FQs, macrolides, azoles."),
+      Q("overview", "Which antimicrobial classes prolong the QT?", ["Fluoroquinolones, macrolides and azoles", "Penicillins and cephalosporins", "Tetracyclines", "Aminoglycosides only"], 0, "These antimicrobials block cardiac K⁺ channels, which prolongs the QT."),
       Q("treatment", "A pulseless patient with known long QT. First step?", ["ACLS protocol", "Oral beta blocker", "Stop ondansetron and observe", "Tilt table"], 0, "Any unstable patient without a pulse goes to ACLS.")
     ]),
 

@@ -51,7 +51,7 @@
       Q("uses", "A patient with symptomatic PAD has an aspirin allergy. Which antiplatelet?", ["Clopidogrel 75 mg daily", "Cilostazol alone", "Warfarin", "No antiplatelet"], 0, "Clopidogrel 75 mg daily is an option for symptomatic and asymptomatic PAD."),
       Q("moa", "What does clopidogrel block?", ["The platelet P2Y12 (ADP) receptor", "COX-1", "Factor Xa", "Thrombin"], 0, "Clopidogrel is a P2Y12 inhibitor (standard teaching)."),
       Q("uses", "What recommendation class is single antiplatelet therapy in symptomatic PAD?", ["Class I (recommended)", "Class III (harm)", "Not mentioned", "Class IIb"], 0, "Symptomatic PAD: single antiplatelet therapy is recommended (Class I); asymptomatic: reasonable (IIa)."),
-      Q("uses", "What is the clopidogrel dose for PAD?", ["75 mg daily", "300 mg daily", "81 mg daily", "150 mg BID"], 0, "Clopidogrel 75 mg daily."),
+      Q("uses", "What is the clopidogrel dose for PAD?", ["75 mg daily", "300 mg daily", "81 mg daily", "150 mg BID"], 0, "Clopidogrel 75 mg daily lowers heart attack and stroke risk in PAD."),
       Q("uses", "A patient with carotid stenosis cannot take aspirin. Which antiplatelet keeps him on the lecture's medical therapy?", ["Clopidogrel 75 mg daily", "Cilostazol", "Warfarin", "None needed"], 0, "Carotid medical therapy includes an antiplatelet; clopidogrel is the aspirin alternative (standard teaching).")
     ]),
 

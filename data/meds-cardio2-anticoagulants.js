@@ -28,7 +28,7 @@
     }, [
       Q("uses", "A patient has a cold, pulseless leg from an acute arterial embolus. What drug is started immediately?", ["IV unfractionated heparin", "Oral apixaban", "Cilostazol", "Aspirin alone"], 0, "Acute limb ischemia: anticoagulate with IV UFH, then urgent revascularization."),
       Q("uses", "A PE patient with CrCl 12 may need catheter-directed therapy in the next few hours. Best anticoagulant?", ["Unfractionated heparin drip", "Enoxaparin", "Rivaroxaban", "Warfarin alone"], 0, "UFH is preferred with severe renal failure, a possible procedure, or need for rapid reversal."),
-      Q("se", "Platelets fall by 60% five days into a heparin drip. What should you suspect?", ["Heparin-induced thrombocytopenia (HIT)", "Normal dilution", "Warfarin skin necrosis", "TTP from aspirin"], 0, "Heparin can cause HIT."),
+      Q("se", "Platelets fall by 60% five days into a heparin drip. What should you suspect?", ["Heparin-induced thrombocytopenia (HIT)", "Normal dilution", "Warfarin skin necrosis", "TTP from aspirin"], 0, "A platelet drop over 50% 5–10 days into heparin is the classic timing for HIT."),
       Q("moa", "What does heparin do to an existing clot?", ["Stops it from growing; it does not dissolve it", "Dissolves it within hours", "Turns it into an embolus", "Nothing at all"], 0, "Anticoagulants prevent growth and new clots; tPA is what actively breaks clots down."),
       Q("uses", "Which two drugs are listed for cardiogenic shock from MI to prevent coagulopathy?", ["Aspirin 324 mg and IV heparin", "Warfarin and clopidogrel", "tPA and apixaban", "Cilostazol and aspirin"], 0, "Cardiogenic shock: aspirin 324 mg orally and IV heparin.")
     ]),
@@ -69,7 +69,7 @@
       ]) + HY("Warfarin wins for mechanical valves, mitral disease, ESRD and antiphospholipid syndrome. Never in pregnancy.")
     }, [
       Q("uses", "A patient with AF has a mechanical mitral valve. Which anticoagulant?", ["Warfarin", "Apixaban", "Rivaroxaban", "Dabigatran"], 0, "DOACs cannot be used with mechanical valves or significant mitral disease; warfarin is the drug of choice."),
-      Q("uses", "A patient with antiphospholipid syndrome has a DVT. Preferred long-term anticoagulant?", ["Warfarin", "Rivaroxaban", "Aspirin", "Clopidogrel"], 0, "Antiphospholipid syndrome: warfarin preferred."),
+      Q("uses", "A patient with antiphospholipid syndrome has a DVT. Preferred long-term anticoagulant?", ["Warfarin", "Rivaroxaban", "Aspirin", "Clopidogrel"], 0, "DOACs had more clots than warfarin in antiphospholipid syndrome, so warfarin is preferred."),
       Q("moa", "What INR is targeted with warfarin for AF?", ["2-3", "1-1.5", "3.5-4.5", "No INR is needed"], 0, "Warfarin is dose-adjusted to an INR of 2-3 for AF."),
       Q("avoid", "Why is warfarin not used for VTE in pregnancy?", ["It is not used in pregnancy (it crosses the placenta); LMWH is preferred", "It is too short-acting", "It needs dialysis", "It causes HIT"], 0, "Warfarin is not used in pregnancy; LMWH is the treatment of choice."),
       Q("pearls", "Which is an advantage of warfarin over DOACs?", ["Cheap and reversible with vitamin K", "No monitoring", "No food interactions", "Instant onset"], 0, "Standard teaching (slide 118 is blank): cheap, long experience, vitamin K reversal, works with valves and ESRD."),
@@ -125,7 +125,7 @@
         HY("Dabigatran = thrombin inhibitor, 150 mg BID, avoid GFR ≤ 30.")
     }, [
       Q("moa", "Which DOAC is a direct thrombin inhibitor?", ["Dabigatran", "Apixaban", "Rivaroxaban", "Edoxaban"], 0, "Dabigatran (Pradaxa) is a direct thrombin inhibitor; the others inhibit factor Xa."),
-      Q("moa", "What is the AF dose of dabigatran?", ["150 mg twice daily", "20 mg once daily", "5 mg twice daily", "60 mg once daily"], 0, "Dabigatran 150 mg BID."),
+      Q("moa", "What is the AF dose of dabigatran?", ["150 mg twice daily", "20 mg once daily", "5 mg twice daily", "60 mg once daily"], 0, "The standard AF dose is 150 mg twice daily, reduced for poor kidney function."),
       Q("avoid", "Below what GFR is dabigatran avoided?", ["30 or less", "60", "90", "It has no renal limit"], 0, "Dabigatran may be used until stage IV CKD; avoid if GFR ≤ 30."),
       Q("pearls", "What does the lecture say about reversing dabigatran?", ["A reversal agent exists but is costly", "It cannot be reversed", "Vitamin K reverses it", "Protamine reverses it"], 0, "A reversal agent is available for dabigatran, but costly.")
     ]),

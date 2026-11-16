@@ -32,10 +32,10 @@
     ], [
       Q("idea", "A patient has PAD. What does that predict about his coronary and carotid arteries?", ["They likely have plaque too, because the disease is diffuse", "They are probably normal", "They are protected by the PAD", "They only develop disease after surgery"], 0, "If it is in one artery, it will be in others."),
       Q("chain", "Why are MI and stroke major complications of a leg bypass?", ["The same diffuse atherosclerosis affects the coronaries and carotids, and surgery stresses them", "The bypass sends clot to the heart", "Leg surgery cuts the carotid", "Anesthesia causes plaque"], 0, "Hidden CAD and CAS meet surgical stress."),
-      Q("bedside", "A PAD patient with no neuro symptoms is found to have a carotid bruit. Why was he examined for it?", ["PAD is a reason to screen for carotid disease", "Bruits cause claudication", "It is unrelated", "Carotid disease causes leg pain"], 0, "Screening due to PAD."),
-      Q("traps", "After a successful fem-pop bypass, has the patient's atherosclerosis been treated?", ["No: the disease elsewhere remains and keeps progressing", "Yes, everywhere", "Yes, in the heart only", "Yes, if the graft is vein"], 0, "Surgery treats one segment."),
-      Q("chain", "Diabetes, hypertension, smoking and high LDL increase which conditions?", ["CAD, PAD and carotid stenosis together", "Only CAD", "Only venous disease", "Only PAD"], 0, "Shared risk factors."),
-      Q("idea", "Which three names describe the same plaque process in different beds?", ["CAD, PAD, carotid artery stenosis", "DVT, PE, varicose veins", "Raynaud, Buerger, Takayasu", "AAA, dissection, AVM"], 0, "Slide 4.")
+      Q("bedside", "A PAD patient with no neuro symptoms is found to have a carotid bruit. Why was he examined for it?", ["PAD is a reason to screen for carotid disease", "Bruits cause claudication", "It is unrelated", "Carotid disease causes leg pain"], 0, "Atherosclerosis is diffuse, so PAD raises the chance of carotid disease."),
+      Q("traps", "After a successful fem-pop bypass, has the patient's atherosclerosis been treated?", ["No: the disease elsewhere remains and keeps progressing", "Yes, everywhere", "Yes, in the heart only", "Yes, if the graft is vein"], 0, "Bypass fixes one blocked segment, but atherosclerosis elsewhere keeps progressing."),
+      Q("chain", "Diabetes, hypertension, smoking and high LDL increase which conditions?", ["CAD, PAD and carotid stenosis together", "Only CAD", "Only venous disease", "Only PAD"], 0, "These are shared atherosclerosis risk factors, so they drive plaque in every artery."),
+      Q("idea", "Which three names describe the same plaque process in different beds?", ["CAD, PAD, carotid artery stenosis", "DVT, PE, varicose veins", "Raynaud, Buerger, Takayasu", "AAA, dissection, AVM"], 0, "It's the same atherosclerosis named by where it is: heart, legs or neck. (Slide 4)")
     ]),
 
     D("vsurgc-inflow-outflow", "Inflow and outflow: a bypass is only as good as both ends", "Blood must get into a repair and out the other side; a perfect graft with poor inflow or blocked runoff will clot, and lifestyle decides how long it lasts.", [
@@ -59,12 +59,12 @@
       ]))
     ], [
       Q("chain", "A fem-pop bypass is sewn to a tibial artery that is badly diseased below. What happens to graft flow?", ["It falls, so the graft is likely to clot", "It rises", "Nothing changes", "It reverses safely"], 0, "Poor outflow lowers flow and promotes thrombosis."),
-      Q("idea", "A tight common iliac stenosis sits above a planned femoral bypass. Which problem is this?", ["Poor inflow", "Poor outflow", "Too much runoff", "No problem"], 0, "Inflow comes from above."),
+      Q("idea", "A tight common iliac stenosis sits above a planned femoral bypass. Which problem is this?", ["Poor inflow", "Poor outflow", "Too much runoff", "No problem"], 0, "A narrowing above the bypass limits the blood coming in, so the bypass will fail."),
       Q("bedside", "The day after a bypass, the distal pulse is gone and the foot is pale. What does this mean?", ["The graft or runoff has thrombosed or embolized", "Normal healing", "A wound infection", "Venous congestion"], 0, "Loss of pulses after a bypass."),
-      Q("chain", "Why does duplex surveillance every 3 months raise 5-year patency?", ["It finds failing grafts so they can be fixed before they clot", "Ultrasound dissolves plaque", "It replaces antiplatelets", "It lowers cholesterol"], 0, "Intervention based on surveillance."),
-      Q("traps", "A patient has a healthy saphenous vein. Which conduit should the surgeon choose?", ["The patient's own vein", "PTFE", "Dacron", "Cadaver graft"], 0, "Autologous vein is best."),
-      Q("bedside", "A patient keeps smoking after a successful stent. What will likely happen?", ["The stent will ultimately fail", "It will last forever", "Smoking keeps stents open", "Nothing"], 0, "Surgery only buys time."),
-      Q("chain", "Long-term, which is better for PAD: bypass or percutaneous stenting?", ["Bypass", "Stenting", "Equal", "Neither works"], 0, "Bypass better long term.")
+      Q("chain", "Why does duplex surveillance every 3 months raise 5-year patency?", ["It finds failing grafts so they can be fixed before they clot", "Ultrasound dissolves plaque", "It replaces antiplatelets", "It lowers cholesterol"], 0, "Surveillance finds narrowing grafts so they can be fixed before they clot."),
+      Q("traps", "A patient has a healthy saphenous vein. Which conduit should the surgeon choose?", ["The patient's own vein", "PTFE", "Dacron", "Cadaver graft"], 0, "The patient's own vein stays open longer and resists infection better."),
+      Q("bedside", "A patient keeps smoking after a successful stent. What will likely happen?", ["The stent will ultimately fail", "It will last forever", "Smoking keeps stents open", "Nothing"], 0, "Smoking keeps atherosclerosis going, so the stent will eventually narrow or clot."),
+      Q("chain", "Long-term, which is better for PAD: bypass or percutaneous stenting?", ["Bypass", "Stenting", "Equal", "Neither works"], 0, "Bypass grafts stay open longer than stents, so bypass is better long-term.")
     ]),
 
     D("vsurgc-carotid-emboli", "Carotid plaque causes strokes by throwing emboli upstream", "An unstable carotid plaque ulcerates, grows clot, and sends it into the internal carotid: the eye on the same side, the body on the opposite side.", [
@@ -83,12 +83,12 @@
         "<strong>Thinking a total occlusion is the most dangerous lesion to fix.</strong> It is not operated on."
       ]))
     ], [
-      Q("chain", "An embolus from the right internal carotid lodges in the ophthalmic artery. What does the patient notice?", ["Brief vision loss in the right eye", "Left eye vision loss", "Left arm weakness only", "Vertigo"], 0, "Ipsilateral amaurosis fugax."),
-      Q("chain", "An embolus from the left internal carotid reaches the left hemisphere. Which side of the body is weak?", ["The right side", "The left side", "Both sides", "Neither"], 0, "Contralateral deficits."),
-      Q("idea", "Which plaque feature makes it likely to rupture and embolize?", ["A thin fibrous cap over a lipid core", "Thick calcified cap", "Small size alone", "No inflammation"], 0, "Vulnerable plaque."),
-      Q("bedside", "Which symptom does NOT make carotid stenosis symptomatic?", ["Syncope", "Amaurosis fugax", "Contralateral arm numbness", "Contralateral facial droop"], 0, "NOT vertigo or syncope."),
+      Q("chain", "An embolus from the right internal carotid lodges in the ophthalmic artery. What does the patient notice?", ["Brief vision loss in the right eye", "Left eye vision loss", "Left arm weakness only", "Vertigo"], 0, "The ophthalmic artery branches off the same-side ICA, so the right eye goes dark briefly."),
+      Q("chain", "An embolus from the left internal carotid reaches the left hemisphere. Which side of the body is weak?", ["The right side", "The left side", "Both sides", "Neither"], 0, "The left hemisphere controls the right side of the body."),
+      Q("idea", "Which plaque feature makes it likely to rupture and embolize?", ["A thin fibrous cap over a lipid core", "Thick calcified cap", "Small size alone", "No inflammation"], 0, "A thin cap over a large lipid core ruptures easily and releases clot and debris."),
+      Q("bedside", "Which symptom does NOT make carotid stenosis symptomatic?", ["Syncope", "Amaurosis fugax", "Contralateral arm numbness", "Contralateral facial droop"], 0, "Syncope is global hypoperfusion, which one carotid can't cause."),
       Q("bedside", "A patient had right-hand clumsiness 4 months ago. His left carotid is 72% narrowed. Why does that history matter?", ["It makes the stenosis symptomatic, so surgery is indicated at 70% or more", "It does not matter", "It means the right carotid is the problem", "It rules out surgery"], 0, "Symptomatic within 6 months: 70 to 99%."),
-      Q("traps", "A patient's left eye goes dark for a minute. Which carotid should be imaged first?", ["Left", "Right", "Neither", "The vertebral artery"], 0, "Same-side eye."),
+      Q("traps", "A patient's left eye goes dark for a minute. Which carotid should be imaged first?", ["Left", "Right", "Neither", "The vertebral artery"], 0, "The eye is supplied by the same-side ICA, so image the left carotid."),
       Q("chain", "An ulcerated plaque fissures and grows a thrombus. What is the next step in the stroke chain?", ["Pieces embolize up the internal carotid", "The plaque shrinks", "The vertebral artery closes", "BP drops"], 0, "Slide 29: fissured plaque with thrombosis.")
     ]),
 
@@ -108,11 +108,11 @@
         "<strong>Stopping medical therapy after CEA.</strong> Medical therapy is for everyone."
       ]))
     ], [
-      Q("idea", "Why is carotid surgery called prophylactic?", ["It lowers the chance of a future stroke rather than treating one that happened", "It cures atherosclerosis", "It is cosmetic", "It is done only in emergencies"], 0, "Prophylactic surgery."),
+      Q("idea", "Why is carotid surgery called prophylactic?", ["It lowers the chance of a future stroke rather than treating one that happened", "It cures atherosclerosis", "It is cosmetic", "It is done only in emergencies"], 0, "CEA reduces future stroke risk rather than treating a stroke that already happened."),
       Q("chain", "A symptomatic patient's stenosis rises from 60% to 85%. What happens to the case for surgery?", ["It gets stronger: higher natural stroke risk", "It gets weaker", "No change", "Surgery becomes forbidden"], 0, "Non-operative risk depends on degree of stenosis."),
       Q("chain", "A fit 70-year-old has 85% asymptomatic stenosis but metastatic cancer with 1-year survival. Why not operate?", ["Life expectancy under 5 years means no time to benefit", "The stenosis is too mild", "Asymptomatic disease is never treated", "Local anesthesia is impossible"], 0, "Life expectancy over 5 years."),
       Q("traps", "Duplex shows 100% occlusion of the internal carotid. Should it be operated on?", ["No", "Yes, urgently", "Yes, with a stent", "Only if asymptomatic"], 0, "Do not operate on total occlusion."),
-      Q("bedside", "Why is the anesthesia risk of CEA low?", ["It can be done under local anesthesia", "It takes 5 minutes", "No incision is needed", "Patients are always young"], 0, "Local or general."),
+      Q("bedside", "Why is the anesthesia risk of CEA low?", ["It can be done under local anesthesia", "It takes 5 minutes", "No incision is needed", "Patients are always young"], 0, "CEA can be done under local, which avoids the risks of general anesthesia."),
       Q("chain", "The operative stroke risk of CEA is 1 to 3%. When is surgery worth it?", ["When the stroke risk without surgery is higher", "Always", "Never", "Only when the artery is fully blocked"], 0, "Weigh operative vs non-operative risk."),
       Q("traps", "An asymptomatic patient has 75% stenosis. Using the lecture's thresholds, what is the plan?", ["Medical therapy", "CEA", "Stent", "Emergency surgery"], 0, "Asymptomatic needs 80 to 99%.")
     ]),
@@ -140,12 +140,12 @@
         "<strong>Watching a growing neck hematoma.</strong> It goes back to the OR quickly."
       ]))
     ], [
-      Q("chain", "The surgeon manipulates the carotid sinus during CEA. What happens to blood pressure?", ["It can swing unpredictably (BP lability)", "It stays perfectly stable", "It always rises permanently", "Only heart rate changes"], 0, "Carotid sinus controls BP."),
-      Q("chain", "A 95% stenosis is removed. What happens to flow in the brain beyond it right after?", ["It rises sharply, and vessels that stayed dilated cannot limit it", "It falls", "It stops", "It does not change"], 0, "Hyperperfusion."),
-      Q("bedside", "The night after CEA: severe headache, seizure, BP 205/110. What should be done to the BP?", ["Lower it", "Raise it", "Ignore it", "Give a fluid bolus"], 0, "BP control."),
-      Q("idea", "Which carotid structure senses oxygen and carbon dioxide?", ["Carotid body", "Carotid sinus", "Circle of Willis", "Ophthalmic artery"], 0, "Carotid body = chemoreceptor."),
+      Q("chain", "The surgeon manipulates the carotid sinus during CEA. What happens to blood pressure?", ["It can swing unpredictably (BP lability)", "It stays perfectly stable", "It always rises permanently", "Only heart rate changes"], 0, "The carotid sinus senses BP, so handling it makes BP swing."),
+      Q("chain", "A 95% stenosis is removed. What happens to flow in the brain beyond it right after?", ["It rises sharply, and vessels that stayed dilated cannot limit it", "It falls", "It stops", "It does not change"], 0, "Vessels beyond a tight stenosis stayed dilated, so when it's opened they can't limit the flood of flow."),
+      Q("bedside", "The night after CEA: severe headache, seizure, BP 205/110. What should be done to the BP?", ["Lower it", "Raise it", "Ignore it", "Give a fluid bolus"], 0, "High BP drives the excess flow that causes hyperperfusion, so lower it."),
+      Q("idea", "Which carotid structure senses oxygen and carbon dioxide?", ["Carotid body", "Carotid sinus", "Circle of Willis", "Ophthalmic artery"], 0, "The carotid body senses blood O2 and CO2."),
       Q("traps", "After CEA, BP is 90/50 and HR 55 with a dry, stable neck. Which structure is most likely responsible?", ["The carotid sinus", "The carotid body", "The hypoglossal nerve", "The recurrent laryngeal nerve"], 0, "BP lability from the carotid sinus."),
-      Q("bedside", "Why are anticonvulsants part of hyperperfusion treatment?", ["Seizures are a main feature", "They lower cholesterol", "They prevent hematoma", "They dilate the carotid"], 0, "Headache, seizures, focal deficits."),
+      Q("bedside", "Why are anticonvulsants part of hyperperfusion treatment?", ["Seizures are a main feature", "They lower cholesterol", "They prevent hematoma", "They dilate the carotid"], 0, "Hyperperfusion swells the brain and causes seizures, so anticonvulsants are needed."),
       Q("chain", "A patient's neck swells quickly after CEA. Why is the response a rapid return to the OR?", ["A growing neck hematoma can compress the airway", "It is always infected", "It means a stroke", "To place a stent"], 0, "Hematoma: rapid return to OR (airway, standard teaching).")
     ]),
 
@@ -166,12 +166,12 @@
       ]))
     ], [
       Q("chain", "A below-knee amputation is done where calf blood flow is poor. What is likely to happen?", ["The stump breaks down and needs revision", "It heals faster", "Nothing", "The PAD is cured"], 0, "Level depends on blood supply."),
-      Q("chain", "A stump becomes hot, red, swollen and fluctuant. Antibiotics alone have not helped. What is missing?", ["Opening and draining the wound", "A higher antibiotic dose only", "Compression", "A prosthesis"], 0, "Antibiotics and drainage."),
+      Q("chain", "A stump becomes hot, red, swollen and fluctuant. Antibiotics alone have not helped. What is missing?", ["Opening and draining the wound", "A higher antibiotic dose only", "Compression", "A prosthesis"], 0, "Antibiotics can't reach a pus collection, so it must be opened and drained."),
       Q("idea", "Why do surgeons try to save the knee?", ["Joint function makes prosthetic walking much easier", "The knee never gets infected", "It shortens surgery", "It lowers BP"], 0, "Joint function and prosthesis fitting."),
       Q("traps", "After a BKA, the family says he no longer needs his statin or diabetes care. Correct response?", ["He still needs them: the amputation treated the result, not the disease", "Correct, he is cured", "He only needs the statin", "He only needs insulin"], 0, "Amputations do not treat the underlying disease."),
-      Q("bedside", "A septic patient with wet gangrene and ascending infection needs surgery now. Which approach fits?", ["Quick guillotine amputation, formal closure later", "Long reconstructive bypass first", "Transmetatarsal amputation with closure", "Wait for antibiotics to work"], 0, "Guillotine (standard teaching)."),
+      Q("bedside", "A septic patient with wet gangrene and ascending infection needs surgery now. Which approach fits?", ["Quick guillotine amputation, formal closure later", "Long reconstructive bypass first", "Transmetatarsal amputation with closure", "Wait for antibiotics to work"], 0, "A quick guillotine cut removes the infected limb fast, and the stump is closed once sepsis clears (standard teaching)."),
       Q("chain", "Why is mortality after amputation so high (about 15 to 30%)?", ["Patients have diffuse vascular disease and diabetes that the amputation doesn't fix", "The surgery itself is always fatal", "Prostheses cause death", "Amputation causes cancer"], 0, "Cardiovascular events and DM control."),
-      Q("idea", "Which four factors decide the amputation level?", ["Blood supply, infection or necrosis level, joint function, prosthesis fitting", "Age, weight, height, sex", "Surgeon, hospital, time, cost", "Pain, color, temperature, swelling"], 0, "Slide 42.")
+      Q("idea", "Which four factors decide the amputation level?", ["Blood supply, infection or necrosis level, joint function, prosthesis fitting", "Age, weight, height, sex", "Surgeon, hospital, time, cost", "Pain, color, temperature, swelling"], 0, "The level must heal (blood supply), clear dead tissue, keep joints and fit a prosthesis. (Slide 42)")
     ])
   ]);
 })();

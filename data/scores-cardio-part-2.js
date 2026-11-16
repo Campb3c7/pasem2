@@ -299,10 +299,10 @@
       ], [
         Q("calc", "Supine 132/80, standing at 2 minutes 108/76. Orthostatic hypotension?", ["Yes, systolic fell 24", "No, diastolic fell only 4", "No, both must drop", "Yes, but only because standing BP is under 110"], 0, "A systolic drop of 20 or more is enough."),
         Q("calc", "Supine 118/78, standing 110/66. Orthostatic hypotension?", ["Yes, diastolic fell 12", "No, systolic fell only 8", "No, BP is normal", "Cannot tell"], 0, "A diastolic drop of 10 or more is enough."),
-        Q("calc", "Supine 140/86, standing 126/80. Orthostatic hypotension?", ["No, drops are 14 and 6", "Yes, systolic fell 14", "Yes, any drop counts", "Yes, diastolic fell 6"], 0, "Neither threshold is met."),
+        Q("calc", "Supine 140/86, standing 126/80. Orthostatic hypotension?", ["No, drops are 14 and 6", "Yes, systolic fell 14", "Yes, any drop counts", "Yes, diastolic fell 6"], 0, "Orthostatic hypotension needs a systolic drop of 20+ or diastolic of 10+; here it's only 14 and 6."),
         Q("use", "Within what time of standing does the definition require the drop?", ["3 minutes", "30 seconds", "10 minutes", "1 hour"], 0, "Sustained reduction within 3 minutes of standing."),
         Q("use", "An older man on a new diuretic faints when getting out of bed and has a 26 mmHg systolic drop. What is the likely category?", ["Orthostatic syncope", "Cardiac syncope", "Reflex syncope", "Seizure"], 0, "Positive orthostatics + fitting history."),
-        Q("traps", "Which statement is correct?", ["Orthostatic hypotension is a sign; orthostatic syncope is a symptom", "They are the same thing", "Orthostatic hypotension always causes syncope", "Orthostatic syncope needs a tilt table to diagnose"], 0, "From the syncope slides.")
+        Q("traps", "Which statement is correct?", ["Orthostatic hypotension is a sign; orthostatic syncope is a symptom", "They are the same thing", "Orthostatic hypotension always causes syncope", "Orthostatic syncope needs a tilt table to diagnose"], 0, "The BP drop on standing is a measured sign; fainting from it is the symptom the patient has.")
       ]),
 
       D("sc-syncope-risk", "Syncope high-risk features", "If the cause is unclear, any high-risk feature means admission for evaluation and cardiac monitoring; a low-risk, asymptomatic patient can go home with follow-up.", [
@@ -325,7 +325,7 @@
         S("traps", "Watch for", "<ul><li>Admitting a clear vasovagal faint: no increased morbidity or mortality.</li><li>Sending home a patient whose only flag is a delta wave or long QT.</li></ul>")
       ], [
         Q("calc", "A 72-year-old with heart failure faints without warning; EKG is normal and BP is 124/70. Admit?", ["Yes, one high-risk feature (heart failure)", "No, EKG is normal", "No, BP is normal", "Only if troponin is up"], 0, "Suspected structural heart disease, especially HF, is high risk."),
-        Q("calc", "A 24-year-old faints during a blood draw with a warm, sweaty prodrome; EKG and vitals normal. What next?", ["Discharge with follow-up", "Admit for telemetry", "Tilt table now", "Echo before discharge"], 0, "Clear vasovagal cause: discharge."),
+        Q("calc", "A 24-year-old faints during a blood draw with a warm, sweaty prodrome; EKG and vitals normal. What next?", ["Discharge with follow-up", "Admit for telemetry", "Tilt table now", "Echo before discharge"], 0, "A clear trigger and prodrome with a normal EKG and vitals is low-risk vasovagal syncope, safe for discharge."),
         Q("calc", "Unexplained syncope with a hematocrit of 26. What does this add?", ["A high-risk feature: admit", "Nothing", "Rules out cardiac cause", "Only matters if SBP is under 90"], 0, "Hct under 30 is a high-risk criterion."),
         Q("use", "Which EKG finding is DIAGNOSTIC (not just suspicious) for arrhythmic syncope?", ["Mobitz II block", "LVH pattern", "Q waves", "Bifascicular block"], 0, "Mobitz II/3rd-degree block are diagnostic findings."),
         Q("use", "Which finding on the EKG of a syncope patient is suspicious and needs monitoring or workup?", ["Delta wave", "Sinus rhythm at 72", "Normal PR", "Narrow QRS"], 0, "Delta wave is a suspicious finding."),
@@ -360,12 +360,12 @@
       ], [
         Q("calc", "Marty is 90, never sick, and just had a TIA. CHA2DS2-VASc?", ["4", "3", "2", "5"], 0, "Age 75+ = 2, TIA = 2: total 4."),
         Q("calc", "A 68-year-old woman with hypertension and diabetes. Score and plan?", ["4; anticoagulate (DOAC preferred)", "3; aspirin", "2; individualize", "4; aspirin"], 0, "Age 65-74 = 1, female = 1, HTN = 1, DM = 1: 4."),
-        Q("calc", "A 55-year-old man with no medical history has paroxysmal AF. Score and plan?", ["0; aspirin alone", "1; anticoagulate", "0; no stroke prevention needed ever", "2; DOAC"], 0, "Score 0: aspirin 81-325 per the slides."),
+        Q("calc", "A 55-year-old man with no medical history has paroxysmal AF. Score and plan?", ["0; aspirin alone", "1; anticoagulate", "0; no stroke prevention needed ever", "2; DOAC"], 0, "Under 65, male, no risk factors scores 0, and the slides treat 0–1 with aspirin 81–325 mg alone."),
         Q("calc", "A 77-year-old man with prior MI. Score?", ["3", "4", "2", "1"], 0, "Age 75+ = 2, vascular disease = 1."),
         Q("calc", "A 60-year-old woman with heart failure. Score and plan?", ["2; individualize, anticoagulation preferred", "1; aspirin", "3; anticoagulate", "2; aspirin only"], 0, "Female 1 + CHF 1 = 2."),
-        Q("use", "What annual stroke risk matches a CHA2DS2-VASc of 2?", ["2.2%", "0.6%", "4.8%", "9.7%"], 0, "From the slide table."),
+        Q("use", "What annual stroke risk matches a CHA2DS2-VASc of 2?", ["2.2%", "0.6%", "4.8%", "9.7%"], 0, "A score of 2 carries about a 2.2% yearly stroke risk, which is why anticoagulation is favored."),
         Q("traps", "A 80-year-old woman with a mechanical mitral valve and AF. Why doesn't her score decide the drug?", ["The score is for non-valvular AF; a mechanical valve needs warfarin", "Her score is too low", "DOACs are preferred at any score", "She needs aspirin only"], 0, "Scores were developed for non-valvular AF; DOACs can't be used with mechanical valves."),
-        Q("traps", "A 72-year-old man with no other history. What is his age score?", ["1", "2", "3", "0"], 0, "65-74 = 1 point.")
+        Q("traps", "A 72-year-old man with no other history. What is his age score?", ["1", "2", "3", "0"], 0, "Age 65–74 scores 1 point; 75+ would score 2.")
       ]),
 
       D("sc-hasbled", "HAS-BLED", "Bleeding risk on warfarin: a score over 3 is high risk, so fix what you can and keep reviewing the indication.", [
@@ -424,7 +424,7 @@
         Q("calc", "Dabigatran for a patient with GFR 25. Plan?", ["Avoid dabigatran", "150 mg BID", "75 mg BID", "Give with food"], 0, "Avoid if GFR ≤ 30."),
         Q("use", "AF patient with a mechanical aortic valve. Which anticoagulant?", ["Warfarin, INR 2-3", "Apixaban 5 mg BID", "Rivaroxaban 20 mg", "Dabigatran 150 mg BID"], 0, "DOACs can't be used with mechanical valves."),
         Q("use", "Which DOAC is acceptable with caution in ESRD per the slides?", ["Apixaban", "Dabigatran", "Edoxaban", "Rivaroxaban"], 0, "Apixaban is the exception for ESRD."),
-        Q("traps", "When should rivaroxaban be taken?", ["With the largest meal of the day", "On an empty stomach", "At bedtime without food", "Twice daily with milk"], 0, "From the slides.")
+        Q("traps", "When should rivaroxaban be taken?", ["With the largest meal of the day", "On an empty stomach", "At bedtime without food", "Twice daily with milk"], 0, "Rivaroxaban is absorbed much better with food, so take it with the biggest meal.")
       ]),
 
       D("sc-flutter", "Atrial flutter ventricular rate", "Atrial rate divided by the conduction ratio gives the ventricular rate: about 300 ÷ 2 = 150, 300 ÷ 3 = 100.", [
@@ -435,12 +435,12 @@
         S("use", "What it means", "<p>A <strong>regular narrow tachycardia at about 150</strong> should make you look for flutter waves (sawtooth, best in II, III, aVF and V1). Typical flutter atrial rate is about 300 (standard teaching).</p>" + HY("2:1 = 150 bpm; 3:1 = 100 bpm.")),
         S("traps", "Watch for", "<ul><li>Calling 2:1 flutter at 150 sinus tachycardia.</li><li>1:1 conduction (e.g., IC drug slowing the flutter without an AV blocker) gives a dangerously fast rate.</li></ul>")
       ], [
-        Q("calc", "Flutter waves at 300 with 2:1 conduction. Ventricular rate?", ["150", "100", "300", "75"], 0, "300 ÷ 2."),
-        Q("calc", "Flutter waves at 300 with 3:1 conduction. Ventricular rate?", ["100", "150", "75", "60"], 0, "300 ÷ 3."),
-        Q("calc", "Flutter waves at 280 with 4:1 conduction. Ventricular rate?", ["70", "140", "93", "56"], 0, "280 ÷ 4."),
+        Q("calc", "Flutter waves at 300 with 2:1 conduction. Ventricular rate?", ["150", "100", "300", "75"], 0, "Only every second flutter wave conducts, so 300 ÷ 2 = 150."),
+        Q("calc", "Flutter waves at 300 with 3:1 conduction. Ventricular rate?", ["100", "150", "75", "60"], 0, "Only every third flutter wave conducts, so 300 ÷ 3 = 100."),
+        Q("calc", "Flutter waves at 280 with 4:1 conduction. Ventricular rate?", ["70", "140", "93", "56"], 0, "Only every fourth flutter wave conducts, so 280 ÷ 4 = 70."),
         Q("calc", "Flecainide slows a flutter to 220 and the node now conducts 1:1. Ventricular rate?", ["220", "110", "73", "300"], 0, "1:1 conduction = every flutter wave conducts; this is the boxed warning."),
         Q("use", "A regular narrow tachycardia at exactly 150 that doesn't vary. What should you look for?", ["Flutter waves with 2:1 block", "P waves of sinus tach only", "Delta waves", "Wide QRS"], 0, "2:1 flutter classically gives a rate of 150."),
-        Q("use", "Where are flutter waves best seen?", ["Inferior leads and V1", "aVR only", "V5-V6 only", "Lead I"], 0, "From the slides.")
+        Q("use", "Where are flutter waves best seen?", ["Inferior leads and V1", "aVR only", "V5-V6 only", "Lead I"], 0, "The flutter circuit runs around the right atrium, so its sawtooth waves show best in II, III, aVF and V1.")
       ])
     ]),
 
@@ -464,7 +464,7 @@
         Q("calc", "IV drug user with fever, Osler nodes, septic pulmonary emboli, and one positive culture of S. aureus. Count?", ["0 major, 5 minor: definite", "1 major, 4 minor: definite", "0 major, 4 minor: not definite", "2 major"], 0, "Single culture = minor microbiology; IVDA, fever, emboli (vascular), Osler (immunologic) = 5 minor."),
         Q("calc", "Fever, prosthetic valve, and Roth spots; cultures negative, echo negative. Definite?", ["No: 3 minor only", "Yes: 3 minor is enough", "Yes: prosthetic valve is major", "Yes: Roth spots are major"], 0, "Needs 5 minor without a major."),
         Q("use", "Worsening of known mitral regurgitation on echo. Does it meet the imaging major criterion?", ["No, regurgitation must be new", "Yes", "Only on TEE", "Only with fever"], 0, "Worsening pre-existing regurgitation is NOT sufficient."),
-        Q("traps", "Janeway lesions belong to which Duke category?", ["Vascular phenomena (minor)", "Immunologic phenomena (minor)", "Major imaging", "Major microbiology"], 0, "Janeway lesions are listed under vascular phenomena."),
+        Q("traps", "Janeway lesions belong to which Duke category?", ["Vascular phenomena (minor)", "Immunologic phenomena (minor)", "Major imaging", "Major microbiology"], 0, "Janeway lesions are septic microemboli to the palms and soles, so they count as vascular phenomena."),
         Q("traps", "Which is an immunologic minor criterion?", ["Positive rheumatoid factor", "Conjunctival hemorrhage", "Mycotic aneurysm", "Septic pulmonary emboli"], 0, "Immunologic: + RF, Osler nodes, Roth spots, GN.")
       ]),
 
@@ -476,7 +476,7 @@
         S("use", "What it means", "<p>Pulsus paradoxus goes with the tamponade picture: Beck's triad (hypotension, JVD, muffled sounds), narrow pulse pressure, tachycardia, low voltage and electrical alternans on EKG. Echo is the test of choice; treatment is pericardiocentesis.</p>"),
         S("traps", "Watch for", "<ul><li>A fall of exactly 10 is not over 10.</li><li>Giving diuretics for the JVD (standard teaching: it lowers filling and can cause collapse).</li></ul>")
       ], [
-        Q("calc", "SBP 118 on expiration and 102 throughout. Pulsus paradoxus?", ["Yes, 16 mmHg fall", "No, 16 is normal", "Yes, any fall counts", "No, needs over 20"], 0, "Over 10 mmHg."),
+        Q("calc", "SBP 118 on expiration and 102 throughout. Pulsus paradoxus?", ["Yes, 16 mmHg fall", "No, 16 is normal", "Yes, any fall counts", "No, needs over 20"], 0, "Pulsus paradoxus is an SBP drop over 10 on inspiration; 118 to 102 is a 16 mmHg drop."),
         Q("calc", "SBP 126 on expiration and 120 throughout. Pulsus paradoxus?", ["No, 6 mmHg is normal", "Yes", "Yes, borderline", "Cannot tell"], 0, "Fall of 10 or less is normal."),
         Q("use", "A patient with hypotension, JVD, muffled sounds, and a 14 mmHg inspiratory fall. Test of choice?", ["Echocardiogram", "CT chest", "Cardiac cath", "D-dimer"], 0, "Echo shows effusion and tamponade."),
         Q("use", "Definitive treatment for that patient?", ["Pericardiocentesis", "IV furosemide", "NSAIDs and colchicine", "Beta blocker"], 0, "Tamponade is an emergency; drain it."),
@@ -507,7 +507,7 @@
         Q("calc", "Arms 130 and 130; ankle 124 with calf claudication. ABI and next step?", ["0.95; exercise treadmill testing", "0.95; PAD confirmed", "1.05; normal, stop", "0.95; bypass"], 0, "Borderline with symptoms: exercise test."),
         Q("calc", "Arms 150 and 146; ankle 52 with refractory severe claudication. ABI and meaning?", ["0.35; severe, bypass indication", "0.35; borderline", "2.9; calcified", "0.85; mild PAD"], 0, "Under 0.4 with refractory severe claudication is a bypass indication."),
         Q("use", "What ABI value confirms PAD?", ["0.90 or less", "Under 1.0", "Over 1.4", "Under 0.5 only"], 0, "≤ 0.90 is abnormal (PAD)."),
-        Q("traps", "Why does an ABI of 1.6 not mean great circulation?", ["Calcified arteries resist the cuff, falsely raising the ankle pressure", "It means great circulation", "It means arm disease", "It means the cuff was too small"], 0, "Non-compressible arteries.")
+        Q("traps", "Why does an ABI of 1.6 not mean great circulation?", ["Calcified arteries resist the cuff, falsely raising the ankle pressure", "It means great circulation", "It means arm disease", "It means the cuff was too small"], 0, "Calcified arteries can't be squeezed by the cuff, so the ankle pressure reads falsely high.")
       ]),
 
       D("sc-aaa", "AAA size and plan", "Size sets the plan: ultrasound every 3 years at 3.0-3.9 cm, tighter as it grows, and repair at 5.5 cm (men) or 5.0 cm (women), with growth over 1 cm/yr, or with symptoms.", [
@@ -563,7 +563,7 @@
         Q("calc", "Low probability Wells and a normal D-dimer. Next?", ["DVT ruled out", "Ultrasound anyway", "Start anticoagulation", "CT venogram"], 0, "Low probability + normal D-dimer rules out DVT."),
         Q("calc", "Post-op day 6 after knee replacement, calf 4 cm larger, collateral veins. Wells and next step?", ["3; compression ultrasound", "2; D-dimer", "1; D-dimer", "3; D-dimer"], 0, "Surgery 1, calf 3 cm+ 1, collateral veins 1: high → ultrasound."),
         Q("use", "High clinical suspicion but the first ultrasound is negative. What next?", ["Repeat the ultrasound in about a week", "DVT excluded for good", "D-dimer", "Start warfarin"], 0, "Negative US doesn't always rule out DVT."),
-        Q("traps", "What does an 'alternative diagnosis at least as likely' do to the Wells DVT score?", ["Subtracts 2", "Adds 1", "Subtracts 1", "Nothing"], 0, "-2 points.")
+        Q("traps", "What does an 'alternative diagnosis at least as likely' do to the Wells DVT score?", ["Subtracts 2", "Adds 1", "Subtracts 1", "Nothing"], 0, "If another diagnosis is just as likely, DVT is less likely, so Wells subtracts 2 points.")
       ]),
 
       D("sc-wells-pe", "Wells score for PE (modified)", "Modified Wells 4 or less: PE unlikely → high-sensitivity D-dimer; over 4: PE likely → CT pulmonary angiography.", [
@@ -608,7 +608,7 @@
         S("traps", "Watch for", "<ul><li>Applying PERC to a moderate-risk patient.</li><li>Missing estrogen (OCPs, HRT).</li></ul>")
       ], [
         Q("calc", "Low suspicion: 34-year-old on OCPs, HR 88, SaO2 99%. PERC?", ["Positive (estrogen); D-dimer", "Negative; stop", "Positive; CTPA", "Not applicable"], 0, "Estrogen use is a PERC criterion."),
-        Q("calc", "Low suspicion: 29-year-old man, HR 84, SaO2 98%, no other criteria. Plan?", ["PE excluded, no testing", "D-dimer", "CTPA", "V/Q"], 0, "All 8 negative."),
+        Q("calc", "Low suspicion: 29-year-old man, HR 84, SaO2 98%, no other criteria. Plan?", ["PE excluded, no testing", "D-dimer", "CTPA", "V/Q"], 0, "Low suspicion and all 8 PERC criteria negative means PE is ruled out without testing."),
         Q("calc", "Low suspicion: 52-year-old, otherwise all negative. Plan?", ["D-dimer (age 50 or older)", "Stop", "CTPA", "Ultrasound"], 0, "Age ≥ 50 makes PERC positive."),
         Q("use", "In which patients is PERC used?", ["Low clinical suspicion only", "Any suspected PE", "High suspicion", "Unstable patients"], 0, "Only with low clinical suspicion."),
         Q("calc", "Low suspicion, SaO2 94%. PERC result?", ["Positive", "Negative", "Not applicable", "Equivocal"], 0, "SaO2 under 95% is a criterion."),
@@ -630,9 +630,9 @@
         ]) + HY("Massive refers to hemodynamics, not clot size.")),
         S("traps", "Watch for", "<ul><li>Calling a large saddle PE with normal BP massive.</li><li>Giving systemic tPA for submassive PE routinely.</li></ul>")
       ], [
-        Q("calc", "PE with BP 84/52 that persists. Class and treatment?", ["High risk; pressors and systemic alteplase", "Intermediate; LMWH", "Low; DOAC", "High; IVC filter only"], 0, "Sustained SBP under 90."),
+        Q("calc", "PE with BP 84/52 that persists. Class and treatment?", ["High risk; pressors and systemic alteplase", "Intermediate; LMWH", "Low; DOAC", "High; IVC filter only"], 0, "Persistent SBP under 90 makes it high-risk (massive) PE, which needs pressors and clot-busting alteplase."),
         Q("calc", "PE with BP 128/80, RV dilation on CT, troponin up. Class?", ["Intermediate risk (submassive)", "High risk", "Low risk", "Not a PE"], 0, "Stable with RV strain and raised markers."),
-        Q("calc", "PE with BP 134/82, normal RV, normal troponin and BNP. Class and treatment?", ["Low risk; DOAC, maybe outpatient", "Intermediate; LMWH", "High; tPA", "Low; IVC filter"], 0, "Low risk PE."),
+        Q("calc", "PE with BP 134/82, normal RV, normal troponin and BNP. Class and treatment?", ["Low risk; DOAC, maybe outpatient", "Intermediate; LMWH", "High; tPA", "Low; IVC filter"], 0, "Normal BP, RV and biomarkers mean low-risk PE, which can be treated with a DOAC, even at home."),
         Q("calc", "Baseline SBP 150, now 106, with RV dysfunction. Class?", ["High risk (drop of 40 or more)", "Intermediate", "Low", "Cannot classify"], 0, "A drop of 40 or more from baseline counts as unstable."),
         Q("use", "Submassive PE patient. Usual anticoagulant?", ["LMWH", "Systemic tPA", "Warfarin alone", "Aspirin"], 0, "LMWH for most; UFH if a procedure may be needed."),
         Q("use", "Massive PE with a recent hemorrhagic stroke. Reperfusion?", ["Surgical or catheter embolectomy", "Systemic tPA", "IVC filter only", "Wait and see"], 0, "Embolectomy when thrombolysis is contraindicated.")
@@ -647,9 +647,9 @@
         S("traps", "Watch for", "<ul><li>Warfarin in pregnancy.</li><li>Stopping at 3 months for a recurrent clot.</li></ul>")
       ], [
         Q("calc", "First DVT after hip surgery in a 60-year-old. Drug and duration?", ["DOAC for 3 months", "Warfarin indefinitely", "LMWH for 6 weeks", "Aspirin for life"], 0, "Provoked: 3 months; general population: DOAC."),
-        Q("calc", "Pregnant patient with a DVT. Drug?", ["LMWH", "Warfarin", "Rivaroxaban", "Apixaban"], 0, "LMWH preferred in pregnancy."),
-        Q("calc", "Antiphospholipid syndrome with a PE. Drug?", ["Warfarin", "Apixaban", "Dabigatran", "Aspirin"], 0, "Warfarin preferred in APS."),
-        Q("calc", "Second unprovoked PE. Duration?", ["Indefinite", "3 months", "6 weeks", "2 weeks"], 0, "Recurrent DVT/PE: indefinite."),
+        Q("calc", "Pregnant patient with a DVT. Drug?", ["LMWH", "Warfarin", "Rivaroxaban", "Apixaban"], 0, "LMWH doesn't cross the placenta, while warfarin and DOACs can harm the fetus."),
+        Q("calc", "Antiphospholipid syndrome with a PE. Drug?", ["Warfarin", "Apixaban", "Dabigatran", "Aspirin"], 0, "DOACs had more clots than warfarin in antiphospholipid syndrome, so warfarin is preferred."),
+        Q("calc", "Second unprovoked PE. Duration?", ["Indefinite", "3 months", "6 weeks", "2 weeks"], 0, "A second unprovoked clot means high ongoing risk, so anticoagulation is continued indefinitely."),
         Q("calc", "First unprovoked DVT. Duration?", ["At least 3 months, then reassess; often extended", "2 weeks", "Lifelong for everyone", "None"], 0, "Unprovoked: ≥ 3 months then reassess."),
         Q("use", "Active cancer with a DVT. Drug options?", ["DOAC or LMWH", "Warfarin only", "Aspirin", "IVC filter only"], 0, "Active cancer: DOACs or LMWH.")
       ])
@@ -674,7 +674,7 @@
         Q("calc", "BP 120/60. MAP?", ["80", "90", "70", "60"], 0, "(120 + 120) ÷ 3 = 80."),
         Q("calc", "Septic patient on norepinephrine, BP 96/48. At MAP goal?", ["No, MAP is 64", "Yes, SBP is over 90", "Yes, MAP is 72", "No, MAP is 48"], 0, "(96 + 96) ÷ 3 = 64, under 65."),
         Q("calc", "BP 84/63. MAP and meaning?", ["70; MAP at goal but SBP under 90", "70; all goals met", "56; below goal", "84; normal"], 0, "(84 + 126) ÷ 3 = 70; SBP still under 90."),
-        Q("use", "What CVP is a resuscitation goal?", ["8 or more", "Under 4", "Over 20", "0"], 0, "CVP ≥ 8 mmHg."),
+        Q("use", "What CVP is a resuscitation goal?", ["8 or more", "Under 4", "Over 20", "0"], 0, "A CVP of at least 8 suggests the heart has enough filling volume."),
         Q("use", "Why is MAP preferred over SBP for perfusion?", ["It reflects average pressure across the whole cardiac cycle", "It is always higher", "It ignores diastole", "It is easier to hear"], 0, "Better indicator of perfusion to vital organs.")
       ]),
 
@@ -689,9 +689,9 @@
       ], [
         Q("calc", "80 kg patient makes 120 mL over 4 hours. Rate?", ["0.38 mL/kg/h, low", "0.5, adequate", "1.5, adequate", "0.15, low"], 0, "120 ÷ 80 ÷ 4 = 0.375."),
         Q("calc", "60 kg patient makes 50 mL in 1 hour. Rate?", ["0.83 mL/kg/h, adequate", "0.5, borderline", "1.2, adequate", "0.3, low"], 0, "50 ÷ 60 = 0.83."),
-        Q("calc", "100 kg patient makes 35 mL/h. Adequate?", ["No, 0.35 mL/kg/h", "Yes, 35 mL/h is the goal", "Yes, 0.7", "No, 0.1"], 0, "Weight-based: 35 ÷ 100."),
+        Q("calc", "100 kg patient makes 35 mL/h. Adequate?", ["No, 0.35 mL/kg/h", "Yes, 35 mL/h is the goal", "Yes, 0.7", "No, 0.1"], 0, "35 mL/h ÷ 100 kg = 0.35 mL/kg/h, below the 0.5 goal, so the kidneys are underperfused."),
         Q("calc", "70 kg patient makes 210 mL over 3 hours. Rate?", ["1.0 mL/kg/h", "0.5", "3.0", "0.33"], 0, "210 ÷ 70 ÷ 3 = 1.0."),
-        Q("use", "What urine output goal is used in resuscitation?", ["Over 0.5 mL/kg/h", "Over 2 mL/kg/h", "Over 0.1 mL/kg/h", "Over 100 mL/h always"], 0, "Goal over 0.5 mL/kg/h."),
+        Q("use", "What urine output goal is used in resuscitation?", ["Over 0.5 mL/kg/h", "Over 2 mL/kg/h", "Over 0.1 mL/kg/h", "Over 100 mL/h always"], 0, "Over 0.5 mL/kg/h of urine shows the kidneys are getting enough blood."),
         Q("use", "Why does urine output fall in shock?", ["Renal vasoconstriction and ADH", "Bladder outlet obstruction", "Diuretic effect", "Increased GFR"], 0, "Compensation shunts blood away from the kidneys and ADH holds water.")
       ]),
 
@@ -718,11 +718,11 @@
         S("use", "What it means", "<p>It's a theoretical guide; actual need is judged clinically (BP, HR, JVP, urine, mentation). After about 2 L of rapid crystalloid, consider blood to avoid hemodilution. Only 0.9% NS runs with blood products. Massive transfusion starts at 1:1:1 (PRBC:FFP:platelets).</p>"),
         S("traps", "Watch for", "<ul><li>Resuscitating with D5W: it's free water.</li><li>Endless crystalloid in hemorrhage instead of blood.</li></ul>")
       ], [
-        Q("calc", "Estimated blood loss 600 mL. Crystalloid by the 3:1 rule?", ["1800 mL", "600 mL", "200 mL", "1200 mL"], 0, "600 × 3."),
+        Q("calc", "Estimated blood loss 600 mL. Crystalloid by the 3:1 rule?", ["1800 mL", "600 mL", "200 mL", "1200 mL"], 0, "Only about a third of crystalloid stays in the vessels, so replace 3 mL for each mL lost: 600 × 3 = 1800."),
         Q("calc", "Estimated blood loss 1 L. Crystalloid by the 3:1 rule, and what should you consider?", ["3 L; consider blood after about 2 L", "1 L; nothing else", "3 L; then D5W", "300 mL; albumin"], 0, "Consider transfusion after 2 L of crystalloid."),
         Q("use", "Why does the 3:1 rule exist?", ["Only about 30% of crystalloid stays intravascular", "Blood is three times thicker", "Kidneys excrete two-thirds immediately", "Crystalloid is hypotonic"], 0, "Low oncotic pressure lets it shift to the interstitium."),
-        Q("use", "Which IV fluid can run with blood products?", ["0.9% normal saline", "Lactated Ringer's", "D5W", "0.45% saline"], 0, "Only 0.9NS."),
-        Q("use", "Starting ratio for a massive transfusion protocol?", ["1:1:1 PRBC:FFP:platelets", "3:1 crystalloid:blood", "2:1:0", "1:2:1"], 0, "From the slides."),
+        Q("use", "Which IV fluid can run with blood products?", ["0.9% normal saline", "Lactated Ringer's", "D5W", "0.45% saline"], 0, "Only normal saline is compatible with blood; LR's calcium can clot it and dextrose can lyse cells."),
+        Q("use", "Starting ratio for a massive transfusion protocol?", ["1:1:1 PRBC:FFP:platelets", "3:1 crystalloid:blood", "2:1:0", "1:2:1"], 0, "Equal parts red cells, plasma and platelets replace whole blood and prevent coagulopathy."),
         Q("traps", "Severe hemorrhage: how much crystalloid first, wide open?", ["1-2 L, then reassess and consider blood", "10 L", "D5W 1 L", "None"], 0, "1-2 L boluses for severe volume depletion.")
       ]),
 
@@ -739,12 +739,12 @@
         ])),
         S("traps", "Watch for", "<ul><li>High-dose dopamine constricts the kidneys (renal necrosis).</li><li>Dobutamine when SBP is under 90.</li></ul>")
       ], [
-        Q("calc", "Dopamine at 2 mcg/kg/min. Main effect?", ["Renal and mesenteric vasodilation", "α1 vasoconstriction", "β1 inotropy only", "β2 bronchodilation"], 0, "Low dose: dopaminergic."),
-        Q("calc", "Dopamine at 6 mcg/kg/min. Main effect?", ["β1: more contractility, rate, and output", "Renal vasodilation only", "α1 vasoconstriction", "No effect"], 0, "Intermediate 3-10: β1."),
-        Q("calc", "Dopamine at 15 mcg/kg/min. Main effect and risk?", ["α1 vasoconstriction; renal necrosis", "β1; tachycardia only", "Dopaminergic; diuresis", "β2; hypotension"], 0, "Over 10: α1."),
-        Q("calc", "Dopamine 5 mcg/kg/min for an 80 kg patient. mcg/min?", ["400", "16", "80", "4000"], 0, "5 × 80."),
-        Q("use", "Cardiogenic shock with SBP 78. Preferred agent?", ["Norepinephrine", "Dobutamine", "Low-dose dopamine", "Nitroprusside"], 0, "Norepinephrine is preferred."),
-        Q("use", "Why avoid dobutamine when SBP is under 90?", ["Its β2 effect lowers SVR and BP", "It raises BP too much", "It slows the heart", "It causes renal failure"], 0, "Dobutamine decreases SVR.")
+        Q("calc", "Dopamine at 2 mcg/kg/min. Main effect?", ["Renal and mesenteric vasodilation", "α1 vasoconstriction", "β1 inotropy only", "β2 bronchodilation"], 0, "At low doses dopamine mainly hits dopamine receptors, widening renal and gut vessels."),
+        Q("calc", "Dopamine at 6 mcg/kg/min. Main effect?", ["β1: more contractility, rate, and output", "Renal vasodilation only", "α1 vasoconstriction", "No effect"], 0, "At 3–10 mcg/kg/min dopamine mainly hits β1, raising contractility and heart rate."),
+        Q("calc", "Dopamine at 15 mcg/kg/min. Main effect and risk?", ["α1 vasoconstriction; renal necrosis", "β1; tachycardia only", "Dopaminergic; diuresis", "β2; hypotension"], 0, "Above 10 mcg/kg/min α1 effects dominate, clamping vessels hard enough to starve the kidneys."),
+        Q("calc", "Dopamine 5 mcg/kg/min for an 80 kg patient. mcg/min?", ["400", "16", "80", "4000"], 0, "Multiply dose by weight: 5 × 80 = 400 mcg/min."),
+        Q("use", "Cardiogenic shock with SBP 78. Preferred agent?", ["Norepinephrine", "Dobutamine", "Low-dose dopamine", "Nitroprusside"], 0, "Norepinephrine raises BP with less tachycardia and arrhythmia than other pressors."),
+        Q("use", "Why avoid dobutamine when SBP is under 90?", ["Its β2 effect lowers SVR and BP", "It raises BP too much", "It slows the heart", "It causes renal failure"], 0, "Dobutamine's β2 effect dilates vessels and drops BP further, which a hypotensive patient can't afford.")
       ]),
 
       D("sc-shock-type", "Shock pattern finder", "Neck veins, skin temperature, and lungs sort shock into hypovolemic, cardiogenic, obstructive, or distributive.", [
@@ -761,11 +761,11 @@
         ])),
         S("traps", "Watch for", "<ul><li>Bolusing cardiogenic shock with crackles.</li><li>Missing obstructive shock: high JVP with clear lungs.</li></ul>")
       ], [
-        Q("calc", "Hypotensive, flat neck veins, cool skin, clear lungs after hematemesis. Type?", ["Hypovolemic", "Cardiogenic", "Obstructive", "Distributive"], 0, "Low filling, vasoconstricted."),
-        Q("calc", "Hypotensive after an anterior MI, JVD, cool skin, crackles. Type?", ["Cardiogenic", "Hypovolemic", "Distributive", "Obstructive"], 0, "High filling with congestion."),
+        Q("calc", "Hypotensive, flat neck veins, cool skin, clear lungs after hematemesis. Type?", ["Hypovolemic", "Cardiogenic", "Obstructive", "Distributive"], 0, "Blood loss empties the tank: flat veins, cool clamped-down skin and clear lungs mean hypovolemic shock."),
+        Q("calc", "Hypotensive after an anterior MI, JVD, cool skin, crackles. Type?", ["Cardiogenic", "Hypovolemic", "Distributive", "Obstructive"], 0, "A damaged pump backs up blood: JVD, crackles and cool skin after MI mean cardiogenic shock."),
         Q("calc", "Hypotensive trauma patient, JVD, clear lungs, absent breath sounds on one side. Type?", ["Obstructive (tension pneumothorax)", "Cardiogenic", "Hypovolemic", "Distributive"], 0, "High JVP with clear lungs: obstruction."),
         Q("calc", "Febrile, hypotensive, warm flushed skin, flat neck veins. Type?", ["Distributive (septic)", "Cardiogenic", "Obstructive", "Hypovolemic only"], 0, "Warm early with low SVR."),
-        Q("use", "Which shock type needs urgent relief of a mechanical problem?", ["Obstructive", "Distributive", "Hypovolemic", "Cardiogenic"], 0, "Urgently relieve the obstruction."),
+        Q("use", "Which shock type needs urgent relief of a mechanical problem?", ["Obstructive", "Distributive", "Hypovolemic", "Cardiogenic"], 0, "Obstructive shock (tamponade, tension PTX, PE) only improves when the blockage is relieved."),
         Q("use", "In which type are large fluid boluses held?", ["Cardiogenic with pulmonary congestion", "Hypovolemic", "Septic", "Anaphylactic"], 0, "Hold boluses with LV dysfunction or congestion.")
       ])
     ]),
@@ -783,11 +783,11 @@
         ])),
         S("traps", "Watch for", "<ul><li>Procainamide: the arrhythmias deck caps it at 15 mg/kg and 1500 mg; the pharm deck gives 10-17 mg/kg.</li><li>Ibutilide switches from weight-based to a flat 1 mg at 60 kg.</li></ul>")
       ], [
-        Q("calc", "70 kg patient in VF. Lidocaine first dose range?", ["70-105 mg", "35-52 mg", "140-210 mg", "7-10 mg"], 0, "1-1.5 mg/kg."),
-        Q("calc", "Maximum total lidocaine for an 80 kg patient?", ["240 mg", "120 mg", "300 mg", "80 mg"], 0, "3 mg/kg."),
+        Q("calc", "70 kg patient in VF. Lidocaine first dose range?", ["70-105 mg", "35-52 mg", "140-210 mg", "7-10 mg"], 0, "Lidocaine is 1–1.5 mg/kg, so 70 kg × 1–1.5 = 70–105 mg."),
+        Q("calc", "Maximum total lidocaine for an 80 kg patient?", ["240 mg", "120 mg", "300 mg", "80 mg"], 0, "The lidocaine maximum is 3 mg/kg, so 80 × 3 = 240 mg."),
         Q("calc", "Ibutilide for a 50 kg patient?", ["0.5 mg over 10 min", "1 mg over 10 min", "5 mg", "0.05 mg"], 0, "Under 60 kg: 0.01 mg/kg."),
         Q("calc", "Ibutilide for a 90 kg patient?", ["1 mg over 10 min", "0.9 mg", "9 mg", "2 mg"], 0, "60 kg or more: flat 1 mg."),
-        Q("calc", "IV diltiazem bolus for an 80 kg patient?", ["20 mg", "8 mg", "40 mg", "2 mg"], 0, "0.25 mg/kg."),
+        Q("calc", "IV diltiazem bolus for an 80 kg patient?", ["20 mg", "8 mg", "40 mg", "2 mg"], 0, "The diltiazem bolus is 0.25 mg/kg, so 80 × 0.25 = 20 mg."),
         Q("use", "Adenosine for stable SVT: first dose and second dose?", ["6 mg, then 12 mg", "12 mg, then 6 mg", "3 mg, then 6 mg", "6 mg, then 6 mg"], 0, "6 mg rapid push; 12 mg if ineffective."),
         Q("use", "Amiodarone in pulseless VT/VF: first dose?", ["300 mg IV bolus", "150 mg over 10 min", "1 mg/min infusion", "400 mg PO"], 0, "300 mg then 150 mg.")
       ]),
@@ -823,7 +823,7 @@
         Q("calc", "Digoxin 2.8 ng/mL, K+ 4.2, sinus brady at 52, no AMS. DigiFab?", ["Not yet; supportive care, atropine if symptomatic", "Yes", "Yes, because level is over 2", "Give potassium"], 0, "No arrhythmia that is life-threatening, K+ ≤ 5.5, no end-organ damage."),
         Q("calc", "Acute digoxin overdose with K+ 6.2. DigiFab?", ["Yes, K+ over 5.5", "No", "Only if level over 4", "Only with arrest"], 0, "K+ over 5.5 is an indication."),
         Q("calc", "Digoxin toxicity with VT. DigiFab?", ["Yes, life-threatening arrhythmia", "No, give lidocaine only", "No, give potassium", "Only if K+ is high"], 0, "Life-threatening arrhythmia is an indication."),
-        Q("calc", "Digoxin 1.4 ng/mL. Interpretation?", ["Within 0.5-2 therapeutic range", "Toxic", "Subtherapeutic", "Lethal"], 0, "Therapeutic range 0.5-2."),
+        Q("calc", "Digoxin 1.4 ng/mL. Interpretation?", ["Within 0.5-2 therapeutic range", "Toxic", "Subtherapeutic", "Lethal"], 0, "1.4 falls in the 0.5–2 ng/mL therapeutic range, so it isn't toxic by level alone."),
         Q("use", "Patient took a digoxin overdose 45 minutes ago, alert. Early step?", ["Activated charcoal 1 g/kg (max 50 g)", "Ipecac", "Hemodialysis", "Nothing"], 0, "Charcoal within 1-2 hours if the airway is safe."),
         Q("use", "Which electrolyte abnormality raises the risk of chronic digoxin toxicity?", ["Hypokalemia", "Hyperkalemia", "Hypernatremia", "Hypercalcemia"], 0, "Hypokalemia is a risk factor.")
       ])

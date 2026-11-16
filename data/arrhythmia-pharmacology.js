@@ -45,15 +45,15 @@
         hy("<strong>Not for Mobitz II or complete heart block</strong>: those blocks are <strong>below the AV node</strong>, out of vagal reach. They need <strong>pacing</strong>.") +
         mn("<strong>1 every 3, up to 3</strong>: 1 mg q3–5 min, max 3 mg."),
         ["atropine-class", "atropine-indications", "atropine-dose", "atropine-not-mobitz2"],
-        [q("What drug class is atropine?", "Anticholinergic", ["Beta agonist", "Cardiac glycoside", "Class III antiarrhythmic"], "Anticholinergic."),
+        [q("What drug class is atropine?", "Anticholinergic", ["Beta agonist", "Cardiac glycoside", "Class III antiarrhythmic"], "Atropine is an anticholinergic: it blocks acetylcholine's vagal braking."),
           q("What is the atropine dose for symptomatic bradycardia?", "1 mg IV every 3 to 5 minutes, max 3 mg", ["0.1 mg IV once", "6 mg rapid IV push", "300 mg IV bolus"], "1 mg q3–5, max 3."),
-          q("What is the maximum total dose of atropine for bradycardia?", "3 mg", ["1 mg", "10 mg", "0.5 mg"], "Max 3 mg."),
-          q("Which AV blocks does atropine help?", "First degree and second degree Mobitz I", ["Mobitz II and complete heart block", "Only complete heart block", "None"], "Nodal blocks."),
-          q("Why is atropine ineffective for Mobitz II and complete heart block?", "The block is below the AV node and needs pacing", ["Atropine only works in VF", "These blocks are caused by atropine", "The dose is too low"], "Infranodal."),
-          q("How fast does IV atropine work?", "Immediately, peaking in under 5 minutes", ["After 2 hours", "After 2 days", "Only after a second dose"], "Immediate onset.")],
-        [q("A patient has symptomatic sinus bradycardia at 38 bpm with hypotension. First drug?", "Atropine 1 mg IV", ["Adenosine 6 mg IV", "Amiodarone 300 mg IV", "Metoprolol 5 mg IV"], "Symptomatic bradycardia."),
-          q("A patient with symptomatic third-degree AV block got atropine with no change. Next step?", "Transcutaneous pacing", ["More atropine past 3 mg", "Adenosine", "Digoxin"], "CHB needs pacing."),
-          q("A patient has received atropine 1 mg three times for bradycardia. Can more be given?", "No, 3 mg is the maximum; move to pacing or other therapy", ["Yes, give 1 mg every minute", "Yes, give 6 mg", "Yes, double the dose"], "Max 3 mg.")])
+          q("What is the maximum total dose of atropine for bradycardia?", "3 mg", ["1 mg", "10 mg", "0.5 mg"], "Atropine maxes out at 3 mg total; beyond that the vagus is fully blocked."),
+          q("Which AV blocks does atropine help?", "First degree and second degree Mobitz I", ["Mobitz II and complete heart block", "Only complete heart block", "None"], "These blocks are at the AV node, which the vagus controls, so atropine helps."),
+          q("Why is atropine ineffective for Mobitz II and complete heart block?", "The block is below the AV node and needs pacing", ["Atropine only works in VF", "These blocks are caused by atropine", "The dose is too low"], "Infranodal blocks aren't under vagal control, so atropine can't help; pace instead."),
+          q("How fast does IV atropine work?", "Immediately, peaking in under 5 minutes", ["After 2 hours", "After 2 days", "Only after a second dose"], "IV atropine works almost immediately, peaking under 5 minutes.")],
+        [q("A patient has symptomatic sinus bradycardia at 38 bpm with hypotension. First drug?", "Atropine 1 mg IV", ["Adenosine 6 mg IV", "Amiodarone 300 mg IV", "Metoprolol 5 mg IV"], "Symptomatic sinus brady: atropine 1 mg IV first."),
+          q("A patient with symptomatic third-degree AV block got atropine with no change. Next step?", "Transcutaneous pacing", ["More atropine past 3 mg", "Adenosine", "Digoxin"], "Atropine can't fix an infranodal block, so pace."),
+          q("A patient has received atropine 1 mg three times for bradycardia. Can more be given?", "No, 3 mg is the maximum; move to pacing or other therapy", ["Yes, give 1 mg every minute", "Yes, give 6 mg", "Yes, double the dose"], "3 mg is the max; move to pacing or a drip.")])
     ]),
 
     /* ---------- 2 ---------- */
@@ -64,27 +64,27 @@
         hy("<strong>Heart transplant</strong>: atropine is <strong>likely ineffective</strong> because the transplanted heart has <strong>no vagal innervation</strong>.") +
         "<p>Kinetics: hepatic metabolism, urine excretion; <strong>half-life more than doubles in the elderly</strong>.</p>",
         ["atropine-moa", "atropine-transplant", "atropine-kinetics"],
-        [q("How does atropine raise heart rate?", "It blocks acetylcholine, removing vagal slowing", ["It stimulates beta-1 receptors", "It blocks sodium channels", "It opens potassium channels"], "Anticholinergic."),
-          q("What is the main neurotransmitter of the parasympathetic system?", "Acetylcholine", ["Norepinephrine", "Dopamine", "Serotonin"], "ACh."),
-          q("Why is atropine likely ineffective after a heart transplant?", "The transplanted heart has no vagal innervation", ["Transplant drugs block atropine", "Transplant hearts have no SA node", "Atropine is toxic to grafts"], "Denervated."),
-          q("How does age change atropine's half-life?", "It more than doubles in the elderly", ["It halves", "No change", "It becomes zero"], "Geriatric."),
-          q("What does atropine do to AV node conduction?", "Improves it", ["Blocks it", "No effect", "Reverses it"], "Improves AV conduction.")],
-        [q("A heart transplant recipient has symptomatic bradycardia. Why might atropine fail?", "The new heart is denervated, so blocking vagal input does nothing", ["The dose is always too low", "Atropine causes rejection", "Transplant hearts beat too fast"], "No vagal innervation."),
-          q("An 85-year-old gets atropine. What pharmacokinetic point matters?", "Its half-life is more than doubled, so effects last longer", ["It is cleared twice as fast", "It cannot be given to the elderly", "It has no effect in the elderly"], "Longer half-life.")]),
+        [q("How does atropine raise heart rate?", "It blocks acetylcholine, removing vagal slowing", ["It stimulates beta-1 receptors", "It blocks sodium channels", "It opens potassium channels"], "Blocking ACh removes vagal slowing of the SA and AV nodes."),
+          q("What is the main neurotransmitter of the parasympathetic system?", "Acetylcholine", ["Norepinephrine", "Dopamine", "Serotonin"], "The parasympathetic system runs on acetylcholine."),
+          q("Why is atropine likely ineffective after a heart transplant?", "The transplanted heart has no vagal innervation", ["Transplant drugs block atropine", "Transplant hearts have no SA node", "Atropine is toxic to grafts"], "A transplanted heart has no vagus nerve to block."),
+          q("How does age change atropine's half-life?", "It more than doubles in the elderly", ["It halves", "No change", "It becomes zero"], "Atropine's half-life more than doubles in the elderly."),
+          q("What does atropine do to AV node conduction?", "Improves it", ["Blocks it", "No effect", "Reverses it"], "Removing vagal tone speeds AV conduction.")],
+        [q("A heart transplant recipient has symptomatic bradycardia. Why might atropine fail?", "The new heart is denervated, so blocking vagal input does nothing", ["The dose is always too low", "Atropine causes rejection", "Transplant hearts beat too fast"], "A denervated heart has no vagal tone to block."),
+          q("An 85-year-old gets atropine. What pharmacokinetic point matters?", "Its half-life is more than doubled, so effects last longer", ["It is cleared twice as fast", "It cannot be given to the elderly", "It has no effect in the elderly"], "A doubled half-life means effects last longer.")]),
       C("Side effects, cautions and toxicity",
         tbl(["Side effects", "Use with caution"], [["<strong>Tachycardia</strong>, <strong>dry eyes and mouth</strong>, <strong>blurred vision</strong>, <strong>constipation</strong>, <strong>urinary retention</strong>", "<strong>Acute angle-closure glaucoma</strong>, pyloric obstruction, <strong>BPH / urinary retention</strong>, mucus plugs (chronic lung disease); <strong>myocardial ischemia</strong>, heart failure, hypertension (tachycardia can cause ischemia, MI, arrhythmia)"]]) +
         hy("<strong>Toxicity</strong>: <strong>dilated pupils</strong>, <strong>warm dry skin</strong>, <strong>tachycardia</strong>, tremor, ataxia, <strong>delirium</strong>, coma.") +
         mn("Anticholinergic toxicity: <strong>Hot as a hare, Dry as a bone, Red as a beet, Blind as a bat, Mad as a hatter</strong> (plus can't pee, can't poop)."),
         ["atropine-side-effects", "atropine-cautions", "atropine-toxicity"],
-        [q("Which is a common side effect of atropine?", "Dry mouth", ["Excess salivation", "Diarrhea", "Bradycardia"], "Anticholinergic."),
-          q("Which eye condition calls for caution with atropine?", "Acute angle-closure glaucoma", ["Cataracts", "Myopia", "Conjunctivitis"], "Glaucoma."),
-          q("Which urinary problem calls for caution with atropine?", "Urinary retention from BPH", ["Urinary incontinence from cough", "Kidney stones", "UTI"], "Retention."),
-          q("What do the pupils look like in atropine toxicity?", "Dilated", ["Pinpoint", "Normal", "Unequal"], "Mydriasis."),
-          q("What does the skin feel like in atropine toxicity?", "Warm and dry", ["Cold and clammy", "Sweaty", "Blue"], "Warm, dry."),
-          q("Which mental status change occurs in atropine toxicity?", "Delirium", ["Euphoria only", "No change", "Improved memory"], "Delirium to coma."),
-          q("Why use atropine carefully in myocardial ischemia?", "Tachycardia raises oxygen demand and can cause ischemia or MI", ["It causes bradycardia", "It lowers BP too much", "It blocks coronary flow directly"], "Tachycardia risk.")],
-        [q("After several doses of atropine, a patient is confused, flushed, with hot dry skin, big pupils and HR 140. What is happening?", "Anticholinergic (atropine) toxicity", ["Opioid overdose", "Organophosphate poisoning", "Hypoglycemia"], "Classic toxidrome."),
-          q("An older man with BPH gets atropine and later cannot urinate. Why?", "Anticholinergic urinary retention", ["Kidney failure from atropine", "UTI caused by atropine", "Dehydration only"], "Retention.")])
+        [q("Which is a common side effect of atropine?", "Dry mouth", ["Excess salivation", "Diarrhea", "Bradycardia"], "Blocking ACh dries secretions: dry mouth."),
+          q("Which eye condition calls for caution with atropine?", "Acute angle-closure glaucoma", ["Cataracts", "Myopia", "Conjunctivitis"], "Pupil dilation can close the angle and spike eye pressure."),
+          q("Which urinary problem calls for caution with atropine?", "Urinary retention from BPH", ["Urinary incontinence from cough", "Kidney stones", "UTI"], "Anticholinergics relax the bladder, worsening retention in BPH."),
+          q("What do the pupils look like in atropine toxicity?", "Dilated", ["Pinpoint", "Normal", "Unequal"], "Blocking ACh dilates the pupils."),
+          q("What does the skin feel like in atropine toxicity?", "Warm and dry", ["Cold and clammy", "Sweaty", "Blue"], "No sweating: hot, dry skin."),
+          q("Which mental status change occurs in atropine toxicity?", "Delirium", ["Euphoria only", "No change", "Improved memory"], "Central anticholinergic effects cause delirium."),
+          q("Why use atropine carefully in myocardial ischemia?", "Tachycardia raises oxygen demand and can cause ischemia or MI", ["It causes bradycardia", "It lowers BP too much", "It blocks coronary flow directly"], "Faster HR raises O2 demand in an ischemic heart.")],
+        [q("After several doses of atropine, a patient is confused, flushed, with hot dry skin, big pupils and HR 140. What is happening?", "Anticholinergic (atropine) toxicity", ["Opioid overdose", "Organophosphate poisoning", "Hypoglycemia"], "Hot, dry, flushed, mad and dilated = anticholinergic toxicity."),
+          q("An older man with BPH gets atropine and later cannot urinate. Why?", "Anticholinergic urinary retention", ["Kidney failure from atropine", "UTI caused by atropine", "Dehydration only"], "Atropine relaxes the bladder, causing retention.")])
     ]),
 
     /* ---------- 3 ---------- */
@@ -99,28 +99,28 @@
           ["Kinetics", "Immediate onset; <strong>half-life under 10 seconds</strong>"]]) +
         mn("<strong>6, 12, 12</strong>, pushed fast and flushed."),
         ["adenosine-brand", "adenosine-indication", "adenosine-dose", "adenosine-administration"],
-        [q("What is the brand name of adenosine?", "Adenocard", ["Cordarone", "Lanoxin", "Tambocor"], "Adenocard."),
-          q("What is the first adenosine dose for PSVT?", "6 mg rapid IV push", ["12 mg slow IV", "1 mg IV", "300 mg IV"], "6 mg."),
+        [q("What is the brand name of adenosine?", "Adenocard", ["Cordarone", "Lanoxin", "Tambocor"], "Adenocard = adenosine."),
+          q("What is the first adenosine dose for PSVT?", "6 mg rapid IV push", ["12 mg slow IV", "1 mg IV", "300 mg IV"], "Start with 6 mg rapid push."),
           q("What is the second adenosine dose if 6 mg fails?", "12 mg rapid IV push", ["6 mg again", "24 mg", "3 mg"], "12 mg, may repeat once."),
-          q("How is adenosine given?", "Rapid push over 1 to 2 seconds with a 20 mL saline flush", ["Slowly over 10 minutes", "As an infusion over 6 hours", "Subcutaneously"], "Fast and flushed."),
-          q("What is the half-life of adenosine?", "Under 10 seconds", ["About 10 hours", "36 to 48 hours", "58 days"], "Very short."),
-          q("What rhythms is adenosine used for?", "Narrow-complex PSVT such as AVNRT and AVRT", ["VF", "Asystole", "Complete heart block"], "PSVT.")],
-        [q("A stable patient with a regular narrow-complex tachycardia at 190 did not convert with vagal maneuvers. Next step?", "Adenosine 6 mg rapid IV push with a flush", ["Atropine 1 mg", "Amiodarone 300 mg push", "Defibrillation"], "PSVT."),
-          q("Adenosine 6 mg did not convert a patient's SVT after 2 minutes. Next dose?", "Adenosine 12 mg rapid IV push", ["Adenosine 6 mg slowly", "Adenosine 3 mg", "Atropine 1 mg"], "12 mg."),
-          q("A nurse pushes adenosine slowly through a distal hand IV with no flush and it fails. Why?", "Its half-life is under 10 seconds, so it must be pushed fast and flushed", ["The dose was too high", "It works only orally", "It needs 20 minutes to act"], "Rapid push.")]),
+          q("How is adenosine given?", "Rapid push over 1 to 2 seconds with a 20 mL saline flush", ["Slowly over 10 minutes", "As an infusion over 6 hours", "Subcutaneously"], "It's gone in seconds, so push fast with a flush."),
+          q("What is the half-life of adenosine?", "Under 10 seconds", ["About 10 hours", "36 to 48 hours", "58 days"], "Adenosine lasts under 10 seconds."),
+          q("What rhythms is adenosine used for?", "Narrow-complex PSVT such as AVNRT and AVRT", ["VF", "Asystole", "Complete heart block"], "Adenosine breaks AV-node re-entry (AVNRT, AVRT).")],
+        [q("A stable patient with a regular narrow-complex tachycardia at 190 did not convert with vagal maneuvers. Next step?", "Adenosine 6 mg rapid IV push with a flush", ["Atropine 1 mg", "Amiodarone 300 mg push", "Defibrillation"], "Stable SVT after failed vagals: adenosine 6 mg."),
+          q("Adenosine 6 mg did not convert a patient's SVT after 2 minutes. Next dose?", "Adenosine 12 mg rapid IV push", ["Adenosine 6 mg slowly", "Adenosine 3 mg", "Atropine 1 mg"], "Second dose is 12 mg."),
+          q("A nurse pushes adenosine slowly through a distal hand IV with no flush and it fails. Why?", "Its half-life is under 10 seconds, so it must be pushed fast and flushed", ["The dose was too high", "It works only orally", "It needs 20 minutes to act"], "Slow push lets it degrade before it reaches the heart.")]),
       C("Side effects and contraindications",
         tbl(["Side effects (brief)", "Contraindications"], [["<strong>Flushing</strong>, lightheadedness, nausea, sweating, nervousness, numbness, <strong>feeling of impending doom</strong>", "Hypersensitivity, <strong>heart block</strong>, <strong>active bronchospasm</strong> (<strong>asthma</strong>, COPD)"]]) +
         hy("<strong>Avoid in wide-complex tachycardia and accessory pathways (WPW)</strong>: blocking the AV node can send AF down the accessory pathway: <strong>severe tachycardia, cardiac arrest</strong>.<br>Toxicity is minimal (short half-life), but severe effects include <strong>prolonged asystole</strong>, heart block, ischemia.") +
         "<p>Warn the patient: the <strong>impending doom</strong> feeling and a brief pause are expected and pass in seconds.</p>",
         ["adenosine-side-effects", "adenosine-contraindications", "adenosine-wpw"],
-        [q("Which lung condition is a contraindication to adenosine?", "Active bronchospasm such as asthma", ["Pneumonia", "Pleural effusion", "Sarcoidosis"], "Bronchospasm."),
-          q("Which conduction problem is a contraindication to adenosine?", "Heart block", ["Sinus tachycardia", "Right axis deviation", "Early repolarization"], "Heart block."),
-          q("Why avoid adenosine in WPW with atrial fibrillation?", "Blocking the AV node can speed conduction down the accessory pathway, causing arrest", ["It is too slow to work", "It causes hypertension", "It worsens asthma only"], "Accessory pathway."),
-          q("Which unusual feeling do patients often describe after adenosine?", "Impending doom", ["Euphoria", "Hunger", "Itching only"], "Transient."),
-          q("Which severe adverse effect has been reported with adenosine?", "Prolonged asystole", ["Pulmonary fibrosis", "Hypothyroidism", "Lupus"], "Rare severe effects."),
-          q("Why is adenosine toxicity usually minimal?", "Its half-life is under 10 seconds", ["It is not absorbed", "It is renally cleared over days", "It is given in tiny doses only"], "Short half-life.")],
-        [q("A patient with SVT also has an acute asthma attack with wheezing. Which drug should be avoided?", "Adenosine", ["Diltiazem", "Synchronized cardioversion if unstable", "Vagal maneuvers"], "Bronchospasm."),
-          q("A patient has an irregular, wide-complex tachycardia at 240 with known WPW. Should adenosine be given?", "No; it can cause VF in pre-excited AF", ["Yes, 6 mg", "Yes, 12 mg", "Yes, by slow infusion"], "Avoid in WPW."),
+        [q("Which lung condition is a contraindication to adenosine?", "Active bronchospasm such as asthma", ["Pneumonia", "Pleural effusion", "Sarcoidosis"], "Adenosine can trigger bronchospasm."),
+          q("Which conduction problem is a contraindication to adenosine?", "Heart block", ["Sinus tachycardia", "Right axis deviation", "Early repolarization"], "Adenosine blocks the AV node, worsening heart block."),
+          q("Why avoid adenosine in WPW with atrial fibrillation?", "Blocking the AV node can speed conduction down the accessory pathway, causing arrest", ["It is too slow to work", "It causes hypertension", "It worsens asthma only"], "Blocking the node pushes AF down the accessory pathway, risking VF."),
+          q("Which unusual feeling do patients often describe after adenosine?", "Impending doom", ["Euphoria", "Hunger", "Itching only"], "Brief asystole causes a sense of doom."),
+          q("Which severe adverse effect has been reported with adenosine?", "Prolonged asystole", ["Pulmonary fibrosis", "Hypothyroidism", "Lupus"], "Rarely the pause can be prolonged asystole."),
+          q("Why is adenosine toxicity usually minimal?", "Its half-life is under 10 seconds", ["It is not absorbed", "It is renally cleared over days", "It is given in tiny doses only"], "It's cleared in seconds, so side effects pass fast.")],
+        [q("A patient with SVT also has an acute asthma attack with wheezing. Which drug should be avoided?", "Adenosine", ["Diltiazem", "Synchronized cardioversion if unstable", "Vagal maneuvers"], "Adenosine can worsen bronchospasm."),
+          q("A patient has an irregular, wide-complex tachycardia at 240 with known WPW. Should adenosine be given?", "No; it can cause VF in pre-excited AF", ["Yes, 6 mg", "Yes, 12 mg", "Yes, by slow infusion"], "Adenosine in pre-excited AF can cause VF."),
           q("After adenosine, a patient says she felt like she was dying and her monitor paused for 3 seconds before sinus rhythm. What is the best interpretation?", "Expected transient effects of adenosine", ["Anaphylaxis", "Adenosine overdose needing an antidote", "A stroke"], "Doom and a brief pause are expected.")])
     ]),
 
@@ -130,13 +130,13 @@
         "<ol class=\"concept-chain\"><li>Adenosine acts on <strong>A1 receptors</strong> in the AV node</li><li><strong>Opens potassium channels</strong>: K+ leaves the cell (<strong>main effect</strong>)</li><li><strong>Inhibits calcium influx</strong></li><li>Cell is hyperpolarized and slower to depolarize</li><li><strong>Brief AV nodal block</strong>, longer AV nodal refractory period</li><li><strong>Re-entry circuit through the AV node breaks</strong>: sinus rhythm returns</li></ol>" +
         hy("Adenosine <strong>directly inhibits AV nodal conduction</strong> and <strong>increases AV nodal refractoriness</strong>, so it ends re-entry that <strong>uses the AV node</strong> (AVNRT, orthodromic AVRT)."),
         ["adenosine-k-channels", "adenosine-ca", "adenosine-reentry"],
-        [q("What is the main cellular action of adenosine?", "Opening potassium channels so K+ leaves the cell", ["Blocking sodium channels", "Blocking beta receptors", "Inhibiting Na/K ATPase"], "K+ efflux."),
-          q("What does adenosine do to calcium influx?", "Inhibits it", ["Increases it", "Has no effect", "Reverses it"], "Inhibits Ca influx."),
-          q("What does adenosine do to the AV node refractory period?", "Increases it", ["Shortens it", "Removes it", "No effect"], "Longer refractoriness."),
-          q("Why does adenosine stop AVNRT?", "It briefly blocks the AV node, breaking the re-entry circuit", ["It speeds the atria", "It shocks the heart", "It blocks the accessory pathway only"], "AV node dependent re-entry."),
-          q("Which adenosine receptor mediates the AV block?", "A1", ["Beta-1", "M2", "Alpha-1"], "A1-mediated.")],
-        [q("Adenosine stops a patient's regular narrow tachycardia instantly. What does that suggest about the rhythm?", "It depended on the AV node (AVNRT or orthodromic AVRT)", ["It was VT", "It was atrial flutter that always stops with adenosine", "It was sinus tachycardia"], "AV-node-dependent re-entry."),
-          q("A patient with atrial flutter gets adenosine; the rate slows briefly showing flutter waves, then resumes. Why didn't it convert?", "The flutter circuit is in the atrium, not the AV node; adenosine only briefly blocks the node", ["The dose was too high", "Adenosine speeds the atrium", "Flutter is ventricular"], "Unmasks flutter.")])
+        [q("What is the main cellular action of adenosine?", "Opening potassium channels so K+ leaves the cell", ["Blocking sodium channels", "Blocking beta receptors", "Inhibiting Na/K ATPase"], "Adenosine opens K channels, hyperpolarizing the cell."),
+          q("What does adenosine do to calcium influx?", "Inhibits it", ["Increases it", "Has no effect", "Reverses it"], "Adenosine inhibits calcium influx."),
+          q("What does adenosine do to the AV node refractory period?", "Increases it", ["Shortens it", "Removes it", "No effect"], "Longer AV node refractoriness blocks conduction."),
+          q("Why does adenosine stop AVNRT?", "It briefly blocks the AV node, breaking the re-entry circuit", ["It speeds the atria", "It shocks the heart", "It blocks the accessory pathway only"], "Briefly blocking the node breaks the circuit."),
+          q("Which adenosine receptor mediates the AV block?", "A1", ["Beta-1", "M2", "Alpha-1"], "A1 receptors mediate AV block.")],
+        [q("Adenosine stops a patient's regular narrow tachycardia instantly. What does that suggest about the rhythm?", "It depended on the AV node (AVNRT or orthodromic AVRT)", ["It was VT", "It was atrial flutter that always stops with adenosine", "It was sinus tachycardia"], "Instant conversion means the AV node was part of the circuit."),
+          q("A patient with atrial flutter gets adenosine; the rate slows briefly showing flutter waves, then resumes. Why didn't it convert?", "The flutter circuit is in the atrium, not the AV node; adenosine only briefly blocks the node", ["The dose was too high", "Adenosine speeds the atrium", "Flutter is ventricular"], "Flutter lives in the atrium; adenosine just unmasks the waves.")])
     ]),
 
     /* ---------- 5a ---------- */
@@ -149,24 +149,24 @@
         "<ol class=\"concept-chain\"><li><strong>Vagomimetic</strong>: suppresses AV node conduction (rate control)</li><li>Inhibits the Na/K ATPase: <strong>more intracellular sodium</strong></li><li>Less Na/Ca exchange: <strong>more intracellular calcium</strong> (stronger contraction, HFrEF)</li><li>Prolongs phases 4 and 0: <strong>longer refractory period</strong></li></ol>" +
         note("Na/K ATPase as the named target is standard teaching; the slide says increases intracellular sodium causing calcium influx."),
         ["digoxin-names", "digoxin-uses", "digoxin-moa"],
-        [q("What is the brand name of digoxin?", "Lanoxin", ["Adenocard", "Tikosyn", "Multaq"], "Lanoxin."),
-          q("What drug class is digoxin?", "Cardiac glycoside", ["Class IC antiarrhythmic", "Anticholinergic", "Calcium channel blocker"], "Glycoside."),
-          q("Which two conditions is digoxin mainly used for?", "Rate control in AF or flutter, and HFrEF", ["VF and asystole", "Hypertension and angina", "Bradycardia and heart block"], "Slide 16."),
-          q("How does digoxin slow the AV node?", "It is vagomimetic (increases vagal tone)", ["It blocks sodium channels", "It blocks beta receptors", "It blocks potassium channels"], "Vagomimetic."),
-          q("How does digoxin increase contractility?", "More intracellular sodium leads to more intracellular calcium", ["It blocks calcium entry", "It stimulates beta-1 receptors", "It lowers potassium"], "Na then Ca.")],
+        [q("What is the brand name of digoxin?", "Lanoxin", ["Adenocard", "Tikosyn", "Multaq"], "Lanoxin = digoxin."),
+          q("What drug class is digoxin?", "Cardiac glycoside", ["Class IC antiarrhythmic", "Anticholinergic", "Calcium channel blocker"], "Digoxin is a cardiac glycoside."),
+          q("Which two conditions is digoxin mainly used for?", "Rate control in AF or flutter, and HFrEF", ["VF and asystole", "Hypertension and angina", "Bradycardia and heart block"], "Digoxin controls AF rate and helps HFrEF symptoms. (Slide 16)"),
+          q("How does digoxin slow the AV node?", "It is vagomimetic (increases vagal tone)", ["It blocks sodium channels", "It blocks beta receptors", "It blocks potassium channels"], "Digoxin boosts vagal tone, slowing the AV node."),
+          q("How does digoxin increase contractility?", "More intracellular sodium leads to more intracellular calcium", ["It blocks calcium entry", "It stimulates beta-1 receptors", "It lowers potassium"], "Blocking Na-K-ATPase raises Na, then Ca, inside the cell.")],
         [q("A patient with HFrEF and AF with a rate of 110 on maximal beta blocker needs more rate control without lowering BP. Which drug fits?", "Digoxin", ["Verapamil", "Flecainide", "Adenosine"], "Digoxin in HFrEF + AF."),
-          q("A student asks why digoxin helps both heart failure and AF. Best answer?", "It raises intracellular calcium for contractility and increases vagal tone to slow the AV node", ["It blocks potassium for both", "It is a diuretic", "It dilates arteries"], "Two mechanisms.")]),
+          q("A student asks why digoxin helps both heart failure and AF. Best answer?", "It raises intracellular calcium for contractility and increases vagal tone to slow the AV node", ["It blocks potassium for both", "It is a diuretic", "It dilates arteries"], "More calcium strengthens contraction; more vagal tone slows the node.")]),
       C("Kinetics, levels and renal failure",
         tbl(["", ""], [["Excretion", "<strong>Kidneys</strong> (depends on GFR)"], ["Half-life", "<strong>36–48 hours</strong>; <strong>longer in renal failure</strong>"], ["Monitoring", "<strong>Plasma levels regularly</strong>"], ["Therapeutic range", "<strong>0.5–2 ng/mL</strong>"]]) +
         hy("<strong>Narrow therapeutic window</strong>: toxicity risk rises above <strong>2.0 ng/mL</strong>. In <strong>renal failure</strong> the half-life lengthens and levels climb: reduce the dose and check levels."),
         ["digoxin-excretion", "digoxin-half-life", "digoxin-range"],
-        [q("How is digoxin eliminated?", "By the kidneys", ["By the liver only", "By the lungs", "In the stool unchanged only"], "Renal."),
-          q("What is the half-life of digoxin?", "36 to 48 hours", ["Under 10 seconds", "58 days", "2 hours"], "36–48 h."),
-          q("What is the therapeutic range of digoxin?", "0.5 to 2 ng/mL", ["5 to 20 ng/mL", "10 to 40 ng/mL", "0.01 to 0.05 ng/mL"], "0.5–2."),
-          q("What happens to digoxin's half-life in renal failure?", "It gets longer", ["It gets shorter", "No change", "It becomes zero"], "Longer."),
-          q("Why does digoxin need level monitoring?", "It has a narrow therapeutic window", ["It has no side effects", "It is only given once", "It is cleared in seconds"], "Narrow window.")],
-        [q("A patient stable on digoxin develops AKI. What is the risk?", "Digoxin accumulates and toxicity develops", ["Digoxin levels fall", "Nothing changes", "Digoxin becomes more effective safely"], "Renal clearance."),
-          q("A patient's digoxin level is 2.6 ng/mL. How is it interpreted?", "Above range, increased toxicity risk", ["Therapeutic", "Subtherapeutic", "Lab error always"], "Over 2.0.")])
+        [q("How is digoxin eliminated?", "By the kidneys", ["By the liver only", "By the lungs", "In the stool unchanged only"], "Digoxin is cleared by the kidneys."),
+          q("What is the half-life of digoxin?", "36 to 48 hours", ["Under 10 seconds", "58 days", "2 hours"], "Digoxin's half-life is 36-48 hours."),
+          q("What is the therapeutic range of digoxin?", "0.5 to 2 ng/mL", ["5 to 20 ng/mL", "10 to 40 ng/mL", "0.01 to 0.05 ng/mL"], "Therapeutic range is 0.5-2 ng/mL."),
+          q("What happens to digoxin's half-life in renal failure?", "It gets longer", ["It gets shorter", "No change", "It becomes zero"], "Poor kidney function prolongs it."),
+          q("Why does digoxin need level monitoring?", "It has a narrow therapeutic window", ["It has no side effects", "It is only given once", "It is cleared in seconds"], "Narrow window means toxicity is close to effective doses.")],
+        [q("A patient stable on digoxin develops AKI. What is the risk?", "Digoxin accumulates and toxicity develops", ["Digoxin levels fall", "Nothing changes", "Digoxin becomes more effective safely"], "AKI stops digoxin clearance, so it accumulates."),
+          q("A patient's digoxin level is 2.6 ng/mL. How is it interpreted?", "Above range, increased toxicity risk", ["Therapeutic", "Subtherapeutic", "Lab error always"], "Over 2.0 ng/mL risks toxicity.")])
     ]),
 
     /* ---------- 5b ---------- */
@@ -178,15 +178,15 @@
         hy("Classic: <strong>N/V + yellow-green vision + an arrhythmia</strong> in an <strong>elderly</strong> patient with <strong>worsening kidneys or low potassium</strong>. <strong>Paroxysmal atrial tachycardia with block</strong> is the signature rhythm.") +
         note("Hypokalemia increasing toxicity is because digoxin and K+ compete for the same pump site (standard teaching)."),
         ["dig-tox-risk", "dig-tox-symptoms", "dig-tox-arrhythmias", "dig-scooped-st"],
-        [q("Which electrolyte abnormality raises digoxin toxicity risk?", "Hypokalemia", ["Hypernatremia", "Hypercalcemia only in children", "Hypophosphatemia"], "Low K."),
-          q("Which visual change is classic for digoxin toxicity?", "Yellow vision or halos", ["Double vision only", "Floaters", "Night blindness"], "Xanthopsia."),
-          q("What is the most common symptom of digoxin toxicity?", "Nausea and vomiting", ["Itching", "Diarrhea only", "Cough"], "GI."),
-          q("Which rhythm is characteristic of digoxin toxicity?", "Atrial or junctional tachycardia with AV block", ["Atrial flutter with 2:1 only", "Torsades", "Sinus tachycardia alone"], "Tachycardia with block."),
-          q("What EKG ST change does digoxin cause?", "Scooped ST depression", ["Tombstone ST elevation", "Saddle-shaped ST elevation", "Delta waves"], "Scooped."),
-          q("Which patient factors raise digoxin toxicity risk?", "Low body weight, older age, decreased renal function", ["Young age and obesity", "High potassium and good kidneys", "Male sex only"], "Slide 18."),
-          q("Which potassium finding can occur in acute digoxin toxicity?", "Hyperkalemia", ["Hypokalemia only", "Normal always", "Hypercalcemia instead"], "Pump inhibition.")],
-        [q("An 84-year-old woman on digoxin and furosemide has nausea, sees yellow halos around lights, and has K 2.9 and creatinine up from 1.0 to 2.1. What is happening?", "Digoxin toxicity", ["Migraine", "Stroke", "Viral gastroenteritis"], "Classic."),
-          q("A patient on digoxin has atrial tachycardia at 150 with 2:1 AV block and scooped ST segments. What should be checked first?", "A digoxin level and potassium", ["Troponin only", "TSH only", "Lipase"], "Dig toxicity rhythm.")]),
+        [q("Which electrolyte abnormality raises digoxin toxicity risk?", "Hypokalemia", ["Hypernatremia", "Hypercalcemia only in children", "Hypophosphatemia"], "Low K lets digoxin bind its pump more, increasing toxicity."),
+          q("Which visual change is classic for digoxin toxicity?", "Yellow vision or halos", ["Double vision only", "Floaters", "Night blindness"], "Yellow vision (xanthopsia) is classic."),
+          q("What is the most common symptom of digoxin toxicity?", "Nausea and vomiting", ["Itching", "Diarrhea only", "Cough"], "Nausea and vomiting are the most common symptoms."),
+          q("Which rhythm is characteristic of digoxin toxicity?", "Atrial or junctional tachycardia with AV block", ["Atrial flutter with 2:1 only", "Torsades", "Sinus tachycardia alone"], "Digoxin speeds atrial firing and blocks the node: tachycardia with block."),
+          q("What EKG ST change does digoxin cause?", "Scooped ST depression", ["Tombstone ST elevation", "Saddle-shaped ST elevation", "Delta waves"], "Digoxin causes scooped 'Salvador Dali' ST depression."),
+          q("Which patient factors raise digoxin toxicity risk?", "Low body weight, older age, decreased renal function", ["Young age and obesity", "High potassium and good kidneys", "Male sex only"], "Small, older and renally impaired patients accumulate digoxin. (Slide 18)"),
+          q("Which potassium finding can occur in acute digoxin toxicity?", "Hyperkalemia", ["Hypokalemia only", "Normal always", "Hypercalcemia instead"], "Blocking the Na-K pump leaves K outside cells: hyperkalemia.")],
+        [q("An 84-year-old woman on digoxin and furosemide has nausea, sees yellow halos around lights, and has K 2.9 and creatinine up from 1.0 to 2.1. What is happening?", "Digoxin toxicity", ["Migraine", "Stroke", "Viral gastroenteritis"], "Nausea, yellow halos, low K and AKI on digoxin = toxicity."),
+          q("A patient on digoxin has atrial tachycardia at 150 with 2:1 AV block and scooped ST segments. What should be checked first?", "A digoxin level and potassium", ["Troponin only", "TSH only", "Lipase"], "Atrial tach with block and scooped ST = check dig level and K.")]),
       C("Treating digoxin toxicity",
         tbl(["Treatment", "When / how"], [
           ["<strong>Digoxin immune Fab (DigiFab, Digibind)</strong>", "<strong>Binds digoxin.</strong> For <strong>life-threatening arrhythmias</strong>, <strong>K over 5.5</strong>, or <strong>end-organ damage</strong> (renal failure, AMS)"],
@@ -194,15 +194,15 @@
           ["Temporizing", "<strong>Atropine</strong> for bradycardia; <strong>IV fluids</strong> for hypotension"]]) +
         mn("<strong>Fab for the Fatal three</strong>: arrhythmia, potassium over 5.5, organ damage."),
         ["digifab", "dig-charcoal", "dig-temporizing"],
-        [q("What is the antidote for digoxin toxicity?", "Digoxin immune Fab (DigiFab)", ["Naloxone", "Flumazenil", "Protamine"], "DSFab."),
-          q("What potassium level is an indication for DigiFab?", "Over 5.5", ["Under 3.5", "Exactly 4.0", "Over 4.0"], "K over 5.5."),
-          q("When is activated charcoal helpful in digoxin ingestion?", "Within 1 to 2 hours, if the patient can protect the airway", ["After 24 hours", "Only in comatose patients", "Never"], "Early, alert."),
-          q("What is the activated charcoal dose for digoxin ingestion?", "1 g/kg, max 50 g", ["10 g/kg", "100 g for all", "0.1 g/kg"], "1 g/kg."),
-          q("What temporizing drug treats bradycardia from digoxin toxicity?", "Atropine", ["Adenosine", "Verapamil", "Metoprolol"], "Atropine."),
-          q("Which end-organ problems are indications for DigiFab?", "Renal failure or altered mental status", ["Mild nausea only", "Yellow vision only", "Headache"], "End-organ damage.")],
-        [q("A patient with digoxin toxicity has K 6.4 and bradycardia. Definitive treatment?", "Digoxin immune Fab", ["IV calcium alone and observe", "Activated charcoal 2 days later", "More digoxin"], "K over 5.5."),
-          q("A child swallowed grandma's digoxin 45 minutes ago, is alert, with normal vitals. Early step?", "Activated charcoal 1 g/kg", ["DigiFab for everyone", "Atropine", "Pacing"], "Within 1–2 hours, alert."),
-          q("A patient with digoxin toxicity develops VT. Treatment?", "Digoxin immune Fab", ["Watch and wait", "Charcoal alone", "Digoxin loading"], "Life-threatening arrhythmia.")])
+        [q("What is the antidote for digoxin toxicity?", "Digoxin immune Fab (DigiFab)", ["Naloxone", "Flumazenil", "Protamine"], "DigiFab binds and removes digoxin."),
+          q("What potassium level is an indication for DigiFab?", "Over 5.5", ["Under 3.5", "Exactly 4.0", "Over 4.0"], "K over 5.5 means severe toxicity: give DigiFab."),
+          q("When is activated charcoal helpful in digoxin ingestion?", "Within 1 to 2 hours, if the patient can protect the airway", ["After 24 hours", "Only in comatose patients", "Never"], "Charcoal works if given early in an alert patient."),
+          q("What is the activated charcoal dose for digoxin ingestion?", "1 g/kg, max 50 g", ["10 g/kg", "100 g for all", "0.1 g/kg"], "Charcoal 1 g/kg, max 50 g."),
+          q("What temporizing drug treats bradycardia from digoxin toxicity?", "Atropine", ["Adenosine", "Verapamil", "Metoprolol"], "Atropine temporarily counters digoxin's vagal brady."),
+          q("Which end-organ problems are indications for DigiFab?", "Renal failure or altered mental status", ["Mild nausea only", "Yellow vision only", "Headache"], "End-organ damage is an indication for DigiFab.")],
+        [q("A patient with digoxin toxicity has K 6.4 and bradycardia. Definitive treatment?", "Digoxin immune Fab", ["IV calcium alone and observe", "Activated charcoal 2 days later", "More digoxin"], "K over 5.5 with brady: DigiFab."),
+          q("A child swallowed grandma's digoxin 45 minutes ago, is alert, with normal vitals. Early step?", "Activated charcoal 1 g/kg", ["DigiFab for everyone", "Atropine", "Pacing"], "Early and alert: charcoal."),
+          q("A patient with digoxin toxicity develops VT. Treatment?", "Digoxin immune Fab", ["Watch and wait", "Charcoal alone", "Digoxin loading"], "Life-threatening arrhythmia: DigiFab.")])
     ]),
 
     /* ---------- 6a ---------- */
@@ -217,12 +217,12 @@
         hy("<strong>Ventricular phase 0 = sodium. Nodal phase 0 = calcium.</strong> So Na blockers slow the ventricles; Ca blockers slow the nodes.") +
         "<p>Arrhythmias come from <strong>abnormal pacemaker activity</strong> or <strong>abnormal impulse propagation</strong> (re-entry). Drugs reduce ectopic firing, change conduction or refractoriness, and break re-entry circuits.</p>",
         ["fast-ap-phases", "slow-ap-phases", "arrhythmia-mechanisms"],
-        [q("Which ion causes phase 0 in ventricular myocytes?", "Sodium entering", ["Calcium entering", "Potassium leaving", "Chloride entering"], "Fast Na."),
-          q("Which ion causes phase 0 in the SA and AV nodes?", "Calcium entering", ["Sodium entering", "Potassium leaving", "Magnesium entering"], "Ca-dependent."),
-          q("Which phase is the ventricular plateau and which ion drives it?", "Phase 2, calcium", ["Phase 0, sodium", "Phase 3, potassium", "Phase 4, chloride"], "Ca plateau."),
-          q("Which ion movement causes phase 3 repolarization?", "Potassium leaving the cell", ["Sodium entering", "Calcium entering", "Chloride leaving"], "K out."),
-          q("What does phase 4 represent in nodal cells?", "Automaticity (spontaneous depolarization)", ["The plateau", "Rapid upstroke", "Full repolarization only"], "Pacemaker drift."),
-          q("What are the two basic causes of arrhythmias?", "Abnormal pacemaker activity and abnormal impulse propagation", ["Infection and inflammation", "High and low blood pressure", "Valve disease and anemia"], "Slide 23.")],
+        [q("Which ion causes phase 0 in ventricular myocytes?", "Sodium entering", ["Calcium entering", "Potassium leaving", "Chloride entering"], "Fast Na influx drives phase 0 in myocytes."),
+          q("Which ion causes phase 0 in the SA and AV nodes?", "Calcium entering", ["Sodium entering", "Potassium leaving", "Magnesium entering"], "Nodal phase 0 is driven by calcium."),
+          q("Which phase is the ventricular plateau and which ion drives it?", "Phase 2, calcium", ["Phase 0, sodium", "Phase 3, potassium", "Phase 4, chloride"], "The plateau (phase 2) is calcium in balancing K out."),
+          q("Which ion movement causes phase 3 repolarization?", "Potassium leaving the cell", ["Sodium entering", "Calcium entering", "Chloride leaving"], "Potassium leaving repolarizes the cell."),
+          q("What does phase 4 represent in nodal cells?", "Automaticity (spontaneous depolarization)", ["The plateau", "Rapid upstroke", "Full repolarization only"], "Phase 4 drift gives nodal cells automaticity."),
+          q("What are the two basic causes of arrhythmias?", "Abnormal pacemaker activity and abnormal impulse propagation", ["Infection and inflammation", "High and low blood pressure", "Valve disease and anemia"], "Arrhythmias come from bad impulse formation or bad conduction. (Slide 23)")],
         [q("A drug slows conduction in ventricular muscle but barely affects the AV node. Which channel does it most likely block?", "Fast sodium channels", ["L-type calcium channels", "Beta receptors", "A1 receptors"], "Ventricular phase 0 is Na.")]),
       C("Vaughan Williams classes and choosing by rhythm",
         tbl(["Class", "Target", "Phase", "Drugs"], [
@@ -234,14 +234,14 @@
         tbl(["Rhythm", "Drug"], [["Regular AV-node-dependent SVT (AVNRT, orthodromic AVRT)", "<strong>Vagal maneuvers, then adenosine</strong>"], ["AF/flutter rate control (no pre-excitation)", "<strong>Beta blocker or diltiazem/verapamil</strong>; digoxin in selected cases"], ["Rhythm control, VT", "<strong>Class I or III</strong> (by structure, QTc, kidneys)"], ["<strong>Pre-excited AF (WPW)</strong>", "<strong>Avoid AV nodal blockers</strong> (adenosine, BB, CCB, digoxin) <strong>and IV amiodarone</strong>"]]) +
         hy("Before choosing: <strong>unstable?</strong> <strong>Irregular or pre-excited?</strong> Then <strong>EF, structural disease, QTc, renal function</strong>."),
         ["vw-classes", "drug-by-rhythm", "pre-excited-af-avoid"],
-        [q("Which Vaughan Williams class is the beta blockers?", "Class II", ["Class I", "Class III", "Class IV"], "II."),
-          q("Which class blocks potassium channels?", "Class III", ["Class I", "Class II", "Class IV"], "III."),
-          q("Which class are diltiazem and verapamil?", "Class IV", ["Class I", "Class II", "Class III"], "IV."),
-          q("Which drugs should be avoided in pre-excited AF?", "AV nodal blockers and IV amiodarone", ["Procainamide", "Synchronized cardioversion", "Ibutilide"], "Slide 2 safety exception."),
-          q("What is first-line drug therapy for a stable regular AV-node-dependent SVT after vagal maneuvers?", "Adenosine", ["Digoxin", "Flecainide", "Lidocaine"], "Adenosine."),
-          q("Which drug classes are used for AF rate control without pre-excitation?", "Beta blockers or diltiazem/verapamil", ["Class IB", "Atropine", "Adenosine"], "AV nodal slowing.")],
-        [q("A stable patient with known WPW has irregular wide-complex AF at 250. Which drug should be avoided?", "Diltiazem", ["Procainamide", "Ibutilide", "Synchronized cardioversion if unstable"], "AV nodal blocker."),
-          q("A stable patient has AF with RVR at 140 and no accessory pathway. Which drug class controls the rate?", "Beta blocker or non-dihydropyridine CCB", ["Class IB", "Anticholinergic", "Class IC alone"], "Rate control.")])
+        [q("Which Vaughan Williams class is the beta blockers?", "Class II", ["Class I", "Class III", "Class IV"], "Class II = beta blockers."),
+          q("Which class blocks potassium channels?", "Class III", ["Class I", "Class II", "Class IV"], "Class III blocks K channels."),
+          q("Which class are diltiazem and verapamil?", "Class IV", ["Class I", "Class II", "Class III"], "Class IV = non-DHP CCBs."),
+          q("Which drugs should be avoided in pre-excited AF?", "AV nodal blockers and IV amiodarone", ["Procainamide", "Synchronized cardioversion", "Ibutilide"], "Blocking the node pushes AF down the accessory pathway."),
+          q("What is first-line drug therapy for a stable regular AV-node-dependent SVT after vagal maneuvers?", "Adenosine", ["Digoxin", "Flecainide", "Lidocaine"], "Adenosine is first-line after vagals."),
+          q("Which drug classes are used for AF rate control without pre-excitation?", "Beta blockers or diltiazem/verapamil", ["Class IB", "Atropine", "Adenosine"], "Beta blockers or diltiazem/verapamil slow the AV node.")],
+        [q("A stable patient with known WPW has irregular wide-complex AF at 250. Which drug should be avoided?", "Diltiazem", ["Procainamide", "Ibutilide", "Synchronized cardioversion if unstable"], "Diltiazem in pre-excited AF can cause VF."),
+          q("A stable patient has AF with RVR at 140 and no accessory pathway. Which drug class controls the rate?", "Beta blocker or non-dihydropyridine CCB", ["Class IB", "Anticholinergic", "Class IC alone"], "No accessory pathway: beta blocker or CCB.")])
     ]),
 
     /* ---------- 6b ---------- */
@@ -250,12 +250,12 @@
         "<ol class=\"concept-chain\"><li>Block <strong>fast Na+ channels</strong></li><li>Slower <strong>phase 0</strong> upstroke in atrial, ventricular and Purkinje tissue</li><li><strong>Slower conduction</strong> (QRS widens)</li><li>Re-entry and ectopic foci suppressed</li></ol>" +
         hy("<strong>IA and IC also block K+ channels</strong>: slow repolarization, longer action potential. <strong>IC</strong> dissociates slowly: <strong>use-dependence</strong> (stronger at fast rates) and <strong>more proarrhythmia</strong>, especially in diseased hearts."),
         ["class-i-moa", "class-i-k-block", "use-dependence"],
-        [q("Which phase do Class I drugs affect?", "Phase 0", ["Phase 2", "Phase 3 only", "Phase 4 only"], "Na upstroke."),
-          q("What do Class I drugs do to ventricular conduction?", "Slow it", ["Speed it", "No effect", "Block the AV node only"], "Slower conduction."),
-          q("Which Class I subgroups also block potassium channels?", "IA and IC", ["IB only", "IB and IC", "None"], "IA and IC."),
-          q("What is use-dependence?", "A stronger drug effect at faster heart rates", ["A stronger effect at slow rates", "Needing more drug over time", "Addiction"], "IC property."),
-          q("Which EKG interval widens most with Class I drugs?", "QRS", ["PR only", "RR only", "None"], "Slower ventricular conduction.")],
-        [q("A patient on flecainide has a much wider QRS during exercise than at rest. Which property explains this?", "Use-dependence of Class IC drugs", ["Reverse use-dependence", "Beta blockade", "Vagal tone"], "Stronger at fast rates.")])
+        [q("Which phase do Class I drugs affect?", "Phase 0", ["Phase 2", "Phase 3 only", "Phase 4 only"], "Class I blocks Na channels, slowing phase 0."),
+          q("What do Class I drugs do to ventricular conduction?", "Slow it", ["Speed it", "No effect", "Block the AV node only"], "Slower phase 0 slows ventricular conduction."),
+          q("Which Class I subgroups also block potassium channels?", "IA and IC", ["IB only", "IB and IC", "None"], "IA and IC also block K channels."),
+          q("What is use-dependence?", "A stronger drug effect at faster heart rates", ["A stronger effect at slow rates", "Needing more drug over time", "Addiction"], "Use-dependence = stronger block at faster rates."),
+          q("Which EKG interval widens most with Class I drugs?", "QRS", ["PR only", "RR only", "None"], "Slower ventricular conduction widens the QRS.")],
+        [q("A patient on flecainide has a much wider QRS during exercise than at rest. Which property explains this?", "Use-dependence of Class IC drugs", ["Reverse use-dependence", "Beta blockade", "Vagal tone"], "IC drugs block more at faster rates (use-dependence).")])
     ]),
 
     /* ---------- 6c ---------- */
@@ -264,10 +264,10 @@
         "<ol class=\"concept-chain\"><li>Block <strong>beta-adrenergic</strong> (sympathetic) stimulation</li><li><strong>Flatter phase 4 slope</strong> in the SA node: slower automaticity</li><li><strong>Slower AV nodal conduction</strong>, <strong>longer AV refractoriness</strong></li><li>Slower heart rate, longer PR</li></ol>" +
         hy("<strong>Class II acts on phase 4</strong> of the <strong>nodes</strong>. Some beta blockers also have membrane-stabilizing activity and lengthen the refractory period."),
         ["class-ii-moa", "class-ii-phase4"],
-        [q("Which phase do beta blockers mainly affect?", "Phase 4 of nodal cells", ["Phase 0 of ventricular cells", "Phase 2", "Phase 1"], "Phase 4."),
-          q("How do beta blockers slow the heart?", "By blocking sympathetic stimulation of the SA and AV nodes", ["By blocking sodium channels", "By opening potassium channels", "By raising vagal tone directly"], "Beta blockade."),
-          q("What do beta blockers do to the PR interval?", "Lengthen it", ["Shorten it", "No change", "Abolish it"], "Slower AV conduction.")],
-        [q("A patient with AF with RVR gets IV metoprolol and the rate falls from 140 to 95. Where did the drug act?", "SA and AV nodes, slowing AV conduction", ["Ventricular sodium channels", "The accessory pathway", "The lungs"], "Nodal.")])
+        [q("Which phase do beta blockers mainly affect?", "Phase 4 of nodal cells", ["Phase 0 of ventricular cells", "Phase 2", "Phase 1"], "Beta blockers flatten phase 4 in nodal cells."),
+          q("How do beta blockers slow the heart?", "By blocking sympathetic stimulation of the SA and AV nodes", ["By blocking sodium channels", "By opening potassium channels", "By raising vagal tone directly"], "They block sympathetic input to the SA and AV nodes."),
+          q("What do beta blockers do to the PR interval?", "Lengthen it", ["Shorten it", "No change", "Abolish it"], "Slower AV conduction lengthens the PR.")],
+        [q("A patient with AF with RVR gets IV metoprolol and the rate falls from 140 to 95. Where did the drug act?", "SA and AV nodes, slowing AV conduction", ["Ventricular sodium channels", "The accessory pathway", "The lungs"], "Metoprolol slows AV node conduction.")])
     ]),
 
     /* ---------- 6d ---------- */
@@ -277,13 +277,13 @@
         hy("<strong>Reverse use-dependence</strong> (sotalol, dofetilide, ibutilide): the action potential is <strong>more prolonged at slow heart rates</strong>, so torsades risk is highest with bradycardia.") +
         "<p>Uses: <strong>rhythm control in AF/flutter</strong>, <strong>VT/VF</strong> treatment and prevention, conversion of atrial arrhythmias. Choose by structural disease, renal function and torsades risk.</p>",
         ["class-iii-moa", "class-iii-qt", "reverse-use-dependence", "class-iii-uses"],
-        [q("Which phase do Class III drugs prolong?", "Phase 3", ["Phase 0", "Phase 4", "Phase 1"], "Repolarization."),
-          q("What EKG interval do Class III drugs prolong?", "QT", ["PR only", "QRS only", "None"], "QT."),
-          q("What arrhythmia is the main risk of Class III drugs?", "Torsades de pointes", ["Atrial flutter", "Sinus tachycardia", "AVNRT"], "Long QT."),
-          q("What is reverse use-dependence?", "More action potential prolongation at slower heart rates", ["More effect at faster rates", "No rate effect", "Loss of effect over time"], "Bradycardia worsens QT."),
-          q("Which Class III drugs show reverse use-dependence?", "Sotalol, dofetilide, ibutilide", ["Lidocaine, mexiletine", "Diltiazem, verapamil", "Atropine, adenosine"], "Slide 44."),
+        [q("Which phase do Class III drugs prolong?", "Phase 3", ["Phase 0", "Phase 4", "Phase 1"], "Class III prolongs phase 3 repolarization."),
+          q("What EKG interval do Class III drugs prolong?", "QT", ["PR only", "QRS only", "None"], "Longer repolarization lengthens the QT."),
+          q("What arrhythmia is the main risk of Class III drugs?", "Torsades de pointes", ["Atrial flutter", "Sinus tachycardia", "AVNRT"], "Long QT risks torsades."),
+          q("What is reverse use-dependence?", "More action potential prolongation at slower heart rates", ["More effect at faster rates", "No rate effect", "Loss of effect over time"], "Reverse use-dependence = more QT prolongation at slow rates."),
+          q("Which Class III drugs show reverse use-dependence?", "Sotalol, dofetilide, ibutilide", ["Lidocaine, mexiletine", "Diltiazem, verapamil", "Atropine, adenosine"], "Sotalol, dofetilide and ibutilide show it. (Slide 44)"),
           q("Do Class III drugs change phase 0?", "No", ["Yes, they speed it", "Yes, they block it", "Only in the AV node"], "No effect on phase 0.")],
-        [q("A patient on sotalol develops a QTc of 560 and torsades during a slow junctional rhythm at night. Which property explains the timing?", "Reverse use-dependence: more QT prolongation at slow rates", ["Use-dependence", "Beta agonism", "Vagolytic effect"], "Slow rate.")])
+        [q("A patient on sotalol develops a QTc of 560 and torsades during a slow junctional rhythm at night. Which property explains the timing?", "Reverse use-dependence: more QT prolongation at slow rates", ["Use-dependence", "Beta agonism", "Vagolytic effect"], "Slow rates exaggerate sotalol's QT effect.")])
     ]),
 
     /* ---------- 6e ---------- */
@@ -292,11 +292,11 @@
         "<ol class=\"concept-chain\"><li>Block <strong>L-type Ca2+ channels</strong></li><li>Slower <strong>phase 0</strong> in <strong>SA and AV nodes</strong> (calcium-dependent)</li><li><strong>Slower AV conduction</strong>, <strong>longer AV refractoriness</strong></li><li>Lower heart rate; also less Ca in ventricular phase 2</li></ol>" +
         hy("Only the <strong>non-dihydropyridines</strong> (<strong>diltiazem, verapamil</strong>) are antiarrhythmic: they are <strong>selective for the myocardium</strong> with <strong>less systemic vasodilation</strong>. Main effect: <strong>AV nodal slowing</strong>."),
         ["class-iv-moa", "class-iv-nondhp"],
-        [q("Which channel do Class IV drugs block?", "L-type calcium channels", ["Fast sodium channels", "Rapid potassium channels", "Beta receptors"], "L-type Ca."),
-          q("Where is the main antiarrhythmic effect of Class IV drugs?", "The AV node", ["The Purkinje fibers", "The accessory pathway", "The ventricular muscle only"], "AV nodal slowing."),
-          q("Which calcium channel blockers are antiarrhythmics?", "Diltiazem and verapamil", ["Amlodipine and nifedipine", "Felodipine", "Nicardipine"], "Non-dihydropyridines."),
-          q("Why do diltiazem and verapamil cause less vasodilation than amlodipine?", "They are more selective for the myocardium", ["They are beta blockers", "They block sodium", "They are diuretics"], "Myocardial selectivity.")],
-        [q("A resident wants amlodipine for AF rate control. Why is it the wrong choice?", "Dihydropyridines dilate vessels but do not slow the AV node", ["Amlodipine is a beta blocker", "Amlodipine causes torsades", "Amlodipine is too strong"], "Use diltiazem or verapamil.")])
+        [q("Which channel do Class IV drugs block?", "L-type calcium channels", ["Fast sodium channels", "Rapid potassium channels", "Beta receptors"], "Class IV blocks L-type calcium channels."),
+          q("Where is the main antiarrhythmic effect of Class IV drugs?", "The AV node", ["The Purkinje fibers", "The accessory pathway", "The ventricular muscle only"], "The AV node depends on calcium, so that's the main effect."),
+          q("Which calcium channel blockers are antiarrhythmics?", "Diltiazem and verapamil", ["Amlodipine and nifedipine", "Felodipine", "Nicardipine"], "Diltiazem and verapamil are the antiarrhythmic CCBs."),
+          q("Why do diltiazem and verapamil cause less vasodilation than amlodipine?", "They are more selective for the myocardium", ["They are beta blockers", "They block sodium", "They are diuretics"], "Non-DHPs act more on the heart than vessels.")],
+        [q("A resident wants amlodipine for AF rate control. Why is it the wrong choice?", "Dihydropyridines dilate vessels but do not slow the AV node", ["Amlodipine is a beta blocker", "Amlodipine causes torsades", "Amlodipine is too strong"], "Amlodipine dilates vessels but doesn't slow the AV node.")])
     ]),
 
     /* ---------- 7a ---------- */
@@ -311,15 +311,15 @@
         mn("<strong>\"Double Quarter Pounder, Lettuce Mayo, Fries Please\"</strong>: IA Disopyramide, Quinidine, Procainamide; IB Lidocaine, Mexiletine; IC Flecainide, Propafenone.") +
         hy("Dissociation speed: <strong>IB fastest, IA in between, IC slowest</strong>. Slow dissociation = drug lingers = <strong>use-dependence</strong> and <strong>proarrhythmia</strong>."),
         ["class-ia", "class-ib", "class-ic", "class-i-dissociation"],
-        [q("Which Class I subgroup dissociates most rapidly?", "IB", ["IA", "IC", "All equal"], "IB rapid."),
-          q("Which Class I subgroup dissociates most slowly?", "IC", ["IA", "IB", "All equal"], "IC slow."),
-          q("Which drugs are Class IA?", "Procainamide, quinidine, disopyramide", ["Lidocaine, mexiletine", "Flecainide, propafenone", "Amiodarone, sotalol"], "IA."),
-          q("Which drugs are Class IB?", "Lidocaine and mexiletine", ["Procainamide and quinidine", "Flecainide and propafenone", "Diltiazem and verapamil"], "IB."),
-          q("Which drugs are Class IC?", "Flecainide and propafenone", ["Lidocaine and mexiletine", "Procainamide and disopyramide", "Esmolol and metoprolol"], "IC."),
-          q("Which Class I subgroup has the highest proarrhythmic risk in diseased myocardium?", "IC", ["IB", "IA", "None"], "IC."),
-          q("Which Class I subgroup does NOT block potassium channels?", "IB", ["IA", "IC", "All block K"], "IB.")],
+        [q("Which Class I subgroup dissociates most rapidly?", "IB", ["IA", "IC", "All equal"], "IB unbinds fastest."),
+          q("Which Class I subgroup dissociates most slowly?", "IC", ["IA", "IB", "All equal"], "IC unbinds slowest."),
+          q("Which drugs are Class IA?", "Procainamide, quinidine, disopyramide", ["Lidocaine, mexiletine", "Flecainide, propafenone", "Amiodarone, sotalol"], "IA: procainamide, quinidine, disopyramide."),
+          q("Which drugs are Class IB?", "Lidocaine and mexiletine", ["Procainamide and quinidine", "Flecainide and propafenone", "Diltiazem and verapamil"], "IB: lidocaine, mexiletine."),
+          q("Which drugs are Class IC?", "Flecainide and propafenone", ["Lidocaine and mexiletine", "Procainamide and disopyramide", "Esmolol and metoprolol"], "IC: flecainide, propafenone."),
+          q("Which Class I subgroup has the highest proarrhythmic risk in diseased myocardium?", "IC", ["IB", "IA", "None"], "IC is most proarrhythmic in diseased hearts."),
+          q("Which Class I subgroup does NOT block potassium channels?", "IB", ["IA", "IC", "All block K"], "IB doesn't block K channels.")],
         [q("A patient with prior MI and low EF needs an antiarrhythmic for AF. Why avoid flecainide?", "Class IC drugs are proarrhythmic in structural heart disease", ["It is too weak", "It only works in VT", "It causes hypothyroidism"], "Avoid IC with structural disease."),
-          q("A patient in VT with a pulse needs a sodium channel blocker that acts mainly on ventricular tissue. Which subgroup?", "IB (lidocaine)", ["IC (flecainide)", "IA (quinidine) for AF", "Class IV"], "IB targets ventricles.")])
+          q("A patient in VT with a pulse needs a sodium channel blocker that acts mainly on ventricular tissue. Which subgroup?", "IB (lidocaine)", ["IC (flecainide)", "IA (quinidine) for AF", "Class IV"], "IB (lidocaine) acts mainly on ventricular tissue.")])
     ]),
 
     /* ---------- 7b ---------- */
@@ -332,16 +332,16 @@
         mn("Beta-1 selective = <strong>A BEaM</strong> (aimed at the heart): <strong>A</strong>tenolol, <strong>B</strong>isoprolol, <strong>E</strong>smolol, <strong>M</strong>etoprolol.") +
         hy("Adverse effects of all beta blockers: <strong>AV block</strong> (1st, 2nd, complete; usually reverses with dose reduction), <strong>bronchospasm</strong> (nonselective), and <strong>withdrawal</strong> in CAD (rebound ischemia, MI, VT, sudden death): <strong>never stop abruptly</strong>."),
         ["bb-selective", "bb-nonselective", "bb-adverse", "bb-withdrawal"],
-        [q("Which beta blocker is cardioselective?", "Metoprolol", ["Propranolol", "Carvedilol", "Labetalol"], "Beta-1 selective."),
-          q("Which beta blocker is nonselective?", "Propranolol", ["Atenolol", "Esmolol", "Bisoprolol"], "Nonselective."),
-          q("Why are nonselective beta blockers risky in asthma?", "Beta-2 blockade prevents bronchodilation", ["They raise heart rate", "They cause hyperkalemia only", "They dilate airways too much"], "Bronchospasm."),
-          q("What is the danger of stopping a beta blocker abruptly in CAD?", "Rebound ischemia, MI, VT or sudden death", ["Hypotension", "Bradycardia", "Hypoglycemia"], "Withdrawal."),
-          q("What is the brand name of esmolol?", "Brevibloc", ["Lopressor", "Tenormin", "Coreg"], "Brevibloc."),
-          q("What is the brand name of carvedilol?", "Coreg", ["Inderal", "Zebeta", "Betapace"], "Coreg."),
-          q("Which beta blocker is also a Class III drug?", "Sotalol", ["Atenolol", "Esmolol", "Metoprolol"], "Sotalol."),
-          q("How is beta blocker-related AV block usually managed?", "Dose reduction or discontinuation", ["Increase the dose", "Add verapamil", "Ignore it"], "Usually resolves.")],
-        [q("A patient with moderate asthma needs a beta blocker for rate control. Which is the better choice?", "Metoprolol", ["Propranolol", "Carvedilol", "Timolol"], "Cardioselective."),
-          q("A patient with CAD ran out of metoprolol 2 days ago and now has chest pain and PVCs. What happened?", "Beta blocker withdrawal with rebound ischemia", ["Beta blocker toxicity", "An allergy", "Hypokalemia only"], "Withdrawal.")])
+        [q("Which beta blocker is cardioselective?", "Metoprolol", ["Propranolol", "Carvedilol", "Labetalol"], "Metoprolol is beta-1 selective."),
+          q("Which beta blocker is nonselective?", "Propranolol", ["Atenolol", "Esmolol", "Bisoprolol"], "Propranolol blocks beta-1 and beta-2."),
+          q("Why are nonselective beta blockers risky in asthma?", "Beta-2 blockade prevents bronchodilation", ["They raise heart rate", "They cause hyperkalemia only", "They dilate airways too much"], "Beta-2 blockade tightens airways."),
+          q("What is the danger of stopping a beta blocker abruptly in CAD?", "Rebound ischemia, MI, VT or sudden death", ["Hypotension", "Bradycardia", "Hypoglycemia"], "Abrupt withdrawal causes rebound sympathetic surge and ischemia."),
+          q("What is the brand name of esmolol?", "Brevibloc", ["Lopressor", "Tenormin", "Coreg"], "Brevibloc = esmolol."),
+          q("What is the brand name of carvedilol?", "Coreg", ["Inderal", "Zebeta", "Betapace"], "Coreg = carvedilol."),
+          q("Which beta blocker is also a Class III drug?", "Sotalol", ["Atenolol", "Esmolol", "Metoprolol"], "Sotalol blocks beta and K channels."),
+          q("How is beta blocker-related AV block usually managed?", "Dose reduction or discontinuation", ["Increase the dose", "Add verapamil", "Ignore it"], "Lower or stop the dose.")],
+        [q("A patient with moderate asthma needs a beta blocker for rate control. Which is the better choice?", "Metoprolol", ["Propranolol", "Carvedilol", "Timolol"], "Metoprolol is cardioselective."),
+          q("A patient with CAD ran out of metoprolol 2 days ago and now has chest pain and PVCs. What happened?", "Beta blocker withdrawal with rebound ischemia", ["Beta blocker toxicity", "An allergy", "Hypokalemia only"], "Stopping a beta blocker causes rebound ischemia.")])
     ]),
 
     /* ---------- 8a ---------- */
@@ -356,14 +356,14 @@
         hy("<strong>Procainamide is the drug for WPW</strong> (pre-excited tachycardia): it slows the accessory pathway instead of blocking the AV node.") +
         note("Stopping the infusion if the QRS widens by 50% or hypotension occurs is standard ACLS teaching."),
         ["procainamide-uses", "procainamide-adverse", "procainamide-lupus"],
-        [q("What is the first-line drug for antidromic wide-complex AVRT in WPW?", "Procainamide", ["Adenosine", "Diltiazem", "Digoxin"], "Procainamide."),
-          q("Which autoimmune syndrome can procainamide cause?", "Drug-induced lupus", ["Myasthenia gravis", "Graves disease", "Rheumatoid arthritis"], "Lupus-like."),
-          q("What must be monitored during procainamide infusion?", "Blood pressure and serial EKGs", ["Liver enzymes only", "Lung function", "Visual fields"], "BP, EKG."),
-          q("Which EKG intervals does procainamide prolong?", "QRS, PR and QT", ["Only PR", "None", "Only RR"], "Cardiac toxicity."),
-          q("Which Class is procainamide?", "IA", ["IB", "IC", "III"], "IA.")],
-        [q("A stable patient with WPW has a wide, regular tachycardia (antidromic AVRT). Which drug?", "Procainamide", ["Adenosine", "Verapamil", "Metoprolol"], "Procainamide."),
-          q("Months on oral procainamide, a patient develops arthralgias, a malar rash and a positive antihistone antibody. Cause?", "Drug-induced lupus from procainamide", ["New rheumatoid arthritis", "Lyme disease", "Digoxin toxicity"], "Lupus-like syndrome."),
-          q("During a procainamide infusion, BP falls to 80/50 and the QRS widens. Next step?", "Stop the infusion", ["Increase the rate", "Add verapamil", "Give adenosine"], "Toxicity.")])
+        [q("What is the first-line drug for antidromic wide-complex AVRT in WPW?", "Procainamide", ["Adenosine", "Diltiazem", "Digoxin"], "Procainamide slows the accessory pathway."),
+          q("Which autoimmune syndrome can procainamide cause?", "Drug-induced lupus", ["Myasthenia gravis", "Graves disease", "Rheumatoid arthritis"], "Procainamide causes drug-induced lupus."),
+          q("What must be monitored during procainamide infusion?", "Blood pressure and serial EKGs", ["Liver enzymes only", "Lung function", "Visual fields"], "It can drop BP and widen the QRS."),
+          q("Which EKG intervals does procainamide prolong?", "QRS, PR and QT", ["Only PR", "None", "Only RR"], "Procainamide prolongs QRS, PR and QT."),
+          q("Which Class is procainamide?", "IA", ["IB", "IC", "III"], "Procainamide is Class IA.")],
+        [q("A stable patient with WPW has a wide, regular tachycardia (antidromic AVRT). Which drug?", "Procainamide", ["Adenosine", "Verapamil", "Metoprolol"], "Antidromic AVRT in WPW: procainamide."),
+          q("Months on oral procainamide, a patient develops arthralgias, a malar rash and a positive antihistone antibody. Cause?", "Drug-induced lupus from procainamide", ["New rheumatoid arthritis", "Lyme disease", "Digoxin toxicity"], "Arthralgia, rash and antihistone antibodies = drug-induced lupus."),
+          q("During a procainamide infusion, BP falls to 80/50 and the QRS widens. Next step?", "Stop the infusion", ["Increase the rate", "Add verapamil", "Give adenosine"], "Hypotension and QRS widening = stop the drip.")])
     ]),
 
     /* ---------- 8b ---------- */
@@ -378,15 +378,15 @@
         hy("<strong>Boxed warnings</strong>: <strong>proarrhythmia</strong> (more PVCs, VT, VF, death in AF patients; not for chronic AF); <strong>atrial flutter with 1:1 conduction</strong>: give an <strong>AV nodal blocker</strong> first (beta blocker, digoxin).") +
         "<p><strong>Milk</strong> decreases absorption: adjust dose and check levels if milk intake changes.</p>",
         ["flecainide-uses", "flecainide-ci", "flecainide-boxed", "flecainide-milk"],
-        [q("What is the brand name of flecainide?", "Tambocor", ["Corvert", "Tikosyn", "Betapace"], "Tambocor."),
-          q("Which patients must not take flecainide?", "Patients with structural heart disease", ["Young patients with normal hearts", "Patients with PVCs only", "Patients over 18"], "Structural disease."),
-          q("Why is an AV nodal blocker given with flecainide in atrial flutter?", "Flecainide can slow flutter enough to allow 1:1 AV conduction", ["Flecainide causes bradycardia", "To treat asthma", "To prevent lupus"], "1:1 conduction risk."),
-          q("Which food decreases flecainide absorption?", "Milk", ["Grapefruit juice", "Bananas", "Leafy greens"], "Milk."),
-          q("What is the maximum flecainide dose?", "400 mg/day", ["100 mg/day", "1 g/day", "50 mg/day"], "400."),
-          q("What is the main boxed warning of flecainide?", "Proarrhythmia including VT, VF and death", ["Pulmonary fibrosis", "Hepatotoxicity", "Agranulocytosis"], "Proarrhythmic.")],
-        [q("A 30-year-old with paroxysmal AF and a structurally normal heart on echo is not ready for ablation. Which drug can be used for rhythm control?", "Flecainide with an AV nodal blocker", ["Flecainide alone in a patient with prior MI", "Atropine", "Adenosine daily"], "Normal heart."),
-          q("A patient on flecainide stops drinking milk and develops dizziness and a wider QRS. Why?", "More flecainide is absorbed without milk, raising levels", ["Milk caused an allergy", "Calcium deficiency", "Unrelated"], "Milk interaction."),
-          q("A patient with ischemic cardiomyopathy (EF 30%) asks about flecainide for AF. Best answer?", "Contraindicated: structural heart disease", ["Safe at any dose", "Safe if taken with milk", "Safe if under 400 mg"], "Proarrhythmia.")])
+        [q("What is the brand name of flecainide?", "Tambocor", ["Corvert", "Tikosyn", "Betapace"], "Tambocor = flecainide."),
+          q("Which patients must not take flecainide?", "Patients with structural heart disease", ["Young patients with normal hearts", "Patients with PVCs only", "Patients over 18"], "Flecainide is proarrhythmic in structural heart disease."),
+          q("Why is an AV nodal blocker given with flecainide in atrial flutter?", "Flecainide can slow flutter enough to allow 1:1 AV conduction", ["Flecainide causes bradycardia", "To treat asthma", "To prevent lupus"], "Slowing flutter can allow 1:1 conduction, so add an AV node blocker."),
+          q("Which food decreases flecainide absorption?", "Milk", ["Grapefruit juice", "Bananas", "Leafy greens"], "Milk reduces flecainide absorption."),
+          q("What is the maximum flecainide dose?", "400 mg/day", ["100 mg/day", "1 g/day", "50 mg/day"], "Max flecainide is 400 mg/day."),
+          q("What is the main boxed warning of flecainide?", "Proarrhythmia including VT, VF and death", ["Pulmonary fibrosis", "Hepatotoxicity", "Agranulocytosis"], "Flecainide carries a boxed warning for proarrhythmia.")],
+        [q("A 30-year-old with paroxysmal AF and a structurally normal heart on echo is not ready for ablation. Which drug can be used for rhythm control?", "Flecainide with an AV nodal blocker", ["Flecainide alone in a patient with prior MI", "Atropine", "Adenosine daily"], "Normal heart: flecainide with an AV nodal blocker."),
+          q("A patient on flecainide stops drinking milk and develops dizziness and a wider QRS. Why?", "More flecainide is absorbed without milk, raising levels", ["Milk caused an allergy", "Calcium deficiency", "Unrelated"], "Stopping milk raises absorption and levels."),
+          q("A patient with ischemic cardiomyopathy (EF 30%) asks about flecainide for AF. Best answer?", "Contraindicated: structural heart disease", ["Safe at any dose", "Safe if taken with milk", "Safe if under 400 mg"], "Structural disease contraindicates flecainide.")])
     ]),
 
     /* ---------- 8c ---------- */
@@ -399,14 +399,14 @@
           ["Contraindications", "<strong>Sick sinus syndrome</strong>, <strong>2nd or 3rd degree block</strong> without a pacemaker, <strong>decompensated HF</strong>, <strong>hypotension</strong>, hypersensitivity"]]) +
         mn("<strong>5, 5, 5</strong>: 5 mg IV every 5 minutes, up to 3 doses (15 mg)."),
         ["metoprolol-uses", "metoprolol-dose", "metoprolol-adverse", "metoprolol-ci"],
-        [q("What is the IV metoprolol dose for rate control?", "5 mg every 5 minutes, up to 3 doses", ["50 mg IV once", "1 mg every 3 minutes", "0.25 mg/kg"], "5 mg x3."),
-          q("What are the brand names of metoprolol?", "Lopressor and Toprol XL", ["Tenormin and Zebeta", "Coreg and Inderal", "Cardizem and Calan"], "Lopressor."),
-          q("Which conduction problem is a contraindication to metoprolol?", "Second or third degree heart block without a pacemaker", ["Right bundle branch block", "First degree AV block", "Sinus arrhythmia"], "Contraindication."),
-          q("Which heart failure state is a contraindication to metoprolol?", "Decompensated heart failure", ["Stable compensated HFrEF", "HFpEF", "Prior heart failure fully treated"], "Decompensated."),
-          q("Where does metoprolol fall in AVNRT treatment?", "Third line after vagal maneuvers and adenosine", ["First line before vagal maneuvers", "Never used", "Only for VF"], "Third line."),
-          q("Which side effects of metoprolol often affect adherence?", "Fatigue, depression and sexual dysfunction", ["Cough and angioedema", "Gingival hyperplasia", "Blue skin"], "Slide 41.")],
-        [q("A stable patient in AF with RVR at 135, BP 130/80, no heart failure. Which IV drug and dose?", "Metoprolol 5 mg IV every 5 minutes up to 3 doses", ["Adenosine 6 mg", "Amiodarone 300 mg push", "Atropine 1 mg"], "Rate control."),
-          q("A patient with AF with RVR is in acute decompensated heart failure with pulmonary edema and BP 85/50. Why avoid metoprolol?", "Decompensated HF and hypotension are contraindications", ["It is too weak", "It causes tachycardia", "It is only oral"], "Contraindications.")])
+        [q("What is the IV metoprolol dose for rate control?", "5 mg every 5 minutes, up to 3 doses", ["50 mg IV once", "1 mg every 3 minutes", "0.25 mg/kg"], "Metoprolol 5 mg IV q5 min, up to 3 doses."),
+          q("What are the brand names of metoprolol?", "Lopressor and Toprol XL", ["Tenormin and Zebeta", "Coreg and Inderal", "Cardizem and Calan"], "Lopressor and Toprol XL = metoprolol."),
+          q("Which conduction problem is a contraindication to metoprolol?", "Second or third degree heart block without a pacemaker", ["Right bundle branch block", "First degree AV block", "Sinus arrhythmia"], "High-grade block without a pacer is a contraindication."),
+          q("Which heart failure state is a contraindication to metoprolol?", "Decompensated heart failure", ["Stable compensated HFrEF", "HFpEF", "Prior heart failure fully treated"], "Decompensated HF needs its sympathetic drive."),
+          q("Where does metoprolol fall in AVNRT treatment?", "Third line after vagal maneuvers and adenosine", ["First line before vagal maneuvers", "Never used", "Only for VF"], "Metoprolol is third line after vagals and adenosine."),
+          q("Which side effects of metoprolol often affect adherence?", "Fatigue, depression and sexual dysfunction", ["Cough and angioedema", "Gingival hyperplasia", "Blue skin"], "Fatigue, depression and sexual side effects hurt adherence. (Slide 41)")],
+        [q("A stable patient in AF with RVR at 135, BP 130/80, no heart failure. Which IV drug and dose?", "Metoprolol 5 mg IV every 5 minutes up to 3 doses", ["Adenosine 6 mg", "Amiodarone 300 mg push", "Atropine 1 mg"], "Stable AF RVR: metoprolol 5 mg IV q5 x3."),
+          q("A patient with AF with RVR is in acute decompensated heart failure with pulmonary edema and BP 85/50. Why avoid metoprolol?", "Decompensated HF and hypotension are contraindications", ["It is too weak", "It causes tachycardia", "It is only oral"], "Decompensated HF and hypotension contraindicate it.")])
     ]),
 
     /* ---------- 8d ---------- */
@@ -421,14 +421,14 @@
           ["Interactions", "Other QT-prolonging drugs"]]) +
         mn("Sotalol: <strong>450 and 40</strong>. No if QTc over 450 or CrCl under 40."),
         ["sotalol-moa", "sotalol-uses", "sotalol-ci"],
-        [q("What makes sotalol unique among Class III drugs?", "It is also a beta blocker", ["It blocks sodium channels only", "It is a calcium channel blocker", "It has no QT effect"], "Dual action."),
-          q("What baseline QTc contraindicates sotalol?", "Over 450 msec", ["Over 350 msec", "Over 600 msec only", "Any QTc"], "QTc over 450."),
-          q("What creatinine clearance contraindicates sotalol?", "Under 40 mL/min", ["Under 90 mL/min", "Under 10 mL/min only", "Over 40 mL/min"], "CrCl under 40."),
-          q("Why is sotalol contraindicated in asthma?", "It is a nonselective beta blocker", ["It causes pulmonary fibrosis", "It is a bronchodilator", "It contains iodine"], "Bronchospasm."),
-          q("What is the brand name of sotalol?", "Betapace", ["Multaq", "Corvert", "Pacerone"], "Betapace."),
-          q("What is sotalol's dose based on?", "Renal function and QTc", ["Weight only", "Age only", "Liver enzymes"], "Slide 52.")],
-        [q("A patient with AF has a QTc of 470 and CrCl 35. Can sotalol be started?", "No, both the QTc and kidney function contraindicate it", ["Yes, at 80 mg BID", "Yes, if given IV", "Yes, with azithromycin"], "450 and 40."),
-          q("A patient on sotalol is prescribed a fluoroquinolone. Concern?", "Additive QT prolongation and torsades risk", ["Hypoglycemia only", "Liver failure", "No concern"], "QT drugs.")])
+        [q("What makes sotalol unique among Class III drugs?", "It is also a beta blocker", ["It blocks sodium channels only", "It is a calcium channel blocker", "It has no QT effect"], "Sotalol is also a beta blocker."),
+          q("What baseline QTc contraindicates sotalol?", "Over 450 msec", ["Over 350 msec", "Over 600 msec only", "Any QTc"], "QTc over 450 contraindicates sotalol."),
+          q("What creatinine clearance contraindicates sotalol?", "Under 40 mL/min", ["Under 90 mL/min", "Under 10 mL/min only", "Over 40 mL/min"], "CrCl under 40 contraindicates it (renally cleared)."),
+          q("Why is sotalol contraindicated in asthma?", "It is a nonselective beta blocker", ["It causes pulmonary fibrosis", "It is a bronchodilator", "It contains iodine"], "Sotalol is nonselective, causing bronchospasm."),
+          q("What is the brand name of sotalol?", "Betapace", ["Multaq", "Corvert", "Pacerone"], "Betapace = sotalol."),
+          q("What is sotalol's dose based on?", "Renal function and QTc", ["Weight only", "Age only", "Liver enzymes"], "Dose sotalol by kidney function and QTc. (Slide 52)")],
+        [q("A patient with AF has a QTc of 470 and CrCl 35. Can sotalol be started?", "No, both the QTc and kidney function contraindicate it", ["Yes, at 80 mg BID", "Yes, if given IV", "Yes, with azithromycin"], "QTc over 450 and CrCl under 40 both contraindicate it."),
+          q("A patient on sotalol is prescribed a fluoroquinolone. Concern?", "Additive QT prolongation and torsades risk", ["Hypoglycemia only", "Liver failure", "No concern"], "Fluoroquinolones add QT prolongation.")])
     ]),
 
     /* ---------- 8e ---------- */
@@ -442,14 +442,14 @@
           ["Interactions / CI", "QT-prolonging drugs; hypersensitivity"]]) +
         hy("Ibutilide is <strong>IV only</strong>, for <strong>converting</strong> AF/flutter. Watch for <strong>torsades</strong> on telemetry."),
         ["ibutilide-uses", "ibutilide-dose", "ibutilide-adverse"],
-        [q("What is the brand name of ibutilide?", "Corvert", ["Tikosyn", "Multaq", "Tambocor"], "Corvert."),
-          q("What is ibutilide used for?", "Chemical conversion of AF or flutter", ["Long-term rate control", "Bradycardia", "VF arrest"], "Conversion."),
-          q("What is the ibutilide dose for a patient 60 kg or more?", "1 mg IV over 10 minutes", ["0.01 mg/kg IV push", "6 mg rapid push", "300 mg bolus"], "1 mg."),
-          q("What is the ibutilide dose for a patient under 60 kg?", "0.01 mg/kg IV over 10 minutes", ["1 mg IV push", "10 mg/kg", "0.5 mg/kg"], "Weight-based."),
-          q("What is the main risk of ibutilide?", "Polymorphic VT (torsades)", ["Pulmonary fibrosis", "Hypothyroidism", "Lupus"], "Proarrhythmia."),
-          q("Can ibutilide be used for AF with RVR in WPW?", "Yes, in stable patients", ["No, never", "Only with digoxin", "Only orally"], "Slide 54.")],
-        [q("A stable 75 kg patient with new atrial flutter is chosen for chemical cardioversion. Which ibutilide dose?", "1 mg IV over 10 minutes", ["0.75 mg/kg IV push", "6 mg IV push", "10 mg PO"], "60 kg or more."),
-          q("Shortly after ibutilide, a patient's QT lengthens and polymorphic VT appears. What is this?", "Torsades from ibutilide", ["Expected sinus rhythm", "Atrial flutter returning", "Digoxin toxicity"], "Proarrhythmia.")])
+        [q("What is the brand name of ibutilide?", "Corvert", ["Tikosyn", "Multaq", "Tambocor"], "Corvert = ibutilide."),
+          q("What is ibutilide used for?", "Chemical conversion of AF or flutter", ["Long-term rate control", "Bradycardia", "VF arrest"], "Ibutilide chemically converts AF or flutter."),
+          q("What is the ibutilide dose for a patient 60 kg or more?", "1 mg IV over 10 minutes", ["0.01 mg/kg IV push", "6 mg rapid push", "300 mg bolus"], "60 kg or more: 1 mg over 10 minutes."),
+          q("What is the ibutilide dose for a patient under 60 kg?", "0.01 mg/kg IV over 10 minutes", ["1 mg IV push", "10 mg/kg", "0.5 mg/kg"], "Under 60 kg: 0.01 mg/kg."),
+          q("What is the main risk of ibutilide?", "Polymorphic VT (torsades)", ["Pulmonary fibrosis", "Hypothyroidism", "Lupus"], "Ibutilide can cause torsades."),
+          q("Can ibutilide be used for AF with RVR in WPW?", "Yes, in stable patients", ["No, never", "Only with digoxin", "Only orally"], "Ibutilide can be used in stable pre-excited AF. (Slide 54)")],
+        [q("A stable 75 kg patient with new atrial flutter is chosen for chemical cardioversion. Which ibutilide dose?", "1 mg IV over 10 minutes", ["0.75 mg/kg IV push", "6 mg IV push", "10 mg PO"], "75 kg gets 1 mg over 10 minutes."),
+          q("Shortly after ibutilide, a patient's QT lengthens and polymorphic VT appears. What is this?", "Torsades from ibutilide", ["Expected sinus rhythm", "Atrial flutter returning", "Digoxin toxicity"], "Ibutilide prolongs QT and can cause torsades.")])
     ]),
 
     /* ---------- 8f ---------- */
@@ -463,14 +463,14 @@
           ["Monitoring", "<strong>Hospitalized for 3 days</strong> to start; <strong>CrCl, QT and rhythm</strong>"]]) +
         mn("<strong>Tikosyn = Tik-tok, 3 days on the clock</strong> in the hospital."),
         ["dofetilide-uses", "dofetilide-ci", "dofetilide-monitoring"],
-        [q("What is the brand name of dofetilide?", "Tikosyn", ["Corvert", "Betapace", "Cordarone"], "Tikosyn."),
-          q("How long must patients be hospitalized when starting dofetilide?", "3 days", ["1 hour", "2 weeks", "Not at all"], "3 days."),
-          q("Which QTc contraindicates dofetilide?", "Over 440 msec", ["Over 300 msec", "Over 600 msec only", "Under 440 msec"], "QTc over 440."),
-          q("What must be monitored when starting dofetilide?", "Creatinine clearance, QT and rhythm", ["Liver enzymes only", "Thyroid only", "Vision"], "CrCl, QT, rhythm."),
-          q("Can dofetilide be used in heart failure or after MI?", "Yes", ["No, never", "Only if EF is normal", "Only in children"], "Slide 55."),
-          q("What is the main adverse effect of dofetilide?", "Torsades de pointes", ["Pulmonary fibrosis", "Drug-induced lupus", "Blue-gray skin"], "TdP.")],
-        [q("A patient with HFrEF and persistent AF needs rhythm control and has a QTc of 420 with normal kidneys. Which drug can be started in the hospital?", "Dofetilide with 3 days of monitoring", ["Flecainide at home", "Sotalol with QTc 500", "Verapamil"], "Dofetilide OK in HF."),
-          q("A patient with congenital long QT syndrome asks about dofetilide for AF. Best answer?", "Contraindicated", ["Safe at half dose", "Safe if started at home", "Safe with milk"], "Congenital long QT.")])
+        [q("What is the brand name of dofetilide?", "Tikosyn", ["Corvert", "Betapace", "Cordarone"], "Tikosyn = dofetilide."),
+          q("How long must patients be hospitalized when starting dofetilide?", "3 days", ["1 hour", "2 weeks", "Not at all"], "Start dofetilide in the hospital for 3 days of monitoring."),
+          q("Which QTc contraindicates dofetilide?", "Over 440 msec", ["Over 300 msec", "Over 600 msec only", "Under 440 msec"], "QTc over 440 contraindicates dofetilide."),
+          q("What must be monitored when starting dofetilide?", "Creatinine clearance, QT and rhythm", ["Liver enzymes only", "Thyroid only", "Vision"], "Monitor CrCl, QT and rhythm."),
+          q("Can dofetilide be used in heart failure or after MI?", "Yes", ["No, never", "Only if EF is normal", "Only in children"], "Dofetilide is safe in HF and after MI. (Slide 55)"),
+          q("What is the main adverse effect of dofetilide?", "Torsades de pointes", ["Pulmonary fibrosis", "Drug-induced lupus", "Blue-gray skin"], "Torsades is the main risk.")],
+        [q("A patient with HFrEF and persistent AF needs rhythm control and has a QTc of 420 with normal kidneys. Which drug can be started in the hospital?", "Dofetilide with 3 days of monitoring", ["Flecainide at home", "Sotalol with QTc 500", "Verapamil"], "Dofetilide works in HF with QTc under 440 and normal kidneys."),
+          q("A patient with congenital long QT syndrome asks about dofetilide for AF. Best answer?", "Contraindicated", ["Safe at half dose", "Safe if started at home", "Safe with milk"], "Congenital long QT forbids dofetilide.")])
     ]),
 
     /* ---------- 8g ---------- */
@@ -485,14 +485,14 @@
         hy("Diltiazem is a good rate-control choice in <strong>asthma/COPD</strong> (no bronchospasm) but <strong>never in WPW with AF or in VT</strong>.") +
         mn("Diltiazem bolus <strong>0.25 mg/kg</strong> (a quarter per kilo)."),
         ["diltiazem-uses", "diltiazem-dose", "diltiazem-adverse", "diltiazem-ci"],
-        [q("What is the IV bolus dose of diltiazem?", "0.25 mg/kg (usually 10 to 20 mg)", ["5 mg/kg", "6 mg rapid push", "1 mg/kg"], "0.25 mg/kg."),
-          q("What is the diltiazem infusion rate after the bolus?", "5 to 10 mg/h titrated to rate", ["100 mg/h", "1 mg/min", "0.5 mg/min"], "5–10 mg/h."),
-          q("What is the brand name of diltiazem?", "Cardizem", ["Calan", "Coreg", "Lanoxin"], "Cardizem."),
-          q("Why is diltiazem contraindicated in AF with an accessory pathway?", "It can cause VF by favoring conduction down the pathway", ["It is too slow", "It causes asthma", "It is only oral"], "VF risk."),
-          q("Which common side effect of diltiazem causes ankle swelling?", "Peripheral edema", ["DVT", "Heart failure always", "Lymphedema"], "Vasodilation."),
-          q("Which tachycardia is a contraindication to diltiazem?", "Ventricular tachycardia", ["Sinus tachycardia from fever", "AF with RVR", "Atrial flutter"], "VT.")],
-        [q("A patient with COPD has AF with RVR at 150, BP 128/76. Which IV rate control agent avoids bronchospasm?", "Diltiazem 0.25 mg/kg", ["Propranolol", "Adenosine", "Sotalol"], "No beta-2 effect."),
-          q("A patient who just received IV metoprolol is still in AF at 130 and is now hypotensive. Should diltiazem be added?", "No; recent beta blocker and hypotension are contraindications", ["Yes, double dose", "Yes, give 20 mg push", "Yes, with verapamil"], "Contraindications.")])
+        [q("What is the IV bolus dose of diltiazem?", "0.25 mg/kg (usually 10 to 20 mg)", ["5 mg/kg", "6 mg rapid push", "1 mg/kg"], "Diltiazem bolus 0.25 mg/kg."),
+          q("What is the diltiazem infusion rate after the bolus?", "5 to 10 mg/h titrated to rate", ["100 mg/h", "1 mg/min", "0.5 mg/min"], "Infusion 5-10 mg/h."),
+          q("What is the brand name of diltiazem?", "Cardizem", ["Calan", "Coreg", "Lanoxin"], "Cardizem = diltiazem."),
+          q("Why is diltiazem contraindicated in AF with an accessory pathway?", "It can cause VF by favoring conduction down the pathway", ["It is too slow", "It causes asthma", "It is only oral"], "Diltiazem in pre-excited AF can cause VF."),
+          q("Which common side effect of diltiazem causes ankle swelling?", "Peripheral edema", ["DVT", "Heart failure always", "Lymphedema"], "Vasodilation causes ankle edema."),
+          q("Which tachycardia is a contraindication to diltiazem?", "Ventricular tachycardia", ["Sinus tachycardia from fever", "AF with RVR", "Atrial flutter"], "Diltiazem can crash BP in VT.")],
+        [q("A patient with COPD has AF with RVR at 150, BP 128/76. Which IV rate control agent avoids bronchospasm?", "Diltiazem 0.25 mg/kg", ["Propranolol", "Adenosine", "Sotalol"], "Diltiazem has no beta-2 effect."),
+          q("A patient who just received IV metoprolol is still in AF at 130 and is now hypotensive. Should diltiazem be added?", "No; recent beta blocker and hypotension are contraindications", ["Yes, double dose", "Yes, give 20 mg push", "Yes, with verapamil"], "Recent beta blocker plus hypotension contraindicate it.")])
     ]),
 
     /* ---------- 8h ---------- */
@@ -507,15 +507,15 @@
         hy("Verapamil is the <strong>most negatively inotropic</strong>: avoid in <strong>HFrEF</strong>. <strong>Constipation</strong> is its signature side effect.") +
         note("Slide 61 lists \"LV block\" as an adverse effect; read as AV block."),
         ["verapamil-uses", "verapamil-dose", "verapamil-adverse", "verapamil-ci"],
-        [q("What is the IV verapamil dose?", "5 to 10 mg over at least 2 minutes", ["0.25 mg/kg push", "300 mg IV", "1 mg every 3 minutes"], "5–10 mg."),
-          q("Which GI side effect is classic for verapamil?", "Constipation", ["Diarrhea", "Hematemesis", "Pancreatitis"], "Constipation."),
-          q("Which heart failure type is a contraindication to verapamil?", "HFrEF", ["HFpEF", "Right heart strain from PE only", "None"], "Negative inotropy."),
-          q("Which drug combination with verapamil is contraindicated?", "Concurrent beta blocker", ["Aspirin", "Statin", "Acetaminophen"], "Additive block."),
-          q("What are the brand names of verapamil?", "Calan and Verelan", ["Cardizem", "Lopressor", "Tenormin"], "Calan."),
-          q("Can verapamil precipitate pulmonary edema?", "Yes, by worsening heart failure", ["No, never", "Only orally", "Only in children"], "Decompensated HF.")],
-        [q("A patient with an EF of 25% has AF with RVR. Why avoid verapamil?", "It is negatively inotropic and can cause decompensated HF", ["It speeds the ventricle", "It causes torsades", "It is ineffective in AF"], "HFrEF."),
-          q("A patient on verapamil for rate control complains of hard stools for weeks. Likely cause?", "Verapamil-induced constipation", ["Hypothyroidism", "Colon cancer always", "Dehydration only"], "Signature side effect."),
-          q("A wide-complex regular tachycardia of unknown cause is assumed to be SVT and given verapamil; the patient becomes hypotensive and pulseless. What principle was violated?", "Never give verapamil for VT or uncertain wide-complex tachycardia", ["Verapamil should be given faster", "Adenosine is contraindicated in VT", "Verapamil needs a beta blocker"], "VT contraindication.")])
+        [q("What is the IV verapamil dose?", "5 to 10 mg over at least 2 minutes", ["0.25 mg/kg push", "300 mg IV", "1 mg every 3 minutes"], "Verapamil 5-10 mg over 2+ minutes."),
+          q("Which GI side effect is classic for verapamil?", "Constipation", ["Diarrhea", "Hematemesis", "Pancreatitis"], "Verapamil causes constipation."),
+          q("Which heart failure type is a contraindication to verapamil?", "HFrEF", ["HFpEF", "Right heart strain from PE only", "None"], "Verapamil depresses contractility."),
+          q("Which drug combination with verapamil is contraindicated?", "Concurrent beta blocker", ["Aspirin", "Statin", "Acetaminophen"], "With a beta blocker, AV block and bradycardia add up."),
+          q("What are the brand names of verapamil?", "Calan and Verelan", ["Cardizem", "Lopressor", "Tenormin"], "Calan and Verelan = verapamil."),
+          q("Can verapamil precipitate pulmonary edema?", "Yes, by worsening heart failure", ["No, never", "Only orally", "Only in children"], "Negative inotropy can cause pulmonary edema.")],
+        [q("A patient with an EF of 25% has AF with RVR. Why avoid verapamil?", "It is negatively inotropic and can cause decompensated HF", ["It speeds the ventricle", "It causes torsades", "It is ineffective in AF"], "Verapamil depresses contractility and can decompensate HFrEF."),
+          q("A patient on verapamil for rate control complains of hard stools for weeks. Likely cause?", "Verapamil-induced constipation", ["Hypothyroidism", "Colon cancer always", "Dehydration only"], "Verapamil causes constipation."),
+          q("A wide-complex regular tachycardia of unknown cause is assumed to be SVT and given verapamil; the patient becomes hypotensive and pulseless. What principle was violated?", "Never give verapamil for VT or uncertain wide-complex tachycardia", ["Verapamil should be given faster", "Adenosine is contraindicated in VT", "Verapamil needs a beta blocker"], "Verapamil in VT can cause collapse; treat wide-complex as VT.")])
     ]),
 
     /* ---------- 9 ---------- */
@@ -529,25 +529,25 @@
         hy("<strong>Monitor</strong>: <strong>LFTs</strong>, <strong>neurologic signs and mental status</strong>, <strong>EKG</strong>, <strong>BP</strong>, and <strong>lidocaine levels</strong>. It is <strong>liver metabolized</strong>: severe hepatic dysfunction raises toxicity.") +
         mn("Lidocaine <strong>1–1.5 to start, 3 max</strong> (mg/kg)."),
         ["lidocaine-uses", "lidocaine-dose", "lidocaine-monitoring", "lidocaine-ci"],
-        [q("What is the initial IV lidocaine dose for VT?", "1 to 1.5 mg/kg", ["5 mg/kg", "0.1 mg/kg", "300 mg flat"], "1–1.5 mg/kg."),
-          q("What is the maximum total lidocaine dose?", "3 mg/kg", ["10 mg/kg", "1 mg/kg", "6 mg/kg"], "3 mg/kg."),
-          q("Which lab must be monitored with lidocaine because it is liver metabolized?", "Liver function tests", ["TSH", "Lipase", "Hemoglobin A1c"], "LFTs."),
-          q("What else must be monitored on a lidocaine infusion?", "Neurologic status, EKG, BP and lidocaine levels", ["Pulmonary function tests", "Vision charts", "Bone density"], "Slide 30."),
-          q("Which syndrome is a contraindication to lidocaine?", "WPW", ["Long QT", "Brugada", "Asthma"], "Slide 30."),
-          q("In ACLS, which drug is an alternative to amiodarone for pulseless VT or VF?", "Lidocaine", ["Adenosine", "Diltiazem", "Digoxin"], "Lidocaine or amiodarone.")],
-        [q("A 70 kg patient in stable monomorphic VT will get lidocaine. Initial dose?", "70 to 105 mg IV", ["700 mg IV", "7 mg IV", "1 g IV"], "1–1.5 mg/kg."),
-          q("A patient with cirrhosis is on a lidocaine infusion. Why is extra caution needed?", "Hepatic dysfunction raises lidocaine levels and toxicity", ["Cirrhosis speeds clearance", "Lidocaine is renally cleared", "No caution needed"], "Liver metabolism.")]),
+        [q("What is the initial IV lidocaine dose for VT?", "1 to 1.5 mg/kg", ["5 mg/kg", "0.1 mg/kg", "300 mg flat"], "Lidocaine 1-1.5 mg/kg."),
+          q("What is the maximum total lidocaine dose?", "3 mg/kg", ["10 mg/kg", "1 mg/kg", "6 mg/kg"], "Max lidocaine is 3 mg/kg."),
+          q("Which lab must be monitored with lidocaine because it is liver metabolized?", "Liver function tests", ["TSH", "Lipase", "Hemoglobin A1c"], "The liver clears lidocaine."),
+          q("What else must be monitored on a lidocaine infusion?", "Neurologic status, EKG, BP and lidocaine levels", ["Pulmonary function tests", "Vision charts", "Bone density"], "Watch neuro status, EKG, BP and levels. (Slide 30)"),
+          q("Which syndrome is a contraindication to lidocaine?", "WPW", ["Long QT", "Brugada", "Asthma"], "Lidocaine is contraindicated in WPW. (Slide 30)"),
+          q("In ACLS, which drug is an alternative to amiodarone for pulseless VT or VF?", "Lidocaine", ["Adenosine", "Diltiazem", "Digoxin"], "Lidocaine is the ACLS alternative to amiodarone.")],
+        [q("A 70 kg patient in stable monomorphic VT will get lidocaine. Initial dose?", "70 to 105 mg IV", ["700 mg IV", "7 mg IV", "1 g IV"], "1-1.5 mg/kg × 70 kg = 70-105 mg."),
+          q("A patient with cirrhosis is on a lidocaine infusion. Why is extra caution needed?", "Hepatic dysfunction raises lidocaine levels and toxicity", ["Cirrhosis speeds clearance", "Lidocaine is renally cleared", "No caution needed"], "Liver disease raises lidocaine levels.")]),
       C("Lidocaine toxicity",
         tbl(["Nervous system (common)", "Cardiovascular (infrequent)"], [["<strong>Tremor</strong>, <strong>tinnitus</strong>, insomnia or drowsiness, lightheadedness, <strong>slurred speech</strong>, ataxia, agitation, <strong>hallucinations</strong>, memory problems; <strong>seizures</strong> at high levels", "Sinus slowing, <strong>asystole</strong>, <strong>hypotension</strong>, shock (overdose or rapid IV push)"]]) +
         hy("CNS effects are usually <strong>mild and dose-dependent</strong> and <strong>resolve when the infusion is slowed or stopped</strong>. <strong>CNS first, heart later.</strong>"),
         ["lidocaine-cns-tox", "lidocaine-cv-tox", "lidocaine-tox-management"],
-        [q("What are the earliest signs of lidocaine toxicity?", "CNS effects such as tremor, tinnitus and slurred speech", ["Asystole", "Rash", "Hypoglycemia"], "CNS first."),
-          q("What can very high lidocaine levels cause?", "Seizures", ["Hyperthyroidism", "Pulmonary fibrosis", "Lupus"], "Seizures."),
-          q("How are mild CNS effects of lidocaine managed?", "Slow or stop the infusion", ["Increase the dose", "Add amiodarone", "Give digoxin"], "Dose-dependent."),
-          q("Which cardiovascular toxicity can lidocaine cause?", "Asystole and hypotension", ["Hypertensive crisis", "Atrial flutter", "Sinus tachycardia"], "Infrequent."),
-          q("What usually causes cardiovascular lidocaine toxicity?", "Overdose or rapid IV administration", ["Low doses", "Oral intake", "Topical cream"], "Slide 32.")],
-        [q("A patient on a lidocaine drip for VT develops ringing in the ears, perioral tingling, slurred speech and confusion. Next step?", "Slow or stop the lidocaine and check a level", ["Increase the drip", "Add verapamil", "Give atropine"], "CNS toxicity."),
-          q("A patient on lidocaine for 2 days with worsening liver function becomes agitated and hallucinates, then seizes. Cause?", "Lidocaine toxicity from reduced hepatic clearance", ["Alcohol withdrawal only", "Digoxin toxicity", "Hypoglycemia"], "Liver dysfunction.")])
+        [q("What are the earliest signs of lidocaine toxicity?", "CNS effects such as tremor, tinnitus and slurred speech", ["Asystole", "Rash", "Hypoglycemia"], "Toxicity starts with CNS symptoms."),
+          q("What can very high lidocaine levels cause?", "Seizures", ["Hyperthyroidism", "Pulmonary fibrosis", "Lupus"], "High levels cause seizures."),
+          q("How are mild CNS effects of lidocaine managed?", "Slow or stop the infusion", ["Increase the dose", "Add amiodarone", "Give digoxin"], "Slow or stop the drip."),
+          q("Which cardiovascular toxicity can lidocaine cause?", "Asystole and hypotension", ["Hypertensive crisis", "Atrial flutter", "Sinus tachycardia"], "It can cause asystole and hypotension."),
+          q("What usually causes cardiovascular lidocaine toxicity?", "Overdose or rapid IV administration", ["Low doses", "Oral intake", "Topical cream"], "Overdose or fast IV push causes it. (Slide 32)")],
+        [q("A patient on a lidocaine drip for VT develops ringing in the ears, perioral tingling, slurred speech and confusion. Next step?", "Slow or stop the lidocaine and check a level", ["Increase the drip", "Add verapamil", "Give atropine"], "Tinnitus, tingling and confusion = lidocaine toxicity: slow or stop."),
+          q("A patient on lidocaine for 2 days with worsening liver function becomes agitated and hallucinates, then seizes. Cause?", "Lidocaine toxicity from reduced hepatic clearance", ["Alcohol withdrawal only", "Digoxin toxicity", "Hypoglycemia"], "Worse liver function raised levels, causing seizures.")])
     ]),
 
     /* ---------- 10 ---------- */
@@ -562,13 +562,13 @@
         hy("Think beta blocker overdose: <strong>slow + low</strong> (bradycardia + hypotension) with <strong>AMS</strong> or seizures, sometimes bronchospasm.") +
         note("Treatment (glucagon, high-dose insulin, calcium, pressors, pacing) is standard teaching; the deck lists only the presentation, which is what the objective asks."),
         ["bb-tox-cardiac", "bb-tox-refractory", "bb-tox-lungs-cns"],
-        [q("What are the hallmark findings of beta blocker toxicity?", "Bradycardia and hypotension", ["Tachycardia and hypertension", "Fever and sweating", "Hyperglycemia and dilated pupils"], "Slow and low."),
-          q("Which shock state can beta blocker overdose cause?", "Cardiogenic shock", ["Septic shock", "Anaphylactic shock", "Hemorrhagic shock"], "Low output."),
-          q("Which respiratory problem can beta blocker overdose cause?", "Bronchospasm and respiratory depression", ["Hyperventilation only", "Pneumothorax", "Pleural effusion"], "Slide 40."),
-          q("What can happen to the heart in severe beta blocker poisoning?", "It becomes refractory to drugs and pacing, leading to asystole", ["It speeds up uncontrollably", "It goes into AF only", "Nothing serious"], "Refractory."),
-          q("Which neurologic findings occur in beta blocker toxicity?", "Altered mental status, seizures and coma", ["Pinpoint pupils only", "Peripheral neuropathy", "Bell palsy"], "CNS effects.")],
-        [q("A patient took a bottle of her husband's propranolol. HR 34, BP 70/40, wheezing, and confused. Diagnosis?", "Beta blocker overdose", ["Opioid overdose", "Anticholinergic toxicity", "Digoxin toxicity with tachycardia"], "Slow, low, bronchospasm, AMS."),
-          q("Which toxidrome fits a patient with bradycardia, hypotension and a seizure after an overdose of metoprolol?", "Beta blocker toxicity", ["Atropine toxicity", "Sympathomimetic toxicity", "Lidocaine at therapeutic dose"], "Beta blocker.")])
+        [q("What are the hallmark findings of beta blocker toxicity?", "Bradycardia and hypotension", ["Tachycardia and hypertension", "Fever and sweating", "Hyperglycemia and dilated pupils"], "Beta blocker toxicity is slow and low."),
+          q("Which shock state can beta blocker overdose cause?", "Cardiogenic shock", ["Septic shock", "Anaphylactic shock", "Hemorrhagic shock"], "Blocked contractility causes cardiogenic shock."),
+          q("Which respiratory problem can beta blocker overdose cause?", "Bronchospasm and respiratory depression", ["Hyperventilation only", "Pneumothorax", "Pleural effusion"], "Beta-2 blockade and CNS effects impair breathing. (Slide 40)"),
+          q("What can happen to the heart in severe beta blocker poisoning?", "It becomes refractory to drugs and pacing, leading to asystole", ["It speeds up uncontrollably", "It goes into AF only", "Nothing serious"], "Severe poisoning can stop responding to anything."),
+          q("Which neurologic findings occur in beta blocker toxicity?", "Altered mental status, seizures and coma", ["Pinpoint pupils only", "Peripheral neuropathy", "Bell palsy"], "It causes AMS, seizures and coma.")],
+        [q("A patient took a bottle of her husband's propranolol. HR 34, BP 70/40, wheezing, and confused. Diagnosis?", "Beta blocker overdose", ["Opioid overdose", "Anticholinergic toxicity", "Digoxin toxicity with tachycardia"], "Brady, hypotension, wheezing and confusion = beta blocker overdose."),
+          q("Which toxidrome fits a patient with bradycardia, hypotension and a seizure after an overdose of metoprolol?", "Beta blocker toxicity", ["Atropine toxicity", "Sympathomimetic toxicity", "Lidocaine at therapeutic dose"], "Brady, hypotension and seizure after metoprolol = beta blocker toxicity.")])
     ]),
 
     /* ---------- 11a ---------- */
@@ -585,18 +585,18 @@
         mn("Arrest: <strong>300 then 150</strong>. Pulse: <strong>150 over 10</strong>, then <strong>1 for 6</strong>, then <strong>0.5 for 18</strong>.") +
         hy("Half-life is <strong>very long</strong>: IV 9–36 days; <strong>PO about 58 days</strong> (15–142). Hepatic metabolism."),
         ["amio-uses", "amio-moa", "amio-acls-dose", "amio-vt-pulse-dose", "amio-half-life", "amio-ci"],
-        [q("What is the first amiodarone dose in pulseless VT or VF?", "300 mg IV rapid bolus", ["150 mg over 10 minutes", "6 mg rapid push", "1 mg/kg"], "300 mg."),
-          q("What is the second amiodarone dose in cardiac arrest?", "150 mg IV bolus", ["300 mg again", "450 mg", "50 mg"], "150 mg."),
-          q("What is the amiodarone dose for stable VT with a pulse?", "150 mg IV over 10 minutes, then an infusion", ["300 mg rapid push", "1 g bolus", "6 mg push"], "150 over 10."),
-          q("After the 150 mg load for VT with a pulse, what infusion follows?", "1 mg/min for 6 hours, then 0.5 mg/min for at least 18 hours", ["5 mg/min for 1 hour", "0.1 mg/min for 2 days", "10 mg/h for 6 hours"], "1 then 0.5."),
-          q("What is the oral half-life of amiodarone?", "About 58 days", ["Under 10 seconds", "36 hours", "2 hours"], "Very long."),
-          q("Which channels does amiodarone block?", "Potassium mainly, plus sodium, beta and calcium", ["Only sodium", "Only beta", "Only A1 receptors"], "All four classes."),
-          q("Which allergy is a contraindication to amiodarone?", "Iodine hypersensitivity", ["Penicillin allergy", "Sulfa allergy", "Egg allergy"], "Iodine."),
-          q("Which shock state contraindicates amiodarone?", "Cardiogenic shock", ["Septic shock with fever", "Hemorrhagic shock already corrected", "None"], "Slide 47.")],
-        [q("A patient in VF has had two shocks, CPR and epinephrine and remains in VF. Which antiarrhythmic and dose?", "Amiodarone 300 mg IV bolus", ["Amiodarone 150 mg over 10 minutes", "Adenosine 6 mg", "Diltiazem 0.25 mg/kg"], "Arrest dose."),
-          q("The same patient remains in VF after another shock. Next amiodarone dose?", "150 mg IV bolus", ["300 mg again", "No more amiodarone", "1 g infusion"], "Second dose."),
-          q("A stable patient in monomorphic VT at 160 with a pulse and BP 120/70. Amiodarone regimen?", "150 mg IV over 10 minutes, then 1 mg/min for 6 hours, then 0.5 mg/min", ["300 mg rapid push", "6 mg rapid push", "No treatment"], "VT with pulse."),
-          q("A patient stopped amiodarone a month ago but still has side effects. Why?", "Its half-life is around 58 days", ["It was never stopped", "It is stored in bone forever", "Side effects are unrelated"], "Long half-life.")])
+        [q("What is the first amiodarone dose in pulseless VT or VF?", "300 mg IV rapid bolus", ["150 mg over 10 minutes", "6 mg rapid push", "1 mg/kg"], "Arrest dose: 300 mg IV push."),
+          q("What is the second amiodarone dose in cardiac arrest?", "150 mg IV bolus", ["300 mg again", "450 mg", "50 mg"], "Second arrest dose: 150 mg."),
+          q("What is the amiodarone dose for stable VT with a pulse?", "150 mg IV over 10 minutes, then an infusion", ["300 mg rapid push", "1 g bolus", "6 mg push"], "VT with a pulse: 150 mg over 10 minutes."),
+          q("After the 150 mg load for VT with a pulse, what infusion follows?", "1 mg/min for 6 hours, then 0.5 mg/min for at least 18 hours", ["5 mg/min for 1 hour", "0.1 mg/min for 2 days", "10 mg/h for 6 hours"], "Then 1 mg/min for 6 hours, then 0.5 mg/min."),
+          q("What is the oral half-life of amiodarone?", "About 58 days", ["Under 10 seconds", "36 hours", "2 hours"], "Amiodarone's half-life is about 58 days."),
+          q("Which channels does amiodarone block?", "Potassium mainly, plus sodium, beta and calcium", ["Only sodium", "Only beta", "Only A1 receptors"], "Amiodarone blocks K, Na, beta and Ca (all four classes)."),
+          q("Which allergy is a contraindication to amiodarone?", "Iodine hypersensitivity", ["Penicillin allergy", "Sulfa allergy", "Egg allergy"], "Amiodarone contains iodine."),
+          q("Which shock state contraindicates amiodarone?", "Cardiogenic shock", ["Septic shock with fever", "Hemorrhagic shock already corrected", "None"], "Amiodarone can drop BP. (Slide 47)")],
+        [q("A patient in VF has had two shocks, CPR and epinephrine and remains in VF. Which antiarrhythmic and dose?", "Amiodarone 300 mg IV bolus", ["Amiodarone 150 mg over 10 minutes", "Adenosine 6 mg", "Diltiazem 0.25 mg/kg"], "Refractory VF: amiodarone 300 mg."),
+          q("The same patient remains in VF after another shock. Next amiodarone dose?", "150 mg IV bolus", ["300 mg again", "No more amiodarone", "1 g infusion"], "Second dose: 150 mg."),
+          q("A stable patient in monomorphic VT at 160 with a pulse and BP 120/70. Amiodarone regimen?", "150 mg IV over 10 minutes, then 1 mg/min for 6 hours, then 0.5 mg/min", ["300 mg rapid push", "6 mg rapid push", "No treatment"], "VT with pulse: 150 over 10 min, then 1 mg/min x6h, then 0.5."),
+          q("A patient stopped amiodarone a month ago but still has side effects. Why?", "Its half-life is around 58 days", ["It was never stopped", "It is stored in bone forever", "Side effects are unrelated"], "A 58-day half-life keeps it around for months.")])
     ]),
 
     /* ---------- 11b ---------- */
@@ -612,18 +612,18 @@
           ["GI", "Nausea and vomiting (over 10%)", ""]]) +
         mn("Check the <strong>\"PFTs, LFTs and TFTs\"</strong> (plus eyes and skin): <strong>Lungs, Liver, Thyroid</strong>."),
         ["amio-cardiac-tox", "amio-liver", "amio-lung", "amio-thyroid", "amio-eye", "amio-skin"],
-        [q("Which two amiodarone toxicities carry boxed warnings?", "Hepatotoxicity and pulmonary toxicity", ["Lupus and agranulocytosis", "Constipation and edema", "Hyperkalemia and gout"], "Liver, lung."),
-          q("What baseline lung tests are needed before amiodarone?", "Chest x-ray and PFTs", ["Sputum culture", "Bronchoscopy", "Sweat chloride"], "CXR + PFTs."),
-          q("How often is a chest x-ray repeated on amiodarone?", "Every 3 to 6 months", ["Every week", "Never", "Every 10 years"], "3–6 months."),
-          q("At what liver enzyme level should amiodarone be reduced or stopped?", "Over 3 times normal", ["Any rise", "Over 10 times normal only", "Never"], "3x normal."),
-          q("Why can amiodarone cause thyroid disease?", "It has high iodine content and blocks T4 to T3 conversion", ["It destroys the pituitary", "It is a thyroid hormone", "It blocks TSH receptors"], "Iodine."),
-          q("What skin change can amiodarone cause?", "Blue-gray discoloration in sun-exposed areas", ["Yellow skin", "Vitiligo", "Hair growth"], "Blue-gray."),
-          q("Which eye finding is common and usually asymptomatic on amiodarone?", "Corneal microdeposits", ["Retinal detachment", "Cataract", "Glaucoma"], "Microdeposits."),
-          q("Which rare eye toxicity of amiodarone can cause blindness?", "Optic neuritis", ["Corneal deposits", "Dry eye", "Stye"], "Rare.")],
-        [q("A patient on amiodarone for 2 years has a dry cough, dyspnea and bilateral reticular opacities on CXR. Diagnosis?", "Amiodarone pulmonary toxicity (fibrosis or pneumonitis)", ["Asthma", "CHF from amiodarone always", "TB"], "Pulmonary toxicity."),
-          q("A patient on amiodarone has fatigue, weight gain and a high TSH. Cause?", "Amiodarone-induced hypothyroidism", ["Pituitary tumor", "Normal aging", "Digoxin toxicity"], "Thyroid."),
-          q("A fair-skinned gardener on amiodarone develops slate-gray color on her face and hands. Advice?", "Sun protection; this is amiodarone skin discoloration", ["It is cyanosis from hypoxia", "Start iron", "It is melanoma"], "Photosensitivity."),
-          q("Before starting long-term amiodarone, which baseline tests are needed?", "LFTs, TFTs, chest x-ray and PFTs", ["Only a CBC", "Only a lipid panel", "No tests"], "Baseline monitoring.")]),
+        [q("Which two amiodarone toxicities carry boxed warnings?", "Hepatotoxicity and pulmonary toxicity", ["Lupus and agranulocytosis", "Constipation and edema", "Hyperkalemia and gout"], "Liver and lung toxicity have boxed warnings."),
+          q("What baseline lung tests are needed before amiodarone?", "Chest x-ray and PFTs", ["Sputum culture", "Bronchoscopy", "Sweat chloride"], "Baseline CXR and PFTs screen for lung toxicity."),
+          q("How often is a chest x-ray repeated on amiodarone?", "Every 3 to 6 months", ["Every week", "Never", "Every 10 years"], "Repeat CXR every 3-6 months."),
+          q("At what liver enzyme level should amiodarone be reduced or stopped?", "Over 3 times normal", ["Any rise", "Over 10 times normal only", "Never"], "Enzymes over 3x normal: reduce or stop."),
+          q("Why can amiodarone cause thyroid disease?", "It has high iodine content and blocks T4 to T3 conversion", ["It destroys the pituitary", "It is a thyroid hormone", "It blocks TSH receptors"], "High iodine and blocked T4-to-T3 conversion disturb the thyroid."),
+          q("What skin change can amiodarone cause?", "Blue-gray discoloration in sun-exposed areas", ["Yellow skin", "Vitiligo", "Hair growth"], "Blue-gray skin in sun-exposed areas."),
+          q("Which eye finding is common and usually asymptomatic on amiodarone?", "Corneal microdeposits", ["Retinal detachment", "Cataract", "Glaucoma"], "Corneal microdeposits are common and usually harmless."),
+          q("Which rare eye toxicity of amiodarone can cause blindness?", "Optic neuritis", ["Corneal deposits", "Dry eye", "Stye"], "Optic neuritis is rare but can blind.")],
+        [q("A patient on amiodarone for 2 years has a dry cough, dyspnea and bilateral reticular opacities on CXR. Diagnosis?", "Amiodarone pulmonary toxicity (fibrosis or pneumonitis)", ["Asthma", "CHF from amiodarone always", "TB"], "Cough, dyspnea and reticular opacities = pulmonary toxicity."),
+          q("A patient on amiodarone has fatigue, weight gain and a high TSH. Cause?", "Amiodarone-induced hypothyroidism", ["Pituitary tumor", "Normal aging", "Digoxin toxicity"], "High TSH with fatigue = amiodarone hypothyroidism."),
+          q("A fair-skinned gardener on amiodarone develops slate-gray color on her face and hands. Advice?", "Sun protection; this is amiodarone skin discoloration", ["It is cyanosis from hypoxia", "Start iron", "It is melanoma"], "Amiodarone photosensitivity causes slate-gray skin."),
+          q("Before starting long-term amiodarone, which baseline tests are needed?", "LFTs, TFTs, chest x-ray and PFTs", ["Only a CBC", "Only a lipid panel", "No tests"], "Baseline LFTs, TFTs, CXR and PFTs.")]),
       C("Drug and food interactions",
         tbl(["Interaction", "Effect"], [
           ["<strong>Drugs</strong>", "<strong>Many significant interactions: always check the med list</strong>, including <strong>beta blockers and calcium channel blockers</strong> (additive bradycardia, AV block)"],
@@ -631,14 +631,14 @@
           ["<strong>Grapefruit juice</strong>", "<strong>Increases bioavailability by 50%</strong>: <strong>avoid</strong>"]]) +
         note("Warfarin and digoxin levels rise on amiodarone (standard teaching): their doses are usually reduced."),
         ["amio-drug-interactions", "amio-food", "amio-grapefruit"],
-        [q("Which juice should be avoided with amiodarone?", "Grapefruit juice", ["Orange juice", "Apple juice", "Cranberry juice"], "Grapefruit."),
-          q("By how much does grapefruit juice increase amiodarone bioavailability?", "About 50%", ["About 5%", "About 500%", "It decreases it"], "50%."),
+        [q("Which juice should be avoided with amiodarone?", "Grapefruit juice", ["Orange juice", "Apple juice", "Cranberry juice"], "Grapefruit raises amiodarone levels."),
+          q("By how much does grapefruit juice increase amiodarone bioavailability?", "About 50%", ["About 5%", "About 500%", "It decreases it"], "Grapefruit raises bioavailability about 50%."),
           q("How does food affect amiodarone absorption?", "Increases it", ["Decreases it", "No effect", "Blocks it completely"], "Food increases absorption."),
-          q("Which drug classes interact with amiodarone to cause bradycardia and AV block?", "Beta blockers and calcium channel blockers", ["Statins and aspirin", "PPIs", "Antihistamines"], "Additive."),
-          q("Which anticoagulant's effect increases with amiodarone?", "Warfarin", ["Enoxaparin", "Fondaparinux", "Heparin flush"], "INR rises.")],
-        [q("A patient on amiodarone drinks grapefruit juice every morning. Concern?", "Higher amiodarone levels and toxicity", ["Lower levels", "No concern", "Grapefruit cures the arrhythmia"], "Bioavailability up 50%."),
-          q("A patient on amiodarone is started on diltiazem and becomes bradycardic with a long PR. Why?", "Additive AV nodal blockade from the interaction", ["Diltiazem allergy", "Amiodarone stopped working", "Hyperkalemia only"], "Interaction."),
-          q("A patient on warfarin is started on amiodarone. What should happen?", "Monitor the INR closely and expect to lower the warfarin dose", ["Double the warfarin", "Stop the INR checks", "Nothing changes"], "Interaction.")])
+          q("Which drug classes interact with amiodarone to cause bradycardia and AV block?", "Beta blockers and calcium channel blockers", ["Statins and aspirin", "PPIs", "Antihistamines"], "Beta blockers and CCBs add to its nodal blocking."),
+          q("Which anticoagulant's effect increases with amiodarone?", "Warfarin", ["Enoxaparin", "Fondaparinux", "Heparin flush"], "Amiodarone raises warfarin levels and INR.")],
+        [q("A patient on amiodarone drinks grapefruit juice every morning. Concern?", "Higher amiodarone levels and toxicity", ["Lower levels", "No concern", "Grapefruit cures the arrhythmia"], "Grapefruit raises amiodarone levels."),
+          q("A patient on amiodarone is started on diltiazem and becomes bradycardic with a long PR. Why?", "Additive AV nodal blockade from the interaction", ["Diltiazem allergy", "Amiodarone stopped working", "Hyperkalemia only"], "Diltiazem plus amiodarone stack AV node blockade."),
+          q("A patient on warfarin is started on amiodarone. What should happen?", "Monitor the INR closely and expect to lower the warfarin dose", ["Double the warfarin", "Stop the INR checks", "Nothing changes"], "Amiodarone raises INR, so lower warfarin and monitor.")])
     ])
   ];
 })();

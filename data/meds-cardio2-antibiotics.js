@@ -54,7 +54,7 @@
         HY("PVE → vanc + Zosyn (Pseudomonas).")
     }, [
       Q("uses", "A patient with a 6-month-old mechanical aortic valve has fever and a new murmur. Empiric antibiotics?", ["Vancomycin plus piperacillin-tazobactam", "Vancomycin plus ceftriaxone", "Nafcillin alone", "Amoxicillin"], 0, "PVE: vancomycin and Zosyn, which covers Pseudomonas."),
-      Q("moa", "Why is Zosyn preferred over ceftriaxone for prosthetic valve IE?", ["It covers Pseudomonas", "It covers MRSA", "It is oral", "It has no allergy risk"], 0, "Zosyn covers Pseudomonas."),
+      Q("moa", "Why is Zosyn preferred over ceftriaxone for prosthetic valve IE?", ["It covers Pseudomonas", "It covers MRSA", "It is oral", "It has no allergy risk"], 0, "Prosthetic valve infections can involve gram-negatives like Pseudomonas, which ceftriaxone misses."),
       Q("moa", "Which organism does Zosyn NOT cover?", ["MRSA", "Pseudomonas", "Anaerobes", "Enterococcus faecalis"], 0, "Pip-tazo does not cover MRSA, so it is paired with vancomycin."),
       Q("uses", "Which three drugs start gas gangrene therapy?", ["Vancomycin, Zosyn and clindamycin", "Penicillin, gentamicin and ampicillin", "Ceftriaxone, doxycycline and metronidazole", "Nafcillin, rifampin and gentamicin"], 0, "Empiric coverage for MRSA, gram-positives, gram-negatives and anaerobes.")
     ]),

@@ -36,11 +36,11 @@
       S("treatment", "Monitoring & goals", goals + "<p>Treat the physiology, not just the BP: <strong>assess</strong> (perfusion, mechanism, fluid tolerance) → <strong>act</strong> → <strong>reassess</strong> perfusion AND congestion. <strong>MAP</strong> is a better perfusion marker than SBP; arterial line for accuracy; Foley for urine output.</p>")
     ], [
       Q("presentation", "A trauma patient is anxious with HR 118 and BP 124/80. Which stage of shock?", ["Pre-shock (compensated)", "End-organ dysfunction", "Irreversible shock", "Not shock"], 0, "Tachycardia and vasoconstriction may be the only early signs."),
-      Q("treatment", "Target MAP in shock resuscitation?", ["65 mmHg or more", "40 mmHg", "100 mmHg or more", "Exactly 120 mmHg"], 0, "MAP ≥ 65."),
+      Q("treatment", "Target MAP in shock resuscitation?", ["65 mmHg or more", "40 mmHg", "100 mmHg or more", "Exactly 120 mmHg"], 0, "A MAP of 65 or more keeps the brain, kidneys and heart perfused."),
       Q("treatment", "Urine output goal during shock resuscitation?", ["More than 0.5 mL/kg/hr", "More than 5 mL/kg/hr", "Any output", "Less than 10 mL/hr"], 0, "> 0.5 mL/kg/hr, about 35 mL/hr."),
       Q("overview", "Tension pneumothorax and tamponade cause which shock type?", ["Obstructive", "Distributive", "Hypovolemic", "Cardiogenic"], 0, "Obstructive shock: PE, tension pneumo, tamponade, dissection."),
       Q("workup", "Which hormone causes oliguria after about a 10% volume loss?", ["ADH", "Insulin", "Glucagon", "Thyroid hormone"], 0, "The posterior pituitary releases ADH."),
-      Q("overview", "Sepsis, neurogenic shock and anaphylaxis are which shock type?", ["Distributive", "Obstructive", "Cardiogenic", "Hypovolemic"], 0, "Distributive shock from vasodilation."),
+      Q("overview", "Sepsis, neurogenic shock and anaphylaxis are which shock type?", ["Distributive", "Obstructive", "Cardiogenic", "Hypovolemic"], 0, "All three cause widespread vasodilation, so blood volume is maldistributed rather than lost."),
       Q("treatment", "Why is MAP preferred over SBP in shock?", ["It better reflects perfusion to vital organs", "It is always higher", "It ignores diastolic pressure", "It's easier to guess"], 0, "MAP is a better indicator of organ perfusion."),
       Q("overview", "First-line treatment for obstructive shock?", ["Relieve the obstruction", "Large fluid boluses alone", "Dobutamine", "Antibiotics"], 0, "Obstructive shock: urgently relieve the obstruction (e.g., needle decompression, pericardiocentesis, tPA)."),
       Q("presentation", "Which finding marks progression from shock to end-organ dysfunction?", ["Anuria and coma", "Mild tachycardia", "Anxiety only", "Warm skin"], 0, "Anuria, renal failure, delirium and coma.")
@@ -78,8 +78,8 @@
       Q("treatment", "When can dobutamine be used in cardiogenic shock?", ["When SBP is 90 or higher", "When SBP is under 70", "Never", "Only in hypovolemic shock"], 0, "Dobutamine vasodilates; avoid if SBP < 90."),
       Q("presentation", "After an MI, a hypotensive patient has a new apical holosystolic murmur. Likely cause?", ["Mitral regurgitation from chordae tendineae rupture", "Aortic stenosis", "Pericarditis", "Pulmonic stenosis"], 0, "Holosystolic apical murmur = acute MR."),
       Q("presentation", "Why might a patient in cardiogenic shock have a normal heart rate?", ["Beta blockers or CCBs blunt the compensatory tachycardia", "Shock never raises HR", "They are athletes", "Pressors slow the heart"], 0, "Normal HR if compensation is blunted; bradycardia with inferior MI."),
-      Q("workup", "What does a normal BNP suggest in a hypotensive patient?", ["A diagnosis other than cardiogenic shock", "Cardiogenic shock is confirmed", "Tamponade", "Nothing"], 0, "Normal BNP points elsewhere."),
-      Q("treatment", "Which drugs should be avoided in cardiogenic shock?", ["Beta blockers and calcium channel blockers", "Aspirin and heparin", "Norepinephrine", "Oxygen"], 0, "Negative inotropes worsen it."),
+      Q("workup", "What does a normal BNP suggest in a hypotensive patient?", ["A diagnosis other than cardiogenic shock", "Cardiogenic shock is confirmed", "Tamponade", "Nothing"], 0, "BNP rises when the ventricles are stretched, so a normal BNP points away from a failing heart."),
+      Q("treatment", "Which drugs should be avoided in cardiogenic shock?", ["Beta blockers and calcium channel blockers", "Aspirin and heparin", "Norepinephrine", "Oxygen"], 0, "Both weaken the heart's squeeze, which worsens an already failing pump."),
       Q("treatment", "How does an intra-aortic balloon pump help?", ["Inflates in diastole to raise coronary perfusion and lower afterload", "Inflates in systole to raise BP", "Removes clot", "Paces the heart"], 0, "IABP inflates during diastole and deflates before systole."),
       Q("workup", "First diagnostic test in suspected cardiogenic shock from MI?", ["EKG within 10 minutes", "Echo", "CT chest", "BNP"], 0, "EKG first to look for STEMI and the need for reperfusion."),
       Q("presentation", "Inferior MI with cardiogenic shock and HR 42. Why bradycardia?", ["Nodal dysfunction from RCA/inferior infarct", "Beta agonist effect", "Hypovolemia", "Sepsis"], 0, "Right-sided or inferior MI can cause nodal dysfunction.")
@@ -98,13 +98,13 @@
       S("types", "Blood", "<p>After <strong>~2 L of crystalloid</strong>, consider blood to avoid hemodilution. Unstable with gross bleeding: <strong>O-negative</strong> emergency release; <strong>massive transfusion 1:1:1</strong> (PRBC:FFP:platelets; &gt; 10 units/24 h). <strong>Permissive hypotension</strong> in trauma hemorrhage. Type and screen when blood may be needed; type and cross when urgent. Watch for hemolytic reactions, TRALI, anaphylaxis.</p>" + HY("Bleeding: stop the bleeding + give blood. Fluids are a bridge, not a fix."))
     ], [
       Q("overview", "Most common form of shock?", ["Hypovolemic", "Cardiogenic", "Obstructive", "Neurogenic"], 0, "Hypovolemic shock is the most common."),
-      Q("treatment", "Preferred initial fluid for resuscitation?", ["Isotonic crystalloid", "D5W", "Albumin", "Hetastarch"], 0, "Isotonic crystalloids are preferred."),
+      Q("treatment", "Preferred initial fluid for resuscitation?", ["Isotonic crystalloid", "D5W", "Albumin", "Hetastarch"], 0, "Isotonic crystalloid stays in the vessels better than hypotonic fluid and is cheap and safe."),
       Q("treatment", "What is the 3:1 rule?", ["Give 3 times the blood lost as isotonic crystalloid", "Give 3 units of blood per liter of saline", "Three pressors at once", "Three boluses then stop"], 0, "Only about a third stays intravascular."),
       Q("types", "Ratio for initial massive transfusion protocol?", ["1:1:1 PRBC to FFP to platelets", "3:1:1", "1:2:3", "PRBC only"], 0, "1:1:1 is the initial starting point."),
-      Q("types", "Which IV fluid is the only one that can run with blood products?", ["0.9% normal saline", "Lactated Ringer's", "D5W", "0.45% saline"], 0, "Only 0.9NS with blood."),
+      Q("types", "Which IV fluid is the only one that can run with blood products?", ["0.9% normal saline", "Lactated Ringer's", "D5W", "0.45% saline"], 0, "Only normal saline is compatible with blood; LR's calcium can clot it and dextrose can lyse cells."),
       Q("types", "After how much rapid crystalloid should blood be considered?", ["About 2 liters", "500 mL", "10 liters", "Never"], 0, "Following 2 L, consider blood to avoid hemodilution."),
-      Q("treatment", "What side effect comes from large volumes of normal saline?", ["Hyperchloremic metabolic acidosis", "Metabolic alkalosis", "Hyperkalemia", "Hypoglycemia"], 0, "0.9NS-induced hyperchloremic acidosis."),
-      Q("overview", "A child with gastroenteritis has a sunken fontanelle, dry mucosa and few wet diapers. Problem?", ["Hypovolemia", "Hypervolemia", "Cardiogenic shock", "Anaphylaxis"], 0, "Classic dehydration exam."),
+      Q("treatment", "What side effect comes from large volumes of normal saline?", ["Hyperchloremic metabolic acidosis", "Metabolic alkalosis", "Hyperkalemia", "Hypoglycemia"], 0, "Normal saline has more chloride than plasma, so large volumes cause hyperchloremic acidosis."),
+      Q("overview", "A child with gastroenteritis has a sunken fontanelle, dry mucosa and few wet diapers. Problem?", ["Hypovolemia", "Hypervolemia", "Cardiogenic shock", "Anaphylaxis"], 0, "Sunken fontanelle, dry mouth and fewer wet diapers mean the child has lost fluid."),
       Q("types", "Which blood type is given in emergency release?", ["O negative", "AB positive", "A positive", "Type specific only"], 0, "Emergency release blood is O negative."),
       Q("treatment", "Severe hypovolemic shock: initial fluid order?", ["1-2 L isotonic saline wide open", "100 mL/hr maintenance", "250 mL and wait", "D5W 1 L"], 0, "Severe depletion needs rapid resuscitation.")
     ]),
@@ -122,7 +122,7 @@
       Q("treatment", "General treatment of distributive shock?", ["Treat the cause with fluids and pressors as indicated", "Hold all fluids", "Pericardiocentesis", "Beta blockers"], 0, "Treat cause; fluids/pressor as indicated."),
       Q("overview", "What is the mechanism of neurogenic shock?", ["Loss of sympathetic vasomotor tone", "Blood loss", "Pump failure", "Clot in the lung"], 0, "Neurogenic shock is due to loss of sympathetic vasomotor tone."),
       Q("treatment", "Why don't colloids help much in septic shock?", ["Leaky vessels let even proteins escape", "They are too cheap", "They cause bradycardia", "They contain glucose"], 0, "Vessels become permeable to proteins in sepsis and hemorrhage."),
-      Q("overview", "Hives, wheezing and hypotension minutes after a bee sting. Shock type?", ["Anaphylactic (distributive)", "Cardiogenic", "Obstructive", "Hypovolemic"], 0, "Anaphylaxis is distributive.")
+      Q("overview", "Hives, wheezing and hypotension minutes after a bee sting. Shock type?", ["Anaphylactic (distributive)", "Cardiogenic", "Obstructive", "Hypovolemic"], 0, "Anaphylaxis releases histamine, which dilates vessels and leaks fluid, a distributive shock.")
     ]),
 
     D("shk-hypervolemia", "Hypervolemia (Volume Overload)", "Too much fluid: edema, pulmonary edema, JVD; risk with renal, liver and heart failure; watch during fluid resuscitation.", [
@@ -139,7 +139,7 @@
       Q("overview", "Which conditions raise the risk of volume overload?", ["Renal disease, liver disease and heart failure", "Asthma and COPD", "Hyperthyroidism", "Anemia"], 0, "Renal, liver and heart failure."),
       Q("overview", "How can a patient be fluid overloaded yet poorly perfused?", ["Third spacing moves fluid out of the vessels into tissues", "Fluid can't be measured", "Pressors remove fluid", "It isn't possible"], 0, "Excess total body fluid with inadequate circulating volume."),
       Q("treatment", "Which fluid is for free-water replacement, not resuscitation?", ["D5W", "0.9% NS", "Lactated Ringer's", "Albumin"], 0, "D5W is hypotonic free water."),
-      Q("treatment", "Risk of correcting severe hyponatremia too fast with 3% saline?", ["Osmotic demyelination syndrome", "Cerebral edema", "Hypokalemia", "DVT"], 0, "Formerly central pontine myelinolysis."),
+      Q("treatment", "Risk of correcting severe hyponatremia too fast with 3% saline?", ["Osmotic demyelination syndrome", "Cerebral edema", "Hypokalemia", "DVT"], 0, "Raising sodium too fast pulls water out of brain cells and damages myelin."),
       Q("treatment", "Overuse of 0.45% saline can cause what?", ["Acute hyponatremia with cerebral edema", "Hypernatremia", "Metabolic alkalosis", "Hyperglycemia"], 0, "Hypotonic fluid can drop sodium."),
       Q("treatment", "What percent of infused crystalloid leaves the vessels within 30 minutes?", ["About 80%", "About 5%", "100%", "None"], 0, "20% stays intravascular, 80% moves to the interstitium.")
     ])

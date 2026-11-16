@@ -68,13 +68,13 @@
       ]))
     ], [
       Q("chain", "Why is a synchronized shock used for VT with a pulse?", ["To avoid shocking on the T wave and triggering VF", "Because it uses more energy", "Because VT has no R waves", "To slow the AV node"], 0, "Sync times the shock to the R wave."),
-      Q("bedside", "AF with RVR at 170, BP 78/40 and confusion. Why not start a diltiazem drip?", ["It takes time and lowers BP further; cardiovert instead", "Diltiazem doesn't affect AF", "It causes VF", "It is only oral"], 0, "Unstable = electricity."),
-      Q("chain", "Why does VF get unsynchronized defibrillation?", ["There is no organized R wave to sync to", "Synchronized shocks are weaker", "Unsynchronized is safer for everyone", "VF responds to pacing"], 0, "No organized QRS."),
-      Q("idea", "What makes a tachycardia 'unstable'?", ["Signs of failing perfusion such as hypotension or AMS", "A rate over 100", "Palpitations", "A wide QRS alone"], 0, "Instability = hypoperfusion."),
-      Q("bedside", "Unstable bradycardia doesn't respond to atropine. What does electricity do here?", ["Pacing adds beats to restore output", "Cardioversion resets the rhythm", "Defibrillation stops the rhythm", "Nothing; use adenosine"], 0, "Transcutaneous or transvenous pacing."),
+      Q("bedside", "AF with RVR at 170, BP 78/40 and confusion. Why not start a diltiazem drip?", ["It takes time and lowers BP further; cardiovert instead", "Diltiazem doesn't affect AF", "It causes VF", "It is only oral"], 0, "She is unstable, so she needs the rhythm stopped now; diltiazem is slow and drops BP further."),
+      Q("chain", "Why does VF get unsynchronized defibrillation?", ["There is no organized R wave to sync to", "Synchronized shocks are weaker", "Unsynchronized is safer for everyone", "VF responds to pacing"], 0, "VF has no organized R wave, so the device has nothing to sync to."),
+      Q("idea", "What makes a tachycardia 'unstable'?", ["Signs of failing perfusion such as hypotension or AMS", "A rate over 100", "Palpitations", "A wide QRS alone"], 0, "Instability means the rhythm is failing to perfuse organs: low BP, confusion, chest pain or shock."),
+      Q("bedside", "Unstable bradycardia doesn't respond to atropine. What does electricity do here?", ["Pacing adds beats to restore output", "Cardioversion resets the rhythm", "Defibrillation stops the rhythm", "Nothing; use adenosine"], 0, "If atropine can't speed the heart, pacing makes it beat faster directly."),
       Q("traps", "A stable patient has SVT at 180 with normal BP and mentation. First step?", ["Vagal maneuvers, then adenosine", "Immediate cardioversion", "Defibrillation", "Pacing"], 0, "Stable patients have time for vagal maneuvers and drugs."),
       Q("chain", "How does a cardioversion shock end a re-entry rhythm?", ["It depolarizes the whole myocardium at once, breaking the circuit", "It blocks sodium channels", "It speeds the SA node", "It lengthens the QT"], 0, "Everything is refractory at once; the sinus node takes over."),
-      Q("traps", "Which rhythm should never get a synchronized shock?", ["Ventricular fibrillation", "Atrial flutter with hypotension", "Unstable SVT", "Monomorphic VT with a pulse and hypotension"], 0, "VF needs unsynchronized defibrillation.")
+      Q("traps", "Which rhythm should never get a synchronized shock?", ["Ventricular fibrillation", "Atrial flutter with hypotension", "Unstable SVT", "Monomorphic VT with a pulse and hypotension"], 0, "A synchronized shock waits for an R wave, and VF has none, so the shock never fires.")
     ]),
 
     D("arrc-block-level", "Where the block is decides how dangerous it is", "Blocks in the AV node (1st degree, Mobitz I) are vagal and usually benign; blocks below it (Mobitz II, many 3rd degree) don't respond to atropine and need pacing.", [
@@ -104,9 +104,9 @@
       Q("idea", "Which EKG pattern suggests the block is below the AV node?", ["Constant PR with sudden dropped QRS and wide complexes", "PR lengthening before a drop", "PR over 200 with every P conducted", "Grouped beating with narrow QRS"], 0, "Mobitz II: constant PR, sudden drops."),
       Q("bedside", "Which block needs a permanent pacemaker even if the patient feels fine?", ["Mobitz II", "First-degree AV block", "Mobitz I in an athlete", "Sinus arrhythmia"], 0, "Mobitz II can progress to complete block."),
       Q("chain", "Why is a junctional escape rhythm safer than a ventricular one?", ["It's faster and more reliable, and uses the normal conduction system", "It's slower", "It has no P waves", "It's always above 100"], 0, "Junctional 40-60 narrow vs ventricular 20-40 wide."),
-      Q("traps", "A patient in Mobitz II at 38 bpm is hypotensive and atropine did nothing. Next step?", ["Transcutaneous pacing", "More atropine every minute", "Adenosine", "Observation"], 0, "Pace infranodal blocks."),
+      Q("traps", "A patient in Mobitz II at 38 bpm is hypotensive and atropine did nothing. Next step?", ["Transcutaneous pacing", "More atropine every minute", "Adenosine", "Observation"], 0, "Mobitz II is below the AV node, so atropine won't work; pacing is next."),
       Q("bedside", "A healthy athlete shows Wenckebach on a sleep Holter. Management?", ["Reassurance; nodal and vagal", "Pacemaker", "Atropine", "Amiodarone"], 0, "Nodal block from high vagal tone is benign."),
-      Q("chain", "Why does PR lengthen before the dropped beat in Mobitz I?", ["The AV node fatigues progressively with each beat", "The His bundle fails all at once", "The SA node slows", "The ventricle is refractory"], 0, "Progressive nodal delay.")
+      Q("chain", "Why does PR lengthen before the dropped beat in Mobitz I?", ["The AV node fatigues progressively with each beat", "The His bundle fails all at once", "The SA node slows", "The ventricle is refractory"], 0, "Each beat fatigues the AV node a bit more until one P can't get through.")
     ]),
 
     D("arrc-reentry", "Re-entry and why adenosine works", "Most PSVTs are re-entry loops that pass through the AV node; briefly blocking the node breaks the loop. Rhythms that don't need the node (flutter, AF) only slow down and reveal themselves.", [
@@ -133,11 +133,11 @@
       Q("chain", "Why does adenosine stop AVNRT?", ["The loop runs through the AV node, and adenosine briefly blocks the node", "It shocks the atria", "It blocks sodium channels in the ventricle", "It speeds the sinus node"], 0, "Breaking one link stops the circuit."),
       Q("chain", "Adenosine is given for a regular narrow tachycardia at 150, and sawtooth waves appear while the QRS pauses. What was it?", ["Atrial flutter", "AVNRT", "Sinus tachycardia", "VT"], 0, "Flutter doesn't need the node; slowing reveals it."),
       Q("idea", "What feature of re-entry explains the abrupt start and stop of PSVT?", ["A single premature beat can start the loop and a single block can end it", "The SA node gradually speeds up", "Electrolytes slowly shift", "Catecholamines build up"], 0, "Re-entry turns on and off abruptly."),
-      Q("bedside", "Why is adenosine pushed rapidly with a saline flush?", ["Its half-life is under 10 seconds", "It is irritating to veins", "It must reach the lungs", "To avoid hypertension"], 0, "Rapid push and flush."),
-      Q("chain", "What does adenosine do at the cellular level in the AV node?", ["Opens K+ channels and inhibits Ca2+ influx, slowing conduction", "Blocks fast Na+ channels", "Blocks beta-1 receptors", "Inhibits Na/K ATPase"], 0, "Per the Pharm deck."),
+      Q("bedside", "Why is adenosine pushed rapidly with a saline flush?", ["Its half-life is under 10 seconds", "It is irritating to veins", "It must reach the lungs", "To avoid hypertension"], 0, "Adenosine is broken down in seconds, so it has to reach the heart fast."),
+      Q("chain", "What does adenosine do at the cellular level in the AV node?", ["Opens K+ channels and inhibits Ca2+ influx, slowing conduction", "Blocks fast Na+ channels", "Blocks beta-1 receptors", "Inhibits Na/K ATPase"], 0, "Opening K⁺ channels and blocking Ca²⁺ entry briefly stops AV nodal conduction."),
       Q("traps", "Which rhythm should not get adenosine?", ["Pre-excited AF in WPW", "Narrow-complex AVNRT", "Orthodromic AVRT", "Stable regular SVT"], 0, "Avoid in wide complex or accessory pathway rhythms."),
       Q("bedside", "Which non-drug step works by the same mechanism as adenosine?", ["Vagal maneuvers that slow AV node conduction", "Leg raise to boost preload", "Holding breath to raise CO2", "Lying flat"], 0, "Vagal tone slows the node."),
-      Q("chain", "Why does adenosine not cure sinus tachycardia?", ["Sinus tach is not a loop through the AV node", "Sinus tach is too slow", "It causes AF", "It is ventricular"], 0, "Only a transient slowing.")
+      Q("chain", "Why does adenosine not cure sinus tachycardia?", ["Sinus tach is not a loop through the AV node", "Sinus tach is too slow", "It causes AF", "It is ventricular"], 0, "Sinus tach comes from the sinus node, not a loop through the AV node, so blocking the node only briefly slows it.")
     ]),
 
     D("arrc-accessory-pathway", "Accessory pathways and why AV blockers can be deadly", "In WPW a muscle bridge bypasses the AV node's delay; blocking the node in AF pushes every impulse down the bridge, which has no speed limit, risking VF.", [
@@ -164,10 +164,10 @@
       Q("idea", "Why is the PR interval short in WPW?", ["The impulse bypasses the AV node's normal delay", "The SA node fires faster", "The atria are smaller", "The QT is long"], 0, "Accessory pathway skips the nodal delay."),
       Q("bedside", "Preferred drug for stable pre-excited AF?", ["Procainamide", "Adenosine", "Metoprolol", "Digoxin"], 0, "Procainamide slows the accessory pathway."),
       Q("chain", "What normally protects the ventricles from AF's 400 impulses per minute?", ["The AV node's filtering delay", "The SA node", "The bundle of His speed", "The pericardium"], 0, "The node is the speed limit."),
-      Q("bedside", "Before starting a beta blocker for new AF, what must be excluded?", ["A pre-excitation syndrome", "Hypothyroidism", "Pregnancy", "Low magnesium"], 0, "From the Management deck."),
+      Q("bedside", "Before starting a beta blocker for new AF, what must be excluded?", ["A pre-excitation syndrome", "Hypothyroidism", "Pregnancy", "Low magnesium"], 0, "Blocking the AV node in WPW sends impulses down the accessory pathway, which can cause VF."),
       Q("traps", "AF at 270 with irregular, wide, changing QRS complexes. Which drug is dangerous?", ["Adenosine", "Procainamide", "Synchronized cardioversion", "None of these"], 0, "No AV nodal blockers in pre-excited AF."),
-      Q("bedside", "Definitive treatment for symptomatic WPW?", ["Catheter ablation of the accessory pathway", "Lifelong digoxin", "Pacemaker", "Warfarin"], 0, "Ablation cures it."),
-      Q("chain", "What does the delta wave represent?", ["Early ventricular activation through the accessory pathway", "Atrial repolarization", "A PVC", "Slow AV node conduction"], 0, "Slurred upstroke from pre-excitation.")
+      Q("bedside", "Definitive treatment for symptomatic WPW?", ["Catheter ablation of the accessory pathway", "Lifelong digoxin", "Pacemaker", "Warfarin"], 0, "Ablating the accessory pathway removes the extra connection, curing the arrhythmias."),
+      Q("chain", "What does the delta wave represent?", ["Early ventricular activation through the accessory pathway", "Atrial repolarization", "A PVC", "Slow AV node conduction"], 0, "The pathway activates part of the ventricle early, which slurs the start of the QRS.")
     ]),
 
     D("arrc-repolarization-qt", "Long QT, low K and Mg, and torsades", "When repolarization drags (drugs, low K, low Mg), early afterdepolarizations fire during the long QT and twist into torsades; magnesium stabilizes the membrane.", [
@@ -190,14 +190,14 @@
         "<strong>Ignoring 'harmless' drugs.</strong> Ondansetron and antibiotics count."
       ]))
     ], [
-      Q("chain", "A patient on sotalol starts azithromycin and her K+ falls to 3.0. What is the main risk?", ["QT prolongation leading to torsades", "Complete heart block", "Atrial flutter", "Hyperkalemia"], 0, "Stacked QT risks."),
+      Q("chain", "A patient on sotalol starts azithromycin and her K+ falls to 3.0. What is the main risk?", ["QT prolongation leading to torsades", "Complete heart block", "Atrial flutter", "Hyperkalemia"], 0, "Sotalol, azithromycin and low K⁺ all prolong the QT, so torsades risk stacks up."),
       Q("chain", "Which phase of the ventricular action potential does hypokalemia slow?", ["Phase 3 repolarization", "Phase 0 depolarization", "Phase 4 automaticity", "Phase 1 notch"], 0, "Phase 3 depends on K+ efflux."),
-      Q("bedside", "First drug for torsades de pointes with a pulse?", ["IV magnesium", "Amiodarone", "Adenosine", "Diltiazem"], 0, "Magnesium."),
+      Q("bedside", "First drug for torsades de pointes with a pulse?", ["IV magnesium", "Amiodarone", "Adenosine", "Diltiazem"], 0, "Magnesium stabilizes the membrane and stops the afterdepolarizations that trigger torsades."),
       Q("traps", "A torsades patient's Mg level is normal. Should you still give magnesium?", ["Yes; it suppresses the triggers regardless of level", "No, only if low", "No, give potassium only", "Only after cardioversion"], 0, "Mg works even at normal levels."),
       Q("idea", "Why do class III antiarrhythmics prolong the QT?", ["They block K+ channels and slow repolarization", "They block Na+ channels", "They block calcium in the node", "They are beta agonists"], 0, "Class III = K+ channel blockers."),
-      Q("chain", "Why does torsades often cause brief syncope rather than death?", ["It usually self-terminates within seconds", "It never lowers output", "It is slow", "It only occurs asleep"], 0, "From the Syncope deck."),
-      Q("bedside", "Why is dofetilide started in the hospital?", ["To monitor QT prolongation during loading", "Because it is IV only", "To check INR", "Because it causes bradycardia only"], 0, "FDA-mandated monitoring for QT."),
-      Q("traps", "Which drug would worsen torsades?", ["Amiodarone", "Magnesium", "Potassium replacement", "Overdrive pacing"], 0, "Amiodarone prolongs QT.")
+      Q("chain", "Why does torsades often cause brief syncope rather than death?", ["It usually self-terminates within seconds", "It never lowers output", "It is slow", "It only occurs asleep"], 0, "Torsades often stops on its own within seconds, so the patient faints and wakes."),
+      Q("bedside", "Why is dofetilide started in the hospital?", ["To monitor QT prolongation during loading", "Because it is IV only", "To check INR", "Because it causes bradycardia only"], 0, "Dofetilide can prolong the QT and cause torsades, so it's started with QT monitoring."),
+      Q("traps", "Which drug would worsen torsades?", ["Amiodarone", "Magnesium", "Potassium replacement", "Overdrive pacing"], 0, "Amiodarone prolongs the QT further, which worsens torsades.")
     ])
   ]);
 }());
