@@ -143,7 +143,7 @@
           q("Which appears bright white on x-ray?", "Metal or contrast", ["Bowel gas", "Mesentery", "Muscle"], "Metal and contrast cause maximum attenuation."),
           q("Which list orders densities from darkest to brightest on x-ray?", "Air, fat, water, bone, metal", ["Fat, air, bone, water, metal", "Water, air, fat, metal, bone", "Bone, metal, water, fat, air"], "Air black → fat dark gray → water light gray → bone white → metal bright white.")],
         [q("A child swallowed a coin. On the radiograph it is the brightest object on the film, brighter than the vertebrae. Why?", "Metal causes maximum attenuation and appears bright white", ["Metal lets the most x-rays through", "The coin is an artifact", "Metal is less dense than bone"], "Metal attenuates more than bone, so it is brighter."),
-          q("On an abdominal film, a dark black loop is seen in the bowel. What does this most likely represent?", "Bowel gas", ["Barium", "Bone", "Fluid-filled bowel"], "Air appears black.")]),
+          q("On an abdominal film, a dark black loop is seen in the bowel. What does this most likely represent?", "Bowel gas", ["Barium", "Bone", "Fluid-filled bowel"], "Gas stops almost no x-rays, so it looks black, like a bowel gas loop.")]),
       C("Penetration of a radiograph",
         "<p><strong>Penetration</strong> describes how well the x-rays <strong>passed through the patient and reached the detector</strong>.</p>" +
         tbl(["", "Under-penetrated", "Over-penetrated"], [
@@ -191,7 +191,7 @@
         hy("Tumor, vessel, inflammation → <strong>contrast</strong>. Stroke, bone, stone, lung → <strong>no contrast</strong>. Vessels specifically → order a <strong>CTA</strong>, not a CT with IV contrast. When in doubt, <strong>call radiology</strong>."),
         ["contrast-yes", "contrast-no"],
         [q("Which suspected condition generally does NOT need contrast?", "Kidney stone", ["Abscess", "Metastatic tumor", "Colitis"], "Bones, calcifications, and stones are seen without contrast."),
-          q("Fat stranding from appendicitis or diverticulitis is best shown by CT:", "With IV contrast", ["Without any contrast", "With barium only", "With gadolinium"], "Contrast enhances inflammatory processes."),
+          q("Fat stranding from appendicitis or diverticulitis is best shown by CT:", "With IV contrast", ["Without any contrast", "With barium only", "With gadolinium"], "IV contrast enhances inflamed tissue, making fat stranding stand out."),
           q("To evaluate the aorta and its branches, which study should be ordered?", "CT angiogram (CTA)", ["CT without contrast", "Plain abdominal film", "CT with IV contrast routine timing"], "Vascular evaluation: order a CTA."),
           q("Initial CT for suspected stroke is usually done:", "Without contrast", ["With oral contrast", "With barium", "With intrathecal contrast"], "Stroke is listed among studies that generally do not need contrast.")],
         [q("A 62-year-old with weight loss and a new liver mass needs CT to look for metastatic disease; eGFR is normal and there is no allergy. Which CT?", "CT with IV contrast", ["CT without contrast", "Plain film", "CT with barium enema only"], "Contrast separates normal from abnormal tissue and finds metastases."),
@@ -216,7 +216,7 @@
         ["perforation-gastrografin"],
         [q("Which contrast should be used when bowel perforation is suspected?", "A water-soluble agent such as Gastrografin", ["Barium sulfate", "Gadolinium", "No oral contrast is ever possible"], "Barium causes severe peritonitis if it leaks."),
           q("Why is barium avoided when surgery is planned?", "Leaked barium causes severe peritonitis", ["Barium is radioactive", "Barium is nephrotoxic", "Barium is too expensive"], "Water-soluble contrast is safer if spillage is possible.")],
-        [q("After forceful vomiting, a 50-year-old has chest pain and subcutaneous emphysema. An esophagram is ordered for possible esophageal rupture. Which contrast agent?", "Water-soluble contrast (Gastrografin)", ["Barium sulfate", "IV gadolinium", "Air only"], "Suspected perforation: avoid barium.")]),
+        [q("After forceful vomiting, a 50-year-old has chest pain and subcutaneous emphysema. An esophagram is ordered for possible esophageal rupture. Which contrast agent?", "Water-soluble contrast (Gastrografin)", ["Barium sulfate", "IV gadolinium", "Air only"], "Barium leaking into the mediastinum causes severe inflammation, so use water-soluble contrast.")]),
       C("Allergy and premedication",
         "<ul><li>Allergic-like reactions to modern iodinated contrast are <strong>uncommon</strong>: about <strong>0.6% overall</strong>, <strong>0.04% severe</strong>.</li>" +
         "<li>If the study <strong>must</strong> be done with contrast, an <strong>institutional premedication protocol</strong> may be used when indicated.</li>" +
@@ -298,11 +298,11 @@
           ["Radiation", "Low", "Ionizing; dose rises with screening time"]]) +
         hy("Fluoroscopy = “x-ray movie.” Use it when you need to <strong>watch function</strong> (swallowing) or <strong>guide a procedure</strong>."),
         ["fluoro-definition", "fluoro-uses"],
-        [q("What distinguishes fluoroscopy from radiography?", "Fluoroscopy shows real-time sequential x-ray images", ["Fluoroscopy uses no radiation", "Fluoroscopy uses magnets", "Fluoroscopy produces cross-sectional slices"], "Fluoroscopy is real-time radiography."),
+        [q("What distinguishes fluoroscopy from radiography?", "Fluoroscopy shows real-time sequential x-ray images", ["Fluoroscopy uses no radiation", "Fluoroscopy uses magnets", "Fluoroscopy produces cross-sectional slices"], "Fluoroscopy is continuous x-ray, giving real-time moving images."),
           q("Fluoroscopy is used predominantly in which areas?", "GI imaging, interventional radiology, and musculoskeletal radiology", ["Brain MRI, breast ultrasound, DEXA", "Mammography only", "Nuclear cardiology"], "These are the main fluoroscopy applications."),
           q("Which study is a classic fluoroscopic exam of function?", "Barium swallow", ["DEXA scan", "Screening mammogram", "Non-contrast head CT"], "A barium swallow watches swallowing in real time.")],
         [q("A 72-year-old has dysphagia and coughs with meals. The team wants to watch the bolus move through the pharynx and esophagus. Which study?", "Fluoroscopic barium swallow", ["Single-view chest x-ray", "Non-contrast CT neck", "DEXA scan"], "Fluoroscopy evaluates function in real time."),
-          q("An interventional radiologist is guiding a catheter into an artery to inject contrast. Which imaging is used to watch the catheter in real time?", "Fluoroscopy", ["Plain static radiograph", "DEXA", "Mammography"], "Fluoroscopy guides interventional procedures.")])
+          q("An interventional radiologist is guiding a catheter into an artery to inject contrast. Which imaging is used to watch the catheter in real time?", "Fluoroscopy", ["Plain static radiograph", "DEXA", "Mammography"], "Fluoroscopy shows the catheter moving in real time.")])
     ]),
 
     /* ---------- 9 ---------- */
@@ -311,7 +311,7 @@
         "<p>The <strong>projection</strong> is the path the beam takes through the body. Because radiographs are flat 2D images, <strong>multiple projections</strong> are taken to see the area from several angles. Orders read “2 view,” “3 view,” etc.: <strong>AP, PA, lateral, or oblique</strong>.</p>" +
         "<p>Projections are named <strong>from where the beam enters to where it exits</strong>: PA = enters the back, exits the front (chest against the detector).</p>",
         ["projection-definition"],
-        [q("What does “projection” mean in radiography?", "The path the x-ray beam takes through the body", ["The brightness of the image", "The amount of contrast given", "The size of the detector"], "Projection = beam path."),
+        [q("What does “projection” mean in radiography?", "The path the x-ray beam takes through the body", ["The brightness of the image", "The amount of contrast given", "The size of the detector"], "Projection names the path the beam takes (e.g., PA = back to front)."),
           q("Why are multiple projections taken?", "A flat 2D image needs several angles to see the area of interest", ["To increase radiation dose", "To add contrast", "To make a 3D CT"], "Multiple views compensate for superimposition.")],
         [q("A clinician orders “ankle x-ray, 3 view.” What does that mean?", "Three different projections of the ankle, such as AP, lateral, and oblique", ["Three repeated images in the same projection", "An x-ray read by three radiologists", "Three contrast phases"], "“3 view” refers to different projections.")]),
       C("PA vs AP chest x-ray",
@@ -354,7 +354,7 @@
         [q("What is the Hounsfield unit value of water?", "0 HU", ["−1000 HU", "+1000 HU", "+100 HU"], "Water is the reference at 0 HU."),
           q("Air on CT measures about:", "−1000 HU", ["0 HU", "+500 HU", "+1000 HU"], "Air is about −1000 HU (black)."),
           q("What makes CT density different from plain-film density?", "CT density is quantifiable in Hounsfield units", ["CT cannot show density", "CT density is measured in decibels", "CT only shows bone"], "CT assigns each voxel an HU value.")],
-        [q("A radiologist measures a fluid-filled renal lesion at about 0 HU. What does that value suggest the lesion contains?", "Water-density fluid", ["Air", "Metal", "Fat"], "0 HU = water.")])
+        [q("A radiologist measures a fluid-filled renal lesion at about 0 HU. What does that value suggest the lesion contains?", "Water-density fluid", ["Air", "Metal", "Fat"], "Water is defined as 0 HU, so the lesion is simple fluid (a cyst).")])
     ]),
 
     /* ---------- 11 ---------- */
@@ -419,7 +419,7 @@
         ["ct-iv-contrast", "cta"],
         [q("What distinguishes a CTA from a routine CT with IV contrast?", "CTA is timed and processed specifically to look at the vasculature", ["CTA uses no contrast", "CTA uses barium", "CTA uses magnets"], "CTA targets vessels; routine contrast CT targets organs and soft tissues."),
           q("Which organs have distinct enhancement phases that may call for a special CT protocol?", "Liver, pancreas, and kidney", ["Bones, skin, and muscle", "Lungs, pleura, and trachea", "Brain, eye, and ear"], "Radiology may suggest a protocol for these organs.")],
-        [q("A hypertensive man has tearing chest pain radiating to the back. The PA suspects aortic dissection. Which CT should be ordered?", "CT angiogram of the chest", ["Non-contrast CT chest", "High-resolution CT", "Routine CT with oral contrast only"], "Vascular pathology: order CTA."),
+        [q("A hypertensive man has tearing chest pain radiating to the back. The PA suspects aortic dissection. Which CT should be ordered?", "CT angiogram of the chest", ["Non-contrast CT chest", "High-resolution CT", "Routine CT with oral contrast only"], "CTA times contrast to light up the aorta and show a dissection flap."),
           q("A patient with suspected pancreatic cancer needs CT. Radiology suggests a multiphase protocol. Why?", "Different enhancement phases help detect and characterize the lesion", ["It reduces radiation to zero", "It avoids the need for contrast", "It replaces biopsy entirely"], "Enhancement phases in the pancreas, liver, and kidney aid diagnosis.")]),
       C("High-resolution CT (HRCT)",
         "<p>A <strong>thin-section chest CT</strong> for <strong>lung parenchymal detail</strong>.</p>" +
@@ -488,7 +488,7 @@
           q("Before IV contrast for CT, which two histories must be asked?", "Kidney disease and prior contrast reactions", ["Seasonal allergies and diet", "Exercise habits and sleep", "Eye color and height"], "Renal function and prior reactions drive contrast decisions."),
           q("Which symptom during a contrast CT should the patient report right away?", "Throat tightness or trouble breathing", ["A brief warm sensation", "Hearing the table move", "Feeling the table slide"], "Airway symptoms can signal a moderate or severe reaction.")],
         [q("A claustrophobic patient is anxious about her CT. What reassurance is accurate?", "CT is a quick scan through an open ring, not a long enclosed tube", ["CT takes about an hour in a closed tube", "She will be sedated for every CT", "CT is louder and longer than MRI"], "CT is fast and less confining than MRI."),
-          q("Midway through a contrast CT, a patient says his IV arm feels painful and swollen. What should the team do?", "Stop the injection, elevate the arm, apply compresses, and monitor for compartment syndrome", ["Continue the injection", "Massage the arm", "Ignore it; this is expected"], "This is extravasation.")])
+          q("Midway through a contrast CT, a patient says his IV arm feels painful and swollen. What should the team do?", "Stop the injection, elevate the arm, apply compresses, and monitor for compartment syndrome", ["Continue the injection", "Massage the arm", "Ignore it; this is expected"], "Pain and swelling at the IV during contrast = extravasation: stop, elevate, compress, watch.")])
     ])
   ];
 })();
