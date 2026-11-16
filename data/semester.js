@@ -444,6 +444,12 @@ window.SEMESTER = {
           title: "CAD Part II: Prevention",
           description: "Stager's prevention deck: primary vs secondary prevention, PREVENT risk, lifestyle and exercise, statins and risk enhancers, diabetes, BP, sleep apnea, alcohol, smoking, aspirin, and the Thomas case.",
           objectives: window.CAD_PART_2_OBJECTIVES || []
+        },
+        {
+          id: "cad-part-3",
+          title: "CAD Part III: Chest Pain Workup",
+          description: "Stager's chest pain deck: presentation and mimics, stable angina through STEMI, ED workup with EKG, hs-troponin and HEART score, testing, cath findings, stents and DAPT, cath complications, CABG vs PCI, and long-term drugs.",
+          objectives: window.CAD_PART_3_OBJECTIVES || []
         }
       ]
     },
