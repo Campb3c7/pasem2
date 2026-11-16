@@ -438,6 +438,12 @@ window.SEMESTER = {
           title: "CAD Part I: Foundations",
           description: "Stager's foundations deck: definitions, risk factors, how plaque forms and ruptures, supply and demand, symptoms, and the CAD workup from pretest likelihood to cath.",
           objectives: window.CAD_PART_1_OBJECTIVES || []
+        },
+        {
+          id: "cad-part-2",
+          title: "CAD Part II: Prevention",
+          description: "Stager's prevention deck: primary vs secondary prevention, PREVENT risk, lifestyle and exercise, statins and risk enhancers, diabetes, BP, sleep apnea, alcohol, smoking, aspirin, and the Thomas case.",
+          objectives: window.CAD_PART_2_OBJECTIVES || []
         }
       ]
     },

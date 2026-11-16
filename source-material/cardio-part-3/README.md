@@ -20,7 +20,7 @@ numbered parts and one deck per part, so each part is its own site lecture (like
 | 2 | Cardiac Surgery (`cardiac-surgery`) | CV Surgery 1-9 | `cardiac-surgery.pptx` (59) | Built |
 | 3 | Heart Failure (`heart-failure`) | 16 objectives | `heart-failure.pptx` (Brandell) | Built |
 | 4 | CAD Part I (`cad-part-1`) | 10 | `cad-part-1.pptx` (86) | Built |
-| 5 | CAD Part II (`cad-part-2`) | 7 | `cad-part-2.pptx` (61) | |
+| 5 | CAD Part II (`cad-part-2`) | 7 | `cad-part-2.pptx` (61) | Built |
 | 6 | CAD Part III (`cad-part-3`) | 9 | `cad-part-3.pptx` (124) | |
 | 7 | CAD Part IV, ACS | 10 | **missing** (not in the Stager zip) | |
 | 8 | CAD Part V, Pharmacology | 9 | **missing** | |
@@ -33,3 +33,4 @@ numbered parts and one deck per part, so each part is its own site lecture (like
 | Cardiac Surgery | 10 sections (history and list of operations first, then one per objective), 14 cards, 118 Test, 37 Apply (`node scripts/validate-cardiac-surgery.cjs`). Read from pictures: slides 18, 20, 24, 29, 30. Slides 25 and 28 were videos. The three ICU cases (slides 55 to 57) use the speaker-note answers. |
 | Heart Failure | 41 sections following the deck (definitions and epidemiology through inpatient ADHF and discharge), 48 cards, 436 Test, 137 Apply (`node scripts/validate-heart-failure.cjs`). Dose tables (slides 138-139) are summarized, not drilled. Deck slips flagged on the cards: metoprolol succinate labeled "Lopressor"; post-discharge follow-up given as both 3-5 days and within 5 days. |
 | CAD Part I | 18 sections following the deck (definitions, risk factors, plaque formation and rupture, remodeling, supply and demand, ischemia effects, presentation, women, pretest likelihood, exercise and pharmacologic stress, MPI and stress echo, appropriate testing, CCTA, CAC, cath and PCI), 36 cards, 204 Test, 71 Apply (`node scripts/validate-cad-part-1.cjs`). Read from pictures: 10, 12 to 15, 17 to 19, 23, 26, 27, 41, 43, 45, 51, 60, 63, 71, 72, 75. Slide 24 cases are answered from slides 20 and 21. Duke formula marked standard teaching (the deck lists only the variables). |
+| CAD Part II | 15 sections following the deck (prevention types, PREVENT models and use, lifestyle, exercise, statins, primary prevention lipids, risk enhancers, CAC, diabetes, HTN/OSA, alcohol, smoking, aspirin, Thomas case), 31 cards, 200 Test, 62 Apply (`node scripts/validate-cad-part-2.cjs`). Read from pictures: 18, 19, 20, 45, 53. The Thomas case has no answer slide; its answers apply the deck rules and say so. |
