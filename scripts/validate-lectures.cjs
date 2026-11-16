@@ -48,7 +48,8 @@ global.window = global;
   "shock-pressors-fluids",
   "arrhythmia-pharmacology",
   "cardiac-testing",
-  "cardiac-surgery"
+  "cardiac-surgery",
+  "heart-failure"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 

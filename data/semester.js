@@ -426,6 +426,12 @@ window.SEMESTER = {
           title: "Cardiac Surgery",
           description: "Surgery history, the three invasive interventions, risk tools, SYNTAX I and II with PCI vs CABG, elective and emergent CABG indications, the bypass machine and hypothermia, potassium cardioplegia, conduits by patency, outcomes and risk predictors, wound, anesthesia, cardiac, pulmonary and renal complications, ICU monitors, and the three 8-hours-post-CABG calls.",
           objectives: window.CARDIAC_SURGERY_OBJECTIVES || []
+        },
+        {
+          id: "heart-failure",
+          title: "Heart Failure",
+          description: "Brandell's HF lecture: definitions, staging, HFrEF/HFpEF, GDMT, devices, and acute decompensated HF.",
+          objectives: window.HEART_FAILURE_OBJECTIVES || []
         }
       ]
     },
