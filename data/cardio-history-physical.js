@@ -324,8 +324,8 @@
     C("Cyanotic lips",
       `<p>Observe the lips: <strong>bluish-tinged lips</strong> (cyanosis) suggest <strong>hypoxia</strong>. Normal lips are pink.</p>`,
       ["cyanosis"],
-      [q(`Bluish-tinged lips suggest what?`, `Hypoxia`, [`Anemia only`, `Jaundice`, `Hypercalcemia`], `Cyanotic lips suggest hypoxia.`)],
-      [q(`A patient in respiratory distress has blue-tinged lips. What does this skin finding indicate?`, `Hypoxia`, [`Normal perfusion`, `Hyperbilirubinemia`, `Carotenemia`], `Lip cyanosis indicates hypoxia.`)]),
+      [q(`Bluish-tinged lips suggest what?`, `Hypoxia`, [`Anemia only`, `Jaundice`, `Hypercalcemia`], `Blue lips mean poorly oxygenated blood is reaching the tissues.`)],
+      [q(`A patient in respiratory distress has blue-tinged lips. What does this skin finding indicate?`, `Hypoxia`, [`Normal perfusion`, `Hyperbilirubinemia`, `Carotenemia`], `Central cyanosis of the lips means low blood oxygen.`)]),
 
     C("Pitting edema: technique and grading",
       `<p><strong>Technique:</strong> press firmly but gently with your thumb for <strong>1-2 seconds</strong> over the <strong>dorsum of each foot</strong>, <strong>behind each medial malleolus</strong>, and over the <strong>anterior tibia</strong>. Look for pitting (a depression from your thumb).</p>
@@ -417,7 +417,7 @@
       <p>Use it at all six sites: R 2nd ICS (aortic), L 2nd ICS (pulmonic), L 3rd, L 4th, L 5th ICS (tricuspid), apex (mitral).</p>
       ${CL}press the diaphragm <strong>firmly</strong> against the skin.</p>`,
       ["diaphragm-high-pitched", "diaphragm-s1-s2", "diaphragm-ar-mr", "diaphragm-friction-rub", "diaphragm-sites"],
-      [q(`Which sounds are best heard with the diaphragm?`, `S1, S2, aortic and mitral regurgitation murmurs, and pericardial friction rubs`, [`S3, S4, and mitral stenosis`, `Only S3 and S4`, `Only carotid bruits`], `Diaphragm = high-pitched sounds.`)],
+      [q(`Which sounds are best heard with the diaphragm?`, `S1, S2, aortic and mitral regurgitation murmurs, and pericardial friction rubs`, [`S3, S4, and mitral stenosis`, `Only S3 and S4`, `Only carotid bruits`], `The diaphragm picks up high-pitched sounds, and these are all high-pitched.`)],
       [q(`You suspect pericarditis and want to hear a friction rub. Which stethoscope head should you use?`, `Diaphragm`, [`Bell`, `Either; it makes no difference`, `Neither; rubs are only palpable`], `Friction rubs are high-pitched: diaphragm.`)]),
 
     C("Bell: low-pitched sounds",
@@ -427,7 +427,7 @@
       ${CL}rest the bell <strong>lightly</strong>; pressing hard stretches the skin into a diaphragm and filters out low tones.</p>
       <div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>Bell = Bass</strong>: low-pitched S3, S4, mitral stenosis.</div>`,
       ["bell-low-pitched", "bell-s3-s4", "bell-mitral-stenosis", "bell-sites"],
-      [q(`Which sounds are best heard with the bell?`, `S3, S4, and the murmur of mitral stenosis`, [`S1, S2, and aortic regurgitation`, `Pericardial friction rubs`, `Mitral regurgitation only`], `Bell = low-pitched sounds.`),
+      [q(`Which sounds are best heard with the bell?`, `S3, S4, and the murmur of mitral stenosis`, [`S1, S2, and aortic regurgitation`, `Pericardial friction rubs`, `Mitral regurgitation only`], `The bell picks up low-pitched sounds like gallops and the MS rumble.`),
        q(`At which sites does the lecture have you listen with the bell?`, `Left 4th ICS, left 5th ICS, and apex`, [`Right 2nd ICS and left 2nd ICS only`, `All six sites including the aortic area`, `Suprasternal notch only`], `Bell: L4, L5 (tricuspid), apex (mitral).`)],
       [q(`You want to listen for a low-pitched diastolic rumble at the apex. Which stethoscope head should you use?`, `Bell`, [`Diaphragm pressed firmly`, `Either head over the aortic area`, `Diaphragm at the right 2nd ICS`], `Low-pitched sounds such as the mitral stenosis rumble: bell at the apex.`)])
   ]),
@@ -511,7 +511,7 @@
       <div class="box-mnemonic"><span class="lbl">Mnemonic</span><strong>S3 "Ken-tuck-y"</strong> (S1-S2-<strong>S3</strong>): extra beat after S2. <strong>S4 "Ten-nes-see"</strong> (<strong>S4</strong>-S1-S2): extra beat before S1.</div>`,
       ["s3-s4-compare", "gallop-cadence"],
       [q(`The cadence "Ten-nes-see" represents which heart sound sequence?`, `S4-S1-S2`, [`S1-S2-S3`, `S1-split S2`, `S1-S2-opening snap`], `"TEN" is the S4 before S1.`)],
-      [q(`You hear "Ken-tuck-y" at the apex with the bell. Which extra sound is present and when does it occur?`, `S3, in early diastole after S2`, [`S4, in late diastole before S1`, `A split S1`, `A systolic click`], `Kentucky = S1-S2-S3.`)])
+      [q(`You hear "Ken-tuck-y" at the apex with the bell. Which extra sound is present and when does it occur?`, `S3, in early diastole after S2`, [`S4, in late diastole before S1`, `A split S1`, `A systolic click`], `Ken-TUC-ky has the extra beat after S2, which is S3 in early diastole.`)])
   ]),
 
   /* ---------------------------------------------------------------- 11 */
@@ -577,7 +577,7 @@
       `<p>Because JVP equals <strong>RA pressure/CVP/RV end-diastolic pressure</strong>, it is a bedside estimate of right-sided filling pressure and volume status.</p>
       ${CL}an <strong>elevated JVP</strong> (above about 8 cm) suggests increased right-sided pressure or volume, as in <strong>heart failure or fluid overload</strong>; a low JVP suggests <strong>volume depletion</strong>.</p>`,
       ["jvp-significance", "jvp-elevated"],
-      [q(`An elevated JVP most directly indicates elevated pressure in which location?`, `Right atrium (central venous pressure)`, [`Left ventricle during systole`, `Aorta`, `Pulmonary veins only`], `JVP reflects RA pressure/CVP.`)],
+      [q(`An elevated JVP most directly indicates elevated pressure in which location?`, `Right atrium (central venous pressure)`, [`Left ventricle during systole`, `Aorta`, `Pulmonary veins only`], `The jugular vein connects straight to the right atrium, so its height reflects RA pressure.`)],
       [q(`A patient with dyspnea, orthopnea, and 3+ leg edema has a JVP of 12 cm. What does this suggest?`, `Elevated right-sided filling pressure consistent with volume overload/heart failure`, [`Normal venous pressure`, `Volume depletion`, `Isolated arterial insufficiency`], `JVP above 8 cm with edema and orthopnea points to volume overload.`)])
   ]),
 
@@ -600,10 +600,10 @@
       <tr><td>0</td><td>Absent, cannot palpate</td></tr></table>
       <p>Pulses are graded on <strong>amplitude</strong>.</p>`,
       ["pulse-grading", "pulse-3", "pulse-2", "pulse-1", "pulse-0"],
-      [q(`A normal, brisk pulse is graded as what?`, `2+`, [`1+`, `3+`, `4+`], `2+ = brisk, expected.`),
-       q(`A bounding pulse is graded as what?`, `3+`, [`2+`, `1+`, `0`], `3+ = bounding.`)],
-      [q(`A patient with PAD has a weak, barely felt dorsalis pedis pulse on the right. How do you grade it?`, `1+`, [`0`, `2+`, `3+`], `Diminished, weak = 1+.`),
-       q(`You cannot palpate the posterior tibial pulse on one foot even with careful technique. How do you grade it?`, `0`, [`1+`, `2+`, `3+`], `Absent/cannot palpate = 0.`)]),
+      [q(`A normal, brisk pulse is graded as what?`, `2+`, [`1+`, `3+`, `4+`], `2+ is a normal, easily felt pulse.`),
+       q(`A bounding pulse is graded as what?`, `3+`, [`2+`, `1+`, `0`], `3+ is stronger than normal (bounding), as in high output states.`)],
+      [q(`A patient with PAD has a weak, barely felt dorsalis pedis pulse on the right. How do you grade it?`, `1+`, [`0`, `2+`, `3+`], `A weak, barely felt pulse is graded 1+.`),
+       q(`You cannot palpate the posterior tibial pulse on one foot even with careful technique. How do you grade it?`, `0`, [`1+`, `2+`, `3+`], `A pulse you can't feel at all is graded 0.`)]),
 
     C("Upper body pulse locations",
       `<p>From the slide photos:</p>
@@ -615,7 +615,7 @@
       <tr><td>Ulnar</td><td>Medial (pinky side) volar wrist</td></tr></table>
       ${CL}feel each carotid separately so you do not reduce cerebral blood flow.</p>`,
       ["temporal-pulse", "carotid-pulse", "brachial-pulse", "radial-pulse", "ulnar-pulse"],
-      [q(`Where is the brachial pulse palpated?`, `Antecubital fossa, medial to the biceps tendon`, [`Lateral volar wrist`, `Anterior to the tragus`, `Behind the medial malleolus`], `Brachial: medial antecubital fossa.`),
+      [q(`Where is the brachial pulse palpated?`, `Antecubital fossa, medial to the biceps tendon`, [`Lateral volar wrist`, `Anterior to the tragus`, `Behind the medial malleolus`], `The brachial artery runs just medial to the biceps tendon in the elbow crease.`),
        q(`Where is the ulnar pulse palpated?`, `Medial (pinky side) volar wrist`, [`Lateral (thumb side) volar wrist`, `Antecubital fossa`, `Dorsum of the hand`], `Radial = thumb side; ulnar = pinky side.`),
        q(`Where is the temporal pulse palpated?`, `Just anterior to the tragus of the ear`, [`Behind the ear over the mastoid`, `Below the angle of the jaw`, `At the suprasternal notch`], `Temporal artery: in front of the ear.`)],
       [q(`Before taking a blood pressure, you place your fingers medial to the biceps tendon in the antecubital fossa. Which pulse are you palpating?`, `Brachial`, [`Radial`, `Ulnar`, `Axillary`], `The brachial pulse is medial to the biceps tendon.`),
@@ -641,7 +641,7 @@
       <li>Have the patient <strong>hold their breath</strong> for the <strong>carotid</strong>.</li></ul>
       <p>Abdominal sites (slide 74 picture): <strong>aorta</strong> upper midline; <strong>renal arteries</strong> to either side of the upper abdomen; <strong>iliac arteries</strong> in the lower quadrants; <strong>femoral arteries</strong> at the groin.</p>`,
       ["bruit-bell", "bruit-sites", "carotid-hold-breath", "abdominal-bruit-sites"],
-      [q(`Which stethoscope head is used to auscultate for bruits?`, `Bell`, [`Diaphragm`, `Either one pressed firmly`, `Neither; bruits are palpated`], `Bruits: bell.`),
+      [q(`Which stethoscope head is used to auscultate for bruits?`, `Bell`, [`Diaphragm`, `Either one pressed firmly`, `Neither; bruits are palpated`], `Bruits are low-pitched turbulent flow, which the bell picks up best.`),
        q(`What instruction is given to the patient when auscultating the carotid artery for bruits?`, `Hold their breath`, [`Take rapid deep breaths`, `Turn the head fully to the same side`, `Bear down as if having a bowel movement`], `Breath-holding removes breath sounds during carotid auscultation.`)],
       [q(`A hypertensive patient has resistant hypertension, and you want to listen for a renal artery bruit. Where and with what do you listen?`, `Bell, upper abdomen lateral to midline on each side`, [`Diaphragm over the costovertebral angle only`, `Bell over the lower quadrants only`, `Diaphragm at the right 2nd ICS`], `Renal bruits: upper abdomen, either side of midline, with the bell.`)])
   ]),
@@ -723,10 +723,10 @@
       <tr><td>0.41-0.90</td><td><strong>Mild-to-moderate PAD</strong></td></tr>
       <tr><td>0-0.40</td><td><strong>Severe PAD</strong></td></tr></table>`,
       ["abi-noncompressible", "abi-normal", "abi-mild-moderate", "abi-severe"],
-      [q(`What is the normal ABI range?`, `0.91-1.30`, [`0.41-0.90`, `0-0.40`, `Greater than 1.30`], `Normal ABI = 0.91-1.30.`),
+      [q(`What is the normal ABI range?`, `0.91-1.30`, [`0.41-0.90`, `0-0.40`, `Greater than 1.30`], `Normally ankle pressure is about the same as arm pressure, so the ratio is near 1.`),
        q(`An ABI greater than 1.30 indicates what?`, `A noncompressible, calcified vessel`, [`Normal flow`, `Severe PAD`, `Mild PAD`], `>1.30 = noncompressible/calcified vessel (common in diabetes).`)],
-      [q(`A smoker with claudication has an ABI of 0.62. How do you interpret it?`, `Mild-to-moderate PAD`, [`Normal`, `Severe PAD`, `Noncompressible vessel`], `0.41-0.90 = mild-to-moderate PAD.`),
-       q(`A patient with rest pain and a nonhealing toe ulcer has an ABI of 0.35. How do you interpret it?`, `Severe PAD`, [`Mild-to-moderate PAD`, `Normal`, `Noncompressible vessel`], `0-0.40 = severe PAD.`),
+      [q(`A smoker with claudication has an ABI of 0.62. How do you interpret it?`, `Mild-to-moderate PAD`, [`Normal`, `Severe PAD`, `Noncompressible vessel`], `0.41–0.90 means mild-to-moderate PAD, which fits claudication.`),
+       q(`A patient with rest pain and a nonhealing toe ulcer has an ABI of 0.35. How do you interpret it?`, `Severe PAD`, [`Mild-to-moderate PAD`, `Normal`, `Noncompressible vessel`], `0.40 or less is severe PAD, which fits rest pain and ulcers.`),
        q(`A long-standing diabetic has an ABI of 1.45. What is the best interpretation?`, `Noncompressible, calcified vessels make the ABI unreliable`, [`Normal; PAD is excluded`, `Severe PAD`, `Mild-to-moderate PAD`], `ABI above 1.30 reflects noncompressible calcified arteries.`)])
   ]),
 

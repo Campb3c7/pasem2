@@ -73,7 +73,7 @@
           q("TEE is superior to TTE for which of the following?", "Detecting vegetations and evaluating prosthetic valves", ["Being the quickest bedside screening test", "Avoiding any need for sedation", "Imaging without a cardiologist present"], "TEE gives superior resolution of posterior structures, leaflets, prosthetic valves, vegetations, and thrombi."),
           q("Who performs and interprets a TEE?", "The cardiologist", ["A sonographer alone", "The radiologist", "The anesthesiologist"], "For TEE the cardiologist both performs and interprets the study.")],
         [q("A patient with a mechanical mitral valve has fever and positive blood cultures; the TTE shows no clear vegetation. Best next imaging?", "Transesophageal echo", ["Repeat transthoracic echo next year", "Chest x-ray", "Cardiac CT calcium score"], "TEE better detects vegetations and evaluates prosthetic valves."),
-          q("A patient with known esophageal stricture needs valve imaging. Which test should be avoided?", "Transesophageal echo", ["Transthoracic echo", "12-lead EKG", "Chest x-ray"], "Esophageal disease contraindicates TEE.")])
+          q("A patient with known esophageal stricture needs valve imaging. Which test should be avoided?", "Transesophageal echo", ["Transthoracic echo", "12-lead EKG", "Chest x-ray"], "The TEE probe passes down the esophagus, so a stricture risks perforation.")])
     ]),
 
     /* ---------- 3a AS ---------- */
@@ -116,7 +116,7 @@
           ["Extras", "Systolic ejection click early; <strong>paradoxical split S2</strong> when severe"]]) +
         "<p><strong>Other exam findings:</strong> <strong>S4 gallop</strong>, laterally displaced and sustained apical impulse, <strong>pulsus parvus et tardus</strong> (delayed, diminished carotid upstroke).</p>",
         ["as-symptoms", "as-murmur", "as-exam-findings", "as-prognosis"],
-        [q("Where is the aortic stenosis murmur best heard and where does it radiate?", "Right 2nd intercostal space, radiating to the carotids", ["Apex, radiating to the left axilla", "Left lower sternal border, no radiation", "Left 2nd intercostal space, radiating to the left shoulder"], "AS: RUSB → carotids."),
+        [q("Where is the aortic stenosis murmur best heard and where does it radiate?", "Right 2nd intercostal space, radiating to the carotids", ["Apex, radiating to the left axilla", "Left lower sternal border, no radiation", "Left 2nd intercostal space, radiating to the left shoulder"], "The aortic valve sits at the right 2nd ICS, and the jet carries up to the carotids."),
           q("Which carotid pulse finding is classic for aortic stenosis?", "Pulsus parvus et tardus", ["Water hammer pulse", "Pulsus paradoxus", "Bisferiens pulse with head bobbing"], "Delayed, diminished upstroke = parvus et tardus."),
           q("Which maneuver makes the aortic stenosis murmur softer?", "Valsalva", ["Squatting", "Passive leg raise", "Sustained handgrip with squatting"], "AS is louder with squatting and softer with Valsalva."),
           q("Which extra heart sound is associated with aortic stenosis?", "S4 gallop", ["Opening snap", "Mid-systolic click", "Pericardial knock"], "The stiff hypertrophied LV produces an S4."),
@@ -464,7 +464,7 @@
         hy("MR vs TR: both blowing holosystolic. MR = apex → axilla. TR = LLSB, louder with inspiration (Carvallo)."),
         ["tr-symptoms", "tr-murmur", "tr-carvallo"],
         [q("Carvallo’s sign describes which finding?", "A tricuspid regurgitation murmur that becomes louder with inspiration", ["Head bobbing with each pulse", "Delayed, weak carotid upstroke", "A click that moves earlier with standing"], "Carvallo’s sign: TR murmur increases during inspiration."),
-          q("Where is the tricuspid regurgitation murmur best heard?", "Left lower sternal border", ["Apex", "Right 2nd intercostal space", "Left 2nd intercostal space"], "TR: LLSB.")],
+          q("Where is the tricuspid regurgitation murmur best heard?", "Left lower sternal border", ["Apex", "Right 2nd intercostal space", "Left 2nd intercostal space"], "The tricuspid valve sits low near the sternum, so TR is heard at the left lower sternal border.")],
         [q("A patient with pulmonary hypertension has JVD, hepatomegaly, ascites, and a blowing holosystolic murmur at the LLSB that increases with inspiration. Diagnosis?", "Tricuspid regurgitation", ["Mitral regurgitation", "Aortic stenosis", "Mitral stenosis"], "LLSB holosystolic murmur with Carvallo’s sign and right HF = TR.")]),
       C("TR: workup and management",
         "<ul><li><strong>Echo:</strong> <strong>regurgitant jet into the RA</strong>; RA and RV dilation.</li><li><strong>EKG:</strong> more prone to atrial fibrillation. <strong>CXR:</strong> may see cardiomegaly (RA/RV enlargement).</li>" +
@@ -481,7 +481,7 @@
         "<ul><li>There is no definitive valve size or gradient at which symptoms start.</li><li><strong>Do not mistake absence of symptoms for mild disease</strong>: ask what the patient has stopped doing.</li></ul>" +
         hy("“I feel fine” + “I don’t walk to the mailbox anymore” = possible Wood phenomenon hiding severe valve disease."),
         ["wood-definition", "wood-clinical-significance"],
-        [q("What is Wood phenomenon?", "Patients unconsciously limit their activity to match their disease, so they appear asymptomatic", ["A murmur that gets louder with inspiration", "Head bobbing with each pulse", "Rheumatic fever recurring after strep throat"], "Activity down-regulation hides symptoms."),
+        [q("What is Wood phenomenon?", "Patients unconsciously limit their activity to match their disease, so they appear asymptomatic", ["A murmur that gets louder with inspiration", "Head bobbing with each pulse", "Rheumatic fever recurring after strep throat"], "Patients slowly cut back activity as the valve worsens, so they report no symptoms."),
           q("What clinical error does Wood phenomenon warn against?", "Mistaking absence of symptoms for mild disease", ["Over-treating mild murmurs", "Using TEE before TTE", "Using DOACs with bioprosthetic valves"], "Asymptomatic does not mean mild.")],
         [q("A 72-year-old with severe AS on echo says he has “no symptoms,” but admits he stopped golfing and now drives to the mailbox. What explains his report?", "Wood phenomenon", ["Pulsus parvus et tardus", "Carvallo’s sign", "de Musset’s sign"], "He down-regulated activity to stay symptom-free.")])
     ]),
@@ -528,7 +528,7 @@
         ["rhd-pathophysiology", "rhd-molecular-mimicry", "rhd-timeline", "rhd-pancarditis"],
         [q("What mechanism links strep throat to acute rheumatic fever?", "Antibodies against strep proteins cross-react with self antigens in the heart, joints, and vessels", ["Direct bacterial infection of the valve", "Toxin-mediated platelet aggregation", "Viral myocarditis after the strep infection"], "Autoimmune cross-reactivity (molecular mimicry) drives ARF."),
           q("How long after strep throat does acute rheumatic fever typically develop?", "2–4 weeks", ["2–4 hours", "2–4 days", "2–4 years"], "ARF appears 2–4 weeks after strep throat; RHD follows over years–decades."),
-          q("During acute rheumatic fever, involvement of all three layers of the heart is called:", "Pancarditis", ["Pericarditis only", "Endocarditis only", "Cardiomyopathy"], "ARF can cause pancarditis."),
+          q("During acute rheumatic fever, involvement of all three layers of the heart is called:", "Pancarditis", ["Pericarditis only", "Endocarditis only", "Cardiomyopathy"], "Rheumatic fever can inflame all three layers: endocardium, myocardium and pericardium."),
           q("What chronic change turns acute rheumatic valvulitis into rheumatic heart disease?", "Repeated inflammation healing with fibrosis, fusing leaflets and shortening chordae", ["Calcification identical to degenerative AS", "Myxomatous floppy leaflets", "Annular dilation from pulmonary HTN"], "Fibrotic scarring deforms leaflets over years.")],
         [q("A 35-year-old with mitral stenosis recalls a childhood illness with joint pain and fever weeks after a sore throat. Which sequence explains her valve disease?", "Strep throat → acute rheumatic fever → years later rheumatic heart disease", ["Viral URI → myocarditis → dilated cardiomyopathy", "Strep throat → immediate bacterial endocarditis", "Bicuspid valve → calcification"], "ARF in childhood scarred the valve over years.")]),
       C("Preventing RHD along the trajectory",
@@ -548,7 +548,7 @@
         hy("Order of involvement: <strong>Mitral → Aortic → Tricuspid → Pulmonic</strong>."),
         ["rhd-valves", "rhd-global-burden"],
         [q("Which valve is most commonly affected by rheumatic heart disease?", "Mitral", ["Aortic", "Tricuspid", "Pulmonic"], "Mitral > aortic > tricuspid > pulmonic."),
-          q("Which valve is second most commonly affected in rheumatic heart disease?", "Aortic", ["Tricuspid", "Pulmonic", "Mitral"], "Aortic follows mitral."),
+          q("Which valve is second most commonly affected in rheumatic heart disease?", "Aortic", ["Tricuspid", "Pulmonic", "Mitral"], "Rheumatic disease hits the high-pressure left-sided valves: mitral most, then aortic."),
           q("Why is rheumatic heart disease a major cause of morbidity and mortality worldwide?", "Limited access to legitimate antibiotics and crowded living conditions", ["High rates of bicuspid valves", "Widespread fen-phen use", "Older populations with calcific disease"], "Untreated strep and crowding drive RHD globally.")],
         [q("A clinician working in a crowded region with poor antibiotic access sees many young adults with valve disease. Which valve will most often be affected?", "Mitral valve", ["Pulmonic valve", "Tricuspid valve only", "Aortic valve only"], "RHD most often affects the mitral valve.")]),
       C("Echo findings: acute vs chronic",
@@ -647,7 +647,7 @@
         ["pve-early", "pve-late", "pve-organisms", "pve-patient-education"],
         [q("What organism typically causes early prosthetic valve endocarditis?", "Staphylococcus aureus", ["Streptococci", "Enterococcus only", "Candida"], "Early PVE (< 12 months) is likely hospital-acquired, typically S. aureus."),
           q("What organism group commonly causes late prosthetic valve endocarditis?", "Streptococci", ["Staphylococcus aureus from the OR", "Gram-negative rods only", "Fungi"], "Late PVE (> 12 months) is hematogenous, commonly streptococci."),
-          q("What time cutoff separates early from late prosthetic valve endocarditis?", "12 months after the procedure", ["2 weeks", "3 months", "5 years"], "Early < 12 months; late > 12 months."),
+          q("What time cutoff separates early from late prosthetic valve endocarditis?", "12 months after the procedure", ["2 weeks", "3 months", "5 years"], "Within 12 months infection usually came from surgery; after that it's from ordinary bacteremia."),
           q("Are antibiotics continued long-term after valve replacement surgery?", "No; they are given peri-operatively only", ["Yes, lifelong daily", "Yes, for 12 months", "Yes, monthly IM injections"], "Peri-operative only; patient education and follow-up are emphasized instead.")],
         [q("Four months after aortic valve replacement, a patient has fever and new regurgitation. Which organism is most likely?", "Staphylococcus aureus", ["Streptococci", "Group A strep with rheumatic fever", "Pneumocystis"], "Within 12 months = early PVE, typically hospital-acquired S. aureus."),
           q("Five years after mitral valve replacement, a patient develops fever after a dental infection. Most likely organism class?", "Streptococci", ["Staphylococcus aureus from the operating room", "Clostridium", "Mycobacteria"], "After 12 months, PVE is hematogenous, commonly streptococcal."),
@@ -668,7 +668,7 @@
         tbl(["Drug", "Dose", "Route", "Timing"], [["Amoxicillin", "<strong>2 g</strong>", "<strong>PO</strong>", "<strong>30–60 min before</strong>"]]),
         ["prophylaxis-drug", "prophylaxis-dose", "prophylaxis-route", "prophylaxis-timing"],
         [q("What is the standard endocarditis prophylaxis regimen for a patient with a prosthetic valve?", "Amoxicillin 2 g PO 30–60 minutes before the procedure", ["Amoxicillin 500 mg PO after the procedure", "Benzathine penicillin IM monthly", "Vancomycin 1 g IV daily for a week"], "Standard regimen: amoxicillin 2 g PO 30–60 min before."),
-          q("What is the dose of amoxicillin for prosthetic valve endocarditis prophylaxis?", "2 g", ["250 mg", "500 mg", "875 mg"], "Amoxicillin 2 g."),
+          q("What is the dose of amoxicillin for prosthetic valve endocarditis prophylaxis?", "2 g", ["250 mg", "500 mg", "875 mg"], "A single 2 g dose of amoxicillin before the procedure covers mouth bacteria."),
           q("When should prophylactic amoxicillin be taken relative to the procedure?", "30–60 minutes before", ["24 hours after", "Immediately after", "One week before"], "Take it 30–60 minutes before the procedure.")],
         [q("A patient with a mechanical mitral valve has a dental cleaning tomorrow at 10:00. Which prescription is correct?", "Amoxicillin 2 g PO taken 30–60 minutes before the cleaning", ["Amoxicillin 2 g PO the evening after", "Monthly benzathine penicillin", "No antibiotic; dental cleaning does not qualify"], "Dental cleaning qualifies; amoxicillin 2 g PO 30–60 min before.")])
     ]),

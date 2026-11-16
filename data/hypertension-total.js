@@ -319,7 +319,7 @@ q(0, "In the initial hypertension work-up, the CBC is mainly checking the:", "He
 q(0, "How long a fast does the lecture specify for the lipid profile?", "12 hours", ["2 hours", "24 hours", "No fasting"], "Fasting lipid profile with a 12-hour fast."),
 q(0, "Which electrolytes and renal tests are in the initial panel?", "Sodium, potassium, creatinine (eGFR), and calcium", ["Magnesium and phosphate only", "Ammonia and lactate", "Amylase and lipase"], "Electrolytes: Na, K, creatinine (eGFR), and calcium."),
 q(1, "At what ages does age itself count as a cardiovascular risk factor?", "Over 55 in men and over 65 in women", ["Over 40 in both", "Over 75 in both", "Over 65 in men and over 55 in women"], "Age: over 55 for men and over 65 for women."),
-q(1, "What BMI defines obesity as a cardiovascular risk factor?", "30 or higher", ["25 or higher", "35 or higher", "40 or higher"], "Obesity is BMI ≥30.")
+q(1, "What BMI defines obesity as a cardiovascular risk factor?", "30 or higher", ["25 or higher", "35 or higher", "40 or higher"], "A BMI of 30 or more defines obesity, which raises BP and CV risk.")
 ],
 [
 q(0, "A newly diagnosed hypertensive patient not on diuretics has a potassium of 3.1 on initial labs. Which secondary cause does this raise?", "Hyperaldosteronism", ["Hypothyroidism", "Coarctation", "OSA"], "Electrolytes in the initial work-up look for CKD and clues to hyperaldosteronism such as low K."),

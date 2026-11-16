@@ -216,8 +216,8 @@ cl('NSAIDs cause sodium and water retention by blocking renal prostaglandins; es
 hy('Before labeling someone with primary HTN, review OTC and prescription drugs: NSAIDs, decongestants, OCPs, migraine meds.'),
 ['nsaids','pseudoephedrine','ocps','triptans'],
 [q('On average, NSAIDs raise blood pressure by about:','5 mmHg',['1 mmHg','15 mmHg','25 mmHg'],'NSAIDs raise BP about 5 mmHg on average.'),
-q('Pseudoephedrine raises blood pressure because it is a:','Sympathomimetic',['Mineralocorticoid','Calcium channel opener','Loop diuretic'],'Ephedra/pseudoephedrine are sympathomimetics.'),
-q('Which hormonal medication is a listed cause of drug-induced hypertension?','High-dose oral contraceptives',['Levothyroxine at replacement dose','Progestin-only IUD','Low-dose vaginal estrogen cream'],'High-dose OCs/estrogens are listed causes.'),
+q('Pseudoephedrine raises blood pressure because it is a:','Sympathomimetic',['Mineralocorticoid','Calcium channel opener','Loop diuretic'],'Pseudoephedrine mimics sympathetic stimulation, constricting vessels and raising BP.'),
+q('Which hormonal medication is a listed cause of drug-induced hypertension?','High-dose oral contraceptives',['Levothyroxine at replacement dose','Progestin-only IUD','Low-dose vaginal estrogen cream'],'Estrogen increases angiotensinogen production, which raises BP.'),
 q('Which drug class used for migraine is listed as a cause of drug-induced hypertension?','Triptans (migraine medications)',['Acetaminophen','Ondansetron','Gabapentin'],'Migraine meds are on the prescription-drug list for drug-induced HTN.')],
 [q('A 52-year-old with knee osteoarthritis takes naproxen daily; her BP has crept from 128/78 to 136/84. What is the best first step?','Review and minimize the NSAID before labeling or escalating HTN treatment',['Add a second antihypertensive immediately','Order renal angiography','Ignore it; NSAIDs do not affect BP'],'NSAIDs raise BP ~5 mmHg and should be avoided in borderline/elevated BP.'),
 q('A 28-year-old with new stage 1 HTN takes a high-dose combined OCP and uses sumatriptan often. Which history item matters most for the HTN evaluation?','Both medications are listed causes of drug-induced HTN',['Neither medication affects BP','Only the triptan matters','Only an IUD could matter'],'High-dose OCs and migraine meds both appear on the drug-induced HTN list.'),
@@ -254,7 +254,7 @@ cl('St. John’s wort has MAO-inhibitor–like activity and induces CYP450 enzym
 hy('Always ask about herbal supplements — patients often do not consider them “medications.”'),
 ['st-johns-wort','other-substances'],
 [q('Which herbal product used for depression is listed as a cause of drug-induced hypertension?','St. John’s wort',['Chamomile','Melatonin','Echinacea'],'St. John’s wort is on the natural-product list.'),
-q('Which withdrawal state is listed as a cause of hypertension?','Nicotine withdrawal',['Caffeine withdrawal causing hypotension','Benzodiazepine initiation','Acetaminophen withdrawal'],'Nicotine, narcotic, and cocaine withdrawal are listed causes.')],
+q('Which withdrawal state is listed as a cause of hypertension?','Nicotine withdrawal',['Caffeine withdrawal causing hypotension','Benzodiazepine initiation','Acetaminophen withdrawal'],'Withdrawal causes a rebound sympathetic surge that raises BP.')],
 [q('A patient with newly elevated BP says she takes “only natural things”: St. John’s wort for mood and an herbal weight-loss product with ma-huang. What do you tell her?','Both are listed causes of drug-induced hypertension',['Herbal products cannot affect BP','Only the St. John’s wort could matter','Only prescription drugs need review'],'St. John’s wort and ephedra (ma-huang) are both on the list.')])
 ]),
 
@@ -299,7 +299,7 @@ tbl(['System','What to check','Significance'],[
 ['Brain','Neurologic exam','Stroke']]),
 ['vitals','fundoscopic','vascular-exam','cardiac-exam','lung-neuro'],
 [q('Which fundoscopic finding is part of the hypertension exam?','AV nicking',['Cherry-red spot','Drusen','Lisch nodules'],'Look for cotton-wool spots, AV nicking, arteriolar narrowing, hemorrhages, exudates, papilledema.'),
-q('A delay in the femoral pulse compared with the radial pulse suggests:','Coarctation of the aorta',['Peripheral arterial disease','Aortic regurgitation','Renal artery stenosis'],'Radial–femoral delay suggests coarctation.'),
+q('A delay in the femoral pulse compared with the radial pulse suggests:','Coarctation of the aorta',['Peripheral arterial disease','Aortic regurgitation','Renal artery stenosis'],'A narrowing past the arm arteries delays and weakens flow to the legs.'),
 q('Which heart sound should you auscultate for in hypertensive heart disease?','S4',['S3 only in children','Opening snap','Pericardial knock'],'An S4 reflects atrial contraction into a stiff, hypertrophied LV.'),
 q('Which vital-sign measurement besides BP, height, and weight does the lecture include?','Waist circumference',['Head circumference','Arm span','Grip strength'],'Vitals: BP, height, weight, waist circumference.')],
 [q('A hypertensive patient has a laterally displaced, sustained apical impulse and an S4. What does this suggest?','Left ventricular hypertrophy',['Right ventricular failure','Mitral stenosis','Pericardial effusion'],'Heave, displaced PMI, and S4 suggest LVH.'),

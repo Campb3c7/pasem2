@@ -224,8 +224,8 @@
           "<strong>Recent discontinuation of a beta-blocker or clonidine</strong>"]) +
         hy("Always ask: pregnant? stopped a beta-blocker or clonidine? on an MAOI? head trauma?"),
         ["trigger-history"],
-        [q("Which prescription drug class is named as a crisis trigger in the history?", "MAOIs", ["SSRIs", "Proton pump inhibitors", "Statins"], "Recent use of MAOIs is listed."),
-          q("Which endocrine or systemic conditions are listed in the crisis history?", "Thyroid disease, Cushing's, and systemic lupus", ["Type 1 diabetes, gout, and psoriasis", "Asthma, COPD, and allergies", "Hypothyroidism only"], "Thyroid disease, Cushing's, and SLE are listed."),
+        [q("Which prescription drug class is named as a crisis trigger in the history?", "MAOIs", ["SSRIs", "Proton pump inhibitors", "Statins"], "MAOIs block breakdown of catecholamines, so tyramine foods or interacting drugs can spike BP."),
+          q("Which endocrine or systemic conditions are listed in the crisis history?", "Thyroid disease, Cushing's, and systemic lupus", ["Type 1 diabetes, gout, and psoriasis", "Asthma, COPD, and allergies", "Hypothyroidism only"], "Thyroid disease, Cushing's and lupus can all drive severe hypertension."),
           q("Which recent event in the history could explain new severe hypertension with neurologic findings?", "Head injury or trauma", ["A recent dental cleaning", "A flu vaccine", "A week of constipation"], "Recent head injury or trauma is part of the crisis history.")],
         [q("A 29-year-old woman presents with BP 186/122, headache, and visual changes. Which history question is essential?", "Whether she is pregnant or recently postpartum", ["Whether she has had chickenpox", "Her shoe size", "Whether she exercises daily"], "Pregnancy changes the diagnosis (preeclampsia/eclampsia) and the drug choices."),
           q("A depressed patient on phenelzine ate aged cheese and now has BP 230/130 with severe headache. Which history item explains this?", "Recent MAOI use", ["Recent beta-blocker initiation", "OSA", "CKD"], "MAOI use is a listed history trigger for hypertensive crisis.")])
@@ -480,7 +480,7 @@
         "<p>Doses on the slides are not tested here.</p>" +
         hy("Not in acute HF: nicardipine, labetalol (and other BBs/CCBs, hydralazine). Hydralazine = eclampsia. Esmolol = dissection. NTG = ischemia and HF."),
         ["drug-table"],
-        [q("Which IV drug is indicated for eclampsia on the emergency drug table?", "Hydralazine", ["Nitroprusside", "Esmolol", "Nitroglycerin"], "Hydralazine is listed for eclampsia."),
+        [q("Which IV drug is indicated for eclampsia on the emergency drug table?", "Hydralazine", ["Nitroprusside", "Esmolol", "Nitroglycerin"], "Hydralazine is safe in pregnancy and dilates arterioles to lower BP in eclampsia."),
           q("Which IV drug is indicated for aortic dissection and perioperative hypertension on the table?", "Esmolol", ["Hydralazine", "Nicardipine alone", "Nitroglycerin alone"], "Esmolol is listed for aortic dissection and perioperative use."),
           q("Which two drugs are listed for most emergencies except acute heart failure?", "Nicardipine and labetalol", ["Nitroglycerin and nitroprusside", "Hydralazine and esmolol", "Furosemide and morphine"], "Nicardipine and labetalol are used for most emergencies except acute HF."),
           q("Which adverse effect is listed for labetalol?", "Scalp tingling and bronchoconstriction", ["Cyanide toxicity", "Methemoglobinemia", "Hirsutism"], "Labetalol causes scalp tingling, bronchoconstriction, heart block, and orthostasis.")],
@@ -502,7 +502,7 @@
           q("Which drugs does the algorithm pair with preeclampsia or eclampsia?", "Labetalol and hydralazine", ["Nitroprusside and esmolol", "ACE inhibitor and ARB", "Nitroglycerin and furosemide"], "Labetalol and hydralazine are the obstetric choices."),
           q("What is the immediate goal for preeclampsia/eclampsia on the algorithm?", "SBP below 150 and DBP 80–100", ["SBP 100–120 within 20 minutes", "SBP below 220", "SBP below 185 and DBP below 110"], "The obstetric goal is SBP under 150 with DBP 80–100.")],
         [q("A patient with BP 212/128 has rising creatinine and proteinuria but no neuro, cardiac, or obstetric findings. Which drug does the algorithm list?", "Fenoldopam", ["Hydralazine", "Esmolol", "Methyldopa"], "Acute hypertensive nephrosclerosis → fenoldopam."),
-          q("A confused patient with BP 236/138 and no bleed on CT is diagnosed with hypertensive encephalopathy. Which drug fits the algorithm?", "Nicardipine", ["Nitroglycerin", "Hydralazine", "Oral clonidine loading"], "Hypertensive encephalopathy → nicardipine.")])
+          q("A confused patient with BP 236/138 and no bleed on CT is diagnosed with hypertensive encephalopathy. Which drug fits the algorithm?", "Nicardipine", ["Nitroglycerin", "Hydralazine", "Oral clonidine loading"], "Nicardipine lowers BP smoothly without raising intracranial pressure.")])
     ]),
 
     /* ---------- 8c ---------- */
@@ -563,7 +563,7 @@
         ["ntg-ae", "tachyphylaxis", "pde5"],
         [q("Within what time does tolerance (tachyphylaxis) to nitroglycerin develop?", "24–48 hours", ["10 minutes", "6 months", "Never"], "Tachyphylaxis develops in 24–48 hours."),
           q("Which drug combination with nitroglycerin causes very severe hypotension?", "PDE-5 inhibitors such as sildenafil or tadalafil", ["Statins", "Metformin", "Acetaminophen"], "PDE-5 inhibitors plus nitrates cause profound hypotension."),
-          q("Which blood disorder can nitroglycerin, like nitroprusside, cause?", "Methemoglobinemia", ["Polycythemia vera", "Thrombocytosis", "Hemophilia"], "NTG may cause methemoglobinemia.")],
+          q("Which blood disorder can nitroglycerin, like nitroprusside, cause?", "Methemoglobinemia", ["Polycythemia vera", "Thrombocytosis", "Hemophilia"], "Nitrates oxidize hemoglobin iron, which turns it into methemoglobin.")],
         [q("A 61-year-old with chest pain and BP 200/110 took tadalafil last night. Why should nitroglycerin be avoided?", "PDE-5 inhibitors with nitrates cause very severe hypotension", ["Tadalafil makes nitrates ineffective", "Nitrates cause hypertension with tadalafil", "There is no interaction"], "The combination risks profound hypotension."),
           q("A patient on a continuous NTG drip for 2 days needs more and more drug for the same effect. Why?", "Tachyphylaxis; a nitrate-free interval is needed", ["Cyanide toxicity", "Allergy to nitrates", "The drip is mislabeled"], "Tolerance develops within 24–48 hours.")])
     ]),
@@ -594,7 +594,7 @@
         ["nicardipine-ci", "nicardipine-uses"],
         [q("Which condition is a contraindication to nicardipine?", "Aortic stenosis", ["Intracerebral hemorrhage", "Hypertensive encephalopathy", "Ischemic stroke"], "Nicardipine is contraindicated in aortic stenosis, severe HFrEF, and HCM."),
           q("Nicardipine is the drug of choice for which hypertensive emergency?", "Intracerebral or subarachnoid hemorrhage", ["Acute decompensated HFrEF", "Eclampsia only", "Cocaine-induced chest pain only"], "Nicardipine is DOC for ICH/SAH."),
-          q("Which cardiomyopathy is a contraindication to nicardipine?", "Hypertrophic cardiomyopathy", ["Takotsubo after full recovery", "Peripartum cardiomyopathy after recovery", "None"], "HCM is listed as a contraindication.")],
+          q("Which cardiomyopathy is a contraindication to nicardipine?", "Hypertrophic cardiomyopathy", ["Takotsubo after full recovery", "Peripartum cardiomyopathy after recovery", "None"], "Vasodilation lowers afterload, which worsens the outflow obstruction in HCM.")],
         [q("A patient with known severe aortic stenosis presents with BP 210/120 and confusion. Which drug is contraindicated?", "Nicardipine", ["Labetalol", "Esmolol", "Nitroprusside with careful monitoring"], "Nicardipine is contraindicated in aortic stenosis."),
           q("A patient with EF 20% and acute pulmonary edema has BP 220/120. Which IV drug should be avoided?", "Nicardipine", ["Nitroglycerin", "IV loop diuretic", "None of these should be avoided"], "Nicardipine is contraindicated in severe HFrEF and avoided in acute HF.")])
     ]),
@@ -644,7 +644,7 @@
         mn("Bleeding brain: <strong>Nicardipine Now</strong>; <strong>no Nitroprusside, no Hydralazine</strong>."),
         ["ich-drugs", "ich-avoid"],
         [q("What is the drug of choice for BP control in intracerebral hemorrhage?", "Nicardipine", ["Nitroprusside", "Hydralazine", "Nitroglycerin"], "Nicardipine is DOC; labetalol or esmolol are alternatives."),
-          q("Which drugs should be avoided in ICH or SAH?", "Nitroprusside and hydralazine", ["Nicardipine and labetalol", "Esmolol and labetalol", "Mannitol and saline"], "Avoid nitroprusside and hydralazine."),
+          q("Which drugs should be avoided in ICH or SAH?", "Nitroprusside and hydralazine", ["Nicardipine and labetalol", "Esmolol and labetalol", "Mannitol and saline"], "Both dilate cerebral vessels and raise intracranial pressure."),
           q("Which alternatives to nicardipine are acceptable in ICH?", "Labetalol or esmolol", ["Hydralazine or nitroprusside", "Sublingual nitroglycerin", "Oral clonidine loading"], "Labetalol or esmolol may be used.")],
         [q("A patient with a hypertensive basal ganglia hemorrhage has BP 218/122. Which drug is the best first choice?", "IV nicardipine", ["IV nitroprusside", "IV hydralazine", "IV nitroglycerin"], "Nicardipine is DOC in ICH."),
           q("A resident orders nitroprusside for a patient with subarachnoid hemorrhage. Why is this a problem?", "Nitroprusside raises ICP and should be avoided", ["Nitroprusside is too slow", "Nitroprusside causes bradycardia", "It is the preferred drug"], "Nitroprusside raises ICP; avoid it in ICH/SAH.")])
@@ -671,7 +671,7 @@
         mn("Dissection = <strong>MBV</strong>: Morphine, Beta-blocker, Vasodilator → OR."),
         ["dissection-drugs", "dissection-or"],
         [q("Which drug combination is preferred for acute aortic dissection?", "Morphine, a beta-blocker (esmolol or labetalol), and nitroprusside", ["Hydralazine alone", "Nicardipine alone", "Nitroglycerin and furosemide"], "Narcotic analgesic, beta-blocker, and vasodilator, then OR."),
-          q("Which beta-blockers are listed for aortic dissection?", "Esmolol and labetalol", ["Propranolol and nadolol", "Atenolol and sotalol", "Pindolol and acebutolol"], "Esmolol and labetalol are listed."),
+          q("Which beta-blockers are listed for aortic dissection?", "Esmolol and labetalol", ["Propranolol and nadolol", "Atenolol and sotalol", "Pindolol and acebutolol"], "Beta-blockers lower HR and the force on the aortic wall before vasodilators are added."),
           q("After medical BP and HR control, where does a dissection patient go?", "The operating room", ["Home on oral meds", "Outpatient cardiology in 6 weeks", "Physical therapy"], "Then the patient goes to the OR.")],
         [q("A patient with aortic dissection is started on nitroprusside alone, and HR rises to 120. What was missing?", "A beta-blocker given first to control heart rate", ["More nitroprusside", "Hydralazine", "Nothing; tachycardia is desired"], "Beta-blockade first prevents reflex tachycardia from the vasodilator.")])
     ]),
@@ -685,8 +685,8 @@
         hy("ACS + HTN: <strong>NTG drip or IV beta-blocker</strong>, treat above 160/100."),
         ["acs-threshold", "acs-drugs"],
         [q("At what BP should hypertension be treated in acute coronary syndrome?", "SBP above 160 and/or DBP above 100", ["SBP above 220", "SBP above 120", "Never treat BP in ACS"], "Treat if SBP is over 160 and/or DBP over 100."),
-          q("Which drugs are preferred for hypertensive emergency with ACS?", "Nitroglycerin drip or IV beta-blockers", ["Hydralazine or minoxidil", "Nifedipine or amlodipine", "Fenoldopam alone"], "NTG or IV metoprolol/esmolol."),
-          q("Which IV beta-blockers are named for ACS?", "Metoprolol and esmolol", ["Propranolol and timolol", "Labetalol and carvedilol only", "Nadolol and sotalol"], "Metoprolol and esmolol are listed.")],
+          q("Which drugs are preferred for hypertensive emergency with ACS?", "Nitroglycerin drip or IV beta-blockers", ["Hydralazine or minoxidil", "Nifedipine or amlodipine", "Fenoldopam alone"], "Nitroglycerin dilates coronaries and beta-blockers cut oxygen demand."),
+          q("Which IV beta-blockers are named for ACS?", "Metoprolol and esmolol", ["Propranolol and timolol", "Labetalol and carvedilol only", "Nadolol and sotalol"], "Metoprolol and esmolol lower HR and oxygen demand in ACS.")],
         [q("A 64-year-old with NSTEMI has BP 182/106 and HR 98 with no heart failure. Which IV drug choice fits?", "Nitroglycerin drip or IV metoprolol", ["IV hydralazine", "IV nitroprusside alone as first line", "No BP treatment needed"], "ACS with SBP over 160 → NTG or IV beta-blocker.")]),
       C("ACS: work-up and drugs to avoid",
         ul(["Get <strong>cardiology involved early</strong>, <strong>trend troponin</strong>, and get an <strong>echocardiogram</strong> if not going to the cath lab.",
@@ -708,7 +708,7 @@
         [q("What is the SBP goal in hypertensive emergency with acute heart failure?", "Below 140", ["Below 185", "Below 220", "100–120 within 20 minutes"], "The acute HF goal is SBP under 140."),
           q("Which drug is often given first in acute HF with fluid overload?", "An IV loop diuretic", ["An IV beta-blocker", "IV nicardipine", "IV hydralazine"], "A loop diuretic dries the lungs first."),
           q("Which vasodilator is added in acute heart failure?", "Nitroglycerin", ["Hydralazine", "Nicardipine", "Minoxidil"], "Nitroglycerin, a venous vasodilator that also dilates coronaries.")],
-        [q("A patient with BP 224/130, rales to the mid-lung fields, and edema is diagnosed with hypertensive acute HF. Best initial therapy?", "IV loop diuretic, then IV nitroglycerin", ["IV labetalol bolus", "IV nicardipine drip", "IV hydralazine"], "Diurese, then add nitroglycerin.")]),
+        [q("A patient with BP 224/130, rales to the mid-lung fields, and edema is diagnosed with hypertensive acute HF. Best initial therapy?", "IV loop diuretic, then IV nitroglycerin", ["IV labetalol bolus", "IV nicardipine drip", "IV hydralazine"], "A loop diuretic removes the fluid, then nitroglycerin lowers preload and afterload.")]),
       C("Acute heart failure: drugs to avoid",
         tbl(["Avoid in acute decompensated HFrEF", "Why"], [
           ["<strong>Beta-blockers</strong> and <strong>CCBs</strong>", "Depress cardiac contractility"],
@@ -731,8 +731,8 @@
         "<p>The sympathetic nervous system releases large amounts of catecholamines → sudden severe HTN; patients are <strong>tachycardic</strong> and hypertensive, sometimes with coronary ischemia.</p>",
         ["sympathetic-causes"],
         [q("Which condition is a cause of sympathetic-overactivity hypertensive emergency?", "Pheochromocytoma", ["Hypothyroidism", "Addison's disease", "Nephrotic syndrome"], "Cocaine, amphetamines, pheochromocytoma, and severe autonomic dysfunction are listed."),
-          q("Which neurologic conditions can cause severe autonomic dysfunction and sympathetic crisis?", "Spinal cord injury and Guillain-Barré syndrome", ["Migraine and tension headache", "Bell's palsy and trigeminal neuralgia", "Essential tremor"], "Cord injury and GBS are listed."),
-          q("Which prescription stimulants are listed as causes?", "Ritalin and Adderall", ["Sertraline and fluoxetine", "Lisinopril and losartan", "Metformin and glipizide"], "Amphetamines including Ritalin and Adderall are listed.")],
+          q("Which neurologic conditions can cause severe autonomic dysfunction and sympathetic crisis?", "Spinal cord injury and Guillain-Barré syndrome", ["Migraine and tension headache", "Bell's palsy and trigeminal neuralgia", "Essential tremor"], "Both damage autonomic nerves, which can cause sudden sympathetic surges."),
+          q("Which prescription stimulants are listed as causes?", "Ritalin and Adderall", ["Sertraline and fluoxetine", "Lisinopril and losartan", "Metformin and glipizide"], "Amphetamines release catecholamines, which constrict vessels and raise BP.")],
         [q("A 24-year-old has BP 220/124, HR 136, dilated pupils, and chest pain after a party. What is the likely mechanism?", "Catecholamine surge from cocaine or amphetamines", ["Non-adherence to lisinopril", "Hypothyroidism", "Primary hyperaldosteronism"], "Stimulants cause a catecholamine surge with tachycardia and hypertension.")]),
       C("Unopposed alpha: why beta-blocker alone is contraindicated",
         ul(["A <strong>beta-blocker alone is contraindicated</strong>: blocking β receptors leaves catecholamines to bind <strong>α receptors</strong> → <strong>unopposed alpha-adrenergic vasoconstriction</strong> → BP rises further.",
@@ -773,7 +773,7 @@
         mn("Preeclampsia risk: <strong>first baby, more than one baby, a history of HTN or kidney disease, and a family history</strong>."),
         ["preeclampsia-definition", "preeclampsia-risk", "preeclampsia-management", "eclampsia"],
         [q("What distinguishes preeclampsia from gestational hypertension?", "Placental insufficiency with proteinuria", ["Onset before 20 weeks", "Absence of proteinuria", "Normal BP"], "Preeclampsia adds placental insufficiency and proteinuria."),
-          q("What is the definitive treatment of preeclampsia?", "Delivery", ["Bed rest alone", "ACE inhibitor", "Lifelong methyldopa"], "Definitive treatment is delivery."),
+          q("What is the definitive treatment of preeclampsia?", "Delivery", ["Bed rest alone", "ACE inhibitor", "Lifelong methyldopa"], "Preeclampsia comes from the placenta, so it only resolves after delivery."),
           q("Which patient is at higher risk for preeclampsia?", "A nulliparous woman with twins", ["A multiparous woman with a singleton and no history", "A woman with a prior normal pregnancy and no risk factors", "A woman who has never had HTN or kidney disease and has a singleton fourth pregnancy"], "Nulliparity and multiple gestation raise preeclampsia risk."),
           q("Eclampsia is defined as:", "Hypertension, proteinuria, and seizure", ["Hypertension without proteinuria", "Hypotension and bleeding", "Proteinuria without hypertension"], "Eclampsia is HTN, proteinuria, and seizure.")],
         [q("A 22-year-old in her first pregnancy at 34 weeks has BP 158/104, proteinuria, and headache. Diagnosis?", "Preeclampsia", ["Gestational hypertension", "Chronic hypertension", "Eclampsia"], "New HTN after 20 weeks with proteinuria is preeclampsia."),

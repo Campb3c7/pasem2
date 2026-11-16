@@ -195,7 +195,7 @@ tbl(['AHA group','Cardiomyopathies'],[
 ['genetic-basis','aha-genetic','aha-mixed','aha-acquired'],
 [q('Which two cardiomyopathies are in the AHA &ldquo;genetic&rdquo; group?','HCM and ARVC',['DCM and RCM','Myocarditis and PPCM','DCM and Tako-tsubo'],'Genetic: HCM, ARVC. Mixed: DCM, RCM. Acquired: myocarditis, PPCM, Tako-tsubo.'),
 q('In the AHA classification, dilated and restrictive cardiomyopathy are:','Mixed (genetic and acquired)',['Purely genetic','Purely acquired','Not cardiomyopathies'],'DCM and RCM are mixed.'),
-q('Which cardiomyopathy is in the AHA &ldquo;acquired&rdquo; group?','Peripartum cardiomyopathy',['Hypertrophic cardiomyopathy','Arrhythmogenic right ventricular cardiomyopathy','Restrictive cardiomyopathy'],'Acquired: myocarditis, PPCM, Tako-tsubo.')],
+q('Which cardiomyopathy is in the AHA &ldquo;acquired&rdquo; group?','Peripartum cardiomyopathy',['Hypertrophic cardiomyopathy','Arrhythmogenic right ventricular cardiomyopathy','Restrictive cardiomyopathy'],'Peripartum cardiomyopathy is caused by pregnancy, not genes, so it is acquired (with myocarditis and Tako-tsubo).')],
 [q('A student says cardiomyopathies are mostly idiopathic, so family history is irrelevant. Best correction?','Most cardiomyopathies are now known to have a genetic basis',['Only acquired cardiomyopathies run in families','Genetics only matter for myocarditis','Family history matters only after age 70'],'Modern genetics shows most CMs have a genetic basis, so family evaluation matters.')]),
 c('Recommendations for family members',
 '<p>For families of a patient with <strong>confirmed CM</strong>:</p>'+
@@ -363,7 +363,7 @@ hy('Start with <strong>monotherapy</strong>: BB first; non-DHP CCB if BB not an 
 q('Which drugs are used in HCM when a beta-blocker is contraindicated or not tolerated?','Nondihydropyridine CCBs such as diltiazem or verapamil',['Dihydropyridine CCBs such as nifedipine','Nitrates such as nitroglycerin','Positive inotropes such as dobutamine'],'Non-DHP CCBs (diltiazem, verapamil) are the alternative.'),
 q('What is the main risk of combining a beta-blocker with a nondihydropyridine CCB in HCM?','Bradyarrhythmia and intolerance',['Hyperkalemia','Worsening LVOT obstruction from vasodilation','Hypoglycemia'],'Combination therapy carries greater likelihood of bradyarrhythmia and intolerance.')],
 [q('A 28-year-old with obstructive HCM and moderate persistent asthma has exertional angina. Which drug is the best initial choice?','Verapamil',['Metoprolol','Amlodipine','Nitroglycerin'],'BB contraindicated by asthma &rarr; use a non-DHP CCB (verapamil or diltiazem).'),
-q('A patient with obstructive HCM and no other conditions has dyspnea on exertion. Which medication should be started first?','Metoprolol',['Diltiazem plus metoprolol together','Furosemide','Lisinopril'],'Beta-blocker monotherapy is first-line.')]),
+q('A patient with obstructive HCM and no other conditions has dyspnea on exertion. Which medication should be started first?','Metoprolol',['Diltiazem plus metoprolol together','Furosemide','Lisinopril'],'Beta-blockers slow the HR, giving the LV more time to fill and less outflow obstruction.')]),
 c('Refractory HF: septal reduction',
 '<p>If HF symptoms are <strong>refractory to drugs</strong>, relieve the LVOT obstruction with:</p>'+
 tbl(['Procedure','How it works'],[
@@ -434,7 +434,7 @@ hy('HCM = <strong>sarcomere</strong>. ARVC = <strong>desmosome</strong> &rarr; f
 ['arvc-autosomal-dominant','desmosomal-mutation','fibro-fatty-replacement'],
 [q('ARVC is caused by mutations in genes encoding:','Desmosomal proteins',['Sarcomere proteins','Dystrophin','Hemoglobin'],'ARVC = desmosomal mutations; HCM = sarcomere.'),
 q('In ARVC, detached myocytes are replaced by:','Fibro-fatty tissue',['Amyloid fibrils','Granulomas','Iron deposits'],'Myocyte apoptosis leads to fibro-fatty replacement.'),
-q('What is the inheritance pattern of ARVC?','Autosomal dominant',['X-linked recessive','Autosomal recessive only','Not inherited'],'ARVC is autosomal dominant.')],
+q('What is the inheritance pattern of ARVC?','Autosomal dominant',['X-linked recessive','Autosomal recessive only','Not inherited'],'ARVC is autosomal dominant, so screen first-degree relatives.')],
 [q('Pathology from a young athlete who died suddenly shows the RV myocardium replaced by fat and fibrous tissue. Which gene family was most likely mutated?','Desmosomal protein genes',['Sarcomere protein genes','Dystrophin gene','Transthyretin gene'],'Fibro-fatty RV replacement = ARVC from desmosomal mutations.')]),
 c('ARVC presentation and sudden death',
 ul(['Typically <strong>right-sided HF</strong> and rhythm disturbances, especially <strong>VT</strong>','Often precipitated by <strong>catecholamine release during exercise</strong>','<strong>2nd most common cause of sudden death in athletes</strong>','Often diagnosed in the <strong>2nd or 3rd decade</strong>'])+
@@ -498,7 +498,7 @@ tbl(['Cause','Key points'],[
 [q('Which chemotherapy agent is a classic cause of acquired DCM?','Doxorubicin (Adriamycin)',['Methotrexate','Vincristine','Tamoxifen'],'Doxorubicin causes DCM, generally within 3 months of the last dose.'),
 q('Which anti-rheumatic agent is listed as a cause of DCM?','Hydroxychloroquine (Plaquenil)',['Sulfasalazine','Prednisone','Ibuprofen'],'Hydroxychloroquine is the anti-rheumatic DCM cause in the lecture.'),
 q('Which acquired cause of DCM may be reversible in early stages?','Alcohol use, if the patient abstains',['Doxorubicin after 10 years','Muscular dystrophy','Idiopathic familial DCM'],'Early alcoholic DCM may reverse with abstinence.'),
-q('Roughly what fraction of DCM is idiopathic?','About 50%',['About 5%','About 15%','About 90%'],'Idiopathic ~50%; genetic ~35%.'),
+q('Roughly what fraction of DCM is idiopathic?','About 50%',['About 5%','About 15%','About 90%'],'About half of DCM has no cause found.'),
 q('In muscular dystrophy&ndash;associated DCM, which gene is mutated?','Dystrophin',['Desmoplakin','Beta-myosin heavy chain','Transthyretin'],'Dystrophin mutations cause cardiomyocyte lysis.')],
 [q('Two months after finishing breast cancer chemotherapy, a 52-year-old develops dyspnea and edema; echo shows a dilated LV with EF 30%. Most likely culprit?','Doxorubicin',['Hydroxychloroquine','Terbutaline','Coxsackievirus B'],'Doxorubicin cardiotoxicity typically appears within 3 months of the last dose.'),
 q('A 45-year-old who drinks heavily has new DCM with EF 35%. What is the most important reversible step?','Complete abstinence from alcohol',['Alcohol septal ablation','Switch from beer to wine','Immediate heart transplant listing'],'Early alcoholic DCM may be reversible with abstinence.')]),
@@ -766,7 +766,7 @@ c('Risk of recurrence',
 hy('<strong>2% yearly risk of recurrence</strong>.')+
 '<p>Some specialists prefer <strong>lifelong beta-blockers</strong>, but efficacy is unknown.</p>',
 ['recurrence-2-percent','lifelong-bb-uncertain'],
-[q('What is the yearly risk of recurrence of Tako-tsubo cardiomyopathy?','About 2% per year',['About 50% per year','About 20% per year','0%; it never recurs'],'2% yearly recurrence risk.'),
+[q('What is the yearly risk of recurrence of Tako-tsubo cardiomyopathy?','About 2% per year',['About 50% per year','About 20% per year','0%; it never recurs'],'Tako-tsubo usually resolves, but about 2% per year have another episode.'),
 q('What is known about lifelong beta-blockers after Tako-tsubo?','Some specialists use them, but efficacy is unknown',['They are proven to eliminate recurrence','They are contraindicated in all patients','They cure the disease within 24 hours'],'Some prefer lifelong BB; efficacy is unknown.')],
 [q('A patient who recovered from Tako-tsubo cardiomyopathy asks whether it can happen again. Best answer?','Yes; there is about a 2% yearly risk of recurrence',['No; it never recurs','Yes; recurrence is nearly certain within a year','Only during future pregnancies'],'Recurrence risk is about 2% per year.')])
 ])

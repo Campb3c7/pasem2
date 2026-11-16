@@ -132,7 +132,7 @@
       Q("avoid", "Which fibrate increases muscle toxicity when combined with a statin?", ["Gemfibrozil", "Fenofibrate", "Both equally and never with statins", "Neither"], 0, "Gemfibrozil has been shown to increase statin muscle toxicity."),
       Q("avoid", "A patient on warfarin is started on a fibrate. Which interaction matters?", ["Fenofibrate can interact with warfarin", "Gemfibrozil blocks warfarin absorption", "Fibrates reverse warfarin", "There is no interaction"], 0, "Fenofibrate can interact with Coumadin (warfarin)."),
       Q("avoid", "In which patients are fibrates contraindicated?", ["Hepatic impairment", "Asthma", "Hypothyroidism", "Gout"], 0, "Monitor ALTs; fibrates are contraindicated in hepatic impairment."),
-      Q("uses", "Which lipid drug class gives the largest triglyceride drop?", ["Fibrates", "Bile acid sequestrants", "Ezetimibe", "PCSK9 inhibitors"], 0, "Fibrates lower TG 35-53%."),
+      Q("uses", "Which lipid drug class gives the largest triglyceride drop?", ["Fibrates", "Bile acid sequestrants", "Ezetimibe", "PCSK9 inhibitors"], 0, "Fibrates activate PPAR-α, which clears triglyceride-rich particles (35–53% drop)."),
       Q("uses", "Do fibrates improve CV outcomes in the general population?", ["No significant evidence of improved events or mortality", "Yes, large mortality reduction", "Yes, but only with niacin", "They worsen outcomes"], 0, "There is no significant evidence of improved CV event or mortality outcomes in general populations.")
     ]),
 
@@ -149,8 +149,8 @@
       pearls: HY("Niacin: raises HDL, causes flushing (pre-treat with aspirin), no outcome benefit.")
     }, [
       Q("se", "A patient on immediate-release niacin has red, itchy, warm skin after each dose. How can it be reduced?", ["Take aspirin 81 mg with it", "Take it with grapefruit juice", "Add a statin", "Switch to cholestyramine at the same time"], 0, "Niacin flushing, tachycardia and pruritus may be reduced with ASA 81 co-administration."),
-      Q("uses", "Which lipid drug raises HDL the most?", ["Niacin", "Ezetimibe", "PCSK9 inhibitor", "Bile acid sequestrant"], 0, "Niacin raises HDL 15-35%."),
-      Q("se", "Why is niacin a poor choice in a patient with poorly controlled diabetes?", ["It worsens insulin resistance", "It causes hypoglycemia", "It raises potassium", "It blocks metformin"], 0, "Niacin worsens insulin resistance."),
+      Q("uses", "Which lipid drug raises HDL the most?", ["Niacin", "Ezetimibe", "PCSK9 inhibitor", "Bile acid sequestrant"], 0, "Niacin cuts HDL breakdown, raising it 15–35%."),
+      Q("se", "Why is niacin a poor choice in a patient with poorly controlled diabetes?", ["It worsens insulin resistance", "It causes hypoglycemia", "It raises potassium", "It blocks metformin"], 0, "Niacin increases insulin resistance, raising blood sugar."),
       Q("uses", "What do outcome studies show for niacin?", ["No improvement in events or mortality", "Large mortality reduction", "Fewer strokes only", "Increased HDL and fewer MIs"], 0, "Niacin has no evidence of improved event or mortality outcomes."),
       Q("se", "Which organ toxicity is a concern with niacin?", ["Hepatotoxicity", "Ototoxicity", "Nephrolithiasis", "Pulmonary fibrosis"], 0, "Niacin side effects include hepatotoxicity."),
       Q("se", "Which form of niacin causes the most flushing?", ["Immediate-release", "Extended-release", "IV form", "All forms equally"], 0, "Flushing, tachycardia and pruritus are especially seen with the immediate-release form.")

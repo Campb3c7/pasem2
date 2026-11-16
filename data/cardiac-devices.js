@@ -137,7 +137,7 @@
         ["code-letter-1", "code-letter-2"],
         [q("The first letter of a pacemaker code represents:", "The chamber paced", ["The chamber sensed", "The response to sensing", "Rate modulation"], "Position 1 = chamber paced."),
           q("The second letter of a pacemaker code represents:", "The chamber sensed", ["The chamber paced", "Multisite pacing", "Battery status"], "Position 2 = chamber sensed."),
-          q("In the second position, the letter O means:", "No chamber is sensed", ["Overdrive pacing", "Only the atrium is sensed", "Oversensing"], "O = none.")],
+          q("In the second position, the letter O means:", "No chamber is sensed", ["Overdrive pacing", "Only the atrium is sensed", "Oversensing"], "O in any position means none, so no chamber is sensed.")],
         [q("A device report reads “VOO.” Which chamber does it pace and what does it sense?", "Paces the ventricle and senses nothing", ["Paces the atrium and senses the ventricle", "Paces both chambers and senses both", "Senses the ventricle and never paces"], "V = ventricle paced; O = no sensing; O = no response (continuous).")]),
       C("Letter 3: response to sensed activity",
         tbl(["3rd letter", "Response"], [
@@ -148,7 +148,7 @@
         mn("<strong>P-S-R</strong>: <strong>P</strong>aced, <strong>S</strong>ensed, <strong>R</strong>esponse = letters 1, 2, 3 in order."),
         ["code-letter-3"],
         [q("The third letter of a pacemaker code represents:", "The response to sensed native activity", ["The chamber paced", "The chamber sensed", "Multisite pacing"], "Position 3 = response mode."),
-          q("A third letter of I means the pacemaker:", "Is inhibited when it senses a native beat", ["Is triggered by every native beat", "Paces continuously", "Has rate response"], "I = inhibited."),
+          q("A third letter of I means the pacemaker:", "Is inhibited when it senses a native beat", ["Is triggered by every native beat", "Paces continuously", "Has rate response"], "I means inhibited: the pacer holds off when it senses the heart's own beat."),
           q("A third letter of O usually means the device:", "Paces continuously regardless of native activity", ["Is inhibited by atrial beats", "Is turned off", "Only senses"], "O response = none; the device paces continuously."),
           q("A third letter of D means the pacemaker is:", "Triggered after a sensed atrial event and inhibited after a sensed ventricular event", ["Inhibited by every sensed beat", "Pacing continuously", "Dual-chamber paced only"], "D response combines triggering and inhibition.")],
         [q("A pacemaker in VVI mode senses an intrinsic ventricular beat. What does it do?", "Withholds its ventricular impulse (inhibited)", ["Fires immediately on top of the beat", "Shocks the patient", "Paces the atrium instead"], "VVI: pace V, sense V, inhibited by sensed native beats.")]),
@@ -225,7 +225,7 @@
         "<li>Early ICDs (1980s) were bulky, placed in the <strong>abdomen</strong> with a <strong>thoracotomy</strong> for epicardial leads.</li></ul>",
         ["icd-procedure"],
         [q("Where is the shocking lead of a subcutaneous ICD placed?", "Tunneled to the sternum", ["Through the subclavian vein into the RV", "Into the coronary sinus", "Sutured to the left atrium"], "S-ICD leads are tunneled subcutaneously to the sternum."),
-          q("What is a limitation of a subcutaneous ICD compared with a transvenous ICD?", "Limited pacing capability", ["It cannot shock VF", "It requires a thoracotomy", "It must be placed in the abdomen"], "S-ICDs have limited pacing.")],
+          q("What is a limitation of a subcutaneous ICD compared with a transvenous ICD?", "Limited pacing capability", ["It cannot shock VF", "It requires a thoracotomy", "It must be placed in the abdomen"], "S-ICD leads sit under the skin, not in the heart, so they can't pace well.")],
         [q("A patient needs an ICD and also has symptomatic bradycardia requiring ongoing pacing. Which ICD type is the poorer choice?", "Subcutaneous ICD", ["Transvenous ICD with pacing", "CRT-defibrillator", "Dual-chamber transvenous ICD"], "The S-ICD has limited pacing, so it suits patients who do not need pacing.")])
     ]),
 
@@ -384,7 +384,7 @@
       C("Personal electronics: 6 inches",
         hy("Keep <strong>cell phones, mobile devices, magnets, headphones, and wireless chargers</strong> at least <strong>6 inches (about 15 cm)</strong> from the device site when they are on."),
         ["distance-6-inches"],
-        [q("How far should cell phones and headphones be kept from a pacemaker or ICD?", "About 6 inches (15 cm)", ["About 1 inch (2.5 cm)", "About 2 feet (0.6 m)", "About 10 feet (3 m)"], "Personal electronics: 6 inches."),
+        [q("How far should cell phones and headphones be kept from a pacemaker or ICD?", "About 6 inches (15 cm)", ["About 1 inch (2.5 cm)", "About 2 feet (0.6 m)", "About 10 feet (3 m)"], "Magnets in phones and headphones can interfere with the device, so keep them 6 inches away."),
           q("Which item belongs on the “keep 6 inches away” list?", "Wireless chargers", ["Microwave ovens", "Toasters", "Televisions"], "Phones, mobile devices, magnets, headphones, and wireless chargers.")],
         [q("A patient with a new left-chest pacemaker likes to keep his phone in his left shirt pocket and wear headphones around his neck. Best counsel?", "Keep the phone and headphones at least 6 inches from the device", ["No restrictions apply to phones", "Keep them at least 10 feet away at all times", "Phones are fine but headphones must be avoided completely"], "These items should stay at least 6 inches (15 cm) away.")]),
       C("Security systems",
