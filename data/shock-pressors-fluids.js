@@ -902,7 +902,7 @@
           q("Which transfusion complications does the deck list?", "Acute febrile hemolytic reaction, TRALI and anaphylaxis", ["Hyperglycemia and gout", "Stroke and MI only", "Kidney stones"], "Hemolytic reactions, TRALI and anaphylaxis are listed. (Slide 103)"),
           q("What does TRALI stand for?", "Transfusion-related acute lung injury", ["Transfusion-related arterial line infection", "Total renal acute liver injury", "Transient right atrial lead issue"], "TRALI = transfusion-related acute lung injury.")],
         [q("A gunshot victim arrives with barely palpable pulses and massive bleeding and no time for typing. What blood?", "Emergency release O negative", ["Wait for type and cross", "AB positive", "Albumin only"], "No time to type: O negative."),
-          q("The trauma team activates massive transfusion. Initial product ratio?", "1:1:1 PRBCs, FFP and platelets", ["PRBCs only", "Saline and albumin only", "FFP only"], "MTP: 1:1:1."),
+          q("The trauma team activates massive transfusion. Initial product ratio?", "1:1:1 PRBCs, FFP and platelets", ["PRBCs only", "Saline and albumin only", "FFP only"], "Equal parts red cells, plasma and platelets replace whole blood and prevent trauma coagulopathy."),
           q("Within hours of a transfusion, a patient develops sudden hypoxia and bilateral infiltrates. Complication?", "TRALI", ["Anaphylaxis only", "Hemochromatosis", "Hypernatremia"], "New hypoxia and infiltrates after transfusion = TRALI.")])
     ]),
 

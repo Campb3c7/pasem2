@@ -474,7 +474,7 @@
           q("In an unstable patient not known to have an AAA, which test comes first?", "Focused bedside ultrasound", ["CTA", "MRA", "Catheter angiography"], "Unstable patients get bedside ultrasound."),
           q("Which imaging evaluates thoracic aortic aneurysms?", "CTA", ["Abdominal ultrasound", "ABI", "Duplex of the legs"], "CTA images the thoracic aorta.")],
         [q("A 78-year-old with a known 6 cm AAA arrives with back pain and a BP of 70/40 despite fluids. Next step?", "Straight to emergency endovascular or open repair", ["CTA first", "Outpatient ultrasound", "Admit and observe"], "Known AAA plus shock = rupture: straight to repair."),
-          q("A 70-year-old with abdominal pain and a pulsatile mass has a normal BP and HR. Which test?", "CTA of the abdomen", ["Nothing; discharge", "Bedside ultrasound only and discharge", "Colonoscopy"], "Stable: CTA."),
+          q("A 70-year-old with abdominal pain and a pulsatile mass has a normal BP and HR. Which test?", "CTA of the abdomen", ["Nothing; discharge", "Bedside ultrasound only and discharge", "Colonoscopy"], "A stable patient has time for CTA, which shows the aneurysm size and any leak before surgery."),
           q("An unstable 72-year-old with abdominal pain has no known AAA history. First imaging?", "Focused bedside ultrasound", ["CTA", "MRA", "Upper GI series"], "Unstable, unknown AAA: bedside US.")]),
       C("Medical management of small AAA",
         "<p>For AAA <strong>under 5.5 cm in men or under 5.0 cm in women</strong>:</p><ul>" +
