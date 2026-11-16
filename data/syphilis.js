@@ -130,7 +130,7 @@
         Q("What is condyloma lata?", ["Painless gray-white moist papules that are highly infectious", "An aortic lesion", "A painful chancre", "A pupillary abnormality"], 0, "Condyloma lata is a secondary mucocutaneous lesion.", 2),
         Q("What hair finding occurs in secondary syphilis?", ["Moth-eaten alopecia", "Complete permanent alopecia in every patient", "No hair change", "Only nail loss"], 0, "Patchy scalp/facial hair loss produces the moth-eaten pattern.", 2),
         Q("What two features define latent syphilis?", ["No symptoms plus serologic evidence", "A chancre plus negative serology", "A rash plus negative serology", "Aortic disease plus no infection"], 0, "Latent disease is clinically silent but serologically documented.", 3),
-        Q("When can tertiary disease appear?", ["Usually 1–30 years after primary disease", "Only during the first week", "Before exposure", "Only during pregnancy"], 0, "The lecture gives a 1–30 year range.", 4),
+        Q("When can tertiary disease appear?", ["Usually 1–30 years after primary disease", "Only during the first week", "Before exposure", "Only during pregnancy"], 0, "Untreated syphilis can stay silent for years before damaging the heart, brain or skin.", 4),
         Q("What vascular mechanism causes cardiovascular syphilis?", ["Inflammatory destruction of the vasa vasorum", "Neuraminidase inhibition", "Venous thrombosis only", "Loss of erythroid precursors"], 0, "Loss of aortic-wall blood supply produces aneurysmal disease.", 4),
         Q("Where are gummas classically found?", ["Liver, bones, and testes", "Only the retina", "Only the parotid gland", "Only the palms"], 0, "Those are the classic sites listed.", 4)
       ],

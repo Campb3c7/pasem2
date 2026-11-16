@@ -76,7 +76,7 @@
         ["Yaws", "Treponema pallidum subspecies pertenue; spirochete"]
       ]), [
         F("Which lecture disease is caused by a spirochete?", "Yaws", ["Cholera", "Tularemia", "Leprosy"], "Yaws is caused by T. pallidum subspecies pertenue.")
-      ], F("Culture identifies a tiny-inoculum gram-negative organism associated with ticks, rabbits, and aerosols. Which disease?", "Tularemia", ["Cholera", "Yaws", "Leprosy"], "F. tularensis causes tularemia."), true),
+      ], F("Culture identifies a tiny-inoculum gram-negative organism associated with ticks, rabbits, and aerosols. Which disease?", "Tularemia", ["Cholera", "Yaws", "Leprosy"], "Francisella tularensis spreads from ticks, rabbits or aerosols and needs only a few organisms to infect."), true),
       C("Parasitic infections", Tbl(["Disease", "Organism/type"], [
         ["African trypanosomiasis", "Trypanosoma brucei; protozoan parasite"],
         ["American trypanosomiasis (Chagas)", "Trypanosoma cruzi; protozoan parasite"],
@@ -269,7 +269,7 @@
         ["Rabies", "Usually 1–3 months; can be up to 8 years"],
         ["T. b. rhodesiense", "Days to weeks"],
         ["T. b. gambiense", "Weeks to months"]
-      ]) + M("Fast to slow", "Cholera hours · Rhodesiense days/weeks · Rabies months · Oncho 10–20 months · Cysts weeks–years"), [F("Which listed infection has an incubation of hours to five days?", "Cholera", ["Onchocerciasis", "Rabies", "Cysticercosis"], "Cholera has the shortest specified incubation in this group.")], F("Symptoms begin 14 months after repeated tropical blackfly bites. Which incubation pattern fits?", "Onchocerciasis", ["Cholera", "T. b. rhodesiense", "MERS"], "Onchocerciasis incubates 10–20 months."), true),
+      ]) + M("Fast to slow", "Cholera hours · Rhodesiense days/weeks · Rabies months · Oncho 10–20 months · Cysts weeks–years"), [F("Which listed infection has an incubation of hours to five days?", "Cholera", ["Onchocerciasis", "Rabies", "Cysticercosis"], "Cholera has the shortest specified incubation in this group.")], F("Symptoms begin 14 months after repeated tropical blackfly bites. Which incubation pattern fits?", "Onchocerciasis", ["Cholera", "T. b. rhodesiense", "MERS"], "Onchocerciasis takes 10–20 months to cause symptoms after blackfly bites."), true),
       C("African trypanosomiasis speed predicts the subtype", `<p><strong>T. b. rhodesiense:</strong> days to weeks, then rapid progression. <strong>T. b. gambiense:</strong> weeks to months, followed by a much slower clinical course.</p>${M("Name cue", "Rhodesiense = Rapid · Gambiense = Gradual")}`, [F("Which subtype has a weeks-to-months incubation?", "T. b. gambiense", ["T. b. rhodesiense", "T. cruzi only", "O. volvulus"], "Gambiense incubates and progresses more slowly.")], F("A West African exposure is followed months later by intermittent fevers and years later by sleep reversal. Which subtype?", "T. b. gambiense", ["T. b. rhodesiense", "T. cruzi", "Taenia solium"], "West + gradual course identifies gambiense."), true)
     ]),
 

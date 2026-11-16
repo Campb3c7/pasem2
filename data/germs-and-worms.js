@@ -2,13 +2,101 @@
 (function () {
   "use strict";
 
+  // One-sentence "why" for each question, keyed by prompt.
+  var WHY = {
+    "Which organisms are gram-negative cocci?": "Neisseria are the main gram-negative cocci, seen as kidney-bean pairs.",
+    "A culture shows small gram-negative cocci in pairs. Which genus fits the lecture categories?": "Gram-negative diplococci are Neisseria (meningitidis or gonorrhoeae).",
+    "Which bacterial group grows without oxygen and may form durable spores?": "Clostridia are anaerobes that form spores, which survive heat and drying.",
+    "A toxin-mediated illness comes from a spore-forming anaerobe. Which lecture category should lead the differential?": "Clostridia are the spore-forming anaerobes, and most of their disease comes from toxins (tetanus, botulism, C. diff).",
+    "Which Staphylococcus is coagulase positive?": "Only S. aureus makes coagulase, which helps it clot plasma and wall itself off.",
+    "A coagulase-negative isolate is recovered from an IV catheter. Which species best fits?": "S. epidermidis lives on skin and forms biofilms on plastic catheters.",
+    "Where are staphylococci commonly carried?": "Staph lives normally in the nose and on skin, which is where infections start.",
+    "A healthy adult has S. aureus on a nasal swab without illness. What does this represent?": "Carrying the organism without disease is colonization, not infection.",
+    "Which pathogen is associated with purulent cellulitis, abscesses, and furuncles?": "S. aureus makes pus-forming infections; pus points to Staph.",
+    "A postoperative wound becomes infected within 48 hours and drains pus. Which lecture pathogen is strongly associated?": "Skin-carried S. aureus is the classic cause of pus-draining surgical wound infections.",
+    "A patient has pneumonia complicated by empyema plus bacteremia and endocarditis. Which pathogen can connect the findings?": "S. aureus spreads through the blood and seeds lungs and valves, causing all of these.",
+    "Which is an oral MRSA option from the lecture?": "MRSA is resistant to beta-lactams, but TMP-SMX still works orally.",
+    "Which species commonly causes IV-catheter infection?": "S. epidermidis lives on skin and forms biofilms on plastic catheters.",
+    "A woman has a UTI caused by a coagulase-negative Staphylococcus. Which species fits?": "S. saprophyticus is the coagulase-negative staph that causes UTIs in young women.",
+    "What organism is another name for Group A Streptococcus?": "Group A strep is Streptococcus pyogenes (pyo = pus).",
+    "A child has bacterial pharyngitis and later develops rheumatic fever. Which organism links them?": "Antibodies against Group A strep cross-react with heart tissue, causing rheumatic fever.",
+    "What is the drug of choice for strep throat?": "Group A strep has never developed penicillin resistance, so penicillin is first-line.",
+    "A patient with a true penicillin contraindication has GAS pharyngitis. Which treatment is preferred in the lecture?": "Macrolides or clindamycin cover Group A strep without being beta-lactams.",
+    "How does S. pneumoniae appear on Gram stain?": "Pneumococcus is a lancet-shaped gram-positive pair with a capsule that resists phagocytosis.",
+    "A child has otitis media and an adult contact has classic bacterial pneumonia. Which shared pathogen is common?": "Pneumococcus is the top cause of both otitis media and community pneumonia.",
+    "Which anatomy-related risk strongly predisposes to pneumococcal infection?": "The spleen clears encapsulated bacteria, so without it pneumococcus spreads unchecked.",
+    "An asplenic smoker with COPD recently had influenza. Which vaccine-preventable pathogen is especially concerning?": "Asplenia, lung disease and recent flu all raise risk of invasive pneumococcal disease.",
+    "What rash suggests meningococcal disease?": "Meningococcal endotoxin damages small vessels, causing petechiae that don't blanch.",
+    "A patient has sudden fever, headache, neck stiffness, and a nonblanching purpuric rash. What is most likely?": "Meningitis signs plus a purpuric rash is classic N. meningitidis.",
+    "Which antibiotic class is preferred for N. meningitidis?": "Ceftriaxone reaches the CSF well and kills meningococcus.",
+    "Which pathogen causes gonorrhea?": "N. gonorrhoeae is the gram-negative diplococcus that causes gonorrhea.",
+    "What is first-line management for most acute diarrhea?": "Most diarrhea clears in a week, so the main job is replacing fluid.",
+    "A high-risk patient has severe presumed bacterial diarrhea. Which general lecture options may be considered?": "Cipro and azithro cover the common bacterial causes of severe diarrhea.",
+    "A patient has diarrhea after antibiotics and hospitalization two months ago. Which stool target is specified?": "Recent antibiotics and hospital stays let C. diff overgrow, so test for it.",
+    "Why are multiple stool O&P specimens recommended?": "Parasites aren't in every stool, so one negative sample can miss them.",
+    "A stool isolate is S. enteritidis after undercooked eggs. Which category is it?": "S. enteritidis from eggs causes ordinary gastroenteritis, not typhoid.",
+    "What is the drug of choice for typhoid fever?": "Ceftriaxone covers Salmonella typhi, which is often resistant to older drugs.",
+    "A traveler has three weeks of 104°F fever, abdominal pain, and rose spots. Which diagnosis and drug fit?": "Long high fever, belly pain and rose spots after travel is typhoid, treated with ceftriaxone.",
+    "Which food is commonly implicated in US nontyphoidal Salmonella outbreaks?": "Salmonella lives in poultry, so eggs are a common source.",
+    "Several people develop gastroenteritis after raw-egg mayonnaise. Which pathogen group fits?": "Raw eggs carry nontyphoidal Salmonella, causing group outbreaks.",
+    "What is the usual nontyphoidal Salmonella treatment?": "It's self-limited, and antibiotics can prolong shedding, so give fluids.",
+    "Which setting can transmit pathogenic E. coli?": "E. coli lives in cattle guts, so petting zoos and farm animals spread it.",
+    "A child develops diarrhea after unpasteurized milk and a petting zoo. Which organism source pattern fits?": "Raw milk and animal contact are classic sources of shiga-toxin E. coli from cattle.",
+    "Which E. coli strain is particularly virulent?": "O157:H7 makes shiga toxin, which can cause bloody diarrhea and HUS.",
+    "Why are antibiotics avoided in pediatric STEC?": "Killing the bacteria releases more shiga toxin, which can trigger HUS.",
+    "Which species cause bacillary dysentery?": "Shigella invades the colon wall, causing bloody dysentery.",
+    "A child has high fever, tenesmus, and mucoid bloody diarrhea. Which pathogen fits?": "Shigella invades the colon lining, causing fever, tenesmus and bloody mucus.",
+    "Why is susceptibility testing important in Shigella?": "Shigella is increasingly resistant, so culture shows which drug will work.",
+    "Which pathogen causes cholera?": "Vibrio cholerae makes a toxin that pours water into the gut.",
+    "A patient develops abrupt painless rice-water diarrhea after contaminated seafood. What is the diagnosis?": "Cholera toxin causes massive painless watery stool that looks like rice water.",
+    "What is the most important cholera treatment?": "Cholera kills by dehydration, so replacing fluid saves lives.",
+    "What kind of pathogen is P. aeruginosa?": "Pseudomonas rarely harms healthy people but attacks the weak and hospitalized.",
+    "An immunocompromised ICU patient with a ventilator develops pneumonia. Which lecture pathogen is frequent?": "Pseudomonas thrives in moist hospital equipment and infects ventilated, weak patients.",
+    "A burn patient develops bacteremia with a gram-negative bacillus. Which opportunist is especially associated?": "Burns destroy the skin barrier, and Pseudomonas readily infects burn wounds.",
+    "What is the common cause of traumatic gas gangrene?": "C. perfringens grows in deep, dead tissue and its toxins destroy muscle and make gas.",
+    "What neuromuscular pattern does tetanus cause?": "Tetanus toxin blocks inhibitory nerves, so muscles spasm and lock.",
+    "After a contaminated wound, a patient develops painful jaw spasm and generalized rigidity. What is likely?": "Lockjaw and rigidity after a dirty wound is tetanus toxin blocking muscle inhibition.",
+    "What is the usual entry site for neonatal tetanus?": "Spores enter through an umbilical stump cut or dressed with unclean material.",
+    "Which product neutralizes unbound tetanus toxin?": "TIG binds toxin still in the blood, but can't undo toxin already in nerves.",
+    "What paralysis pattern does botulinum toxin cause?": "Botulinum toxin blocks acetylcholine release, so muscles go limp.",
+    "A person eats improperly canned food and develops descending weakness with respiratory failure. What fits?": "Canned food lets C. botulinum make toxin, which causes descending flaccid paralysis.",
+    "A patient develops diarrhea after recent broad-spectrum antibiotics. Which pathogen should be tested?": "Antibiotics wipe out normal gut flora, letting C. diff overgrow.",
+    "Which Plasmodium species has the highest mortality?": "P. falciparum infects many red cells and clogs small vessels, causing cerebral malaria.",
+    "Which vector transmits malaria?": "Only female Anopheles mosquitoes take blood meals and carry Plasmodium.",
+    "A traveler wants to avoid the malaria vector’s peak activity. When should outdoor exposure be minimized?": "Anopheles bite from dusk to dawn, so stay inside or covered then.",
+    "Which species has a roughly 72-hour paroxysm?": "P. malariae has a 72-hour cycle (quartan fever); vivax and ovale are 48 hours.",
+    "A traveler has cyclic abrupt chills and high fever followed by profuse sweating. What disease pattern fits?": "Red cells burst in sync, causing cycles of chills, fever and sweats.",
+    "Which drug eliminates liver hypnozoites?": "Primaquine kills the dormant liver forms that other drugs miss.",
+    "A patient with P. vivax improves but remains at risk for relapse. Which drug targets the reservoir?": "Vivax hides dormant in the liver, and only primaquine clears it to prevent relapse.",
+    "Which prophylaxis drug requires G6PD testing?": "Tafenoquine can cause hemolysis in G6PD deficiency, so test first.",
+    "Which form predominates in liquid stool?": "Fast transit doesn't give trophozoites time to encyst, so liquid stool shows trophozoites.",
+    "A formed stool from an asymptomatic chronic carrier is examined. Which E. histolytica form is most likely?": "Slow transit in formed stool lets amebas form cysts, which carriers pass.",
+    "What is the treatment of choice for E. histolytica?": "Metronidazole kills the invasive trophozoites in the gut wall and liver.",
+    "A traveler has blood-and-mucus dysentery with trophozoites. Which drug is chosen?": "Invasive amebic dysentery is treated with metronidazole.",
+    "A backpacker drinks from a cold mountain stream and develops flatulence, steatorrhea, and weight loss. What fits?": "Giardia cysts in stream water coat the small bowel and block fat absorption.",
+    "What is the preferred initial drug for symptomatic Giardia?": "Tinidazole clears Giardia in a single dose.",
+    "One O&P is negative in a classic Giardia case. What should be done?": "Giardia is shed on and off, so repeat samples improve detection.",
+    "A child has intense nighttime perianal itching and household members share bedding. What is likely?": "Pinworm females lay eggs around the anus at night, causing itch, and eggs spread through bedding.",
+    "When should the pinworm tape specimen be collected?": "Eggs are laid overnight, so tape the area first thing in the morning before bathing.",
+    "One child is diagnosed with pinworm. Who should receive treatment?": "Eggs spread easily through the home, so everyone is treated to stop reinfection.",
+    "What is the common name for Ascaris lumbricoides?": "Ascaris is the large roundworm, the biggest human intestinal nematode.",
+    "A patient in a poor-sanitation region ingests eggs in contaminated water. Which helminth fits?": "Ascaris spreads by swallowing eggs from feces-contaminated food or water.",
+    "What symptoms can larval lung migration cause?": "Larvae pass through the lungs on their way to the gut, irritating the airways.",
+    "A child has a heavy large-roundworm burden and colicky pain. What complication is possible?": "A big tangle of worms can physically block the bowel.",
+    "What is the common name for Ancylostoma duodenale?": "Ancylostoma is a hookworm, named for its hooked mouth.",
+    "A barefoot traveler contacts warm, moist, shaded soil contaminated by human feces. Which infection is possible?": "Hookworm larvae in soil burrow through bare skin.",
+    "What is hookworm’s major morbidity?": "Hookworms attach to the gut wall and suck blood, causing slow iron loss.",
+    "A barefoot traveler has ground itch, abdominal symptoms, pallor, edema, and unexplained eosinophilia. What fits?": "Skin entry (ground itch), blood loss (pallor) and eosinophilia from a worm fit hookworm.",
+    "Which drug name is appropriate for hookworm?": "Albendazole kills intestinal worms like hookworm."
+  };
+
   var questionSequence = 0;
   function F(prompt, answer, distractors, explanation) {
     var correct = questionSequence++ % 4;
     var choices = (distractors || []).slice(0, 3);
     while (choices.length < 3) choices.push("Not listed in the lecture");
     choices.splice(correct, 0, answer);
-    return { prompt: prompt, choices: choices, correct: correct, explanation: explanation };
+    return { prompt: prompt, choices: choices, correct: correct, explanation: WHY[prompt] || explanation };
   }
   function C(title, html, tests, apply, highYield) {
     return { title: title, html: html, body: title, tests: tests || [], application: apply, highYield: !!highYield };

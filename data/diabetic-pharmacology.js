@@ -20,11 +20,13 @@
     var pool=["Glucophage","Januvia","Actos","Jardiance","Victoza","Humalog","Tradjenta","Glucotrol"];
     var classes=["Biguanide","Sulfonylurea","GLP-1 receptor agonist","DPP-4 inhibitor","SGLT2 inhibitor","Thiazolidinedione (TZD)","Meglitinide","Alpha-glucosidase inhibitor","Dual GIP/GLP-1 receptor agonist","Rapid-acting insulin","Short-acting insulin","Intermediate-acting insulin","Long-acting basal insulin","Ultra-long-acting basal insulin"];
     var alternatives=classes.filter(function(x){return x!==className;}).slice(0,3);
+    var HOW={"Biguanide":"it lowers glucose output from the liver","Sulfonylurea":"it makes the pancreas release more insulin all day","GLP-1 receptor agonist":"it boosts glucose-dependent insulin release, slows the stomach and cuts appetite","DPP-4 inhibitor":"it slows the breakdown of the body's own GLP-1","SGLT2 inhibitor":"it makes the kidneys spill glucose into the urine","Thiazolidinedione (TZD)":"it makes muscle and fat more sensitive to insulin","Meglitinide":"it triggers a short burst of insulin release with meals","Alpha-glucosidase inhibitor":"it slows carbohydrate breakdown in the gut","Dual GIP/GLP-1 receptor agonist":"it acts on both incretin receptors to boost insulin and cut appetite","Rapid-acting insulin":"it starts working within about 15 minutes to cover meals","Short-acting insulin":"it is regular insulin, starting in about 30 minutes","Intermediate-acting insulin":"it is NPH, lasting about half a day","Long-acting basal insulin":"it gives a steady background level over about a day","Ultra-long-acting basal insulin":"it gives a flat background level lasting over a day"};
+    var why=function(drug){return drug+' is a '+className+(HOW[className]?': '+HOW[className]:'')+'.';};
     return u(title,table(["Generic/formulation","Trade name"],rows),[tag].concat(rows.map(function(row){return tag+':'+row[0];})),rows.map(function(row){
-      if(className==="Meglitinide"||className==="Alpha-glucosidase inhibitor") return q('Which class contains '+row[0]+' ('+row[1]+')?',className,alternatives,'Both names are supplied; recognize the '+className+' class.');
+      if(className==="Meglitinide"||className==="Alpha-glucosidase inhibitor") return q('Which class contains '+row[0]+' ('+row[1]+')?',className,alternatives,why(row[0]));
       var wrong=pool.filter(function(x){return row[1].indexOf(x)<0;}).slice(0,3);
       return q('Which trade name matches '+row[0]+'?',row[1],wrong,row[0]+' is marketed as '+row[1]+'.');
-    }),[q('A prescription lists '+rows[0][0]+' ('+rows[0][1]+'). Which class should you recognize?',className,alternatives,rows[0][0]+' belongs to '+className+'.')]);
+    }),[q('A prescription lists '+rows[0][0]+' ('+rows[0][1]+'). Which class should you recognize?',className,alternatives,why(rows[0][0]))]);
   }
   var ada='<a href="https://doi.org/10.2337/dc26-s009" target="_blank" rel="noopener noreferrer">ADA pharmacologic guidance</a>';
   var tirzepatideLabel='<a href="https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=d2d7da5d-ad07-4228-955f-cf7e355c8cc0" target="_blank" rel="noopener noreferrer">Tirzepatide labeling</a>';

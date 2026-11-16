@@ -312,7 +312,7 @@ window.VACCINE_OBJECTIVES = [
       { title: "General interval principle", body: "Waiting longer between multidose vaccine doses does not reduce efficacy, but giving a dose earlier than the minimum interval or minimum age may interfere with antibody response." }
     ],
     test: [
-      { prompt: "Can recommended live vaccines be administered together at one visit?", choices: ["Yes", "No", "Only with immunoglobulin", "Only during pregnancy"], correct: 0, explanation: "Simultaneous administration is allowed.", card: 0 },
+      { prompt: "Can recommended live vaccines be administered together at one visit?", choices: ["Yes", "No", "Only with immunoglobulin", "Only during pregnancy"], correct: 0, explanation: "Live vaccines given the same day don't interfere with each other; if not, wait 4 weeks.", card: 0 },
       { prompt: "If two live vaccines are not given simultaneously, how long should they be separated?", choices: ["7 days", "14 days", "At least 4 weeks (28 days)", "One year"], correct: 2, explanation: "The lecture's live-vaccine spacing rule is at least 4 weeks.", card: 1 },
       { prompt: "Which pair is the lecture's example for the 4-week rule?", choices: ["MMR and varicella", "Td and Tdap", "PCV20 and PPSV23", "Hepatitis A and rabies"], correct: 0, explanation: "MMR and varicella are the named live-vaccine examples.", card: 1 },
       { prompt: "What is true about extending the interval between multidose vaccines?", choices: ["It requires restarting the series", "It does not diminish efficacy", "It always causes vaccine failure", "It converts active to passive immunity"], correct: 1, explanation: "Waiting longer is acceptable; early dosing is the concern.", card: 2 }
@@ -331,7 +331,7 @@ window.VACCINE_OBJECTIVES = [
     ],
     test: [
       { prompt: "Which position is associated with less fear and pain in children receiving injections?", choices: ["Lying flat", "Sitting upright", "Standing unsupported", "Prone"], correct: 1, explanation: "The lecture cites less fear and pain while sitting upright.", card: 0 },
-      { prompt: "What effect does parent participation have?", choices: ["It increases pain", "It increases child comfort", "It eliminates the need for technique", "It prevents antibody response"], correct: 1, explanation: "Parent participation increases comfort.", card: 0 },
+      { prompt: "What effect does parent participation have?", choices: ["It increases pain", "It increases child comfort", "It eliminates the need for technique", "It prevents antibody response"], correct: 1, explanation: "Holding and comforting the child lowers distress during shots.", card: 0 },
       { prompt: "What should happen after cleaning skin with alcohol?", choices: ["Inject while wet", "Let the skin dry fully", "Wiggle the syringe", "Cool the muscle"], correct: 1, explanation: "Allow the alcohol to dry before injection.", card: 2 },
       { prompt: "How should the needle travel through the skin?", choices: ["Straight in and straight out", "In a circular motion", "With repeated direction changes", "Slowly while wiggling"], correct: 0, explanation: "The deck recommends a straight path without changing direction or wiggling.", card: 2 }
     ],

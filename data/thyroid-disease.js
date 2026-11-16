@@ -1,8 +1,46 @@
 /* Wireman, Thyroid Disease 2026. Disease objectives only; pharmacology remains a separate lecture. */
 (function(){
 "use strict";
+// One-sentence "why" for each question, keyed by prompt.
+var WHY={
+ "What structures form the thyroid’s basic functional units?": "Each follicle is a ring of cells around colloid, where thyroglobulin and iodine are stored to make hormone.",
+ "Which coupling forms T4?": "T4 has four iodines, so it's two DITs (two iodines each) joined.",
+ "Which hormone is more biologically active?": "T3 binds the receptor much more strongly; most T4 is converted to T3 in tissues.",
+ "Which fraction is biologically active?": "Only unbound hormone can enter cells and act; bound hormone is a storage pool.",
+ "What is the usual initial thyroid-function test?": "TSH changes a lot with small thyroid hormone changes, so it's the most sensitive first test.",
+ "Which antibody most strongly supports Graves disease?": "Graves is caused by antibodies that stimulate the TSH receptor, so TRAb is specific.",
+ "What imaging first characterizes a thyroid nodule?": "Ultrasound shows size and features like calcifications that predict cancer risk.",
+ "Where does primary hypothyroidism originate?": "Primary means the thyroid itself fails, so TSH rises.",
+ "What is the commonest cause of primary hypothyroidism in developed iodine-sufficient settings?": "Where iodine is adequate, autoimmune destruction (Hashimoto) is the main cause.",
+ "When should TSH usually be rechecked after a levothyroxine dose change?": "Levothyroxine has a week-long half-life, so it takes 6–8 weeks to reach a new steady state.",
+ "What commonly happens to levothyroxine need during pregnancy?": "Pregnancy raises binding proteins and the fetus needs hormone, so the dose goes up.",
+ "What is the commonest worldwide cause of hypothyroid goiter?": "Without iodine the thyroid can't make hormone, so TSH rises and the gland enlarges.",
+ "What is a common cause of secondary hypothyroidism?": "A pituitary mass can stop TSH production, so the thyroid isn't stimulated.",
+ "What must be checked before levothyroxine in central disease?": "Thyroid hormone speeds cortisol use, so giving it with untreated adrenal failure can cause a crisis.",
+ "What must accompany thyroid hormone until adrenal insufficiency is excluded?": "Thyroid hormone can unmask adrenal failure, so cover with steroids until it's ruled out.",
+ "What is the treatment priority for confirmed congenital hypothyroidism?": "Thyroid hormone is essential for brain development, so delays cause permanent intellectual disability.",
+ "Which cause is especially associated with older women?": "Nodules accumulate with age and some become autonomous, causing toxic MNG.",
+ "Which cardiac complication is important in hyperthyroidism?": "Excess thyroid hormone irritates and speeds the atria, causing AF.",
+ "What RAIU pattern indicates thyroiditis?": "In thyroiditis, stored hormone leaks from damaged cells, so the gland isn't making new hormone and takes up little iodine.",
+ "What provides rapid symptom relief while definitive therapy is planned?": "Beta-blockers quickly blunt the adrenergic symptoms like tremor and tachycardia.",
+ "What drives Graves disease?": "Antibodies switch on the TSH receptor, making the thyroid overproduce hormone.",
+ "What modifiable factor most worsens thyroid eye disease?": "Smoking worsens the orbital inflammation and reduces treatment response.",
+ "What skin finding is characteristic of Graves disease?": "The same antibodies cause fluid and tissue build-up in the shins (pretibial myxedema).",
+ "Which thionamide is generally preferred outside first-trimester pregnancy and storm?": "Methimazole is dosed once daily and has less liver toxicity than PTU.",
+ "What scan pattern indicates toxic multinodular goiter?": "Several nodules each make hormone on their own, so the scan shows multiple hot spots.",
+ "When is surgery favored over RAI for toxic MNG?": "Surgery removes a goiter pressing on the airway or one that might be cancer; RAI can't.",
+ "What is the critical drug sequence?": "Iodine given first becomes raw material for more hormone, so block synthesis first.",
+ "Which antipyretic is preferred in thyroid storm?": "Aspirin displaces thyroid hormone from its binding protein, raising free hormone.",
+ "What treatment is required for a thyroid abscess?": "Antibiotics can't clear a pus collection alone, so it must be drained too.",
+ "Which symptom suggests compressive goiter?": "A large goiter can press on the trachea or esophagus.",
+ "When is RAIU most useful in a thyroid nodule?": "A low TSH suggests a hot nodule, which is rarely cancer and may avoid biopsy.",
+ "Which thyroid cancer is most common?": "Papillary is the most common thyroid cancer and has an excellent prognosis.",
+ "Which cancer characteristically spreads hematogenously?": "Follicular cancer invades blood vessels and spreads to bone and lung; papillary goes to nodes.",
+ "Which tumor marker is central to medullary thyroid cancer?": "Medullary cancer arises from C cells, which make calcitonin.",
+ "Which history raises risk for thyroid lymphoma?": "Chronic lymphocyte inflammation in Hashimoto can turn into lymphoma."
+};
 function q(p,a,w,e){return {prompt:p,choices:[a].concat(w),correct:0,explanation:e};}
-function c(t,h,v,tp,a,w,ap){return {title:t,html:h,coverage:v,test:[q(tp,a,w,a)],apply:[q('Apply this rule in a patient case: '+tp,a,w,a)]};}
+function c(t,h,v,tp,a,w,ap){return {title:t,html:h,coverage:v,test:[q(tp,a,w,WHY[tp]||a)],apply:[q('Apply this rule in a patient case: '+tp,a,w,WHY[tp]||a)]};}
 function s(id,t,d,units){var r={id:id,title:t,description:d,cards:[],test:[],apply:[]};units.forEach(function(x,i){r.cards.push({title:x.title,html:x.html,coverage:x.coverage});['test','apply'].forEach(function(m){x[m].forEach(function(z){z.card=i;r[m].push(z);});});});return r;}
 function ref(u,l){return '<a href="'+u+'" target="_blank" rel="noopener noreferrer">'+l+'</a>';}
 var ata=ref('https://www.thyroid.org/professionals/ata-professional-guidelines/','American Thyroid Association guidelines');

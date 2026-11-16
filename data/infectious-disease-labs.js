@@ -1,6 +1,45 @@
 /* Infectious Disease Labs content derived only from "Infectious Disease Labs.pptx". */
 (function () {
   "use strict";
+  // One-sentence "why" for each question, keyed by prompt.
+  var WHY = {
+    "Candida is present in its usual location without symptoms. Which term best describes it?": "Organisms that normally live on us without causing disease are normal flora.",
+    "Which site is normally sterile according to the lecture?": "Blood should have no organisms, so any growth there is significant.",
+    "A patient feels well after recovering but continues to carry and shed the organism. What is this?": "Shedding the organism without being sick makes the person a carrier.",
+    "An immunocompromised patient develops disease from an organism normally present in the microbiome. How is it classified?": "An organism that only causes disease when defenses are down is opportunistic.",
+    "Which is a testing source named in the lecture?": "Pleural fluid is a body fluid that can be cultured for infection.",
+    "Pneumonia with a pleural collection is being evaluated. Which listed source could be sampled?": "Sampling the pleural fluid can show whether the infection has spread there (empyema).",
+    "A specimen has just been collected. What is the next numbered step in the lecture workflow?": "Staining comes right after collection because it gives the fastest early clue.",
+    "Which step provides early microscopic evidence and broad bacterial grouping?": "A Gram stain is read in minutes and sorts bacteria by shape and wall type.",
+    "At which step are DNA probes, PCR, ELISA, or Western blot used to name the organism?": "These tests pinpoint the exact organism, which is step 4, identification.",
+    "Culture has produced colonies, but the organism is still unknown. What is the next step?": "Growing colonies doesn't name the organism, so identification tests come next.",
+    "A culture identifies a bacterium. What laboratory step most directly guides which antibiotic may work?": "Susceptibility testing shows which antibiotics actually stop the organism's growth.",
+    "When should blood cultures ideally be drawn?": "Antibiotics can kill bacteria in the sample and cause a false-negative culture.",
+    "What liquid begins the wet-prep procedure?": "Saline keeps organisms alive and moving so they can be seen under the microscope.",
+    "A result is needed from a preparation that can be viewed immediately. Which broad approach fits?": "Direct microscopy looks at the specimen right away without waiting for culture.",
+    "What color are gram-positive bacteria?": "Their thick cell wall holds the crystal violet stain, so they stay purple.",
+    "Microscopy shows pink rods. How should they be described?": "Pink means gram-negative (thin wall loses the purple dye) and rods are bacilli.",
+    "Tuberculosis is suspected in a patient. Which stain is most appropriate?": "TB's waxy wall resists the Gram stain but holds acid-fast dye.",
+    "Bright-pink rods are seen against light blue. What additional culture requirement applies?": "Pink rods on acid-fast stain suggest mycobacteria, which need special slow-growth media.",
+    "Visible growth stops at the lowest tested concentration of 2 µg/mL. What does that concentration represent?": "The lowest drug concentration that stops visible growth is the MIC.",
+    "Into which categories is the MIC translated?": "MICs are compared with breakpoints and reported as resistant, intermediate or sensitive.",
+    "A susceptibility report lists several antibiotics with letters R, I, and S. What generated those categories?": "R, I and S come from comparing each drug's MIC with set breakpoints.",
+    "Drug A is R and Drug B is S. Based only on the lecture categories, which is the supported choice?": "S means the drug works at usual doses; R means it won't.",
+    "Which category predicts response at non-life-threatening doses?": "Sensitive means usual, safe doses reach levels that stop the organism.",
+    "Three agents are reported R, I, and S. Which result most directly supports usual effective treatment?": "Only sensitive predicts success at usual doses.",
+    "A labeled pathogen-specific fragment binds its complement in a specimen. What method is being used?": "A DNA probe is a labeled strand that sticks to the matching pathogen sequence.",
+    "What may identify fragments after PCR amplification?": "Electrophoresis sorts the copied DNA by size, and probes confirm the sequence.",
+    "A PCR reaction has produced many copies of the target. What is a next identification method from the lecture?": "Electrophoresis separates the amplified DNA by size to confirm the target.",
+    "During repeated cycles, fluorescence crosses the assay threshold. How is the sample interpreted?": "Fluorescence crossing the threshold means target DNA was amplified, so it's positive.",
+    "Known influenza antigen is mixed with patient serum. What is the test looking for?": "Adding known antigen to serum tests whether the patient made antibodies to it.",
+    "Which antibody rises and falls during the acute phase?": "IgM is made first and fades quickly, so it marks a recent infection.",
+    "A titer remains present beyond resolution after beginning in the acute phase. Which class fits?": "IgG comes later and lasts for years, marking past infection or immunity.",
+    "What is the known reagent in an antigen-detection test?": "A labeled antibody is used to find the pathogen's antigen in the sample.",
+    "A labeled antibody binds antigen in cells from a lesion and produces a detectable signal. What is being detected?": "The labeled antibody lights up when it finds the pathogen's antigen.",
+    "What is ELISA’s role in the lecture?": "ELISA is very sensitive, so it's used to screen and catch every possible case.",
+    "What is Western blot’s role in the lecture?": "Western blot is very specific, so it confirms a positive screening test.",
+    "A blot has colored bands, but they do not match the required disease-specific pattern. What is the result?": "Some bands without the full required pattern can't confirm or exclude, so it's indeterminate."
+  };
 
   var questionSequence = 0;
   function F(prompt, answer, distractors, explanation) {
@@ -8,7 +47,7 @@
     var choices = (distractors || []).slice(0, 3);
     while (choices.length < 3) choices.push("Not supported by the lecture");
     choices.splice(correct, 0, answer);
-    return { prompt: prompt, choices: choices, correct: correct, explanation: explanation };
+    return { prompt: prompt, choices: choices, correct: correct, explanation: WHY[prompt] || explanation };
   }
   function C(title, html, tests, apply, highYield) {
     return { title: title, html: html, body: title, tests: tests || [], application: apply, highYield: !!highYield };

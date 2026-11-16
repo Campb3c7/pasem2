@@ -457,7 +457,7 @@ window.ENDOCRINE_ANATOMY_OBJECTIVES = [
           "GHRH"
         ],
         "correct": 0,
-        "explanation": "Dopamine inhibits prolactin."
+        "explanation": "Dopamine from the hypothalamus keeps prolactin switched off."
       },
       {
         "card": 1,
@@ -469,7 +469,7 @@ window.ENDOCRINE_ANATOMY_OBJECTIVES = [
           "CRH"
         ],
         "correct": 0,
-        "explanation": "Somatostatin inhibits GH."
+        "explanation": "Somatostatin from the hypothalamus turns GH release down."
       },
       {
         "card": 5,
@@ -505,7 +505,7 @@ window.ENDOCRINE_ANATOMY_OBJECTIVES = [
           "GH and prolactin"
         ],
         "correct": 0,
-        "explanation": "FSH/LH regulate reproductive function."
+        "explanation": "FSH drives egg and sperm maturation, and LH drives sex hormone production."
       },
       {
         "card": 5,
