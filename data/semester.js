@@ -432,6 +432,12 @@ window.SEMESTER = {
           title: "Heart Failure",
           description: "Brandell's HF lecture: definitions, staging, HFrEF/HFpEF, GDMT, devices, and acute decompensated HF.",
           objectives: window.HEART_FAILURE_OBJECTIVES || []
+        },
+        {
+          id: "cad-part-1",
+          title: "CAD Part I: Foundations",
+          description: "Stager's foundations deck: definitions, risk factors, how plaque forms and ruptures, supply and demand, symptoms, and the CAD workup from pretest likelihood to cath.",
+          objectives: window.CAD_PART_1_OBJECTIVES || []
         }
       ]
     },
