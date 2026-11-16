@@ -1,0 +1,174 @@
+PHAS 517 Cardiology objectives for Cardio exam 3 (copied from Anna's syllabus, 2026-11-16).
+
+Coronary Artery Disease (CAD) Objectives:
+CAD Part I 
+
+1. Define and differentiate atherosclerotic cardiovascular disease (ASCVD), atherosclerosis, and coronary artery disease (CAD) and identify the major clinical manifestations of atherosclerotic disease.
+2. Describe the pathophysiologic development and progression of atherosclerosis, including endothelial dysfunction, lipid accumulation, inflammation, plaque formation, plaque disruption, and thrombosis.
+3. Identify modifiable and nonmodifiable risk factors for ASCVD and CAD and explain their contributions to the development and progression of atherosclerotic disease.
+4. Explain the relationship between coronary atherosclerosis, myocardial oxygen supply and demand, and myocardial ischemia, including the effects of coronary stenosis, increased myocardial demand, and impaired coronary perfusion.
+5. Differentiate chronic flow-limiting coronary atherosclerosis from acute plaque disruption and thrombosis and explain how these processes contribute to stable ischemic heart disease and acute coronary syndromes.
+6. Identify common and atypical clinical manifestations of myocardial ischemia, including differences in presentation between women and men, and recognize symptoms that may suggest an alternative diagnosis.
+7. Apply clinical history, physical examination, cardiovascular risk factors, and pretest likelihood to assess patients with suspected CAD and determine the need for further diagnostic evaluation.
+8. Describe the indications, clinical applications, limitations, and contraindications of exercise stress testing, pharmacologic stress testing, myocardial perfusion imaging, and stress echocardiography.
+9. Explain the clinical applications, advantages, limitations, and risks of coronary CT angiography (CCTA), coronary artery calcium (CAC) scoring, and invasive coronary angiography.
+10. Interpret basic findings from cardiac diagnostic studies, including stress testing, myocardial perfusion imaging, and coronary angiography, to identify evidence of myocardial ischemia and coronary artery disease.
+
+CAD Part II
+
+1. Differentiate primary and secondary cardiovascular prevention and explain the goals of each in patients at risk for or with established atherosclerotic cardiovascular disease (ASCVD).
+2. Apply appropriate cardiovascular risk assessment strategies in primary care, including identifying patients eligible for PREVENT-ASCVD risk estimation and interpreting 10-year and, when appropriate, 30-year risk.
+3. Recommend evidence-based lifestyle modifications to reduce cardiovascular risk, including dietary changes, physical activity, weight management, and adequate sleep.
+4. Apply current recommendations for lipid management in primary and secondary prevention, including identifying patients who warrant lipid-lowering therapy and selecting appropriate statin intensity.
+5. Identify and recommend strategies to address additional modifiable cardiovascular risk factors, including diabetes, hypertension, obstructive sleep apnea, unhealthy alcohol use, and tobacco use.
+6. Explain the role of aspirin in primary prevention of ASCVD, including patient selection and the importance of balancing cardiovascular benefit against bleeding risk.
+7. Develop an individualized cardiovascular risk-reduction plan using patient history, risk estimates, laboratory findings, comorbidities, and patient-specific factors.
+
+CAD Part III 
+
+1. Describe the clinical presentation of myocardial ischemia, including typical symptoms, anginal equivalents, associated symptoms, and differences in presentation among women, men, and older adults.
+2. Differentiate cardiac from noncardiac causes of chest pain by identifying characteristic clinical features, associated symptoms, and findings that suggest alternative diagnoses.
+3. Compare and contrast the clinical presentations of stable angina, unstable angina, NSTEMI, and STEMI, including their underlying pathophysiology, EKG findings, and cardiac biomarker patterns.
+4. Describe the initial evaluation and management of a patient presenting with suspected acute coronary syndrome, including focused history and physical examination, EKG interpretation, serial high-sensitivity troponin testing, and initial pharmacologic interventions.
+5. Apply validated clinical decision pathways, including the HEART score and HEART Pathway, to risk-stratify patients presenting with acute chest pain and determine appropriate disposition.
+6. Select and interpret appropriate diagnostic testing for patients with suspected CAD, including coronary CT angiography (CCTA), exercise and pharmacologic stress testing, myocardial perfusion imaging, and left heart catheterization, based on clinical presentation and pretest probability.
+7. Compare medical management, percutaneous coronary intervention (PCI), and coronary artery bypass grafting (CABG) with respect to their indications, benefits, and limitations in patients with CAD.
+8. Compare bare-metal stents (BMS) and drug-eluting stents (DES) with respect to their mechanism, efficacy, risk of restenosis and stent thrombosis, follow-up considerations, and role in contemporary PCI.
+9. Recognize complications associated with coronary angiography and PCI, including in-stent thrombosis, restenosis, vascular access-site complications, retroperitoneal hemorrhage, pseudoaneurysm, contrast-associated acute kidney injury, and cholesterol embolization syndrome.
+
+CAD Part IV - ACS
+
+1. Differentiate myocardial ischemia, myocardial injury, and myocardial infarction, including the clinical criteria used to distinguish primary MI, secondary MI, and procedure-related MI.
+2. Identify the major myocardial regions supplied by the LAD, left circumflex, and right coronary arteries, and predict the likely region of myocardial infarction associated with obstruction of each vessel.
+3. Describe the initial pharmacologic management of patients with suspected acute coronary syndrome, including the roles of aspirin, nitroglycerin, beta-blockers, oxygen, and analgesics.
+4. Develop an appropriate management plan for patients with unstable angina and NSTEMI, including antianginal therapy, dual antiplatelet therapy, anticoagulation, risk stratification, and selection of an invasive management strategy.
+5. Apply the TIMI risk score to risk-stratify patients with unstable angina or NSTEMI and guide decisions regarding the timing of an invasive management strategy.
+6. Describe the management of STEMI, including the selection of reperfusion therapy, indications for primary PCI versus fibrinolytic therapy, and recommended treatment time targets.
+7. Recognize special clinical presentations and complications of ACS, including MINOCA, right ventricular infarction, atypical presentations in older adults, and vasospastic angina.
+8. Identify major complications of acute myocardial infarction, including functional, mechanical, and electrical complications, and recognize their characteristic clinical manifestations.
+9. Describe the immediate post-MI and post-PCI management of patients, including monitoring for complications, assessment of vascular access sites, and discharge planning.
+10. Develop a secondary prevention plan following myocardial infarction, including pharmacologic therapy, lifestyle modification, lipid management, smoking cessation, and cardiac rehabilitation.
+
+CAD Part V - Pharmacology
+
+1. Explain the pharmacologic goals of treatment for chronic coronary artery disease, including modification of cardiovascular risk factors and restoration of the balance between myocardial oxygen supply and demand.
+2. Describe the mechanisms of action, clinical indications, adverse effects, contraindications, and monitoring parameters of nitrates used in the treatment of stable angina and acute coronary syndromes.
+3. Describe the mechanisms of action, clinical indications, adverse effects, contraindications, and monitoring parameters of beta-blockers used in the treatment of stable angina and acute coronary syndromes.
+4. Differentiate dihydropyridine and non-dihydropyridine calcium channel blockers based on their mechanisms of action, clinical indications, adverse effects, and contraindications in patients with coronary artery disease.
+5. Explain the mechanism of action, clinical indications, adverse effects, and important drug interactions of ranolazine in the management of chronic stable angina.
+6. Describe the pharmacologic management of acute coronary syndromes, including the roles of nitrates, beta-blockers, ACE inhibitors/ARBs, statins, supplemental oxygen, and opioid analgesics.
+7. Differentiate antiplatelet agents, anticoagulants, and fibrinolytic agents based on their mechanisms of action, clinical indications, and roles in the management of acute coronary syndromes.
+8. Compare the clinical indications, mechanisms of action, dosing considerations, adverse effects, and contraindications of aspirin and P2Y₁₂ inhibitors (clopidogrel, prasugrel, and ticagrelor) used in the management of ACS and secondary prevention.
+9. Describe the role of anticoagulant and fibrinolytic therapy in ACS, including medication selection based on clinical presentation and reperfusion strategy.
+
+ 
+Cardiac Testing Objectives:
+Stress Testing:
+
+1. Recall the indications for ordering a stress test
+2. Recall the testing protocol for an exercise stress test
+3. Recall how to calculate a Duke treadmill score
+4. Recall the different stress testing modalities
+5. Recognize the contraindications to each stress testing modality
+6. Recognize the side effects of each pharmacologic agent
+7. Explain the concepts of myocardial perfusion imaging and how it predicts coronary ischemia
+8. Explain the concepts of a PET myocardial viability scan
+9. Recognize when to order each stress testing modality
+
+Echocardiography and Telemetry:
+
+1. Recall the difference between transthoracic and transesophageal echocardiogram
+2. Recognize when to order an echo
+3. List the structures evaluated during an echocardiogram
+4. Recognize when to order a TEE vs TTE
+5. Recall which valve is best visualized during a TEE
+6. Recall the contraindications to performing a TEE
+7. Recall the possible complications of at TEE
+8. Explain the basic concepts of a MUGA scan
+9. Recognize when to order telemetry
+10. Recognize when to order an implantable monitoring device
+
+Coronary Angiogram:
+
+1. Recall the gold standard for diagnosing coronary atherosclerosis
+2. Describe what a coronary angiogram is
+3. Recall indications for a coronary angiogram
+4. Recall contraindications for coronary angiogram
+5. Recall the medications that are held prior to and following a coronary angiogram
+6. Recall the possible complications during a coronary angiogram
+7. List the two most common access sites
+8. Describe the pre-op prep for patients with a contrast dye allergy
+9. Explain the concepts of a coronary CT angiogram
+10. Explain the concepts of coronary calcium scoring and how it is interpreted
+
+ 
+Cardiovascular Surgery Objectives:
+
+1. Identify the three invasive interventions for CAD
+2. Identify the criterion on which the SYNTAX Scoring systems are based
+3. Determine which patients need an elective or emergent CABG
+4. Describe the basic components and functions of the CPB
+5. Name the primary electrolyte in cardioplegia
+6. Associate the blood vessels used as conduits in CABG in order of patency rates
+7. Identify the biggest risks for a poor outcome after CABG
+8. Assess and manage the potential complications following a CABG Surgery.
+9. Utilize the various monitoring tools available in the ICU to diagnose the post-operative complication.
+
+ 
+Heart Failure Objectives:
+
+1. Recall basic definitions of how heart failure is defined.
+2. Recognize heart failure epidemiology, risk factors, and population associations given a question stem. 
+3. Describe the impact of social determinants of health on likelihood to develop heart failure. 
+4. Describe the pathophysiology at play for developing heart failure and be able to summarize their impacts on the diagnosis.
+   1. Systolic dysfunction vs Diastolic dysfunction
+   2. Cardiac Output and Cardiac Reserve
+   3. End Diastolic Volume, Preload, Stroke Volume
+   4. Frank Starling Mechanism
+   5. Cardiac Output Model: heart rate and stroke volume
+      1. Including the feedback impacts of: Sympathetic NS, Parasympathetic NS, Contractility, Preload, Afterload.
+5. Compare and Contrast the compensatory mechanisms discussed in lecture, what causes them to turn on, what do they do, how do they interact with other compensatory mechanisms, what are their benefits, what are their downsides?
+                a.    Sympathetic Nervous System Activity
+                b.    Renin Angiotensin Aldosterone Mechanism
+                c.    Antidiuretic Hormone
+                d.    Natriuretic Peptides
+                e.    Remodeling
+6. Describe the underlying pathophysiology of systolic vs diastolic dysfunction and its effect on the ejection fraction and cardiac output.
+7. Describe the pathophysiology of right vs left ventricular dysfunction, the symptoms associated with each and the common causes of each. 
+8. Compare and Contrast HF with preserved versus reduced ejection fraction.  Given a clinical vignette be able to determine the most likely diagnosis; preserved or reduced heart failure.
+9. Recall the purpose of the 3 separate classification categories (Framingham Heart Study Criteria, NYHA Functional Classification, AHA Heart Failure Stages).
+   1. Apply the NYHA Functional Classification and AHA Heart Failure Stages to a patient scenario.
+10. Apply the appropriate additional testing in the workup of heart failure (EKG, CXR, echo, basic labs, proBNP, troponins, stress testing, stress echo, cardiac MRI, biopsy, and genetic testing). 
+   1. Understand their function and purpose.
+11. Educate a patient on the appropriate lifestyle and non-pharmacologic treatment options for heart failure. 
+12. Provide education for a patient regarding the role and impact of Cardiac Rehab on a Heart Failure patient.
+13. Heart Failure Pharm:
+   1.  Ace Inhibitors: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   2. ARBs: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   3. Bidil: generic name, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications.
+   4. Beta Blockers: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   5. Loop Diuretics: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   6. Thiazide/Thiazide Like Diuretics: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   7. Aldosterone Antagonists:  brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   8. Sodium Channel Inhibitors: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects.
+   9. ANRI: brand name/generic, MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   10. Digoxin: MOA, indications for use, effects on the pathophysiology of HF, side effects, contraindications, and heart failure research support.
+   11. Ivabradine: MOA, effects on the pathophysiology of HF, side effects, and heart failure research support.
+   12. SGLT2i: brand name/generic, proposed MOA, indications for use, effects on the pathophysiology of HF, side effects, and heart failure research support.
+14. Analyze a patient scenario and apply the appropriate treatment protocol (lifestyle modifications, interventions, medications, add on medications).
+   1.  Apply the treatment protocols recommended by the AHA for heart failure based on Stage and type (HFpEF vs HFrEF). 
+15. Recall the appropriate strategies to prevent/manage comorbidities that may be present in a patient with in heart failure.
+16. Acute/Decompensated Heart Failure:
+   1. Recall the risk factors that are known to precipitate acute heart failure.
+   2. Recognize the presentation of a patient in acute heart failure based on signs and symptoms.
+   3. Compare diagnostic tests that can be used to evaluate a patient for acute heart failure and understand their indications.
+   4. Recall the indications for endotracheal intubation for patient experiencing acute decompensated heart failure.
+   5. Recall the indications, benefits and contraindications to non-invasive ventilation treatment for patients with acute heart failure.
+   6. Medication Treatment:
+      1. Vasodilator: nitroglycerin, MOA, side effects, and contraindications.
+      2. Loop diuretics: brand/generic, MOA, typical acute dosage recommendations.
+      3. Provide recommendations on which medications are contraindicated during the acute management of decompensated heart failure.
+      4. Apply the proper order protocol for inpatient admission and management of a decompensated heart failure patient.
+      5. Apply the proper discharge planning and order set for a decompensated heart failure patient that has recovered and is ready for discharge. 
+
+ 

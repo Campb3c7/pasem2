@@ -408,6 +408,22 @@ window.SEMESTER = {
       ]
     },
     {
+      id: "cardio-part-3",
+      title: "Cardio Part 3",
+      short: "CARDIO 3",
+      icon: "❤️‍🩹",
+      color: "rose",
+      description: "Cardiology exam 3: cardiac testing, cardiac surgery, heart failure, and coronary artery disease. Lectures are added here one at a time.",
+      lectures: [
+        {
+          id: "cardiac-testing",
+          title: "Cardiac Testing",
+          description: "Stress test indications, Bruce protocol and endpoints, exercise contraindications, Duke treadmill score, MPI, vasodilator and dobutamine agents with contraindications and side effects, stress echo, PET viability, choosing a test, TTE views, TEE indications and risks, MUGA, rhythm monitors, angiogram indications, holds and contrast prep, access and post-op care, complications, right heart cath, CCTA, and calcium scoring.",
+          objectives: window.CARDIAC_TESTING_OBJECTIVES || []
+        }
+      ]
+    },
+    {
       id: "radiology",
       title: "Radiology",
       short: "RADIOLOGY",
