@@ -23,7 +23,7 @@ precedent), Learn/Test/Apply/Recall only unless she asks for more tools.
 | 5b | Vascular Surgery (`vascular-surgery`), added 2026-11-06 at Anna's request | none in `objectives.txt` | `vascular-surgery.pptx` (Gardner, 50 slides; uploaded as "Vascular PP 2026SV") | Not the CV Surgery block (that one is CABG). Sections follow the deck outline. Listed right after Vascular Disease Part 2. |
 | 6 | Shock, Pressors & Fluid Management (`shock-pressors-fluids`) | 20 objectives | `shock-pressors-fluids.pptx` (112 slides; added 2026-11-04) | |
 | 7 | Arrhythmia Pharmacology (`arrhythmia-pharmacology`) | 11 objectives | `arrhythmia-pharmacology.pptx` (Scanlon, 62 slides; added 2026-11-04) | Confirms the adenosine 12 mg, amiodarone 150 mg and IV metoprolol 5 mg values used in Arrhythmias. |
-| 8 | Cardiovascular Surgery | 9 objectives | **missing** | |
+| 8 | Cardiovascular Surgery | 9 objectives | moved to Cardio Part 3 | Gardner's "Intro to Cardiac Surgery" arrived 2026-11-16 and is taught after the Cardio 2 B exam, so it is built as Cardio Part 3's Cardiac Surgery lecture (`source-material/cardio-part-3/`). |
 
 Not in Cardio Part 2: `Intro to Radiology II` is the Radiology course's Part Two
 (ultrasound, MRI, nuclear medicine). Its deck is in `source-material/radiology-part-2/`.

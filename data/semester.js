@@ -420,6 +420,12 @@ window.SEMESTER = {
           title: "Cardiac Testing",
           description: "Stress test indications, Bruce protocol and endpoints, exercise contraindications, Duke treadmill score, MPI, vasodilator and dobutamine agents with contraindications and side effects, stress echo, PET viability, choosing a test, TTE views, TEE indications and risks, MUGA, rhythm monitors, angiogram indications, holds and contrast prep, access and post-op care, complications, right heart cath, CCTA, and calcium scoring.",
           objectives: window.CARDIAC_TESTING_OBJECTIVES || []
+        },
+        {
+          id: "cardiac-surgery",
+          title: "Cardiac Surgery",
+          description: "Surgery history, the three invasive interventions, risk tools, SYNTAX I and II with PCI vs CABG, elective and emergent CABG indications, the bypass machine and hypothermia, potassium cardioplegia, conduits by patency, outcomes and risk predictors, wound, anesthesia, cardiac, pulmonary and renal complications, ICU monitors, and the three 8-hours-post-CABG calls.",
+          objectives: window.CARDIAC_SURGERY_OBJECTIVES || []
         }
       ]
     },
