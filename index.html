@@ -151,69 +151,71 @@
           </button>
         </div>
       </div>
-      <div class="course-tools" data-course-tools="ekg" hidden>
-        <button class="lh-start" id="ekg-learn-launch" type="button">
-          <span class="lh-start-kicker">Start here</span>
-          <strong>Learn EKG from zero</strong>
-          <span class="lh-start-copy">Short lessons that teach it properly before the practice tools: the heart's wiring, what each wave means, measuring, the five questions for every strip, then each rhythm family and the 12-lead.</span>
-          <span class="lh-start-status" id="ekg-learn-status"></span>
-        </button>
-        <p class="eyebrow">EKG practice exam</p>
-        <button class="walkthrough-launch rhythms-launch mx-launch" id="ekg-mock-launch" type="button">
-          <span class="walkthrough-launch-icon">✎</span>
-          <span><strong>Practice exam: Friday's format</strong><small>15 multiple-choice questions, 20 rhythm strips and 5 12-lead EKGs, each strip and 12-lead read step by step to a final interpretation. 110-minute timer, calculator, score by part and full review. Practice one part with answers as you go, or review the class polls.</small></span>
-          <span aria-hidden="true">›</span>
-        </button>
-        <p class="eyebrow">EKG Examplify questions</p>
-        <button class="walkthrough-launch rhythms-launch mx-launch" id="ekg-examplify-launch" type="button">
-          <span class="walkthrough-launch-icon">✔</span>
-          <span><strong>Examplify questions</strong><small>Real exam-style 12-lead and strip questions: look at the EKG, pick the interpretation, see the answer and why. <span id="ekg-examplify-status"></span></small></span>
-          <span aria-hidden="true">›</span>
-        </button>
-        <p class="eyebrow">EKG flashcards</p>
-        <button class="walkthrough-launch rhythms-launch fc-launch" id="ekg-flash-launch" type="button">
-          <span class="walkthrough-launch-icon">❏</span>
-          <span><strong>Flashcards: Learn</strong><small>16 term-and-definition sets, one per objective, studied like Quizlet Learn: 4 choices, short rounds, missed cards come back until mastered. Answer with the term, the definition, or both; study one set or all of them.</small></span>
-          <span aria-hidden="true">›</span>
-        </button>
-        <p class="eyebrow">EKG practice tools</p>
-        <div class="course-tools-grid">
-          <button class="walkthrough-launch rhythms-launch" id="ekg-ladder-launch" type="button">
-            <span class="walkthrough-launch-icon">☰</span>
-            <span><strong>Rhythm ladder</strong><small>"Which rhythm is it?" on fresh strips, one group at a time: every answer choice comes from the group you are in. Small sets first, then the whole group, then everything mixed. Misses come back.</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-workbook-launch" type="button">
-            <span class="walkthrough-launch-icon">▤</span>
-            <span><strong>Workbook strips</strong><small>All 174 real strips from your Independent EKG Workbook with the answer key: read each one step by step, quick-name them, or browse by rhythm</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-rhythms-launch" type="button">
-            <span class="walkthrough-launch-icon">♥</span>
-            <span><strong>Rhythm trainer</strong><small>Every objective 8 and 9 rhythm on fresh 6-second strips, including WAP, junctional brady/accelerated/tach, AIVR and PJCs: learn by group, name it, or read it step by step</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-compare-launch" type="button">
-            <span class="walkthrough-launch-icon">⇄</span>
-            <span><strong>Look-alikes &amp; study guide</strong><small>WAP vs MAT, junctional vs ventricular, Mobitz I vs II, PAC vs PJC vs PVC and more side by side, plus your Rhythm Study Guide chart to drill</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-axis-launch" type="button">
-            <span class="walkthrough-launch-icon">✣</span>
-            <span><strong>Axis trainer</strong><small>Read the axis from lead I and aVF (or all six limb leads), see it on the hexaxial wheel, and drill what shifts it</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-mi-launch" type="button">
-            <span class="walkthrough-launch-icon">◎</span>
-            <span><strong>MI locator</strong><small>The 12-lead map (SAL), then locate STEMIs on drawn 12-leads (wall, artery, reciprocal leads), check STEMI criteria by measuring, and tell ischemia from injury from infarction</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-          <button class="walkthrough-launch rhythms-launch" id="ekg-patterns-launch" type="button">
-            <span class="walkthrough-launch-icon">≋</span>
-            <span><strong>Pattern gallery</strong><small>Potassium and calcium, atrial enlargement, RVH/LVH and strain, RBBB/LBBB, hemiblocks, delta waves, pericarditis, effusion, PE, pacers, long QT and Q waves: drawn, explained, and quizzed</small></span>
-            <span aria-hidden="true">›</span>
-          </button>
-        </div>
+      <div class="course-tools ekg-hub" data-course-tools="ekg" hidden>
+        <section class="ekg-hub-group">
+          <h3 class="ekg-hub-head"><span>1</span>Learn</h3>
+          <div class="ekg-hub-row">
+            <button class="ekg-hub-card ekg-hub-gold" id="ekg-learn-launch" type="button">
+              <span class="ekg-hub-icon">★</span>
+              <span><strong>Start here: Learn EKG</strong><small>Short visual lessons, from the heart's wiring to the 12-lead.</small><small class="ekg-hub-status" id="ekg-learn-status"></small></span>
+            </button>
+            <button class="ekg-hub-card ekg-hub-blue" id="ekg-flash-launch" type="button">
+              <span class="ekg-hub-icon">❏</span>
+              <span><strong>Flashcards</strong><small>16 sets, one per objective, studied like Quizlet Learn.</small></span>
+            </button>
+          </div>
+        </section>
+        <section class="ekg-hub-group">
+          <h3 class="ekg-hub-head"><span>2</span>Practice</h3>
+          <p class="ekg-hub-sub">Rhythm strips</p>
+          <div class="ekg-hub-row">
+            <button class="ekg-hub-card" id="ekg-ladder-launch" type="button">
+              <span class="ekg-hub-icon">☰</span>
+              <span><strong>Rhythm ladder</strong><small>"Which rhythm is it?" one group at a time.</small></span>
+            </button>
+            <button class="ekg-hub-card" id="ekg-workbook-launch" type="button">
+              <span class="ekg-hub-icon">▤</span>
+              <span><strong>Workbook strips</strong><small>All 174 real workbook strips with the answer key.</small></span>
+            </button>
+            <button class="ekg-hub-card" id="ekg-rhythms-launch" type="button">
+              <span class="ekg-hub-icon">♥</span>
+              <span><strong>Rhythm trainer</strong><small>Every rhythm on fresh strips: learn, name, read.</small></span>
+            </button>
+            <button class="ekg-hub-card" id="ekg-compare-launch" type="button">
+              <span class="ekg-hub-icon">⇄</span>
+              <span><strong>Look-alikes &amp; study guide</strong><small>Side-by-side look-alikes and your study guide chart.</small></span>
+            </button>
+          </div>
+          <p class="ekg-hub-sub">12-lead</p>
+          <div class="ekg-hub-row ekg-hub-three">
+            <button class="ekg-hub-card" id="ekg-axis-launch" type="button">
+              <span class="ekg-hub-icon">✣</span>
+              <span><strong>Axis trainer</strong><small>Lead I + aVF, the hexaxial wheel, what shifts it.</small></span>
+            </button>
+            <button class="ekg-hub-card" id="ekg-mi-launch" type="button">
+              <span class="ekg-hub-icon">◎</span>
+              <span><strong>MI locator</strong><small>Find the wall, artery and reciprocal leads.</small></span>
+            </button>
+            <button class="ekg-hub-card" id="ekg-patterns-launch" type="button">
+              <span class="ekg-hub-icon">≋</span>
+              <span><strong>Pattern gallery</strong><small>K+/Ca2+, LVH, bundle branch blocks, pericarditis and more.</small></span>
+            </button>
+          </div>
+        </section>
+        <section class="ekg-hub-group">
+          <h3 class="ekg-hub-head"><span>3</span>Exam prep <em>Fri 11/20</em></h3>
+          <div class="ekg-hub-row">
+            <button class="ekg-hub-card ekg-hub-green" id="ekg-mock-launch" type="button">
+              <span class="ekg-hub-icon">✎</span>
+              <span><strong>Practice exam</strong><small>Friday's format: 15 MCQs, 20 strips, 5 12-leads, 110-minute timer.</small></span>
+            </button>
+            <button class="ekg-hub-card ekg-hub-green" id="ekg-examplify-launch" type="button">
+              <span class="ekg-hub-icon">✔</span>
+              <span><strong>Examplify questions</strong><small>Exam-style EKGs: pick the interpretation, see why. <span id="ekg-examplify-status"></span></small></span>
+            </button>
+          </div>
+        </section>
+        <h3 class="ekg-hub-head ekg-hub-lecture"><span>4</span>Lecture: Learn, Test, Apply, Recall</h3>
       </div>
       <div id="study-content"></div>
     </section>
