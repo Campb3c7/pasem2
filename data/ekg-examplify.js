@@ -79,7 +79,11 @@
       Q("exq-17", "Regular rhythm strip with an upright P wave before every narrow QRS", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm",
         ["Sinus bradycardia", "Sinus tachycardia", "Sinus arrhythmia"],
-        "It is regular, every QRS is narrow and has an upright P before it with a normal PR, and the rate falls between 60 and 100.")
+        "It is regular, every QRS is narrow and has an upright P before it with a normal PR, and the rate falls between 60 and 100."),
+      Q("exq-18", "Short strip of fast, regular, wide, identical complexes with no P waves", "What is the rhythm of this EKG strip?",
+        "Ventricular tachycardia",
+        ["Ventricular fibrillation", "Torsades de pointes", "Accelerated idioventricular rhythm"],
+        "Wide, identical complexes march in fast and regular with no P waves; they keep one shape (not twisting like torsades or chaotic like VF) and the rate is well over 100 (too fast for AIVR).")
     ]
   };
 }());
