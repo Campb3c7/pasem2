@@ -159,7 +159,11 @@
       Q("exq-37", "12-lead EKG with a fast, regular, narrow rhythm and inverted P waves in the inferior leads", "What is the rhythm of this 12 lead EKG?",
         "Junctional tachycardia",
         ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
-        "The narrow QRSs are regular and over 100, and the P waves are inverted in II, III and aVF (retrograde from the AV junction) instead of upright like a sinus P.")
+        "The narrow QRSs are regular and over 100, and the P waves are inverted in II, III and aVF (retrograde from the AV junction) instead of upright like a sinus P."),
+      Q("exq-38", "12-lead EKG with inferior ST elevation, a PR that lengthens beat to beat and a dropped QRS", "What is the rhythm of this 12 lead EKG?",
+        "Second degree AV block, type I",
+        ["Second degree AV block, type II", "Third degree AV block", "First degree AV block"],
+        "In the lead II strip the PR gets longer with each beat until a P wave has no QRS after it, then resets, which is Wenckebach (here alongside an inferior STEMI, since the RCA feeds the AV node).")
     ]
   };
 }());
