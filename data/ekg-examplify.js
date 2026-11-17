@@ -115,7 +115,11 @@
       Q("exq-26", "Fast sinus strip interrupted by two tall, wide early beats of the same shape", "What is the rhythm of this EKG strip?",
         "Sinus tachycardia with two unifocal PVCs",
         ["Sinus tachycardia with two multifocal PVCs", "Sinus tachycardia with two PACs", "Normal sinus rhythm with two unifocal PVCs"],
-        "The underlying sinus beats run faster than 100, and two early beats are wide with no P wave and the same shape as each other, so they are unifocal PVCs.")
+        "The underlying sinus beats run faster than 100, and two early beats are wide with no P wave and the same shape as each other, so they are unifocal PVCs."),
+      Q("exq-27", "Slow strip with more P waves than QRS complexes and P waves landing at random spots relative to the QRS", "What is the rhythm of this EKG strip?",
+        "Third degree AV block",
+        ["Second degree AV block, type II", "Second degree AV block, type I (Wenckebach)", "Sinus bradycardia"],
+        "There are more P waves than QRSs, the P waves keep their own steady pace and fall anywhere (even on the T wave), and the PR never repeats, so atria and ventricles beat independently.")
     ]
   };
 }());
