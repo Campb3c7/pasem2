@@ -267,7 +267,11 @@
       Q("exq-64", "Irregular strip of tall narrow complexes with a fine, wavy baseline and no P waves", "What is the rhythm of this EKG strip?",
         "Atrial fibrillation",
         ["Atrial flutter", "Multifocal atrial tachycardia", "Sinus tachycardia"],
-        "The tall narrow QRSs come at uneven intervals with only a fine, irregular quiver between them and no P waves, which is AF rather than flutter's regular sawtooth or MAT's real P waves.")
+        "The tall narrow QRSs come at uneven intervals with only a fine, irregular quiver between them and no P waves, which is AF rather than flutter's regular sawtooth or MAT's real P waves."),
+      Q("exq-65", "Fast, regular strip of narrow complexes with a small P wave before each", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia",
+        ["Junctional tachycardia", "Atrial flutter", "Normal sinus rhythm"],
+        "About 12 regular, narrow beats fit in 6 seconds (around 120) and each has a small upright P in front, so it is a sinus rhythm over 100.")
     ]
   };
 }());
