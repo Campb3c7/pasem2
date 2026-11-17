@@ -87,7 +87,11 @@
       Q("exq-19", "Slow, regular strip of wide complexes with no P waves", "What is the rhythm of this EKG strip?",
         "Idioventricular rhythm",
         ["Accelerated idioventricular rhythm", "Junctional escape rhythm", "Third degree AV block"],
-        "The QRS is wide with no P waves anywhere and the rate is only 20-40, so the ventricles are pacing themselves (faster than 40 would be accelerated, narrow would be junctional).")
+        "The QRS is wide with no P waves anywhere and the rate is only 20-40, so the ventricles are pacing themselves (faster than 40 would be accelerated, narrow would be junctional)."),
+      Q("exq-20", "Strip with identical P waves before every narrow QRS but gaps between beats that lengthen and shorten", "What is the rhythm of this EKG strip?",
+        "Sinus dysrhythmia/arrhythmia",
+        ["Sinus arrest", "Wandering atrial pacemaker", "Second degree AV block type I (Wenckebach)"],
+        "Every beat has the same upright P and normal PR, but the gaps between beats gradually stretch and shrink (with breathing) instead of dropping beats or changing P shapes.")
     ]
   };
 }());
