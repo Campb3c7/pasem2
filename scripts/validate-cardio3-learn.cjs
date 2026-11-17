@@ -7,7 +7,7 @@ const root = path.join(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const LECTURES = { "cardiac-surgery": ["cardiac-surgery.js", "CARDIAC_SURGERY_OBJECTIVES"], "cardiac-testing": ["cardiac-testing.js", "CARDIAC_TESTING_OBJECTIVES"], "heart-failure": ["heart-failure.js", "HEART_FAILURE_OBJECTIVES"], "cad-part-1": ["cad-part-1.js", "CAD_PART_1_OBJECTIVES"], "cad-part-2": ["cad-part-2.js", "CAD_PART_2_OBJECTIVES"], "cad-part-3": ["cad-part-3.js", "CAD_PART_3_OBJECTIVES"] };
 const FIG = new Set(["coronary", "artery", "cpb", "thermo", "bars", "line", "harvest", "decide", "monitor", "eq", "flow", "tiles", "cycle", "grid", "quad",
-  "vent", "starling", "perfusion", "bruce", "mphr", "duke", "rhc", "echo", "scale", "cascade", "trop", "heart", "risk", "stairs", "probe", "access"]);
+  "vent", "starling", "perfusion", "bruce", "mphr", "duke", "rhc", "echo", "scale", "cascade", "trop", "heart", "risk", "stairs", "probe", "access", "stseg", "groin"]);
 const SPOTS = new Set(["lm", "ladp", "ladm", "lcx", "rca", "rcam", "pda"]);
 const errors = [];
 let total = { paths: 0, lessons: 0, pages: 0, checks: 0 };

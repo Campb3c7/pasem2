@@ -338,7 +338,173 @@
       }).join("") + '</div>';
   }
 
-  var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure };
+  // ==== Cardiac Testing figures ============================================================
+  // bruce {hi: stage}  the Bruce treadmill protocol as a staircase.
+  var BRUCE = [[1, "10%", "1.7", "4.5"], [2, "12%", "2.5", "7"], [3, "14%", "3.4", "10"], [4, "16%", "4.2", "13"]];
+  function bruceFigure(f) {
+    var s = '<svg class="c3-svg" viewBox="0 0 360 252" role="img" aria-label="Bruce protocol stages">', x0 = 34, w = 74, y0 = 206;
+    s += '<line class="sx-axis" x1="' + x0 + '" y1="' + y0 + '" x2="' + (x0 + w * 4 + 8) + '" y2="' + y0 + '"/>';
+    BRUCE.forEach(function (b, i) {
+      var h = 58 + i * 28, x = x0 + i * w, on = f.hi === b[0];
+      s += '<rect class="c3-step' + (on ? " on" : "") + '" x="' + x + '" y="' + (y0 - h) + '" width="' + w + '" height="' + h + '" rx="4"/>' +
+        '<text class="sx-lbl sx-lbl-strong' + (on ? " sx-gold" : "") + '" x="' + (x + w / 2) + '" y="' + (y0 - h + 16) + '" text-anchor="middle">Stage ' + b[0] + '</text>' +
+        '<text class="sx-lbl" x="' + (x + w / 2) + '" y="' + (y0 - h + 30) + '" text-anchor="middle">' + b[2] + ' mph</text>' +
+        '<text class="sx-lbl" x="' + (x + w / 2) + '" y="' + (y0 - h + 43) + '" text-anchor="middle">' + b[1] + ' grade</text>' +
+        '<text class="sx-lbl sx-gold" x="' + (x + w / 2) + '" y="' + (y0 - h - 6) + '" text-anchor="middle">' + b[3] + ' METs</text>' +
+        '<text class="sx-lbl" x="' + (x + w) + '" y="' + (y0 + 14) + '" text-anchor="middle">' + (3 * (i + 1)) + ' min</text>';
+    });
+    s += '<text class="sx-lbl" x="' + x0 + '" y="' + (y0 + 14) + '" text-anchor="middle">0</text>';
+    s += '<rect class="c3-goal" x="' + (x0 + w * 2) + '" y="' + (y0 + 22) + '" width="' + (w * 2) + '" height="14" rx="4"/><text class="sx-lbl sx-green" x="' + (x0 + w * 3) + '" y="' + (y0 + 33) + '" text-anchor="middle">goal: 6-12 minutes</text>';
+    return s + '</svg><p class="lh-caption">Every 3 minutes the belt gets faster AND steeper (slide 13). 1 MET = resting oxygen use.</p>';
+  }
+
+  // mphr  interactive age → predicted max heart rate and the 85% target.
+  function mphrFigure() {
+    return '<div class="c3-thermo" data-c3-mphr><label><span>Patient age: <strong data-age></strong></span><input type="range" min="20" max="90" step="1" value="60" aria-label="Age"></label>' +
+      '<div class="c3-hrbar"><i class="c3-hr-fill" data-fill></i><b class="c3-hr-mark" data-mark></b></div>' +
+      '<div class="c3-hr-out"><span>Predicted max (220 − age)<strong data-max></strong></span><span>Target: 85% of that<strong data-target></strong></span></div>' +
+      '<p class="lh-caption">Drag the age. The test is only reliable if the heart rate passes the target (slide 10; 220 − age is standard teaching).</p></div>';
+  }
+  function bindMphr(box) {
+    var input = box.querySelector("input");
+    function upd() {
+      var a = Number(input.value), max = 220 - a, t = Math.round(max * 0.85);
+      box.querySelector("[data-age]").textContent = a;
+      box.querySelector("[data-max]").textContent = max + " bpm";
+      box.querySelector("[data-target]").textContent = t + " bpm";
+      box.querySelector("[data-fill]").style.width = (max / 220 * 100).toFixed(1) + "%";
+      box.querySelector("[data-mark]").style.left = (t / 220 * 100).toFixed(1) + "%";
+    }
+    input.addEventListener("input", upd); upd();
+  }
+
+  // duke  interactive Duke treadmill score.
+  function dukeFigure(f) {
+    return '<div class="c3-decide" data-c3-duke>' +
+      '<label class="c3-decide-q"><span>Exercise time: <strong data-v="t"></strong> min</span><input type="range" data-k="t" min="1" max="15" step="1" value="' + (f.t || 8) + '"></label>' +
+      '<label class="c3-decide-q"><span>Max ST deviation: <strong data-v="st"></strong> mm</span><input type="range" data-k="st" min="0" max="4" step="0.5" value="' + (f.st == null ? 1 : f.st) + '"></label>' +
+      '<div class="c3-decide-q"><span>Angina during the test</span><div class="c3-seg" data-k="ang"><button type="button" data-v="0">0 none</button><button type="button" data-v="1" class="on">1 non-limiting</button><button type="button" data-v="2">2 stopped the test</button></div></div>' +
+      '<div class="c3-duke-math" data-math></div><div class="c3-verdict" data-out><strong></strong><p></p></div>' +
+      '<p class="lh-caption">Formula and bands from slide 18. Starts on the slide 19 example.</p></div>';
+  }
+  function bindDuke(box) {
+    var ang = 1;
+    box.querySelectorAll(".c3-seg button").forEach(function (b) {
+      b.addEventListener("click", function () { box.querySelectorAll(".c3-seg button").forEach(function (x) { x.classList.toggle("on", x === b); }); ang = Number(b.dataset.v); upd(); });
+    });
+    function upd() {
+      var t = Number(box.querySelector('[data-k="t"]').value), st = Number(box.querySelector('[data-k="st"]').value), score = t - 5 * st - 4 * ang;
+      box.querySelector('[data-v="t"]').textContent = t; box.querySelector('[data-v="st"]').textContent = st;
+      box.querySelector("[data-math]").innerHTML = '<b>' + t + '</b> − 5 × <b>' + st + '</b> − 4 × <b>' + ang + '</b> = <strong>' + (Math.round(score * 10) / 10) + '</strong>';
+      var band = score >= 5 ? ["Low risk", "Score of +5 or more.", "cabg"] : score >= -10 ? ["Moderate risk", "Score from −10 to +4.", "ok"] : ["High risk", "Score of −11 or less.", "bad"];
+      var out = box.querySelector("[data-out]"); out.className = "c3-verdict " + band[2];
+      out.querySelector("strong").textContent = band[0]; out.querySelector("p").textContent = band[1];
+    }
+    box.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", upd); });
+    upd();
+  }
+
+  // perfusion {state: normal|ischemia|scar}  stress and rest short-axis rings.
+  function ring(cx, cy, defect, label) {
+    var r = 44, s = '<circle class="c3-ring" cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>';
+    if (defect) {
+      var a0 = -0.35 * Math.PI, a1 = 0.35 * Math.PI, x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0), x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+      s += '<path class="c3-ring-gap" d="M' + f1(x0) + ',' + f1(y0) + ' A' + r + ',' + r + ' 0 0 1 ' + f1(x1) + ',' + f1(y1) + '"/>';
+    }
+    return s + '<text class="sx-lbl sx-lbl-strong" x="' + cx + '" y="' + (cy + 4) + '" text-anchor="middle">' + label + '</text>';
+  }
+  var PERF = {
+    normal: [false, false, "Normal: tracer everywhere at stress and at rest.", "good"],
+    ischemia: [true, false, "ISCHEMIA: a gap at stress that fills in at rest. The artery is narrow, but the muscle is alive.", "ok"],
+    scar: [true, true, "SCAR (old MI): the gap is there at stress AND at rest. Dead muscle takes up no tracer.", "bad"]
+  };
+  function perfusionFigure(f) {
+    var p = PERF[f.state || "ischemia"];
+    var s = '<svg class="c3-svg" viewBox="0 0 360 170" role="img" aria-label="Stress and rest perfusion images">';
+    s += ring(100, 78, p[0], "STRESS") + ring(260, 78, p[1], "REST");
+    s += '<text class="sx-lbl" x="100" y="148" text-anchor="middle">' + (p[0] ? "gap = less blood" : "even uptake") + '</text><text class="sx-lbl" x="260" y="148" text-anchor="middle">' + (p[1] ? "gap stays" : (p[0] ? "fills back in" : "even uptake")) + '</text>';
+    return s + '</svg><p class="c3-verdict-line ' + p[3] + '">' + p[2] + '</p>';
+  }
+
+  // stseg {hi: up|flat|down}  three kinds of ST depression.
+  function stsegFigure(f) {
+    var s = '<svg class="c3-svg" viewBox="0 0 360 150" role="img" aria-label="Upsloping, horizontal and downsloping ST depression">';
+    [["up", "Upsloping", "equivocal", "M10,62 L22,22 L30,74 L38,78 Q56,70 74,62 Q86,46 98,62", "sx-gold"], ["flat", "Horizontal", "positive", "M10,62 L22,22 L30,74 L38,78 L74,78 Q86,62 98,62", "sx-bad"], ["down", "Downsloping", "positive", "M10,62 L22,22 L30,74 L38,72 L74,84 Q86,70 98,62", "sx-bad"]].forEach(function (k, i) {
+      var ox = 12 + i * 116, on = !f.hi || f.hi === k[0];
+      s += '<g transform="translate(' + ox + ',8)" class="' + (on ? "" : "c3-faded") + '"><line class="c3-base" x1="0" y1="62" x2="104" y2="62"/><path class="c3-ecg" d="' + k[3] + '"/>' +
+        '<text class="sx-lbl sx-lbl-strong" x="52" y="118" text-anchor="middle">' + k[1] + '</text><text class="sx-lbl ' + k[4] + '" x="52" y="132" text-anchor="middle">' + k[2] + '</text></g>';
+    });
+    return s + '</svg><p class="lh-caption">Dashed line = baseline. Over 1 mm horizontal or downsloping = positive (slide 16).</p>';
+  }
+
+  // probe {mode: tte|tee}  side view: probe on the chest vs in the esophagus.
+  function probeFigure(f) {
+    var tee = f.mode === "tee";
+    var s = '<svg class="c3-svg" viewBox="0 0 360 240" role="img" aria-label="Where the echo probe sits">';
+    s += '<text class="sx-lbl" x="14" y="18">FRONT (chest wall)</text><text class="sx-lbl" x="346" y="18" text-anchor="end">BACK (spine)</text>';
+    s += '<line class="c3-skin" x1="40" y1="26" x2="40" y2="230"/>';
+    for (var i = 0; i < 5; i += 1) s += '<ellipse class="c3-rib" cx="52" cy="' + (52 + i * 40) + '" rx="8" ry="12"/>';
+    for (var j = 0; j < 5; j += 1) s += '<rect class="c3-spine" x="312" y="' + (34 + j * 40) + '" width="26" height="32" rx="6"/>';
+    s += '<rect class="c3-eso" x="268" y="26" width="22" height="204" rx="11"/><text class="sx-lbl" x="279" y="238" text-anchor="middle">esophagus</text>';
+    // heart: LV in front, LA behind next to the esophagus
+    s += '<path class="c3-heart" d="M96,110 C96,70 150,60 186,80 C210,92 214,126 206,150 C192,192 140,206 112,186 C96,174 96,140 96,110 Z"/><text class="sx-lbl sx-lbl-strong" x="150" y="140" text-anchor="middle">left ventricle</text>';
+    s += '<ellipse class="c3-la" cx="236" cy="112" rx="26" ry="22"/><text class="sx-lbl sx-lbl-strong" x="236" y="116" text-anchor="middle">LA</text>';
+    s += '<line class="c3-mv" x1="210" y1="96" x2="210" y2="132"/><text class="sx-lbl sx-gold sx-lbl-strong" x="210" y="88" text-anchor="middle">mitral valve</text>';
+    if (tee) {
+      s += '<path class="c3-beam" d="M274,118 L176,62 L176,174 Z"/><rect class="c3-probe" x="271" y="104" width="16" height="28" rx="5"/><line class="c3-cord" x1="279" y1="26" x2="279" y2="104"/>';
+      s += '<text class="sx-lbl sx-green sx-lbl-strong" x="300" y="210" text-anchor="end">TEE: right behind the LA</text>';
+    } else {
+      s += '<path class="c3-beam" d="M36,120 L200,60 L200,180 Z"/><rect class="c3-probe" x="18" y="106" width="18" height="28" rx="5"/>';
+      s += '<text class="sx-lbl sx-gold sx-lbl-strong" x="44" y="222">TTE: through skin, ribs and lung</text>';
+    }
+    return s + '</svg>';
+  }
+
+  // access {mode: radial|femoral}  catheter route from the wrist or groin to the heart.
+  function accessFigure(f) {
+    var fem = f.mode === "femoral";
+    var s = '<svg class="c3-svg" viewBox="0 0 360 300" role="img" aria-label="Catheter access sites">';
+    s += '<g class="c3-body"><circle cx="180" cy="34" r="22"/><path d="M140,64 L220,64 Q236,64 238,82 L242,168 L118,168 L122,82 Q124,64 140,64 Z"/>' +
+      '<path d="M122,74 L92,150 L84,196 L98,198 L108,152 L130,100"/><path d="M238,74 L268,150 L276,196 L262,198 L252,152 L230,100"/>' +
+      '<path d="M124,168 L132,290 L162,290 L174,180 L186,180 L198,290 L228,290 L236,168 Z"/></g>';
+    s += '<path class="c3-heart" d="M176,104 C164,98 152,106 154,118 C156,130 170,138 182,144 C196,136 208,126 206,114 C204,102 190,98 176,104 Z"/>';
+    s += '<path class="c3-aorta-thin" d="M180,100 Q180,84 190,86 Q200,90 196,104 L196,176 L176,186 L150,214"/>';
+    var route = fem ? "M152,214 L176,186 L196,176 L196,104 Q200,90 190,86 Q182,84 180,100" : "M92,190 L104,150 L126,96 Q150,78 176,86 Q186,90 180,100";
+    s += '<path class="c3-cath" d="' + route + '"/>';
+    s += fem ? '<circle class="c3-site" cx="152" cy="214" r="7"/><text class="sx-lbl sx-gold sx-lbl-strong" x="104" y="236" text-anchor="middle">femoral</text><text class="sx-lbl sx-gold" x="104" y="248" text-anchor="middle">(groin)</text>'
+      : '<circle class="c3-site" cx="92" cy="190" r="7"/><text class="sx-lbl sx-gold sx-lbl-strong" x="56" y="218" text-anchor="middle">radial</text><text class="sx-lbl sx-gold" x="56" y="230" text-anchor="middle">(wrist)</text>';
+    s += '<text class="sx-lbl" x="248" y="96">catheter → up the</text><text class="sx-lbl" x="248" y="108">aorta → coronaries</text>';
+    return s + '</svg>';
+  }
+
+  // groin  the femoral puncture rule.
+  function groinFigure() {
+    var s = '<svg class="c3-svg" viewBox="0 0 360 220" role="img" aria-label="Femoral puncture zone">';
+    s += '<rect class="c3-zone-bad" x="20" y="14" width="320" height="58" rx="6"/><text class="sx-lbl sx-bad sx-lbl-strong" x="180" y="40" text-anchor="middle">TOO HIGH: retroperitoneal bleed</text><text class="sx-lbl sx-bad" x="180" y="54" text-anchor="middle">(bleeding hides in the back of the belly)</text>';
+    s += '<line class="c3-lig" x1="20" y1="78" x2="340" y2="78"/><text class="sx-lbl sx-lbl-strong" x="24" y="94">inguinal ligament</text>';
+    s += '<rect class="c3-zone-ok" x="20" y="100" width="320" height="50" rx="6"/><text class="sx-lbl sx-green sx-lbl-strong" x="180" y="124" text-anchor="middle">SAFE: within 3 cm below the ligament</text><text class="sx-lbl sx-green" x="180" y="138" text-anchor="middle">(artery over the femoral head, easy to compress)</text>';
+    s += '<rect class="c3-zone-bad" x="20" y="156" width="320" height="50" rx="6"/><text class="sx-lbl sx-bad sx-lbl-strong" x="180" y="180" text-anchor="middle">TOO LOW: pseudoaneurysm</text><text class="sx-lbl sx-bad" x="180" y="194" text-anchor="middle">(a leak pocket outside the artery)</text>';
+    return s + '</svg><p class="lh-caption">Slide 11. The explanations in brackets are standard teaching.</p>';
+  }
+
+  // rhc  the right heart catheter's path and what it reads at each stop.
+  function rhcFigure(f) {
+    var stops = [["RA", "CVP"], ["RV", "RV pressure"], ["PA", "PA pressure"], ["Wedge", "PCOP"]];
+    var s = '<svg class="c3-svg" viewBox="0 0 380 170" role="img" aria-label="Right heart catheter path">';
+    stops.forEach(function (st, i) {
+      var x = 52 + i * 92, on = f.hi == null || f.hi === i;
+      s += '<g class="' + (on ? "" : "c3-faded") + '"><rect class="c3-chamber" x="' + (x - 40) + '" y="40" width="80" height="58" rx="12"/><text class="sx-lbl sx-lbl-strong" x="' + x + '" y="62" text-anchor="middle">' + st[0] + '</text>' +
+        '<text class="sx-lbl sx-gold sx-lbl-strong" x="' + x + '" y="118" text-anchor="middle">' + st[1] + '</text>' + (i === 3 ? '<text class="sx-lbl" x="' + x + '" y="132" text-anchor="middle">≈ left atrium</text>' : "") + '</g>';
+    });
+    s += '<path class="c3-cath" d="M4,82 L322,82"/><circle class="c3-balloon" cx="328" cy="82" r="9"><animate attributeName="r" values="4;10;10;4" dur="2.4s" repeatCount="indefinite"/></circle>';
+    s += '<text class="sx-lbl" x="190" y="24" text-anchor="middle">the catheter floats with the blood, left to right</text>';
+    s += '<text class="sx-lbl" x="190" y="158" text-anchor="middle">plus cardiac output (CO) and mixed venous O₂ (SvO₂)</text>';
+    return s + '</svg>';
+  }
+
+
+  var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure,
+    bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure };
   // Lecture-specific figure types can be added from another file: window.Cardio3Figures[type] = fn(f, kit).
   window.Cardio3Figures = window.Cardio3Figures || {};
   var kit = { esc: esc, f1: f1, has: has, arrowDefs: arrowDefs, nextId: function (p) { return (p || "c3x") + (uid += 1); }, coronary: coronaryFigure, artery: arteryFigure };
@@ -347,12 +513,12 @@
     var fn = FIGS[f.type] || window.Cardio3Figures[f.type];
     return fn ? fn(f, kit) : "";
   }
-  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide]];
+  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke]];
   window.Cardio3Binders = window.Cardio3Binders || [];
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
-  function ownCaption(f) { return f.type === "artery" || f.type === "cpb" || f.type === "thermo" || f.type === "decide" || ((f.type === "bars" || f.type === "line") && f.note); }
+  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
   var anchor = document.getElementById("shock-learn-view");
