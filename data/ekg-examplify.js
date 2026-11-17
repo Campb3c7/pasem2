@@ -187,7 +187,11 @@
       Q("exq-44", "12-lead EKG with a fast, regular wide-complex rhythm, every complex the same shape", "What is the rhythm of this 12 lead EKG?",
         "Ventricular tachycardia",
         ["Polymorphic ventricular tachycardia (torsades de pointes)", "Ventricular fibrillation", "Accelerated idioventricular rhythm"],
-        "The QRS is wide and every complex looks the same, the rate is well over 100 and there are no P waves before the beats, which is monomorphic VT.")
+        "The QRS is wide and every complex looks the same, the rate is well over 100 and there are no P waves before the beats, which is monomorphic VT."),
+      Q("exq-45", "12-lead EKG with grouped beats separated by pauses where a P wave is not conducted", "What is the rhythm of this 12 lead EKG?",
+        "Second degree AV block, type I",
+        ["Second degree AV block, type II", "Normal sinus rhythm with blocked PACs", "Sinus arrhythmia"],
+        "The beats come in groups: in the lead II strip the PR lengthens across each group until a P wave drops with no QRS, then the cycle starts over, which is Wenckebach.")
     ]
   };
 }());
