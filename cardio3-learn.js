@@ -503,8 +503,123 @@
   }
 
 
+  // ==== Heart Failure figures ===============================================================
+  // vent {kind: normal|hfref|hfpef}  one left ventricle filling and squeezing.
+  var VENT = {
+    normal: { o: [50, 66], i: [32, 48], sq: 0.62, name: "Normal", sub: "EF 55-70%", note: "fills and empties well", cls: "" },
+    hfref: { o: [70, 82], i: [62, 74], sq: 0.9, name: "HFrEF", sub: "EF reduced", note: "big, thin, weak squeeze", cls: " bad" },
+    hfpef: { o: [56, 68], i: [20, 34], sq: 0.62, name: "HFpEF", sub: "EF normal", note: "thick, stiff, small: fills poorly", cls: " ok" }
+  };
+  function ventFigure(f) {
+    var v = VENT[f.kind || "normal"];
+    var s = '<svg class="c3-svg c3-svg-small" viewBox="0 0 250 230" role="img" aria-label="' + v.name + ' left ventricle">';
+    s += '<g transform="translate(125,104)"><ellipse class="c3-lv-wall' + v.cls + '" rx="' + v.o[0] + '" ry="' + v.o[1] + '"/>' +
+      '<g><animateTransform attributeName="transform" type="scale" values="1;1;' + v.sq + ';1" keyTimes="0;0.45;0.7;1" dur="1.6s" repeatCount="indefinite"/><ellipse class="c3-lv-blood" rx="' + v.i[0] + '" ry="' + v.i[1] + '"/></g></g>';
+    s += '<text class="sx-lbl sx-lbl-strong sx-gold" x="125" y="196" text-anchor="middle">' + v.name + ' · ' + v.sub + '</text><text class="sx-lbl" x="125" y="212" text-anchor="middle">' + v.note + '</text>';
+    return s + '</svg>';
+  }
+
+  // starling {curves: [normal|failing], dots: [{curve, x, label}], moves: [{curve, from, to}]}
+  var CURV = { normal: { top: 100, k: 32, cls: "sx-c-normal", name: "healthy" }, failing: { top: 46, k: 30, cls: "sx-c-failing", name: "failing" } };
+  function starlingFigure(f) {
+    var W = 360, H = 220, x0 = 46, y0 = 186, w = 236, h = 160, id = kit.nextId("c3s");
+    function sv(c, x) { var cv = CURV[c]; return cv.top * (1 - Math.exp(-x / cv.k)); }
+    function X(x) { return x0 + x / 100 * w; }
+    function Y(v) { return y0 - v / 100 * h; }
+    var s = '<svg class="c3-svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Frank-Starling curve">' + arrowDefs(id + "a");
+    s += '<line class="sx-axis" x1="' + x0 + '" y1="' + y0 + '" x2="' + (x0 + w) + '" y2="' + y0 + '"/><line class="sx-axis" x1="' + x0 + '" y1="' + y0 + '" x2="' + x0 + '" y2="' + (y0 - h) + '"/>';
+    s += '<text class="sx-lbl" x="' + (x0 + w / 2) + '" y="' + (y0 + 26) + '" text-anchor="middle">preload (how full / stretched) →</text>';
+    s += '<text class="sx-lbl" x="14" y="' + (y0 - h / 2) + '" transform="rotate(-90 14 ' + (y0 - h / 2) + ')" text-anchor="middle">stroke volume →</text>';
+    if (f.flat) s += '<rect class="sx-zone-bad" x="' + X(62) + '" y="' + (y0 - h) + '" width="' + (X(100) - X(62)) + '" height="' + h + '"/><text class="sx-lbl sx-bad" x="' + X(81) + '" y="' + (y0 - 22) + '" text-anchor="middle">flat part:</text><text class="sx-lbl sx-bad" x="' + X(81) + '" y="' + (y0 - 9) + '" text-anchor="middle">more fluid → lungs</text>';
+    (f.curves || ["normal"]).forEach(function (c) {
+      var pts = [];
+      for (var x = 0; x <= 100; x += 2) pts.push(f1(X(x)) + "," + f1(Y(sv(c, x))));
+      s += '<polyline class="sx-curve ' + CURV[c].cls + '" points="' + pts.join(" ") + '"/><text class="sx-lbl ' + CURV[c].cls + '-t" x="' + (X(100) + 4) + '" y="' + f1(Y(sv(c, 100)) + 4) + '">' + CURV[c].name + '</text>';
+    });
+    (f.moves || []).forEach(function (m) { s += '<path class="sx-move" d="M' + f1(X(m.from)) + ',' + f1(Y(sv(m.curve, m.from))) + ' L' + f1(X(m.to)) + ',' + f1(Y(sv(m.curve, m.to))) + '" marker-end="url(#' + id + 'a)"/>'; });
+    (f.dots || []).forEach(function (d) { var cx = X(d.x), cy = Y(sv(d.curve, d.x)); s += '<circle class="sx-dot" cx="' + f1(cx) + '" cy="' + f1(cy) + '" r="5"/><text class="sx-lbl sx-lbl-strong" x="' + f1(cx) + '" y="' + f1(cy - 10) + '" text-anchor="middle">' + esc(d.label) + '</text>'; });
+    return s + '</svg>';
+  }
+
+  // backup {side: left|right}  where blood backs up when one side fails.
+  function backupFigure(f) {
+    var L = f.side === "left", R = f.side === "right", id = kit.nextId("c3b");
+    var s = '<svg class="c3-svg" viewBox="0 0 420 240" role="img" aria-label="Where blood backs up in heart failure">' + arrowDefs(id + "a");
+    function box(x, y, w, h, title, sub, cls) { return '<rect class="c3-bx' + cls + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="12"/><text class="sx-lbl sx-lbl-strong" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 1) + '" text-anchor="middle">' + title + '</text>' + (sub ? '<text class="sx-lbl" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 14) + '" text-anchor="middle">' + sub + '</text>' : ""); }
+    s += box(150, 16, 120, 50, "Lungs", L ? "flooded" : "", L ? " wet" : "");
+    s += box(8, 96, 100, 50, "Right heart", R ? "weak" : "", R ? " bad" : "");
+    s += box(312, 96, 100, 50, "Left heart", L ? "weak" : "", L ? " bad" : "");
+    s += box(150, 176, 120, 50, "Body veins", R ? "flooded" : "", R ? " wet" : "");
+    s += '<path class="sx-move" d="M58,94 Q62,46 146,42" marker-end="url(#' + id + 'a)"/><path class="sx-move" d="M274,42 Q358,46 362,92" marker-end="url(#' + id + 'a)"/>' +
+      '<path class="sx-move" d="M362,150 Q358,198 274,202" marker-end="url(#' + id + 'a)"/><path class="sx-move" d="M146,202 Q62,198 58,150" marker-end="url(#' + id + 'a)"/>';
+    function mid(lines) { return lines.map(function (t, i) { return '<text class="sx-lbl' + t[1] + '" x="210" y="' + (100 + i * 14) + '" text-anchor="middle">' + t[0] + '</text>'; }).join(""); }
+    if (L) s += '<path class="c3-back" d="M310,108 Q262,96 250,72" marker-end="url(#' + id + 'a)"/>' + mid([["backs up into", " sx-blue sx-lbl-strong"], ["the LUNGS", " sx-blue sx-lbl-strong"], ["rales, orthopnea,", ""], ["PND, frothy sputum", ""]]);
+    if (R) s += '<path class="c3-back" d="M110,134 Q158,148 170,172" marker-end="url(#' + id + 'a)"/>' + mid([["backs up into", " sx-blue sx-lbl-strong"], ["the BODY", " sx-blue sx-lbl-strong"], ["JVD, leg edema,", ""], ["big liver, ascites", ""]]);
+    if (!L && !R) s += mid([["", ""], ["body → right heart", ""], ["→ lungs → left heart", ""], ["→ body", ""]]);
+    return s + '</svg>';
+  }
+
+  // framingham  tick the findings; 2 major, or 1 major + 2 minor.
+  var FRAM = [["PND or orthopnea", 1], ["Elevated JVP", 1], ["Hepatojugular reflux", 1], ["Rales", 1], ["S3 gallop", 1], ["Enlarging heart on serial CXR", 1], ["Pulmonary edema on CXR", 1], ["Weight loss > 10 lb in 5 days on diuretics", 1], ["Venous pressure > 16 cm H₂O", 1],
+    ["Dyspnea on exertion", 0], ["Night cough", 0], ["Tachycardia > 120", 0], ["Hepatomegaly", 0], ["Bilateral leg edema", 0], ["Pulmonary vascular engorgement on CXR", 0], ["Pleural effusion on CXR", 0]];
+  function framFigure() {
+    function col(major) { return FRAM.map(function (x, i) { return x[1] === major ? '<button type="button" class="c3-chip' + (major ? " major" : "") + '" data-i="' + i + '">' + x[0] + '</button>' : ""; }).join(""); }
+    return '<div class="c3-decide" data-c3-fram><div class="c3-fram-cols"><div><p class="c3-fram-h">Major</p>' + col(1) + '</div><div><p class="c3-fram-h">Minor</p>' + col(0) + '</div></div>' +
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Tap the findings your patient has (slide 79).</p></div>';
+  }
+  function bindFram(box) {
+    function upd() {
+      var on = box.querySelectorAll(".c3-chip.on"), maj = 0, min = 0;
+      on.forEach(function (b) { if (FRAM[Number(b.dataset.i)][1]) maj += 1; else min += 1; });
+      var yes = maj >= 2 || (maj >= 1 && min >= 2), out = box.querySelector("[data-out]");
+      out.className = "c3-verdict " + (yes ? "cabg" : "ok");
+      out.querySelector("strong").textContent = yes ? "Meets Framingham: heart failure" : "Not enough yet";
+      out.querySelector("p").textContent = maj + " major + " + min + " minor. Needs 2 major, or 1 major + 2 minor.";
+    }
+    box.querySelectorAll(".c3-chip").forEach(function (b) { b.addEventListener("click", function () { b.classList.toggle("on"); upd(); }); });
+    upd();
+  }
+
+  // ntg  BP slider → what to do with nitrates in acute HF (slide 194).
+  function ntgFigure() {
+    return '<div class="c3-decide" data-c3-ntg><label class="c3-decide-q"><span>Systolic BP: <strong data-v></strong> mmHg</span><input type="range" min="70" max="220" step="5" value="180" aria-label="Systolic BP"></label>' +
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Drag the pressure. From the deck\'s acute HF protocol (slides 194).</p></div>';
+  }
+  function bindNtg(box) {
+    var input = box.querySelector("input");
+    function upd() {
+      var b = Number(input.value), out = box.querySelector("[data-out]"), r;
+      box.querySelector("[data-v]").textContent = b;
+      if (b < 100) r = ["Stop / hold nitrates", "Under 100: no SL nitroglycerin, stop the drip. Low BP that persists → think volume depletion or RV infarct.", "bad"];
+      else if (b <= 150) r = ["SL NTG 0.4 mg q5 min; consider transdermal", "Under 150/100 and improving after SL: a nitro patch can take over.", "ok"];
+      else r = ["SL NTG + add IV nitroglycerin", "Over 150/100: the failing heart is drowning in afterload. Bring it down fast.", "cabg"];
+      out.className = "c3-verdict " + r[2]; out.querySelector("strong").textContent = r[0]; out.querySelector("p").textContent = r[1];
+    }
+    input.addEventListener("input", upd); upd();
+  }
+
+  // nephron {hi: sglt2|loop|thiazide|ksparing}  where each diuretic works.
+  function nephronFigure(f) {
+    var hi = f.hi, M = function (x) { return Math.round(0.62 * x + 7); };
+    // [id, site x, site y, label y, name, where]
+    var spots = [["thiazide", M(262), 62, 34, "Thiazides", "distal tubule: Na + Cl"], ["sglt2", M(92), 70, 92, "SGLT2 inhibitors", "proximal tubule: sugar + Na"],
+      ["ksparing", M(316), 150, 150, "K-sparing", "collecting duct: aldosterone/ENaC"], ["loop", M(152), 196, 208, "Loop diuretics", "loop of Henle: NaCl, strongest"]];
+    var s = '<svg class="c3-svg" viewBox="0 0 480 250" role="img" aria-label="Where diuretics act in the nephron">';
+    s += '<circle class="c3-glom" cx="' + M(44) + '" cy="54" r="18"/><text class="sx-lbl" x="' + M(44) + '" y="90" text-anchor="middle">glomerulus</text>';
+    s += '<path class="c3-tubule" d="M' + M(64) + ',46 C' + M(110) + ',30 ' + M(120) + ',80 ' + M(140) + ',96 L' + M(148) + ',206 Q' + M(160) + ',232 ' + M(172) + ',206 L' + M(180) + ',100 C' + M(200) + ',60 ' + M(250) + ',40 ' + M(280) + ',52 C' + M(320) + ',66 ' + M(316) + ',96 ' + M(320) + ',120 L' + M(320) + ',236"/>';
+    spots.forEach(function (p) {
+      var on = !hi || hi === p[0];
+      s += '<g class="' + (on ? "" : "c3-faded") + '"><line class="sx-axis" x1="' + (p[1] + 8) + '" y1="' + p[2] + '" x2="246" y2="' + (p[3] + 3) + '"/><circle class="c3-site" cx="' + p[1] + '" cy="' + p[2] + '" r="7"/>' +
+        '<text class="sx-lbl sx-lbl-strong sx-gold" x="252" y="' + p[3] + '">' + p[4] + '</text>' +
+        '<text class="sx-lbl" x="252" y="' + (p[3] + 14) + '">' + p[5] + '</text></g>';
+    });
+    s += '<text class="sx-lbl" x="' + (M(320) + 6) + '" y="244">→ urine</text>';
+    return s + '</svg>';
+  }
+
   var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure,
-    bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure };
+    bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure,
+    vent: ventFigure, starling: starlingFigure, backup: backupFigure, framingham: framFigure, ntg: ntgFigure, nephron: nephronFigure };
   // Lecture-specific figure types can be added from another file: window.Cardio3Figures[type] = fn(f, kit).
   window.Cardio3Figures = window.Cardio3Figures || {};
   var kit = { esc: esc, f1: f1, has: has, arrowDefs: arrowDefs, nextId: function (p) { return (p || "c3x") + (uid += 1); }, coronary: coronaryFigure, artery: arteryFigure };
@@ -513,12 +628,12 @@
     var fn = FIGS[f.type] || window.Cardio3Figures[f.type];
     return fn ? fn(f, kit) : "";
   }
-  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke]];
+  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg]];
   window.Cardio3Binders = window.Cardio3Binders || [];
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
-  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
+  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
   var anchor = document.getElementById("shock-learn-view");
@@ -535,7 +650,7 @@
       data: data, viewId: p + "-view", contentId: p + "-content", backId: p + "-back", statusId: p + "-status",
       progressKey: "pasem2:learn:" + lectureId + ":progress", eyebrow: data.short + " · from zero", heading: data.heading,
       statusCopy: data.lessons.length + " short lessons. Start with lesson 1: each one builds on the last.",
-      figure: figure, bindFigures: bindFigures, ownCaption: ownCaption,
+      figure: figure, bindFigures: bindFigures, ownCaption: ownCaption, isSmall: function (f) { return f.type === "vent"; },
       beforeOpen: function () { document.querySelectorAll("[data-rhythm-tool]").forEach(function (other) { other.innerHTML = ""; }); }
     });
     if (!path) return;
