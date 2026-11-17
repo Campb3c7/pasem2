@@ -203,7 +203,11 @@
       Q("exq-48", "Slow, regular strip with a P wave before each narrow QRS and long flat gaps", "What is the rhythm of this EKG strip?",
         "Sinus bradycardia",
         ["Sinus arrest", "Junctional escape rhythm", "Second degree AV block, type II"],
-        "The gaps are long but evenly spaced and every narrow QRS has its own upright P with a normal PR (no missing beats or dropped P waves), so it is a sinus rhythm under 60.")
+        "The gaps are long but evenly spaced and every narrow QRS has its own upright P with a normal PR (no missing beats or dropped P waves), so it is a sinus rhythm under 60."),
+      Q("exq-49", "Fast, irregular strip of narrow complexes with P waves of several different shapes", "What is the rhythm of this EKG strip?",
+        "Multifocal atrial tachycardia",
+        ["Wandering atrial pacemaker", "Atrial fibrillation", "Sinus tachycardia"],
+        "There is a real P before each narrow QRS but the P shapes keep changing (3 or more) and the rhythm is irregular at a rate over 100, which is MAT (under 100 would be WAP, no P waves would be AF).")
     ]
   };
 }());
