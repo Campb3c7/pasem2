@@ -14,12 +14,17 @@
 
   var PROGRESS_KEY = "pasem2:ekg-workbook:progress";
   var FILTER_KEY = "pasem2:ekg-workbook:filter";
+  var LENGTH_KEY = "pasem2:ekg-workbook:length";
   var STEP_LENGTH = 10, QUIZ_LENGTH = 20, RETURN_GAP = 3;
   var strips = data.strips, byId = {};
   strips.forEach(function (s) { byId[s.id] = s; });
   var state = null;
   var filter = "all";
   try { filter = localStorage.getItem(FILTER_KEY) || "all"; } catch (e) {}
+  // "short" = 10 step-by-step / 20 quiz strips; "all" = every strip in the chosen group in one session.
+  var length = "short";
+  try { length = localStorage.getItem(LENGTH_KEY) === "all" ? "all" : "short"; } catch (e) {}
+  function sessionLength(short) { return length === "all" ? Infinity : short; }
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>'"]/g, function (c) {
@@ -117,9 +122,12 @@
     if (!current.length) {
       html += '<p class="wb-empty">Nothing here yet. ' + (filter === "misses" ? "Strips you miss will collect here." : "Pick another group.") + '</p>';
     } else {
+      html += '<p class="eyebrow rs-groups-label">How many</p><div class="wb-chips">' +
+        '<button type="button" class="wb-chip' + (length === "short" ? " active" : "") + '" data-wb-length="short">Short round <span>' + Math.min(STEP_LENGTH, current.length) + ' / ' + Math.min(QUIZ_LENGTH, current.length) + '</span></button>' +
+        '<button type="button" class="wb-chip' + (length === "all" ? " active" : "") + '" data-wb-length="all">All at once <span>' + current.length + '</span></button></div>';
       html += '<div class="murmur-quick rs-quick">' +
-        '<button class="murmur-quick-card" type="button" id="wb-steps"><span>Systematic read</span><strong>Read it step by step →</strong><small>' + Math.min(STEP_LENGTH, current.length) + ' strips: regularity, rate, P waves, PR, QRS, then name it.</small></button>' +
-        '<button class="murmur-quick-card" type="button" id="wb-quiz"><span>Quick quiz</span><strong>Name that strip →</strong><small>' + Math.min(QUIZ_LENGTH, current.length) + ' strips, just the name. Misses come back a few strips later.</small></button>' +
+        '<button class="murmur-quick-card" type="button" id="wb-steps"><span>Systematic read</span><strong>Read it step by step →</strong><small>' + Math.min(sessionLength(STEP_LENGTH), current.length) + ' strips: regularity, rate, P waves, PR, QRS, then name it.</small></button>' +
+        '<button class="murmur-quick-card" type="button" id="wb-quiz"><span>Quick quiz</span><strong>Name that strip →</strong><small>' + Math.min(sessionLength(QUIZ_LENGTH), current.length) + ' strips, just the name. Misses come back a few strips later.</small></button>' +
         '</div><button class="secondary-action full-action" type="button" id="wb-browse">Browse ' + escapeHtml(filterLabel(filter).toLowerCase()) + ' (' + current.length + ') with answers hidden →</button>';
     }
     content.innerHTML = html;
@@ -127,6 +135,13 @@
       button.addEventListener("click", function () {
         filter = button.dataset.wbFilter;
         try { localStorage.setItem(FILTER_KEY, filter); } catch (e) {}
+        renderHome();
+      });
+    });
+    content.querySelectorAll("[data-wb-length]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        length = button.dataset.wbLength;
+        try { localStorage.setItem(LENGTH_KEY, length); } catch (e) {}
         renderHome();
       });
     });
@@ -209,7 +224,7 @@
     return list.slice(0, Math.min(length, list.length));
   }
   function startSteps() {
-    var queue = sessionQueue(STEP_LENGTH);
+    var queue = sessionQueue(sessionLength(STEP_LENGTH));
     state = { kind: "steps", title: "Step by step · " + filterLabel(filter), steps: queue.map(function (s) { return { strip: s }; }), position: 0, total: queue.length, done: 0, firstTry: 0, missed: {}, parts: 0, partsRight: 0 };
     renderStepStrip();
   }
@@ -267,7 +282,7 @@
 
   // ---- name that strip -----------------------------------------------------
   function startQuiz() {
-    var queue = sessionQueue(QUIZ_LENGTH);
+    var queue = sessionQueue(sessionLength(QUIZ_LENGTH));
     state = { kind: "quiz", title: "Name that strip · " + filterLabel(filter), steps: queue.map(function (s) { return { strip: s, retry: false }; }), position: 0, total: queue.length, done: 0, firstTry: 0, missed: {} };
     renderQuiz();
   }
