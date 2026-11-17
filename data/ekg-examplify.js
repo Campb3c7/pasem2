@@ -295,7 +295,11 @@
       Q("exq-71", "12-lead EKG with a slow sinus rhythm, two long pauses and two narrow beats without a P wave", "What is the rhythm of this 12 lead EKG?",
         "Sinus bradycardia with two sinus pauses and two PJCs",
         ["Sinus bradycardia with two sinus pauses and two PACs", "Sinus bradycardia with second degree AV block, type II", "Sinus arrhythmia with two PVCs"],
-        "The sinus beats run under 60, the lead II strip has two long flat gaps with no P wave (pauses, not dropped beats), and two narrow beats show up with no P in front of them, so they come from the junction.")
+        "The sinus beats run under 60, the lead II strip has two long flat gaps with no P wave (pauses, not dropped beats), and two narrow beats show up with no P in front of them, so they come from the junction."),
+      Q("exq-72", "12-lead EKG with a fast, irregularly irregular narrow rhythm and no clear P waves", "What is the rhythm of this 12 lead EKG?",
+        "Atrial fibrillation with rapid ventricular response",
+        ["Sinus tachycardia", "Atrial flutter with 2:1 block", "Multifocal atrial tachycardia"],
+        "The rhythm strips show narrow QRSs at uneven, patternless intervals with no clear P waves, and they come faster than 100, so it is AF with a rapid ventricular response.")
     ]
   };
 }());
