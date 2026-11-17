@@ -231,7 +231,11 @@
       Q("exq-55", "Strip with a continuous sawtooth of flutter waves and a narrow QRS after every few waves", "What is the rhythm of this EKG strip?",
         "Atrial flutter",
         ["Atrial fibrillation", "Sinus tachycardia", "Wandering atrial pacemaker"],
-        "Identical flutter waves run in a steady sawtooth with a narrow QRS after every few of them, unlike AF's flat, uneven baseline or one P per QRS in sinus.")
+        "Identical flutter waves run in a steady sawtooth with a narrow QRS after every few of them, unlike AF's flat, uneven baseline or one P per QRS in sinus."),
+      Q("exq-56", "Very fast, regular strip of narrow complexes with no clear P waves", "What is the rhythm of this EKG strip?",
+        "SVT",
+        ["Sinus tachycardia", "Ventricular tachycardia", "Atrial flutter"],
+        "The narrow QRSs are very fast (about 1.5 big boxes apart, roughly 200) and perfectly regular with P waves lost in the T waves, too fast for sinus, narrow so not VT, and no sawtooth for flutter.")
     ]
   };
 }());
