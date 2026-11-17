@@ -183,7 +183,11 @@
       Q("exq-43", "12-lead EKG with a sinus rhythm interrupted by three early narrow beats", "What is the rhythm of this 12 lead EKG?",
         "Normal sinus rhythm with three PACs",
         ["Normal sinus rhythm with three PVCs", "Normal sinus rhythm with three PJCs", "Sinus arrhythmia"],
-        "Three beats come early with a narrow QRS like the sinus beats and an abnormal P wave in front of them, so they start in the atria (a PVC would be wide, a PJC would have no upright P).")
+        "Three beats come early with a narrow QRS like the sinus beats and an abnormal P wave in front of them, so they start in the atria (a PVC would be wide, a PJC would have no upright P)."),
+      Q("exq-44", "12-lead EKG with a fast, regular wide-complex rhythm, every complex the same shape", "What is the rhythm of this 12 lead EKG?",
+        "Ventricular tachycardia",
+        ["Polymorphic ventricular tachycardia (torsades de pointes)", "Ventricular fibrillation", "Accelerated idioventricular rhythm"],
+        "The QRS is wide and every complex looks the same, the rate is well over 100 and there are no P waves before the beats, which is monomorphic VT.")
     ]
   };
 }());
