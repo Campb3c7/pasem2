@@ -80,7 +80,7 @@
             ["<strong>V5</strong>", "5th space, <strong>anterior axillary</strong> line"],
             ["<strong>V6</strong>", "5th space, <strong>midaxillary</strong> line"]]) },
         { title: "Place V1 and V2 first", fig: { type: "body", show: "chest", hi: ["V1", "V2"] },
-          html: "<p>V1 and V2 sit on either side of the sternum in the <strong>4th</strong> space, like two buttons on a shirt.</p>" +
+          html: "<p>(ICS on the drawing = intercostal space.) V1 and V2 sit on either side of the sternum in the <strong>4th</strong> space, like two buttons on a shirt.</p>" +
             mn("<strong>V1-V2: 4th space.</strong> Everyone else (V4-V6): <strong>5th</strong> space.") },
         { title: "Then V4, then fill in V3, V5, V6", fig: { type: "body", show: "chest", hi: ["V3", "V4", "V5", "V6"] },
           html: "<p><strong>V4</strong> goes under the middle of the collarbone in the 5th space. <strong>V3</strong> sits between V2 and V4. <strong>V5</strong> and <strong>V6</strong> continue sideways at the same level toward the armpit.</p>" },
