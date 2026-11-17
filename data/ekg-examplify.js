@@ -123,7 +123,11 @@
       Q("exq-28", "Strip with an inverted P wave just before each narrow QRS", "What is the rhythm of this EKG strip?",
         "Junctional tachycardia",
         ["Accelerated junctional rhythm", "Junctional escape rhythm", "Sinus tachycardia"],
-        "An inverted P right before a narrow QRS means the beat starts in the AV junction, and a junctional rhythm over 100 is junctional tachycardia (60-100 is accelerated, 40-60 is escape).")
+        "An inverted P right before a narrow QRS means the beat starts in the AV junction, and a junctional rhythm over 100 is junctional tachycardia (60-100 is accelerated, 40-60 is escape)."),
+      Q("exq-29", "Very fast wide-complex strip whose height swells and shrinks in waves", "What is the rhythm of this EKG strip?",
+        "Polymorphic ventricular tachycardia (torsades de pointes)",
+        ["Monomorphic ventricular tachycardia", "Ventricular fibrillation", "Atrial flutter"],
+        "Fast, wide complexes keep changing shape and grow then shrink in a twisting spindle pattern, unlike the one fixed shape of monomorphic VT or the shapeless chaos of VF.")
     ]
   };
 }());
