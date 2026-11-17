@@ -211,7 +211,11 @@
       Q("exq-50", "Fast, regular strip of narrow complexes with a P wave riding on the end of each T wave", "What is the rhythm of this EKG strip?",
         "Sinus tachycardia",
         ["Atrial flutter", "Supraventricular tachycardia", "Multifocal atrial tachycardia"],
-        "Each narrow QRS has the same upright P in front of it (sitting close to the previous T because the rate is fast), the rhythm is regular and over 100, and there is no sawtooth, so it is sinus tachycardia.")
+        "Each narrow QRS has the same upright P in front of it (sitting close to the previous T because the rate is fast), the rhythm is regular and over 100, and there is no sawtooth, so it is sinus tachycardia."),
+      Q("exq-51", "Regular strip of narrow complexes with no visible P waves", "What is the rhythm of this EKG strip?",
+        "Accelerated junctional rhythm",
+        ["Junctional escape rhythm", "Junctional tachycardia", "Normal sinus rhythm"],
+        "The narrow QRSs are regular with no P wave in front of them, so the AV junction is pacing, and the rate is between 60 and 100 (accelerated: faster than escape, slower than tachycardia).")
     ]
   };
 }());
