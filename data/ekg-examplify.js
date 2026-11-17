@@ -219,7 +219,11 @@
       Q("exq-52", "Slow sinus strip with one long flat pause where no P wave or QRS appears", "What is the rhythm of this EKG strip?",
         "Sinus bradycardia with one sinus arrest/pause",
         ["Sinus bradycardia with second degree AV block, type II", "Sinus arrhythmia", "Sinus bradycardia with a blocked PAC"],
-        "The baseline goes flat with no P wave at all during the long pause (in a Mobitz II drop the P wave is still there), and the sinus beats around it are under 60.")
+        "The baseline goes flat with no P wave at all during the long pause (in a Mobitz II drop the P wave is still there), and the sinus beats around it are under 60."),
+      Q("exq-53", "Strip with a sawtooth baseline of flutter waves between regular narrow complexes", "What is the rhythm of this EKG strip?",
+        "Atrial flutter",
+        ["Atrial fibrillation", "Multifocal atrial tachycardia", "Sinus tachycardia"],
+        "The baseline between the narrow QRSs is a regular sawtooth of identical flutter waves (several per QRS) instead of normal P waves or the messy, uneven baseline of AF.")
     ]
   };
 }());
