@@ -99,7 +99,11 @@
       Q("exq-22", "Strip with a constant PR interval and P waves that suddenly have no QRS after them", "What is the rhythm of this EKG strip?",
         "Second degree AV block, type II",
         ["Second degree AV block, type I (Wenckebach)", "Third degree AV block", "First degree AV block"],
-        "The PR stays the same on every conducted beat and then a P wave suddenly drops with no QRS, with no gradual PR lengthening first, which is Mobitz II.")
+        "The PR stays the same on every conducted beat and then a P wave suddenly drops with no QRS, with no gradual PR lengthening first, which is Mobitz II."),
+      Q("exq-23", "Slow strip with regular P waves and regular QRS complexes that have no fixed relationship", "What is the rhythm of this EKG strip?",
+        "Third degree AV block",
+        ["Second degree AV block, type II", "Second degree AV block, type I (Wenckebach)", "Junctional escape rhythm"],
+        "The P waves march on time and the QRSs march on time, but at different rates with PR intervals that are all over the place, so nothing is conducting (complete block).")
     ]
   };
 }());
