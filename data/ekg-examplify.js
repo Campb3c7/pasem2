@@ -215,7 +215,11 @@
       Q("exq-51", "Regular strip of narrow complexes with no visible P waves", "What is the rhythm of this EKG strip?",
         "Accelerated junctional rhythm",
         ["Junctional escape rhythm", "Junctional tachycardia", "Normal sinus rhythm"],
-        "The narrow QRSs are regular with no P wave in front of them, so the AV junction is pacing, and the rate is between 60 and 100 (accelerated: faster than escape, slower than tachycardia).")
+        "The narrow QRSs are regular with no P wave in front of them, so the AV junction is pacing, and the rate is between 60 and 100 (accelerated: faster than escape, slower than tachycardia)."),
+      Q("exq-52", "Slow sinus strip with one long flat pause where no P wave or QRS appears", "What is the rhythm of this EKG strip?",
+        "Sinus bradycardia with one sinus arrest/pause",
+        ["Sinus bradycardia with second degree AV block, type II", "Sinus arrhythmia", "Sinus bradycardia with a blocked PAC"],
+        "The baseline goes flat with no P wave at all during the long pause (in a Mobitz II drop the P wave is still there), and the sinus beats around it are under 60.")
     ]
   };
 }());
