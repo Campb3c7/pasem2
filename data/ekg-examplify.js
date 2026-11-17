@@ -271,7 +271,11 @@
       Q("exq-65", "Fast, regular strip of narrow complexes with a small P wave before each", "What is the rhythm of this EKG strip?",
         "Sinus tachycardia",
         ["Junctional tachycardia", "Atrial flutter", "Normal sinus rhythm"],
-        "About 12 regular, narrow beats fit in 6 seconds (around 120) and each has a small upright P in front, so it is a sinus rhythm over 100.")
+        "About 12 regular, narrow beats fit in 6 seconds (around 120) and each has a small upright P in front, so it is a sinus rhythm over 100."),
+      Q("exq-66", "Regular strip of tall narrow complexes, each with a small P wave in front", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm",
+        ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
+        "Every narrow QRS has its own small upright P in front at a normal PR, the beats are evenly spaced, and about 10 beats in 6 seconds puts the rate under 100.")
     ]
   };
 }());
