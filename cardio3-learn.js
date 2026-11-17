@@ -766,10 +766,32 @@
     input.addEventListener("input", upd); upd();
   }
 
+  // slider {label, min, max, step, value, unit, bands: [[below, title, text, tone, scale label?]] (last below = null), caption}
+  //   a generic "drag the number, see the category" widget (PREVENT bands, A1c, LDL, CAC...).
+  function sliderFigure(f) {
+    var cfg = { bands: f.bands, unit: f.unit || "" };
+    return '<div class="c3-decide" data-c3-slider data-cfg="' + esc(JSON.stringify(cfg)) + '"><label class="c3-decide-q"><span>' + f.label + ': <strong data-v></strong>' + esc(f.unit || "") + '</span>' +
+      '<input type="range" min="' + f.min + '" max="' + f.max + '" step="' + (f.step || 1) + '" value="' + f.value + '" aria-label="' + esc(f.label) + '"></label>' +
+      '<div class="c3-sl-scale">' + f.bands.map(function (b, i) { var lo = i ? f.bands[i - 1][0] : null; return '<span data-i="' + i + '">' + (b[4] ? b[4] : lo == null ? "&lt; " + b[0] : b[0] == null ? "≥ " + lo : lo + " to &lt; " + b[0]) + '</span>'; }).join("") + '</div>' +
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div>' + (f.caption ? '<p class="lh-caption">' + f.caption + '</p>' : "") + '</div>';
+  }
+  function bindSlider(box) {
+    var cfg = JSON.parse(box.getAttribute("data-cfg")), input = box.querySelector("input");
+    function upd() {
+      var v = Number(input.value), i = 0;
+      while (i < cfg.bands.length - 1 && cfg.bands[i][0] != null && v >= cfg.bands[i][0]) i += 1;
+      var b = cfg.bands[i], out = box.querySelector("[data-out]");
+      box.querySelector("[data-v]").textContent = v;
+      out.className = "c3-verdict " + (b[3] || "ok"); out.querySelector("strong").textContent = b[1]; out.querySelector("p").textContent = b[2];
+      box.querySelectorAll(".c3-sl-scale span").forEach(function (sp) { sp.classList.toggle("on", Number(sp.dataset.i) === i); });
+    }
+    input.addEventListener("input", upd); upd();
+  }
+
   var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure,
     bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure,
     vent: ventFigure, starling: starlingFigure, backup: backupFigure, framingham: framFigure, ntg: ntgFigure, nephron: nephronFigure,
-    wall: wallFigure, remodel: remodelFigure, capcore: capcoreFigure, balance: balanceFigure, diastole: diastoleFigure, pretest: pretestFigure };
+    wall: wallFigure, remodel: remodelFigure, capcore: capcoreFigure, balance: balanceFigure, diastole: diastoleFigure, pretest: pretestFigure, slider: sliderFigure };
   // Lecture-specific figure types can be added from another file: window.Cardio3Figures[type] = fn(f, kit).
   window.Cardio3Figures = window.Cardio3Figures || {};
   var kit = { esc: esc, f1: f1, has: has, arrowDefs: arrowDefs, nextId: function (p) { return (p || "c3x") + (uid += 1); }, coronary: coronaryFigure, artery: arteryFigure };
@@ -778,12 +800,12 @@
     var fn = FIGS[f.type] || window.Cardio3Figures[f.type];
     return fn ? fn(f, kit) : "";
   }
-  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg], ["[data-c3-diast]", bindDiast], ["[data-c3-pretest]", bindPretest]];
+  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg], ["[data-c3-diast]", bindDiast], ["[data-c3-pretest]", bindPretest], ["[data-c3-slider]", bindSlider]];
   window.Cardio3Binders = window.Cardio3Binders || [];
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
-  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
+  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest", "slider"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
   var anchor = document.getElementById("shock-learn-view");
