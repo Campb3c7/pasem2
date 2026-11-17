@@ -583,7 +583,7 @@
   // ntg  BP slider → what to do with nitrates in acute HF (slide 194).
   function ntgFigure() {
     return '<div class="c3-decide" data-c3-ntg><label class="c3-decide-q"><span>Systolic BP: <strong data-v></strong> mmHg</span><input type="range" min="70" max="220" step="5" value="180" aria-label="Systolic BP"></label>' +
-      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Drag the pressure. From the deck\'s acute HF protocol (slides 194).</p></div>';
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Drag the pressure. From the deck\'s acute HF protocol (slide 194).</p></div>';
   }
   function bindNtg(box) {
     var input = box.querySelector("input");
@@ -617,9 +617,159 @@
     return s + '</svg>';
   }
 
+  // ---- CAD figures ----------------------------------------------------------------------
+  // wall {step: ldl|oxidize|mono|foam|cap}  a slice of artery wall: lumen, endothelium, intima, media.
+  function wallFigure(f) {
+    var st = f.step || "ldl", id = kit.nextId("c3w"), s = '<svg class="c3-svg" viewBox="0 0 400 200" role="img" aria-label="A slice of artery wall">';
+    var endo = st === "cap" ? "M0,74 L70,74 Q160,6 250,74 L300,74" : "M0,74 L300,74";
+    s += '<rect class="c3-lumen" x="0" y="0" width="300" height="74"/><rect class="c3-intima" x="0" y="74" width="300" height="70"/>';
+    if (st === "cap") s += '<path class="c3-intima" d="' + endo + ' Z"/>';
+    s += '<rect class="c3-media" x="0" y="144" width="300" height="44"/>';
+    for (var m = 0; m < 6; m += 1) s += '<line class="c3-media-line" x1="0" y1="' + (150 + m * 7) + '" x2="300" y2="' + (150 + m * 7) + '"/>';
+    s += '<path class="c3-endo" d="' + endo + '"/>';
+    // blood
+    s += '<path id="' + id + 'p" d="M-10,' + (st === "cap" ? 14 : 24) + ' L310,' + (st === "cap" ? 14 : 24) + '" fill="none" stroke="none"/>';
+    for (var i = 0; i < 4; i += 1) s += '<circle class="sx-cell" r="5"><animateMotion dur="4s" repeatCount="indefinite" begin="-' + i + 's"><mpath href="#' + id + 'p"/></animateMotion></circle>';
+    function ldl(x, y, cls) { return '<circle class="' + (cls || "c3-ldl") + '" cx="' + x + '" cy="' + y + '" r="5"/>'; }
+    var note = "";
+    if (st === "ldl") {
+      s += ldl(60, 48) + ldl(240, 50) + ldl(140, 104) + ldl(200, 116) + ldl(90, 124);
+      [[110, 0], [170, 1.3], [230, 2.6]].forEach(function (p) {
+        s += '<circle class="c3-ldl" r="5"><animateMotion dur="4s" repeatCount="indefinite" begin="-' + p[1] + 's" path="M' + p[0] + ',36 L' + p[0] + ',110"/></circle>';
+      });
+      note = ["LDL slips through", "the endothelium and", "gets STUCK in the intima"];
+    }
+    if (st === "oxidize" || st === "mono" || st === "foam") {
+      [[70, 100], [130, 118], [170, 96], [220, 122], [250, 100]].forEach(function (p) { s += ldl(p[0], p[1], "c3-oxldl"); });
+      [80, 150, 220].forEach(function (x) { s += '<path class="c3-adh" d="M' + x + ',74 l0,-8 m0,0 l-5,-6 m5,6 l5,-6"/>'; });
+    }
+    if (st === "oxidize") note = ["LDL is OXIDIZED", "→ inflammation:", "endothelium puts out", "VCAM-1 / ICAM-1 (Y)"];
+    if (st === "mono") {
+      s += '<circle class="c3-mono" r="9"><animateMotion dur="5s" repeatCount="indefinite" path="M20,40 L120,48 Q150,60 150,84 L150,110" keyPoints="0;0.55;1;1" keyTimes="0;0.5;0.8;1" calcMode="linear"/><animate attributeName="r" values="8;8;13;13" keyTimes="0;0.5;0.8;1" dur="5s" repeatCount="indefinite"/></circle>';
+      note = ["MONOCYTE sticks,", "crawls in and becomes", "a MACROPHAGE"];
+    }
+    if (st === "foam") {
+      [[70, 108], [128, 112], [186, 106], [244, 112]].forEach(function (p) {
+        s += '<circle class="c3-macro" cx="' + p[0] + '" cy="' + p[1] + '" r="15"/>' + ldl(p[0] - 5, p[1] - 4, "c3-oxldl sm") + ldl(p[0] + 5, p[1] + 3, "c3-oxldl sm") + ldl(p[0] - 3, p[1] + 6, "c3-oxldl sm") + ldl(p[0] + 6, p[1] - 6, "c3-oxldl sm");
+      });
+      note = ["Macrophages eat", "oxidized LDL →", "FOAM CELLS.", "Many = FATTY STREAK"];
+    }
+    if (st === "cap") {
+      s += '<ellipse class="c3-core" cx="160" cy="84" rx="66" ry="28"/>';
+      [[130, 84], [160, 92], [190, 80], [150, 74]].forEach(function (p) { s += '<circle class="c3-macro dim" cx="' + p[0] + '" cy="' + p[1] + '" r="7"/>'; });
+      s += '<path class="c3-cap" d="M86,66 Q160,10 234,66"/><rect class="c3-calc" x="208" y="92" width="7" height="5" rx="1"/><rect class="c3-calc" x="102" y="94" width="6" height="5" rx="1"/>';
+      s += '<text class="sx-lbl sx-lbl-strong" x="160" y="33" text-anchor="middle">fibrous cap</text>';
+      note = ["Fibrous CAP over a", "lipid-rich necrotic", "CORE; calcium (white)", "may follow"];
+    }
+    // labels
+    s += '<text class="sx-lbl" x="306" y="28">lumen</text><text class="sx-lbl" x="306" y="78">endothelium</text><text class="sx-lbl" x="306" y="112">intima</text><text class="sx-lbl" x="306" y="170">media</text>';
+    var out = s + '</svg>';
+    return out + '<p class="lh-caption c3-wall-note">' + note.join(" ") + '</p>';
+  }
+
+  // remodel {kind: positive|negative}  plaque grows; the wall bulges out or the lumen shrinks.
+  function remodelFigure(f) {
+    var kinds = f.kind ? [f.kind] : ["positive", "negative"], W = kinds.length === 1 ? 200 : 400;
+    var s = '<svg class="c3-svg' + (kinds.length === 1 ? " c3-svg-small" : "") + '" viewBox="0 0 ' + W + ' 222" role="img" aria-label="Artery cross-section remodeling">';
+    kinds.forEach(function (k, n) {
+      var cx = kinds.length === 1 ? 100 : 100 + n * 200, pos = k === "positive";
+      var R = pos ? "46;62;62;46" : "46;44;44;46", P = pos ? "40;56;56;40" : "40;38;38;40", r = pos ? "30;29;29;30" : "30;13;13;30", cy = pos ? "-6;-24;-24;-6" : "-6;-21;-21;-6";
+      function an(attr, v) { return '<animate attributeName="' + attr + '" values="' + v + '" keyTimes="0;0.45;0.8;1" dur="5s" repeatCount="indefinite"/>'; }
+      s += '<g transform="translate(' + cx + ',92)"><circle class="c3-xs-wall" r="46">' + an("r", R) + '</circle><circle class="c3-plaque" r="40">' + an("r", P) + '</circle>' +
+        '<circle class="c3-lumen-x" cy="-6" r="30">' + an("r", r) + an("cy", cy) + '</circle></g>';
+      s += '<text class="sx-lbl sx-lbl-strong ' + (pos ? "sx-green" : "sx-bad") + '" x="' + cx + '" y="178" text-anchor="middle">' + (pos ? "Positive (outward)" : "Negative (inward)") + '</text>' +
+        '<text class="sx-lbl" x="' + cx + '" y="194" text-anchor="middle">' + (pos ? "wall bulges out" : "artery shrinks in") + '</text><text class="sx-lbl" x="' + cx + '" y="209" text-anchor="middle">' + (pos ? "lumen stays open" : "lumen narrows") + '</text>';
+    });
+    return s + '</svg>';
+  }
+
+  // capcore {kind: vulnerable|stable}  the two plaques in cross-section.
+  function capcoreFigure(f) {
+    var kinds = f.kind ? [f.kind] : ["vulnerable", "stable"], W = kinds.length === 1 ? 200 : 400;
+    var s = '<svg class="c3-svg' + (kinds.length === 1 ? " c3-svg-small" : "") + '" viewBox="0 0 ' + W + ' 210" role="img" aria-label="Vulnerable vs stable plaque in cross-section">';
+    kinds.forEach(function (k, n) {
+      var cx = kinds.length === 1 ? 100 : 100 + n * 200, v = k === "vulnerable";
+      s += '<g transform="translate(' + cx + ',88)"><circle class="c3-xs-wall" r="60"/>';
+      if (v) {
+        s += '<ellipse class="c3-core" cx="0" cy="22" rx="44" ry="30"/>';
+        [[-34, 4], [32, 2], [-14, -6], [16, -8], [0, 40]].forEach(function (p, i) { s += '<circle class="c3-inflam" cx="' + p[0] + '" cy="' + p[1] + '" r="4"><animate attributeName="opacity" values="1;.35;1" dur="1.6s" begin="' + (i * 0.3) + 's" repeatCount="indefinite"/></circle>'; });
+        s += '<circle class="c3-lumen-x thin-cap" cy="-16" r="28"/>';
+      } else {
+        s += '<ellipse class="c3-fibrous" cx="0" cy="14" rx="50" ry="40"/><ellipse class="c3-core" cx="0" cy="30" rx="16" ry="10"/><rect class="c3-calc" x="-30" y="26" width="8" height="6"/><rect class="c3-calc" x="22" y="32" width="7" height="6"/>' +
+          '<circle class="c3-lumen-x thick-cap" cy="-32" r="14"/>';
+      }
+      s += '</g><text class="sx-lbl sx-lbl-strong ' + (v ? "sx-bad" : "sx-gold") + '" x="' + cx + '" y="170" text-anchor="middle">' + (v ? "Vulnerable (young)" : "Stable (old)") + '</text>' +
+        '<text class="sx-lbl" x="' + cx + '" y="185" text-anchor="middle">' + (v ? "thin cap, big core" : "thick cap, small core") + '</text>' +
+        '<text class="sx-lbl" x="' + cx + '" y="200" text-anchor="middle">' + (v ? "open lumen → ruptures → ACS" : "narrow lumen → angina") + '</text>';
+    });
+    return s + '</svg>';
+  }
+
+  // balance {supply: [..], demand: [..], tip: demand|even, verdict}  oxygen supply vs demand seesaw.
+  function balanceFigure(f) {
+    var a = f.tip === "demand" ? 9 : f.tip === "supply" ? -9 : 0;
+    var s = '<svg class="c3-svg" viewBox="0 0 360 220" role="img" aria-label="Oxygen supply and demand balance">';
+    s += '<path class="c3-fulcrum" d="M180,128 L162,164 L198,164 Z"/>';
+    s += '<g><animateTransform attributeName="transform" type="rotate" values="0 180 128;' + a + ' 180 128;' + a + ' 180 128;0 180 128" keyTimes="0;0.3;0.85;1" dur="5s" repeatCount="indefinite"/>';
+    s += '<line class="c3-beam" x1="40" y1="128" x2="320" y2="128"/>';
+    function pan(x, title, items, cls) {
+      var h = 26 + items.length * 15, y = 122 - h;
+      var g = '<rect class="c3-pan ' + cls + '" x="' + (x - 66) + '" y="' + y + '" width="132" height="' + h + '" rx="10"/><text class="sx-lbl sx-lbl-strong" x="' + x + '" y="' + (y + 17) + '" text-anchor="middle">' + title + '</text>';
+      items.forEach(function (t, i) { g += '<text class="sx-lbl" x="' + x + '" y="' + (y + 33 + i * 15) + '" text-anchor="middle">' + t + '</text>'; });
+      return g;
+    }
+    s += pan(86, "O₂ SUPPLY", f.supply || ["coronary flow", "(mostly in diastole)"], "sup") + pan(274, "O₂ DEMAND", f.demand || ["heart rate", "contractility", "wall stress"], "dem") + '</g>';
+    if (f.verdict) s += '<text class="sx-lbl sx-lbl-strong ' + (a > 0 ? "sx-bad" : "sx-green") + '" x="180" y="196" text-anchor="middle">' + f.verdict + '</text>';
+    return s + '</svg>';
+  }
+
+  // diastole  HR slider: the cycle shortens, and diastole (coronary filling time) takes the hit.
+  function diastoleFigure() {
+    return '<div class="c3-decide" data-c3-diast><label class="c3-decide-q"><span>Heart rate: <strong data-v></strong> bpm</span><input type="range" min="50" max="180" step="5" value="60" aria-label="Heart rate"></label>' +
+      '<div class="c3-cyc"><div class="c3-cyc-bar"><span class="c3-cyc-sys" data-sys>systole</span><span class="c3-cyc-dia" data-dia>diastole: coronaries fill</span></div></div>' +
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">One heartbeat, drawn to scale. Rough timings (standard teaching): systole shortens a little, diastole a lot.</p></div>';
+  }
+  function bindDiast(box) {
+    var input = box.querySelector("input");
+    function upd() {
+      var hr = Number(input.value), cyc = 60000 / hr, sys = Math.max(200, 400 - hr), dia = cyc - sys, full = 1200;
+      box.querySelector("[data-v]").textContent = hr;
+      box.querySelector(".c3-cyc-bar").style.width = (cyc / full * 100).toFixed(1) + "%";
+      box.querySelector("[data-sys]").style.flexBasis = (sys / cyc * 100).toFixed(1) + "%";
+      box.querySelector("[data-dia]").style.flexBasis = (dia / cyc * 100).toFixed(1) + "%";
+      box.querySelector("[data-dia]").textContent = dia > 260 ? "diastole: coronaries fill" : "dia";
+      var out = box.querySelector("[data-out]"), bad = hr >= 120;
+      out.className = "c3-verdict " + (bad ? "bad" : hr >= 90 ? "ok" : "pci");
+      out.querySelector("strong").textContent = "Diastole ≈ " + Math.round(dia) + " ms of each " + Math.round(cyc) + " ms beat (" + Math.round(dia / cyc * 100) + "%)";
+      out.querySelector("p").textContent = bad ? "Fast rate: demand is up AND filling time is short. A stenosed artery can't keep up → ischemia." : hr >= 90 ? "Less filling time per beat while demand climbs." : "Slow rate: long diastole, plenty of time to fill the coronaries.";
+    }
+    input.addEventListener("input", upd); upd();
+  }
+
+  // pretest  likelihood slider → what test (2024 ESC model, suspected stable angina).
+  function pretestFigure() {
+    return '<div class="c3-decide" data-c3-pretest><label class="c3-decide-q"><span>Pretest likelihood of obstructive CAD: <strong data-v></strong>%</span><input type="range" min="1" max="40" step="1" value="10" aria-label="Pretest likelihood"></label>' +
+      '<div class="c3-pt-scale"><span class="lo">&lt; 5%</span><span class="mid">5 to 15%</span><span class="hi">&gt; 15%</span></div>' +
+      '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Drag the likelihood. No known CAD, after the H&amp;P and ECG (slide 51).</p></div>';
+  }
+  function bindPretest(box) {
+    var input = box.querySelector("input");
+    function upd() {
+      var p = Number(input.value), out = box.querySelector("[data-out]"), r;
+      box.querySelector("[data-v]").textContent = p;
+      if (p < 5) r = ["Testing not usually indicated", "The chance of obstructive CAD is too low for a test to help.", "pci", "lo"];
+      else if (p <= 15) r = ["CAC score, exercise ECG, or no testing", "A light test can rule things in or out.", "ok", "mid"];
+      else r = ["Stress test WITH imaging, or CCTA", "Likely enough that you want a real picture.", "bad", "hi"];
+      out.className = "c3-verdict " + r[2]; out.querySelector("strong").textContent = r[0]; out.querySelector("p").textContent = r[1];
+      box.querySelectorAll(".c3-pt-scale span").forEach(function (sp) { sp.classList.toggle("on", sp.classList.contains(r[3])); });
+    }
+    input.addEventListener("input", upd); upd();
+  }
+
   var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure,
     bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure,
-    vent: ventFigure, starling: starlingFigure, backup: backupFigure, framingham: framFigure, ntg: ntgFigure, nephron: nephronFigure };
+    vent: ventFigure, starling: starlingFigure, backup: backupFigure, framingham: framFigure, ntg: ntgFigure, nephron: nephronFigure,
+    wall: wallFigure, remodel: remodelFigure, capcore: capcoreFigure, balance: balanceFigure, diastole: diastoleFigure, pretest: pretestFigure };
   // Lecture-specific figure types can be added from another file: window.Cardio3Figures[type] = fn(f, kit).
   window.Cardio3Figures = window.Cardio3Figures || {};
   var kit = { esc: esc, f1: f1, has: has, arrowDefs: arrowDefs, nextId: function (p) { return (p || "c3x") + (uid += 1); }, coronary: coronaryFigure, artery: arteryFigure };
@@ -628,12 +778,12 @@
     var fn = FIGS[f.type] || window.Cardio3Figures[f.type];
     return fn ? fn(f, kit) : "";
   }
-  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg]];
+  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg], ["[data-c3-diast]", bindDiast], ["[data-c3-pretest]", bindPretest]];
   window.Cardio3Binders = window.Cardio3Binders || [];
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
-  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
+  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
   var anchor = document.getElementById("shock-learn-view");
@@ -650,7 +800,7 @@
       data: data, viewId: p + "-view", contentId: p + "-content", backId: p + "-back", statusId: p + "-status",
       progressKey: "pasem2:learn:" + lectureId + ":progress", eyebrow: data.short + " · from zero", heading: data.heading,
       statusCopy: data.lessons.length + " short lessons. Start with lesson 1: each one builds on the last.",
-      figure: figure, bindFigures: bindFigures, ownCaption: ownCaption, isSmall: function (f) { return f.type === "vent"; },
+      figure: figure, bindFigures: bindFigures, ownCaption: ownCaption, isSmall: function (f) { return f.type === "vent" || ((f.type === "remodel" || f.type === "capcore") && !!f.kind); },
       beforeOpen: function () { document.querySelectorAll("[data-rhythm-tool]").forEach(function (other) { other.innerHTML = ""; }); }
     });
     if (!path) return;
