@@ -155,7 +155,11 @@
       Q("exq-36", "12-lead EKG with a fast, regular, narrow rhythm and a P wave before every QRS", "What is the rhythm of this 12 lead EKG?",
         "Sinus tachycardia",
         ["Supraventricular tachycardia", "Atrial flutter", "Normal sinus rhythm"],
-        "It is regular and narrow with an upright P wave before every QRS in lead II, and the rate is over 100, so it is sinus tachycardia (SVT would hide its P waves).")
+        "It is regular and narrow with an upright P wave before every QRS in lead II, and the rate is over 100, so it is sinus tachycardia (SVT would hide its P waves)."),
+      Q("exq-37", "12-lead EKG with a fast, regular, narrow rhythm and inverted P waves in the inferior leads", "What is the rhythm of this 12 lead EKG?",
+        "Junctional tachycardia",
+        ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
+        "The narrow QRSs are regular and over 100, and the P waves are inverted in II, III and aVF (retrograde from the AV junction) instead of upright like a sinus P.")
     ]
   };
 }());
