@@ -279,7 +279,11 @@
       Q("exq-67", "Strip that starts with two slow sinus beats, then an early beat sets off a sudden fast, regular narrow rhythm", "What is the rhythm of this EKG strip?",
         "Sinus bradycardia going into atrial tachycardia with one PAC",
         ["Sinus bradycardia going into sinus tachycardia", "Sinus bradycardia going into atrial flutter with one PAC", "Sinus bradycardia going into ventricular tachycardia with one PVC"],
-        "Two slow sinus beats are followed by an early narrow beat with a different P (the PAC) that kicks off a sudden, fast run of narrow beats with P waves, which is atrial tachycardia (sinus would speed up gradually).")
+        "Two slow sinus beats are followed by an early narrow beat with a different P (the PAC) that kicks off a sudden, fast run of narrow beats with P waves, which is atrial tachycardia (sinus would speed up gradually)."),
+      Q("exq-68", "Fast, regular strip of narrow complexes with an upright P wave before each", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia",
+        ["Atrial flutter", "Multifocal atrial tachycardia", "Junctional tachycardia"],
+        "The P waves all look the same and each sits before a narrow QRS at a steady interval, with about 13 beats in 6 seconds (over 100), so it is sinus tachycardia rather than flutter's sawtooth or MAT's changing P waves.")
     ]
   };
 }());
