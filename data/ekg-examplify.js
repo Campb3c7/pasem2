@@ -243,7 +243,11 @@
       Q("exq-58", "Irregularly irregular strip of narrow complexes over a wavy baseline", "What is the rhythm of this EKG strip?",
         "Atrial fibrillation",
         ["Atrial flutter", "Sinus arrhythmia", "Multifocal atrial tachycardia"],
-        "The gaps between narrow QRSs vary with no pattern and the baseline is a fine, uneven wiggle with no real P waves, which is atrial fibrillation (not flutter's even sawtooth or MAT's distinct P waves).")
+        "The gaps between narrow QRSs vary with no pattern and the baseline is a fine, uneven wiggle with no real P waves, which is atrial fibrillation (not flutter's even sawtooth or MAT's distinct P waves)."),
+      Q("exq-59", "Regular sinus strip with one narrow beat that comes early", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm with one PAC",
+        ["Normal sinus rhythm with one PJC", "Normal sinus rhythm with one PVC", "Normal sinus rhythm with one sinus arrest/pause"],
+        "One beat arrives early with a narrow QRS and its own differently shaped P wave in front of it, then a short pause follows, which marks an atrial premature beat.")
     ]
   };
 }());
