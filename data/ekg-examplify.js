@@ -163,7 +163,11 @@
       Q("exq-38", "12-lead EKG with inferior ST elevation, a PR that lengthens beat to beat and a dropped QRS", "What is the rhythm of this 12 lead EKG?",
         "Second degree AV block, type I",
         ["Second degree AV block, type II", "Third degree AV block", "First degree AV block"],
-        "In the lead II strip the PR gets longer with each beat until a P wave has no QRS after it, then resets, which is Wenckebach (here alongside an inferior STEMI, since the RCA feeds the AV node).")
+        "In the lead II strip the PR gets longer with each beat until a P wave has no QRS after it, then resets, which is Wenckebach (here alongside an inferior STEMI, since the RCA feeds the AV node)."),
+      Q("exq-39", "12-lead EKG with a regular rhythm and a long, unchanging PR interval in lead II", "What is the rhythm of this 12 lead EKG?",
+        "First degree AV block",
+        ["Second degree AV block, type I", "Second degree AV block, type II", "Normal sinus rhythm"],
+        "In the lead II strip every P is followed by a QRS after the same long PR (over 0.20 s, more than one big box), with no beats dropped, which is first degree block.")
     ]
   };
 }());
