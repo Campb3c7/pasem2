@@ -239,7 +239,11 @@
       Q("exq-57", "Regular strip of narrow, mostly negative complexes with no P waves", "What is the rhythm of this EKG strip?",
         "Accelerated junctional rhythm",
         ["Junctional tachycardia", "Accelerated idioventricular rhythm", "Sinus rhythm with ST elevation"],
-        "The QRSs are narrow (so not ventricular) and regular with no P waves anywhere, so the junction is pacing, and the rate of about 75 falls in the 60-100 accelerated range.")
+        "The QRSs are narrow (so not ventricular) and regular with no P waves anywhere, so the junction is pacing, and the rate of about 75 falls in the 60-100 accelerated range."),
+      Q("exq-58", "Irregularly irregular strip of narrow complexes over a wavy baseline", "What is the rhythm of this EKG strip?",
+        "Atrial fibrillation",
+        ["Atrial flutter", "Sinus arrhythmia", "Multifocal atrial tachycardia"],
+        "The gaps between narrow QRSs vary with no pattern and the baseline is a fine, uneven wiggle with no real P waves, which is atrial fibrillation (not flutter's even sawtooth or MAT's distinct P waves).")
     ]
   };
 }());
