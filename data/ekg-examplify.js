@@ -287,7 +287,11 @@
       Q("exq-69", "12-lead EKG with a regular, narrow rhythm and an upright P wave before each QRS in lead II", "What is the rhythm of this 12 lead EKG?",
         "Normal sinus rhythm",
         ["Sinus bradycardia", "First degree AV block", "Junctional escape rhythm"],
-        "In the lead II strip every narrow QRS has an upright P in front at a normal PR, the beats are evenly spaced about 4 big boxes apart (around 75), which is inside 60-100.")
+        "In the lead II strip every narrow QRS has an upright P in front at a normal PR, the beats are evenly spaced about 4 big boxes apart (around 75), which is inside 60-100."),
+      Q("exq-70", "12-lead EKG with a fast, regular, narrow rhythm and a P wave before each QRS in lead II", "What is the rhythm of this 12 lead EKG?",
+        "Sinus tachycardia",
+        ["Supraventricular tachycardia", "Atrial flutter", "Normal sinus rhythm"],
+        "In the lead II strip each narrow QRS has an upright P in front of it and the beats are only about 2.5 big boxes apart (over 100), so it is a sinus rhythm that is simply fast.")
     ]
   };
 }());
