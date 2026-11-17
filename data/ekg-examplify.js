@@ -103,7 +103,11 @@
       Q("exq-23", "Slow strip with regular P waves and regular QRS complexes that have no fixed relationship", "What is the rhythm of this EKG strip?",
         "Third degree AV block",
         ["Second degree AV block, type II", "Second degree AV block, type I (Wenckebach)", "Junctional escape rhythm"],
-        "The P waves march on time and the QRSs march on time, but at different rates with PR intervals that are all over the place, so nothing is conducting (complete block).")
+        "The P waves march on time and the QRSs march on time, but at different rates with PR intervals that are all over the place, so nothing is conducting (complete block)."),
+      Q("exq-24", "Regular strip of wide complexes with no P waves at a moderate rate", "What is the rhythm of this EKG strip?",
+        "Accelerated idioventricular rhythm",
+        ["Idioventricular rhythm", "Ventricular tachycardia", "Accelerated junctional rhythm"],
+        "Wide QRSs with no P waves mean a ventricular rhythm, and the rate sits between 40 and 100: faster than plain idioventricular (20-40) but slower than VT (over 100).")
     ]
   };
 }());
