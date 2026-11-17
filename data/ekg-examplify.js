@@ -283,7 +283,11 @@
       Q("exq-68", "Fast, regular strip of narrow complexes with an upright P wave before each", "What is the rhythm of this EKG strip?",
         "Sinus tachycardia",
         ["Atrial flutter", "Multifocal atrial tachycardia", "Junctional tachycardia"],
-        "The P waves all look the same and each sits before a narrow QRS at a steady interval, with about 13 beats in 6 seconds (over 100), so it is sinus tachycardia rather than flutter's sawtooth or MAT's changing P waves.")
+        "The P waves all look the same and each sits before a narrow QRS at a steady interval, with about 13 beats in 6 seconds (over 100), so it is sinus tachycardia rather than flutter's sawtooth or MAT's changing P waves."),
+      Q("exq-69", "12-lead EKG with a regular, narrow rhythm and an upright P wave before each QRS in lead II", "What is the rhythm of this 12 lead EKG?",
+        "Normal sinus rhythm",
+        ["Sinus bradycardia", "First degree AV block", "Junctional escape rhythm"],
+        "In the lead II strip every narrow QRS has an upright P in front at a normal PR, the beats are evenly spaced about 4 big boxes apart (around 75), which is inside 60-100.")
     ]
   };
 }());
