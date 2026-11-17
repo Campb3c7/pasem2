@@ -107,7 +107,11 @@
       Q("exq-24", "Regular strip of wide complexes with no P waves at a moderate rate", "What is the rhythm of this EKG strip?",
         "Accelerated idioventricular rhythm",
         ["Idioventricular rhythm", "Ventricular tachycardia", "Accelerated junctional rhythm"],
-        "Wide QRSs with no P waves mean a ventricular rhythm, and the rate sits between 40 and 100: faster than plain idioventricular (20-40) but slower than VT (over 100).")
+        "Wide QRSs with no P waves mean a ventricular rhythm, and the rate sits between 40 and 100: faster than plain idioventricular (20-40) but slower than VT (over 100)."),
+      Q("exq-25", "Strip where the PR interval grows longer until a P wave has no QRS after it", "What is the rhythm of this EKG strip?",
+        "Second degree AV block, type I",
+        ["Second degree AV block, type II", "Third degree AV block", "First degree AV block"],
+        "The PR gets a little longer with each beat until one P wave has no QRS, then the cycle restarts with a shorter PR, which is Wenckebach.")
     ]
   };
 }());
