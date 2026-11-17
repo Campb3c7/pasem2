@@ -195,7 +195,11 @@
       Q("exq-46", "Regular lead II strip with an upright P before every narrow QRS and wide gaps between beats", "What is the rhythm of this EKG strip?",
         "Sinus bradycardia",
         ["Normal sinus rhythm", "Junctional escape rhythm", "First degree AV block"],
-        "Every narrow QRS has an upright P before it with a normal PR and the rhythm is regular, but the beats are about 6 big boxes apart (about 50 a minute), which is under 60.")
+        "Every narrow QRS has an upright P before it with a normal PR and the rhythm is regular, but the beats are about 6 big boxes apart (about 50 a minute), which is under 60."),
+      Q("exq-47", "Fast, regular strip of narrow complexes, each with a small P wave in front", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia",
+        ["Supraventricular tachycardia", "Junctional tachycardia", "Atrial flutter"],
+        "It is regular and narrow with a small upright P before every QRS, and the beats are only about 2 big boxes apart (rate over 100), so it is sinus tachycardia.")
     ]
   };
 }());
