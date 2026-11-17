@@ -255,7 +255,15 @@
       Q("exq-61", "Fast, regular strip of narrow complexes with T waves but no P waves", "What is the rhythm of this EKG strip?",
         "Junctional tachycardia",
         ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
-        "There is no P wave before any of the narrow, regular QRSs (only T waves between them), so the junction is pacing, and at a rate over 100 that makes it junctional tachycardia.")
+        "There is no P wave before any of the narrow, regular QRSs (only T waves between them), so the junction is pacing, and at a rate over 100 that makes it junctional tachycardia."),
+      Q("exq-62", "Sinus strip where the spacing between beats speeds up and slows down", "What is the rhythm of this EKG strip?",
+        "Sinus arrhythmia/dysrhythmia",
+        ["Sinus arrest", "Normal sinus rhythm with PACs", "Wandering atrial pacemaker"],
+        "Every beat has the same upright P and normal PR, but the gaps between beats gradually shrink and stretch instead of one beat jumping early or one P changing shape."),
+      Q("exq-63", "Regular strip with a small upright P wave before every narrow QRS", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm",
+        ["Sinus bradycardia", "First degree AV block", "Junctional escape rhythm"],
+        "It is regular with an upright P before every narrow QRS and a normal PR, and the beats are about 4 big boxes apart (around 75), which is inside 60-100.")
     ]
   };
 }());
