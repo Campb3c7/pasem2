@@ -143,7 +143,11 @@
       Q("exq-33", "Slightly irregular strip with changing P wave shapes and two wide beats of different shapes", "What is the rhythm of this EKG strip?",
         "Wandering atrial pacemaker with two multifocal PVCs",
         ["Multifocal atrial tachycardia with two multifocal PVCs", "Wandering atrial pacemaker with two unifocal PVCs", "Atrial fibrillation with two multifocal PVCs"],
-        "The P waves change shape from beat to beat at a rate under 100 (WAP, not MAT, and there are real P waves so it is not AF), and the two wide beats look different from each other, so the PVCs are multifocal.")
+        "The P waves change shape from beat to beat at a rate under 100 (WAP, not MAT, and there are real P waves so it is not AF), and the two wide beats look different from each other, so the PVCs are multifocal."),
+      Q("exq-34", "Regular strip with a P wave far ahead of every narrow QRS", "What is the rhythm of this EKG strip?",
+        "First degree AV block",
+        ["Second degree AV block, type I (Wenckebach)", "Third degree AV block", "Normal sinus rhythm"],
+        "The P sits far ahead of every QRS, but every P conducts and the PR never changes; a fixed PR over 0.20 s with no dropped beats is first degree block.")
     ]
   };
 }());
