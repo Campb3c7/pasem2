@@ -91,7 +91,11 @@
       Q("exq-20", "Strip with identical P waves before every narrow QRS but gaps between beats that lengthen and shorten", "What is the rhythm of this EKG strip?",
         "Sinus dysrhythmia/arrhythmia",
         ["Sinus arrest", "Wandering atrial pacemaker", "Second degree AV block type I (Wenckebach)"],
-        "Every beat has the same upright P and normal PR, but the gaps between beats gradually stretch and shrink (with breathing) instead of dropping beats or changing P shapes.")
+        "Every beat has the same upright P and normal PR, but the gaps between beats gradually stretch and shrink (with breathing) instead of dropping beats or changing P shapes."),
+      Q("exq-21", "Regular sinus strip interrupted twice by an early narrow beat", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm with two PACs",
+        ["Normal sinus rhythm with two PVCs", "Normal sinus rhythm with two PJCs", "Sinus arrhythmia"],
+        "Two beats come early with a narrow QRS and a P wave that looks different from the sinus P (sometimes hiding in the T wave), which marks them as atrial, not ventricular or junctional.")
     ]
   };
 }());
