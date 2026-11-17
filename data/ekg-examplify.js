@@ -227,7 +227,11 @@
       Q("exq-54", "Slow, regular strip of narrow complexes with an inverted P wave just before each QRS", "What is the rhythm of this EKG strip?",
         "Junctional (escape) rhythm",
         ["Accelerated junctional rhythm", "Sinus bradycardia", "Idioventricular rhythm"],
-        "Each narrow QRS has an inverted P right in front of it (retrograde from the AV junction, not an upright sinus P), and the rate is 40-60, the junction's own escape rate.")
+        "Each narrow QRS has an inverted P right in front of it (retrograde from the AV junction, not an upright sinus P), and the rate is 40-60, the junction's own escape rate."),
+      Q("exq-55", "Strip with a continuous sawtooth of flutter waves and a narrow QRS after every few waves", "What is the rhythm of this EKG strip?",
+        "Atrial flutter",
+        ["Atrial fibrillation", "Sinus tachycardia", "Wandering atrial pacemaker"],
+        "Identical flutter waves run in a steady sawtooth with a narrow QRS after every few of them, unlike AF's flat, uneven baseline or one P per QRS in sinus.")
     ]
   };
 }());
