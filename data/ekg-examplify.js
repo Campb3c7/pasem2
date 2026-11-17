@@ -167,7 +167,11 @@
       Q("exq-39", "12-lead EKG with a regular rhythm and a long, unchanging PR interval in lead II", "What is the rhythm of this 12 lead EKG?",
         "First degree AV block",
         ["Second degree AV block, type I", "Second degree AV block, type II", "Normal sinus rhythm"],
-        "In the lead II strip every P is followed by a QRS after the same long PR (over 0.20 s, more than one big box), with no beats dropped, which is first degree block.")
+        "In the lead II strip every P is followed by a QRS after the same long PR (over 0.20 s, more than one big box), with no beats dropped, which is first degree block."),
+      Q("exq-40", "12-lead EKG with regular wide QRS complexes, no P waves and a moderate rate", "What is the rhythm of this 12 lead EKG?",
+        "Accelerated idioventricular rhythm",
+        ["Idioventricular rhythm", "Ventricular tachycardia", "Junctional escape rhythm"],
+        "Wide QRSs with no P waves mean the ventricles are driving, and the rate in the rhythm strips is between 40 and 100 (above plain idioventricular, below VT).")
     ]
   };
 }());
