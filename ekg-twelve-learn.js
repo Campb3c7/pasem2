@@ -102,23 +102,25 @@
     if (!c || !window.TwelveSynth || !window.TwelveSynth.beat) return "";
     var b = window.TwelveSynth.beat(c, f.seed == null ? 3 : f.seed), box = f.box || 4.5;
     var t0 = b.hasP ? -(b.ctx.pr + 0.05) : -0.1, t1 = b.ctx.qt + (c.id === "tw-hypok" ? 0.22 : 0.12);
-    var leads = f.leads || ["I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6"];
+    // Always the printout's 3 x 4 layout so every lead sits where it would on a real 12-lead; leads not in f.leads are dimmed.
+    var shown = f.leads || ["I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6"];
+    var leads = [].concat(LAYOUT[0], LAYOUT[1], LAYOUT[2]);
     var hi = f.hi || {}, notes = f.notes || {}, measure = f.measure || {};
     var data = {}, lo = 0, top = 0;
     leads.forEach(function (lead) {
       var pts = [];
-      for (var t = t0; t <= t1 + 1e-9; t += 0.004) { var v = b.value(lead, t); pts.push([t, v]); lo = Math.min(lo, v); top = Math.max(top, v); }
+      for (var t = t0; t <= t1 + 1e-9; t += 0.004) { var v = b.value(lead, t); pts.push([t, v]); if (shown.indexOf(lead) >= 0) { lo = Math.min(lo, v); top = Math.max(top, v); } }
       data[lead] = pts;
     });
     var yTop = Math.ceil((top + 2) / 5) * 5, yBot = Math.floor((lo - 2) / 5) * 5;
     var W = (t1 - t0) / 0.04 * box, H = (yTop - yBot) * box;
     function x(t) { return (t - t0) / 0.04 * box; }
     function y(mm) { return (yTop - mm) * box; }
-    var html = (f.title ? '<p class="lh-strip-name">' + escapeHtml(f.title) + '</p>' : "") + '<div class="t12-beats' + (leads.length > 6 ? " many" : "") + '">';
+    var html = (f.title ? '<p class="lh-strip-name">' + escapeHtml(f.title) + '</p>' : "") + '<div class="t12-beats t12-grid">';
     leads.forEach(function (lead) {
-      var t = hi[lead], s = '<svg viewBox="0 0 ' + f1(W) + ' ' + f1(H) + '" role="img" aria-label="Lead ' + lead + ' beat">' + grid(W, H, box) +
+      var off = shown.indexOf(lead) < 0, t = off ? null : hi[lead], s = '<svg viewBox="0 0 ' + f1(W) + ' ' + f1(H) + '" role="img" aria-label="Lead ' + lead + ' beat">' + grid(W, H, box) +
         '<polyline class="rs-trace" points="' + data[lead].map(function (p) { return f1(x(p[0])) + "," + f1(y(p[1])); }).join(" ") + '"/>';
-      if (measure[lead]) {
+      if (measure[lead] && !off) {
         var best = null;
         data[lead].forEach(function (p) { if (p[0] >= -0.01 && p[0] <= 0.16 && (!best || (measure[lead] === "R" ? p[1] > best[1] : p[1] < best[1]))) best = p; });
         if (best) {
@@ -128,8 +130,8 @@
         }
       }
       s += '</svg>';
-      html += '<figure class="t12-beat' + (t ? " lit" : "") + '"' + (t ? ' style="--t12:' + tone(t) + '"' : "") + '><span class="t12-beat-name">' + lead + '</span>' + s +
-        (notes[lead] ? '<figcaption>' + notes[lead] + '</figcaption>' : "") + '</figure>';
+      html += '<figure class="t12-beat' + (t ? " lit" : "") + (off ? " off" : "") + '"' + (t ? ' style="--t12:' + tone(t) + '"' : "") + '><span class="t12-beat-name">' + lead + '</span>' + s +
+        '<figcaption>' + (!off && notes[lead] ? notes[lead] : "&nbsp;") + '</figcaption></figure>';
     });
     return html + '</div>';
   }
@@ -137,7 +139,7 @@
   // ---- where the stickers go -----------------------------------------------
   var ELECTRODES = {
     RA: [62, 112, "limb"], LA: [298, 112, "limb"], RL: [128, 384, "limb"], LL: [232, 384, "limb"],
-    V1: [166, 178, "chest"], V2: [194, 178, "chest"], V3: [210, 194, "chest"], V4: [226, 210, "chest"], V5: [250, 212, "chest"], V6: [272, 214, "chest"]
+    V1: [165, 176, "chest"], V2: [195, 176, "chest"], V3: [211, 185, "chest"], V4: [226, 193, "chest"], V5: [250, 197, "chest"], V6: [272, 201, "chest"]
   };
   var LIMB_COLOR = { RA: "white", LA: "grey", RL: "green", LL: "red" };
   function bodyFigure(f) {
@@ -151,8 +153,8 @@
     if (show !== "limb") {
       // sternum, ribs (intercostal spaces) and the vertical lines
       s += '<rect class="t12-bone" x="172" y="92" width="16" height="104" rx="6"/>';
-      [128, 146, 164, 180, 196, 214].forEach(function (yy, i) { s += '<path class="t12-rib" d="M172,' + yy + ' Q130,' + (yy - 10) + ' 100,' + (yy + 6) + ' M188,' + yy + ' Q230,' + (yy - 10) + ' 262,' + (yy + 6) + '"/>'; });
-      s += '<text class="t12-note" x="104" y="176" text-anchor="middle">4th space</text><text class="t12-note" x="104" y="212" text-anchor="middle">5th space</text>';
+      [130, 148, 166, 186, 206, 226].forEach(function (yy, i) { s += '<path class="t12-rib" d="M172,' + yy + ' Q130,' + (yy - 10) + ' 100,' + (yy + 6) + ' M188,' + yy + ' Q230,' + (yy - 10) + ' 262,' + (yy + 6) + '"/>'; });
+      s += '<text class="t12-note" x="100" y="185" text-anchor="end">4th ICS</text><text class="t12-note" x="100" y="205" text-anchor="end">5th ICS</text>';
       s += '<line class="t12-vline" x1="226" y1="96" x2="226" y2="250"/><line class="t12-vline" x1="250" y1="100" x2="250" y2="250"/><line class="t12-vline" x1="272" y1="104" x2="272" y2="250"/>';
       s += '<text class="t12-note" x="226" y="262" text-anchor="middle">MCL</text><text class="t12-note" x="250" y="262" text-anchor="middle">AAL</text><text class="t12-note" x="274" y="262" text-anchor="middle">MAL</text>';
     }
