@@ -111,7 +111,11 @@
       Q("exq-25", "Strip where the PR interval grows longer until a P wave has no QRS after it", "What is the rhythm of this EKG strip?",
         "Second degree AV block, type I",
         ["Second degree AV block, type II", "Third degree AV block", "First degree AV block"],
-        "The PR gets a little longer with each beat until one P wave has no QRS, then the cycle restarts with a shorter PR, which is Wenckebach.")
+        "The PR gets a little longer with each beat until one P wave has no QRS, then the cycle restarts with a shorter PR, which is Wenckebach."),
+      Q("exq-26", "Fast sinus strip interrupted by two tall, wide early beats of the same shape", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia with two unifocal PVCs",
+        ["Sinus tachycardia with two multifocal PVCs", "Sinus tachycardia with two PACs", "Normal sinus rhythm with two unifocal PVCs"],
+        "The underlying sinus beats run faster than 100, and two early beats are wide with no P wave and the same shape as each other, so they are unifocal PVCs.")
     ]
   };
 }());
