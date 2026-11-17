@@ -251,7 +251,11 @@
       Q("exq-60", "Regular strip with four identical sawtooth flutter waves between each narrow QRS", "What is the rhythm of this EKG strip?",
         "Atrial flutter",
         ["Atrial fibrillation", "Second degree AV block, type II", "Sinus rhythm with PACs"],
-        "Four identical flutter waves sit between every pair of narrow QRSs in a steady sawtooth (4:1 block), so the QRS rate stays regular, unlike AF, and there are no single sinus P waves.")
+        "Four identical flutter waves sit between every pair of narrow QRSs in a steady sawtooth (4:1 block), so the QRS rate stays regular, unlike AF, and there are no single sinus P waves."),
+      Q("exq-61", "Fast, regular strip of narrow complexes with T waves but no P waves", "What is the rhythm of this EKG strip?",
+        "Junctional tachycardia",
+        ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
+        "There is no P wave before any of the narrow, regular QRSs (only T waves between them), so the junction is pacing, and at a rate over 100 that makes it junctional tachycardia.")
     ]
   };
 }());
