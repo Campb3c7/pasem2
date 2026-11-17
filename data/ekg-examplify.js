@@ -147,7 +147,11 @@
       Q("exq-34", "Regular strip with a P wave far ahead of every narrow QRS", "What is the rhythm of this EKG strip?",
         "First degree AV block",
         ["Second degree AV block, type I (Wenckebach)", "Third degree AV block", "Normal sinus rhythm"],
-        "The P sits far ahead of every QRS, but every P conducts and the PR never changes; a fixed PR over 0.20 s with no dropped beats is first degree block.")
+        "The P sits far ahead of every QRS, but every P conducts and the PR never changes; a fixed PR over 0.20 s with no dropped beats is first degree block."),
+      Q("exq-35", "Irregularly irregular strip with a wavy baseline and no clear P waves", "What is the rhythm of this EKG strip?",
+        "Atrial fibrillation",
+        ["Atrial flutter", "Multifocal atrial tachycardia", "Wandering atrial pacemaker"],
+        "The narrow QRSs come at irregularly irregular intervals over a wavy baseline with no real P waves (no sawtooth either), which is atrial fibrillation.")
     ]
   };
 }());
