@@ -119,7 +119,11 @@
       Q("exq-27", "Slow strip with more P waves than QRS complexes and P waves landing at random spots relative to the QRS", "What is the rhythm of this EKG strip?",
         "Third degree AV block",
         ["Second degree AV block, type II", "Second degree AV block, type I (Wenckebach)", "Sinus bradycardia"],
-        "There are more P waves than QRSs, the P waves keep their own steady pace and fall anywhere (even on the T wave), and the PR never repeats, so atria and ventricles beat independently.")
+        "There are more P waves than QRSs, the P waves keep their own steady pace and fall anywhere (even on the T wave), and the PR never repeats, so atria and ventricles beat independently."),
+      Q("exq-28", "Strip with an inverted P wave just before each narrow QRS", "What is the rhythm of this EKG strip?",
+        "Junctional tachycardia",
+        ["Accelerated junctional rhythm", "Junctional escape rhythm", "Sinus tachycardia"],
+        "An inverted P right before a narrow QRS means the beat starts in the AV junction, and a junctional rhythm over 100 is junctional tachycardia (60-100 is accelerated, 40-60 is escape).")
     ]
   };
 }());
