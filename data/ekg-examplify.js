@@ -127,7 +127,11 @@
       Q("exq-29", "Very fast wide-complex strip whose height swells and shrinks in waves", "What is the rhythm of this EKG strip?",
         "Polymorphic ventricular tachycardia (torsades de pointes)",
         ["Monomorphic ventricular tachycardia", "Ventricular fibrillation", "Atrial flutter"],
-        "Fast, wide complexes keep changing shape and grow then shrink in a twisting spindle pattern, unlike the one fixed shape of monomorphic VT or the shapeless chaos of VF.")
+        "Fast, wide complexes keep changing shape and grow then shrink in a twisting spindle pattern, unlike the one fixed shape of monomorphic VT or the shapeless chaos of VF."),
+      Q("exq-30", "Fast sinus strip with a pair of differently shaped wide beats and one more wide beat later", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia with one multifocal PVC couplet and one additional multifocal PVC",
+        ["Sinus tachycardia with one unifocal PVC couplet and one additional unifocal PVC", "Sinus tachycardia with a three-beat run of ventricular tachycardia", "Normal sinus rhythm with one multifocal PVC couplet and one additional multifocal PVC"],
+        "The sinus beats run over 100, two wide beats come back to back (a couplet) plus one more later, and the wide beats have different shapes from each other, so they come from more than one focus.")
     ]
   };
 }());
