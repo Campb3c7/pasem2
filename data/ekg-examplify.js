@@ -83,7 +83,11 @@
       Q("exq-18", "Short strip of fast, regular, wide, identical complexes with no P waves", "What is the rhythm of this EKG strip?",
         "Ventricular tachycardia",
         ["Ventricular fibrillation", "Torsades de pointes", "Accelerated idioventricular rhythm"],
-        "Wide, identical complexes march in fast and regular with no P waves; they keep one shape (not twisting like torsades or chaotic like VF) and the rate is well over 100 (too fast for AIVR).")
+        "Wide, identical complexes march in fast and regular with no P waves; they keep one shape (not twisting like torsades or chaotic like VF) and the rate is well over 100 (too fast for AIVR)."),
+      Q("exq-19", "Slow, regular strip of wide complexes with no P waves", "What is the rhythm of this EKG strip?",
+        "Idioventricular rhythm",
+        ["Accelerated idioventricular rhythm", "Junctional escape rhythm", "Third degree AV block"],
+        "The QRS is wide with no P waves anywhere and the rate is only 20-40, so the ventricles are pacing themselves (faster than 40 would be accelerated, narrow would be junctional).")
     ]
   };
 }());
