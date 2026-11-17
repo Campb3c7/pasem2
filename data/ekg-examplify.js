@@ -95,7 +95,11 @@
       Q("exq-21", "Regular sinus strip interrupted twice by an early narrow beat", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm with two PACs",
         ["Normal sinus rhythm with two PVCs", "Normal sinus rhythm with two PJCs", "Sinus arrhythmia"],
-        "Two beats come early with a narrow QRS and a P wave that looks different from the sinus P (sometimes hiding in the T wave), which marks them as atrial, not ventricular or junctional.")
+        "Two beats come early with a narrow QRS and a P wave that looks different from the sinus P (sometimes hiding in the T wave), which marks them as atrial, not ventricular or junctional."),
+      Q("exq-22", "Strip with a constant PR interval and P waves that suddenly have no QRS after them", "What is the rhythm of this EKG strip?",
+        "Second degree AV block, type II",
+        ["Second degree AV block, type I (Wenckebach)", "Third degree AV block", "First degree AV block"],
+        "The PR stays the same on every conducted beat and then a P wave suddenly drops with no QRS, with no gradual PR lengthening first, which is Mobitz II.")
     ]
   };
 }());
