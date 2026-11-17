@@ -207,7 +207,11 @@
       Q("exq-49", "Fast, irregular strip of narrow complexes with P waves of several different shapes", "What is the rhythm of this EKG strip?",
         "Multifocal atrial tachycardia",
         ["Wandering atrial pacemaker", "Atrial fibrillation", "Sinus tachycardia"],
-        "There is a real P before each narrow QRS but the P shapes keep changing (3 or more) and the rhythm is irregular at a rate over 100, which is MAT (under 100 would be WAP, no P waves would be AF).")
+        "There is a real P before each narrow QRS but the P shapes keep changing (3 or more) and the rhythm is irregular at a rate over 100, which is MAT (under 100 would be WAP, no P waves would be AF)."),
+      Q("exq-50", "Fast, regular strip of narrow complexes with a P wave riding on the end of each T wave", "What is the rhythm of this EKG strip?",
+        "Sinus tachycardia",
+        ["Atrial flutter", "Supraventricular tachycardia", "Multifocal atrial tachycardia"],
+        "Each narrow QRS has the same upright P in front of it (sitting close to the previous T because the rate is fast), the rhythm is regular and over 100, and there is no sawtooth, so it is sinus tachycardia.")
     ]
   };
 }());
