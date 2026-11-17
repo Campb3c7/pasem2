@@ -788,10 +788,51 @@
     input.addEventListener("input", upd); upd();
   }
 
+  // heartscore  tap 0/1/2 for each HEART letter; total and band (slides 63 to 64).
+  var HEART = [["H", "History", ["Not suspicious", "Moderately suspicious", "Highly suspicious"]], ["E", "EKG", ["Normal", "Nonspecific repolarization, LBBB, LVH", "Significant ST depression"]],
+    ["A", "Age", ["< 45", "45 to 64", "65+"]], ["R", "Risk factors", ["None", "1 to 2", "3+ or known CAD"]], ["T", "Troponin", ["Normal", "1 to 3× normal", "> 3× normal"]]];
+  function heartFigure(f) {
+    var start = f.start || [0, 0, 0, 0, 0];
+    return '<div class="c3-decide" data-c3-heart>' + HEART.map(function (h, r) {
+      return '<div class="c3-hs-row"><span class="c3-hs-l"><b>' + h[0] + '</b>' + h[1] + '</span><div class="c3-hs-opts">' + h[2].map(function (t, v) {
+        return '<button type="button" class="c3-chip' + (start[r] === v ? " on" : "") + '" data-r="' + r + '" data-v="' + v + '"><b>' + v + '</b> ' + esc(t) + '</button>';
+      }).join("") + '</div></div>';
+    }).join("") + '<div class="c3-verdict" data-out><strong></strong><p></p></div><p class="lh-caption">Tap one box per letter. 0 to 3 low, 4 to 6 intermediate, 7 to 10 high.</p></div>';
+  }
+  function bindHeart(box) {
+    function upd() {
+      var t = 0; box.querySelectorAll(".c3-chip.on").forEach(function (b) { t += Number(b.dataset.v); });
+      var out = box.querySelector("[data-out]"), r = t <= 3 ? ["Low", "If the EKG and troponins are reassuring, discharge may be appropriate; no routine urgent testing.", "pci"] : t <= 6 ? ["Intermediate", "Serial hs-troponins, observation; consider CCTA or stress testing.", "ok"] : ["High", "Urgent evaluation, usually hospital-level care.", "bad"];
+      out.className = "c3-verdict " + r[2]; out.querySelector("strong").textContent = "HEART " + t + " · " + r[0]; out.querySelector("p").textContent = r[1];
+    }
+    box.querySelectorAll(".c3-chip").forEach(function (b) {
+      b.addEventListener("click", function () { box.querySelectorAll('.c3-chip[data-r="' + b.dataset.r + '"]').forEach(function (x) { x.classList.toggle("on", x === b); }); upd(); });
+    });
+    upd();
+  }
+
+  // acs {hi: ua|nstemi|stemi}  the three ACS pictures side by side: clot size, troponin, ST.
+  function acsFigure(f) {
+    var cols = [["ua", "Unstable angina", 34, "trop —", "no ST ↑", "sx-gold"], ["nstemi", "NSTEMI", 50, "trop ↑", "no ST ↑", "sx-bad"], ["stemi", "STEMI", 80, "trop ↑", "ST ↑", "sx-bad"]];
+    var s = '<svg class="c3-svg" viewBox="0 0 390 200" role="img" aria-label="Unstable angina, NSTEMI and STEMI compared">';
+    cols.forEach(function (c, i) {
+      var x = 14 + i * 126, on = !f.hi || f.hi === c[0], top = 30, bot = 100;
+      s += '<g class="' + (on ? "" : "c3-faded") + '"><rect class="c3-wall-band" x="' + x + '" y="' + (top - 8) + '" width="110" height="8"/><rect class="c3-wall-band" x="' + x + '" y="' + bot + '" width="110" height="8"/>' +
+        '<rect class="c3-lumen" x="' + x + '" y="' + top + '" width="110" height="' + (bot - top) + '"/>' +
+        '<path class="c3-plaque" d="M' + (x + 20) + ',' + bot + ' Q' + (x + 55) + ',' + (bot - 44) + ' ' + (x + 90) + ',' + bot + ' Z"/>' +
+        '<path class="c3-clot" d="M' + (x + 38) + ',' + (bot - 18) + ' Q' + (x + 55) + ',' + (bot - c[2] - 4) + ' ' + (x + 72) + ',' + (bot - 18) + ' Z"/>' +
+        (c[0] === "stemi" ? '<rect class="c3-clot" x="' + (x + 44) + '" y="' + top + '" width="22" height="' + (bot - top - 20) + '" rx="6"/>' : "") +
+        '<text class="sx-lbl sx-lbl-strong ' + c[5] + '" x="' + (x + 55) + '" y="134" text-anchor="middle">' + c[1] + '</text>' +
+        '<text class="sx-lbl" x="' + (x + 55) + '" y="152" text-anchor="middle">' + c[3] + '</text><text class="sx-lbl" x="' + (x + 55) + '" y="168" text-anchor="middle">' + c[4] + '</text>' +
+        '<text class="sx-lbl" x="' + (x + 55) + '" y="186" text-anchor="middle">' + (c[0] === "ua" ? "no injury" : c[0] === "nstemi" ? "partial clot" : "full occlusion") + '</text></g>';
+    });
+    return s + '</svg>';
+  }
+
   var FIGS = { coronary: coronaryFigure, artery: arteryFigure, cpb: cpbFigure, thermo: thermoFigure, bars: barsFigure, line: lineFigure, harvest: harvestFigure, decide: decideFigure, monitor: monitorFigure, eq: eqFigure, flow: flowFigure, tiles: tilesFigure, cycle: cycleFigure, grid: gridFigure, quad: quadFigure,
     bruce: bruceFigure, mphr: mphrFigure, duke: dukeFigure, perfusion: perfusionFigure, stseg: stsegFigure, probe: probeFigure, access: accessFigure, groin: groinFigure, rhc: rhcFigure,
     vent: ventFigure, starling: starlingFigure, backup: backupFigure, framingham: framFigure, ntg: ntgFigure, nephron: nephronFigure,
-    wall: wallFigure, remodel: remodelFigure, capcore: capcoreFigure, balance: balanceFigure, diastole: diastoleFigure, pretest: pretestFigure, slider: sliderFigure };
+    wall: wallFigure, remodel: remodelFigure, capcore: capcoreFigure, balance: balanceFigure, diastole: diastoleFigure, pretest: pretestFigure, slider: sliderFigure, heartscore: heartFigure, acs: acsFigure };
   // Lecture-specific figure types can be added from another file: window.Cardio3Figures[type] = fn(f, kit).
   window.Cardio3Figures = window.Cardio3Figures || {};
   var kit = { esc: esc, f1: f1, has: has, arrowDefs: arrowDefs, nextId: function (p) { return (p || "c3x") + (uid += 1); }, coronary: coronaryFigure, artery: arteryFigure };
@@ -800,12 +841,12 @@
     var fn = FIGS[f.type] || window.Cardio3Figures[f.type];
     return fn ? fn(f, kit) : "";
   }
-  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg], ["[data-c3-diast]", bindDiast], ["[data-c3-pretest]", bindPretest], ["[data-c3-slider]", bindSlider]];
+  var BINDERS = [["[data-c3-thermo]", bindThermo], ["[data-c3-decide]", bindDecide], ["[data-c3-mphr]", bindMphr], ["[data-c3-duke]", bindDuke], ["[data-c3-fram]", bindFram], ["[data-c3-ntg]", bindNtg], ["[data-c3-diast]", bindDiast], ["[data-c3-pretest]", bindPretest], ["[data-c3-slider]", bindSlider], ["[data-c3-heart]", bindHeart]];
   window.Cardio3Binders = window.Cardio3Binders || [];
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
-  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest", "slider"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
+  function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest", "slider", "heartscore"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
   var anchor = document.getElementById("shock-learn-view");
