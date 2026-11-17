@@ -191,7 +191,11 @@
       Q("exq-45", "12-lead EKG with grouped beats separated by pauses where a P wave is not conducted", "What is the rhythm of this 12 lead EKG?",
         "Second degree AV block, type I",
         ["Second degree AV block, type II", "Normal sinus rhythm with blocked PACs", "Sinus arrhythmia"],
-        "The beats come in groups: in the lead II strip the PR lengthens across each group until a P wave drops with no QRS, then the cycle starts over, which is Wenckebach.")
+        "The beats come in groups: in the lead II strip the PR lengthens across each group until a P wave drops with no QRS, then the cycle starts over, which is Wenckebach."),
+      Q("exq-46", "Regular lead II strip with an upright P before every narrow QRS and wide gaps between beats", "What is the rhythm of this EKG strip?",
+        "Sinus bradycardia",
+        ["Normal sinus rhythm", "Junctional escape rhythm", "First degree AV block"],
+        "Every narrow QRS has an upright P before it with a normal PR and the rhythm is regular, but the beats are about 6 big boxes apart (about 50 a minute), which is under 60.")
     ]
   };
 }());
