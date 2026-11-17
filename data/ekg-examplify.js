@@ -71,7 +71,15 @@
       Q("exq-15", "12-lead EKG with a slow rate and ST elevation in II, III and aVF", INTERP,
         "Sinus bradycardia with inferior STEMI",
         ["Normal sinus rhythm with inferior STEMI", "Sinus bradycardia with anterolateral STEMI", "Sinus bradycardia with pericarditis"],
-        "ST elevation in II, III and aVF with reciprocal depression in I and aVL is an inferior STEMI, and the sinus rate is under 60 (common in inferior MI because the RCA feeds the SA and AV nodes).")
+        "ST elevation in II, III and aVF with reciprocal depression in I and aVL is an inferior STEMI, and the sinus rate is under 60 (common in inferior MI because the RCA feeds the SA and AV nodes)."),
+      Q("exq-16", "Rhythm strip with a regular rate and a long, constant PR interval", "What is the rhythm of this EKG strip?",
+        "First degree AV block",
+        ["Second degree AV block type I (Wenckebach)", "Second degree AV block type II", "Normal sinus rhythm"],
+        "Every P wave is followed by a QRS and the PR stays the same, but it is longer than 0.20 s (5 small boxes), which is first degree block."),
+      Q("exq-17", "Regular rhythm strip with an upright P wave before every narrow QRS", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm",
+        ["Sinus bradycardia", "Sinus tachycardia", "Sinus arrhythmia"],
+        "It is regular, every QRS is narrow and has an upright P before it with a normal PR, and the rate falls between 60 and 100.")
     ]
   };
 }());
