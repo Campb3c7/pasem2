@@ -299,7 +299,11 @@
       Q("exq-72", "12-lead EKG with a fast, irregularly irregular narrow rhythm and no clear P waves", "What is the rhythm of this 12 lead EKG?",
         "Atrial fibrillation with rapid ventricular response",
         ["Sinus tachycardia", "Atrial flutter with 2:1 block", "Multifocal atrial tachycardia"],
-        "The rhythm strips show narrow QRSs at uneven, patternless intervals with no clear P waves, and they come faster than 100, so it is AF with a rapid ventricular response.")
+        "The rhythm strips show narrow QRSs at uneven, patternless intervals with no clear P waves, and they come faster than 100, so it is AF with a rapid ventricular response."),
+      Q("exq-73", "12-lead EKG with sawtooth flutter waves in the inferior leads between narrow QRS complexes", "What is the rhythm of this 12 lead EKG?",
+        "Atrial flutter",
+        ["Atrial fibrillation", "Sinus tachycardia", "Multifocal atrial tachycardia"],
+        "II, III and aVF show a continuous, regular sawtooth of identical flutter waves between the narrow QRSs, which is atrial flutter (AF would have an uneven, messy baseline).")
     ]
   };
 }());
