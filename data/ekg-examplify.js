@@ -175,7 +175,11 @@
       Q("exq-41", "12-lead EKG with a slow ventricular rate and P waves that do not line up with the QRS complexes", "What is the rhythm of this 12 lead EKG?",
         "Third degree AV block",
         ["Second degree AV block, type II", "Sinus bradycardia", "Junctional escape rhythm"],
-        "In the lead II strip the P waves keep a steady, faster pace of their own and land at random spots around the slow, regular QRSs, so no P is conducting (complete block).")
+        "In the lead II strip the P waves keep a steady, faster pace of their own and land at random spots around the slow, regular QRSs, so no P is conducting (complete block)."),
+      Q("exq-42", "12-lead EKG with a fast, irregularly irregular narrow rhythm and a wavy baseline", "What is the rhythm of this 12 lead EKG?",
+        "Atrial fibrillation with a rapid ventricular response",
+        ["Atrial fibrillation with a controlled ventricular response", "Multifocal atrial tachycardia", "Atrial flutter with variable block"],
+        "Narrow QRSs come irregularly irregular over a wavy baseline with no real P waves (AF), and the ventricular rate is over 100, so the response is rapid.")
     ]
   };
 }());
