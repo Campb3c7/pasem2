@@ -263,7 +263,11 @@
       Q("exq-63", "Regular strip with a small upright P wave before every narrow QRS", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm",
         ["Sinus bradycardia", "First degree AV block", "Junctional escape rhythm"],
-        "It is regular with an upright P before every narrow QRS and a normal PR, and the beats are about 4 big boxes apart (around 75), which is inside 60-100.")
+        "It is regular with an upright P before every narrow QRS and a normal PR, and the beats are about 4 big boxes apart (around 75), which is inside 60-100."),
+      Q("exq-64", "Irregular strip of tall narrow complexes with a fine, wavy baseline and no P waves", "What is the rhythm of this EKG strip?",
+        "Atrial fibrillation",
+        ["Atrial flutter", "Multifocal atrial tachycardia", "Sinus tachycardia"],
+        "The tall narrow QRSs come at uneven intervals with only a fine, irregular quiver between them and no P waves, which is AF rather than flutter's regular sawtooth or MAT's real P waves.")
     ]
   };
 }());
