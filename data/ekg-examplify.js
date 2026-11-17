@@ -171,7 +171,11 @@
       Q("exq-40", "12-lead EKG with regular wide QRS complexes, no P waves and a moderate rate", "What is the rhythm of this 12 lead EKG?",
         "Accelerated idioventricular rhythm",
         ["Idioventricular rhythm", "Ventricular tachycardia", "Junctional escape rhythm"],
-        "Wide QRSs with no P waves mean the ventricles are driving, and the rate in the rhythm strips is between 40 and 100 (above plain idioventricular, below VT).")
+        "Wide QRSs with no P waves mean the ventricles are driving, and the rate in the rhythm strips is between 40 and 100 (above plain idioventricular, below VT)."),
+      Q("exq-41", "12-lead EKG with a slow ventricular rate and P waves that do not line up with the QRS complexes", "What is the rhythm of this 12 lead EKG?",
+        "Third degree AV block",
+        ["Second degree AV block, type II", "Sinus bradycardia", "Junctional escape rhythm"],
+        "In the lead II strip the P waves keep a steady, faster pace of their own and land at random spots around the slow, regular QRSs, so no P is conducting (complete block).")
     ]
   };
 }());
