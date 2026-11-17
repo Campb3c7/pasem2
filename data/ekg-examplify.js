@@ -275,7 +275,11 @@
       Q("exq-66", "Regular strip of tall narrow complexes, each with a small P wave in front", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm",
         ["Sinus tachycardia", "Accelerated junctional rhythm", "Atrial flutter"],
-        "Every narrow QRS has its own small upright P in front at a normal PR, the beats are evenly spaced, and about 10 beats in 6 seconds puts the rate under 100.")
+        "Every narrow QRS has its own small upright P in front at a normal PR, the beats are evenly spaced, and about 10 beats in 6 seconds puts the rate under 100."),
+      Q("exq-67", "Strip that starts with two slow sinus beats, then an early beat sets off a sudden fast, regular narrow rhythm", "What is the rhythm of this EKG strip?",
+        "Sinus bradycardia going into atrial tachycardia with one PAC",
+        ["Sinus bradycardia going into sinus tachycardia", "Sinus bradycardia going into atrial flutter with one PAC", "Sinus bradycardia going into ventricular tachycardia with one PVC"],
+        "Two slow sinus beats are followed by an early narrow beat with a different P (the PAC) that kicks off a sudden, fast run of narrow beats with P waves, which is atrial tachycardia (sinus would speed up gradually).")
     ]
   };
 }());
