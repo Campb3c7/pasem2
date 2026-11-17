@@ -76,9 +76,9 @@
     return times;
   }
 
-  function make(caseDef, seed) {
+  // Draws the random choices for one case (same order every time, so seeds stay stable) and builds its beat.
+  function setup(caseDef, seed) {
     var r = rng(seed == null ? Math.floor(Math.random() * 1e9) : seed);
-    var rhythm = caseDef.rhythm || "sinus";
     var rate = caseDef.rateFixed ? caseDef.rateFixed[Math.floor(r() * caseDef.rateFixed.length)] : Math.round(between(r, caseDef.rate || [62, 92]));
     var rr = 60 / rate;
     var ctx = {
@@ -93,6 +93,33 @@
     var c = normal(ctx);
     if (caseDef.build) caseDef.build(c, ctx);
     var comps = Object.keys(c).map(function (k) { return c[k]; }).filter(Boolean);
+    return { r: r, rate: rate, rr: rr, ctx: ctx, comps: comps };
+  }
+
+  // One beat of a case in one lead, as a function of time from QRS onset (s → mm). For teaching figures.
+  // beat(caseDef, seed) → { value(lead, d), ctx, hasP }
+  function beat(caseDef, seed) {
+    var s = setup(caseDef, seed == null ? 1 : seed), hasP = (caseDef.rhythm || "sinus") === "sinus";
+    return {
+      ctx: s.ctx, hasP: hasP,
+      value: function (lead, d) {
+        var v = 0;
+        s.comps.forEach(function (comp) {
+          if ((comp.group === "p" || comp.group === "pr") && !hasP) return;
+          var a = amp(comp, lead);
+          if (!a) return;
+          if (comp.group === "qrs") a *= (caseDef.qrsScale || 1);
+          else if (caseDef.qrsScale && comp.group === "t") a *= Math.max(0.5, caseDef.qrsScale);
+          v += a * shape(comp, d);
+        });
+        return v;
+      }
+    };
+  }
+
+  function make(caseDef, seed) {
+    var su = setup(caseDef, seed), r = su.r, rate = su.rate, rr = su.rr, ctx = su.ctx, comps = su.comps;
+    var rhythm = caseDef.rhythm || "sinus";
     var times = beatTimes(r, rhythm, rr);
     var beats = times.map(function (t, i) {
       return { t: t, scale: (caseDef.qrsScale || 1) * (caseDef.alternans && i % 2 ? 0.62 : 1), spike: rhythm === "paced" };
@@ -170,5 +197,5 @@
     return { svg: html, rate: measured, axis: ctx.axis, pr: ctx.pr, qt: ctx.qt, net: { I: netArea("I"), aVF: netArea("aVF") } };
   }
 
-  window.TwelveSynth = { make: make, layout: LAYOUT, leads: Object.keys(LIMB).concat(VS) };
+  window.TwelveSynth = { make: make, beat: beat, layout: LAYOUT, leads: Object.keys(LIMB).concat(VS) };
 }());
