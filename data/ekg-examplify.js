@@ -223,7 +223,11 @@
       Q("exq-53", "Strip with a sawtooth baseline of flutter waves between regular narrow complexes", "What is the rhythm of this EKG strip?",
         "Atrial flutter",
         ["Atrial fibrillation", "Multifocal atrial tachycardia", "Sinus tachycardia"],
-        "The baseline between the narrow QRSs is a regular sawtooth of identical flutter waves (several per QRS) instead of normal P waves or the messy, uneven baseline of AF.")
+        "The baseline between the narrow QRSs is a regular sawtooth of identical flutter waves (several per QRS) instead of normal P waves or the messy, uneven baseline of AF."),
+      Q("exq-54", "Slow, regular strip of narrow complexes with an inverted P wave just before each QRS", "What is the rhythm of this EKG strip?",
+        "Junctional (escape) rhythm",
+        ["Accelerated junctional rhythm", "Sinus bradycardia", "Idioventricular rhythm"],
+        "Each narrow QRS has an inverted P right in front of it (retrograde from the AV junction, not an upright sinus P), and the rate is 40-60, the junction's own escape rate.")
     ]
   };
 }());
