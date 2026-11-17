@@ -291,7 +291,11 @@
       Q("exq-70", "12-lead EKG with a fast, regular, narrow rhythm and a P wave before each QRS in lead II", "What is the rhythm of this 12 lead EKG?",
         "Sinus tachycardia",
         ["Supraventricular tachycardia", "Atrial flutter", "Normal sinus rhythm"],
-        "In the lead II strip each narrow QRS has an upright P in front of it and the beats are only about 2.5 big boxes apart (over 100), so it is a sinus rhythm that is simply fast.")
+        "In the lead II strip each narrow QRS has an upright P in front of it and the beats are only about 2.5 big boxes apart (over 100), so it is a sinus rhythm that is simply fast."),
+      Q("exq-71", "12-lead EKG with a slow sinus rhythm, two long pauses and two narrow beats without a P wave", "What is the rhythm of this 12 lead EKG?",
+        "Sinus bradycardia with two sinus pauses and two PJCs",
+        ["Sinus bradycardia with two sinus pauses and two PACs", "Sinus bradycardia with second degree AV block, type II", "Sinus arrhythmia with two PVCs"],
+        "The sinus beats run under 60, the lead II strip has two long flat gaps with no P wave (pauses, not dropped beats), and two narrow beats show up with no P in front of them, so they come from the junction.")
     ]
   };
 }());
