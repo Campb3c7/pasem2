@@ -235,7 +235,11 @@
       Q("exq-56", "Very fast, regular strip of narrow complexes with no clear P waves", "What is the rhythm of this EKG strip?",
         "SVT",
         ["Sinus tachycardia", "Ventricular tachycardia", "Atrial flutter"],
-        "The narrow QRSs are very fast (about 1.5 big boxes apart, roughly 200) and perfectly regular with P waves lost in the T waves, too fast for sinus, narrow so not VT, and no sawtooth for flutter.")
+        "The narrow QRSs are very fast (about 1.5 big boxes apart, roughly 200) and perfectly regular with P waves lost in the T waves, too fast for sinus, narrow so not VT, and no sawtooth for flutter."),
+      Q("exq-57", "Regular strip of narrow, mostly negative complexes with no P waves", "What is the rhythm of this EKG strip?",
+        "Accelerated junctional rhythm",
+        ["Junctional tachycardia", "Accelerated idioventricular rhythm", "Sinus rhythm with ST elevation"],
+        "The QRSs are narrow (so not ventricular) and regular with no P waves anywhere, so the junction is pacing, and the rate of about 75 falls in the 60-100 accelerated range.")
     ]
   };
 }());
