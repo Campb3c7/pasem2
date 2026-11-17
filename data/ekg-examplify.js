@@ -179,7 +179,11 @@
       Q("exq-42", "12-lead EKG with a fast, irregularly irregular narrow rhythm and a wavy baseline", "What is the rhythm of this 12 lead EKG?",
         "Atrial fibrillation with a rapid ventricular response",
         ["Atrial fibrillation with a controlled ventricular response", "Multifocal atrial tachycardia", "Atrial flutter with variable block"],
-        "Narrow QRSs come irregularly irregular over a wavy baseline with no real P waves (AF), and the ventricular rate is over 100, so the response is rapid.")
+        "Narrow QRSs come irregularly irregular over a wavy baseline with no real P waves (AF), and the ventricular rate is over 100, so the response is rapid."),
+      Q("exq-43", "12-lead EKG with a sinus rhythm interrupted by three early narrow beats", "What is the rhythm of this 12 lead EKG?",
+        "Normal sinus rhythm with three PACs",
+        ["Normal sinus rhythm with three PVCs", "Normal sinus rhythm with three PJCs", "Sinus arrhythmia"],
+        "Three beats come early with a narrow QRS like the sinus beats and an abnormal P wave in front of them, so they start in the atria (a PVC would be wide, a PJC would have no upright P).")
     ]
   };
 }());
