@@ -151,7 +151,11 @@
       Q("exq-35", "Irregularly irregular strip with a wavy baseline and no clear P waves", "What is the rhythm of this EKG strip?",
         "Atrial fibrillation",
         ["Atrial flutter", "Multifocal atrial tachycardia", "Wandering atrial pacemaker"],
-        "The narrow QRSs come at irregularly irregular intervals over a wavy baseline with no real P waves (no sawtooth either), which is atrial fibrillation.")
+        "The narrow QRSs come at irregularly irregular intervals over a wavy baseline with no real P waves (no sawtooth either), which is atrial fibrillation."),
+      Q("exq-36", "12-lead EKG with a fast, regular, narrow rhythm and a P wave before every QRS", "What is the rhythm of this 12 lead EKG?",
+        "Sinus tachycardia",
+        ["Supraventricular tachycardia", "Atrial flutter", "Normal sinus rhythm"],
+        "It is regular and narrow with an upright P wave before every QRS in lead II, and the rate is over 100, so it is sinus tachycardia (SVT would hide its P waves).")
     ]
   };
 }());
