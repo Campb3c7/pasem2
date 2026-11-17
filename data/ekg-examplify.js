@@ -135,7 +135,11 @@
       Q("exq-31", "Sinus strip where every third beat is a wide beat of the same shape", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm with three unifocal PVCs (ventricular trigeminy)",
         ["Normal sinus rhythm with three multifocal PVCs (ventricular trigeminy)", "Normal sinus rhythm with three unifocal PVCs (ventricular bigeminy)", "Normal sinus rhythm with three PACs (atrial trigeminy)"],
-        "Every third beat is wide with no P wave (two sinus beats, then a PVC), and all three PVCs look alike, so it is unifocal trigeminy.")
+        "Every third beat is wide with no P wave (two sinus beats, then a PVC), and all three PVCs look alike, so it is unifocal trigeminy."),
+      Q("exq-32", "Sinus strip with two early narrow beats that have no P wave in front", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm with two PJCs",
+        ["Normal sinus rhythm with two PACs", "Normal sinus rhythm with two PVCs", "Sinus arrhythmia"],
+        "Two beats come early with a narrow QRS but no P wave in front of them (a PAC would have its own P, a PVC would be wide), so they start in the AV junction.")
     ]
   };
 }());
