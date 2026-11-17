@@ -131,7 +131,11 @@
       Q("exq-30", "Fast sinus strip with a pair of differently shaped wide beats and one more wide beat later", "What is the rhythm of this EKG strip?",
         "Sinus tachycardia with one multifocal PVC couplet and one additional multifocal PVC",
         ["Sinus tachycardia with one unifocal PVC couplet and one additional unifocal PVC", "Sinus tachycardia with a three-beat run of ventricular tachycardia", "Normal sinus rhythm with one multifocal PVC couplet and one additional multifocal PVC"],
-        "The sinus beats run over 100, two wide beats come back to back (a couplet) plus one more later, and the wide beats have different shapes from each other, so they come from more than one focus.")
+        "The sinus beats run over 100, two wide beats come back to back (a couplet) plus one more later, and the wide beats have different shapes from each other, so they come from more than one focus."),
+      Q("exq-31", "Sinus strip where every third beat is a wide beat of the same shape", "What is the rhythm of this EKG strip?",
+        "Normal sinus rhythm with three unifocal PVCs (ventricular trigeminy)",
+        ["Normal sinus rhythm with three multifocal PVCs (ventricular trigeminy)", "Normal sinus rhythm with three unifocal PVCs (ventricular bigeminy)", "Normal sinus rhythm with three PACs (atrial trigeminy)"],
+        "Every third beat is wide with no P wave (two sinus beats, then a PVC), and all three PVCs look alike, so it is unifocal trigeminy.")
     ]
   };
 }());
