@@ -164,6 +164,12 @@
           <span><strong>Practice exam: Friday's format</strong><small>15 multiple-choice questions, 20 rhythm strips and 5 12-lead EKGs, each strip and 12-lead read step by step to a final interpretation. 110-minute timer, calculator, score by part and full review. Practice one part with answers as you go, or review the class polls.</small></span>
           <span aria-hidden="true">›</span>
         </button>
+        <p class="eyebrow">EKG Examplify questions</p>
+        <button class="walkthrough-launch rhythms-launch mx-launch" id="ekg-examplify-launch" type="button">
+          <span class="walkthrough-launch-icon">✔</span>
+          <span><strong>Examplify questions</strong><small>Real exam-style 12-lead and strip questions: look at the EKG, pick the interpretation, see the answer and why. <span id="ekg-examplify-status"></span></small></span>
+          <span aria-hidden="true">›</span>
+        </button>
         <p class="eyebrow">EKG flashcards</p>
         <button class="walkthrough-launch rhythms-launch fc-launch" id="ekg-flash-launch" type="button">
           <span class="walkthrough-launch-icon">❏</span>
@@ -320,6 +326,10 @@
     <section id="ekg-ladder-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-ladder-back" type="button">← EKG</button>
       <div id="ekg-ladder-content"></div>
+    </section>
+    <section id="ekg-examplify-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-examplify-back" type="button">← EKG</button>
+      <div id="ekg-examplify-content"></div>
     </section>
     <section id="ekg-flash-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-flash-back" type="button">← EKG</button>
@@ -483,6 +493,7 @@
   <script src="data/ekg-learn.js"></script>
   <script src="data/ekg-ladder.js"></script>
   <script src="data/ekg-flashcards.js"></script>
+  <script src="data/ekg-examplify.js"></script>
   <script src="data/shock-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
@@ -525,6 +536,7 @@
   <script src="ekg-mock.js"></script>
   <script src="ekg-ladder.js"></script>
   <script src="ekg-flashcards.js"></script>
+  <script src="ekg-examplify.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="shock-learn.js"></script>
