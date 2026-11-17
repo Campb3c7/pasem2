@@ -247,7 +247,11 @@
       Q("exq-59", "Regular sinus strip with one narrow beat that comes early", "What is the rhythm of this EKG strip?",
         "Normal sinus rhythm with one PAC",
         ["Normal sinus rhythm with one PJC", "Normal sinus rhythm with one PVC", "Normal sinus rhythm with one sinus arrest/pause"],
-        "One beat arrives early with a narrow QRS and its own differently shaped P wave in front of it, then a short pause follows, which marks an atrial premature beat.")
+        "One beat arrives early with a narrow QRS and its own differently shaped P wave in front of it, then a short pause follows, which marks an atrial premature beat."),
+      Q("exq-60", "Regular strip with four identical sawtooth flutter waves between each narrow QRS", "What is the rhythm of this EKG strip?",
+        "Atrial flutter",
+        ["Atrial fibrillation", "Second degree AV block, type II", "Sinus rhythm with PACs"],
+        "Four identical flutter waves sit between every pair of narrow QRSs in a steady sawtooth (4:1 block), so the QRS rate stays regular, unlike AF, and there are no single sinus P waves.")
     ]
   };
 }());
