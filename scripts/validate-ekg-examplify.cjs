@@ -21,4 +21,7 @@ qs.forEach((q, i) => {
   assert.equal(new Set([q.answer, ...q.wrong]).size, 4, q.id + ': choices must be distinct');
   assert(q.why && q.why !== q.answer && q.why.length < 260 && !/^slide/i.test(q.why), q.id + ': why must be one short sentence');
 });
+const seen = new Set();
+for (const h of ctx.window.EKG_EXAMPLIFY.homework) for (let n = h.from; n <= h.to; n++) { assert(!seen.has(n), 'exq-' + n + ' is in two homework ranges'); seen.add(n); }
+qs.forEach(q => assert(seen.has(+q.id.split('-')[1]), q.id + ' is not in any homework range'));
 console.log('EKG Examplify OK: ' + qs.length + ' questions');

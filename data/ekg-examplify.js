@@ -1,7 +1,7 @@
 /* EKG Examplify: Anna's real exam-style questions, added one at a time (picture + question + the
    correct answer exactly as she gave it). Wrong choices and the "why" sentence are ours.
    Images live in images/ekg-examplify/<id>.webp (patient names, dates and ages blanked out).
-   Q(id, image alt, question, correct answer, [3 wrong answers], why)
+   Q(id, image alt, question, correct answer, [3 wrong answers], why); `homework` sets the display order
    Ids "exq-<n>" are progress keys: only append, never reorder or renumber. */
 (function () {
   "use strict";
@@ -304,6 +304,13 @@
         "Atrial flutter",
         ["Atrial fibrillation", "Sinus tachycardia", "Multifocal atrial tachycardia"],
         "II, III and aVF show a continuous, regular sawtooth of identical flutter waves between the narrow QRSs, which is atrial flutter (AF would have an uneven, messy baseline).")
+    ],
+    // Display order (Anna, 2026-11-16): Homework 2, then 3, then 4. Ranges are exq numbers, inclusive.
+    // New questions: extend the matching range or add a homework; never renumber ids.
+    homework: [
+      { title: "Homework 2", from: 46, to: 73 },
+      { title: "Homework 3", from: 16, to: 45 },
+      { title: "Homework 4", from: 1, to: 15 }
     ]
   };
 }());
