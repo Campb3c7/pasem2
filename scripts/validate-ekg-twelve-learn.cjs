@@ -5,7 +5,7 @@
 const fs = require("fs"), path = require("path");
 global.window = {};
 const root = path.join(__dirname, "..");
-["data/ekg-twelve-synth.js", "data/ekg-exam.js", "data/ekg-patterns.js", "data/ekg-mi.js", "data/ekg-twelve-learn.js", "ekg-twelve-learn.js"].forEach((f) => {
+["data/ekg-twelve-synth.js", "data/ekg-exam.js", "data/ekg-patterns.js", "data/ekg-mi.js", "data/ekg-examplify.js", "data/ekg-twelve-learn.js", "ekg-twelve-learn.js"].forEach((f) => {
   // eslint-disable-next-line no-eval
   (0, eval)(fs.readFileSync(path.join(root, f), "utf8"));
 });
@@ -29,6 +29,12 @@ function checkFig(where, f) {
   if (figs.types.indexOf(f.type) < 0) return err(where + ": unknown figure type " + f.type);
   if (f.case && !cases.has(f.case)) err(where + ": unknown case " + f.case);
   if (f.type === "pattern" && !patterns.has(f.id)) err(where + ": unknown pattern " + f.id);
+  if (f.type === "real") {
+    const q = window.EKG_EXAMPLIFY.questions.find((x) => x.id === f.id);
+    if (!q) err(where + ": unknown Examplify id " + f.id);
+    else if (!/12 lead/i.test(q.question)) err(where + ": " + f.id + " is not a 12-lead");
+    else if (!fs.existsSync(path.join(root, q.image))) err(where + ": missing image " + q.image);
+  }
   if (f.type === "damage" && !damage.has(f.id)) err(where + ": unknown damage id " + f.id);
   if (f.type === "body") (f.hi || []).forEach((e) => { if (!ELECTRODES.has(e)) err(where + ": unknown electrode " + e); });
   if (f.type === "heart" || f.type === "map") (f.hi || []).forEach((w) => { if (!figs.walls[w]) err(where + ": unknown wall " + w); });
