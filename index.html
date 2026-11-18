@@ -224,8 +224,12 @@
           </div>
         </section>
         <section class="ekg-hub-group">
-          <h3 class="ekg-hub-head"><span>4</span>Real EKG sources</h3>
+          <h3 class="ekg-hub-head"><span>4</span>Real EKGs</h3>
           <div class="ekg-hub-row">
+            <button class="ekg-hub-card ekg-hub-green" id="ekg-real-launch" type="button">
+              <span class="ekg-hub-icon">♡</span>
+              <span><strong>Real EKG practice</strong><small>Real strips and 12-leads read by cardiologists: what is it? <span id="ekg-real-status"></span></small></span>
+            </button>
             <button class="ekg-hub-card" id="ekg-sources-launch" type="button">
               <span class="ekg-hub-icon">⌕</span>
               <span><strong>Sources to review</strong><small>Real 12-leads with a doctor's read, from open datasets. Pick which to use.</small></span>
@@ -355,6 +359,10 @@
       <div id="ekg-catalog-content"></div>
     </section>
 
+    <section id="ekg-real-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-real-back" type="button">← EKG</button>
+      <div id="ekg-real-content"></div>
+    </section>
     <section id="ekg-sources-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-sources-back" type="button">← EKG</button>
       <div id="ekg-sources-content"></div>
@@ -574,6 +582,8 @@
   <script src="ekg-catalog.js"></script>
   <script src="data/ekg-sources.js"></script>
   <script src="ekg-sources.js"></script>
+  <script src="data/ekg-real-practice.js"></script>
+  <script src="ekg-real.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="ekg-twelve-learn.js"></script>
