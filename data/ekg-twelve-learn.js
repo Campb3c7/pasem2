@@ -35,6 +35,8 @@
         { title: "One page, twelve views of the same beats", fig: { type: "ekg", case: "tw-normal", redraw: false },
           html: "<p>A 12-lead records the <strong>same heartbeats</strong> from <strong>12 different angles</strong>. Think of 12 cameras around one heart.</p>" +
             hy("<strong>10 stickers</strong> (electrodes) make <strong>12 leads</strong> (views).") },
+        { title: "A real printout looks like this", fig: { type: "real", id: "exq-69" },
+          html: "<p>Same layout, just messier: a pink or grey grid, lead names printed in the corner of each box, and a long lead II strip at the bottom.</p><p>Real tracings wobble, labels sit on the lines, and the calibration step can be at either end of the row. Look past that: the <strong>boxes are in the same places every time</strong>.</p>" },
         { title: "Two kinds of cameras", fig: { type: "ekg", case: "tw-normal", redraw: false, groups: [{ leads: ["I", "II", "III", "aVR", "aVL", "aVF"], tone: "blue", label: "Limb leads: the front view" }, { leads: ["V1", "V2", "V3", "V4", "V5", "V6"], tone: "gold", label: "Chest leads: the view around" }] },
           html: "<ul><li><strong>Columns 1 and 2</strong> = the 6 <strong>limb leads</strong> (I, II, III, aVR, aVL, aVF). They look at the heart <strong>from the front</strong>.</li>" +
             "<li><strong>Columns 3 and 4</strong> = the 6 <strong>chest leads</strong> (V1-V6). They look <strong>around the chest</strong>, front to side.</li></ul>" },
@@ -123,6 +125,8 @@
             ['<span class="t12-pos">Mostly up</span>', "I, II, III, aVL, aVF, V4-V6"],
             ['<span class="t12-neg">Mostly down</span>', "aVR, V1-V3"],
             ["Can be biphasic", "III, aVL, V2-V4"]]) },
+        { title: "Check it on a real normal 12-lead", fig: { type: "real", id: "exq-69" },
+          html: "<ul><li><strong>aVR</strong> (column 2, top): points <strong>down</strong>.</li><li><strong>V1-V3</strong> (column 3): mostly <strong>down</strong> (deep S).</li><li><strong>I, II, V4-V6</strong>: mostly <strong>up</strong>.</li></ul><p>Real complexes are smaller and less tidy than the drawings, but the up/down pattern is the same.</p>" },
         { title: "Across the chest, the R wave grows", fig: [{ type: "beats", case: "tw-normal", leads: ["V1", "V2", "V3", "V4", "V5", "V6"], notes: { V1: "small r, deep S", V3: "about even", V6: "tall R" } }, { type: "horizontal", arrows: true, walls: true }],
           html: "<p>Two things fire in the ventricles (arrows in the slice):</p>" +
             "<ol class=\"lh-steps\"><li>The <strong>septum</strong> fires first, left to right, toward V1: a <strong>small r</strong> in V1.</li><li>Then the <strong>big left ventricle</strong> fires toward V5-V6: a <strong>tall R</strong> there and a <strong>deep S</strong> in V1.</li></ol>" +
@@ -234,7 +238,9 @@
         { title: "Which wall is lit up?", fig: { type: "ekg", case: "tw-normal", redraw: false, hi: ["I", "aVL", "V5", "V6"], tone: "red" },
           html: reveal("Tap to check your answer", "<strong>Lateral</strong> wall: I, aVL, V5, V6, usually the circumflex.") },
         { title: "And this one?", fig: { type: "ekg", case: "tw-normal", redraw: false, hi: ["V1", "V2"], tone: "red" },
-          html: reveal("Tap to check your answer", "<strong>Septal</strong> wall: V1-V2, the LAD.") }
+          html: reveal("Tap to check your answer", "<strong>Septal</strong> wall: V1-V2, the LAD.") },
+        { title: "Now a real one: which wall?", fig: { type: "real", id: "exq-8", hide: true },
+          html: "<p>Look for the boxes where the ST is lifted off the baseline like a dome.</p>" + reveal("Tap to check your answer", "<strong>Inferior</strong>: big ST elevation in <strong>II, III and aVF</strong> (and the rhythm strip, which is lead II). Usually the RCA.") }
       ],
       checks: [
         K("Which artery usually feeds the inferior wall?", "Right coronary artery (RCA)", ["Left anterior descending (LAD)", "Circumflex", "Left main"], "The RCA wraps under the heart to the inferior wall."),
@@ -269,6 +275,8 @@
           html: "<p>Causes of <strong>left</strong> axis deviation:</p><ul><li><strong>LVH</strong> (often about −15°)</li><li><strong>Left anterior hemiblock</strong></li><li>Heart pushed sideways: <strong>pregnancy, abdominal obesity</strong>, a high diaphragm</li></ul>" },
         { title: "Right axis: I down, aVF up", fig: { type: "beats", case: "tw-rvh", leads: ["I", "aVF"], hi: { I: "red", aVF: "green" }, notes: { I: "down 👎", aVF: "up 👍" } },
           html: "<p>Causes of <strong>right</strong> axis deviation:</p><ul><li><strong>RVH</strong></li><li><strong>Left posterior hemiblock</strong></li><li><strong>Pulmonary embolus</strong></li><li>Heart hanging vertically: <strong>thin people, children</strong></li></ul>" },
+        { title: "A real right axis", fig: { type: "real", id: "exq-2" },
+          html: "<p>Check the two thumbs on a real tracing: <strong>lead I</strong> (top left box) is mostly <strong>down</strong>, <strong>aVF</strong> (bottom of column 2) is <strong>up</strong> → right axis.</p><p>Real complexes are often small or half up, half down. Decide which part is <strong>bigger</strong>.</p>" },
         { title: "The rule behind every cause", fig: [{ type: "frontal", arrow: -30, hi: { I: "green", aVL: "green" } }, { type: "frontal", arrow: 120, hi: { III: "red", aVF: "red" } }],
           html: hy("The axis points <strong>toward extra muscle</strong> (hypertrophy) and <strong>away from dead muscle</strong> (infarct: its force is gone, so the opposite side wins).") }
       ],
@@ -301,9 +309,13 @@
             "<p>If the QRS isn't widened, it's called <strong>incomplete</strong> BBB (or a fascicular block).</p>" },
         { title: "RBBB: rabbit ears in V1-V2", fig: [{ type: "beats", case: "tw-rbbb", leads: ["V1", "V2", "I", "V6"], hi: { V1: "gold", V2: "gold" }, notes: { V1: "rsR' (rabbit ears)", I: "wide slurred S", V6: "wide slurred S" } }, { type: "ekg", case: "tw-rbbb", hi: ["V1", "V2"], label: "Look here first: V1-V2" }],
           html: "<p>V1-V2 sit over the right ventricle, so they show its <strong>late second peak</strong>: an <strong>M shape</strong> or \"rabbit ears\".</p><p>Seen with anterior MI, CAD, PE and drug toxicity.</p>" },
+        { title: "A real RBBB", fig: { type: "real", id: "exq-13" },
+          html: "<p>Go straight to <strong>V1</strong> (top of column 3): the QRS is wide with an <strong>M shape</strong> (rsR'). Then lead I and V6 show the wide, slurred S.</p>" },
         { title: "LBBB: wide, tall, notched R in V5-V6", fig: [{ type: "beats", case: "tw-lbbb", leads: ["V1", "V6", "I", "aVL"], hi: { V6: "gold", I: "gold", aVL: "gold" }, notes: { V1: "broad deep S", V6: "broad notched R" } }, { type: "ekg", case: "tw-lbbb", hi: ["I", "aVL", "V5", "V6"], label: "Look here first: V5-V6 (and I, aVL)" }],
           html: "<p>V5-V6 sit over the left ventricle, so they show its late force: a <strong>wide, tall R with a flat or notched top</strong>. Rabbit ears are less likely.</p>" +
             "<p>The ST and T point <strong>opposite</strong> the QRS. That's expected in LBBB, so don't call it a STEMI.</p>" },
+        { title: "A real LBBB", fig: { type: "real", id: "exq-10" },
+          html: "<p>Wide QRS everywhere. <strong>V1-V3</strong> are deep, wide and negative; <strong>I, aVL, V5-V6</strong> are broad and upright with no little q.</p><p>This one also had a septoanterior STEMI on the key: an LBBB makes ST changes hard to judge, so read it carefully.</p>" },
         { title: "A quick trick for V1", fig: [{ type: "beats", case: "tw-rbbb", title: "RBBB", leads: ["V1"], hi: { V1: "green" }, notes: { V1: "points up" } }, { type: "beats", case: "tw-lbbb", title: "LBBB", leads: ["V1"], hi: { V1: "red" }, notes: { V1: "points down" } }],
           html: mn("<strong>Turn signal</strong>: in V1, a wide QRS pointing <strong>up</strong> = <strong>right</strong> BBB (signal lever up = right turn); pointing <strong>down</strong> = <strong>left</strong> BBB (standard teaching).") },
         { title: "Hemiblocks: narrow QRS, the axis swings", fig: [{ type: "bbb", block: "lafb" }, { type: "bbb", block: "lpfb" }],
@@ -344,12 +356,16 @@
           html: "<p>The <strong>first half</strong> of the P = right atrium. The <strong>second half</strong> = left atrium. Look in <strong>II</strong> and <strong>V1</strong>.</p>" +
             tbl(["", "Right atrial enlargement", "Left atrial enlargement"], [["Clue", "P <strong>taller than 2.5 mm</strong>, or biphasic P in V1 with a bigger first part", "In V1 the <strong>end of the P dips 1 mm or more</strong> below the line and is wider than 0.04 s"]]) +
             mn("<strong>R</strong>AE = <strong>R</strong>aised P. <strong>L</strong>AE = <strong>L</strong>ong, <strong>L</strong>ow ending in V1.") },
+        { title: "Real atrial enlargement", fig: { type: "real", id: "exq-4" },
+          html: "<p>Look at <strong>V1</strong>: the P wave has a <strong>wide, deep negative second half</strong>: left atrial enlargement. (This patient also has an anterolateral STEMI.)</p>" },
         { title: "LVH: add two numbers", fig: { type: "beats", case: "tw-lvh", leads: ["V1", "V2", "V5", "V6"], measure: { V1: "S", V5: "R" }, hi: { V1: "gold", V5: "gold" } },
           html: "<p>The thick LV sends a huge force toward V5-V6 (<strong>tall R</strong>) and away from V1 (<strong>deep S</strong>).</p>" +
             hy("<strong>S in V1 (or V2) + R in V5 (or V6) &gt; 35 mm</strong> = LVH.") +
             "<p>Here the two rulers add up to well over 35 mm.</p>" },
         { title: "Other LVH clues", fig: { type: "ekg", case: "tw-lvh", groups: [{ leads: ["V1", "V2"], tone: "blue", label: "Deep S" }, { leads: ["V5", "V6"], tone: "gold", label: "Tall R + strain" }, { leads: ["I", "aVF"], tone: "green", label: "Axis: about −15° (left)" }] },
           html: "<p>The more of these, the more likely LVH:</p><ul><li>R in V5 over 26 mm, or R in V6 taller than V5</li><li>aVL over 13 mm, aVF over 21 mm, lead I over 14 mm</li><li>R in I + S in III over 25 mm</li><li><strong>Left axis</strong> (often about −15°)</li><li>T wave asymmetric and inverted (slow down, quick up)</li></ul>" },
+        { title: "A real LVH", fig: { type: "real", id: "exq-5" },
+          html: "<p>The chest leads are so tall they run into the next row: <strong>deep S in V1-V2</strong>, <strong>tall R in V5-V6</strong>. The tall, pointed P waves in the inferior leads add <strong>right atrial enlargement</strong>.</p>" },
         { title: "RVH: V1 turns tall", fig: [{ type: "beats", case: "tw-normal", title: "Normal: R grows from V1 to V6", leads: ["V1", "V2", "V3", "V4", "V5", "V6"] }, { type: "beats", case: "tw-rvh", title: "RVH: R biggest in V1, shrinks toward V6", leads: ["V1", "V2", "V3", "V4", "V5", "V6"], hi: { V1: "red" } }],
           html: "<p>The thick RV sits right under V1, so <strong>V1 gets an R bigger than its S</strong>, and the R <strong>shrinks</strong> from V1 to V6: the opposite of normal.</p>" +
             hy("The most common RVH sign is <strong>right axis deviation</strong>.") },
@@ -391,6 +407,8 @@
           html: "<p>The same 1.5 mm in a <strong>chest</strong> lead is <strong>not enough</strong>. Chest leads sit closer to the heart, so they need more (standard teaching for the reason).</p>" },
         { title: "Two neighbors must agree", fig: { type: "ekg", case: "tw-inferior", groups: [{ leads: ["II", "III", "aVF"], tone: "red", label: "ST up in 3 inferior leads", tag: STUP }] },
           html: "<p>One lead alone isn't enough. It must be in <strong>2 or more leads that look at the same wall</strong> (contiguous leads). Here: II, III and aVF.</p>" },
+        { title: "Real ST elevation is less obvious", fig: { type: "real", id: "exq-15" },
+          html: "<p>Compare the ST with the PR segment in <strong>II, III and aVF</strong>: it sits a little above the baseline in all three, with ST <strong>depression in aVL</strong> (the mirror image). The key calls it an <strong>inferior STEMI</strong>.</p><p>Real tracings are noisy, so measure against the PR segment instead of judging by eye.</p>" },
         { title: "ST depression: the ischemia sign", fig: { type: "st", mm: -2, lead: "V5" },
           html: "<p>ST <strong>more than 1 mm below</strong> the baseline (at J + 0.04 s) in 2+ leads facing the same area = <strong>ischemia</strong>. A <strong>flat</strong> depression is also the pattern of a <strong>subendocardial</strong> infarction.</p>" }
       ],
@@ -419,12 +437,18 @@
           html: tbl(["Stage", "EKG"], [["Normal", "Flat ST, upright T"], ["<strong>Ischemia</strong>", "T peaked or <strong>inverted</strong>, ST depression"], ["<strong>Injury</strong>", "<strong>ST elevation</strong>: the earliest reliable sign of acute MI"], ["<strong>Infarction</strong>", "<strong>Pathologic Q</strong> (hours to days later)"]]) },
         { title: "Inferior STEMI", fig: [{ type: "ekg", case: "tw-inferior", groups: [{ leads: ["II", "III", "aVF"], tone: "red", label: "ST up: II, III, aVF", tag: STUP }, { leads: ["I", "aVL"], tone: "blue", label: "Mirror image (reciprocal)", tag: STDOWN }] }, { type: "heart", hi: ["inferior"], artery: "rca" }],
           html: "<p>ST up in the inferior triangle → <strong>inferior wall</strong> → usually the <strong>RCA</strong>. The lateral leads show the mirror image.</p><p>Watch for <strong>AV blocks</strong> (the RCA feeds the AV node).</p>" },
+        { title: "Real inferior STEMIs", fig: [{ type: "real", id: "exq-8" }, { type: "real", id: "exq-3" }],
+          html: "<p>Both: tall domed ST in <strong>II, III, aVF</strong> with ST <strong>down in I and aVL</strong>. The second one also has a long PR (first-degree block), which fits: the RCA feeds the AV node.</p>" },
         { title: "Lateral STEMI", fig: [{ type: "ekg", case: "tw-lateral", groups: [{ leads: ["I", "aVL", "V5", "V6"], tone: "red", label: "ST up: I, aVL, V5, V6", tag: STUP }, { leads: ["II", "III", "aVF"], tone: "blue", label: "Mirror image (reciprocal)", tag: STDOWN }] }, { type: "heart", hi: ["lateral"], artery: "lcx" }],
           html: "<p>ST up in the lateral leads → <strong>lateral wall</strong> → usually the <strong>circumflex</strong>. The inferior leads show the mirror image.</p>" },
         { title: "Anterior STEMI", fig: [{ type: "ekg", case: "tw-anterior", groups: [{ leads: ["V2", "V3", "V4"], tone: "red", label: "ST up: V2-V4", tag: STUP }] }, { type: "heart", hi: ["anterior"], artery: "lad" }],
           html: "<p>ST up in <strong>V2-V4</strong> → <strong>anterior wall</strong> → <strong>LAD</strong>. You may also see <strong>poor R wave progression</strong>. The mirror image is on the back (V7-V9).</p><p>Watch for <strong>BBB</strong> and type II block (the LAD feeds the bundle branches).</p>" },
+        { title: "Real anterior STEMIs", fig: [{ type: "real", id: "exq-2" }, { type: "real", id: "exq-6" }],
+          html: "<p>First: huge \"tombstone\" ST elevation in <strong>V2-V4</strong>. Second: ST up in <strong>V2-V6 plus I and aVL</strong>, so the lateral wall is involved too (anterolateral). Both point to the <strong>LAD</strong>.</p>" },
         { title: "Septal (septoanterior) STEMI", fig: [{ type: "ekg", case: "tw-septal", groups: [{ leads: ["V1", "V2", "V3"], tone: "red", label: "ST up: V1-V3", tag: STUP }] }, { type: "heart", hi: ["septal"], artery: "lad" }],
           html: "<p>ST up in <strong>V1-V3</strong> → <strong>septum</strong> (septoanterior) → <strong>LAD</strong>. Reciprocal changes, if any, in V6 and the posterior leads.</p>" },
+        { title: "A real septoanterolateral STEMI", fig: { type: "real", id: "exq-12" },
+          html: "<p>ST elevation starts in <strong>V1</strong> and runs across V2-V4 (and lateral leads): septum + front + side, a big LAD territory.</p><p>No real lateral-only or posterior STEMI in your Examplify set yet, so those stay as drawings for now.</p>" },
         { title: "Posterior STEMI: read the mirror", fig: [{ type: "ekg", case: "tw-posterior", groups: [{ leads: ["V1", "V2", "V3"], tone: "blue", label: "ST down, tall R, upright T: the mirror image", tag: STDOWN }] }, { type: "horizontal", posterior: true, hi: { V1: "blue", V2: "blue", V3: "blue", V7: "red", V8: "red", V9: "red" } }],
           html: "<p>No standard lead faces the back, so V1-V3 see it <strong>upside down</strong>: <strong>ST depression, large R waves, upright T</strong>. On a 15-lead, <strong>V7-V9</strong> show the real ST elevation.</p>" +
             mn("Flip the page over and hold it to the light: the ST depression in V1-V3 becomes ST elevation and the tall R becomes a Q (standard teaching).") },
@@ -469,11 +493,15 @@
             ["ST shape", "Concave, <strong>\"saggy\"</strong>", "Territorial"],
             ["Q waves", "<strong>Never</strong>", "May form"],
             ["T inversion", "<strong>After</strong> the ST normalizes", "Before the ST normalizes"]]) },
+        { title: "A real pericarditis", fig: { type: "real", id: "exq-9" },
+          html: "<p>ST elevation in almost every lead (I, II, III, aVF, V2-V6) with a concave, saggy shape, and <strong>aVR</strong> going the other way. It doesn't fit one wall, so think pericarditis, not STEMI.</p>" },
         { title: "LBBB and pacing: the ST goes the other way", fig: [{ type: "ekg", case: "tw-lbbb", title: "Left bundle branch block", hi: ["V1", "V2", "V3"], label: "ST up opposite a deep wide QRS: expected" }, { type: "ekg", case: "tw-paced", title: "Ventricular pacemaker", hi: ["II"], label: "Spike before every wide QRS" }],
           html: "<p>With a <strong>wide QRS</strong> (BBB or a ventricular pacemaker), the ST and T point <strong>opposite</strong> the QRS. That's expected, not a STEMI.</p>" +
             "<ul><li><strong>Ventricular pacer</strong>: spike, then a wide, bizarre QRS.</li><li><strong>Atrial pacer</strong>: spike, then a normal P and QRS.</li></ul>" },
         { title: "High potassium: tall, peaked T in every lead", fig: { type: "ekg", case: "tw-hyperk", groups: [{ leads: ["V2", "V3", "V4"], tone: "gold", label: "Tall, narrow, tented T" }] },
           html: "<p>Changes come in order as potassium climbs:</p><p class=\"lh-big\">peaked T → flat P → long PR → wide QRS → sine wave</p>" },
+        { title: "Real peaked T waves", fig: { type: "real", id: "exq-7" },
+          html: "<p>Look at <strong>V2-V4</strong>: tall, narrow, tented T waves, taller than the QRS. No P waves here either: the key reads accelerated junctional rhythm with peaked T waves suggestive of hyperkalemia.</p>" },
         { title: "Low potassium: flat T and a U wave", fig: { type: "beats", case: "tw-hypok", leads: ["II", "V2", "V3", "V4"], notes: { V3: "flat T, then U" } },
           html: "<p>Everything sinks: <strong>ST depression</strong>, a <strong>flat T</strong>, then a <strong>U wave</strong> (a bump after the T). The QT gets longer.</p>" +
             mn("High K: the T goes <strong>up</strong>. Low K: the T goes <strong>down</strong> and a <strong>U</strong> pops up.") },
@@ -525,8 +553,12 @@
         { title: "Your turn", fig: { type: "ekg", case: "tw-lvh", seed: 5, redraw: false },
           html: "<p>Go through the 8 steps in your head, then check.</p>" +
             reveal("Show the answer", "Regular sinus rhythm, <strong>left axis</strong> (I up, aVF down), <strong>very tall R in V5-V6 and deep S in V1-V2</strong> (over 35 mm), with <strong>strain</strong> (sagging ST, inverted T) in the lateral leads: <strong>LVH with strain</strong>.") },
+        { title: "Your turn: a real one", fig: { type: "real", id: "exq-3", hide: true },
+          html: "<p>Do the 8 steps, then check.</p>" + reveal("Show the answer", "PR longer than one big box with every P conducted = <strong>first-degree AV block</strong>; ST elevation in <strong>II, III, aVF</strong> with depression in I and aVL = <strong>inferior STEMI</strong> (the key also notes right ventricular strain).") },
         { title: "One more", fig: { type: "ekg", case: "tw-rbbb", seed: 8, redraw: false },
-          html: reveal("Show the answer", "Regular sinus rhythm, normal axis, <strong>wide QRS (0.12 s or more) with rsR' rabbit ears in V1-V2</strong> and a wide slurred S in I and V6: <strong>right bundle branch block</strong>. T inversion in V1-V2 is the expected secondary change.") }
+          html: reveal("Show the answer", "Regular sinus rhythm, normal axis, <strong>wide QRS (0.12 s or more) with rsR' rabbit ears in V1-V2</strong> and a wide slurred S in I and V6: <strong>right bundle branch block</strong>. T inversion in V1-V2 is the expected secondary change.") },
+        { title: "One more real one", fig: { type: "real", id: "exq-5", hide: true },
+          html: "<p>Go through the steps.</p>" + reveal("Show the answer", "Normal sinus rhythm, tall peaked P waves (<strong>right atrial enlargement</strong>), very deep S in V1-V2 and tall R in V5-V6 (<strong>LVH</strong>).") }
       ],
       checks: [
         K("What's step 3 of the deck's routine?", "Determine the axis", ["Assess the ST segments", "Assess the P waves", "Make a final analysis"], "Regularity, rate, axis, then P, QRS, PR, ST and the final analysis."),

@@ -17,6 +17,7 @@
      bbb {block: "rbbb" | "lbbb" | "lafb" | "lpfb" | null}         bundle branches and fascicles
      steps {on}                                                    the deck's 8-step read
      pattern {id}                                                  pattern gallery drawing (EKGDraw.pattern)
+     real {id, hide}                                               a real Examplify 12-lead (exq-*), answer shown unless hide
      damage {id, lead}                                             MI locator damage drawing (EKGDraw.damageLead) */
 (function () {
   "use strict";
@@ -370,6 +371,15 @@
     }).join("") + '</ol>';
   }
 
+  // ---- a real 12-lead from Anna's Examplify set -----------------------------
+  function realFigure(f) {
+    var q = ((window.EKG_EXAMPLIFY || {}).questions || []).filter(function (x) { return x.id === f.id; })[0];
+    if (!q) return "";
+    return '<div class="t12-real"><span class="t12-real-badge">Real 12-lead · from your Examplify practice</span>' +
+      '<a href="' + q.image + '" target="_blank" rel="noopener" title="Open full size"><img src="' + q.image + '" alt="' + escapeHtml(q.alt) + '" loading="lazy" decoding="async"></a>' +
+      (f.hide ? "" : '<p class="t12-real-cap">' + escapeHtml(q.answer) + '</p>') + '</div>';
+  }
+
   function patternFigure(f) {
     var draw = window.EKGDraw, pt = window.EKG_PATTERNS;
     if (!draw || !draw.pattern || !pt) return "";
@@ -392,6 +402,7 @@
       case "bbb": return bbbFigure(f);
       case "steps": return stepsFigure(f);
       case "pattern": return patternFigure(f);
+      case "real": return realFigure(f);
       case "damage": return window.EKGDraw && window.EKGDraw.damageLead ? window.EKGDraw.damageLead(f.id, f.lead) : "";
       default: return "";
     }
@@ -418,7 +429,7 @@
   }
 
   // Shared with the validator (no DOM needed to draw).
-  window.EKGTwelveFigures = { figure: figure, walls: WALLS, types: ["ekg", "beats", "body", "frontal", "horizontal", "rule", "dial", "heart", "map", "st", "bbb", "steps", "pattern", "damage"] };
+  window.EKGTwelveFigures = { figure: figure, walls: WALLS, types: ["ekg", "beats", "body", "frontal", "horizontal", "rule", "dial", "heart", "map", "st", "bbb", "steps", "pattern", "damage", "real"] };
 
   if (typeof document === "undefined") return;
   var data = window.EKG_TWELVE_LEARN;
