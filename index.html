@@ -154,7 +154,7 @@
       <div class="course-tools ekg-hub" data-course-tools="ekg" hidden>
         <section class="ekg-hub-group">
           <h3 class="ekg-hub-head"><span>1</span>Learn</h3>
-          <div class="ekg-hub-row ekg-hub-three">
+          <div class="ekg-hub-row">
             <button class="ekg-hub-card ekg-hub-gold" id="ekg-learn-launch" type="button">
               <span class="ekg-hub-icon">★</span>
               <span><strong>Start here: Learn EKG</strong><small>Short visual lessons, from the heart's wiring to the 12-lead.</small><small class="ekg-hub-status" id="ekg-learn-status"></small></span>
@@ -166,6 +166,10 @@
             <button class="ekg-hub-card ekg-hub-blue" id="ekg-flash-launch" type="button">
               <span class="ekg-hub-icon">❏</span>
               <span><strong>Flashcards</strong><small>16 sets, one per objective, studied like Quizlet Learn.</small></span>
+            </button>
+            <button class="ekg-hub-card ekg-hub-blue" id="ekg-catalog-launch" type="button">
+              <span class="ekg-hub-icon">▣</span>
+              <span><strong>Catalog</strong><small>Every strip and 12-lead finding with real labeled examples. Just look, no quiz.</small><small class="ekg-hub-status" id="ekg-catalog-status"></small></span>
             </button>
           </div>
         </section>
@@ -337,6 +341,11 @@
       <button class="back-button" id="ekg-ladder-back" type="button">← EKG</button>
       <div id="ekg-ladder-content"></div>
     </section>
+    <section id="ekg-catalog-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-catalog-back" type="button">← EKG</button>
+      <div id="ekg-catalog-content"></div>
+    </section>
+
     <section id="ekg-examplify-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-examplify-back" type="button">← EKG</button>
       <div id="ekg-examplify-content"></div>
@@ -505,6 +514,7 @@
   <script src="data/ekg-ladder.js"></script>
   <script src="data/ekg-flashcards.js"></script>
   <script src="data/ekg-examplify.js"></script>
+  <script src="data/ekg-catalog.js"></script>
   <script src="data/shock-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
   <script src="data/arrhythmias.js"></script>
@@ -548,6 +558,7 @@
   <script src="ekg-ladder.js"></script>
   <script src="ekg-flashcards.js"></script>
   <script src="ekg-examplify.js"></script>
+  <script src="ekg-catalog.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="ekg-twelve-learn.js"></script>
