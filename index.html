@@ -219,7 +219,16 @@
             </button>
           </div>
         </section>
-        <h3 class="ekg-hub-head ekg-hub-lecture"><span>4</span>Lecture: Learn, Test, Apply, Recall</h3>
+        <section class="ekg-hub-group">
+          <h3 class="ekg-hub-head"><span>4</span>Real EKG sources</h3>
+          <div class="ekg-hub-row">
+            <button class="ekg-hub-card" id="ekg-sources-launch" type="button">
+              <span class="ekg-hub-icon">⌕</span>
+              <span><strong>Sources to review</strong><small>Real 12-leads with a doctor's read, from open datasets. Pick which to use.</small></span>
+            </button>
+          </div>
+        </section>
+        <h3 class="ekg-hub-head ekg-hub-lecture"><span>5</span>Lecture: Learn, Test, Apply, Recall</h3>
       </div>
       <div id="study-content"></div>
     </section>
@@ -336,6 +345,10 @@
     <section id="ekg-ladder-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-ladder-back" type="button">← EKG</button>
       <div id="ekg-ladder-content"></div>
+    </section>
+    <section id="ekg-sources-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-sources-back" type="button">← EKG</button>
+      <div id="ekg-sources-content"></div>
     </section>
     <section id="ekg-examplify-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-examplify-back" type="button">← EKG</button>
@@ -548,6 +561,8 @@
   <script src="ekg-ladder.js"></script>
   <script src="ekg-flashcards.js"></script>
   <script src="ekg-examplify.js"></script>
+  <script src="data/ekg-sources.js"></script>
+  <script src="ekg-sources.js"></script>
   <script src="learn-path.js"></script>
   <script src="ekg-learn.js"></script>
   <script src="ekg-twelve-learn.js"></script>

@@ -1,0 +1,138 @@
+/* EKG "Real EKG sources (to review)" page (ekg-sources.js). Candidate sources of REAL 12-leads that come
+   with an interpretation, checked for license and quality, plus samples so Anna can judge them before
+   anything goes into the study tools. Sample ids are keys of window.EKG_SOURCE_WAVES
+   (data/ekg-source-waves.js, generated from the PhysioNet records). "labels" and "report" are the
+   dataset's own words; "translation" and "look" are ours and say so on screen. Checked 2026-11-18. */
+window.EKG_SOURCES = {
+  intro: "Real 12-leads that already come with a doctor's read, so you can just look, not grade. Nothing here is in the study tools yet: tell me which sources look good and I'll build from them.",
+  samplesIntro: "These are recorded EKGs from the two open datasets, redrawn in the standard 3x4 printout with a lead II rhythm strip (25 mm/s, 10 mm/mV). The read under each one is the dataset's own; the record number lets anyone find the original.",
+  sources: [
+    {
+      id: "ptbxl", short: "PTB-XL", name: "PTB-XL (PhysioNet)",
+      verdict: "Best for the site", verdictKind: "best",
+      what: "21,799 real 10-second 12-leads from 18,869 patients (Germany, 1989-1996), the largest open 12-lead set with diagnoses.",
+      reads: "Every EKG was labeled by cardiologists with standard statements (rhythm, blocks, hypertrophy, infarct by wall and age, ischemia), and most have the original written report (German, English or Swedish).",
+      license: "CC BY 4.0: free to show and redraw on the site with credit (Wagner et al., Scientific Data 2020).",
+      quality: "Clean, true 12-lead tracings, and 'validated by a human' can be filtered on. Reports are short and some are in German. Few acute STEMIs (about 170), and no labels for hyperkalemia, pericarditis or PE.",
+      use: "Can be drawn straight into our 3x4 layout, so it can feed the catalog, Learn the 12-lead and practice with real tracings.",
+      labelsName: "Cardiologist statements",
+      links: [{ label: "PTB-XL on PhysioNet", url: "https://physionet.org/content/ptb-xl/1.0.3/" }]
+    },
+    {
+      id: "chapman", short: "Chapman-Shaoxing", name: "Chapman-Shaoxing / Ningbo 12-lead database (PhysioNet)",
+      verdict: "Good for rhythms", verdictKind: "good",
+      what: "45,152 real 10-second 12-leads from two Chinese hospitals.",
+      reads: "Each EKG has physician-checked labels (rhythm plus findings such as RBBB, LVH, ST change, Q waves), but no written report.",
+      license: "CC BY 4.0: free to show on the site with credit (Zheng et al., Scientific Data 2020).",
+      quality: "Many examples of each rhythm (AF, flutter, SVT, sinus tach and brady). Labels are terse codes, MI labels don't say the age of the infarct, and some files are noisier than PTB-XL.",
+      use: "Useful to add more real rhythm examples behind the PTB-XL ones.",
+      labelsName: "Physician labels",
+      links: [{ label: "Database on PhysioNet", url: "https://physionet.org/content/ecg-arrhythmia/1.0.0/" }]
+    },
+    {
+      id: "litfl", short: "LITFL", name: "LITFL ECG Library (Life in the Fast Lane)",
+      verdict: "Best to read, link only", verdictKind: "link",
+      what: "A free emergency-medicine teaching library: hundreds of real 12-leads organized by diagnosis, plus an ECG case collection.",
+      reads: "The best commentary of any source: each EKG has the diagnosis and its features pointed out lead by lead, with the criteria.",
+      license: "LITFL states its content is CC BY-NC-SA 4.0 (non-commercial, share-alike, with credit). This environment could not open the site to confirm, so check the footer before copying any image.",
+      quality: "Excellent, clear, high-yield teaching examples (STEMI patterns, hyperkalemia, pericarditis, WPW, Brugada...). Images are photos and scans, so it is a good 'real printout' look.",
+      use: "Link out from each catalog section for now. Copying images onto the site would need credit and the same license, and they couldn't be downloaded from here.",
+      links: [{ label: "LITFL ECG Library", url: "https://litfl.com/ecg-library/" }],
+      samplesNote: "No samples shown here: the site couldn't be reached from this build, so open the link to judge it."
+    },
+    {
+      id: "maven", short: "Wave-Maven", name: "ECG Wave-Maven (Beth Israel Deaconess, Harvard)",
+      verdict: "Link only", verdictKind: "link",
+      what: "A free self-test site with hundreds of real 12-lead cases from a teaching hospital.",
+      reads: "Each case has a short history, the EKG, and a written answer explaining the findings.",
+      license: "Copyright BIDMC, all rights reserved: fine to use on their site, not to copy onto ours.",
+      quality: "Good, real hospital tracings with answers; harder cases than the exam in places. Older interface.",
+      use: "Link only, as extra real-world practice.",
+      links: [{ label: "ECG Wave-Maven", url: "https://ecg.bidmc.harvard.edu/maven/welcome.asp" }],
+      samplesNote: "No samples shown here (copyrighted)."
+    },
+    {
+      id: "mendeley-mm", short: "ECG + EHR set", name: "Multi-modal ECG and EHR dataset (Mendeley Data, 2026)",
+      verdict: "Promising, check next", verdictKind: "maybe",
+      what: "585 real 12-lead EKG printouts from 200 cardiac-care and ER patients, each with a short health record.",
+      reads: "Each EKG has three physician-answered questions: rhythm, EKG findings and diagnosis (1,755 answers).",
+      license: "CC BY-NC 4.0: fine for a free study site with credit.",
+      quality: "Real printout images, which is closest to the exam look. Not yet inspected: the files couldn't be downloaded from here.",
+      use: "Worth a look next; if the images are clear, they could become real-printout examples.",
+      links: [{ label: "Dataset on Mendeley Data", url: "https://data.mendeley.com/datasets/kr52vyy8nr" }],
+      samplesNote: "No samples yet (download blocked from this build)."
+    },
+    {
+      id: "mendeley-img", short: "ECG images set", name: "ECG Images dataset of Cardiac Patients (Mendeley Data)",
+      verdict: "Skip", verdictKind: "skip",
+      what: "Real 12-lead printout images from a cardiology institute in Pakistan.",
+      reads: "Only sorted into a few broad folders (normal, abnormal heartbeat, MI, history of MI); no written read.",
+      license: "CC BY 4.0.",
+      quality: "Real printouts, but no interpretation and no wall or rhythm detail, so you'd have to grade them yourself.",
+      use: "Not useful for 'look and learn'.",
+      links: [{ label: "Dataset on Mendeley Data", url: "https://data.mendeley.com/datasets/gwbz3fsgp8/2" }]
+    },
+    {
+      id: "ptbdb", short: "PTB", name: "PTB Diagnostic ECG Database (PhysioNet)",
+      verdict: "Skip", verdictKind: "skip",
+      what: "549 older recordings from 290 people (the earlier version of PTB-XL).",
+      reads: "A diagnosis per patient (MI with location, BBB, cardiomyopathy...), no lead-by-lead read.",
+      license: "Open (ODC Attribution).",
+      quality: "Long recordings, fewer patients; PTB-XL covers the same ground better.",
+      use: "Not needed while PTB-XL is used.",
+      links: [{ label: "PTB on PhysioNet", url: "https://physionet.org/content/ptbdb/1.0.0/" }]
+    }
+  ],
+  samples: [
+    { id: "ptbxl-10", source: "ptbxl", record: "record 10", group: "Normal & sinus", title: "Normal EKG",
+      labels: ["Normal ECG (100% certain)", "Sinus rhythm"], report: "sinusrhythmus normales ekg", translation: "Sinus rhythm. Normal EKG." },
+    { id: "ptbxl-698", source: "ptbxl", record: "record 698", group: "Normal & sinus", title: "Sinus tachycardia",
+      labels: ["Normal ECG (100% certain)", "Sinus tachycardia"], report: "sinus tachycardia. normal ecg." },
+    { id: "ptbxl-568", source: "ptbxl", record: "record 568", group: "Normal & sinus", title: "Sinus bradycardia",
+      labels: ["Normal ECG (80% certain)", "Sinus bradycardia"], report: "sinus bradycardia. otherwise normal ecg. the cause of the bradycardia is not evident." },
+    { id: "ptbxl-2032", source: "ptbxl", record: "record 2032", group: "Rhythms", title: "Atrial fibrillation",
+      labels: ["Atrial fibrillation", "Normal ECG otherwise (80% certain)"], report: "atrial fibrillation. otherwise normal ecg." },
+    { id: "chap-JS00001", source: "chapman", record: "JS00001", group: "Rhythms", title: "Atrial fibrillation with RBBB",
+      labels: ["Atrial fibrillation", "Right bundle branch block", "T wave change"] },
+    { id: "ptbxl-6179", source: "ptbxl", record: "record 6179", group: "Rhythms", title: "Atrial flutter, variable block",
+      labels: ["Atrial flutter"], report: "rhythm is atrial flutter with variable av block. non-specific t wave abnormality." },
+    { id: "chap-JS00005", source: "chapman", record: "JS00005", group: "Rhythms", title: "Atrial flutter",
+      labels: ["Atrial flutter", "ST depression", "ST-T change"] },
+    { id: "ptbxl-255", source: "ptbxl", record: "record 255", group: "Rhythms", title: "PVCs",
+      labels: ["Ventricular premature complex", "Sinus rhythm", "Incomplete right bundle branch block (100% certain)"], report: "premature ventricular contraction(s). sinus rhythm. incomplete right bundle branch block. no definite pathology." },
+    { id: "ptbxl-14332", source: "ptbxl", record: "record 14332", group: "AV blocks", title: "First-degree AV block",
+      labels: ["First degree AV block (100% certain)", "Sinus rhythm"], report: "sinusrhythmus a-v block i lagetyp normal", translation: "Sinus rhythm. First-degree AV block. Normal axis." },
+    { id: "ptbxl-14009", source: "ptbxl", record: "record 14009", group: "AV blocks", title: "Second-degree AV block, type I (Wenckebach)",
+      labels: ["Second degree AV block (100% certain)"], report: "av- block 2. grades typ i linkstyp intraventr. leitungsstoerung f, v1 ekg pathologisch", translation: "Second-degree AV block, type I. Left axis. Intraventricular conduction delay in aVF and V1. Abnormal EKG." },
+    { id: "ptbxl-4827", source: "ptbxl", record: "record 4827", group: "AV blocks", title: "Third-degree AV block with an inferior MI",
+      labels: ["Third degree AV block (100% certain)", "Inferior myocardial infarction (100% certain), acute stage"], report: "kammer-rhythmus lagetyp normal av-block iii. grades intraventr. leitungsstÖrung in avf sicher subakuter inferiorer-posteriorer infarkt path. ekg", translation: "Ventricular escape rhythm. Normal axis. Third-degree AV block. Conduction delay in aVF. Definite subacute inferior-posterior infarction. Abnormal EKG." },
+    { id: "ptbxl-338", source: "ptbxl", record: "record 338", group: "Bundle branch blocks", title: "Left bundle branch block",
+      labels: ["Complete left bundle branch block (100% certain)", "Sinus rhythm"], report: "sinus rhythm. left bundle branch block, this is most commonly due to ischaemic heart disease." },
+    { id: "ptbxl-903", source: "ptbxl", record: "record 903", group: "Bundle branch blocks", title: "Right bundle branch block",
+      labels: ["Complete right bundle branch block (100% certain)", "Sinus rhythm"], report: "sinus rhythm. low limb lead voltage. right bundle branch block." },
+    { id: "ptbxl-940", source: "ptbxl", record: "record 940", group: "Bundle branch blocks", title: "Left anterior fascicular block (left axis)",
+      labels: ["Left anterior fascicular block (100% certain)", "Sinus rhythm", "Axis: left axis deviation"], report: "sinus rhythm. left axis deviation. left anterior fascicular block." },
+    { id: "ptbxl-6347", source: "ptbxl", record: "record 6347", group: "Hypertrophy", title: "Left ventricular hypertrophy",
+      labels: ["Left ventricular hypertrophy (100% certain)", "Sinus rhythm"], report: "sinus rhythm. left ventricular hypertrophy. otherwise normal ecg." },
+    { id: "ptbxl-1063", source: "ptbxl", record: "record 1063", group: "STEMI & ischemia", title: "Inferior + anterior STEMI",
+      labels: ["Anteroseptal myocardial infarction (100% certain), acute stage", "Inferolateral myocardial infarction (100% certain), acute stage", "Sinus rhythm"], report: "sinus rhythm. st segments are markedly elevated in ii, iii, avf, v1-5. recent inferior and anterior myocardial infarction is likely." },
+    { id: "ptbxl-20139", source: "ptbxl", record: "record 20139", group: "STEMI & ischemia", title: "Anterior MI, subacute (ST elevation with deep T inversions)",
+      labels: ["Anteroseptal myocardial infarction (100% certain), acute stage", "Sinus rhythm"], report: "sinusrhythmus a-v block i lagetyp normal subakuter anteriorer infarkt sicher st-hebung in v1-v4 t neg in v1-v5 path. ekg fehlende r-progression", translation: "Sinus rhythm. First-degree AV block. Normal axis. Definite subacute anterior infarction: ST elevation in V1-V4, inverted T waves in V1-V5. Abnormal EKG. Poor R-wave progression." },
+    { id: "ptbxl-16311", source: "ptbxl", record: "record 16311", group: "STEMI & ischemia", title: "Inferior STEMI with reciprocal ST depression",
+      labels: ["Inferior myocardial infarction (100% certain), acute stage", "Rhythm coded as atrial fibrillation (the report says fast atrial flutter)"], report: "tachykardes vorhofflattern mllt akuter inferiorer infarkt mÖglich st-hebung Über ii,iii,avf st-senkung Über v1-v4", translation: "Fast atrial flutter. Possible acute inferior infarction: ST elevation in II, III, aVF; ST depression in V1-V4." },
+    { id: "ptbxl-532", source: "ptbxl", record: "record 532", group: "STEMI & ischemia", title: "Inferior MI, acute stage",
+      labels: ["Inferior myocardial infarction (100% certain), acute stage", "Sinus rhythm"], report: "sinusrytm extrem vÄnster el-axel avvikande qrs(t) fÖrlopp inferior infarkt mÖjligen fÄrsk st sÄnkning, mÖjligen orsakad av lateral subendokardiell myokardaffektion", translation: "Sinus rhythm. Extreme left axis. Abnormal QRS-T: inferior infarction, possibly recent. ST depression, possibly from lateral subendocardial injury." },
+    { id: "ptbxl-8652", source: "ptbxl", record: "record 8652", group: "STEMI & ischemia", title: "Lateral (and slight inferior) ST elevation",
+      labels: ["Inferolateral myocardial infarction (100% certain), acute stage", "Sinus rhythm"], report: "sinus rhythm. compared with tracing of 30:7:92. there is now st segment elevation in v5,6 and to a minimal degree in ii, iii, avf. recent ischaemia or early infarction is possible." },
+    { id: "ptbxl-3181", source: "ptbxl", record: "record 3181", group: "STEMI & ischemia", title: "Ischemia: ST depression",
+      labels: ["Ischemia in anterolateral leads (100% certain)", "Sinus rhythm"], report: "sinus rhythm. compared with tracing of earlier today. st segments remain depressed in i, ii, v4,5,6. t waves are now low rather than inverted in i, v5,6. the slightly changed pattern suggests recent ischaemia." },
+    { id: "ptbxl-2134", source: "ptbxl", record: "record 2134", group: "STEMI & ischemia", title: "Old inferior MI (Q waves)",
+      labels: ["Inferior myocardial infarction (100% certain), old stage", "Sinus rhythm"], report: "sinus rhythm. pr interval prolonged. old inferior infarct." },
+    { id: "ptbxl-9699", source: "ptbxl", record: "record 9699", group: "Other patterns", title: "WPW (pre-excitation)",
+      labels: ["Wolff-Parkinson-White (100% certain)", "Sinus bradycardia"], report: "sinusbradykardie rechtstyp wpw, typ a", translation: "Sinus bradycardia. Right axis. WPW, type A." },
+    { id: "ptbxl-18093", source: "ptbxl", record: "record 18093", group: "Other patterns", title: "Long QT with U waves",
+      labels: ["Long QT interval (80% certain)", "Sinus rhythm"], report: "sinus rhythm. qt prolongation is less than on 11:7:92. prominent u wave. suggest exclude hypokalaemia. otherwise normal ecg." },
+    { id: "ptbxl-2090", source: "ptbxl", record: "record 2090", group: "Other patterns", title: "Paced rhythm",
+      labels: ["Normally functioning pacemaker"], report: "pacemaker spikes noted. a regular paced rhythm is present. apparently normal pacemaker function." }
+  ]
+};
