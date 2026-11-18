@@ -1,7 +1,7 @@
 /* EKG Catalog: look-only gallery of every strip and 12-lead finding, with real labeled examples.
    Data: window.EKG_CATALOG (data/ekg-catalog.js); example pictures come from window.EKG_WORKBOOK
    (wb-*), window.EKG_EXAMPLIFY (exq-*) and the deck slides listed in EKG_CATALOG.deck (deck-*).
-   No quizzing and no progress; the open part (strip / 12-lead) is remembered per browser. */
+   Look-only gallery plus a "Quiz the catalog" mode (every picture as 4-choice "what does this show?"). No saved progress; the open part (strip / 12-lead) is remembered per browser. */
 (function () {
   "use strict";
   var data = window.EKG_CATALOG;
@@ -93,7 +93,13 @@
     var pid = getPart();
     var part = parts.filter(function (p) { return p.id === pid; })[0] || parts[0];
     content.innerHTML = '<div class="mode-intro"><p class="eyebrow">EKG · Catalog</p><h3>Catalog</h3>' +
-      '<p>Every finding you need to recognize, with real labeled tracings. Pick one to see what it is, what to look for, and a gallery of examples. No quizzing: just get your eyes used to it.</p></div>' +
+      '<p>Every finding you need to recognize, with real labeled tracings. Pick one to see what it is, what to look for, and a gallery of examples.</p></div>' +
+      '<div class="cat-quizbar"><p class="cat-look-title">Quiz the catalog</p><p>Every picture becomes "What does this EKG show?" with 4 choices. A miss comes back once at the end.</p>' +
+      '<div class="session-actions exq-actions">' +
+      '<button class="primary-action" type="button" data-quiz="all">Quiz all (' + pool.length + ')</button>' +
+      '<button class="secondary-action" type="button" data-quiz="strip">Strips only (' + pool.filter(function (q) { return q.x.fmt !== "12"; }).length + ')</button>' +
+      '<button class="secondary-action" type="button" data-quiz="12">12-leads only (' + pool.filter(function (q) { return q.x.fmt === "12"; }).length + ')</button>' +
+      '<button class="secondary-action" type="button" data-quiz="20">Quick 20, mixed</button></div></div>' +
       '<div class="cat-tabs" role="tablist">' + parts.map(function (p) {
         return '<button type="button" role="tab" class="cat-tab' + (p === part ? " active" : "") + '" aria-selected="' + (p === part) + '" data-part="' + p.id + '">' + esc(p.title) + '</button>';
       }).join("") + '</div>' +
@@ -103,6 +109,9 @@
           return '<button type="button" class="cat-entry' + (e.examples.length ? "" : " empty") + '" data-entry="' + e.id + '"><strong>' + esc(e.name) + '</strong><small>' + count(e) + '</small></button>';
         }).join("") + '</div></section>';
       }).join("");
+    content.querySelectorAll("[data-quiz]").forEach(function (b) {
+      b.addEventListener("click", function () { startQuiz(b.getAttribute("data-quiz")); });
+    });
     content.querySelectorAll("[data-part]").forEach(function (b) {
       b.addEventListener("click", function () { setPart(b.getAttribute("data-part")); renderHome(); });
     });
@@ -161,9 +170,108 @@
     view.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
+  // ---- Quiz the catalog ------------------------------------------------------------------------
+  // One question per picture. The asked finding is picked at random from the findings that list the
+  // picture (12-lead pictures prefer 12-lead findings); wrong choices never include a finding that lists
+  // the picture, clashes with one of them (EKG_CATALOG.quiz.clash) or is in noDistract.
+  var Q = data.quiz || { clash: [], noDistract: [] };
+  var noD = {}; (Q.noDistract || []).forEach(function (id) { noD[id] = true; });
+  var clashOf = {};
+  (Q.clash || []).forEach(function (set) { set.forEach(function (a) { set.forEach(function (b) { if (a !== b) (clashOf[a] = clashOf[a] || {})[b] = true; }); }); });
+  var real = flat.filter(function (f) { return f.group.id !== "rhythm-12"; });
+  var byImg = {}, pool = [];
+  real.forEach(function (f) {
+    f.entry.examples.forEach(function (x) {
+      if (!byImg[x.img]) { byImg[x.img] = { x: x, finds: [] }; pool.push(byImg[x.img]); }
+      byImg[x.img].finds.push(f);
+    });
+  });
+  // Pictures whose site answer differs from the key (workbook note) are left out: the key could argue for a wrong choice.
+  pool = pool.filter(function (q) { return !q.x.lines.some(function (l) { return /^Note:/.test(l); }); });
+
+  function shuffle(a) { var c = a.slice(); for (var i = c.length - 1; i > 0; i -= 1) { var j = Math.floor(Math.random() * (i + 1)); var v = c[i]; c[i] = c[j]; c[j] = v; } return c; }
+  function build(item) {
+    var finds = item.finds;
+    var ask = finds.filter(function (f) { return !noD[f.entry.id]; });
+    if (!ask.length) ask = finds;
+    if (item.x.fmt === "12") { var tw = ask.filter(function (f) { return f.part.id === "twelve"; }); if (tw.length) ask = tw; }
+    var pickF = ask[Math.floor(Math.random() * ask.length)];
+    var banned = {};
+    finds.forEach(function (f) { banned[f.entry.id] = true; var c = clashOf[f.entry.id] || {}; for (var k in c) banned[k] = true; });
+    function ok(f) { return !banned[f.entry.id] && !noD[f.entry.id] && f.entry.name !== pickF.entry.name; }
+    var same = shuffle(real.filter(function (f) { return f.group === pickF.group && ok(f); }));
+    var part = shuffle(real.filter(function (f) { return f.part === pickF.part && f.group !== pickF.group && ok(f); }));
+    var wrong = same.concat(part).slice(0, 3).map(function (f) { return f.entry.name; });
+    return { x: item.x, f: pickF, answer: pickF.entry.name, choices: shuffle([pickF.entry.name].concat(wrong)) };
+  }
+  var qs = null;
+  function startQuiz(kind) {
+    var list = pool;
+    if (kind === "strip") list = pool.filter(function (q) { return q.x.fmt !== "12"; });
+    if (kind === "12") list = pool.filter(function (q) { return q.x.fmt === "12"; });
+    list = shuffle(list);
+    if (kind === "20") list = list.slice(0, 20);
+    qs = { kind: kind, list: list.map(build), at: 0, right: 0, misses: [], requeued: {} };
+    renderQ();
+  }
+  function renderQ() {
+    var s = qs, q = s.list[s.at];
+    content.innerHTML = '<div class="session-top"><button type="button" id="catq-back">← Catalog</button><span>' + (s.at + 1) + ' / ' + s.list.length + '</span></div>' +
+      '<div class="session-progress"><span style="width:' + (100 * s.at / s.list.length) + '%"></span></div>' +
+      '<article class="question-card immersive-card exq-card"><p class="card-number">Catalog quiz · ' + (q.x.fmt === "12" ? "12-lead" : "Rhythm strip") + (q.again ? " · again" : "") + '</p>' +
+      '<div class="wb-sticky"><a class="exq-img" href="' + esc(q.x.img) + '" target="_blank" rel="noopener" title="Open full size"><img src="' + esc(q.x.img) + '" alt="EKG to identify" decoding="async"></a></div>' +
+      '<h3 class="exq-q">What does this ' + (q.x.fmt === "12" ? "12-lead" : "strip") + ' show?</h3>' +
+      '<div class="choices" id="catq-choices">' + q.choices.map(function (c, i) {
+        return '<button class="choice" type="button" data-c="' + esc(c) + '"><span>' + "ABCD"[i] + '</span>' + esc(c) + '</button>';
+      }).join("") + '</div><div id="catq-after" hidden></div></article>';
+    content.querySelector("#catq-back").addEventListener("click", function () { qs = null; renderHome(); });
+    content.querySelectorAll("#catq-choices .choice").forEach(function (b) { b.addEventListener("click", function () { answer(b); }); });
+    view.scrollIntoView({ behavior: "instant", block: "start" });
+  }
+  function answer(button) {
+    var s = qs, q = s.list[s.at], ok = button.getAttribute("data-c") === q.answer;
+    content.querySelectorAll("#catq-choices .choice").forEach(function (b) {
+      b.disabled = true;
+      if (b.getAttribute("data-c") === q.answer) b.classList.add("correct");
+      else if (b === button) b.classList.add("wrong"); else b.classList.add("dimmed");
+    });
+    if (ok) s.right += 1;
+    else {
+      if (!q.again) s.misses.push(q);
+      if (!s.requeued[q.x.img]) { s.requeued[q.x.img] = true; s.list.push({ x: q.x, f: q.f, answer: q.answer, choices: shuffle(q.choices), again: true }); }
+    }
+    var why = q.x.lines.filter(Boolean)[0] || q.f.entry.what;
+    var last = s.at === s.list.length - 1;
+    var after = content.querySelector("#catq-after");
+    after.innerHTML = '<p class="ld-fb ' + (ok ? "ok" : "bad") + '">' + (ok ? "Correct" : "Not quite") + '</p>' +
+      '<div class="explanation"><strong>Answer: ' + esc(q.answer) + '</strong><p>' + esc(why) + '</p>' +
+      '<p class="cat-src">Labeled: ' + esc(q.x.label) + ' · ' + esc(q.x.source) + '</p>' +
+      '<p class="cat-look-title">What to look for</p><ul>' + q.f.entry.look.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join("") + '</ul></div>' +
+      '<button class="primary-action full-action" id="catq-next" type="button">' + (last ? "See results" : "Next question →") + '</button>';
+    after.hidden = false;
+    content.querySelector("#catq-next").addEventListener("click", function () { if (last) renderQDone(); else { s.at += 1; renderQ(); } });
+  }
+  function renderQDone() {
+    var s = qs, firstTry = s.list.filter(function (q) { return !q.again; }).length;
+    var firstRight = firstTry - s.misses.length;
+    content.innerHTML = '<section class="complete-panel"><span class="complete-icon">' + (s.misses.length ? "✓" : "🎉") + '</span>' +
+      '<p class="eyebrow">Catalog quiz</p><h3>' + firstRight + ' of ' + firstTry + ' right the first time</h3>' +
+      (s.misses.length ? '<ul class="fc-round-list">' + s.misses.map(function (q) {
+        return '<li class="bad"><b>✗</b><strong>' + esc(q.answer) + '</strong><span>' + esc(q.x.label) + '</span></li>';
+      }).join("") + '</ul>' : "") +
+      '<div class="session-actions">' + (s.misses.length ? '<button class="primary-action" id="catq-redo" type="button">Redo the ones I missed</button>' : "") +
+      '<button class="secondary-action" id="catq-home" type="button">Back to the catalog</button></div></section>';
+    if (content.querySelector("#catq-redo")) content.querySelector("#catq-redo").addEventListener("click", function () {
+      qs = { kind: "redo", list: shuffle(s.misses).map(function (q) { return { x: q.x, f: q.f, answer: q.answer, choices: shuffle(q.choices) }; }), at: 0, right: 0, misses: [], requeued: {} };
+      renderQ();
+    });
+    content.querySelector("#catq-home").addEventListener("click", function () { qs = null; renderHome(); });
+    view.scrollIntoView({ behavior: "instant", block: "start" });
+  }
+
   var status = document.getElementById("ekg-catalog-status");
   if (status) status.textContent = findings + " findings · " + total + " real examples";
   launch.addEventListener("click", open);
   document.getElementById("ekg-catalog-back").addEventListener("click", close);
-  window.EKGCatalog = { resolve: resolve, parts: parts };
+  window.EKGCatalog = { resolve: resolve, parts: parts, pool: function () { return pool; }, build: build };
 }());

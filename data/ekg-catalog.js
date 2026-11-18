@@ -341,7 +341,29 @@
     ] }
   ];
 
+  // Quiz the catalog: each picture becomes "What does this EKG show?" with finding names as choices.
+  // clash = findings that can be true of the same picture (never offered as a wrong choice against each other);
+  // noDistract = findings never used as wrong choices (they can sit on almost any tracing) and only asked when
+  // a picture has nothing else.
+  var QUIZ = {
+    clash: [
+      ["cat-pvc", "cat-pvc-multi", "cat-pvc-pattern"],
+      ["cat-vt", "cat-pvc-pattern", "cat-torsades"],
+      ["cat-svt", "cat-atach", "cat-st", "cat-jt", "cat-aflut"],
+      ["cat-12-normal", "cat-axis-normal", "cat-12-views"],
+      ["cat-axis-left", "cat-lah", "cat-lvh", "cat-lvstrain", "cat-lbbb", "cat-12-vpaced"],
+      ["cat-axis-right", "cat-lph", "cat-rvh", "cat-rvstrain", "cat-pe", "cat-rbbb", "cat-rae"],
+      ["cat-stemi-sept", "cat-stemi-ant", "cat-stemi-antlat", "cat-stemi-extensive", "cat-stemi-lat"],
+      ["cat-hyperk", "cat-sine"],
+      ["cat-pericarditis", "cat-effusion"],
+      ["cat-hypok", "cat-hypoca", "cat-12-longqt"]
+    ],
+    noDistract: ["cat-recip", "cat-pathq", "cat-isch-t", "cat-isch-std", "cat-strip-ste", "cat-strip-std", "cat-strip-tinv",
+      "cat-strip-u", "cat-strip-wide", "cat-strip-artifact", "cat-12-physq", "cat-strip-longqt"]
+  };
+
   window.EKG_CATALOG = {
+    quiz: QUIZ,
     deck: DECK,
     parts: [
       { id: "strip", title: "Rhythm strips", blurb: "Every rhythm, early beat and strip finding, with real strips from your workbook, Examplify and the lecture.", groups: strip },
