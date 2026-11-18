@@ -26,6 +26,7 @@
   var PART_NAMES = { mcq: "Multiple choice", strip: "Rhythm strips", twelve: "12-lead EKGs" };
   var STRIP_ORDER = ["reg", "rate", "p", "qrs", "pr"];
   var TWELVE_ORDER = ["reg", "rate", "axis", "p", "qrs", "pr", "st"];
+  var TWELVE_ASK = { reg: "Is the rhythm regular?", axis: "What is the axis?", p: "What do the P waves look like?", qrs: "What do the QRS complexes look like?", pr: "What is the PR interval?", st: "What do the ST segments and T waves show?" };
   var STRIP_TITLES = { reg: "Regularity", rate: "Rate (bpm)", p: "P waves", qrs: "QRS complexes", pr: "PR interval" };
   var state = null, views = [], timer = null;
 
@@ -137,8 +138,8 @@
       v.title = "Workbook strip " + s.n;
       v.visual = '<div class="wb-strip"><img src="images/ekg-workbook/' + s.id + '.webp" alt="Rhythm strip" decoding="async"></div>';
       v.fields = STRIP_ORDER.map(function (k) {
-        if (k === "rate") return { id: "rate", title: STRIP_TITLES.rate, number: true, answer: s.rate };
-        return { id: k, title: STRIP_TITLES[k], options: optionList(o[k].options), answer: s[k], accept: (o[k].clash || {})[s[k]] || [] };
+        if (k === "rate") return rateField(s.rate);
+        return { id: k, title: STRIP_TITLES[k], ask: o[k].title, options: optionList(o[k].options), answer: s[k], accept: (o[k].clash || {})[s[k]] || [] };
       });
       v.why = '<p><strong>Workbook answer key:</strong> ' + escapeHtml(key.interp || s.name) + (key.rate ? ', rate ' + escapeHtml(key.rate) : "") +
         (key.pr ? ', PR ' + escapeHtml(key.pr) : "") + (key.qrs ? ', QRS ' + escapeHtml(key.qrs) : "") + '.' + (key.comment ? ' ' + escapeHtml(key.comment) + '.' : "") + '</p>' +
@@ -148,8 +149,8 @@
       v.title = "Rhythm strip";
       v.visual = '<div class="rs-box">' + made.svg + '</div>';
       v.fields = STRIP_ORDER.map(function (k) {
-        if (k === "rate") return { id: "rate", title: STRIP_TITLES.rate, number: true, answer: made.rate };
-        return { id: k, title: STRIP_TITLES[k], options: optionList(steps[k].options), answer: r.steps[k], accept: [] };
+        if (k === "rate") return rateField(made.rate);
+        return { id: k, title: STRIP_TITLES[k], ask: steps[k].title, options: optionList(steps[k].options), answer: r.steps[k], accept: [] };
       });
       v.why = '<p>' + escapeHtml(r.clue) + '</p>' + (r.mgmt ? '<p><strong>Why it happens:</strong> ' + escapeHtml(r.mgmt) + '</p>' : "");
     } else if (item.type === "twelve") {
@@ -159,29 +160,47 @@
       v.visual = '<div class="tw-ekg">' + drawn.svg + '</div>';
       v.fields = TWELVE_ORDER.map(function (k) {
         var f = byId[k];
-        if (f.number) return { id: k, title: f.title, number: true, answer: drawn.rate };
-        return { id: k, title: f.title, options: optionList(f.options), answer: c.answers[k], accept: [] };
+        if (f.number) return rateField(drawn.rate);
+        return { id: k, title: f.title, ask: TWELVE_ASK[k], options: optionList(f.options), answer: c.answers[k], accept: [] };
       });
       v.why = '<p>' + escapeHtml(c.why) + '</p>';
     } else {
       v.why = '<p>' + escapeHtml(item.why) + '</p>';
     }
+    // Every step is multiple choice: the answer plus up to 3 others from the same list (never an
+    // arguable alternative). The picked options are saved with the item so a resumed exam matches.
+    if (v.fields.length) {
+      item.sc = item.sc || {};
+      v.fields.forEach(function (f) {
+        if (!item.sc[f.id]) {
+          var others = shuffle(f.options.filter(function (o) { return o.id !== f.answer && (f.accept || []).indexOf(o.id) < 0; })).slice(0, 3);
+          item.sc[f.id] = shuffle([f.answer].concat(others.map(function (o) { return o.id; })));
+        }
+        f.shown = item.sc[f.id].map(function (id) { return f.options.filter(function (o) { return o.id === id; })[0]; }).filter(Boolean);
+      });
+    }
     views[i] = v;
     return v;
   }
+  // Rate as multiple choice: the measured rate plus three others spaced well apart.
+  function rateField(truth) {
+    var answer = truth == null || truth === 0 ? "none" : String(Math.round(truth)), opts = [];
+    if (answer === "none") opts = ["none", "30", "150", "300"];
+    else {
+      var t = Math.round(truth), step = Math.max(15, Math.round(t * 0.25 / 5) * 5);
+      var cands = [t - 2 * step, t - step, t + step, t + 2 * step, t + 3 * step].filter(function (x) { return x >= 20; });
+      opts = [String(t)].concat(shuffle(cands).slice(0, 3).map(String));
+    }
+    return { id: "rate", title: "Rate", ask: "What is the rate?", options: opts.map(function (x) { return { id: x, label: x === "none" ? "No rate to count" : x + " bpm" }; }), answer: answer, accept: [] };
+  }
 
   // ---- grading -------------------------------------------------------------
-  function rateOk(truth, p) {
-    if (truth == null || truth === 0) return !!p.norate || (p.rate !== "" && p.rate != null && Number(p.rate) === 0);
-    var n = parseFloat(p.rate);
-    return !p.norate && isFinite(n) && Math.abs(n - truth) <= Math.max(8, truth * 0.1);
-  }
   function grade(i) {
     var item = state.items[i], p = state.picks[i] || {}, v = hydrate(i);
     if (item.type === "mcq") return { earned: p.choice === item.answer ? 1 : 0, max: 1, rows: [], finalOk: p.choice === item.answer };
     var sys = item.points / 2 / v.fields.length, earned = 0;
     var rows = v.fields.map(function (f) {
-      var ok = f.number ? rateOk(f.answer, p) : (p[f.id] === f.answer || (f.accept || []).indexOf(p[f.id]) >= 0);
+      var ok = p[f.id] === f.answer || (f.accept || []).indexOf(p[f.id]) >= 0;
       if (ok) earned += sys;
       return { f: f, ok: ok, pts: sys };
     });
@@ -192,7 +211,7 @@
   function answeredState(i) {
     var item = state.items[i], p = state.picks[i] || {};
     if (item.type === "mcq") return p.choice != null ? "done" : "";
-    var v = hydrate(i), filled = v.fields.filter(function (f) { return f.number ? (p.norate || (p.rate != null && p.rate !== "")) : p[f.id]; }).length;
+    var v = hydrate(i), filled = v.fields.filter(function (f) { return p[f.id]; }).length;
     if (filled === v.fields.length && p.choice != null) return "done";
     return filled || p.choice != null ? "partial" : "";
   }
@@ -243,7 +262,7 @@
       '<li><strong>Multiple choice:</strong> ' + F.mcq + ' × 1 point.</li>' +
       '<li><strong>Rhythm strips:</strong> sinus 2 points; atrial, junctional, ventricular and early-beat strips 3; AV blocks 4 (60 points). Half for your read (regularity, rate, P waves, QRS, PR), half for the final interpretation.</li>' +
       '<li><strong>12-leads:</strong> ' + F.twelve + ' × 7 points. Half for your read (regularity, rate, axis, P, QRS, PR, ST/T), half for the final interpretation.</li>' +
-      '<li>Your rate counts if it is within 10% (at least ±8 bpm). Count it however you like: 300-150-100, 1500 ÷ small boxes, or beats in 6 seconds × 10. The calculator button is in the top bar.</li>' +
+      '<li>Every step is multiple choice, one at a time, A/B/C/D on the keyboard. For rate, pick the closest choice; count it however you like: 300-150-100, 1500 ÷ small boxes, or beats in 6 seconds × 10. The calculator button is in the top bar.</li>' +
       '<li>The real exam\'s point split isn\'t published, so the split above is ours. The 70% line is a target, not the course\'s cutoff.</li></ul></div></article>' +
       '<div class="murmur-quick rs-quick mx-polls"><button class="murmur-quick-card" type="button" id="mock-polls"><span>Class polls</span><strong>Poll review →</strong><small>All ' + polls.length + ' poll questions from the 11/9 EKG App session, answered as marked in class. Instant feedback; misses come back. ' + (seen ? seen + ' of ' + polls.length + ' tried.' : "Not started yet.") + '</small></button></div>';
     if (el("mock-resume")) el("mock-resume").addEventListener("click", function () { resumeExam(saved); });
@@ -358,17 +377,37 @@
       button.addEventListener("click", function () { state.position = Number(button.dataset.mockJump); saveExam(); renderExam(true); });
     });
   }
-  function fieldHtml(f, p, locked) {
-    var dis = locked ? " disabled" : "";
-    if (f.number) {
-      return '<label class="mx-field"><span>' + escapeHtml(f.title) + '</span><span class="mx-rate"><input type="number" inputmode="numeric" min="0" max="400" data-field="rate" value="' + escapeHtml(p.norate ? "" : (p.rate || "")) + '"' + (p.norate ? " disabled" : dis) + ' placeholder="bpm">' +
-        '<label class="mx-norate"><input type="checkbox" data-field="norate"' + (p.norate ? " checked" : "") + dis + '> No rate to count</label></span></label>';
+  // Strips and 12-leads: one multiple-choice step at a time (the deck's order), then the final
+  // interpretation. Answered steps fold to one line; click one to change it.
+  function stepsHtml(i, item, v, p, locked) {
+    var steps = v.fields.length + 1, cur = -1, html = "";
+    function done(k) { return k < v.fields.length ? !!p[v.fields[k].id] : p.choice != null; }
+    if (!locked) {
+      cur = state.openStep != null ? state.openStep : -1;
+      if (cur < 0) for (var k = 0; k < steps; k += 1) if (!done(k)) { cur = k; break; }
     }
-    return '<label class="mx-field"><span>' + escapeHtml(f.title) + '</span><select data-field="' + f.id + '"' + dis + '><option value="">Choose…</option>' + f.options.map(function (o) {
-      return '<option value="' + o.id + '"' + (p[f.id] === o.id ? " selected" : "") + '>' + escapeHtml(o.label) + '</option>';
-    }).join("") + '</select></label>';
+    for (var s = 0; s < steps; s += 1) {
+      var isFinal = s === v.fields.length, f = v.fields[s];
+      var title = isFinal ? "Final interpretation" : f.title;
+      var picked = isFinal ? (p.choice != null ? item.choices[p.choice] : null) : (f.options.filter(function (o) { return o.id === p[f.id]; })[0] || {}).label;
+      if (s === cur) {
+        html += '<div class="rs-part mx-step"><p class="rs-part-title"><span>Step ' + (s + 1) + ' of ' + steps + '</span>' + escapeHtml(isFinal ? "What is your final interpretation?" : f.ask) + '</p><div class="choices">' +
+          (isFinal ? item.choices.map(function (c, k) { return '<button class="choice' + (p.choice === k ? " selected" : "") + '" type="button" data-choice="' + k + '"><span>' + letter(k) + '</span>' + escapeHtml(c) + '</button>'; }).join("")
+            : f.shown.map(function (o, k) { return '<button class="choice' + (p[f.id] === o.id ? " selected" : "") + '" type="button" data-step="' + f.id + '" data-opt="' + escapeHtml(o.id) + '"><span>' + letter(k) + '</span>' + escapeHtml(o.label) + '</button>'; }).join("")) +
+          '</div></div>';
+      } else if (picked) {
+        var mark = "";
+        if (locked) { var ok = isFinal ? p.choice === item.answer : (p[f.id] === f.answer || (f.accept || []).indexOf(p[f.id]) >= 0); mark = ok ? " ok" : " bad"; }
+        html += '<button type="button" class="mx-folded' + mark + '" data-open="' + s + '"' + (locked ? " disabled" : "") + '><span>' + escapeHtml(title) + '</span>' + escapeHtml(picked) + (locked ? "" : '<em>change</em>') + '</button>';
+      } else if (!locked) {
+        html += '<div class="mx-folded todo"><span>' + escapeHtml(title) + '</span>…</div>';
+      }
+    }
+    if (!locked && cur < 0) html += '<p class="mx-alldone">All steps answered. Tap a step to change it.</p>';
+    return html;
   }
   function renderExam(toTop) {
+    if (toTop) state.openStep = null;
     var items = state.items, i = state.position, item = items[i], v = hydrate(i), p = state.picks[i];
     var last = i + 1 === items.length, locked = state.check && state.checked[i];
     var answered = items.filter(function (x, k) { return answeredState(k) === "done"; }).length, blank = items.length - answered;
@@ -383,12 +422,12 @@
       '<article class="question-card immersive-card rs-question hs-exam-q mock-q mx-q"><div class="card-number">Question ' + (i + 1) + ' of ' + items.length + ' · ' + escapeHtml(kind) + ' · ' + (item.type === "mcq" ? "1 point" : item.points + " points") + '</div>' +
       (v.visual ? (item.type === "strip" ? '<div class="wb-sticky">' + v.visual + '</div>' : v.visual) : "") +
       '<h3>' + escapeHtml(prompt) + '</h3>' +
-      (v.fields.length ? '<div class="mx-fields">' + v.fields.map(function (f) { return fieldHtml(f, p, locked); }).join("") + '</div><p class="mx-final-label">Final interpretation</p>' : "") +
+      (v.fields.length ? '<div class="mx-steps">' + stepsHtml(i, item, v, p, locked) + '</div>' :
       '<div class="choices">' + item.choices.map(function (c, k) {
         var cls = p.choice === k ? " selected" : "";
         if (locked) cls += k === item.answer ? " correct" : p.choice === k ? " wrong" : " dimmed";
         return '<button class="choice' + cls + '" type="button" data-choice="' + k + '"' + (locked ? " disabled" : "") + '><span>' + letter(k) + '</span>' + escapeHtml(c) + '</button>';
-      }).join("") + '</div>' +
+      }).join("") + '</div>') +
       (locked ? '<div class="mx-feedback">' + reviewBody(i, false) + '</div>' : "") + '</article>' +
       (!state.check && last && blank && state.warned ? '<p class="mock-warn">' + blank + ' question' + (blank > 1 ? "s aren't" : " isn't") + ' fully answered (the empty or half-filled numbers above). Press Submit again to hand it in anyway.</p>' : "") +
       '<div class="hs-nav">' + (i ? '<button class="secondary-action" id="mock-prev" type="button">Previous</button>' : "") +
@@ -396,22 +435,20 @@
       '<button class="' + (state.check && !locked ? "secondary-action" : "primary-action") + '" id="mock-next" type="button">' + (last ? (state.check ? "See my score" : "Submit exam") : "Next") + '</button></div>';
     bindHome();
     bindGrid();
-    content.querySelectorAll("[data-field]").forEach(function (input) {
-      var handler = function () {
-        var f = input.dataset.field;
-        if (f === "norate") { p.norate = input.checked; var box = content.querySelector('[data-field="rate"]'); if (box) { box.disabled = input.checked; if (input.checked) box.value = ""; } if (input.checked) p.rate = ""; }
-        else p[f] = input.value;
-        refreshGrid(); saveExam();
-      };
-      input.addEventListener("change", handler);
-      if (input.type === "number") input.addEventListener("input", handler);
+    function rerender() { state.openStep = null; refreshGrid(); saveExam(); var keep = window.scrollY; renderExam(false); window.scrollTo(0, keep); }
+    content.querySelectorAll(".choices [data-step]").forEach(function (button) {
+      button.addEventListener("click", function () { p[button.dataset.step] = button.dataset.opt; rerender(); });
     });
     content.querySelectorAll(".choices [data-choice]").forEach(function (button) {
       button.addEventListener("click", function () {
         p.choice = Number(button.dataset.choice);
+        if (v.fields.length) { rerender(); return; }
         content.querySelectorAll(".choices [data-choice]").forEach(function (b) { b.classList.toggle("selected", b === button); });
         refreshGrid(); saveExam();
       });
+    });
+    content.querySelectorAll("[data-open]").forEach(function (button) {
+      button.addEventListener("click", function () { state.openStep = Number(button.dataset.open); var keep = window.scrollY; renderExam(false); window.scrollTo(0, keep); });
     });
     var prev = el("mock-prev");
     if (prev) prev.addEventListener("click", function () { state.position -= 1; saveExam(); renderExam(true); });
@@ -438,12 +475,10 @@
 
   // ---- review --------------------------------------------------------------
   function sayField(f, p) {
-    if (f.number) return p.norate ? "No rate" : (p.rate !== "" && p.rate != null ? p.rate + " bpm" : "blank");
     var o = f.options.filter(function (x) { return x.id === p[f.id]; })[0];
     return o ? o.label : "blank";
   }
   function truthField(f) {
-    if (f.number) return f.answer == null || f.answer === 0 ? "No rate to count" : "About " + f.answer + " bpm (±" + Math.round(Math.max(8, f.answer * 0.1)) + ")";
     var o = f.options.filter(function (x) { return x.id === f.answer; })[0];
     var also = (f.accept || []).map(function (id) { var a = f.options.filter(function (x) { return x.id === id; })[0]; return a ? a.label : null; }).filter(Boolean);
     return (o ? o.label : f.answer) + (also.length ? " (also accepted: " + also.join("; ") + ")" : "");
