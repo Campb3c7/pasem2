@@ -221,6 +221,10 @@
               <span class="ekg-hub-icon">✔</span>
               <span><strong>Examplify questions</strong><small>Exam-style EKGs: pick the interpretation, see why. <span id="ekg-examplify-status"></span></small></span>
             </button>
+            <button class="ekg-hub-card ekg-hub-green" id="ekg-canvas-launch" type="button">
+              <span class="ekg-hub-icon">❑</span>
+              <span><strong>Canvas practice</strong><small>Everything else on Canvas: 12-Lead Review, Rhythm Review, lecture, application. <span id="ekg-canvas-status"></span></small></span>
+            </button>
             <button class="ekg-hub-card ekg-hub-green" id="ekg-slides-launch" type="button">
               <span class="ekg-hub-icon">▶</span>
               <span><strong>Lecture slides quiz</strong><small>Go through the lecture slide by slide: what is each strip or 12-lead? <span id="ekg-slides-status"></span></small></span>
@@ -370,6 +374,10 @@
     <section id="ekg-sources-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-sources-back" type="button">← EKG</button>
       <div id="ekg-sources-content"></div>
+    </section>
+    <section id="ekg-canvas-view" class="walkthrough-view rhythms-view" hidden>
+      <button class="back-button" id="ekg-canvas-back" type="button">← EKG</button>
+      <div id="ekg-canvas-content"></div>
     </section>
     <section id="ekg-slides-view" class="walkthrough-view rhythms-view" hidden>
       <button class="back-button" id="ekg-slides-back" type="button">← EKG</button>
@@ -544,6 +552,7 @@
   <script src="data/ekg-flashcards.js"></script>
   <script src="data/ekg-examplify.js"></script>
   <script src="data/ekg-slides.js"></script>
+  <script src="data/ekg-canvas.js"></script>
   <script src="data/ekg-catalog.js"></script>
   <script src="data/shock-learn.js"></script>
   <script src="data/heart-sounds-lecture.js"></script>
@@ -589,6 +598,7 @@
   <script src="ekg-flashcards.js"></script>
   <script src="ekg-examplify.js"></script>
   <script src="ekg-slides.js"></script>
+  <script src="ekg-canvas.js"></script>
   <script src="ekg-catalog.js"></script>
   <script src="data/ekg-sources.js"></script>
   <script src="ekg-sources.js"></script>
