@@ -26,6 +26,7 @@
   var PART_NAMES = { mcq: "Multiple choice", strip: "Rhythm strips", twelve: "12-lead EKGs" };
   var STRIP_ORDER = ["reg", "rate", "p", "qrs", "pr"];
   var TWELVE_ORDER = ["reg", "rate", "axis", "p", "qrs", "pr", "st"];
+  var STEP_BY_STEP = false;
   var TWELVE_ASK = { reg: "Is the rhythm regular?", axis: "What is the axis?", p: "What do the P waves look like?", qrs: "What do the QRS complexes look like?", pr: "What is the PR interval?", st: "What do the ST segments and T waves show?" };
   var STRIP_TITLES = { reg: "Regularity", rate: "Rate (bpm)", p: "P waves", qrs: "QRS complexes", pr: "PR interval" };
   var state = null, views = [], timer = null;
@@ -167,6 +168,9 @@
     } else {
       v.why = '<p>' + escapeHtml(item.why) + '</p>';
     }
+    // Anna (2026-11-19): strips and 12-leads are ONE question each, like Examplify: the picture and
+    // "What is it?" with 4 choices. The step-by-step read is switched off here (kept for later).
+    if (STEP_BY_STEP === false) v.fields = [];
     // Every step is multiple choice: the answer plus up to 3 others from the same list (never an
     // arguable alternative). The picked options are saved with the item so a resumed exam matches.
     if (v.fields.length) {
@@ -198,6 +202,7 @@
   function grade(i) {
     var item = state.items[i], p = state.picks[i] || {}, v = hydrate(i);
     if (item.type === "mcq") return { earned: p.choice === item.answer ? 1 : 0, max: 1, rows: [], finalOk: p.choice === item.answer };
+    if (!v.fields.length) { var right = p.choice === item.answer; return { earned: right ? item.points : 0, max: item.points, rows: [], finalOk: right }; }
     var sys = item.points / 2 / v.fields.length, earned = 0;
     var rows = v.fields.map(function (f) {
       var ok = p[f.id] === f.answer || (f.accept || []).indexOf(p[f.id]) >= 0;
@@ -246,7 +251,7 @@
     }
     content.innerHTML = '<div class="drill-heading"><p class="eyebrow">EKG · exam Friday 11/20</p><h2>Practice exam</h2>' +
       '<p>Built to the real exam\'s format: ' + F.mcq + ' multiple-choice questions, ' + EX.strips.slots.reduce(function (s, x) { return s + x.n; }, 0) + ' rhythm strips and ' + F.twelve +
-      ' 12-lead EKGs. Every strip and 12-lead needs a final interpretation. ' + F.minutes + ' minutes, with a calculator. A new exam every time.</p></div>' +
+      ' 12-lead EKGs. Each strip and 12-lead is one question: what is it? ' + F.minutes + ' minutes, with a calculator. A new exam every time.</p></div>' +
       resume +
       '<div class="murmur-quick rs-quick">' +
       '<button class="murmur-quick-card" type="button" id="mock-exam"><span>Timed · ' + F.minutes + ' min</span><strong>Full practice exam →</strong><small>40 questions, ' + total + ' points. Answers stay hidden until you hand it in, then you get your score by part and a full review. ' + (best ? 'Best: ' + fmtPts(best.best) + ' of ' + best.of + ' (' + Math.round(best.best / best.of * 100) + '%).' : "Not taken yet.") + '</small></button>' +
@@ -255,14 +260,14 @@
       '<p class="eyebrow mx-sub">Practice one part · answers checked as you go</p>' +
       '<div class="murmur-quick mx-parts">' +
       '<button class="murmur-quick-card" type="button" id="mock-part-mcq"><span>' + F.mcq + ' questions · 1 point each</span><strong>Multiple choice →</strong><small>Class polls and one question from each of several objectives.</small></button>' +
-      '<button class="murmur-quick-card" type="button" id="mock-part-strip"><span>20 strips · 2-4 points each</span><strong>Rhythm strips →</strong><small>Real workbook strips and freshly drawn ones: regularity, rate, P, QRS, PR, then the final interpretation.</small></button>' +
-      '<button class="murmur-quick-card" type="button" id="mock-part-twelve"><span>' + F.twelve + ' EKGs · 7 points each</span><strong>12-lead EKGs →</strong><small>STEMIs, blocks, hypertrophy, electrolytes, pericarditis, PE, pacers: work through each step, then name it.</small></button>' +
+      '<button class="murmur-quick-card" type="button" id="mock-part-strip"><span>20 strips · 2-4 points each</span><strong>Rhythm strips →</strong><small>Real workbook strips and freshly drawn ones. Look at the strip, pick what it is.</small></button>' +
+      '<button class="murmur-quick-card" type="button" id="mock-part-twelve"><span>' + F.twelve + ' EKGs · 7 points each</span><strong>12-lead EKGs →</strong><small>STEMIs, blocks, hypertrophy, electrolytes, pericarditis, PE, pacers. Look at the 12-lead, pick what it shows.</small></button>' +
       '</div>' +
       '<article class="learn-card rs-card"><p class="eyebrow">How it\'s scored</p><div class="learn-body"><ul>' +
       '<li><strong>Multiple choice:</strong> ' + F.mcq + ' × 1 point.</li>' +
-      '<li><strong>Rhythm strips:</strong> sinus 2 points; atrial, junctional, ventricular and early-beat strips 3; AV blocks 4 (60 points). Half for your read (regularity, rate, P waves, QRS, PR), half for the final interpretation.</li>' +
-      '<li><strong>12-leads:</strong> ' + F.twelve + ' × 7 points. Half for your read (regularity, rate, axis, P, QRS, PR, ST/T), half for the final interpretation.</li>' +
-      '<li>Every step is multiple choice, one at a time, A/B/C/D on the keyboard. For rate, pick the closest choice; count it however you like: 300-150-100, 1500 ÷ small boxes, or beats in 6 seconds × 10. The calculator button is in the top bar.</li>' +
+      '<li><strong>Rhythm strips:</strong> sinus 2 points; atrial, junctional, ventricular and early-beat strips 3; AV blocks 4 (60 points). One question per strip: what is it? 4 choices, all or nothing.</li>' +
+      '<li><strong>12-leads:</strong> ' + F.twelve + ' × 7 points. One question per 12-lead: what does it show? 4 choices, all or nothing.</li>' +
+      '<li>Every question is multiple choice, A/B/C/D on the keyboard. Count rates however you like: 300-150-100, 1500 ÷ small boxes, or beats in 6 seconds × 10. The calculator button is in the top bar.</li>' +
       '<li>The real exam\'s point split isn\'t published, so the split above is ours. The 70% line is a target, not the course\'s cutoff.</li></ul></div></article>' +
       '<div class="murmur-quick rs-quick mx-polls"><button class="murmur-quick-card" type="button" id="mock-polls"><span>Class polls</span><strong>Poll review →</strong><small>All ' + polls.length + ' poll questions from the 11/9 EKG App session, answered as marked in class. Instant feedback; misses come back. ' + (seen ? seen + ' of ' + polls.length + ' tried.' : "Not started yet.") + '</small></button></div>';
     if (el("mock-resume")) el("mock-resume").addEventListener("click", function () { resumeExam(saved); });
@@ -413,7 +418,7 @@
     var answered = items.filter(function (x, k) { return answeredState(k) === "done"; }).length, blank = items.length - answered;
     var label = state.parts.length === 3 ? "Practice exam" : PART_NAMES[state.parts[0]];
     var kind = item.type === "mcq" ? "Multiple choice" : v.title;
-    var prompt = item.type === "mcq" ? item.prompt : item.type === "strip" ? "Interpret this rhythm strip." : "Interpret this 12-lead EKG.";
+    var prompt = item.type === "mcq" ? item.prompt : item.type === "strip" ? "What is this rhythm?" : "What does this 12-lead show?";
     content.innerHTML = '<div class="session-top mx-top"><button type="button" id="mock-home">← Practice exam</button><span>' + escapeHtml(label) + ' · ' + answered + ' of ' + items.length + ' answered</span>' +
       '<span class="mx-tools">' + (state.timed ? '<span class="mx-timer' + (state.timeLeft <= 600 ? " low" : "") + '" id="mx-timer">' + clock(state.timeLeft) + '</span>' : "") +
       '<button type="button" class="mx-tool" id="mx-calc-toggle">Calculator</button>' + (state.check ? "" : '<button type="button" class="mx-tool" id="mx-handin">Hand in</button>') + '</span></div>' +
@@ -487,7 +492,7 @@
     var item = state.items[i], p = state.picks[i] || {}, v = hydrate(i), g = grade(i);
     var say = function (k) { return k == null ? "no answer" : letter(k) + ". " + item.choices[k]; };
     var html = withVisual && v.visual ? v.visual : "";
-    if (withVisual) html += '<h4>' + escapeHtml(item.type === "mcq" ? item.prompt : item.type === "strip" ? "Interpret this rhythm strip." : "Interpret this 12-lead EKG.") + '</h4>';
+    if (withVisual) html += '<h4>' + escapeHtml(item.type === "mcq" ? item.prompt : item.type === "strip" ? "What is this rhythm?" : "What does this 12-lead show?") + '</h4>';
     if (g.rows.length) {
       html += '<div class="table-scroll"><table class="learn-table mx-rows"><thead><tr><th>Step</th><th>Your answer</th><th>Answer</th><th>Points</th></tr></thead><tbody>' +
         g.rows.map(function (r) {
