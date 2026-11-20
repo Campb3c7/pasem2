@@ -286,7 +286,7 @@
     s += '<g class="' + on("p2y12") + '"><circle cx="320" cy="96" r="9" fill="var(--gold)"/><line x1="326" y1="88" x2="380" y2="56" stroke="var(--gold)" stroke-dasharray="3 3"/>' +
       '<text class="sx-lbl sx-lbl-strong sx-gold" x="450" y="24" text-anchor="end">P2Y12 (ADP receptor)</text><text class="sx-lbl" x="450" y="40" text-anchor="end">clopidogrel · prasugrel · ticagrelor</text></g>';
     s += '<g class="' + on("gp") + '"><circle cx="230" cy="204" r="9" fill="var(--gold)"/>' +
-      '<text class="sx-lbl sx-lbl-strong sx-gold" x="230" y="234" text-anchor="middle">GP IIb/IIIa (final clumping step)</text><text class="sx-lbl" x="230" y="250" text-anchor="middle">eptifibatide · tirofiban (IV)</text></g>';
+      '<text class="sx-lbl sx-lbl-strong sx-gold" x="230" y="234" text-anchor="middle">GP IIb/IIIa (final clumping step)</text><text class="sx-lbl" x="230" y="250" text-anchor="middle">eptifibatide · tirofiban (IV, standard teaching)</text></g>';
     return s + '</svg>';
   };
 
