@@ -846,6 +846,8 @@
   function bindFigures(content) {
     BINDERS.concat(window.Cardio3Binders).forEach(function (b) { content.querySelectorAll(b[0]).forEach(function (box) { if (!box.dataset.c3Bound) { box.dataset.c3Bound = "1"; b[1](box); } }); });
   }
+  // Shared with other tools (the Cardio 3 Tiers story pages use the same figures).
+  window.Cardio3Figure = { render: function (f) { return figure(f); }, bind: function (c) { bindFigures(c); }, ownCaption: function (f) { return ownCaption(f); } };
   function ownCaption(f) { return ["artery", "cpb", "thermo", "decide", "bruce", "mphr", "duke", "perfusion", "stseg", "groin", "framingham", "ntg", "wall", "diastole", "pretest", "slider", "heartscore"].indexOf(f.type) >= 0 || ((f.type === "bars" || f.type === "line") && f.note); }
 
   // ---- one path per lecture ----------------------------------------------------------------
