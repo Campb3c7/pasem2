@@ -1,6 +1,6 @@
-/* Tiers: a course in three passes (Tier 1 foundations, Tier 2 details, Tier 3 weeds), each split by lecture.
-   A lecture-tier = Learn cards, then a few key questions, plus an optional practice bank.
-   Data: window.CARDIO3_TIERS (data/tiers-cardio-part-3.js).
+/* Tiers: a course in three passes (Tier 1 foundations, Tier 2 details, Tier 3 weeds), each split by lecture,
+   and each lecture-tier split into small chunks: Learn cards, then a few key questions, plus an extra practice bank.
+   Data: window.CARDIO3_TIERS (data/tiers-cardio-part-3.js + data/tiers-cardio3-<lecture>.js).
    Progress: pasem2:tiers:cardio-part-3:progress = { cards: { id: 1 }, q: { id: { right: bool, tries: n } } }. */
 (function () {
   "use strict";
@@ -23,22 +23,48 @@
   function save(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* private mode */ } }
   function tierById(id) { return data.tiers.filter(function (t) { return t.id === id; })[0]; }
   function lectureTitle(id) { var l = (course.lectures || []).filter(function (x) { return x.id === id; })[0]; return l ? l.title : id; }
-  function unit(t, l) { return data.units[t + "|" + l] || { learn: [], check: [], bank: [] }; }
-  function qs(t, l, part) { return (unit(t, l)[part] || []).map(function (q, i) { q.id = t + "|" + l + "|" + part + "|" + i; return q; }); }
   function pct(n, d) { return d ? Math.round(100 * n / d) : 0; }
 
-  function stats(t, l, p) {
-    var u = unit(t, l), check = qs(t, l, "check"), bank = qs(t, l, "bank");
+  // A unit's chunks with progress ids stamped on every card and question.
+  var cache = {};
+  function unit(t, l) {
+    var k = t + "|" + l;
+    if (cache[k]) return cache[k];
+    var u = data.units[k] || { chunks: [] };
+    (u.chunks || []).forEach(function (ch) {
+      var base = k + "|" + ch.id;
+      ch.cards = ch.cards || []; ch.check = ch.check || []; ch.bank = ch.bank || [];
+      ch.cards.forEach(function (c, i) { c.id = base + "|c" + i; });
+      ch.check.forEach(function (q, i) { q.id = base + "|check|" + i; });
+      ch.bank.forEach(function (q, i) { q.id = base + "|bank|" + i; });
+    });
+    cache[k] = u; return u;
+  }
+  function chunkStats(ch, p) {
     var right = function (list) { return list.filter(function (q) { return p.q[q.id] && p.q[q.id].right; }).length; };
-    return { learned: u.learn.filter(function (c) { return p.cards[c.id]; }).length, cards: u.learn.length,
-      checkRight: right(check), check: check.length, bankRight: right(bank), bank: bank.length };
+    return { learned: ch.cards.filter(function (c) { return p.cards[c.id]; }).length, cards: ch.cards.length,
+      checkRight: right(ch.check), check: ch.check.length, bankRight: right(ch.bank), bank: ch.bank.length };
   }
-  function sum(list) {
-    return list.reduce(function (a, s) { Object.keys(s).forEach(function (k) { a[k] = (a[k] || 0) + s[k]; }); return a; }, {});
-  }
+  function sum(list) { return list.reduce(function (a, s) { Object.keys(s).forEach(function (k) { a[k] = (a[k] || 0) + s[k]; }); return a; }, { learned: 0, cards: 0, checkRight: 0, check: 0, bankRight: 0, bank: 0 }); }
+  function stats(t, l, p) { return sum(unit(t, l).chunks.map(function (ch) { return chunkStats(ch, p); })); }
   function tierStats(t, p) { return sum(data.lectures.map(function (l) { return stats(t, l, p); })); }
-  function done(s) { return (s.learned || 0) + (s.checkRight || 0); }
-  function total(s) { return (s.cards || 0) + (s.check || 0); }
+  function done(s) { return s.learned + s.checkRight; }
+  function total(s) { return s.cards + s.check; }
+  function chunkDone(ch, p) { var s = chunkStats(ch, p); return done(s) === total(s); }
+  // The next unfinished chunk in a tier (real content before placeholders), starting from lecture `from`.
+  function nextChunk(t, p, fromLecture) {
+    var order = data.lectures.slice();
+    if (fromLecture) { var i = order.indexOf(fromLecture); order = order.slice(i).concat(order.slice(0, i)); }
+    var pick = function (ph) {
+      for (var a = 0; a < order.length; a += 1) {
+        var u = unit(t, order[a]);
+        if (!!u.placeholder !== ph) continue;
+        for (var b = 0; b < u.chunks.length; b += 1) if (!chunkDone(u.chunks[b], p)) return { l: order[a], ch: u.chunks[b] };
+      }
+      return null;
+    };
+    return pick(false) || pick(true);
+  }
 
   function bar(label, n, d, cls) {
     return '<div class="tr-bar ' + (cls || "") + '"><div class="tr-bar-top"><span>' + esc(label) + '</span><b>' + n + ' / ' + d + '</b></div>' +
@@ -56,15 +82,15 @@
   function updateLaunch() {
     var p = load(), s = document.getElementById("cardio3-tiers-status");
     if (!s) return;
-    s.textContent = data.tiers.map(function (t) { return t.name + " " + pct(done(tierStats(t.id, p)), total(tierStats(t.id, p))) + "%"; }).join(" · ");
+    s.textContent = data.tiers.map(function (t) { var x = tierStats(t.id, p); return t.name + " " + pct(done(x), total(x)) + "%"; }).join(" · ");
   }
 
-  /* ---------- Home: tiers on the left, the picked tier's progress on the right ---------- */
+  /* ---------- Home: tiers, the picked tier's progress, its lectures ---------- */
   function renderHome() {
     session = null;
     var p = load();
     var all = sum(data.tiers.map(function (t) { return tierStats(t.id, p); }));
-    var t = tierById(tierSel), ts = tierStats(t.id, p);
+    var t = tierById(tierSel), ts = tierStats(t.id, p), nx = nextChunk(t.id, p);
     content.innerHTML =
       '<div class="mode-intro"><p class="eyebrow">' + esc(course.title || "") + '</p><h3>Tiers</h3>' +
       '<p>The whole course in three passes, most important first. Finish Tier 1 for every lecture before Tier 2.</p></div>' +
@@ -76,13 +102,14 @@
           '<small>' + esc(x.blurb) + '</small><span class="tr-mini"><span style="width:' + pct(done(s), total(s)) + '%"></span></span></button>';
       }).join("") + '</div>' +
       '<div class="tr-panel"><p class="eyebrow">' + esc(t.name) + ' · ' + esc(t.title) + '</p>' +
-      bar("Learn cards", ts.learned, ts.cards) + bar("Key questions right", ts.checkRight, ts.check) + bar("Practice bank right", ts.bankRight, ts.bank, "tr-bar-soft") +
+      (nx ? '<button type="button" class="primary-action tr-continue" id="tr-continue">Continue ' + esc(t.name) + ': ' + esc(lectureTitle(nx.l)) + ', ' + esc(nx.ch.title) + '</button>' : '<p class="tr-empty">✓ All of ' + esc(t.name) + ' done.</p>') +
+      bar("Learn cards", ts.learned, ts.cards) + bar("Key questions right", ts.checkRight, ts.check) + bar("Extra practice right", ts.bankRight, ts.bank, "tr-bar-soft") +
       '<h4 class="tr-sub">By lecture</h4><div class="tr-lectures">' + data.lectures.map(function (l, i) {
         var s = stats(t.id, l, p), u = unit(t.id, l), d = done(s), n = total(s);
         return '<button type="button" class="tr-lecture" data-lecture="' + esc(l) + '"><span class="tr-num">' + String(i + 1).padStart(2, "0") + '</span>' +
           '<span class="tr-lecture-body"><strong>' + esc(lectureTitle(l)) + (u.placeholder ? ' <i class="tr-ph">placeholder</i>' : "") + '</strong>' +
           '<span class="tr-mini"><span style="width:' + pct(d, n) + '%"></span></span>' +
-          '<small>' + s.learned + '/' + s.cards + ' learned · ' + s.checkRight + '/' + s.check + ' key questions' + (d === n && n ? ' · ✓ done' : "") + '</small></span><span class="tr-go">›</span></button>';
+          '<small>' + u.chunks.length + ' chunk' + (u.chunks.length === 1 ? "" : "s") + ' · ' + s.learned + '/' + s.cards + ' learned · ' + s.checkRight + '/' + s.check + ' key questions' + (d === n && n ? ' · ✓ done' : "") + '</small></span><span class="tr-go">›</span></button>';
       }).join("") + '</div>' +
       '<h4 class="tr-sub">' + esc(t.name) + ' tools</h4>' + (t.tools.length ? '<div class="tr-tools">' + t.tools.map(function (x) {
         return '<button type="button" class="secondary-action" data-launch="' + esc(x.launch) + '">' + esc(x.label) + '</button>';
@@ -91,65 +118,68 @@
     content.querySelectorAll("[data-tier]").forEach(function (b) { b.addEventListener("click", function () { tierSel = b.dataset.tier; renderHome(); }); });
     content.querySelectorAll("[data-lecture]").forEach(function (b) { b.addEventListener("click", function () { renderUnit(tierSel, b.dataset.lecture); top(); }); });
     content.querySelectorAll("[data-launch]").forEach(function (b) { b.addEventListener("click", function () { var x = document.getElementById(b.dataset.launch); if (x) x.click(); }); });
+    var c = document.getElementById("tr-continue"); if (c) c.addEventListener("click", function () { startChunk(t.id, nx.l, nx.ch); });
   }
 
-  /* ---------- One lecture inside one tier ---------- */
+  /* ---------- One lecture inside one tier: its chunks ---------- */
   function renderUnit(t, l) {
     session = null;
     var p = load(), u = unit(t, l), s = stats(t, l, p), tier = tierById(t);
-    var learnDone = s.cards && s.learned === s.cards;
+    var next = u.chunks.filter(function (ch) { return !chunkDone(ch, p); })[0];
+    var banks = [];
+    u.chunks.forEach(function (ch) { banks = banks.concat(ch.bank); });
     content.innerHTML =
       '<button type="button" class="tr-crumb" id="tr-home">← ' + esc(tier.name) + ': all lectures</button>' +
       '<div class="mode-intro"><p class="eyebrow">' + esc(tier.name) + ' · ' + esc(tier.title) + '</p><h3>' + esc(lectureTitle(l)) + '</h3>' +
       (u.placeholder ? '<p class="tr-ph-note">Placeholder content: this shows the layout. Real cards and questions come next.</p>' : "") + '</div>' +
       bar("This lecture, " + tier.name, done(s), total(s), "tr-bar-big") +
-      '<div class="tr-steps">' +
-      step(1, "Learn", s.learned + " of " + s.cards + " cards", "Short teaching cards, one idea each.", learnDone ? "Review cards" : (s.learned ? "Continue" : "Start learning"), "tr-learn", learnDone ? "✓" : "") +
-      step(2, "Key questions", s.checkRight + " of " + s.check + " right", "A few must-know questions to check you got it. Misses come back.", s.checkRight === s.check && s.check ? "Do them again" : "Start questions", "tr-check", s.checkRight === s.check && s.check ? "✓" : "") +
-      '</div>' +
-      '<details class="tr-bank"><summary><span>More practice</span><b>' + s.bankRight + ' / ' + s.bank + ' right</b></summary>' +
-      '<p>Extra questions for later, once Learn and the key questions are done.</p>' +
-      (s.bank ? '<button type="button" class="secondary-action" id="tr-bank">Practice all ' + s.bank + '</button>' : '<p class="tr-empty">No practice questions yet.</p>') + '</details>';
+      (next ? '<button type="button" class="primary-action tr-continue" id="tr-next-chunk">' + (done(s) ? "Continue: " : "Start: ") + esc(next.title) + '</button>' : '<p class="tr-empty">✓ Every chunk done. Redo any one below, or try the extra practice.</p>') +
+      '<div class="tr-chunks">' + u.chunks.map(function (ch, i) {
+        var cs = chunkStats(ch, p), ok = chunkDone(ch, p);
+        return '<button type="button" class="tr-chunk' + (ok ? " done" : "") + '" data-chunk="' + i + '"><span class="tr-step-num">' + (ok ? "✓" : i + 1) + '</span>' +
+          '<span class="tr-lecture-body"><strong>' + esc(ch.title) + '</strong><span class="tr-mini"><span style="width:' + pct(done(cs), total(cs)) + '%"></span></span>' +
+          '<small>' + cs.learned + '/' + cs.cards + ' card' + (cs.cards === 1 ? "" : "s") + ' · ' + cs.checkRight + '/' + cs.check + ' key questions</small></span><span class="tr-go">›</span></button>';
+      }).join("") + '</div>' +
+      '<details class="tr-bank"><summary><span>Extra practice</span><b>' + s.bankRight + ' / ' + s.bank + ' right</b></summary>' +
+      '<p>More questions for later, once the chunks are done.</p>' +
+      (banks.length ? '<button type="button" class="secondary-action" id="tr-bank">Practice all ' + banks.length + '</button>' : '<p class="tr-empty">No extra questions yet.</p>') + '</details>';
     document.getElementById("tr-home").addEventListener("click", function () { renderHome(); top(); });
-    document.getElementById("tr-learn").addEventListener("click", function () { startLearn(t, l); });
-    document.getElementById("tr-check").addEventListener("click", function () { startQuiz(t, l, "check"); });
-    var bk = document.getElementById("tr-bank"); if (bk) bk.addEventListener("click", function () { startQuiz(t, l, "bank"); });
-  }
-  function step(n, title, count, note, label, id, mark) {
-    return '<div class="tr-step"><span class="tr-step-num">' + (mark || n) + '</span><div><strong>' + esc(title) + '</strong><small>' + esc(count) + '</small><p>' + esc(note) + '</p></div>' +
-      '<button type="button" class="primary-action" id="' + id + '">' + esc(label) + '</button></div>';
+    var nb = document.getElementById("tr-next-chunk"); if (nb) nb.addEventListener("click", function () { startChunk(t, l, next); });
+    content.querySelectorAll("[data-chunk]").forEach(function (b) { b.addEventListener("click", function () { startChunk(t, l, u.chunks[Number(b.dataset.chunk)], true); }); });
+    var bk = document.getElementById("tr-bank"); if (bk) bk.addEventListener("click", function () { startQuiz(t, l, null, banks, "Extra practice"); });
   }
 
-  /* ---------- Learn: one card at a time ---------- */
-  function startLearn(t, l) {
-    var p = load(), cards = unit(t, l).learn;
-    var first = cards.findIndex(function (c) { return !p.cards[c.id]; });
-    session = { t: t, l: l, kind: "learn", i: first < 0 ? 0 : first };
+  /* ---------- A chunk: cards one at a time, then its key questions ---------- */
+  function startChunk(t, l, ch, fromStart) {
+    var p = load();
+    var first = fromStart ? 0 : ch.cards.findIndex(function (c) { return !p.cards[c.id]; });
+    if (first < 0) return startQuiz(t, l, ch, ch.check, "Key questions");
+    session = { t: t, l: l, ch: ch, kind: "learn", i: first };
     renderCard(); top();
   }
   function renderCard() {
-    var cards = unit(session.t, session.l).learn, c = cards[session.i];
-    content.innerHTML = head("Learn", (session.i + 1) + " of " + cards.length, session.i, cards.length) +
-      '<article class="tr-card"><h4>' + esc(c.title) + '</h4>' + c.html + '</article>' +
-      '<div class="session-actions"><button type="button" class="primary-action" id="tier-next">' + (session.i + 1 < cards.length ? "Got it, next" : "Got it, to the key questions") + '</button></div>';
+    var ch = session.ch, c = ch.cards[session.i];
+    content.innerHTML = head(ch.title + " · Learn", (session.i + 1) + " of " + ch.cards.length, session.i, ch.cards.length) +
+      '<article class="tr-card"><h4>' + esc(c.title) + '</h4><div class="learn-body">' + c.html + '</div></article>' +
+      '<div class="session-actions"><button type="button" class="primary-action" id="tier-next">' + (session.i + 1 < ch.cards.length ? "Got it, next" : "Got it, to the questions") + '</button></div>';
     bindExit();
     document.getElementById("tier-next").addEventListener("click", function () {
       var p = load(); p.cards[c.id] = 1; save(p);
-      if (session.i + 1 < cards.length) { session.i += 1; renderCard(); top(); } else startQuiz(session.t, session.l, "check");
+      if (session.i + 1 < ch.cards.length) { session.i += 1; renderCard(); top(); } else startQuiz(session.t, session.l, ch, ch.check, "Key questions");
     });
   }
 
   /* ---------- Questions: misses come back once at the end ---------- */
-  function startQuiz(t, l, part) {
-    var list = shuffle(qs(t, l, part));
-    session = { t: t, l: l, kind: part, queue: list, pos: 0, total: list.length, right: 0, missed: {} };
+  function startQuiz(t, l, ch, list, label) {
+    var qsList = shuffle(list);
+    session = { t: t, l: l, ch: ch, kind: "quiz", label: label, queue: qsList, pos: 0, total: qsList.length, right: 0, missed: {} };
     renderQ(); top();
   }
   function renderQ() {
     var q = session.queue[session.pos];
     if (!q) return renderEnd();
     var choices = shuffle([q.answer].concat(q.wrong));
-    content.innerHTML = head(session.kind === "check" ? "Key questions" : "More practice", (session.pos + 1) + " of " + session.queue.length, session.pos, session.queue.length) +
+    content.innerHTML = head((session.ch ? session.ch.title + " · " : "") + session.label, (session.pos + 1) + " of " + session.queue.length, session.pos, session.queue.length) +
       '<article class="tr-card"><h4>' + esc(q.prompt) + '</h4><div class="choices">' + choices.map(function (c, i) {
         return '<button type="button" class="choice" data-c="' + esc(c) + '"><span>' + "ABCD"[i] + '</span>' + esc(c) + '</button>';
       }).join("") + '</div><div id="tr-why"></div></article>';
@@ -169,13 +199,17 @@
     });
   }
   function renderEnd() {
-    var t = session.t, l = session.l;
-    content.innerHTML = '<div class="mode-intro"><p class="eyebrow">Done</p><h3>' + session.right + ' of ' + session.total + ' right the first time</h3>' +
+    var t = session.t, l = session.l, p = load();
+    var u = unit(t, l), nextInLecture = u.chunks.filter(function (ch) { return !chunkDone(ch, p); })[0];
+    var nx = nextInLecture ? { l: l, ch: nextInLecture } : nextChunk(t, p, l);
+    var s = stats(t, l, p);
+    content.innerHTML = '<div class="mode-intro"><p class="eyebrow">' + esc(session.ch ? session.ch.title : session.label) + ' · done</p><h3>' + session.right + ' of ' + session.total + ' right the first time</h3>' +
       '<p>' + (session.right === session.total ? "All of them. Nice." : "Every miss came back once, so you have seen every answer.") + '</p></div>' +
-      '<div class="session-actions"><button type="button" class="primary-action" id="tier-next">Back to ' + esc(lectureTitle(l)) + '</button>' +
-      '<button type="button" class="secondary-action" id="tr-all">All lectures</button></div>';
-    document.getElementById("tier-next").addEventListener("click", function () { renderUnit(t, l); top(); });
-    document.getElementById("tr-all").addEventListener("click", function () { renderHome(); top(); });
+      bar(lectureTitle(l) + ", " + tierById(t).name, done(s), total(s), "tr-bar-big") +
+      '<div class="session-actions">' + (nx ? '<button type="button" class="primary-action" id="tier-next">Next: ' + esc(nx.l !== l ? lectureTitle(nx.l) + ", " : "") + esc(nx.ch.title) + '</button>' : "") +
+      '<button type="button" class="secondary-action" id="tr-unit">Back to ' + esc(lectureTitle(l)) + '</button></div>';
+    var nb = document.getElementById("tier-next"); if (nb) nb.addEventListener("click", function () { startChunk(t, nx.l, nx.ch); });
+    document.getElementById("tr-unit").addEventListener("click", function () { renderUnit(t, l); top(); });
   }
 
   function head(label, detail, n, d) {
