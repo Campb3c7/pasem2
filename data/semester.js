@@ -450,6 +450,18 @@ window.SEMESTER = {
           title: "CAD Part III: Chest Pain Workup",
           description: "Stager's chest pain deck: presentation and mimics, stable angina through STEMI, ED workup with EKG, hs-troponin and HEART score, testing, cath findings, stents and DAPT, cath complications, CABG vs PCI, and long-term drugs.",
           objectives: window.CAD_PART_3_OBJECTIVES || []
+        },
+        {
+          id: "cad-part-4",
+          title: "CAD Part IV: ACS",
+          description: "Stager deck: ischemia vs MI, universal definition, localizing, first drugs, UA/NSTEMI plan and TIMI, STEMI reperfusion, MINOCA, vasospasm, RV infarct, complications, post-MI care and rehab.",
+          objectives: window.CAD_PART_4_OBJECTIVES || []
+        },
+        {
+          id: "cad-part-5",
+          title: "CAD Part V: Pharmacology",
+          description: "Stager deck: nitrates, beta blockers, CCBs, ranolazine, ACS drugs, aspirin and P2Y12 inhibitors, anticoagulants, PCI and fibrinolytics.",
+          objectives: window.CAD_PART_5_OBJECTIVES || []
         }
       ]
     },

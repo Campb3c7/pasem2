@@ -52,7 +52,9 @@ global.window = global;
   "heart-failure",
   "cad-part-1",
   "cad-part-2",
-  "cad-part-3"
+  "cad-part-3",
+  "cad-part-4",
+  "cad-part-5"
 ].forEach((name) => require(path.join("..", "data", name + ".js")));
 require(path.join("..", "data", "semester.js"));
 
