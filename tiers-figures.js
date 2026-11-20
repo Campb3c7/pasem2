@@ -1,4 +1,4 @@
-/* Extra figures for the Cardio 3 Tiers story pages (CAD Parts I and II). Registered into the shared Cardio 3
+/* Extra figures for the Cardio 3 Tiers story pages . Registered into the shared Cardio 3
    figure kit (cardio3-learn.js): window.Cardio3Figures[type] = fn(f, kit), binders in window.Cardio3Binders.
    Loaded after cardio3-learn.js and before tiers.js.
 
@@ -10,7 +10,14 @@
    particles                                ApoB (one per particle) vs Lp(a) (LDL-like + apo(a))
    lipidpanel {hi: "ldl"|"tc"|"hdl"|"tg"}   the four lipid scales with their cutoffs
    drinks                                   one standard drink: beer, wine, liquor
-   meter {label, value, max, bands: [[upTo, text, tone]], caption}   a static colored scale with a marker */
+   meter {label, value, pin, unit, max, bands: [[upTo, text, tone, outlined?]]}   a static colored scale with an optional pin
+   ladder {steps: [[label, text, tone]], hi, note}   rising levels (CCS, NYHA, HF stages, EKG worry)
+   vs {a: [title, tone, [lines]], b: [...], mid}     two cards side by side
+   patient {icon, name, line, chips: [[label, value, tone]]}   a story patient card
+   leads {hi: [leads], recip: [leads], label, note}  the 3x4 12-lead layout with a wall lit up
+   timi {hi}                                         TIMI flow grades 0 to 3
+   platelet {hi: asa|p2y12|gp}                       where each antiplatelet drug hits
+   clot {hi: plug|mesh|lytic}                        antiplatelet vs anticoagulant vs fibrinolytic */
 (function () {
   "use strict";
   var F = window.Cardio3Figures = window.Cardio3Figures || {};
@@ -219,4 +226,84 @@
       '<div class="tr-meter-ticks">' + ticks.join("") + (f.unit ? '<em>' + f.unit + '</em>' : "") + '</div>' +
       (f.label ? '<p class="tr-meter-lbl">' + f.label + '</p>' : "") + '</div>';
   };
+  /* ---------- ladder: rising levels (CCS class, NYHA, HF stages, how worrying an EKG finding is) ---------- */
+  // ladder {steps: [[label, text, tone good|ok|bad|worst|mid]], hi: index, note}
+  F.ladder = function (f) {
+    return '<div class="tr-ladder">' + f.steps.map(function (st, i) {
+      return '<div class="tr-rung ' + (st[2] || "mid") + (f.hi === i ? " on" : "") + (f.hi != null && f.hi !== i ? " dim" : "") + '" style="margin-left:' + (i * 4) + '%">' +
+        '<b>' + st[0] + '</b><span>' + st[1] + '</span></div>';
+    }).join("") + (f.note ? '<p class="tr-fig-note">' + f.note + '</p>' : "") + '</div>';
+  };
+
+  /* ---------- vs: two side-by-side cards ---------- */
+  // vs {a: [title, tone, [lines]], b: [...], mid: "vs"}
+  F.vs = function (f) {
+    function card(c) { return '<div class="tr-vs-card ' + (c[1] || "mid") + '"><b>' + c[0] + '</b><ul>' + c[2].map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></div>'; }
+    return '<div class="tr-vs">' + card(f.a) + '<span class="tr-vs-mid">' + (f.mid || "vs") + '</span>' + card(f.b) + '</div>';
+  };
+
+  /* ---------- patient: a story card ---------- */
+  // patient {icon, name, line, chips: [[label, value, tone]]}
+  F.patient = function (f) {
+    return '<div class="tr-patient"><div class="tr-pt-head"><span class="tr-pt-icon">' + (f.icon || "🧑") + '</span><div><b>' + f.name + '</b><span>' + (f.line || "") + '</span></div></div>' +
+      (f.chips ? '<div class="tr-pt-chips">' + f.chips.map(function (c) { return '<span class="' + (c[2] || "") + '"><small>' + c[0] + '</small>' + c[1] + '</span>'; }).join("") + '</div>' : "") + '</div>';
+  };
+
+  /* ---------- leads: the standard 3x4 12-lead layout with a wall lit up ---------- */
+  // leads {hi: [lead names], recip: [lead names], label, note}
+  var LAYOUT = [["I", "aVR", "V1", "V4"], ["II", "aVL", "V2", "V5"], ["III", "aVF", "V3", "V6"]];
+  F.leads = function (f) {
+    var hi = f.hi || [], rc = f.recip || [];
+    return '<div class="tr-leads"><div class="tr-leads-grid">' + LAYOUT.map(function (row) {
+      return row.map(function (l) { return '<span class="' + (hi.indexOf(l) >= 0 ? "on" : rc.indexOf(l) >= 0 ? "recip" : "") + '">' + l + '</span>'; }).join("");
+    }).join("") + '</div><p class="tr-fig-note">' + (f.label ? '<b class="tr-lead-on">■</b> ' + f.label : "") + (rc.length ? ' &nbsp; <b class="tr-lead-rc">■</b> reciprocal (ST ↓)' : "") + (f.note ? "<br>" + f.note : "") + '</p></div>';
+  };
+
+  /* ---------- timi: the four flow grades ---------- */
+  F.timi = function (f) {
+    var g = [["0", "No flow", 0, "complete occlusion"], ["1", "Penetration, no perfusion", 0.18, "dye barely gets past"], ["2", "Partial perfusion", 0.6, "fills, but slowly"], ["3", "Normal perfusion", 1, "the goal after PCI"]];
+    var s = '<svg class="c3-svg" viewBox="0 0 490 210" role="img" aria-label="TIMI flow grades 0 to 3">';
+    g.forEach(function (x, i) {
+      var y = 14 + i * 48, on = f.hi == null || f.hi === i, w = 210 * x[2];
+      s += '<g class="' + (on ? "" : "c3-faded") + '"><text class="sx-lbl sx-lbl-strong ' + (i === 3 ? "sx-green" : i === 0 ? "sx-bad" : "sx-gold") + '" x="8" y="' + (y + 22) + '">TIMI ' + x[0] + '</text>' +
+        '<rect x="66" y="' + (y + 6) + '" width="220" height="24" rx="12" fill="rgba(220,142,137,.08)" stroke="rgba(220,142,137,.5)"/>' +
+        (i < 3 ? '<rect x="96" y="' + (y + 6) + '" width="10" height="24" fill="#d9b45c" fill-opacity=".8"/>' : "") +
+        (w ? '<rect x="71" y="' + (y + 11) + '" width="' + w + '" height="14" rx="7" fill="#c25050" fill-opacity="' + (i === 2 ? ".55" : ".85") + '"/>' : '<rect x="71" y="' + (y + 11) + '" width="22" height="14" rx="7" fill="#c25050" fill-opacity=".85"/>') +
+        '<text class="sx-lbl sx-lbl-strong" x="296" y="' + (y + 16) + '">' + x[1] + '</text><text class="sx-lbl" x="296" y="' + (y + 30) + '">' + x[3] + '</text></g>';
+    });
+    return s + '</svg>';
+  };
+
+  /* ---------- platelet: where each antiplatelet drug hits ---------- */
+  // platelet {hi: "asa"|"p2y12"|"gp"}
+  F.platelet = function (f) {
+    function on(k) { return !f.hi || f.hi === k ? "" : "c3-faded"; }
+    var s = '<svg class="c3-svg" viewBox="0 0 460 260" role="img" aria-label="Platelet with the targets of antiplatelet drugs">' +
+      '<ellipse cx="230" cy="140" rx="120" ry="64" fill="rgba(182,165,224,.16)" stroke="var(--violet)" stroke-width="2"/>' +
+      '<text class="sx-lbl sx-lbl-strong" x="230" y="136" text-anchor="middle">PLATELET</text><text class="sx-lbl" x="230" y="152" text-anchor="middle">activates → sticks → clumps</text>';
+    s += '<g class="' + on("asa") + '"><circle cx="140" cy="96" r="9" fill="var(--gold)"/><line x1="134" y1="88" x2="80" y2="56" stroke="var(--gold)" stroke-dasharray="3 3"/>' +
+      '<text class="sx-lbl sx-lbl-strong sx-gold" x="10" y="24">COX-1 → TXA₂</text><text class="sx-lbl" x="10" y="40">aspirin</text></g>';
+    s += '<g class="' + on("p2y12") + '"><circle cx="320" cy="96" r="9" fill="var(--gold)"/><line x1="326" y1="88" x2="380" y2="56" stroke="var(--gold)" stroke-dasharray="3 3"/>' +
+      '<text class="sx-lbl sx-lbl-strong sx-gold" x="450" y="24" text-anchor="end">P2Y12 (ADP receptor)</text><text class="sx-lbl" x="450" y="40" text-anchor="end">clopidogrel · prasugrel · ticagrelor</text></g>';
+    s += '<g class="' + on("gp") + '"><circle cx="230" cy="204" r="9" fill="var(--gold)"/>' +
+      '<text class="sx-lbl sx-lbl-strong sx-gold" x="230" y="234" text-anchor="middle">GP IIb/IIIa (final clumping step)</text><text class="sx-lbl" x="230" y="250" text-anchor="middle">eptifibatide · tirofiban (IV)</text></g>';
+    return s + '</svg>';
+  };
+
+  /* ---------- clot: plug vs mesh vs lytic ---------- */
+  // clot {hi: "plug"|"mesh"|"lytic"}
+  F.clot = function (f) {
+    var c = [["plug", "PLATELET PLUG", "antiplatelets", "aspirin · P2Y12"], ["mesh", "FIBRIN MESH", "anticoagulants", "heparin · LMWH"], ["lytic", "DISSOLVE IT", "fibrinolytics", "alteplase · TNK"]];
+    var s = '<svg class="c3-svg" viewBox="0 0 480 190" role="img" aria-label="Platelet plug, fibrin mesh and fibrinolysis">';
+    c.forEach(function (x, i) {
+      var ox = 10 + i * 158, on = !f.hi || f.hi === x[0];
+      s += '<g class="' + (on ? "" : "c3-faded") + '" transform="translate(' + ox + ',10)"><rect x="0" y="0" width="146" height="100" rx="12" fill="rgba(220,142,137,.07)" stroke="rgba(220,142,137,.4)"/>';
+      if (x[0] !== "lytic") for (var k = 0; k < 9; k += 1) s += '<circle cx="' + (34 + (k % 3) * 38) + '" cy="' + (26 + Math.floor(k / 3) * 24) + '" r="9" fill="var(--violet)" fill-opacity=".7"/>';
+      if (x[0] === "mesh" || x[0] === "lytic") for (var m = 0; m < 5; m += 1) s += '<line x1="' + (10 + m * 30) + '" y1="8" x2="' + (40 + m * 22) + '" y2="94" stroke="#c25050" stroke-width="2"' + (x[0] === "lytic" ? ' stroke-dasharray="4 6" opacity=".6"' : "") + '/>';
+      if (x[0] === "lytic") s += '<text class="sx-lbl sx-green sx-lbl-strong" x="73" y="56" text-anchor="middle">mesh cut apart</text>';
+      s += '<text class="sx-lbl sx-lbl-strong sx-gold" x="73" y="126" text-anchor="middle">' + x[1] + '</text><text class="sx-lbl sx-lbl-strong" x="73" y="144" text-anchor="middle">' + x[2] + '</text><text class="sx-lbl" x="73" y="160" text-anchor="middle">' + x[3] + '</text></g>';
+    });
+    return s + '</svg>';
+  };
+
 })();
