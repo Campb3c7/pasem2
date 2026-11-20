@@ -259,3 +259,40 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .cat-mode{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 10px}.cat-mode>span{font:500 10.5px "DM Mono",monospace;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-right:4px}.cat-mode-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:99px;padding:6px 12px;font-size:13px;cursor:pointer}.cat-mode-btn.active{border-color:var(--green);color:var(--text);background:rgba(143,198,163,.12)}
 .cat-type{position:relative;margin-top:12px}.cat-type input{width:100%;box-sizing:border-box;font:500 16px "DM Sans",sans-serif;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 14px}.cat-type input:focus{outline:none;border-color:var(--gold)}.cat-type input.ok{border-color:var(--green)}.cat-type input.bad{border-color:var(--red)}.cat-sugg{display:flex;flex-direction:column;gap:4px;margin-top:6px}.cat-sugg-item{text-align:left;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;padding:10px 13px;font-size:15px;cursor:pointer}.cat-sugg-item.hi,.cat-sugg-item:hover{border-color:var(--gold);background:var(--gold-dim)}.cat-sugg-none{color:var(--faint);font-size:13px;margin:4px 2px}
 .cv-note{margin:-4px 0 10px;color:var(--muted);font-size:13px}.exq-card .explanation .cv-tag{display:block;margin-top:6px;color:var(--faint);font:500 11px "DM Mono",monospace}
+/* Tiers (Cardio Part 3): gold launch box, lecture box, tiers page */
+.tiers-launch{display:block;width:100%;text-align:left;cursor:pointer;color:var(--text);background:linear-gradient(135deg,rgba(232,194,122,.28),rgba(232,194,122,.08));border:1px solid var(--gold);border-radius:var(--radius);padding:24px 26px;box-shadow:0 0 0 1px rgba(232,194,122,.15),0 12px 40px rgba(232,194,122,.08)}
+.tiers-launch:hover{background:linear-gradient(135deg,rgba(232,194,122,.36),rgba(232,194,122,.12))}
+.tiers-launch-kicker{display:inline-block;background:var(--gold);color:#1a1510;border-radius:999px;padding:4px 10px;font:600 10px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+.tiers-launch strong{display:block;font:700 40px "Playfair Display",serif;color:var(--gold);margin:10px 0 6px}
+.tiers-launch small{display:block;color:var(--text);font-size:15px;line-height:1.55;max-width:640px}
+.tiers-launch-status{display:block;margin-top:12px;color:var(--gold);font:500 12px "DM Mono",monospace}
+#study-view[data-course="cardio-part-3"] #study-content{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:22px 24px 26px}
+#study-view[data-course="cardio-part-3"] #study-content::before{content:"By lecture · Learn, Test, Apply, Recall";display:block;margin-bottom:14px;color:var(--muted);font:500 11px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+.tr-bar{margin:10px 0}.tr-bar-top{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);margin-bottom:6px}.tr-bar-top b{color:var(--text);font:500 12px "DM Mono",monospace}
+.tr-bar .progress-track span,.tr-session-bar span{display:block;height:100%;background:var(--gold);border-radius:inherit;transition:width .3s}
+.tr-bar-big .tr-bar-top{font-size:15px;color:var(--text)}.tr-bar-soft .progress-track span{background:var(--green)}
+.tr-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:18px;margin-top:22px;align-items:start}
+.tr-tiers{display:grid;gap:10px}
+.tr-tier{text-align:left;cursor:pointer;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:grid;gap:4px}
+.tr-tier.active{border-color:var(--gold);background:var(--gold-dim)}
+.tr-tier-name{display:flex;justify-content:space-between;gap:8px;color:var(--gold);font:600 11px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.tr-tier-name em{font-style:normal;color:var(--muted);letter-spacing:.06em}
+.tr-tier strong{font:700 21px "Playfair Display",serif}.tr-tier small{color:var(--muted);line-height:1.5}
+.tr-mini{display:block;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:6px 0 2px}.tr-mini span{display:block;height:100%;background:var(--gold)}
+.tr-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.tr-sub{margin:20px 0 10px;color:var(--gold);font:600 13px "DM Sans",sans-serif}
+.tr-lectures{display:grid;gap:8px}
+.tr-lecture{display:grid;grid-template-columns:30px minmax(0,1fr) 14px;gap:10px;align-items:center;text-align:left;cursor:pointer;color:var(--text);background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:11px 14px}
+.tr-lecture:hover{border-color:var(--gold)}.tr-num{color:var(--gold);font:500 11px "DM Mono",monospace}.tr-go{color:var(--muted)}
+.tr-lecture-body strong{font-size:15px}.tr-lecture-body small{color:var(--muted);font:500 11px "DM Mono",monospace}
+.tr-ph{font-style:normal;color:var(--faint);font:500 10px "DM Mono",monospace;border:1px solid var(--border);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.tr-ph-note{color:var(--faint)}.tr-empty{color:var(--faint);font-size:14px;margin:0}.tr-tools{display:flex;flex-wrap:wrap;gap:8px}
+.tr-crumb{background:none;border:0;color:var(--muted);cursor:pointer;padding:0;font-size:14px;margin-bottom:12px}.tr-crumb:hover{color:var(--gold)}
+.tr-steps{display:grid;gap:10px;margin:18px 0}
+.tr-step{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+.tr-step-num{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font:600 14px "DM Mono",monospace}
+.tr-step strong{display:block;font:700 19px "Playfair Display",serif}.tr-step small{color:var(--gold);font:500 11px "DM Mono",monospace}.tr-step p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.tr-bank{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:14px 18px}.tr-bank summary{cursor:pointer;display:flex;justify-content:space-between;font-weight:600}.tr-bank summary b{color:var(--green);font:500 12px "DM Mono",monospace}.tr-bank p{color:var(--muted);font-size:14px}
+.tr-session-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;color:var(--muted);font:500 12px "DM Mono",monospace}.tr-session-bar{height:6px;margin-bottom:18px}
+.tr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}.tr-card h4{font:700 22px "Playfair Display",serif;margin:0 0 10px}
+.tr-why{margin:16px 0 0;padding:12px 14px;border-radius:10px;line-height:1.55}.tr-why.ok{background:rgba(143,198,163,.1);border:1px solid rgba(143,198,163,.4)}.tr-why.bad{background:rgba(220,142,137,.1);border:1px solid rgba(220,142,137,.4)}
+@media(max-width:760px){.tr-layout{grid-template-columns:1fr}.tr-step{grid-template-columns:36px minmax(0,1fr)}.tr-step .primary-action{grid-column:1/-1}.tiers-launch strong{font-size:32px}#study-view[data-course="cardio-part-3"] #study-content{padding:16px}}

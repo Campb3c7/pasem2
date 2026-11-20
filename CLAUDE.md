@@ -44,6 +44,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Recording ids are progress keys: never rename. Run `node scripts/validate-heart-sounds.cjs` after editing.
 - Heart Sounds Lecture (Anna, 2026-11-03): the written side of the exam as a normal Learn/Test/Apply/Recall lecture in the `heart-sounds` course (`data/heart-sounds-lecture.js`, `window.HEART_SOUNDS_LECTURE_OBJECTIVES`). Not split by objective: 14 sections covering every detail of the deck plus maneuver, word-clue and class-recording reviews. The home card still opens the listening page, whose top "Lecture" block opens the course page via `window.PasemOpenCourse`; the course page's tools row has a Listening practice button back. Run `node scripts/validate-heart-sounds-lecture.cjs` after editing.
 
+## Cardio Part 3 Tiers
+
+- Anna (2026-11-20): Cardio Part 3 is studied in three passes, not lecture by lecture. The course page has a big gold Tiers box (`#cardio3-tiers-launch`, `data-course-tools="cardio-part-3"`) above a bordered "By lecture" box holding the normal Learn/Test/Apply/Recall page (CSS keys off `#study-view[data-course]`, set in `app.js` `openCourse`).
+- `tiers.js` (engine) + `data/tiers-cardio-part-3.js` (`window.CARDIO3_TIERS`: `tiers` t1 Foundations, t2 Standard details, t3 The weeds, each with optional `tools`; `lectures`; `units["<tier>|<lecture>"] = { learn: [{id, title, html}], check: [Q], bank: [Q] }`). Tiers on the left, the picked tier's progress (learn cards, key questions, practice bank, a bar per lecture) on the right. A lecture-tier = Learn cards, then a few key questions; the practice bank is a separate expandable section. Misses come back once at the end; every question has a one-sentence why. No day-by-day schedule and no "simpler question" fallback (Anna said no).
+- Progress `pasem2:tiers:cardio-part-3:progress` (`cards`, `q`). Card ids are progress keys; question ids `<tier>|<lecture>|check|<i>` or `...|bank|<i>`: only append. All units are placeholders until real content is written; replace a unit's `placeholder()` entry to fill it.
+
 ## Heart Murmurs tool
 
 - Cardio Part 1 practice-only tool: `murmurs.js` (engine) and `data/murmurs.js` (`window.HEART_MURMURS`: spots, chart, sections of questions). It launches first in the Cardio Part 1 tools row.

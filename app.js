@@ -126,6 +126,7 @@
   function openCourse(course) {
     currentCourse = course; currentLecture = 0; currentMode = "learn";
     workspace.hidden = true; document.querySelector(".hero").hidden = true; studyView.hidden = false;
+    studyView.dataset.course = course.id;
     document.querySelectorAll("[data-course-tools]").forEach(function (tools) { tools.hidden = tools.dataset.courseTools !== course.id; });
     renderStudy(); window.scrollTo({ top: 0, behavior: "smooth" });
   }
