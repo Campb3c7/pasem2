@@ -61,6 +61,13 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Final test (Anna, 2026-11-21: "so I don't have to keep going back"): one whole-deck test per lecture in `data/final-<lecture>.js` (`SlideStudy.final("<lecture>", [F(slide, prompt, answer, [3 wrong], why)])`, loaded after the lecture's slides file). New questions, not repeats, each tied to its slide, every LO covered (validator checks). Gold box on the lecture page and offered after the last LO's review; shuffled, a miss comes back once, resumable (`run`), best % in `final`; the end screen lists by LO the slides behind first-try misses as tappable chips. Ids `<lecture>|final|<i>`: only append.
 - Progress `pasem2:slides:cardio-part-3:progress`; question ids `<lecture>|s<slide>|<i>` and `<lecture>|<lo id>|r|<i>`: only append. Run `node scripts/validate-slide-study.cjs` after editing.
 
+## Brain maps
+
+- Anna (2026-11-21): visual mind maps per lecture, showing how ideas connect (cause → effect arrows), several maps per lecture where that is clearer. Launch `#cardio3-maps-launch` (teal box under Slide by slide in the `data-course-tools="cardio-part-3"` row), view `#cardio3-maps-view`.
+- `brain-maps.js` (engine, `window.createBrainMaps(cfg)`, one call per course at its bottom) + `data/brain-maps.js` (registry, `BrainMaps.N(label, opts, kids)`) + one file per lecture `data/brain-maps-<lecture>.js` (`BrainMaps.lecture(course, { id, title, short, by, slides, maps })`). Box options are documented at the top of `brain-maps.js`: chains (1 kid), forks (2+), `vs` side-by-side, `rail` list, `x` exit to the right, `j` join below a fork, `go` link to another map, `fig` = any Cardio3Figure type (plus `bm-nest`). Two layouts: `spine` (center + colored branches) and `tree` (top-down story or flowchart). Wires are SVG drawn from the laid-out boxes; under 640 px wide the maps switch to a phone layout.
+- Modes: Explore (tap a box: its chain lights up, a bottom sheet shows the why, picture and slides), Build it (box by box), Cover up (recall, reveal, ✓/✗; misses can be covered again). Progress `pasem2:brain-maps:<course>:progress` (`seen`, `built`, `best`, `miss` by node id). Map ids and box positions are progress keys: add boxes at the END of a kids list.
+- Built: CAD Part I (12 maps). Facts from the deck; anything else marked "(standard teaching)". Run `node scripts/validate-brain-maps.cjs` after editing.
+
 ## Heart Murmurs tool
 
 - Cardio Part 1 practice-only tool: `murmurs.js` (engine) and `data/murmurs.js` (`window.HEART_MURMURS`: spots, chart, sections of questions). It launches first in the Cardio Part 1 tools row.
