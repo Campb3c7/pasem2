@@ -470,7 +470,7 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .bm-go{position:absolute;top:4px;right:7px;font-size:12px;color:var(--bc)}
 .has-go .bm-tx{padding-right:10px}
 .bm-center{width:auto;max-width:520px;justify-content:center;text-align:center;padding:16px 26px;border-radius:999px;border:2px solid var(--gold);background:radial-gradient(circle at 50% 0,rgba(232,194,122,.28),rgba(232,194,122,.07));box-shadow:0 0 34px rgba(232,194,122,.16);font:700 20px "Playfair Display",serif}
-.bm-center .bm-ic{font-size:24px}.bm-center .bm-tx{flex:none}
+.bm-center .bm-ic{font-size:24px}.bm-center .bm-tx{flex:0 1 auto}
 .bm-root{border-width:2px;border-color:var(--bc);background:color-mix(in srgb,var(--bc) 14%,#1b1a17);font:700 17px "Playfair Display",serif;padding:12px 16px}
 .bm-headnode{background:color-mix(in srgb,var(--bc) 20%,#1b1a17);border-color:var(--bc);font-weight:700;font-size:15.5px}
 .bm-headnode .bm-label{color:color-mix(in srgb,var(--bc) 70%,#fff)}
