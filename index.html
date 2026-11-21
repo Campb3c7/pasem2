@@ -259,6 +259,12 @@
           <small>Each lecture LO by LO in slide order: the real slide with everything on it, 2-3 questions about it, then a cumulative review after every LO.</small>
           <span class="tiers-launch-status" id="cardio3-slides-status"></span>
         </button>
+        <button class="tiers-launch bm-launch" id="cardio3-maps-launch" type="button">
+          <span class="tiers-launch-kicker">Brain maps</span>
+          <strong>See how it connects</strong>
+          <small>Each lecture drawn as linked maps: what causes what, from risk factor to plaque to symptoms to tests. Explore, build it box by box, or cover it up and recall.</small>
+          <span class="tiers-launch-status" id="cardio3-maps-status"></span>
+        </button>
       </div>
       <div id="study-content"></div>
     </section>
@@ -271,6 +277,11 @@
     <section id="cardio3-slides-view" class="walkthrough-view" hidden>
       <button class="back-button" id="cardio3-slides-back" type="button">← Cardio Part 3</button>
       <div id="cardio3-slides-content"></div>
+    </section>
+
+    <section id="cardio3-maps-view" class="walkthrough-view bm-view" hidden>
+      <button class="back-button" id="cardio3-maps-back" type="button">← Cardio Part 3</button>
+      <div id="cardio3-maps-content"></div>
     </section>
 
     <section id="walkthrough-view" class="walkthrough-view" hidden>
@@ -655,6 +666,9 @@
   <script src="data/slide-text-cad-part-3.js"></script>
   <script src="data/slides-cad-part-3.js"></script>
   <script src="slides-study.js"></script>
+  <script src="data/brain-maps.js"></script>
+  <script src="data/brain-maps-cad-part-1.js"></script>
+  <script src="brain-maps.js"></script>
   <script src="keyboard.js"></script>
 </body>
 </html>

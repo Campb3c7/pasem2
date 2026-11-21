@@ -4,7 +4,7 @@
 (function () {
   "use strict";
   var CHOICE_GROUPS = ".choices, .walkthrough-choices";
-  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next", "hs-next", "rhythm-next", "wb-next", "cmp-next", "ax-next", "mi-next", "pt-next", "mock-check", "mock-next", "learn-next", "ld-next", "fc-next", "exq-next", "sl-next", "cv-next", "catq-next", "real-next", "tier-next"];
+  var NEXT_BUTTONS = ["question-next", "recall-next", "recall-continue", "practice-next", "drill-next", "geo-next", "murmur-next", "flash-reveal", "struggle-continue", "struggle-next", "hs-next", "rhythm-next", "wb-next", "cmp-next", "ax-next", "mi-next", "pt-next", "mock-check", "mock-next", "learn-next", "ld-next", "fc-next", "exq-next", "sl-next", "cv-next", "catq-next", "real-next", "tier-next", "bm-next"];
   var HINT_BUTTONS = ["struggle-hint", "hs-hint"];
 
   function isVisible(el) {
