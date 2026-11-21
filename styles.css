@@ -398,3 +398,15 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .ss-none{color:var(--muted);margin:0}
 .ss-peek{margin:12px 0}.ss-peek summary{cursor:pointer;color:var(--gold);font-weight:600;padding:6px 0}
 @media(max-width:640px){.ss-text,.ss-why{padding:10px 12px;font-size:14.5px}.ss-launch strong{font-size:26px}}
+/* Slide by slide: Final test (whole deck) */
+.ss-final{display:block;margin:18px 0 22px;padding:20px 22px;border:1px solid rgba(232,194,122,.55);border-radius:var(--radius);background:linear-gradient(135deg,rgba(232,194,122,.16),rgba(232,194,122,.04))}
+.ss-final h3{margin:0 0 6px;font:700 22px/1.2 "Playfair Display",serif}
+.ss-final p{margin:0 0 6px;color:var(--muted);font-size:14px;line-height:1.55}
+.ss-final .ss-final-best{color:var(--text)}.ss-final .ss-final-best b{color:var(--gold)}
+.ss-final .tr-actions{margin:12px 0 0}
+.ss-final-los{list-style:none;margin:18px 0;padding:0;display:grid;gap:8px}
+.ss-final-los li{padding:12px 14px;border:1px solid var(--border);border-left:3px solid var(--red);border-radius:12px;background:var(--surface)}
+.ss-final-los li.ok{border-left-color:var(--green)}
+.ss-final-los li>div:first-child{display:flex;justify-content:space-between;gap:12px}
+.ss-final-los li b{font-family:"DM Mono",monospace;color:var(--gold)}
+.ss-final-los .ss-chips{margin-top:8px;align-items:center}.ss-final-los .ss-chips em{font-style:normal;color:var(--muted);font-size:12px;margin-right:4px}

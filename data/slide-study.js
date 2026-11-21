@@ -6,13 +6,18 @@
                                                   (generated); `pic` = text that sits inside the slide's pictures
                                                   (charts, flowcharts, labels), `html` replaces the generated text.
      Q(prompt, answer, [3 wrong], why)            one question; `why` is ONE short sentence.
-   Question ids: "<lecture>|s<slide>|<i>" and "<lecture>|<lo id>|r|<i>" (review): only append. */
+     F(slide, prompt, answer, [3 wrong], why)     one Final test question, tied to the slide it tests
+                                                  (Anna, 2026-11-21: one whole-deck test so she need not go back).
+     SlideStudy.final("<lecture>", [F...])        a lecture's Final test (data/final-<lecture>.js).
+   Question ids: "<lecture>|s<slide>|<i>", "<lecture>|<lo id>|r|<i>" (review) and "<lecture>|final|<i>": only append. */
 (function () {
   "use strict";
-  var reg = window.SLIDE_STUDY = window.SLIDE_STUDY || { course: "cardio-part-3", lectures: [] };
+  var reg = window.SLIDE_STUDY = window.SLIDE_STUDY || { course: "cardio-part-3", lectures: [], finals: {} };
   window.SlideStudy = {
     S: function (n, title, o) { o = o || {}; return { n: n, title: title, pic: o.pic || "", html: o.html || "", why: o.why || "", q: o.q || [] }; },
     Q: function (prompt, answer, wrong, why) { return { prompt: prompt, answer: answer, wrong: wrong, why: why }; },
-    lecture: function (l) { reg.lectures.push(l); }
+    F: function (n, prompt, answer, wrong, why) { return { n: n, prompt: prompt, answer: answer, wrong: wrong, why: why }; },
+    lecture: function (l) { reg.lectures.push(l); },
+    final: function (id, list) { reg.finals[id] = list; }
   };
 })();

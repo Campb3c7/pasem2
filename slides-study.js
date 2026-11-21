@@ -6,7 +6,9 @@
    can be opened directly, and the place in each LO is remembered.
    Data: window.SLIDE_STUDY (data/slide-study.js + data/slides-<lecture>.js), slide text window.SLIDE_TEXT.
    Progress: pasem2:slides:<course>:progress = { seen: {"<lec>|<n>":1}, q: {id:{right,tries}}, at: {"<lec>|<lo>": step},
-     tricky: {"<lec>|<n>":1}, review: {"<lec>|<lo>": best %} }. */
+     tricky: {"<lec>|<n>":1}, review: {"<lec>|<lo>": best %}, final: {"<lec>": best %}, run: {"<lec>": saved Final test} }.
+   Final test (Anna, 2026-11-21): one whole-deck test per lecture (data/final-<lecture>.js), shuffled, misses come back
+   once, resumable; the end screen lists the slides behind first-try misses so she knows exactly what to look at again. */
 (function () {
   "use strict";
   var data = window.SLIDE_STUDY;
@@ -23,7 +25,7 @@
 
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>'"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c]; }); }
   function shuffle(a) { var c = a.slice(); for (var i = c.length - 1; i > 0; i -= 1) { var j = Math.floor(Math.random() * (i + 1)); var v = c[i]; c[i] = c[j]; c[j] = v; } return c; }
-  function load() { try { var v = JSON.parse(localStorage.getItem(KEY) || "{}"); ["seen", "q", "at", "tricky", "review"].forEach(function (k) { v[k] = v[k] || {}; }); return v; } catch (e) { return { seen: {}, q: {}, at: {}, tricky: {}, review: {} }; } }
+  function load() { try { var v = JSON.parse(localStorage.getItem(KEY) || "{}"); ["seen", "q", "at", "tricky", "review", "final", "run"].forEach(function (k) { v[k] = v[k] || {}; }); return v; } catch (e) { return { seen: {}, q: {}, at: {}, tricky: {}, review: {}, final: {}, run: {} }; } }
   function save(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* private mode */ } }
   function pct(n, d) { return d ? Math.round(100 * n / d) : 0; }
   function el(id) { return document.getElementById(id); }
@@ -40,6 +42,11 @@
       });
       (lo.review || []).forEach(function (q, i) { q.id = lec.id + "|" + lo.id + "|r|" + i; q.lo = lo; q.slide = null; });
       lo.review = lo.review || [];
+    });
+    var bySlide = {};
+    lec.los.forEach(function (lo) { lo.slides.forEach(function (s) { bySlide[s.n] = s; }); });
+    lec.final = ((data.finals || {})[lec.id] || []).map(function (q, i) {
+      q.id = lec.id + "|final|" + i; q.slide = bySlide[q.n] || null; q.lo = q.slide ? q.slide.lo : lec.los[0]; return q;
     });
   });
   function lecById(id) { return data.lectures.filter(function (l) { return l.id === id; })[0]; }
@@ -104,7 +111,8 @@
         i = rightN(qs, p);
         return '<button type="button" class="tr-lcard" data-lec="' + esc(lec.id) + '"><strong>' + esc(lec.title) + '</strong><small>' + esc(lec.by || "") + ' · ' + lec.los.length + ' LOs · ' + all + ' slides</small>' +
           '<span class="tr-lrow"><em>Slides</em>' + mini(seen, all) + '<b>' + seen + '/' + all + '</b></span>' +
-          '<span class="tr-lrow"><em>Questions</em>' + mini(i, qs.length, "q") + '<b>' + i + '/' + qs.length + '</b></span></button>';
+          '<span class="tr-lrow"><em>Questions</em>' + mini(i, qs.length, "q") + '<b>' + i + '/' + qs.length + '</b></span>' +
+          (lec.final.length ? '<span class="tr-lrow"><em>Final test</em><b>' + (p.final[lec.id] == null ? "not yet" : "best " + p.final[lec.id] + "%") + '</b></span>' : "") + '</button>';
       }).join("") + '</div>';
     bindCrumbs();
     content.querySelectorAll("[data-lec]").forEach(function (b) { b.addEventListener("click", function () { renderLecture(lecById(b.dataset.lec)); top(); }); });
@@ -126,6 +134,7 @@
       (nx ? '<button type="button" class="primary-action" id="tier-next">▶ ' + (seenN(nx, p) ? "Keep going: " : "Start: ") + esc(nx.label) + ' · ' + esc(nx.title) + '</button>' : '<span class="tr-alldone">✓ Every LO done</span>') +
       (miss.length ? '<button type="button" class="secondary-action" id="ss-miss">My misses (' + miss.length + ')</button>' : "") +
       (tricky.length ? '<button type="button" class="secondary-action" id="ss-tricky">★ My tricky slides (' + tricky.length + ')</button>' : "") + '</div>' +
+      finalBox(lec, p) +
       '<div class="ss-los">' + lec.los.map(function (lo, i) {
         var sn = seenN(lo, p), qs = allQs(lo), r = rightN(qs, p), best = p.review[lec.id + "|" + lo.id];
         return '<section class="ss-lo' + (sn === lo.slides.length && best != null ? " done" : "") + '"><div class="ss-lo-head"><span class="tr-step-num">' + (sn === lo.slides.length && best != null ? "✓" : i + 1) + '</span>' +
@@ -141,6 +150,7 @@
       }).join("") + '</div>';
     bindCrumbs();
     on("tier-next", function () { startLO(nx); });
+    bindFinal(lec);
     on("ss-miss", function () { startQuiz(miss, "My misses · " + (lec.short || lec.title), { lec: lec }); });
     on("ss-tricky", function () { session = { kind: "list", list: tricky, pos: 0, lec: lec }; renderListSlide(); });
     content.querySelectorAll("[data-lo]").forEach(function (b) { b.addEventListener("click", function () { renderLO(loById(lec, b.dataset.lo)); top(); }); });
@@ -149,6 +159,38 @@
       b.addEventListener("click", function () { var x = b.dataset.jump.split("|"), L = loById(lec, x[0]); jumpTo(L, Number(x[1])); });
     });
   }
+  /* ---------- Final test: the whole deck in one shuffled test ---------- */
+  function finalBox(lec, p) {
+    if (!lec.final.length) return "";
+    var run = p.run[lec.id], best = p.final[lec.id], all = 0;
+    lec.los.forEach(function (lo) { all += lo.slides.length; });
+    return '<section class="ss-final"><div><p class="eyebrow">Final test · whole deck</p><h3>' + lec.final.length + ' questions on all ' + all + ' slides</h3>' +
+      '<p>New questions, not repeats of the slide questions, mixed across every LO. Misses come back once, and at the end you get the exact slides to look at again. You can stop and pick up where you left off.</p>' +
+      (best != null ? '<p class="ss-final-best">Best so far: <b>' + best + '%</b> right the first time</p>' : "") + '</div>' +
+      '<div class="tr-actions">' + (run ? '<button type="button" class="primary-action" id="ss-final-go">▶ Keep going (question ' + (run.pos + 1) + ' of ' + run.order.length + ')</button>' +
+        '<button type="button" class="secondary-action" id="ss-final-new">Start over</button>'
+        : '<button type="button" class="primary-action" id="ss-final-new">▶ ' + (best != null ? "Take it again" : "Start the final test") + '</button>') + '</div></section>';
+  }
+  function bindFinal(lec) {
+    on("ss-final-go", function () { startFinal(lec, true); });
+    on("ss-final-new", function () { startFinal(lec, false); });
+  }
+  function startFinal(lec, resume) {
+    var p = load(), run = resume ? p.run[lec.id] : null;
+    if (!run) {
+      run = { order: shuffle(lec.final.map(function (q, i) { return i; })), pos: 0, right: 0, missed: {} };
+      run.total = run.order.length; p.run[lec.id] = run; save(p);
+    }
+    session = { kind: "quiz", label: "Final test · " + (lec.short || lec.title), ctx: { lec: lec, final: true },
+      queue: run.order.map(function (i) { return lec.final[i]; }), pos: run.pos, total: run.total, right: run.right, missed: run.missed };
+    renderQuizQ();
+  }
+  function saveRun() {
+    var lec = session.ctx.lec, p = load();
+    p.run[lec.id] = { order: session.queue.map(function (q) { return lec.final.indexOf(q); }), pos: session.pos, total: session.total, right: session.right, missed: session.missed };
+    save(p);
+  }
+
   function loById(lec, id) { return lec.los.filter(function (x) { return x.id === id; })[0]; }
 
   /* ---------- One LO: slide list + start ---------- */
@@ -322,6 +364,7 @@
         answer(q, b, function (ok) {
           if (!ok && !session.missed[q.id]) { session.missed[q.id] = 1; session.queue.push(q); }
           else if (ok && !session.missed[q.id]) session.right += 1;
+          if (ctx.final) { session.pos += 1; saveRun(); session.pos -= 1; }
           el("tr-why").innerHTML = '<div class="tr-why ' + (ok ? "ok" : "bad") + '"><b>' + (ok ? "Right." : "Not quite: it's " + esc(q.answer) + ".") + '</b> ' + esc(q.why) +
             (ok ? "" : '<small>This one comes back at the end.</small>') + '</div>' +
             '<div class="tr-actions center"><button type="button" class="primary-action" id="tier-next">Next →</button>' +
@@ -340,20 +383,56 @@
     var uniq = session.queue.filter(function (q, i, a) { return a.indexOf(q) === i; });
     var stillWrong = wrongList(uniq, p), score = pct(session.right, session.total);
     if (ctx.review && L) { var k = lec.id + "|" + L.id; p.review[k] = Math.max(p.review[k] || 0, score); save(p); }
+    if (ctx.final) return renderFinalEnd(score);
     var nextL = L ? lec.los[lec.los.indexOf(L) + 1] : null;
     content.innerHTML = crumbs(lec, L, session.label) +
       '<section class="complete-panel lh-done"><span class="complete-icon">✓</span><p class="eyebrow">' + esc(session.label) + '</p><h3>' + session.right + ' of ' + session.total + ' right the first time</h3>' +
       '<p>' + (session.right === session.total ? "All of them. Nice." : "Every miss came back once, so you have seen every answer. Slides you starred stay under ★ My tricky slides.") + '</p></section>' +
       '<div class="tr-actions center">' +
       (ctx.review && nextL ? '<button type="button" class="primary-action" id="tier-next">On to ' + esc(nextL.label) + ': ' + esc(nextL.title) + ' →</button>' : "") +
-      (ctx.review && !nextL ? '<button type="button" class="primary-action" id="tier-next">✓ Last LO done · back to ' + esc(lec.short || lec.title) + '</button>' : "") +
+      (ctx.review && !nextL && lec.final.length ? '<button type="button" class="primary-action" id="ss-final-new">✓ Last LO done · take the Final test →</button>' : "") +
+      (ctx.review && !nextL ? '<button type="button" class="' + (lec.final.length ? "secondary" : "primary") + '-action" id="tier-next">Back to ' + esc(lec.short || lec.title) + '</button>' : "") +
       (!ctx.review ? '<button type="button" class="primary-action" id="tier-next">Back to ' + esc(lec.short || lec.title) + '</button>' : "") +
       (stillWrong.length ? '<button type="button" class="secondary-action" id="ss-retry">Redo the ' + stillWrong.length + ' still wrong</button>' : "") +
       (L ? '<button type="button" class="secondary-action" id="ss-back-lo">Back to ' + esc(L.label) + '</button>' : "") + '</div>';
     bindCrumbs();
     on("tier-next", function () { if (ctx.review && nextL) startLO(nextL); else { renderLecture(lec); top(); } });
     on("ss-retry", function () { startQuiz(stillWrong, session.label, ctx); });
+    on("ss-final-new", function () { startFinal(lec, false); });
     on("ss-back-lo", function () { renderLO(L); top(); });
+    top();
+  }
+
+  function renderFinalEnd(score) {
+    var lec = session.ctx.lec, p = load(), missed = session.missed;
+    p.final[lec.id] = Math.max(p.final[lec.id] || 0, score); delete p.run[lec.id]; save(p);
+    var rows = lec.los.map(function (lo) {
+      var qs = lec.final.filter(function (q) { return q.lo === lo; });
+      if (!qs.length) return "";
+      var bad = qs.filter(function (q) { return missed[q.id]; }), slides = [];
+      bad.forEach(function (q) { if (q.slide && slides.indexOf(q.slide) < 0) slides.push(q.slide); });
+      slides.sort(function (a, b) { return a.n - b.n; });
+      return '<li class="' + (bad.length ? "" : "ok") + '"><div><strong>' + esc(lo.label) + ' · ' + esc(lo.title) + '</strong><b>' + (qs.length - bad.length) + ' / ' + qs.length + '</b></div>' +
+        (slides.length ? '<div class="ss-chips"><em>Look again:</em>' + slides.map(function (s) {
+          return '<button type="button" class="ss-chip" data-jump="' + esc(lo.id) + '|' + s.n + '" title="' + esc(s.title) + '">' + s.n + '</button>';
+        }).join("") + '</div>' : "") + '</li>';
+    }).join("");
+    var nMiss = Object.keys(missed).length;
+    content.innerHTML = crumbs(lec, null, session.label) +
+      '<section class="complete-panel lh-done"><span class="complete-icon">' + (score >= 80 ? "✓" : "↻") + '</span><p class="eyebrow">' + esc(session.label) + '</p><h3>' + session.right + ' of ' + session.total + ' right the first time (' + score + '%)</h3>' +
+      '<p>' + (nMiss ? "Every miss came back once. Below, by LO, are the slides behind your " + nMiss + " first-try " + (nMiss === 1 ? "miss" : "misses") + ": tap a number to open that slide." : "No misses. You know this whole deck.") + '</p></section>' +
+      '<ul class="ss-final-los">' + rows + '</ul>' +
+      '<div class="tr-actions center"><button type="button" class="primary-action" id="tier-next">Back to ' + esc(lec.short || lec.title) + '</button>' +
+      (nMiss ? '<button type="button" class="secondary-action" id="ss-retry">Redo just the ' + nMiss + ' I missed</button>' : "") +
+      '<button type="button" class="secondary-action" id="ss-final-new">Take the whole test again</button></div>';
+    bindCrumbs();
+    var missList = lec.final.filter(function (q) { return missed[q.id]; });
+    on("tier-next", function () { renderLecture(lec); top(); });
+    on("ss-retry", function () { startQuiz(missList, "Final test misses · " + (lec.short || lec.title), { lec: lec }); });
+    on("ss-final-new", function () { startFinal(lec, false); });
+    content.querySelectorAll("[data-jump]").forEach(function (b) {
+      b.addEventListener("click", function () { var x = b.dataset.jump.split("|"); jumpTo(loById(lec, x[0]), Number(x[1])); });
+    });
     top();
   }
 
