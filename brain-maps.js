@@ -208,28 +208,35 @@
         (n.go ? '<span class="bm-go" aria-hidden="true">↗</span>' : "") +
         '<span class="bm-cover" aria-hidden="true">?</span><span class="bm-mark" aria-hidden="true"></span></button>';
     }
-    function sub(n, narrow, tree) {
-      var c = n.c || [], lay = "";
+    // avail = px width this box's column has; a fork becomes a side-by-side row only when each kid gets enough room.
+    function sub(n, narrow, tree, avail) {
+      var c = n.c || [], lay = "", kidW = avail;
       if (c.length === 1) lay = "chain";
-      else if (c.length > 1) lay = n.vs && c.length === 2 ? "row vs" : (!narrow && !n.rail && c.length <= (tree ? 4 : 3)) ? "row" : "rail";
+      else if (c.length > 1) {
+        var per = (avail - 14 * (c.length - 1)) / c.length;
+        if (n.vs && c.length === 2 && per >= 120) { lay = "row vs"; kidW = per - 14; }
+        else if (!n.rail && !n.vs && c.length <= 4 && per >= (narrow ? 999 : 175)) { lay = "row"; kidW = per; }
+        else { lay = "rail"; kidW = avail - 28; }
+      }
       n._lay = lay.split(" ")[0];
       var h = '<div class="bm-sub" style="--bc:' + COLORS[n.col] + '">';
       if (n.a) h += '<div class="bm-arrow" data-for="' + n.id + '"><span>' + n.a + '</span></div>';
       h += '<div class="bm-nodewrap' + (n.x ? " has-exit" : "") + '">' + btn(n);
       if (n.x) h += '<div class="bm-exit" style="--bc:' + COLORS[n.x.col] + '">' + (n.x.a ? '<div class="bm-arrow bm-arrow-x" data-for="' + n.x.id + '"><span>' + n.x.a + '</span></div>' : "") + btn(n.x) + '</div>';
       h += '</div>';
-      if (lay) h += '<div class="bm-kids ' + lay.split(" ").map(function (x) { return "bm-" + x; }).join(" ") + '">' + c.map(function (k) { return sub(k, narrow, tree); }).join("") + '</div>';
-      if (n.j) h += '<div class="bm-kids bm-chain bm-joinbox">' + sub(n.j, narrow, tree) + '</div>';
+      if (lay) h += '<div class="bm-kids ' + lay.split(" ").map(function (x) { return "bm-" + x; }).join(" ") + '">' + c.map(function (k) { return sub(k, narrow, tree, kidW); }).join("") + '</div>';
+      if (n.j) h += '<div class="bm-kids bm-chain bm-joinbox">' + sub(n.j, narrow, tree, avail) + '</div>';
       return h + '</div>';
     }
     function weight(n) { var w = 1; if (n.x) w += 1; (n.c || []).forEach(function (k) { w += weight(k); }); if (n.j) w += weight(n.j); return w; }
     function renderStage() {
-      var map = S.map, narrow = content.clientWidth < NARROW, h;
+      var map = S.map, W = content.clientWidth, narrow = W < NARROW, h;
       S.narrow = narrow;
       if (map.layout === "tree") {
-        h = map.roots.map(function (r) { return '<div class="bm-tree">' + sub(r, narrow, true) + '</div>'; }).join("");
+        h = map.roots.map(function (r) { return '<div class="bm-tree">' + sub(r, narrow, true, Math.min(960, W - 4)) + '</div>'; }).join("");
       } else {
-        var branch = function (b) { return '<section class="bm-branch" style="--bc:' + COLORS[b.col] + '">' + sub(b, narrow, false) + '</section>'; };
+        var colW = narrow ? W - 26 - 20 : (W - 70) / 2 - 26;
+        var branch = function (b) { return '<section class="bm-branch" style="--bc:' + COLORS[b.col] + '">' + sub(b, narrow, false, colW) + '</section>'; };
         if (narrow) h = '<div class="bm-cols one"><div class="bm-col">' + map.branches.map(branch).join("") + '</div></div>';
         else {
           var cols = [[], []], w = [0, 0];
