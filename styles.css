@@ -404,6 +404,8 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .ss-final p{margin:0 0 6px;color:var(--muted);font-size:14px;line-height:1.55}
 .ss-final .ss-final-best{color:var(--text)}.ss-final .ss-final-best b{color:var(--gold)}
 .ss-final .tr-actions{margin:12px 0 0}
+.ss-final.ss-apply{margin-top:-8px;border-color:rgba(110,200,160,.5);background:linear-gradient(135deg,rgba(110,200,160,.15),rgba(110,200,160,.04))}
+.ss-final.ss-apply .ss-final-best b{color:var(--green)}
 .ss-final-los{list-style:none;margin:18px 0;padding:0;display:grid;gap:8px}
 .ss-final-los li{padding:12px 14px;border:1px solid var(--border);border-left:3px solid var(--red);border-radius:12px;background:var(--surface)}
 .ss-final-los li.ok{border-left-color:var(--green)}
