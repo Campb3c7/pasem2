@@ -527,3 +527,7 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
   .bm-sh-title{font-size:19px}.bm-sh-why{font-size:15px}
   .bm-sh-nav button{flex:1}
 }
+.meds3-launch{margin-top:12px;background:linear-gradient(135deg,rgba(122,180,214,.2),rgba(122,180,214,.05));border-color:#7ab4d6}
+.meds3-launch:hover{background:linear-gradient(135deg,rgba(122,180,214,.3),rgba(122,180,214,.1))}
+.meds3-launch .tiers-launch-kicker{background:#7ab4d6}
+.meds3-launch strong{color:#9ccbe6;font-size:26px}

@@ -703,6 +703,26 @@
   });
 
   createDiseasesTool({
+    data: window.CARDIO_PART3_MEDICATIONS,
+    title: "Medications", one: "medication", many: "medications",
+    groupOne: "drug class", groupMany: "drug classes",
+    launchId: "cardio3-meds-launch", viewId: "cardio3-meds-view", contentId: "cardio3-meds-content", backId: "cardio3-meds-back",
+    progressKey: "pasem2:medications:cardio-part-3:progress",
+    eyebrow: "Cardio Part 3 · every drug you need to know",
+    intro: "Every Cardio Part 3 drug, grouped by class instead of by lecture because the same drugs come back across CAD I-V, Heart Failure, Cardiac Testing and Cardiac Surgery. Each one has the same five parts: what it treats, how it works, contraindications, side effects, and must-know pearls, with the lectures that teach it.",
+    note: "Use Flashcards to drill one part at a time (for example only contraindications), and Practice for case-style questions with a one-line why. \"Which drug when\" ties it together: antianginal by patient, the ACS checklist, who should NOT get the usual drug, HF drugs by stage, stress test agents and what to hold, and antiplatelet vs anticoagulant vs lytic. Facts not on the slides are marked (standard teaching).",
+    flashcards: true,
+    flashPrompts: {
+      uses: { label: "What it treats", prompt: "What does it treat (and dose)?" },
+      moa: { label: "How it works", prompt: "How does it work?" },
+      avoid: { label: "Contraindications", prompt: "Contraindications and cautions?" },
+      se: { label: "Side effects", prompt: "Side effects?" },
+      pearls: { label: "Pearls", prompt: "Must-know pearls?" }
+    },
+    flashOtherLabel: "Which-drug-when tables"
+  });
+
+  createDiseasesTool({
     data: window.CARDIO_PART2_SCORES,
     title: "Scores & Calculators", one: "score", many: "scores",
     launchId: "cardio2-scores-launch", viewId: "cardio2-scores-view", contentId: "cardio2-scores-content", backId: "cardio2-scores-back",

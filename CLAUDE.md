@@ -69,6 +69,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Modes: Explore (tap a box: its chain lights up, a bottom sheet shows the why, picture and slides), Build it (box by box), Cover up (recall, reveal, ✓/✗; misses can be covered again). Progress `pasem2:brain-maps:<course>:progress` (`seen`, `built`, `best`, `miss` by node id). Map ids and box positions are progress keys: add boxes at the END of a kids list.
 - Built: CAD Part I (12 maps), CAD Part II (11 maps), CAD Part III (14 maps), CAD Part IV (14 maps), CAD Part V (13 maps), Cardiac Surgery (9 maps), Stress Testing (9 maps), Echo & Telemetry (8 maps), Coronary Angiogram (9 maps), Heart Failure (13 maps). Facts from the deck; anything else marked "(standard teaching)". Run `node scripts/validate-brain-maps.cjs` after editing.
 
+## Cardio Part 3 Medications tool
+
+- Anna (2026-11-22): same engine and shape as the Part 1/2 Medications tools (`createDiseasesTool(...)` with `flashcards: true`). Launch `#cardio3-meds-launch` (light-blue box under Brain maps in the `data-course-tools="cardio-part-3"` row), view `#cardio3-meds-view`.
+- Data: one file per drug class, `data/meds-cardio3-<class>.js` (antianginals, antiplatelets, anticoag-lytics, acs-other, hf, diuretics, prevention, testing, guides), gathered by `data/medications-cardio-part-3.js` (`window.CARDIO_PART3_MEDICATIONS`). Lecture tags use the Cardio 3 lecture titles. Questions are mostly short cases with a one-sentence why; facts not on the slides are marked "(standard teaching)".
+- Ids `med3-*` / `guide3-*`; question ids `<id>|<index>`: only append. Progress `pasem2:medications:cardio-part-3:progress`. Run `node scripts/validate-medications-cardio-part-3.cjs` after editing.
+
 ## Heart Murmurs tool
 
 - Cardio Part 1 practice-only tool: `murmurs.js` (engine) and `data/murmurs.js` (`window.HEART_MURMURS`: spots, chart, sections of questions). It launches first in the Cardio Part 1 tools row.
