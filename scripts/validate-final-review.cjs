@@ -11,7 +11,7 @@ let errors = 0, total = 0; const err = (m) => { errors += 1; console.error("✗ 
 files.forEach((f) => { if (!fs.existsSync(path.join(root, f))) return err("missing file " + f); vm.runInContext(fs.readFileSync(path.join(root, f), "utf8").replace(/\bFinalReview\./g, "window.FinalReview."), ctx, { filename: f }); });
 const data = ctx.window.CARDIO3_FINAL_REVIEW;
 if (!data) { console.error("✗ no data"); process.exit(1); }
-const KINDS = new Set(["Diagnosis", "What's happening", "Next step", "Test to order", "Pick the drug", "Classify", "Complication"]);
+const KINDS = new Set(["Diagnosis", "What's happening", "Next step", "Test to order", "Pick the drug", "Classify", "Complication", "Application"]);
 const GROUPS = new Set(["CAD", "Heart Failure", "Cardiac Surgery", "Cardiac Testing"]);
 const prompts = new Set(), ids = new Set();
 data.lectures.forEach((lec) => {

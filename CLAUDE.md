@@ -81,7 +81,7 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 
 - Anna (2026-11-22): "Final review", an application review made from ready-made MCQ sets she sends (she writes them, we don't add questions). Launch `#cardio3-final-launch` (lavender box under Vignettes), view `#cardio3-final-view`. Same engine: a third `createExamPrep({ ids: "cardio3-final" })` call in `exam-prep.js`. Untimed.
 - `data/final-review.js` (registry `window.CARDIO3_FINAL_REVIEW`, `FinalReview.F(concept, kind, prompt, answer, [3 wrong], why)`) + one file per lecture `data/final-review-<lecture>.js` (`FinalReview.lecture({...})`, grouped by lecture; add its script tag before `exam-prep.js`). Questions, answers and explanations kept exactly as sent; only the LO tag (`concept`) and `kind` are ours.
-- Built: Cardiac Surgery (36, "Cardiac Surgery 45 Minute MCQ"). Progress `pasem2:final-review:cardio-part-3:progress`. Ids `<lecture>|<index>`: only append. Run `node scripts/validate-final-review.cjs` after editing.
+- Built: every Cardio 3 lecture, 36 each from Anna's "<lecture> 45 Minute MCQ" files (360 total). Cardiac Surgery has our LO tags; the others are kind `Application` with the concept taken from the LO / "Review part" reference in each explanation (or one "all LOs" concept when the set gives none). Progress `pasem2:final-review:cardio-part-3:progress`. Ids `<lecture>|<index>`: only append. Run `node scripts/validate-final-review.cjs` after editing.
 
 ## Brain maps
 
