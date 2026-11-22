@@ -6,9 +6,13 @@
      ExamPrep.lecture({ id, title, short, group, concepts: { <concept id>: "Name" }, qs: [X...] })
        id must match the lecture's Slide by slide id so "See slide N" can show the real slide.
      X(concept, kind, slide, prompt, answer, [3 wrong], why)
-       kind: "Mechanism" | "Why" | "Next step" | "Case" | "Compare" | "Predict" | "Pick the drug" | "Trap"
+       kind: "Mechanism" | "Why" | "Next step" | "Case" | "Compare" | "Predict" | "Pick the drug" | "Trap" | "Fact" | "Classify"
        slide: the slide number that teaches it (0 = none).  why: ONE short sentence.
-   Question ids: "<lecture>|<index>": only append. */
+   Rebuilt 2026-11-22 (round 2) per Anna: each lecture's set matches how its professor writes questions (HF: Menti-style
+   slide facts + NYHA/AHA staging cases; CAD/ACS: short AI-style vignettes; Surgery: Kahoot + bold/yellow slide text;
+   Testing: core LOs + high-yield facts). Low-hanging facts ("Fact") and short vignettes both belong now.
+   Question ids: "<lecture>|<index>": only append. Progress is stored under a v2 key, so the round-1 questions' results
+   don't carry over to the rebuilt ones. */
 (function () {
   "use strict";
   var reg = window.EXAM_PREP = window.EXAM_PREP || { course: "cardio-part-3", lectures: [] };

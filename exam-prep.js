@@ -13,7 +13,7 @@
   var studyView = document.getElementById("study-view");
   if (!data || !launch || !view || !content) return;
 
-  var KEY = "pasem2:exam-prep:" + data.course + ":progress";
+  var KEY = "pasem2:exam-prep:" + data.course + ":v2:progress"; /* v2 = questions rebuilt 2026-11-22 round 2 */
   var SMART = 25;
   var GROUPS = ["CAD", "Heart Failure", "Cardiac Surgery", "Cardiac Testing"];
   var session = null;
@@ -100,7 +100,7 @@
     var groups = GROUPS.filter(function (g) { return inGroup(g).length; });
     content.innerHTML = crumbs() +
       '<div class="mode-intro"><p class="eyebrow">Cardio Part 3 · after the slides</p><h3>Exam prep</h3>' +
-      '<p>Only the questions that test whether you understand it: why it happens, what comes next, which drug and why not the other one, and patient cases built on the LOs. No slide trivia. A miss comes back once at the end, and Results shows your weakest concepts.</p></div>' +
+      '<p>Each lecture is written the way its professor tests: Heart Failure like her Menti (the slide facts plus NYHA class, AHA stage and treatment cases), CAD and ACS as short AI-style vignettes, Cardiac Surgery from his Kahoot and his bold and yellow slide text, and Testing on the core LOs. Quick facts, drug details and short cases, covering every LO. A miss comes back once at the end, and Results shows your weakest concepts.</p></div>' +
       (run ? '<div class="tr-actions"><button type="button" class="primary-action" id="ep-resume">▶ Pick up where you left off: ' + esc(run.label) + ' (' + (run.pos + 1) + ' of ' + run.ids.length + ')</button></div>' : "") +
       '<div class="ep-big">' +
       '<button type="button" class="ep-mode" id="ep-smart"><strong>Smart mix</strong><small>' + SMART + ' questions from every lecture: your misses first, then ones you have not seen.</small></button>' +
