@@ -3,17 +3,21 @@
    view ranks every concept weakest first so the last hours go where they count.
    Data: window.EXAM_PREP (data/exam-prep.js + data/exam-prep-<lecture>.js). Slide pictures come from window.SLIDE_STUDY.
    Progress: pasem2:exam-prep:<course>:progress = { q: { id: { right (last try), first (first try ever), n } }, run: saved round }. */
+/* 2026-11-22: made a factory so the Vignettes section (Anna: "just vignettes for every lecture") reuses it.
+   cfg: { data, ids: prefix of the launch/view/content/back/status ids, key, name, eyebrow, intro }. */
 (function () {
   "use strict";
-  var data = window.EXAM_PREP;
-  var launch = document.getElementById("cardio3-prep-launch");
-  var view = document.getElementById("cardio3-prep-view");
-  var content = document.getElementById("cardio3-prep-content");
-  var back = document.getElementById("cardio3-prep-back");
+window.createExamPrep = function (cfg) {
+  var data = cfg.data;
+  var launch = document.getElementById(cfg.ids + "-launch");
+  var view = document.getElementById(cfg.ids + "-view");
+  var content = document.getElementById(cfg.ids + "-content");
+  var back = document.getElementById(cfg.ids + "-back");
   var studyView = document.getElementById("study-view");
   if (!data || !launch || !view || !content) return;
+  var NAME = cfg.name;
 
-  var KEY = "pasem2:exam-prep:" + data.course + ":v2:progress"; /* v2 = questions rebuilt 2026-11-22 round 2 */
+  var KEY = cfg.key;
   var SMART = 25;
   var GROUPS = ["CAD", "Heart Failure", "Cardiac Surgery", "Cardiac Testing"];
   var session = null;
@@ -23,7 +27,7 @@
   function load() { try { var v = JSON.parse(localStorage.getItem(KEY) || "{}"); v.q = v.q || {}; return v; } catch (e) { return { q: {} }; } }
   function save(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* private mode */ } }
   function pct(n, d) { return d ? Math.round(100 * n / d) : 0; }
-  function el(id) { return document.getElementById(id); }
+  function el(id) { return content.querySelector("#" + id) || document.getElementById(id); }
   function on(id, fn) { var x = el(id); if (x) x.addEventListener("click", fn); }
   function top() { window.scrollTo({ top: Math.max(0, view.offsetTop - 20), behavior: "smooth" }); }
 
@@ -67,7 +71,7 @@
 
   function mini(n, d, cls) { return '<span class="tr-mini ' + (cls || "") + '"><span style="width:' + pct(n, d) + '%"></span></span>'; }
   function crumbs(last, mid) {
-    var parts = ['<button type="button" data-crumb="home">Exam prep</button>'];
+    var parts = ['<button type="button" data-crumb="home">' + esc(NAME) + '</button>'];
     if (mid) parts.push('<button type="button" data-crumb="' + mid[0] + '">' + esc(mid[1]) + '</button>');
     if (last) parts.push('<span>' + esc(last) + '</span>');
     return '<nav class="tr-crumbs" aria-label="Where you are">' + parts.join('<i>›</i>') + '</nav>';
@@ -87,7 +91,7 @@
   }
   function close() { session = null; view.hidden = true; studyView.hidden = false; content.innerHTML = ""; updateLaunch(); window.scrollTo({ top: 0, behavior: "smooth" }); }
   function updateLaunch() {
-    var p = load(), s = el("cardio3-prep-status");
+    var p = load(), s = document.getElementById(cfg.ids + "-status");
     if (!s) return;
     var t = tried(ALL, p).length;
     s.textContent = ALL.length + " questions · " + t + " tried" + (t ? " · " + pct(rightN(ALL, p), t) + "% right" : "");
@@ -99,8 +103,8 @@
     var p = load(), miss = misses(ALL, p), run = p.run && p.run.ids && p.run.pos < p.run.ids.length ? p.run : null;
     var groups = GROUPS.filter(function (g) { return inGroup(g).length; });
     content.innerHTML = crumbs() +
-      '<div class="mode-intro"><p class="eyebrow">Cardio Part 3 · after the slides</p><h3>Exam prep</h3>' +
-      '<p>Each lecture is written the way its professor tests: Heart Failure like her Menti (the slide facts plus NYHA class, AHA stage and treatment cases), CAD and ACS as short AI-style vignettes, Cardiac Surgery from his Kahoot and his bold and yellow slide text, and Testing on the core LOs. Quick facts, drug details and short cases, covering every LO. A miss comes back once at the end, and Results shows your weakest concepts.</p></div>' +
+      '<div class="mode-intro"><p class="eyebrow">' + esc(cfg.eyebrow) + '</p><h3>' + esc(NAME) + '</h3>' +
+      '<p>' + esc(cfg.intro) + '</p></div>' +
       (run ? '<div class="tr-actions"><button type="button" class="primary-action" id="ep-resume">▶ Pick up where you left off: ' + esc(run.label) + ' (' + (run.pos + 1) + ' of ' + run.ids.length + ')</button></div>' : "") +
       '<div class="ep-big">' +
       '<button type="button" class="ep-mode" id="ep-smart"><strong>Smart mix</strong><small>' + SMART + ' questions from every lecture: your misses first, then ones you have not seen.</small></button>' +
@@ -203,7 +207,7 @@
           (r.c ? '<button type="button" class="secondary-action" data-c="' + esc(r.c.id) + '">Drill (' + r.c.qs.length + ')</button>' : "") + '</li>';
       }).join("") + '</ul>' : "") +
       '<div class="tr-actions center">' + (nMiss ? '<button type="button" class="primary-action" id="ep-redo">Redo the ' + nMiss + ' I missed</button>' : "") +
-      '<button type="button" class="' + (nMiss ? "secondary" : "primary") + '-action" id="tier-next">Back to Exam prep</button>' +
+      '<button type="button" class="' + (nMiss ? "secondary" : "primary") + '-action" id="tier-next">Back to ' + esc(NAME) + '</button>' +
       '<button type="button" class="secondary-action" id="ep-results">See all results</button></div>';
     bindCrumbs();
     var redo = session.firstMiss.slice(), label = session.label;
@@ -230,7 +234,7 @@
         mini(x.r, x.t || 1, "q") + '</div><button type="button" class="secondary-action" data-c="' + esc(x.c.id) + '">Drill (' + x.c.qs.length + ')</button></li>';
     }
     content.innerHTML = crumbs("Results") +
-      '<div class="mode-intro"><p class="eyebrow">Exam prep · results</p><h3>Where to spend your time</h3>' +
+      '<div class="mode-intro"><p class="eyebrow">' + esc(NAME) + ' · results</p><h3>Where to spend your time</h3>' +
       '<p>Each question counts by your last try. Concepts are ranked weakest first; drill one and it moves down the list.</p></div>' +
       '<div class="tr-bars3 two"><div class="tr-bar tr-bar-big"><div class="tr-bar-top"><span>Tried</span><b>' + t + ' / ' + ALL.length + '</b></div><div class="progress-track"><span style="width:' + pct(t, ALL.length) + '%"></span></div></div>' +
       '<div class="tr-bar tr-bar-big tr-bar-soft"><div class="tr-bar-top"><span>Right on last try</span><b>' + (t ? pct(r, t) + "%" : "–") + '</b></div><div class="progress-track"><span style="width:' + pct(r, t || 1) + '%"></span></div></div></div>' +
@@ -243,7 +247,7 @@
       (weak.length ? '<ul class="ep-concepts">' + weak.map(row).join("") + '</ul>' : '<p class="tr-empty">No weak spots yet' + (t ? ": everything you tried you got right on the last try." : ". Start a round first.") + '</p>') +
       (solid.length ? '<details class="tr-bank"><summary>Solid concepts <b>' + solid.length + '</b></summary><ul class="ep-concepts">' + solid.map(row).join("") + '</ul></details>' : "") +
       (untried.length ? '<details class="tr-bank"><summary>Not tried yet <b>' + untried.length + '</b></summary><ul class="ep-concepts">' + untried.map(row).join("") + '</ul></details>' : "") +
-      '<div class="tr-actions center"><button type="button" class="primary-action" id="tier-next">Back to Exam prep</button></div>';
+      '<div class="tr-actions center"><button type="button" class="primary-action" id="tier-next">Back to ' + esc(NAME) + '</button></div>';
     bindCrumbs();
     on("tier-next", function () { renderHome(); top(); });
     content.querySelectorAll("[data-lec]").forEach(function (b) { b.addEventListener("click", function () { var l = lecById(b.dataset.lec); start(l.qs, l.short || l.title); }); });
@@ -256,4 +260,16 @@
   launch.addEventListener("click", open);
   if (back) back.addEventListener("click", close);
   updateLaunch();
+};
+
+  window.createExamPrep({
+    data: window.EXAM_PREP, ids: "cardio3-prep", name: "Exam prep", eyebrow: "Cardio Part 3 · after the slides",
+    key: "pasem2:exam-prep:cardio-part-3:v2:progress", /* v2 = questions rebuilt 2026-11-22 round 2 */
+    intro: "Each lecture is written the way its professor tests: Heart Failure like her Menti (the slide facts plus NYHA class, AHA stage and treatment cases), CAD and ACS as short AI-style vignettes, Cardiac Surgery from his Kahoot and his bold and yellow slide text, and Testing on the core LOs. Quick facts, drug details and short cases, covering every LO. A miss comes back once at the end, and Results shows your weakest concepts."
+  });
+  window.createExamPrep({
+    data: window.CARDIO3_VIGNETTES, ids: "cardio3-vig", name: "Vignettes", eyebrow: "Cardio Part 3 · patient cases only",
+    key: "pasem2:vignettes:cardio-part-3:progress",
+    intro: "Only short clinical vignettes, exam length, for every lecture: a patient, the clue that matters, and one question (what is it, what's happening, what do you order, what do you give, what stage or class). A miss comes back once at the end, and Results shows your weakest topics."
+  });
 })();

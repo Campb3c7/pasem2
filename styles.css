@@ -530,6 +530,9 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 /* Exam prep (Cardio Part 3, 2026-11-22) */
 .ep-launch{margin-top:12px;background:linear-gradient(135deg,rgba(220,142,137,.22),rgba(220,142,137,.05));border-color:#dc8e89}
 .ep-launch:hover{background:linear-gradient(135deg,rgba(220,142,137,.32),rgba(220,142,137,.1))}
+.vig-launch{margin-top:12px;background:linear-gradient(135deg,rgba(150,196,140,.22),rgba(150,196,140,.05));border-color:#96c48c}
+.vig-launch:hover{background:linear-gradient(135deg,rgba(150,196,140,.32),rgba(150,196,140,.1))}
+.vig-launch .tiers-launch-kicker{background:#96c48c}.vig-launch strong,.vig-launch .tiers-launch-status{color:#b5dbac}.vig-launch strong{font-size:32px}
 .ep-launch .tiers-launch-kicker{background:#dc8e89}.ep-launch strong,.ep-launch .tiers-launch-status{color:#eaa9a4}.ep-launch strong{font-size:32px}
 .ep-big{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 8px}
 .ep-mode{display:grid;gap:4px;align-content:start;text-align:left;cursor:pointer;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 15px}
@@ -549,7 +552,7 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .ep-crow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px 14px}
 .ep-crow strong{display:block;font-size:15px}.ep-crow small{display:block;color:var(--muted);font:500 11px "DM Mono",monospace;margin-top:2px}.ep-crow .tr-mini{max-width:260px}
 .ep-crow button{padding:8px 12px;font-size:13px;white-space:nowrap}
-@media(max-width:760px){.ep-big{grid-template-columns:repeat(2,minmax(0,1fr))}.ep-launch strong{font-size:26px}.question-card h3.ep-prompt{font-size:17px}}
+@media(max-width:760px){.ep-big{grid-template-columns:repeat(2,minmax(0,1fr))}.ep-launch strong,.vig-launch strong{font-size:26px}.question-card h3.ep-prompt{font-size:17px}}
 .tr-qfrom .ep-kind{color:#eaa9a4}
 .meds3-launch{margin-top:12px;background:linear-gradient(135deg,rgba(122,180,214,.2),rgba(122,180,214,.05));border-color:#7ab4d6}
 .meds3-launch:hover{background:linear-gradient(135deg,rgba(122,180,214,.3),rgba(122,180,214,.1))}

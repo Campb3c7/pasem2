@@ -5,7 +5,7 @@
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const root = path.join(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-const files = [...html.matchAll(/<script src="(data\/(?:exam-prep[^"]*|slide-text-[^"]+)\.js)"><\/script>/g)].map((m) => m[1]);
+const files = [...html.matchAll(/<script src="(data\/(?:exam-prep[^"]*|slide-text-[^"]+)\.js)(?:\?v=\d+)?"><\/script>/g)].map((m) => m[1]);
 const ctx = { window: {} }; ctx.window.window = ctx.window; vm.createContext(ctx);
 files.forEach((f) => vm.runInContext(fs.readFileSync(path.join(root, f), "utf8").replace(/\bExamPrep\./g, "window.ExamPrep."), ctx, { filename: f }));
 const data = ctx.window.EXAM_PREP, TEXT = ctx.window.SLIDE_TEXT || {};
