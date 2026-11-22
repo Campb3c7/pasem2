@@ -77,6 +77,12 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - `data/vignettes.js` (registry `window.CARDIO3_VIGNETTES`, `Vignettes.V(concept, kind, slide, prompt, answer, [3 wrong], why)`, kinds Diagnosis / What's happening / Next step / Test to order / Pick the drug / Classify / Complication) + one file per lecture `data/vignettes-<lecture>.js` (`Vignettes.lecture({...})`, ids = Slide by slide lecture ids). Every prompt is a short patient case (70-420 characters, ends with "?"), in each professor's style, every LO covered.
 - Built (2026-11-22): 502 vignettes. CAD I 33, II 40, III 60, IV 56, V 55, Heart Failure 86, Cardiac Surgery 47, Stress 46, Echo & Telemetry 36, Coronary Angiogram 43. Progress `pasem2:vignettes:cardio-part-3:progress`. Ids `<lecture>|<index>`: only append. Run `node scripts/validate-vignettes.cjs` after editing.
 
+## Cardio Part 3 Final review
+
+- Anna (2026-11-22): "Final review", an application review made from ready-made MCQ sets she sends (she writes them, we don't add questions). Launch `#cardio3-final-launch` (lavender box under Vignettes), view `#cardio3-final-view`. Same engine: a third `createExamPrep({ ids: "cardio3-final" })` call in `exam-prep.js`. Untimed.
+- `data/final-review.js` (registry `window.CARDIO3_FINAL_REVIEW`, `FinalReview.F(concept, kind, prompt, answer, [3 wrong], why)`) + one file per lecture `data/final-review-<lecture>.js` (`FinalReview.lecture({...})`, grouped by lecture; add its script tag before `exam-prep.js`). Questions, answers and explanations kept exactly as sent; only the LO tag (`concept`) and `kind` are ours.
+- Built: Cardiac Surgery (36, "Cardiac Surgery 45 Minute MCQ"). Progress `pasem2:final-review:cardio-part-3:progress`. Ids `<lecture>|<index>`: only append. Run `node scripts/validate-final-review.cjs` after editing.
+
 ## Brain maps
 
 - Anna (2026-11-21): visual mind maps per lecture, showing how ideas connect (cause → effect arrows), several maps per lecture where that is clearer. Launch `#cardio3-maps-launch` (teal box under Slide by slide in the `data-course-tools="cardio-part-3"` row), view `#cardio3-maps-view`.

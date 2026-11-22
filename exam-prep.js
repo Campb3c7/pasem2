@@ -272,4 +272,9 @@ window.createExamPrep = function (cfg) {
     key: "pasem2:vignettes:cardio-part-3:progress",
     intro: "Only short clinical vignettes, exam length, for every lecture: a patient, the clue that matters, and one question (what is it, what's happening, what do you order, what do you give, what stage or class). A miss comes back once at the end, and Results shows your weakest topics."
   });
+  window.createExamPrep({
+    data: window.CARDIO3_FINAL_REVIEW, ids: "cardio3-final", name: "Final review", eyebrow: "Cardio Part 3 · application review",
+    key: "pasem2:final-review:cardio-part-3:progress",
+    intro: "Ready-made application exams, grouped by lecture, with the questions, answers and explanations exactly as written. No timer: pick an answer and the why shows right away. A miss comes back once at the end, and Results shows which LOs to review."
+  });
 })();
