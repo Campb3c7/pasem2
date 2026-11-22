@@ -527,3 +527,27 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
   .bm-sh-title{font-size:19px}.bm-sh-why{font-size:15px}
   .bm-sh-nav button{flex:1}
 }
+/* Exam prep (Cardio Part 3, 2026-11-22) */
+.ep-launch{margin-top:12px;background:linear-gradient(135deg,rgba(220,142,137,.22),rgba(220,142,137,.05));border-color:#dc8e89}
+.ep-launch:hover{background:linear-gradient(135deg,rgba(220,142,137,.32),rgba(220,142,137,.1))}
+.ep-launch .tiers-launch-kicker{background:#dc8e89}.ep-launch strong,.ep-launch .tiers-launch-status{color:#eaa9a4}.ep-launch strong{font-size:32px}
+.ep-big{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 8px}
+.ep-mode{display:grid;gap:4px;align-content:start;text-align:left;cursor:pointer;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 15px}
+.ep-mode:hover:not(:disabled){border-color:#dc8e89}.ep-mode:disabled{opacity:.5;cursor:default}
+.ep-mode strong{font:700 18px "Playfair Display",serif;color:#eaa9a4}.ep-mode small{color:var(--muted);font-size:12.5px;line-height:1.45}
+#ep-smart{border-color:#dc8e89;background:rgba(220,142,137,.1)}
+.ep-group{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:22px 0 10px;color:var(--gold);font:600 14px "DM Sans",sans-serif}
+.ep-gmix{background:none;border:1px solid var(--border);color:var(--muted);border-radius:99px;padding:5px 12px;cursor:pointer;font:500 12px "DM Sans",sans-serif}.ep-gmix:hover{border-color:var(--gold);color:var(--gold)}
+.ep-lcard{cursor:default}.ep-lcard:hover{border-color:var(--border)}
+.ep-lbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.ep-lbtns button{padding:8px 14px;font-size:13px}
+.ep-kind{display:inline-block;background:rgba(220,142,137,.16);color:#eaa9a4;border-radius:99px;padding:2px 9px;margin-right:4px;font:600 10.5px "DM Mono",monospace;letter-spacing:.04em}
+.ep-again{color:var(--gold);font-weight:600}
+.question-card h3.ep-prompt{font:600 18.5px/1.5 "DM Sans",sans-serif;margin:12px 0 4px}
+.ep-slide{margin:12px 0 0;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--border)}.ep-slide img{display:block;width:100%;height:auto}
+.ep-slide figcaption{background:var(--surface-2);color:var(--muted);font:500 11px "DM Mono",monospace;padding:6px 10px}
+.ep-concepts{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:8px}
+.ep-crow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px 14px}
+.ep-crow strong{display:block;font-size:15px}.ep-crow small{display:block;color:var(--muted);font:500 11px "DM Mono",monospace;margin-top:2px}.ep-crow .tr-mini{max-width:260px}
+.ep-crow button{padding:8px 12px;font-size:13px;white-space:nowrap}
+@media(max-width:760px){.ep-big{grid-template-columns:repeat(2,minmax(0,1fr))}.ep-launch strong{font-size:26px}.question-card h3.ep-prompt{font-size:17px}}
+.tr-qfrom .ep-kind{color:#eaa9a4}
