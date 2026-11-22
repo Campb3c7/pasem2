@@ -1,4 +1,4 @@
-// Validates every Diseases tool's data (Infectious Disease, Endocrine, Cardio Parts 1 and 2).
+// Validates every Diseases tool's data (Infectious Disease, Endocrine, Cardio Parts 1-3).
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
@@ -7,9 +7,11 @@ const root = path.join(__dirname, '..');
 const context = vm.createContext({ window: {} });
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const match of html.matchAll(/<script src="(data\/[^" ]+)"><\/script>/g)) {
+  // Only Diseases-shaped data files; slide/tier data files need their engines loaded first.
+  if (/^data\/(slides|final|apply|slide-text|tiers|brain-maps|slide-study)/.test(match[1])) continue;
   vm.runInContext(fs.readFileSync(path.join(root, match[1]), 'utf8'), context, { filename: match[1] });
 }
-for (const name of ['DISEASES', 'ENDOCRINE_DISEASES', 'CARDIO_PART1_DISEASES', 'CARDIO_PART2_DISEASES', 'CARDIO_PART1_MEDICATIONS', 'CARDIO_PART2_MEDICATIONS', 'CARDIO_PART2_CONCEPTS', 'CARDIO_PART2_SCORES']) {
+for (const name of ['DISEASES', 'ENDOCRINE_DISEASES', 'CARDIO_PART1_DISEASES', 'CARDIO_PART2_DISEASES', 'CARDIO_PART1_MEDICATIONS', 'CARDIO_PART2_MEDICATIONS', 'CARDIO_PART3_MEDICATIONS', 'CARDIO_PART2_CONCEPTS', 'CARDIO_PART2_SCORES']) {
   const data = context.window[name];
   assert(data && data.lectures.length, name + ' must be loaded');
   const lectureIds = new Set(), diseaseIds = new Set();
