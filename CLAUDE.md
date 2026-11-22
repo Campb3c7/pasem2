@@ -62,6 +62,14 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Apply final (Anna, 2026-11-21: the Final test is like Test, she also wants Apply): a second whole-deck test of short patient cases (what is it, what to order, what to do) in `data/apply-<lecture>.js` (`SlideStudy.apply("<lecture>", [F(...)])`, loaded after the final file). Same engine path as the Final test (`KIND` in `slides-study.js`), green box under the gold one; best % in `final["<lecture>|apply"]`, saved run in `run["<lecture>|apply"]`. Prompts must not repeat the slide or final questions. Built: CAD I (98 cases), CAD II (88), CAD III (132), CAD IV (130), CAD V (121), Cardiac Surgery (53), Stress Testing (54), Echo & Telemetry (44), Coronary Angiogram (42; its right heart cath slides 24-25 get their own block), Heart Failure (109). Ids `<lecture>|apply|<i>`: only append.
 - Progress `pasem2:slides:cardio-part-3:progress`; question ids `<lecture>|s<slide>|<i>` and `<lecture>|<lo id>|r|<i>`: only append. Run `node scripts/validate-slide-study.cjs` after editing.
 
+## Cardio Part 3 Exam prep
+
+- Anna (2026-11-22, night before the exam): one high-yield set meant for AFTER the slides, because slide questions test slide details. Concept and application only (mechanism, why, next step, compare, predict, which drug, patient cases on the LOs); no trivia. Launch `#cardio3-prep-launch` (coral box under Slide by slide), view `#cardio3-prep-view`.
+- `exam-prep.js` (engine) + `data/exam-prep.js` (registry, `X(concept, kind, slide, prompt, answer, [3 wrong], why)`) + one file per lecture `data/exam-prep-<lecture>.js` (`ExamPrep.lecture({ id, title, short, group, concepts, qs })`; `id` = the Slide by slide lecture id so a miss can show "See slide N"; `group` = CAD, Heart Failure, Cardiac Surgery or Cardiac Testing).
+- Modes: Smart mix (25: last-try misses first, then unseen, spread across lectures), Everything mixed, My misses, per group mix, per lecture; a miss comes back once at the end; rounds resume. Results ranks concepts weakest first (by last try) with Drill buttons. Progress `pasem2:exam-prep:cardio-part-3:progress`.
+- Built (2026-11-22): every Cardio 3 lecture, 446 questions: CAD I-V (198), Heart Failure (64), Cardiac Surgery (54), Stress Testing (57), Echo & Telemetry (36), Coronary Angiogram (37).
+- Ids `<lecture>|<index>`: only append. Keep choices similar in length (the validator warns when the answer is clearly the longest in >30% of a lecture). Run `node scripts/validate-exam-prep.cjs` after editing.
+
 ## Brain maps
 
 - Anna (2026-11-21): visual mind maps per lecture, showing how ideas connect (cause → effect arrows), several maps per lecture where that is clearer. Launch `#cardio3-maps-launch` (teal box under Slide by slide in the `data-course-tools="cardio-part-3"` row), view `#cardio3-maps-view`.
