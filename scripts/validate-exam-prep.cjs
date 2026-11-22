@@ -9,7 +9,7 @@ const files = [...html.matchAll(/<script src="(data\/(?:exam-prep[^"]*|slide-tex
 const ctx = { window: {} }; ctx.window.window = ctx.window; vm.createContext(ctx);
 files.forEach((f) => vm.runInContext(fs.readFileSync(path.join(root, f), "utf8").replace(/\bExamPrep\./g, "window.ExamPrep."), ctx, { filename: f }));
 const data = ctx.window.EXAM_PREP, TEXT = ctx.window.SLIDE_TEXT || {};
-const KINDS = new Set(["Mechanism", "Why", "Next step", "Case", "Compare", "Predict", "Pick the drug", "Trap"]);
+const KINDS = new Set(["Mechanism", "Why", "Next step", "Case", "Compare", "Predict", "Pick the drug", "Trap", "Fact", "Classify"]);
 const GROUPS = new Set(["CAD", "Heart Failure", "Cardiac Surgery", "Cardiac Testing"]);
 let errors = 0, total = 0; const err = (m) => { errors += 1; console.error("✗ " + m); };
 const prompts = new Set(), ids = new Set();
