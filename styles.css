@@ -632,3 +632,18 @@ button.flash-topic{font:inherit;font-size:13px}
 .rc-launch .tiers-launch-kicker{background:#e07a8f}.rc-launch strong{color:#f0a0b0;font-size:32px}
 .recall-allcad{margin-top:14px}
 #cad-all-back{margin-bottom:18px}
+/* Final check: apply it (Cardio 3, 2026-11-23) */
+.ac-launch{margin-bottom:12px;background:linear-gradient(135deg,rgba(255,196,84,.28),rgba(255,120,90,.08));border-color:#ffc454}
+.ac-launch:hover{background:linear-gradient(135deg,rgba(255,196,84,.38),rgba(255,120,90,.14))}
+.ac-launch .tiers-launch-kicker{background:#ffc454;color:#2a1a00}.ac-launch strong,.ac-launch .tiers-launch-status{color:#ffd88a}.ac-launch strong{font-size:32px}
+.ep-mode.ac-main{border-color:#ffc454}.ep-mode.ac-keys-btn:not([disabled]){border-color:#ffc454;background:rgba(255,196,84,.12)}
+.ac-lecs{display:flex;flex-wrap:wrap;gap:8px}.ac-lecs small{opacity:.7;margin-left:4px}
+.ac-keybox{margin-top:10px;padding:12px 14px;border-radius:12px;border:1px solid #ffc454;background:rgba(255,196,84,.12)}
+.ac-keybox span{display:block;font-weight:700;color:#ffc454;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.ac-keybox p{margin:6px 0 4px;font-weight:600;line-height:1.45;color:var(--text)}.ac-keybox small{opacity:.75}
+.ac-keylist{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.ac-key{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,196,84,.45);background:rgba(255,196,84,.07)}
+.ac-key>div{min-width:0}.ac-key small{display:block;opacity:.7;font-size:12px;margin-bottom:3px}.ac-key strong{display:block;line-height:1.45;font-weight:600}
+.ac-key details{margin-top:6px;font-size:14px}.ac-key details p{margin:6px 0 0;opacity:.9}.ac-key summary{cursor:pointer;opacity:.75}
+.ac-key button{flex:none}
+@media(max-width:760px){.ac-launch strong{font-size:26px}.ac-key{flex-direction:column}}

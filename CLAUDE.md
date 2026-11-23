@@ -87,6 +87,11 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - `data/final-review.js` (registry `window.CARDIO3_FINAL_REVIEW`, `FinalReview.F(concept, kind, prompt, answer, [3 wrong], why)`) + one file per lecture `data/final-review-<lecture>.js` (`FinalReview.lecture({...})`, grouped by lecture; add its script tag before `exam-prep.js`). Questions, answers and explanations kept exactly as sent; only the LO tag (`concept`) and `kind` are ours.
 - Built: every Cardio 3 lecture, 36 each from Anna's "<lecture> 45 Minute MCQ" files (360 total). Cardiac Surgery has our LO tags; the others are kind `Application` with the concept taken from the LO / "Review part" reference in each explanation (or one "all LOs" concept when the set gives none). Progress `pasem2:final-review:cardio-part-3:progress`. Ids `<lecture>|<index>`: only append. Run `node scripts/validate-final-review.cjs` after editing.
 
+## Cardio Part 3 Final check: apply it
+
+- Anna (2026-11-23, exam morning): about one hour of short application questions across every Cardio 3 lecture, weighted like the exam, because she knows the facts from Recall but worried about applying them. Launch `#cardio3-check-launch` (gold box FIRST in the `data-course-tools="cardio-part-3"` row), view `#cardio3-check-view`. No timer.
+- `apply-check.js` (engine) + `data/apply-check-cardio-part-3.js` (`window.CARDIO3_APPLY_CHECK`, `L(id, title, short, [Q])`, `Q(topic, kind, prompt, answer, [3 wrong], why, key)`). `key` is the "Come back to this" point: saved on every miss (`keys` in progress) until she taps Got it; the end screen lists the key points behind the round's misses; misses return once at the end. Progress `pasem2:apply-check:cardio-part-3:progress`. Ids `<lecture id>|<index>`: only append. Run `node scripts/validate-apply-check.cjs` after editing.
+
 ## Brain maps
 
 - Anna (2026-11-21): visual mind maps per lecture, showing how ideas connect (cause → effect arrows), several maps per lecture where that is clearer. Launch `#cardio3-maps-launch` (teal box under Slide by slide in the `data-course-tools="cardio-part-3"` row), view `#cardio3-maps-view`.

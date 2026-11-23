@@ -247,6 +247,12 @@
         <h3 class="ekg-hub-head ekg-hub-lecture"><span>5</span>Lecture: Learn, Test, Apply, Recall</h3>
       </div>
       <div class="course-tools" data-course-tools="cardio-part-3" hidden>
+        <button class="tiers-launch ac-launch" id="cardio3-check-launch" type="button">
+          <span class="tiers-launch-kicker">Exam day · about 1 hour</span>
+          <strong>Final check: apply it</strong>
+          <small>Short exam-length cases across every lecture, weighted like the exam: next step, which drug, which stage, which test, what's happening. Miss one and its key point is saved under "Come back to this", with your list at the end. No timer.</small>
+          <span class="tiers-launch-status" id="cardio3-check-status"></span>
+        </button>
         <button class="tiers-launch" id="cardio3-tiers-launch" type="button">
           <span class="tiers-launch-kicker">Start here</span>
           <strong>Tiers</strong>
@@ -320,6 +326,11 @@
     <section id="cardio3-prep-view" class="walkthrough-view" hidden>
       <button class="back-button" id="cardio3-prep-back" type="button">← Cardio Part 3</button>
       <div id="cardio3-prep-content"></div>
+    </section>
+
+    <section id="cardio3-check-view" class="walkthrough-view" hidden>
+      <button class="back-button" id="cardio3-check-back" type="button">← Cardio Part 3</button>
+      <div id="cardio3-check-content"></div>
     </section>
 
     <section id="cardio3-final-view" class="walkthrough-view" hidden>
@@ -819,6 +830,8 @@
   <script src="data/final-review-echo-telemetry.js?v=1"></script>
   <script src="data/final-review-coronary-angiogram.js?v=1"></script>
   <script src="exam-prep.js?v=4"></script>
+  <script src="data/apply-check-cardio-part-3.js?v=1"></script>
+  <script src="apply-check.js?v=1"></script>
   <script src="data/brain-maps.js"></script>
   <script src="data/brain-maps-cad-part-1.js"></script>
   <script src="data/brain-maps-cad-part-2.js"></script>
