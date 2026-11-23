@@ -601,3 +601,31 @@ button.flash-topic{font:inherit;font-size:13px}
 .brand-table th,.brand-table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--border)}.brand-table th{color:var(--faint);font-weight:500;font-size:12px}
 .brand-table td strong{color:#eab4dd}.brand-ok{color:#7fd19b}.brand-bad{color:#e88b8b}
 .brand-peek{border:1px dashed #d68cc8;background:transparent;color:#d68cc8;border-radius:6px;padding:2px 14px;cursor:pointer;font:inherit}
+/* Cardio 3 Hallmarks tool (diseases.js engine, data/hallmarks*.js) */
+.hm-launch{margin-top:12px;background:linear-gradient(135deg,rgba(220,142,137,.2),rgba(220,142,137,.05));border-color:#dc8e89}
+.hm-launch:hover{background:linear-gradient(135deg,rgba(220,142,137,.3),rgba(220,142,137,.1))}
+.hm-launch .tiers-launch-kicker{background:#dc8e89}
+.hm-launch strong{color:#efb1ac;font-size:26px}
+.hm-map{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:0 18px;align-items:center;margin:6px 0}
+.hm-center{position:relative;background:rgba(220,142,137,.12);border:1px solid rgba(220,142,137,.5);border-radius:14px;padding:14px 15px;text-align:center}
+.hm-center strong{display:block;color:#f3c4c0;font:800 17px/1.25 "Playfair Display",serif;margin-bottom:6px}
+.hm-center span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.hm-center::after{content:"";position:absolute;right:-19px;top:50%;width:18px;border-top:2px solid rgba(220,142,137,.5)}
+.hm-map ul.hm-branches{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid rgba(220,142,137,.5);display:grid;gap:8px}
+.hm-map li.hm-branch{position:relative;margin:0;padding:9px 12px 9px 12px;background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--hm-c,var(--gold));border-radius:10px}
+.hm-map li.hm-branch::before{content:"";position:absolute;left:-17px;top:50%;width:14px;border-top:2px solid rgba(220,142,137,.5);color:transparent}
+.hm-branch .hm-cat{display:block;color:var(--hm-c,var(--gold));font:500 9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.hm-branch b{display:block;color:var(--text);font-weight:600;font-size:14px;line-height:1.45}
+.hm-branch small{display:block;color:var(--faint);font-size:12px;line-height:1.4;margin-top:3px}
+.hm-cat-who,.hm-cat-story,.hm-cat-sx{--hm-c:#e8c27a}
+.hm-cat-exam,.hm-cat-ekg{--hm-c:#8fc6a3}
+.hm-cat-labs,.hm-cat-test,.hm-cat-dx,.hm-cat-cutoff{--hm-c:#7ab4d6}
+.hm-cat-cause,.hm-cat-timing,.hm-cat-buzz{--hm-c:#b6a5e0}
+.hm-cat-tx{--hm-c:#6cc5c0}
+.hm-cat-avoid,.hm-cat-danger{--hm-c:#dc8e89}
+@media (max-width:640px){
+  .hm-map{grid-template-columns:1fr;gap:12px}
+  .hm-center::after{display:none}
+  .hm-map ul.hm-branches{padding-left:12px}
+  .hm-launch strong{font-size:22px}
+}

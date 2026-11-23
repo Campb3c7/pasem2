@@ -431,8 +431,10 @@
     var state = practiceState;
     if (!state || state.position >= state.queue.length) { renderPracticeComplete(); return; }
     var card = state.queue[state.position];
-    var html = practiceSessionHeader((state.position + 1) + ' of ' + state.queue.length + ' · ' + card.disease.name) +
-      '<article class="question-card immersive-card"><div class="card-number">' + escapeHtml(card.disease.name) + '</div><h3>' + escapeHtml(card.question.prompt) + '</h3><div class="choices" id="practice-choices">' +
+    // config.hideItemName: the question may ask which item it is, so don't show its name.
+    var shownName = config.hideItemName ? (card.retry ? "Missed earlier · try again" : TITLE) : card.disease.name;
+    var html = practiceSessionHeader((state.position + 1) + ' of ' + state.queue.length + (config.hideItemName ? '' : ' · ' + card.disease.name)) +
+      '<article class="question-card immersive-card"><div class="card-number">' + escapeHtml(shownName) + '</div><h3>' + escapeHtml(card.question.prompt) + '</h3><div class="choices" id="practice-choices">' +
       card.choices.map(function (choice, index) { return '<button class="choice" type="button" data-choice="' + index + '"><span>' + String.fromCharCode(65 + index) + '</span>' + escapeHtml(choice) + '</button>'; }).join("") +
       '</div><div class="explanation" id="practice-explanation" hidden><strong>Explanation</strong><p></p></div><div id="practice-linked-info"></div></article>' +
       '<button class="primary-action full-action" id="practice-next" type="button" hidden>' + (state.position + 1 === state.queue.length ? "See results" : "Next →") + '</button>';
@@ -453,7 +455,7 @@
     explanationBox.hidden = false;
     explanationBox.querySelector("p").textContent = card.question.explanation || "";
     if (selected === correct) {
-      state.correctCount += 1;
+      if (!card.retry) state.correctCount += 1;
       markCorrect(card.disease.id, card.question.id);
       if (autoAdvanceOn()) {
         var answeredPosition = state.position;
@@ -466,7 +468,13 @@
         return;
       }
     } else {
-      state.missed.push(card);
+      if (!card.retry) state.missed.push(card);
+      // config.requeueMisses: a missed question comes back once at the end of the round.
+      if (config.requeueMisses && !card.retry) {
+        var again = presentCard({ disease: card.disease, question: card.question });
+        again.retry = true;
+        state.queue.push(again);
+      }
       var section = (card.disease.sections || []).find(function (candidate) { return candidate.id === card.question.section; });
       if (section) {
         byId("practice-linked-info").innerHTML = '<article class="learn-card immersive-card"><div class="card-number">↩ Review · ' + escapeHtml(card.disease.name) + '<span>' + escapeHtml(section.title) + '</span></div><div class="learn-body">' + section.html + '</div></article>';
@@ -477,8 +485,10 @@
   }
   function renderPracticeComplete() {
     var state = practiceState;
-    var percent = state.queue.length ? Math.round(state.correctCount / state.queue.length * 100) : 0;
-    var html = '<section class="complete-panel"><span class="complete-icon">' + (percent >= 80 ? "🎯" : "📚") + '</span><p class="eyebrow">Practice complete</p><h3>' + escapeHtml(state.label) + '</h3><p>' + state.correctCount + ' of ' + state.queue.length + ' correct · ' + percent + '%</p><div class="score-grid"><span><strong>' + state.correctCount + '</strong>Correct</span><span><strong>' + (state.queue.length - state.correctCount) + '</strong>Missed</span></div><div class="session-actions">' +
+    // Score first tries only; requeued misses are extra practice.
+    var firstTries = state.queue.filter(function (card) { return !card.retry; }).length;
+    var percent = firstTries ? Math.round(state.correctCount / firstTries * 100) : 0;
+    var html = '<section class="complete-panel"><span class="complete-icon">' + (percent >= 80 ? "🎯" : "📚") + '</span><p class="eyebrow">Practice complete</p><h3>' + escapeHtml(state.label) + '</h3><p>' + state.correctCount + ' of ' + firstTries + ' correct on the first try · ' + percent + '%</p><div class="score-grid"><span><strong>' + state.correctCount + '</strong>Correct</span><span><strong>' + (firstTries - state.correctCount) + '</strong>Missed</span></div><div class="session-actions">' +
       (state.missed.length ? '<button class="primary-action" id="practice-redo-missed" type="button">Redo ' + state.missed.length + ' missed →</button>' : "") +
       (practiceOrigin ? '<button class="secondary-action" id="practice-back-lecture" type="button">← Back to ' + escapeHtml(practiceOrigin.lecture.title) + '</button>' : "") +
       (nextDiseaseInOrigin() ? '<button class="secondary-action" id="practice-next-disease" type="button">Next: ' + escapeHtml(nextDiseaseInOrigin().name) + ' →</button>' : "") +
@@ -727,6 +737,24 @@
       pearls: { label: "Pearls", prompt: "Must-know pearls?" }
     },
     flashOtherLabel: "Which-drug-when tables"
+  });
+
+  createDiseasesTool({
+    data: window.CARDIO3_HALLMARKS,
+    title: "Hallmarks", one: "condition", many: "conditions",
+    launchId: "cardio3-hallmarks-launch", viewId: "cardio3-hallmarks-view", contentId: "cardio3-hallmarks-content", backId: "cardio3-hallmarks-back",
+    progressKey: "pasem2:hallmarks:cardio-part-3:progress",
+    eyebrow: "Cardio Part 3 · know it on sight",
+    intro: "Every disease and condition in Cardio 3, lecture by lecture, with its hallmarks: who gets it, the classic story, the exam, EKG, lab and test findings, the buzzword, and the must-know treatment or trap. Each one is a small map, then 4-choice questions both ways: which condition has this hallmark, and what is the hallmark of this condition.",
+    note: "Practice hides the condition's name until you answer. A miss shows that condition's map right away and the question comes back once at the end of the round. Flashcards: say all the hallmarks, then flip. Facts not on the slides are marked (standard teaching).",
+    hideItemName: true,
+    requeueMisses: true,
+    flashcards: true,
+    flashPrompts: {
+      map: { label: "All hallmarks", prompt: "What are its hallmarks?" },
+      think: { label: "See this, think this", prompt: "What's the one-line buzzword?" }
+    },
+    flashOtherLabel: "Other"
   });
 
   createDiseasesTool({
