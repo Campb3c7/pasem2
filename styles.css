@@ -561,3 +561,43 @@ label.c3-decide-q{display:grid;justify-content:stretch}.c3-decide input[type=ran
 .meds3-launch:hover{background:linear-gradient(135deg,rgba(122,180,214,.3),rgba(122,180,214,.1))}
 .meds3-launch .tiers-launch-kicker{background:#7ab4d6}
 .meds3-launch strong{color:#9ccbe6;font-size:26px}
+
+/* Brand ⇄ Generic drill (brand-drill.js, Cardio 3 Medications) */
+.brands3-launch{margin-top:12px;background:linear-gradient(135deg,rgba(214,140,200,.22),rgba(214,140,200,.05));border-color:#d68cc8}
+.brands3-launch:hover{background:linear-gradient(135deg,rgba(214,140,200,.32),rgba(214,140,200,.1))}
+.brands3-launch .tiers-launch-kicker{background:#d68cc8}
+.brands3-launch strong{color:#eab4dd;font-size:24px}
+.mode-tab.brand-tab{border-color:#d68cc8;color:#eab4dd}
+.mode-tab.brand-tab.active{background:#d68cc8;color:#1b1320}
+.brand-banner{display:grid;gap:4px;width:100%;text-align:left;margin:0 0 16px;padding:14px 16px;border:1px solid #d68cc8;border-radius:14px;background:linear-gradient(135deg,rgba(214,140,200,.18),rgba(214,140,200,.04));color:var(--text,inherit);cursor:pointer;font:inherit}
+.brand-banner strong{color:#eab4dd;font-size:18px}.brand-banner span{color:var(--muted);font-size:14px}.brand-banner em{color:#eab4dd;font-style:normal;font-weight:700;font-size:14px}
+.brand-card-line{display:block;color:#d68cc8;font:600 12px/1.4 "DM Mono",monospace;margin:4px 0 2px}
+.brand-box{margin:16px 0 4px;padding:12px 14px;border:1px solid rgba(214,140,200,.55);border-radius:12px;background:rgba(214,140,200,.07)}
+.brand-box h3{margin:0 0 8px;color:#eab4dd;font-size:16px}.brand-box h3 small{color:var(--faint);font:500 11px "DM Mono",monospace;margin-left:6px}
+.brand-box ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}.brand-box li{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}
+.brand-box li small{flex-basis:100%;color:var(--faint);font-size:12px}
+.brand-generic{color:var(--muted)}.brand-arrow{color:var(--faint)}.brand-name{color:#eab4dd}
+.brand-meter{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:0 0 14px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.brand-meter>div:not(.brand-meter-bar){display:grid}.brand-meter strong{font-size:20px}.brand-meter span{color:var(--muted);font-size:12px}
+.brand-meter-bar{flex:1 1 160px;height:8px;border-radius:99px;background:var(--border);overflow:hidden}.brand-meter-bar span{display:block;height:100%;background:#d68cc8}
+.flash-topic.active{border-color:#d68cc8;color:#eab4dd;background:rgba(214,140,200,.12)}.flash-topic small{color:var(--faint)}
+button.flash-topic{font:inherit;font-size:13px}
+.brand-mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:6px 0 14px}
+.brand-mode{display:grid;gap:4px;text-align:left;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:inherit;font:inherit;cursor:pointer}
+.brand-mode:hover:not([disabled]){border-color:#d68cc8}.brand-mode[disabled]{opacity:.45;cursor:default}
+.brand-mode strong{font-size:15px}.brand-mode small{color:var(--muted);font-size:12px}
+.brand-reset{margin-top:6px}
+.brand-dir-label{margin:6px 0 0;color:#d68cc8;font:600 11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em}
+.brand-prompt{font:900 34px/1.15 "Playfair Display",serif;margin:8px 0 4px;color:#eab4dd}.brand-prompt.generic{color:inherit;font-style:italic}
+.brand-prompt sup{font-size:14px;color:var(--faint)}.brand-ask{color:var(--muted);margin:0 0 14px}
+.brand-reveal{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(214,140,200,.5);background:rgba(214,140,200,.08);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.brand-reveal .brand-generic{font-size:17px;color:inherit}.brand-reveal .brand-name{font-size:19px}.brand-reveal .brand-cls{color:var(--faint);font:500 11px "DM Mono",monospace;margin-left:auto}
+.brand-reveal p{flex-basis:100%;margin:2px 0 0;color:var(--muted);font-size:13px}
+.brand-missed{margin:12px 0 0;color:#e88b8b;font-weight:600}.brand-right{margin:12px 0 0;color:#7fd19b;font-weight:600}
+.brand-type-form{display:flex;flex-wrap:wrap;gap:8px}.brand-type-form input{flex:1 1 220px;min-width:0;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:inherit;font:inherit;font-size:17px}
+.brand-type-form input.right{border-color:#7fd19b}.brand-type-form input.wrongly{border-color:#e88b8b}
+.brand-table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14px}
+.brand-table caption{text-align:left;color:#d68cc8;font:600 12px "DM Mono",monospace;padding:6px 0}
+.brand-table th,.brand-table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--border)}.brand-table th{color:var(--faint);font-weight:500;font-size:12px}
+.brand-table td strong{color:#eab4dd}.brand-ok{color:#7fd19b}.brand-bad{color:#e88b8b}
+.brand-peek{border:1px dashed #d68cc8;background:transparent;color:#d68cc8;border-radius:6px;padding:2px 14px;cursor:pointer;font:inherit}

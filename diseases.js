@@ -131,13 +131,14 @@
       { id: "practice", label: "Practice" }
     ];
     if (config.flashcards) modes.splice(1, 0, { id: "flashcards", label: "Flashcards" });
+    if (config.brands && window.BrandDrill) modes.splice(1, 0, { id: "brands", label: "Brand ⇄ Generic" });
     var totalDiseases = lectures.reduce(function (sum, lecture) { return sum + (lecture.diseases || []).length; }, 0);
     content.innerHTML =
       '<div class="diseases-heading"><p class="eyebrow">' + escapeHtml(config.eyebrow) + '</p><h2>' + escapeHtml(TITLE) + '</h2><p>' + escapeHtml(config.intro) + '</p>' +
       '<span class="diseases-count-pill">' + count(totalDiseases) + ' across ' + groupCount(lectures.length) + '</span>' +
       (config.note ? '<p class="diseases-note">' + escapeHtml(config.note) + '</p>' : '') + '</div>' +
       '<div class="mode-tabs" role="tablist">' + modes.map(function (mode) {
-        return '<button type="button" class="mode-tab ' + (mode.id === currentMode ? "active" : "") + '" data-diseases-mode="' + mode.id + '">' + mode.label + '</button>';
+        return '<button type="button" class="mode-tab ' + (mode.id === currentMode ? "active" : "") + (mode.id === "brands" ? " brand-tab" : "") + '" data-diseases-mode="' + mode.id + '">' + mode.label + '</button>';
       }).join("") + '</div><div id="diseases-mode-content"></div>';
     content.querySelectorAll("[data-diseases-mode]").forEach(function (button) {
       button.addEventListener("click", function () {
@@ -155,6 +156,7 @@
     if (currentMode === "progress") { renderProgress(); return; }
     if (currentMode === "practice") { renderPracticeHome(); return; }
     if (currentMode === "flashcards") { renderFlashHome(); return; }
+    if (currentMode === "brands") { window.BrandDrill.render(modeHost(), config.brands); return; }
     renderInformation();
   }
 
@@ -168,7 +170,7 @@
   }
   function renderInfoLectureGrid() {
     var progress = loadProgress();
-    var html = '<div class="disease-lecture-grid">';
+    var html = (config.brands && window.BrandDrill ? '<button type="button" class="brand-banner" id="brand-banner"><strong>Brand ⇄ Generic names</strong><span>Know every drug both ways: ' + config.brands.items.length + ' brand/generic pairs as multiple choice, flashcards and typing. Misses come back.</span><em>Drill now →</em></button>' : '') + '<div class="disease-lecture-grid">';
     lectures.forEach(function (lecture) {
       var stats = lectureStats(progress, lecture);
       var hasQuestions = stats.totalQuestions > 0;
@@ -181,6 +183,7 @@
     });
     html += '</div>';
     modeHost().innerHTML = html;
+    if (byId("brand-banner")) byId("brand-banner").addEventListener("click", function () { currentMode = "brands"; renderRoot(); holdScrollIntoView(modeHost(), 350, "start"); });
     modeHost().querySelectorAll("[data-lecture]").forEach(function (button) {
       button.addEventListener("click", function () {
         infoLecture = lectures.find(function (lecture) { return lecture.id === button.dataset.lecture; });
@@ -198,7 +201,7 @@
       var hasQuestions = stats.total > 0;
       var hasContent = (disease.sections || []).length > 0;
       html += '<button type="button" class="disease-card" data-disease="' + escapeHtml(disease.id) + '">' +
-        '<strong>' + escapeHtml(disease.name) + '</strong>' +
+        '<strong>' + escapeHtml(disease.name) + '</strong>' + (config.brands && window.BrandDrill ? window.BrandDrill.brandsLine(config.brands, disease.id) : '') +
         '<span class="disease-card-blurb">' + escapeHtml(disease.blurb || "") + '</span>' + lectureTags(disease) +
         '<span class="disease-card-meta">' + (hasQuestions ? stats.correct + '/' + stats.total + ' questions mastered' : hasContent ? 'Reference ready · questions coming soon' : 'Coming soon') + '</span>' +
         '</button>';
@@ -220,7 +223,7 @@
     var hasContent = (disease.sections || []).length > 0;
     var hasQuestions = stats.total > 0;
     var html = '<div class="session-top"><button type="button" id="info-to-lecture">← ' + escapeHtml(lecture.title) + '</button><span>' + escapeHtml(disease.name) + '</span></div>' +
-      '<article class="disease-detail"><p class="eyebrow">' + escapeHtml(lecture.title) + '</p><h2>' + escapeHtml(disease.name) + '</h2><p class="disease-detail-blurb">' + escapeHtml(disease.blurb || "") + '</p>' + (disease.lectures && disease.lectures.length ? '<p class="med-lecture-line">Taught in: ' + lectureTags(disease) + '</p>' : "");
+      '<article class="disease-detail"><p class="eyebrow">' + escapeHtml(lecture.title) + '</p><h2>' + escapeHtml(disease.name) + '</h2><p class="disease-detail-blurb">' + escapeHtml(disease.blurb || "") + '</p>' + (disease.lectures && disease.lectures.length ? '<p class="med-lecture-line">Taught in: ' + lectureTags(disease) + '</p>' : "") + (config.brands && window.BrandDrill ? window.BrandDrill.boxFor(config.brands, disease.id) : "");
     if (hasContent) {
       html += disease.sections.map(function (section) { return '<section class="disease-detail-section"><h3>' + escapeHtml(section.title || "") + '</h3>' + (section.html || "") + '</section>'; }).join("");
     } else {
@@ -591,6 +594,9 @@
   }
 
   launch.addEventListener("click", open);
+  if (config.brandsLaunchId && document.getElementById(config.brandsLaunchId)) {
+    document.getElementById(config.brandsLaunchId).addEventListener("click", function () { open(); currentMode = "brands"; renderRoot(); });
+  }
   document.getElementById(config.backId).addEventListener("click", close);
   }
 
@@ -708,6 +714,7 @@
     groupOne: "drug class", groupMany: "drug classes",
     launchId: "cardio3-meds-launch", viewId: "cardio3-meds-view", contentId: "cardio3-meds-content", backId: "cardio3-meds-back",
     progressKey: "pasem2:medications:cardio-part-3:progress",
+    brands: window.CARDIO3_BRANDS, brandsLaunchId: "cardio3-brands-launch",
     eyebrow: "Cardio Part 3 · every drug you need to know",
     intro: "Every Cardio Part 3 drug, grouped by class instead of by lecture because the same drugs come back across CAD I-V, Heart Failure, Cardiac Testing and Cardiac Surgery. Each one has the same five parts: what it treats, how it works, contraindications, side effects, and must-know pearls, with the lectures that teach it.",
     note: "Use Flashcards to drill one part at a time (for example only contraindications), and Practice for case-style questions with a one-line why. \"Which drug when\" ties it together: antianginal by patient, the ACS checklist, who should NOT get the usual drug, HF drugs by stage, stress test agents and what to hold, and antiplatelet vs anticoagulant vs lytic. Facts not on the slides are marked (standard teaching).",
