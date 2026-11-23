@@ -52,6 +52,10 @@ Course-specific tools (Disease Walkthrough, Diagnosis Drills, Geography Lab, Dis
 - Navigation must never trap her: a sticky breadcrumb (Tiers › Tier › Lecture › Chunk) on every screen; each chunk row has separate Learn and Questions pills, and the tier/lecture pages have "Questions only", "Extra practice" and "My misses". Learning a chunk ends on a remember list with Keep learning / Do this chunk's questions / Read it again. A miss offers "Re-read" of its chunk. Misses come back once at the end; every question has a one-sentence why. About 3 check questions and ONE `bank` question per chunk on the first pass. No day-by-day schedule and no "simpler question" fallback (Anna said no).
 - Filled so far (all three tiers each): CAD Part I, CAD Part II, CAD Part III, CAD Part IV, CAD Part V, Heart Failure, Cardiac Testing, Cardiac Surgery (every lecture). Progress `pasem2:tiers:cardio-part-3:progress` (`learned` keyed `<tier>|<lecture>|<chunk>`, `q`). Question ids `<tier>|<lecture>|<chunk>|check|<i>` or `...|bank|<i>`: never rename a chunk id, only append pages and questions. Run `node scripts/validate-tiers-cardio-part-3.cjs` after editing (checks figure types exist).
 
+## Cardio Part 3 All-CAD Recall
+
+- Anna (2026-11-23): one Recall run across CAD Parts I-V. Launch `#cardio3-allcad-recall-launch` (rose box right under Tiers), plus a "Recall all CAD lectures at once" button on each CAD lecture's Recall home. `app.js` builds a virtual lecture (`buildAllCadLecture`, every `cad-part-*` lecture's objectives in order, titles prefixed "CAD I ·") that `lecture()` returns while it is open; same Recall engine. Progress `pasem2:recall:cardio-part-3:cad-all` (separate from per-lecture Recall).
+
 ## Cardio Part 3 Slide by slide
 
 - Anna (2026-11-20): Stager's CAD lectures studied slide by slide, LO by LO, because her questions follow the LOs. Launch `#cardio3-slides-launch` (blue box under Tiers in the `data-course-tools="cardio-part-3"` row), view `#cardio3-slides-view`.

@@ -15,6 +15,9 @@
   var quizState = null;
   var recallState = null;
   var RECALL_GAP = 3;
+  // "All CAD" Recall (Anna, 2026-11-23): one Recall run across CAD Parts I-V. While it is open,
+  // lecture() returns this combined lecture instead of a real one.
+  var virtualLecture = null;
 
   randomizeQuestionBanks();
 
@@ -68,7 +71,32 @@
   }
   function writeStore(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) {} }
   function lectureKey(course, item) { return course.id + ":" + item.id; }
-  function lecture() { return (currentCourse.lectures || [])[currentLecture]; }
+  function lecture() { return virtualLecture || (currentCourse.lectures || [])[currentLecture]; }
+  function buildAllCadLecture(course) {
+    var parts = (course.lectures || []).filter(function (item) { return /^cad-part-/.test(item.id); });
+    var objs = [];
+    parts.forEach(function (item) {
+      var short = String(item.title).split(":")[0].replace("CAD Part ", "CAD ");
+      (item.objectives || []).forEach(function (objective) {
+        var copy = Object.assign({}, objective);
+        copy.title = short + " · " + objective.title;
+        objs.push(copy);
+      });
+    });
+    return { id: "cad-all", title: "All CAD (Parts I-V)", virtual: true, parts: parts.length, objectives: objs };
+  }
+  function openAllCadRecall() {
+    var course = (semester.courses || []).find(function (item) { return item.id === "cardio-part-3"; });
+    if (!course) return;
+    clearSessions();
+    if (currentCourse !== course || studyView.hidden) openCourse(course);
+    virtualLecture = buildAllCadLecture(course); currentMode = "recall";
+    studyContent.innerHTML = '<div class="study-heading"><p class="eyebrow">' + escapeHtml(course.title) + '</p><h2>Recall · All CAD</h2><p>CAD Parts I-V in one continuous Recall: every objective of all five lectures, in lecture order.</p></div><button type="button" class="secondary-action" id="cad-all-back">← Back to lectures</button><div id="mode-content"></div>';
+    document.getElementById("cad-all-back").addEventListener("click", function () { virtualLecture = null; currentMode = "learn"; clearSessions(); renderStudy(); });
+    renderRecallHome();
+    holdScrollIntoView(studyContent, 300, "start");
+  }
+  window.PasemOpenAllCadRecall = openAllCadRecall;
   function objectives() { return (lecture() && lecture().objectives) || []; }
   function objectiveById(id) { return objectives().find(function (objective) { return objective.id === id; }); }
   function host() { return document.getElementById("mode-content"); }
@@ -135,6 +163,7 @@
     return (lect.objectives || []).length;
   }
   function renderStudy() {
+    virtualLecture = null;
     var lectures = currentCourse.lectures || [];
     if (!lectures.length) { studyContent.innerHTML = '<div class="empty-state"><span>📚</span><h2>No lectures yet</h2></div>'; return; }
     var lect = lectures[currentLecture];
@@ -312,9 +341,12 @@
     var valid = items.reduce(function (set, item) { set[item.id] = true; return set; }, {});
     var mastered = Object.keys(saved.mastered).filter(function (id) { return valid[id]; }).length;
     var percent = items.length ? Math.round(mastered / items.length * 100) : 0;
-    host().innerHTML = '<section class="recall-home"><div class="recall-icon">↻</div><p class="eyebrow">One continuous deck</p><h3>Recall the entire ' + escapeHtml(lecture().title) + ' lecture</h3><p>Recall moves through all ' + objectives().length + ' objectives in order. For each Learn card, you see the concept first, then its Test questions, then its Apply cases before moving to the next concept.</p><div class="recall-stats"><span><strong>' + objectives().length + '</strong>objectives</span><span><strong>' + mastered + ' / ' + items.length + '</strong>mastered questions</span><span><strong>' + percent + '%</strong>complete</span></div><label class="recall-option"><input id="skip-previews" type="checkbox" ' + (saved.skipPreviews ? "checked" : "") + '><span><strong>Skip Learn previews</strong><small>Go straight through Test and Apply. A matching Learn card still appears after every miss.</small></span></label><div class="recall-actions"><button class="recall-start" id="start-recall" type="button">' + (mastered ? "Resume Recall" : "Start Recall") + ' →</button>' + (mastered ? '<button class="recall-restart" id="restart-recall" type="button">Restart</button>' : "") + '</div></section>';
+    var lect = lecture(), heading = lect.virtual ? "Recall all " + lect.parts + " CAD lectures at once" : "Recall the entire " + escapeHtml(lect.title) + " lecture";
+    var allCadLink = (!lect.virtual && /^cad-part-/.test(lect.id)) ? '<button type="button" class="secondary-action recall-allcad" id="recall-allcad">↻ Recall all CAD lectures at once</button>' : "";
+    host().innerHTML = '<section class="recall-home"><div class="recall-icon">↻</div><p class="eyebrow">One continuous deck</p><h3>' + heading + '</h3><p>Recall moves through all ' + objectives().length + ' objectives in order' + (lect.virtual ? ' (CAD I, then II, III, IV, V)' : '') + '. For each Learn card, you see the concept first, then its Test questions, then its Apply cases before moving to the next concept.</p><div class="recall-stats"><span><strong>' + objectives().length + '</strong>objectives</span><span><strong>' + mastered + ' / ' + items.length + '</strong>mastered questions</span><span><strong>' + percent + '%</strong>complete</span></div><label class="recall-option"><input id="skip-previews" type="checkbox" ' + (saved.skipPreviews ? "checked" : "") + '><span><strong>Skip Learn previews</strong><small>Go straight through Test and Apply. A matching Learn card still appears after every miss.</small></span></label><div class="recall-actions"><button class="recall-start" id="start-recall" type="button">' + (mastered ? "Resume Recall" : "Start Recall") + ' →</button>' + (mastered ? '<button class="recall-restart" id="restart-recall" type="button">Restart</button>' : "") + '</div>' + allCadLink + '</section>';
+    if (allCadLink) document.getElementById("recall-allcad").addEventListener("click", openAllCadRecall);
     document.getElementById("start-recall").addEventListener("click", function () { startRecall(document.getElementById("skip-previews").checked, false); });
-    if (document.getElementById("restart-recall")) document.getElementById("restart-recall").addEventListener("click", function () { if (window.confirm("Restart Recall for the entire " + lecture().title + " lecture?")) startRecall(document.getElementById("skip-previews").checked, true); });
+    if (document.getElementById("restart-recall")) document.getElementById("restart-recall").addEventListener("click", function () { if (window.confirm("Restart Recall for " + (lecture().virtual ? "all CAD lectures" : "the entire " + lecture().title + " lecture") + "?")) startRecall(document.getElementById("skip-previews").checked, true); });
   }
   function buildRecallSteps(mastered, taught, skipPreviews) {
     var steps = [];
@@ -375,7 +407,7 @@
   function exitRecall() { saveRecall(); recallState = null; renderRecallHome(); }
   function renderRecallComplete() {
     var state = recallState; saveRecall();
-    host().innerHTML = '<section class="complete-panel"><span class="complete-icon">🏅</span><p class="eyebrow">Lecture mastered</p><h3>' + escapeHtml(lecture().title) + ' Recall complete</h3><p>You worked through the Learn → Test → Apply sequence across all ' + objectives().length + ' objectives.</p><div class="session-actions"><button class="primary-action" id="recall-again" type="button">Restart Recall</button><button class="secondary-action" id="recall-home" type="button">Recall overview</button></div></section>';
+    host().innerHTML = '<section class="complete-panel"><span class="complete-icon">🏅</span><p class="eyebrow">Lecture mastered</p><h3>' + escapeHtml(lecture().virtual ? "All CAD" : lecture().title) + ' Recall complete</h3><p>You worked through the Learn → Test → Apply sequence across all ' + objectives().length + ' objectives.</p><div class="session-actions"><button class="primary-action" id="recall-again" type="button">Restart Recall</button><button class="secondary-action" id="recall-home" type="button">Recall overview</button></div></section>';
     document.getElementById("recall-again").addEventListener("click", function () { startRecall(state.skipPreviews, true); });
     document.getElementById("recall-home").addEventListener("click", function () { recallState = null; renderRecallHome(); });
   }
@@ -386,5 +418,7 @@
     progress = {}; Object.keys(localStorage).forEach(function (key) { if (key.indexOf("pasem2:") === 0) localStorage.removeItem(key); });
     clearSessions(); writeStore(progressKey, progress); renderProgress(); renderCourses(); if (!studyView.hidden) renderStudy();
   });
+  var allCadLaunch = document.getElementById("cardio3-allcad-recall-launch");
+  if (allCadLaunch) allCadLaunch.addEventListener("click", openAllCadRecall);
   renderCourses(); renderProgress();
 }());
